@@ -1,0 +1,50 @@
+{
+  "genres": [
+    "Web Development",
+    "Mobile App",
+    "Data Visualization",
+    "Digital Art",
+    "Illustration",
+    "Photography",
+    "Creative Writing",
+    "Technical Writing",
+    "Poetry",
+    "Fiction"
+  ],
+  "styles": [
+    "Minimalist",
+    "Bold",
+    "Experimental",
+    "Traditional",
+    "Modern",
+    "Vintage",
+    "Abstract",
+    "Realistic",
+    "Interactive",
+    "Responsive"
+  ],
+  "technologies": [
+    "JavaScript",
+    "React",
+    "Vue.js",
+    "Node.js",
+    "Python",
+    "HTML/CSS",
+    "PHP",
+    "WordPress",
+    "Adobe Creative Suite",
+    "Figma",
+    "Blender",
+    "Unity"
+  ],
+  "moods": [
+    "Professional",
+    "Creative",
+    "Innovative",
+    "Playful",
+    "Serious",
+    "Experimental",
+    "Traditional",
+    "Modern"
+  ]
+} 

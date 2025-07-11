@@ -1,0 +1,13 @@
+backend:
+  name: local
+
+collections:
+  - name: "projects"
+    label: "Portfolio Projects"
+    folder: "_data"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "text"}
+      - {label: "Medium", name: "medium", widget: "select", options: ["code", "art", "writing"]}
+      - {label: "Year", name: "year", widget: "number", value_type: "int"} 

@@ -1,0 +1,153 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# For local development, uncomment the line below and comment out the git-gateway backend above
+# backend:
+#   name: local
+
+local_backend: true
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "projects"
+    label: "Portfolio Projects"
+    folder: "_data"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image URL", name: "imageUrl", widget: "string" }
+      - { label: "Medium", name: "medium", widget: "select", options: ["code", "art", "writing"] }
+      - label: "Genres"
+        name: "genre"
+        widget: "select"
+        multiple: true
+        options:
+          - "Web Development"
+          - "Mobile App"
+          - "Data Visualization"
+          - "Digital Art"
+          - "Illustration"
+          - "Photography"
+          - "Creative Writing"
+          - "Technical Writing"
+          - "Poetry"
+          - "Fiction"
+      - label: "Styles/Themes"
+        name: "style"
+        widget: "select"
+        multiple: true
+        options:
+          - "Minimalist"
+          - "Bold"
+          - "Experimental"
+          - "Traditional"
+          - "Modern"
+          - "Vintage"
+          - "Abstract"
+          - "Realistic"
+          - "Interactive"
+          - "Responsive"
+          - "Mystical"
+          - "Meditative"
+      - label: "Technologies"
+        name: "tech"
+        widget: "select"
+        multiple: true
+        options:
+          - "JavaScript"
+          - "React"
+          - "Vue.js"
+          - "Node.js"
+          - "Python"
+          - "HTML5"
+          - "CSS Grid"
+          - "HTML/CSS"
+          - "PHP"
+          - "WordPress"
+          - "Adobe Creative Suite"
+          - "Figma"
+          - "Blender"
+          - "Unity"
+          - "Gemini API"
+      - label: "Mood"
+        name: "mood"
+        widget: "select"
+        multiple: true
+        options:
+          - "Professional"
+          - "Creative"
+          - "Innovative"
+          - "Playful"
+          - "Serene"
+          - "Mystical"
+          - "Serious"
+          - "Experimental"
+          - "Traditional"
+          - "Modern"
+        allow_add: true
+      - label: "Year"
+        name: "year"
+        widget: "select"
+        options:
+          - 2025
+          - 2024
+          - 2023
+          - 2022
+          - 2021
+          - 2020
+          - 2019
+          - 2018
+      - label: "Role"
+        name: "role"
+        widget: "select"
+        options:
+          - "Lead Developer & UX Designer"
+          - "Full Stack Developer"
+          - "Designer"
+          - "Writer"
+          - "Artist"
+        allow_add: true
+      - { label: "Links", name: "links", widget: "object", fields: [
+          { label: "Live Site", name: "live", widget: "string", required: false },
+          { label: "GitHub", name: "github", widget: "string", required: false },
+          { label: "Demo", name: "demo", widget: "string", required: false }
+        ]}
+      - { label: "Pitch", name: "pitch", widget: "markdown" }
+      - { label: "Challenge", name: "challenge", widget: "markdown" }
+      - { label: "Development", name: "development", widget: "markdown" }
+      - { label: "Outcome", name: "outcome", widget: "markdown" }
+
+  - name: "site-settings"
+    label: "Site Settings"
+    files:
+      - file: "_data/site-settings.json"
+        label: "Site Configuration"
+        name: "site-settings"
+        fields:
+          - {label: "Site Title", name: "title", widget: "string"}
+          - {label: "Site Description", name: "description", widget: "text"}
+          - {label: "Contact Email", name: "email", widget: "string"}
+          - {label: "About Text", name: "about", widget: "markdown"}
+          - {label: "Social Links", name: "social", widget: "object", fields: [
+              {label: "LinkedIn", name: "linkedin", widget: "string", required: false},
+              {label: "GitHub", name: "github", widget: "string", required: false},
+              {label: "Twitter", name: "twitter", widget: "string", required: false},
+              {label: "Portfolio", name: "portfolio", widget: "string", required: false}
+            ]}
+
+  - name: "categories"
+    label: "Categories"
+    files:
+      - file: "_data/categories.json"
+        label: "Filter Categories"
+        name: "categories"
+        fields:
+          - {label: "Genres", name: "genres", widget: "list", field: {label: "Genre", name: "genre", widget: "string"}}
+          - {label: "Styles", name: "styles", widget: "list", field: {label: "Style", name: "style", widget: "string"}}
+          - {label: "Technologies", name: "technologies", widget: "list", field: {label: "Technology", name: "tech", widget: "string"}}
+          - {label: "Moods", name: "moods", widget: "list", field: {label: "Mood", name: "mood", widget: "string"}} 

@@ -1,0 +1,15 @@
+{
+  "name": "rswan-portfolio",
+  "version": "1.0.0",
+  "description": "Ray Swan's portfolio with Decap CMS",
+  "scripts": {
+    "dev": "npx decap-server",
+    "build": "echo 'Build process would go here'",
+    "serve": "npx http-server . -p 8080",
+    "cms": "npx decap-server",
+    "cms-local": "npx decap-server"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+} 
