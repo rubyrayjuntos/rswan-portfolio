@@ -56,7 +56,7 @@ const itemsPerPage = 12;
 // --- DATA LOADING ---
 async function loadProjects() {
     try {
-        // Load all project files from _data directory
+        // Try to load projects from _data directory
         const projectFiles = [
             '_data/sample-project.json',
             '_data/papi-chispa-cartas-del-deseo.json'
@@ -65,6 +65,10 @@ async function loadProjects() {
         const projectPromises = projectFiles.map(async (file) => {
             try {
                 const response = await fetch(file);
+                if (!response.ok) {
+                    console.warn(`Failed to load ${file}: ${response.status} ${response.statusText}`);
+                    return null;
+                }
                 return await response.json();
             } catch (error) {
                 console.warn(`Failed to load ${file}:`, error);
@@ -75,13 +79,195 @@ async function loadProjects() {
         const projectData = await Promise.all(projectPromises);
         projects = projectData.filter(project => project !== null);
         
+        // If no projects loaded, use fallback data
+        if (projects.length === 0) {
+            console.warn('No project files found, using fallback data');
+            projects = getFallbackProjects();
+        }
+        
+        console.log(`Loaded ${projects.length} projects:`, projects.map(p => p.title));
+        
         // Initialize filters after data is loaded
         initializeFilters();
         applyFilters();
     } catch (error) {
         console.error('Error loading projects:', error);
-        projects = [];
+        projects = getFallbackProjects();
+        initializeFilters();
+        applyFilters();
     }
+}
+
+// Fallback project data if no files are found
+function getFallbackProjects() {
+    return [
+        {
+            id: 1,
+            title: "Portfolio (Interactive Web Portfolio)",
+            description: "A dynamic and multi-faceted web portfolio designed to comprehensively showcase diverse creative and technical work across Code, Writing, and Art. It features a data-driven organizational structure that allows visitors to sort, filter, and view projects based on their specific interests (e.g., medium, genre, style/theme), catering to various professional perspectives (technical, editorial, creative). The design emphasizes user experience, visual adaptability, and efficient information delivery.",
+            imageUrl: "https://via.placeholder.com/600x400/e0e5ec/31456A?text=Interactive+Portfolio",
+            medium: "code",
+            genre: ["Web Development", "Personal Branding", "UX/UI Design", "Information Architecture", "Data Visualization", "Portfolio Management"],
+            style: ["Soft UI/Neumorphic", "Modern", "Professional", "Adaptable UI/UX", "Theme Switching", "Intuitive Navigation"],
+            tech: ["HTML", "CSS", "JavaScript", "JSON", "Markdown", "Prism.js", "Marked.js"],
+            mood: "Innovative",
+            year: 2025,
+            role: "Lead Designer, Frontend Developer, Backend Data Architect, Information Architect, UX/UI Developer, Personal Brand Strategist",
+            variant: "featured",
+            status: "live",
+            links: {
+                live: "C:/Users/raycs/Documents/Projects/rswan-portfolio",
+                github: "https://github.com/rayswan/rswan-portfolio",
+                demo: "C:/Users/raycs/Documents/Projects/rswan-portfolio"
+            },
+            pitch: "A sophisticated, data-driven interactive web portfolio that transcends traditional showcases, allowing visitors to dynamically filter and explore a diverse body of work across code, writing, and art, precisely tailored to their professional interests.",
+            challenge: "The primary challenge involved architecting a flexible and scalable system capable of dynamically presenting a large and diverse body of work from multiple creative disciplines (code, writing, art) in a highly customizable way. This required extensive redesigns to recognize and implement a robust data structure (JSON with rich metadata) as the core element, enabling granular filtering by medium, genre, and even mood/style, while ensuring efficient performance and an intuitive user experience.",
+            development: "The development process in 2025 was highly iterative, undergoing three major redesigns as the fundamental understanding shifted towards making the underlying data structure the most critical element. This involved extensive work on creating comprehensive JSON metadata for each project, designing the filtering logic, and implementing the front-end presentation layer to respond dynamically to user selections and metadata tags, including the unique mood-based theme switching.",
+            outcome: "The outcome is a highly organized, professional, and interactive portfolio that not only presents diverse projects but also actively demonstrates advanced information architecture, dynamic UI/UX principles, and a deep understanding of content categorization. It effectively serves as a powerful tool for self-branding, enabling potential employers or clients to quickly access the most relevant work and understand the breadth and depth of your interdisciplinary skills.",
+            gallery: [
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Main+Interface",
+                    title: "Main Interface",
+                    description: "The primary portfolio interface with neumorphic design elements and advanced filtering",
+                    dimensions: "1200x800"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Filter+System", 
+                    title: "Advanced Filter System",
+                    description: "Multi-level filtering by medium, genre, style, technology, and mood",
+                    dimensions: "1200x800"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Natural+Search",
+                    title: "Natural Language Search",
+                    description: "AI-powered search with guided results and intelligent filtering",
+                    dimensions: "1200x800"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Project+Details",
+                    title: "Project Detail Views",
+                    description: "Comprehensive project case studies with markdown document support",
+                    dimensions: "1200x800"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Theme+Switcher",
+                    title: "Mood-Based Theme Switching",
+                    description: "Dynamic UI adaptation based on project moods and themes",
+                    dimensions: "1200x800"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Data+Architecture",
+                    title: "Data Architecture",
+                    description: "JSON metadata structure enabling granular project categorization",
+                    dimensions: "1200x800"
+                }
+            ]
+        },
+        {
+            id: 2,
+            title: "Papi Chispa (Cartas del Deseo — Powered by Papi Chispa 💋)",
+            description: "An interactive, real-time web-based tarot divination experience powered by AI. Featuring 'Papi Chispa,' a tarot reading heart throb with charm, wit, and telenovela flair, the application offers OpenAI-powered bilingual (Spanglish) fortune-telling with dramatic, one-card-at-a-time reveal and live chat interaction.",
+            imageUrl: "https://via.placeholder.com/600x400/e0e5ec/31456A?text=Papi+Chispa+Tarot",
+            medium: "code",
+            genre: ["AI", "Web Application", "Tarot", "Divination", "Interactive Narrative", "Chatbot", "Bilingual Experience", "Digital Art Integration", "Creative AI", "Social Media Marketing"],
+            style: ["Latinx Spiritual", "Telenovela Flair", "Velvet Lounge", "Dramatic Card Flips", "Sultry Spanglish", "Ceremonial Gold", "Cyberpunk Pulse", "Noir Mist", "Desert Mirage"],
+            tech: ["React", "Vite", "Tailwind CSS", "FastAPI", "Python", "OpenAI API", "TypeScript", "pnpm", "Render.com"],
+            mood: "Mystical",
+            year: 2025,
+            role: "Lead Developer (Full-Stack), AI Integrator, UI/UX Designer, Concept Creator, Content Writer, Marketing Strategist",
+            variant: "featured",
+            status: "live",
+            links: {
+                live: "C:/Users/raycs/Documents/Projects/ViteaTSRE",
+                github: "https://github.com/rubyrayjuntos/VITEATSRE",
+                demo: "C:/Users/raycs/Documents/Projects/ViteaTSRE"
+            },
+            pitch: "Cartas del Deseo is an interactive AI-powered tarot divination web experience, embodying the charismatic 'Papi Chispa.' It offers real-time, bilingual (Spanglish) fortune-telling through engaging card reveals and personalized chat, blending mystical insights with dramatic telenovela charm.",
+            challenge: "As my first full-stack programming project, the primary challenge was navigating the entire software development lifecycle, from choosing and integrating a technology stack (React, FastAPI, OpenAI API) to deploying a live application. This involved learning core concepts of front-end development, backend API design, and AI integration from scratch, leading to multiple complete re-dos of the tech stack due to initial missteps and the invaluable lesson of needing comprehensive functional and technical specifications before starting development.",
+            development: "The development began this year (2025) as my inaugural full-stack project, following approximately three months of dedicated programming effort. The process involved significant learning and iterative development, including multiple 're-dos' of the technology stack as I gained experience in full-stack programming. Key stages included setting up the React frontend with Vite and Tailwind, building the FastAPI backend for AI integration, and configuring deployment to Render.com.",
+            outcome: "The project successfully launched a fully functional and engaging interactive tarot reading experience. It served as a pivotal learning ground, providing hands-on experience in full-stack web development, AI API integration, and the critical importance of pre-planning with detailed technical specifications. The outcome is a live, unique application that showcases not only technical proficiency but also a strong creative vision, the ability to bring complex, emotionally resonant concepts to life through technology, and a comprehensive understanding of social media marketing and launch strategies.",
+            gallery: [
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Initial+Spread+View",
+                    title: "Initial Spread View",
+                    description: "The central figure and initial tarot spread interface",
+                    dimensions: "1200x800"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Character+Concepts",
+                    title: "Character Concepts Collage",
+                    description: "Papi Chispa character development and visual concepts",
+                    dimensions: "1200x800"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Fiery+Heart+Archetype",
+                    title: "The Fiery Heart Archetype",
+                    description: "Selected archetype drawing from art historical references",
+                    dimensions: "800x600"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Papi+with+Cards",
+                    title: "Papi with Cards",
+                    description: "Character interaction with tarot deck elements",
+                    dimensions: "1000x750"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Empress+Card+Detail",
+                    title: "Empress Card Detail",
+                    description: "Detailed view of the Empress tarot card artwork",
+                    dimensions: "600x900"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Lips+Icon",
+                    title: "Lips Icon/Card Back",
+                    description: "Signature lips icon and card back design",
+                    dimensions: "400x400"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Tower+Reading",
+                    title: "In-Progress Reading (Tower)",
+                    description: "Live reading session featuring the Tower card",
+                    dimensions: "1200x800"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Sun+Reading",
+                    title: "In-Progress Reading (Sun)",
+                    description: "Live reading session featuring the Sun card",
+                    dimensions: "1200x800"
+                },
+                {
+                    url: "https://via.placeholder.com/400x300/e0e5ec/31456A?text=Horizontal+Grid",
+                    title: "Horizontal Image Grid",
+                    description: "Layout showcasing multiple project elements",
+                    dimensions: "1600x600"
+                }
+            ]
+        },
+        {
+            id: 3,
+            title: "Creative Writing Portfolio",
+            description: "A collection of experimental prose and poetry exploring themes of technology and human connection.",
+            imageUrl: "https://via.placeholder.com/600x400/e0e5ec/31456A?text=Writing+Project",
+            medium: "writing",
+            genre: ["Creative Writing", "Poetry", "Experimental"],
+            style: ["Modern", "Experimental", "Traditional"],
+            tech: [],
+            mood: "Serene",
+            year: 2023,
+            role: "Writer & Poet",
+            variant: "regular",
+            status: "live",
+            links: {
+                live: "https://writing.example.com",
+                portfolio: "https://portfolio.writing.example.com"
+            },
+            pitch: "A collection of contemporary writing that bridges the gap between human emotion and technological advancement.",
+            challenge: "Finding the right balance between traditional literary forms and modern digital presentation.",
+            development: "Curated and edited a selection of works, then designed an elegant digital presentation system.",
+            outcome: "A cohesive body of work that demonstrates the evolution of storytelling in the digital age.",
+            gallery: []
+        }
+    ];
 }
 
 // --- FILTER MANAGEMENT ---
@@ -143,6 +329,15 @@ function renderProjects(projectsToRender) {
     projectsToRender.forEach(project => {
         const card = createProjectCard(project);
         projectGrid.appendChild(card);
+    });
+    // After rendering, check for overflow and add 'truncated' class
+    document.querySelectorAll('.card-description').forEach(desc => {
+        // Remove class first in case of rerender
+        desc.classList.remove('truncated');
+        // Check if text is actually truncated
+        if (desc.scrollHeight > desc.clientHeight + 2) {
+            desc.classList.add('truncated');
+        }
     });
 }
 
@@ -765,7 +960,11 @@ function initializeEventListeners() {
 }
 
 // Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize markdown renderer first
+    await initializeMarkdownRenderer();
+    
+    // Initialize event listeners and load projects
     initializeEventListeners();
     loadProjects();
 }); 

@@ -22,11 +22,21 @@ html {
 /* Base Body Styles */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
+    background: url('images/hero.png') center center/cover no-repeat fixed, var(--bg-color);
     color: var(--text-color-light);
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    filter: brightness(1.08);
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.68);
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* Custom Scrollbar Styling for Webkit Browsers */
@@ -50,6 +60,16 @@ body {
     padding: 2rem;
     box-sizing: border-box;
     min-height: 100vh;
+}
+
+.view, .portfolio-container, .filter-sidebar, .project-gallery, .case-study-container, .modal-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Remove hero section styles */
+.portfolio-hero, .hero-overlay, .hero-title, .hero-subtitle {
+    display: none !important;
 }
 
 /* --- GALLERY VIEW STYLES --- */
@@ -431,91 +451,86 @@ body {
     grid-auto-rows: max-content;
 }
 
-/* Project Card Styles */
 .project-card {
-    background: var(--bg-color);
+    background: var(--bg-color); 
     border-radius: 15px;
     box-shadow: 8px 8px 15px var(--shadow-dark), -8px -8px 15px var(--shadow-light);
-    overflow: hidden;
+    overflow: hidden; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    display: flex;
+    cursor: pointer; 
+    display: flex; 
     flex-direction: column;
-    position: relative;
 }
-
 .project-card:hover { 
     transform: translateY(-5px); 
     box-shadow: 12px 12px 20px var(--shadow-dark), -12px -12px 20px var(--shadow-light); 
 }
-
-/* Card Variants */
-.project-card.featured {
-    background: var(--featured-gradient);
-    color: var(--featured-text);
-    grid-column: span 2;
-}
-
-.project-card.featured .project-card-content {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-.project-card.featured .card-tag {
-    background: rgba(255, 255, 255, 0.2);
-    color: var(--featured-text);
-}
-
-.project-card.featured h3 {
-    color: var(--featured-text);
-    font-size: 1.4rem;
-}
-
-.project-card.tall {
-    grid-row: span 2;
-}
-
-.project-card.tall img {
-    height: 280px;
-}
-
-.project-card.wide {
-    grid-column: span 2;
-}
-
-.project-card.wide .project-card-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    align-items: start;
-}
-
 .project-card img { 
     width: 100%; 
     height: 180px; 
     object-fit: cover; 
     display: block; 
-    border-top-left-radius: 15px;
+    border-top-left-radius: 15px; /* Match card border radius */
     border-top-right-radius: 15px;
 }
-
 .project-card-content { 
     padding: 1.5rem; 
     flex-grow: 1; 
 }
 
-.project-card h3 { 
-    margin: 0 0 0.5rem 0; 
-    color: var(--text-color); 
-    font-size: 1.2rem; 
-    font-weight: 600;
-    font-family: 'Playfair Display', serif;
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
 }
 
-.project-card p { 
-    margin: 0 0 1rem 0; 
-    font-size: 0.95rem; 
-    line-height: 1.5; 
+.project-card h3 { 
+    margin: 0; 
+    color: var(--text-color); 
+    font-size: 1.2rem; 
+    flex: 1;
+}
+
+.card-year {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.card-description {
+    margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-color-light);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    position: relative;
+    min-height: 4.5em; /* ensures consistent card height for 3 lines */
+}
+.card-description.truncated::after {
+    content: '... more';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, transparent 0%, var(--bg-color) 80%);
+    color: var(--accent-color);
+    padding-left: 0.5em;
+    font-weight: 600;
+}
+
+.card-role {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    font-style: italic;
 }
 
 .card-tags { 
@@ -715,12 +730,6 @@ body {
 
 .case-study-content .section { 
     margin-bottom: 4rem; 
-}
-
-.hero-section img { 
-    width: 100%; 
-    border-radius: 15px; 
-    box-shadow: 8px 8px 15px var(--shadow-dark), -8px -8px 15px var(--shadow-light); 
 }
 
 .title-block { 
