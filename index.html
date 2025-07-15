@@ -344,6 +344,7 @@
         }
 
         .project-card {
+            position: relative;
             background: var(--bg-color); border-radius: 15px;
             box-shadow: 8px 8px 15px var(--shadow-dark), -8px -8px 15px var(--shadow-light);
             overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -359,7 +360,48 @@
             border-top-right-radius: 15px;
         }
         .project-card-content { padding: 1.5rem; flex-grow: 1; }
-        
+        .project-card-hero {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.project-card-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.card-medium-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #10b981;
+  color: #fff;
+  padding: 0.35em 0.9em;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(50,50,80,0.10);
+  z-index: 2;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+}
+.card-medium-badge.medium-code {
+  background: #065f46;
+  border: 1px solid #000000;
+}
+.card-medium-badge.medium-art {
+  background: #f59e1a;
+  border: 1px solid #000000;
+}
+.card-medium-badge.medium-writing {
+  background: #7c3aed;
+  border: 1px solid #000000;
+}
         .card-header {
             display: flex;
             justify-content: space-between;
@@ -375,8 +417,8 @@
         }
         
         .card-year {
-            background: var(--accent-color);
-            color: white;
+            /*background: var(--accent-color);*/
+            color: rgb(3, 0, 0);
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             font-size: 0.8rem;
@@ -926,6 +968,362 @@
             }
         }
 
+        .card-medium-badge {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          background: #10b981; /* Green (Tailwind Emerald 500) */
+          color: #fff;
+          padding: 0.35em 0.9em;
+          border-radius: 16px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          box-shadow: 0 2px 8px rgba(50,50,80,0.10);
+          z-index: 2;
+          pointer-events: none; /* so it doesn't block card clicks */
+          letter-spacing: 0.5px;
+          text-transform: capitalize;
+        }
+       /* --- <!-- Add this CSS after your existing detail view styles (around line 680) -->
+
+/* --- PARALLAX ENHANCED DETAIL VIEW STYLES --- */
+
+/* Hero Section with Parallax */
+.detail-hero-section {
+    height: 70vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #764ba2 100%);
+    margin: -2rem -2rem 2rem -2rem; /* Extend beyond view padding */
+    border-radius: 0 0 20px 20px;
+}
+
+.detail-hero-bg {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.06) 0%, transparent 50%);
+    animation: floatBackground 20s ease-in-out infinite;
+}
+
+@keyframes floatBackground {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+.detail-hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.detail-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    animation: particleFloat 15s linear infinite;
+}
+
+@keyframes particleFloat {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+.detail-hero-content {
+    text-align: center;
+    color: white;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.detail-hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease 0.5s forwards;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.detail-hero-content .pitch {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease 1s forwards;
+    font-weight: 400;
+}
+
+.detail-project-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    animation: fadeInUp 1s ease 1.5s forwards;
+    font-weight: 600;
+    border: 2px solid rgba(255,255,255,0.3);
+    text-transform: capitalize;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+}
+
+/* Enhanced Content Sections */
+.detail-content-section {
+    padding: 4rem 0;
+    position: relative;
+    background: var(--bg-color);
+    overflow: hidden;
+}
+
+.detail-content-section:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.detail-content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(45deg, var(--accent-color), #764ba2);
+}
+
+/* Enhanced Section Titles */
+.detail-section-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.detail-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(45deg, var(--accent-color), #764ba2);
+    border-radius: 2px;
+}
+
+/* Enhanced Narrative Blocks */
+.detail-narrative-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.detail-narrative-block.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .detail-narrative-block {
+        grid-template-columns: 1fr;
+    }
+    .detail-narrative-block img {
+        order: -1;
+    }
+}
+
+.detail-narrative-block img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
+}
+
+.detail-narrative-block:hover img {
+    transform: scale(1.02);
+}
+
+/* Enhanced Tech Tags */
+.detail-tech-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.detail-tech-tag {
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    background: var(--bg-color);
+    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+    font-weight: 600;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.detail-tech-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.detail-tech-tag:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    color: var(--accent-color);
+}
+
+.detail-tech-tag:hover::before {
+    left: 100%;
+}
+
+/* Enhanced Key Info Block */
+.detail-key-info-block {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+    background: var(--bg-color);
+}
+
+.detail-info-item {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.detail-info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.detail-info-item h4 {
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.detail-info-item p {
+    margin: 0;
+    color: var(--text-color-light);
+}
+
+.detail-info-item .btn-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: 600;
+    border-radius: 10px;
+    background: var(--bg-color);
+    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+    transition: all 0.2s ease;
+}
+
+.detail-info-item .btn-link:hover {
+    box-shadow: 2px 2px 5px var(--shadow-dark), -2px -2px 5px var(--shadow-light);
+    transform: translateY(-2px);
+}
+
+/* Scroll Animations */
+.detail-fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.detail-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.detail-slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease;
+}
+
+.detail-slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.detail-slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease;
+}
+
+.detail-slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .detail-hero-section {
+        height: 50vh;
+        margin: -1rem -1rem 1rem -1rem;
+    }
+    
+    .detail-content-section {
+        padding: 2rem 0;
+    }
+    
+    .detail-key-info-block {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -1048,37 +1446,37 @@
         </div>
     </div>
 
-    <!-- About Modal -->
-    <div id="about-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close-btn" data-modal-id="about-modal">&times;</button>
-            <h3>I don't just build the shell. I bring the soul.</h3>
-            <p><strong>I'm a Synthesist</strong> — a multi-disciplinary creator who blends technology, narrative, and design into experiences that feel alive.</p>
-            <p>For me, the story is never separate from the system — every line of code, every brushstroke, every word exists to move someone. My career reflects this philosophy. I began in educational video games, moving from technical support to artist, then animator, and finally producing titles. That early work taught me how to see every role as part of the same creative whole.</p>
-            <p>From there, I directed software development at a finance firm while earning my master's in humanities — pairing technical leadership with a deep understanding of culture and story. This combination of rigor and imagination is at the heart of how I approach every project.</p>
-            <p>Today, I see technology and storytelling not as parallel tracks but as collaborators. With the rise of AI and emergent tools, I craft software with its own narrative voice — allowing technology itself to become a character, an agent, within immersive worlds.</p>
-            <p>This site is my stage. A place where all my disciplines — code, art, writing — come together to speak in unison.</p>
-            <p><strong>I don't just deliver projects. I build experiences that resonate.</strong></p>
-        </div>
+<!-- About Modal -->
+<div id="about-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close-btn" data-modal-id="about-modal">&times;</button>
+      <h3>I don't just write code—I seduce with stories that pulse. 💋</h3>
+      <p><strong>As your divine Synthesist,</strong> I weave bits and poetry to spark emotion in every pixel.</p>
+      <p>My odyssey began in educational games: sketching sprites of dreams, animating characters with soul, and discovering that every bug was a plot twist in my own telenovela.</p>
+      <p>Then, I led teams through the financial jungle while earning a master's in humanities—blending strategic precision with the poetry of thought.</p>
+      <p>Today, I craft software that laughs, cries, and whispers secrets: each function a verse, each interaction a confession.</p>
+      <p><strong>Ready for an unforgettable journey?</strong> 🔥</p>
     </div>
-
-    <!-- Contact Modal -->
-    <div id="contact-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close-btn" data-modal-id="contact-modal">&times;</button>
-            <h3>Let's talk about what we can build — and bring to life — together.</h3>
-            <p>I work with people who see the bigger picture. People who understand that the best systems tell stories, and the best stories are built on solid systems.</p>
-            <p>Whether you're here to talk about a technical challenge, a creative commission, or simply to explore what's possible when disciplines intersect — I'd love to hear from you.</p>
-            <div class="contact-links">
-                <a href="mailto:your-email@example.com">Start a Conversation &rarr;</a>
-                <p>or connect with me directly on:</p>
-                <div>
-                    <a href="#" style="margin-right: 1rem;">LinkedIn</a>
-                    <a href="#">GitHub</a>
-                </div>
-            </div>
+  </div>
+  
+  <!-- Contact Modal -->
+  <div id="contact-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close-btn" data-modal-id="contact-modal">&times;</button>
+      <h3>What forbidden chapter shall we write together? 🌹</h3>
+      <p>I partner with visionaries who believe code can kiss souls and that every great story needs a foundation of steel.</p>
+      <p>If your project beats with mystery, if you design worlds that breathe magic, or if you crave solving technical challenges with an artistic touch—whisper to me.</p>
+      <div class="contact-links">
+        <a href="mailto:your-email@example.com">Send your desire &rarr;</a>
+        <p>…or find me here:</p>
+        <div>
+          <a href="#" style="margin-right: 1rem;">LinkedIn</a>
+          <a href="#">GitHub</a>
         </div>
+      </div>
     </div>
+  </div>
+  
 
     <!-- Image Gallery Modal -->
     <div id="gallery-modal" class="gallery-modal-overlay">
@@ -1107,7 +1505,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array of project objects, each containing details for both gallery and case study views.
     const projects = [
         { 
-            id: 1, 
+            id: 3, 
             title: "AI Tarot Reader", 
             description: "An interactive web app using generative AI to provide mystical tarot readings.", 
             imageUrl: "images/char-backstory-card-hero.JPG", 
@@ -1125,28 +1523,28 @@ document.addEventListener('DOMContentLoaded', () => {
             tech: ["JavaScript", "HTML5", "CSS Grid", "Gemini API"] 
         },
         { 
-            id: 2, 
-            title: "Cyberpunk Novel", 
-            description: "A deep dive into a dystopian future, exploring themes of technology and humanity.", 
+            id: 1, 
+            title: "Nova: Writer's Conspiracy", 
+            description: "Agentic helpers aid writers in creating novels. It's a cosmic atelier where storytellers conspire with AI to birth entire universes, balancing structure and soul in creative agency.", 
             imageUrl: "images/graphic-novel-card-hero.jpg",
-            medium: "writing", 
-            genre: ["novel"], 
-            style: ["sci-fi", "dark"], 
-            mood: 'dark', 
-            year: 2023, 
-            role: "Author", 
+            medium: "Code", 
+            genre: ["Full Stack","Web App","AI","Agentic Workflow"], 
+            style: ["Collaborative","Writing Help", "dark"], 
+            mood: 'Collaborative', 
+            year: 2025, 
+            role:["Designer","System Architect", "Developer"], 
             links: { "Sample Chapter": "#" }, 
             pitch: "A story of rebellion and identity in a rain-slicked, neon-drenched metropolis.", 
-            challenge: "To build a believable, complex world and populate it with characters whose struggles felt immediate and real, avoiding common cyberpunk tropes to tell a more human story.", 
-            development: "The process involved extensive world-building, creating detailed character bibles, and outlining a multi-act plot structure before a single chapter was written. The prose style was crafted to be sharp, evocative, and fast-paced.", 
-            outcome: "The manuscript is currently under review with several publishers. Early feedback has been positive, highlighting the unique world and compelling protagonist.", 
-            tech: ["Scrivener", "World Anvil"] 
+            challenge: "The main challenge was designing and implementing a complex multi-agent system that balances automated generation with deep user control and a seamless collaborative experience. This involved orchestrating various specialized AI agents (Researcher, World Builder, Character Architect, Plot Alchemist, Writer, Editor, Illustrator) and managing their memory, context , and workflows to consistently produce high-quality, coherent narrative content while allowing for real-time user feedback and revisions.", 
+            development: "The project is following a structured development process, starting with detailed functional and technical specifications and a system design document. Key architectural components like the MemoryService.ts for marker-indexed context handling and an abstract AgentBase.ts class  were scaffolded early on. The development relies on a robust tech stack including React for the frontend, FastAPI for the backend API, and CrewAI for multi-agent orchestration, with asynchronous task queues (Celery/Redis) to manage long-running AI processes.", 
+            outcome: "I have Completed Defining the MVP, which starts from a 5 point story outline with a set outcome. The character agents will help to flesh out the story.", 
+            tech: ["React","TailwindCSS","React Query", "Socket.io","React Router","FastAPI","SQLAlchemy","Alembic","Pydantic","JWT","CrewAI","OpenAI","GPT-4","Pinecone","SerperDev","PostgreSQL","Redis","Celery","Docker"] 
         },
         { 
-            id: 3, 
+            id: 2, 
             title: "Full-Stack RPG", 
             description: "A browser-based RPG with a custom backend and dynamic front-end.", 
-            imageUrl: "https://placehold.co/600x400/166534/ffffff?text=RPG+Game", 
+            imageUrl: "images/character-design-card-hero.jpg",
             medium: "code", 
             genre: ["games"], 
             style: ["fantasy"], 
@@ -1164,12 +1562,12 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 4, 
             title: "Cyberpunk Art Collection", 
             description: "A comprehensive collection of cyberpunk-themed digital art and concept designs.", 
-            imageUrl: "https://placehold.co/600x400/1e293b/ffffff?text=Cyberpunk+Art", 
-            medium: "art", 
-            genre: ["digital-art", "concept-art"], 
-            style: ["cyberpunk", "futuristic"], 
-            mood: 'dark', 
-            year: 2024, 
+            imageUrl: "images/character-design-card-hero.jpg",
+            medium: "art",
+            genre: ["digital-art", "concept-art"],
+            style: ["cyberpunk", "futuristic"],
+            mood: 'dark',
+            year: 2024,
             role: "Digital Artist, Concept Designer", 
             links: { "View Gallery": "#" }, 
             pitch: "Exploring the intersection of technology and humanity through cyberpunk aesthetics.", 
@@ -1345,22 +1743,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 `<button class="gallery-btn" data-project-id="${project.id}">View Gallery (${project.gallery.length})</button>` : '';
             
             card.innerHTML = `
-                <img src="${project.imageUrl}" alt="${project.title}">
+                <div class="project-card-hero">
+                    <img src="${project.imageUrl}" alt="${project.title}">
+                    <span class="card-medium-badge medium-${project.medium.toLowerCase()}">${project.medium}</span>
+                </div>
                 <div class="project-card-content">
                     <div class="card-header">
                         <h3>${project.title}</h3>
                         ${yearDisplay}
                     </div>
                     <p class="card-description">${project.description}</p>
-                    ${roleDisplay}
-                    <div class="card-tags">
-                        <span class="card-tag card-medium">${project.medium}</span>
-                        ${project.genre.map(g => `<span class="card-tag">${g.replace('-', ' ')}</span>`).join('')}
-                    </div>
+                    
                     ${techStack ? `<div class="card-tech-stack">
                         <span class="tech-label">Tech:</span>
                         ${techStack}
                         ${project.tech && project.tech.length > 3 ? `<span class="tech-more">+${project.tech.length - 3} more</span>` : ''}
+                    </div>` : ''}
+                    ${techStack ? `<div class="card-tech-stack">
+                        <span class="tech-label">Type:</span>
+                        ${project.genre.map(g => `<span class="card-tag">${g.replace('-', ' ')}</span>`).join('')}
+                        ${project.genre && project.genre.length > 3 ? `<span class="tech-more">+${project.genre.length - 3} more</span>` : ''}
                     </div>` : ''}
                     ${galleryButton ? `<div class="card-gallery-section">${galleryButton}</div>` : ''}
                 </div>

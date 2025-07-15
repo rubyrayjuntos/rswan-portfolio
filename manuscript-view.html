@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuscript View - Chapter 3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .toolbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e1e5e9;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .menu-group {
+            display: flex;
+            gap: 24px;
+        }
+
+        .menu-item {
+            padding: 8px 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #495057;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .menu-item:hover {
+            background: #e9ecef;
+            color: #212529;
+        }
+
+        .action-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+            transform: translateY(-1px);
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 60px);
+        }
+
+        .manuscript-area {
+            flex: 1;
+            background: white;
+            margin: 20px;
+            margin-right: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            overflow-y: auto;
+        }
+
+        .manuscript-content {
+            padding: 40px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+
+        .chapter-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #1a1a1a;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 12px;
+        }
+
+        .paragraph {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .highlight-suggestion {
+            background: linear-gradient(90deg, rgba(255, 193, 7, 0.3) 0%, rgba(255, 193, 7, 0.1) 100%);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border-left: 3px solid #ffc107;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-suggestion:hover {
+            background: linear-gradient(90deg, rgba(255, 193, 7, 0.4) 0%, rgba(255, 193, 7, 0.2) 100%);
+            transform: translateX(2px);
+        }
+
+        .inline-comment {
+            position: absolute;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 14px;
+            max-width: 400px;
+            z-index: 100;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 4px;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .comment-btn {
+            padding: 4px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-accept {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-accept:hover {
+            background: #1e7e34;
+        }
+
+        .btn-reject {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-reject:hover {
+            background: #c82333;
+        }
+
+        .btn-reply {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn-reply:hover {
+            background: #138496;
+        }
+
+        .comments-panel {
+            width: 350px;
+            background: white;
+            margin: 20px 20px 20px 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            overflow-y: auto;
+        }
+
+        .comments-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .comment-item {
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+            transition: background 0.2s ease;
+        }
+
+        .comment-item:hover {
+            background: #f8f9fa;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .comment-author-name {
+            font-weight: 600;
+            color: #495057;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .comment-time {
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .comment-text {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            color: #495057;
+        }
+
+        .suggestion-text {
+            background: #e7f3ff;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #007bff;
+            font-style: italic;
+            margin: 8px 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .comment-item {
+            animation: slideIn 0.4s ease;
+        }
+
+        .comment-item:nth-child(2) { animation-delay: 0.1s; }
+        .comment-item:nth-child(3) { animation-delay: 0.2s; }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .comments-panel {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .comments-panel {
+                width: auto;
+                margin: 10px 20px 20px 20px;
+                max-height: 300px;
+            }
+            
+            .manuscript-content {
+                padding: 20px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <div class="menu-group">
+            <button class="menu-item">File</button>
+            <button class="menu-item">Edit</button>
+            <button class="menu-item">View</button>
+            <button class="menu-item">Insert</button>
+            <button class="menu-item">Tools</button>
+        </div>
+        <div class="action-group">
+            <button class="btn-primary">Share</button>
+            <button class="btn-secondary">Download As...</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="manuscript-area">
+            <div class="manuscript-content">
+                <h1 class="chapter-title">Chapter 3: The Brass Automaton</h1>
+                
+                <div class="paragraph">
+                    The rain fell in sheets over the cobblestone streets of the Iron Quarter. Cogsworth, my golem companion, paid it no mind. His ceramic chassis was built to withstand far more than a summer storm.
+                </div>
+
+                <div class="paragraph">
+                    "The killer left this," he rumbled, his voice a low grind of stone on stone. He held up a small, intricately carved gear made of a bone-white material I'd never seen before. It hummed with a faint, sickly energy.
+                </div>
+
+                <div class="paragraph">
+                    <span class="highlight-suggestion" onclick="toggleComment(this)">
+                        This sentence feels a bit weak. Maybe something more active?
+                        <div class="inline-comment" style="display: none;">
+                            <div class="comment-author">Editor</div>
+                            <div>This sentence feels a bit weak. Maybe something more active?</div>
+                            <div class="comment-actions">
+                                <button class="comment-btn btn-accept">Accept</button>
+                                <button class="comment-btn btn-reject">Reject</button>
+                                <button class="comment-btn btn-reply">Reply</button>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+
+                <div class="paragraph">
+                    "That's no ordinary gear," I whispered, pulling out my loupe. "That's a phylactery..."
+                </div>
+            </div>
+        </div>
+
+        <div class="comments-panel">
+            <div class="comments-header">
+                COMMENTS & SUGGESTIONS
+            </div>
+            
+            <div class="comment-item">
+                <div class="comment-meta">
+                    <span class="comment-author-name">Lyra</span>
+                    <span class="comment-time">2 min ago</span>
+                </div>
+                <div class="comment-text">
+                    Can we describe the rain making sizzle sounds on his chassis? Would add a nice sensory detail.
+                </div>
+                <div class="comment-actions">
+                    <button class="comment-btn btn-accept">Accept</button>
+                    <button class="comment-btn btn-reject">Reject</button>
+                    <button class="comment-btn btn-reply">Reply</button>
+                </div>
+            </div>
+
+            <div class="comment-item">
+                <div class="comment-meta">
+                    <span class="comment-author-name">Editor</span>
+                    <span class="comment-time">5 min ago</span>
+                </div>
+                <div class="comment-text">
+                    Suggestion:
+                </div>
+                <div class="suggestion-text">
+                    "That's no ordinary gear," I said, my breath catching as I raised my loupe. "It's a phylactery..."
+                </div>
+                <div class="comment-actions">
+                    <button class="comment-btn btn-accept">Accept</button>
+                    <button class="comment-btn btn-reject">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleComment(element) {
+            const comment = element.querySelector('.inline-comment');
+            if (comment.style.display === 'none') {
+                comment.style.display = 'block';
+            } else {
+                comment.style.display = 'none';
+            }
+        }
+
+        // Add click handlers for comment actions
+        document.querySelectorAll('.comment-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const action = this.textContent;
+                
+                if (action === 'Accept') {
+                    this.style.background = '#28a745';
+                    this.textContent = 'Accepted ✓';
+                    this.disabled = true;
+                } else if (action === 'Reject') {
+                    this.style.background = '#dc3545';
+                    this.textContent = 'Rejected ✗';
+                    this.disabled = true;
+                } else if (action === 'Reply') {
+                    // Simple reply simulation
+                    alert('Reply feature would open a text input here');
+                }
+            });
+        });
+
+        // Add hover effect for manuscript text
+        document.querySelectorAll('.paragraph').forEach(p => {
+            p.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = 'rgba(0, 123, 255, 0.05)';
+                this.style.transition = 'background-color 0.2s ease';
+            });
+            
+            p.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // Simulate typing indicator
+        function addTypingIndicator() {
+            const commentsPanel = document.querySelector('.comments-panel');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'comment-item';
+            typingDiv.style.opacity = '0.7';
+            typingDiv.innerHTML = `
+                <div class="comment-meta">
+                    <span class="comment-author-name">Marcus</span>
+                    <span class="comment-time">typing...</span>
+                </div>
+                <div class="comment-text" style="font-style: italic; color: #6c757d;">
+                    is typing a comment...
+                </div>
+            `;
+            commentsPanel.appendChild(typingDiv);
+            
+            setTimeout(() => {
+                typingDiv.remove();
+            }, 3000);
+        }
+
+        // Simulate new comment after page load
+        setTimeout(addTypingIndicator, 2000);
+    </script>
+</body>
+</html>

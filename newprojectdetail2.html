@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA: The Writers' Conspiracy</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:wght@400;500;700">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            color: #e0e5ec;
+        }
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            z-index: -1;
+        }
+        .starfield span {
+            position: absolute;
+            display: block;
+            width: 2px;
+            height: 2px;
+            background: white;
+            box-shadow: 0 0 10px white;
+            animation: animate 50s linear infinite;
+            bottom: -150px;
+        }
+        .starfield span:nth-child(odd) { animation-duration: 100s; }
+
+        @keyframes animate {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-2000px); }
+        }
+        section {
+            min-height: 100vh;
+            padding: 100px 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        .hero-logo img {
+            max-width: 300px;
+            animation: breathe 10s infinite;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .quote, .content-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+        .visible { opacity: 1; transform: translateY(0); }
+        .neumorphic-btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: #e0e5ec;
+            box-shadow: 8px 8px 16px #a3b1c6, -8px -8px 16px #ffffff;
+            color: #31456A;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 30px;
+            display: inline-block;
+        }
+        .neumorphic-btn:hover {
+            box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+        }
+        nav {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        nav a {
+            color: white;
+            display: block;
+            margin: 10px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="starfield">
+        <!-- Generate starfield particles -->
+        <script>
+            for(let i=0; i<200; i++){
+                const star = document.createElement('span');
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.animationDelay = Math.random() * 50 + 's';
+                star.style.animationDuration = 50 + Math.random() * 100 + 's';
+                document.querySelector('.starfield').appendChild(star);
+            }
+        </script>
+    </div>
+
+    <nav>
+        <a href="#hero">NOVA</a>
+        <a href="#quote">Quote</a>
+        <a href="#overview">Overview</a>
+        <a href="#sacred">Sacred Experience</a>
+        <a href="#roles">Roles</a>
+        <a href="#agents">AI Agents</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#tech">Tech Stack</a>
+    </nav>
+
+    <section id="hero" class="hero-logo">
+        <img src="nova-logo.webp" alt="NOVA Logo">
+    </section>
+
+    <section id="quote" class="quote">
+        <h2>"They said creation was lonely. They were wrong. We never create alone."</h2>
+    </section>
+
+    <section id="overview">
+        <img src="overview-diagram.webp" alt="Overview Diagram" class="content-box">
+    </section>
+
+    <section id="sacred" class="content-box">
+        <h2>The Sacred Experience</h2>
+        <p>A cosmic atelier where storytellers conspire with AI to birth entire universes...</p>
+    </section>
+
+    <section id="roles" style="background:#764ba2;" class="content-box">
+        <h2>The Four Sacred Roles</h2>
+        <p>Architect, Director, Collaborator, Assistant.</p>
+    </section>
+
+    <section id="agents" class="content-box">
+        <h2>Six Divine AI Agents</h2>
+        <p>Researcher, World Builder, Character Architect, Plot Alchemist, Editor, Illustrator.</p>
+    </section>
+
+    <section id="architecture">
+        <img src="system-architecture.png" alt="System Architecture" class="content-box">
+    </section>
+
+    <section id="tech" style="background:white;color:#0a0a0a;" class="content-box">
+        <h2>Technology Stack</h2>
+        <p>React, FastAPI, CrewAI, PostgreSQL, Redis, Docker.</p>
+        <a href="#" class="neumorphic-btn">Back to Portfolio</a>
+    </section>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.quote, .content-box').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
