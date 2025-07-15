@@ -6,7 +6,10 @@
     <title>Complete Neumorphic Portfolio SPA For Ray Swan - rs@RSwan.org</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Decap CMS -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
         /* Define CSS Variables for Neumorphic Theme */
         :root {
@@ -16,8 +19,12 @@
             --text-color: #31456A;
             --text-color-light: #6D82A2;
             --accent-color: #5a67d8;
+            --accent-secondary: #f093fb;
+            --accent-tertiary: #f5576c;
             --scroll-bar-color: #c8d0e7;
             --scroll-thumb-color: #a3b1c6;
+            --featured-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --featured-text: #ffffff;
         }
 
         /* Smooth scrolling for anchor links */
@@ -74,6 +81,27 @@
                 grid-template-columns: 1fr; /* Stack sidebar and gallery on smaller screens */
                 height: auto; /* Allow height to adjust to content */
             }
+            
+            .filter-sidebar {
+                height: auto;
+                position: sticky;
+                top: 2rem;
+                z-index: 10;
+            }
+            
+            .project-card.featured,
+            .project-card.wide {
+                grid-column: span 1;
+            }
+            
+            .case-study-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .case-study-nav {
+                position: static;
+            }
         }
 
         .filter-sidebar {
@@ -100,11 +128,13 @@
             border-bottom: 1px solid var(--scroll-bar-color);
         }
         .sidebar-header h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 1.75rem;
             color: var(--text-color);
             margin: 0;
             cursor: pointer;
             transition: color 0.2s ease;
+            font-weight: 700;
         }
         .sidebar-header h1:hover {
             color: var(--accent-color);
@@ -341,16 +371,53 @@
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
             gap: 2rem; 
+            grid-auto-rows: max-content;
         }
 
         .project-card {
-            position: relative;
             background: var(--bg-color); border-radius: 15px;
             box-shadow: 8px 8px 15px var(--shadow-dark), -8px -8px 15px var(--shadow-light);
             overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer; display: flex; flex-direction: column;
+            position: relative;
         }
         .project-card:hover { transform: translateY(-5px); box-shadow: 12px 12px 20px var(--shadow-dark), -12px -12px 20px var(--shadow-light); }
+        
+        /* Card Variants */
+        .project-card.featured {
+            background: var(--featured-gradient);
+            color: var(--featured-text);
+            grid-column: span 2;
+        }
+        .project-card.featured .project-card-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .project-card.featured .card-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--featured-text);
+        }
+        .project-card.featured h3 {
+            color: var(--featured-text);
+            font-size: 1.4rem;
+        }
+        
+        .project-card.tall {
+            grid-row: span 2;
+        }
+        .project-card.tall img {
+            height: 280px;
+        }
+        
+        .project-card.wide {
+            grid-column: span 2;
+        }
+        .project-card.wide .project-card-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
         .project-card img { 
             width: 100%; 
             height: 180px; 
@@ -360,48 +427,7 @@
             border-top-right-radius: 15px;
         }
         .project-card-content { padding: 1.5rem; flex-grow: 1; }
-        .project-card-hero {
-  position: relative;
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-.project-card-hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.card-medium-badge {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #10b981;
-  color: #fff;
-  padding: 0.35em 0.9em;
-  border-radius: 16px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(50,50,80,0.10);
-  z-index: 2;
-  pointer-events: none;
-  letter-spacing: 0.5px;
-  text-transform: capitalize;
-}
-.card-medium-badge.medium-code {
-  background: #065f46;
-  border: 1px solid #000000;
-}
-.card-medium-badge.medium-art {
-  background: #f59e1a;
-  border: 1px solid #000000;
-}
-.card-medium-badge.medium-writing {
-  background: #7c3aed;
-  border: 1px solid #000000;
-}
+        
         .card-header {
             display: flex;
             justify-content: space-between;
@@ -417,8 +443,8 @@
         }
         
         .card-year {
-            /*background: var(--accent-color);*/
-            color: rgb(3, 0, 0);
+            background: var(--accent-color);
+            color: white;
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             font-size: 0.8rem;
@@ -488,6 +514,21 @@
             font-size: 0.75rem;
             font-weight: 500;
         }
+        
+        .project-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-live { background: #10b981; color: white; }
+        .status-development { background: #f59e0b; color: white; }
+        .status-concept { background: #6b7280; color: white; }
         
         .tech-more {
             color: var(--text-color-light);
@@ -586,11 +627,23 @@
         }
 
         .case-study-content h2 {
+            font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             color: var(--text-color);
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--scroll-bar-color);
+            margin: 3rem 0 2rem 0;
+            font-weight: 600;
+            line-height: 1.3;
+            position: relative;
+        }
+        .case-study-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
         }
 
         @media (max-width: 768px) {
@@ -610,7 +663,14 @@
         }
 
         .title-block { margin: 2rem 0; }
-        .title-block h1 { font-size: 3.5rem; color: var(--text-color); margin: 0 0 0.5rem 0; }
+        .title-block h1 { 
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem; 
+            color: var(--text-color); 
+            margin: 0 0 0.5rem 0; 
+            font-weight: 700;
+            line-height: 1.2;
+        }
         .title-block .pitch { font-size: 1.25rem; }
 
         @media (max-width: 768px) {
@@ -686,6 +746,63 @@
             color: var(--text-color);
         }
         
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 8px 8px 15px var(--shadow-dark), -8px -8px 15px var(--shadow-light);
+        }
+        .stat-item .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+        .stat-item .stat-label {
+            font-size: 1rem;
+            color: var(--text-color);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .quote-block {
+            margin: 3rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            background: var(--bg-color);
+            box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
+            position: relative;
+        }
+        .quote-block::before {
+            content: '"';
+            font-size: 6rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-color);
+            position: absolute;
+            top: -1rem;
+            left: 1rem;
+            opacity: 0.3;
+        }
+        .quote-block p {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        .quote-block cite {
+            color: var(--text-color-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
         .back-to-gallery {
             display: inline-block;
             margin-bottom: 2rem;
@@ -741,8 +858,11 @@
             color: var(--text-color);
         }
         .modal-content h3 {
+            font-family: 'Playfair Display', serif;
             font-size: 2rem;
             margin: 0 0 1rem 0;
+            color: var(--text-color);
+            font-weight: 600;
         }
         .modal-content p {
             color: var(--text-color-light);
@@ -966,363 +1086,24 @@
             .view {
                 padding: 1rem;
             }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-study-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .case-study-content h2 {
+                font-size: 2rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 2rem;
+            }
         }
-
-        .card-medium-badge {
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          background: #10b981; /* Green (Tailwind Emerald 500) */
-          color: #fff;
-          padding: 0.35em 0.9em;
-          border-radius: 16px;
-          font-size: 0.85rem;
-          font-weight: 600;
-          box-shadow: 0 2px 8px rgba(50,50,80,0.10);
-          z-index: 2;
-          pointer-events: none; /* so it doesn't block card clicks */
-          letter-spacing: 0.5px;
-          text-transform: capitalize;
-        }
-       /* --- <!-- Add this CSS after your existing detail view styles (around line 680) -->
-
-/* --- PARALLAX ENHANCED DETAIL VIEW STYLES --- */
-
-/* Hero Section with Parallax */
-.detail-hero-section {
-    height: 70vh;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--accent-color) 0%, #764ba2 100%);
-    margin: -2rem -2rem 2rem -2rem; /* Extend beyond view padding */
-    border-radius: 0 0 20px 20px;
-}
-
-.detail-hero-bg {
-    position: absolute;
-    top: -10%;
-    left: -10%;
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.06) 0%, transparent 50%);
-    animation: floatBackground 20s ease-in-out infinite;
-}
-
-@keyframes floatBackground {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-30px) rotate(180deg); }
-}
-
-.detail-hero-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-.detail-particle {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: rgba(255,255,255,0.6);
-    border-radius: 50%;
-    animation: particleFloat 15s linear infinite;
-}
-
-@keyframes particleFloat {
-    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-}
-
-.detail-hero-content {
-    text-align: center;
-    color: white;
-    z-index: 2;
-    max-width: 800px;
-    padding: 2rem;
-}
-
-.detail-hero-content h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    margin-bottom: 1rem;
-    opacity: 0;
-    animation: fadeInUp 1s ease 0.5s forwards;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-}
-
-.detail-hero-content .pitch {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
-    opacity: 0.9;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeInUp 1s ease 1s forwards;
-    font-weight: 400;
-}
-
-.detail-project-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    padding: 0.6rem 1.5rem;
-    border-radius: 50px;
-    margin-bottom: 2rem;
-    backdrop-filter: blur(10px);
-    opacity: 0;
-    animation: fadeInUp 1s ease 1.5s forwards;
-    font-weight: 600;
-    border: 2px solid rgba(255,255,255,0.3);
-    text-transform: capitalize;
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-}
-
-/* Enhanced Content Sections */
-.detail-content-section {
-    padding: 4rem 0;
-    position: relative;
-    background: var(--bg-color);
-    overflow: hidden;
-}
-
-.detail-content-section:nth-child(even) {
-    background: #f8f9fa;
-}
-
-.detail-content-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(45deg, var(--accent-color), #764ba2);
-}
-
-/* Enhanced Section Titles */
-.detail-section-title {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: 3rem;
-    text-align: center;
-    position: relative;
-    color: var(--text-color);
-    font-weight: 700;
-}
-
-.detail-section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(45deg, var(--accent-color), #764ba2);
-    border-radius: 2px;
-}
-
-/* Enhanced Narrative Blocks */
-.detail-narrative-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-    margin-bottom: 4rem;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease;
-}
-
-.detail-narrative-block.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-@media (max-width: 768px) {
-    .detail-narrative-block {
-        grid-template-columns: 1fr;
-    }
-    .detail-narrative-block img {
-        order: -1;
-    }
-}
-
-.detail-narrative-block img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    transition: transform 0.4s ease;
-}
-
-.detail-narrative-block:hover img {
-    transform: scale(1.02);
-}
-
-/* Enhanced Tech Tags */
-.detail-tech-tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-    margin-top: 3rem;
-}
-
-.detail-tech-tag {
-    padding: 1rem 2rem;
-    border-radius: 15px;
-    background: var(--bg-color);
-    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
-    font-weight: 600;
-    color: var(--text-color);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.detail-tech-tag::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s ease;
-}
-
-.detail-tech-tag:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    color: var(--accent-color);
-}
-
-.detail-tech-tag:hover::before {
-    left: 100%;
-}
-
-/* Enhanced Key Info Block */
-.detail-key-info-block {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: inset 5px 5px 10px var(--shadow-dark), inset -5px -5px 10px var(--shadow-light);
-    background: var(--bg-color);
-}
-
-.detail-info-item {
-    text-align: center;
-    padding: 1.5rem;
-    border-radius: 15px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-}
-
-.detail-info-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.detail-info-item h4 {
-    margin: 0 0 1rem 0;
-    color: var(--text-color);
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.detail-info-item p {
-    margin: 0;
-    color: var(--text-color-light);
-}
-
-.detail-info-item .btn-link {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    color: var(--accent-color);
-    font-weight: 600;
-    border-radius: 10px;
-    background: var(--bg-color);
-    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
-    transition: all 0.2s ease;
-}
-
-.detail-info-item .btn-link:hover {
-    box-shadow: 2px 2px 5px var(--shadow-dark), -2px -2px 5px var(--shadow-light);
-    transform: translateY(-2px);
-}
-
-/* Scroll Animations */
-.detail-fade-in {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease;
-}
-
-.detail-fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.detail-slide-in-left {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: all 0.8s ease;
-}
-
-.detail-slide-in-left.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.detail-slide-in-right {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: all 0.8s ease;
-}
-
-.detail-slide-in-right.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .detail-hero-section {
-        height: 50vh;
-        margin: -1rem -1rem 1rem -1rem;
-    }
-    
-    .detail-content-section {
-        padding: 2rem 0;
-    }
-    
-    .detail-key-info-block {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-    }
-}
 
     </style>
 </head>
@@ -1446,37 +1227,37 @@
         </div>
     </div>
 
-<!-- About Modal -->
-<div id="about-modal" class="modal-overlay">
-    <div class="modal-content">
-      <button class="modal-close-btn" data-modal-id="about-modal">&times;</button>
-      <h3>I don't just write code—I seduce with stories that pulse. 💋</h3>
-      <p><strong>As your divine Synthesist,</strong> I weave bits and poetry to spark emotion in every pixel.</p>
-      <p>My odyssey began in educational games: sketching sprites of dreams, animating characters with soul, and discovering that every bug was a plot twist in my own telenovela.</p>
-      <p>Then, I led teams through the financial jungle while earning a master's in humanities—blending strategic precision with the poetry of thought.</p>
-      <p>Today, I craft software that laughs, cries, and whispers secrets: each function a verse, each interaction a confession.</p>
-      <p><strong>Ready for an unforgettable journey?</strong> 🔥</p>
-    </div>
-  </div>
-  
-  <!-- Contact Modal -->
-  <div id="contact-modal" class="modal-overlay">
-    <div class="modal-content">
-      <button class="modal-close-btn" data-modal-id="contact-modal">&times;</button>
-      <h3>What forbidden chapter shall we write together? 🌹</h3>
-      <p>I partner with visionaries who believe code can kiss souls and that every great story needs a foundation of steel.</p>
-      <p>If your project beats with mystery, if you design worlds that breathe magic, or if you crave solving technical challenges with an artistic touch—whisper to me.</p>
-      <div class="contact-links">
-        <a href="mailto:your-email@example.com">Send your desire &rarr;</a>
-        <p>…or find me here:</p>
-        <div>
-          <a href="#" style="margin-right: 1rem;">LinkedIn</a>
-          <a href="#">GitHub</a>
+    <!-- About Modal -->
+    <div id="about-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-id="about-modal">&times;</button>
+            <h3>I don't just build the shell. I bring the soul.</h3>
+            <p><strong>I'm a Synthesist</strong> — a multi-disciplinary creator who blends technology, narrative, and design into experiences that feel alive.</p>
+            <p>For me, the story is never separate from the system — every line of code, every brushstroke, every word exists to move someone. My career reflects this philosophy. I began in educational video games, moving from technical support to artist, then animator, and finally producing titles. That early work taught me how to see every role as part of the same creative whole.</p>
+            <p>From there, I directed software development at a finance firm while earning my master's in humanities — pairing technical leadership with a deep understanding of culture and story. This combination of rigor and imagination is at the heart of how I approach every project.</p>
+            <p>Today, I see technology and storytelling not as parallel tracks but as collaborators. With the rise of AI and emergent tools, I craft software with its own narrative voice — allowing technology itself to become a character, an agent, within immersive worlds.</p>
+            <p>This site is my stage. A place where all my disciplines — code, art, writing — come together to speak in unison.</p>
+            <p><strong>I don't just deliver projects. I build experiences that resonate.</strong></p>
         </div>
-      </div>
     </div>
-  </div>
-  
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-id="contact-modal">&times;</button>
+            <h3>Let's talk about what we can build — and bring to life — together.</h3>
+            <p>I work with people who see the bigger picture. People who understand that the best systems tell stories, and the best stories are built on solid systems.</p>
+            <p>Whether you're here to talk about a technical challenge, a creative commission, or simply to explore what's possible when disciplines intersect — I'd love to hear from you.</p>
+            <div class="contact-links">
+                <a href="mailto:your-email@example.com">Start a Conversation &rarr;</a>
+                <p>or connect with me directly on:</p>
+                <div>
+                    <a href="#" style="margin-right: 1rem;">LinkedIn</a>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Image Gallery Modal -->
     <div id="gallery-modal" class="gallery-modal-overlay">
@@ -1505,102 +1286,104 @@ document.addEventListener('DOMContentLoaded', () => {
     // Array of project objects, each containing details for both gallery and case study views.
     const projects = [
         { 
-            id: 3, 
+            id: 1, 
             title: "AI Tarot Reader", 
-            description: "An interactive web app using generative AI to provide mystical tarot readings.", 
-            imageUrl: "images/char-backstory-card-hero.JPG", 
+            description: "An interactive web app using generative AI to provide mystical tarot readings with personalized interpretations.", 
+            imageUrl: "https://placehold.co/600x400/334155/ffffff?text=AI+Tarot", 
             medium: "code", 
-            genre: ["ai-agent", "tarot"], 
+            genre: ["ai-agent", "tarot", "web-app"], 
             style: ["minimalist", "modern"], 
-            mood: 'serene', 
+            tech: ["JavaScript", "HTML5", "CSS Grid", "Gemini API"],
+            mood: ["mystical", "contemplative"], 
             year: 2024, 
+            status: "live",
+            variant: "featured",
             role: "Lead Developer, UX Designer", 
             links: { "Live Site": "#" }, 
             pitch: "Combining ancient symbolism with modern AI to create a personal divination experience.", 
             challenge: "The primary challenge was to create an AI that didn't just give generic answers, but provided nuanced, context-aware interpretations of tarot spreads, making the experience feel authentic and personal.", 
             development: "Using a fine-tuned language model, I developed a system that understands the relationships between cards. The front-end, built with vanilla JS, focuses on a clean, meditative user experience to complement the mystical theme.", 
-            outcome: "The final app saw high user engagement, with an average session duration of over 5 minutes. It was praised for its intuitive interface and the depth of its AI-generated readings.", 
-            tech: ["JavaScript", "HTML5", "CSS Grid", "Gemini API"] 
-        },
-        { 
-            id: 1, 
-            title: "Nova: Writer's Conspiracy", 
-            description: "Agentic helpers aid writers in creating novels. It's a cosmic atelier where storytellers conspire with AI to birth entire universes, balancing structure and soul in creative agency.", 
-            imageUrl: "images/graphic-novel-card-hero.jpg",
-            medium: "Code", 
-            genre: ["Full Stack","Web App","AI","Agentic Workflow"], 
-            style: ["Collaborative","Writing Help", "dark"], 
-            mood: 'Collaborative', 
-            year: 2025, 
-            role:["Designer","System Architect", "Developer"], 
-            links: { "Sample Chapter": "#" }, 
-            pitch: "A story of rebellion and identity in a rain-slicked, neon-drenched metropolis.", 
-            challenge: "The main challenge was designing and implementing a complex multi-agent system that balances automated generation with deep user control and a seamless collaborative experience. This involved orchestrating various specialized AI agents (Researcher, World Builder, Character Architect, Plot Alchemist, Writer, Editor, Illustrator) and managing their memory, context , and workflows to consistently produce high-quality, coherent narrative content while allowing for real-time user feedback and revisions.", 
-            development: "The project is following a structured development process, starting with detailed functional and technical specifications and a system design document. Key architectural components like the MemoryService.ts for marker-indexed context handling and an abstract AgentBase.ts class  were scaffolded early on. The development relies on a robust tech stack including React for the frontend, FastAPI for the backend API, and CrewAI for multi-agent orchestration, with asynchronous task queues (Celery/Redis) to manage long-running AI processes.", 
-            outcome: "I have Completed Defining the MVP, which starts from a 5 point story outline with a set outcome. The character agents will help to flesh out the story.", 
-            tech: ["React","TailwindCSS","React Query", "Socket.io","React Router","FastAPI","SQLAlchemy","Alembic","Pydantic","JWT","CrewAI","OpenAI","GPT-4","Pinecone","SerperDev","PostgreSQL","Redis","Celery","Docker"] 
+            outcome: "The final app saw high user engagement, with an average session duration of over 5 minutes. It was praised for its intuitive interface and the depth of its AI-generated readings."
         },
         { 
             id: 2, 
-            title: "Full-Stack RPG", 
-            description: "A browser-based RPG with a custom backend and dynamic front-end.", 
-            imageUrl: "images/character-design-card-hero.jpg",
+            title: "Procedural Landscape Generator", 
+            description: "A Three.js application that creates infinite, explorable landscapes using Perlin noise and procedural generation.", 
+            imageUrl: "https://placehold.co/600x400/166534/ffffff?text=3D+Landscape", 
             medium: "code", 
-            genre: ["games"], 
-            style: ["fantasy"], 
-            mood: 'energetic', 
+            genre: ["generative-art", "3d", "interactive"], 
+            style: ["organic", "abstract"], 
+            tech: ["Three.js", "WebGL", "JavaScript"],
+            mood: ["serene", "exploratory"], 
+            year: 2024, 
+            status: "live",
+            variant: "tall",
+            role: "Full-Stack Developer, Creative Technologist", 
+            links: { "Live Demo": "#", "GitHub": "#" }, 
+            pitch: "Creating infinite, explorable worlds through procedural generation and real-time 3D rendering.", 
+            challenge: "The challenge was to create landscapes that felt both infinite and coherent, using mathematical algorithms to generate terrain that was both visually appealing and performant in real-time.", 
+            development: "Built with Three.js and WebGL, the system uses Perlin noise algorithms to generate terrain, with real-time lighting and atmospheric effects. The user can explore the landscape in first-person view.", 
+            outcome: "The application demonstrates the potential of procedural generation for creating immersive digital environments, with smooth performance even on mobile devices."
+        },
+        { 
+            id: 3, 
+            title: "Digital Collage Series", 
+            description: "A collection of surreal digital collages exploring themes of identity and transformation in the digital age.", 
+            imageUrl: "https://placehold.co/600x400/1e293b/ffffff?text=Digital+Art", 
+            medium: "art", 
+            genre: ["digital-art", "collage", "conceptual"], 
+            style: ["surreal", "abstract"], 
+            tech: ["Photoshop", "Procreate"],
+            mood: ["contemplative", "mysterious"], 
             year: 2023, 
-            role: "Full-Stack Developer, Game Designer", 
-            links: { "GitHub": "#", "Play Now": "#" }, 
-            pitch: "Explore the world of Eldoria in a classic fantasy RPG built for the modern web.", 
-            challenge: "Architecting a real-time combat system and managing player state efficiently on the backend, while delivering a smooth, responsive experience on the frontend without a heavy framework.", 
-            development: "I built a custom Node.js backend with WebSocket support for real-time communication. The frontend uses a canvas-based rendering engine for the game world, with a simple DOM-based UI for menus and inventory.", 
-            outcome: "The game supports up to 100 concurrent players with low latency. It has been lauded by players for its classic feel and modern performance.", 
-            tech: ["Node.js", "WebSocket", "HTML Canvas", "JavaScript"] 
+            status: "live",
+            role: "Digital Artist, Conceptual Designer", 
+            links: { "View Gallery": "#" }, 
+            pitch: "Exploring the intersection of human identity and digital transformation through surreal visual narratives.", 
+            challenge: "Creating a cohesive visual language that captures the essence of digital identity while maintaining artistic integrity and emotional depth.", 
+            development: "The series evolved through multiple phases, starting with traditional collage techniques and progressing through digital manipulation to create surreal, dreamlike compositions.", 
+            outcome: "The collection has been featured in several digital art exhibitions and has received recognition for its innovative approach to contemporary themes."
         },
         { 
             id: 4, 
-            title: "Cyberpunk Art Collection", 
-            description: "A comprehensive collection of cyberpunk-themed digital art and concept designs.", 
-            imageUrl: "images/character-design-card-hero.jpg",
-            medium: "art",
-            genre: ["digital-art", "concept-art"],
-            style: ["cyberpunk", "futuristic"],
-            mood: 'dark',
-            year: 2024,
-            role: "Digital Artist, Concept Designer", 
+            title: "Interactive Poetry Engine", 
+            description: "An AI-powered web application that generates contextual poetry based on user emotions and environmental data.", 
+            imageUrl: "https://placehold.co/600x400/7c2d12/ffffff?text=Poetry+AI", 
+            medium: "code", 
+            genre: ["ai-agent", "poetry", "web-app"], 
+            style: ["literary", "minimalist"], 
+            tech: ["OpenAI API", "Node.js", "React"],
+            mood: ["contemplative", "inspiring"], 
+            year: 2024, 
+            status: "development",
+            variant: "wide",
+            role: "Full-Stack Developer, AI Engineer", 
+            links: { "GitHub": "#", "Demo": "#" }, 
+            pitch: "Creating poetry that responds to human emotion and environmental context through AI.", 
+            challenge: "The challenge was to create an AI system that could generate poetry that felt authentic and emotionally resonant, rather than generic or mechanical.", 
+            development: "Built with React and Node.js, the system uses sentiment analysis and environmental data to generate contextual poetry. The AI model was fine-tuned on classical and contemporary poetry.", 
+            outcome: "The application has been praised for its ability to create poetry that feels personal and meaningful, with users reporting emotional connections to the generated work."
+        },
+        { 
+            id: 5, 
+            title: "Papi Chispa Cartas del Deseo", 
+            description: "A comprehensive collection of tarot-inspired digital art and mystical designs.", 
+            imageUrl: "./images/uploads/projects/papi-chispa/papi.jpg", 
+            medium: "art", 
+            genre: ["digital-art", "tarot"], 
+            style: ["mystical", "spiritual"], 
+            tech: ["Photoshop", "Procreate", "Digital Painting"],
+            mood: ["serene", "mystical"], 
+            year: 2024, 
+            status: "live",
+            role: "Digital Artist, Mystical Designer", 
             links: { "View Gallery": "#" }, 
-            pitch: "Exploring the intersection of technology and humanity through cyberpunk aesthetics.", 
-            challenge: "Creating a cohesive visual language that captures the essence of cyberpunk while maintaining artistic integrity and technical excellence.", 
-            development: "The collection evolved through multiple phases, starting with rough sketches and progressing through detailed concept art to final digital paintings. Each piece explores different aspects of the cyberpunk genre.", 
-            outcome: "The collection has been featured in several digital art exhibitions and has received recognition for its innovative approach to cyberpunk aesthetics.", 
-            tech: ["Photoshop", "Procreate", "Blender"],
+            pitch: "Exploring the intersection of ancient wisdom and modern digital art through tarot-inspired designs.", 
+            challenge: "Creating a cohesive visual language that captures the essence of tarot symbolism while maintaining artistic integrity and spiritual depth.", 
+            development: "The collection evolved through multiple phases, starting with traditional tarot research and progressing through digital sketches to final mystical artworks. Each piece explores different aspects of tarot archetypes.", 
+            outcome: "The collection has been well-received for its innovative approach to mystical aesthetics and spiritual symbolism.", 
             gallery: [
-                { url: "./assets/gallery/cyberpunk/neon-dreams.jpg", title: "Neon Dreams", description: "Urban nightscape with neon lighting", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/digital-rain.jpg", title: "Digital Rain", description: "Matrix-style digital effects", dimensions: "1200x800" },
-                { url: "./assets/gallery/cyberpunk/holographic-interface.jpg", title: "Holographic Interface", description: "Futuristic UI design", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/augmented-reality.jpg", title: "Augmented Reality", description: "AR overlay concepts", dimensions: "800x1200" },
-                { url: "./assets/gallery/cyberpunk/neural-networks.jpg", title: "Neural Networks", description: "AI visualization", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/virtual-city.jpg", title: "Virtual City", description: "3D cityscape rendering", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/data-streams.jpg", title: "Data Streams", description: "Information flow visualization", dimensions: "1200x800" },
-                { url: "./assets/gallery/cyberpunk/quantum-interface.jpg", title: "Quantum Interface", description: "Advanced UI concepts", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/digital-consciousness.jpg", title: "Digital Consciousness", description: "Mind-machine interface", dimensions: "800x1200" },
-                { url: "./assets/gallery/cyberpunk/synthetic-life.jpg", title: "Synthetic Life", description: "Artificial life forms", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/neural-implants.jpg", title: "Neural Implants", description: "Cybernetic enhancements", dimensions: "1200x800" },
-                { url: "./assets/gallery/cyberpunk/digital-evolution.jpg", title: "Digital Evolution", description: "Evolution of digital life", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/virtual-realms.jpg", title: "Virtual Realms", description: "Immersive digital worlds", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/quantum-computing.jpg", title: "Quantum Computing", description: "Computing visualization", dimensions: "800x1200" },
-                { url: "./assets/gallery/cyberpunk/digital-architecture.jpg", title: "Digital Architecture", description: "Futuristic building designs", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/neural-networks-2.jpg", title: "Neural Networks", description: "Brain-computer interfaces", dimensions: "1200x800" },
-                { url: "./assets/gallery/cyberpunk/digital-ecosystems.jpg", title: "Digital Ecosystems", description: "Virtual environments", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/synthetic-intelligence.jpg", title: "Synthetic Intelligence", description: "AI consciousness", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/digital-transformation.jpg", title: "Digital Transformation", description: "Human-machine fusion", dimensions: "800x1200" },
-                { url: "./assets/gallery/cyberpunk/virtual-reality.jpg", title: "Virtual Reality", description: "Immersive experiences", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/digital-artifacts.jpg", title: "Digital Artifacts", description: "Virtual objects and relics", dimensions: "1200x800" },
-                { url: "./assets/gallery/cyberpunk/neural-pathways.jpg", title: "Neural Pathways", description: "Brain mapping visualization", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/digital-consciousness-2.jpg", title: "Digital Consciousness", description: "Mind upload concepts", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/virtual-evolution.jpg", title: "Virtual Evolution", description: "Digital life evolution", dimensions: "800x1200" },
-                { url: "./assets/gallery/cyberpunk/synthetic-reality.jpg", title: "Synthetic Reality", description: "Artificial world creation", dimensions: "1920x1080" }
+                { url: "./images/uploads/projects/papi-chispa/papi.jpg", title: "Papi Chispa", description: "Main tarot card design", dimensions: "auto" }
             ]
         }
     ];
@@ -1652,10 +1435,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- STATE MANAGEMENT ---
     // `activeFilters` object holds the current filter selections.
     let activeFilters = { 
-        medium: 'all', 
+        medium: [], 
         genre: [], 
         style: [], 
-        mood: 'all', 
+        mood: [], 
         year: parseInt(yearSlider.value, 10), // Initialize with slider's default value
         tech: []
     };
@@ -1666,18 +1449,18 @@ document.addEventListener('DOMContentLoaded', () => {
      * Resets all filter values to their default states.
      */
     function resetAllFilters() {
-        activeFilters.medium = 'all';
+        activeFilters.medium = [];
         activeFilters.genre = [];
         activeFilters.style = [];
-        activeFilters.mood = 'all';
+        activeFilters.mood = [];
         activeFilters.year = parseInt(yearSlider.min, 10);
         activeFilters.tech = [];
 
         // Visually reset all filter controls
-        document.querySelectorAll('input[name="medium"]').forEach(input => input.checked = (input.value === 'all'));
+        document.querySelectorAll('input[name="medium"]').forEach(input => input.checked = false);
         document.querySelectorAll('input[name="genre"]').forEach(input => input.checked = false);
         document.querySelectorAll('input[name="style"]').forEach(input => input.checked = false);
-        document.querySelectorAll('input[name="mood"]').forEach(input => input.checked = (input.value === 'all'));
+        document.querySelectorAll('input[name="mood"]').forEach(input => input.checked = false);
         document.querySelectorAll('input[name="tech"]').forEach(input => input.checked = false);
         yearSlider.value = yearSlider.min;
         yearValueSpan.textContent = yearSlider.min;
@@ -1687,21 +1470,16 @@ document.addEventListener('DOMContentLoaded', () => {
      * Updates the UI elements (checkboxes, radio buttons, slider) to reflect the current activeFilters state.
      */
     function updateFilterUI() {
-        // Update Medium radio buttons
+        // Update Medium checkboxes
         document.querySelectorAll('input[name="medium"]').forEach(input => {
-            input.checked = (input.value === activeFilters.medium);
+            input.checked = activeFilters.medium.includes(input.value);
         });
 
-        // Update Genre, Style, and Tech checkboxes
-        ['genre', 'style', 'tech'].forEach(type => {
+        // Update Genre, Style, Tech, and Mood checkboxes
+        ['genre', 'style', 'tech', 'mood'].forEach(type => {
             document.querySelectorAll(`input[name="${type}"]`).forEach(input => {
                 input.checked = activeFilters[type].includes(input.value);
             });
-        });
-
-        // Update Mood radio buttons
-        document.querySelectorAll('input[name="mood"]').forEach(input => {
-            input.checked = (input.value === activeFilters.mood);
         });
 
         // Update Year slider
@@ -1724,7 +1502,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         projectsToRender.forEach(project => {
             const card = document.createElement('div');
-            card.className = 'project-card';
+            card.className = `project-card ${project.variant || ''}`;
             card.dataset.id = project.id; // Store project ID for detail view navigation
             
             // Create tech stack display
@@ -1742,30 +1520,30 @@ document.addEventListener('DOMContentLoaded', () => {
             const galleryButton = project.gallery ? 
                 `<button class="gallery-btn" data-project-id="${project.id}">View Gallery (${project.gallery.length})</button>` : '';
             
+            // Create status badge
+            const statusBadge = project.status ? `<div class="project-status status-${project.status}">${project.status}</div>` : '';
+            
             card.innerHTML = `
-                <div class="project-card-hero">
-                    <img src="${project.imageUrl}" alt="${project.title}">
-                    <span class="card-medium-badge medium-${project.medium.toLowerCase()}">${project.medium}</span>
-                </div>
+                <img src="${project.imageUrl}" alt="${project.title}">
                 <div class="project-card-content">
                     <div class="card-header">
                         <h3>${project.title}</h3>
                         ${yearDisplay}
                     </div>
                     <p class="card-description">${project.description}</p>
-                    
+                    ${roleDisplay}
+                    <div class="card-tags">
+                        <span class="card-tag card-medium">${project.medium}</span>
+                        ${project.genre.map(g => `<span class="card-tag">${g.replace('-', ' ')}</span>`).join('')}
+                    </div>
                     ${techStack ? `<div class="card-tech-stack">
                         <span class="tech-label">Tech:</span>
                         ${techStack}
                         ${project.tech && project.tech.length > 3 ? `<span class="tech-more">+${project.tech.length - 3} more</span>` : ''}
                     </div>` : ''}
-                    ${techStack ? `<div class="card-tech-stack">
-                        <span class="tech-label">Type:</span>
-                        ${project.genre.map(g => `<span class="card-tag">${g.replace('-', ' ')}</span>`).join('')}
-                        ${project.genre && project.genre.length > 3 ? `<span class="tech-more">+${project.genre.length - 3} more</span>` : ''}
-                    </div>` : ''}
                     ${galleryButton ? `<div class="card-gallery-section">${galleryButton}</div>` : ''}
                 </div>
+                ${statusBadge}
             `;
             projectGrid.appendChild(card);
         });
@@ -1945,20 +1723,42 @@ document.addEventListener('DOMContentLoaded', () => {
      * Applies all active filters to the projects data and re-renders the UI.
      */
     function applyFilters() {
-        const filteredProjects = projects.filter(p => 
-            // Filter by medium (if 'all' is selected, this condition is always true)
-            (activeFilters.medium === 'all' || p.medium === activeFilters.medium) &&
-            // Filter by genre (if no genres are selected, this condition is always true)
-            (activeFilters.genre.length === 0 || activeFilters.genre.every(g => p.genre.includes(g))) &&
-            // Filter by style (if no styles are selected, this condition is always true)
-            (activeFilters.style.length === 0 || activeFilters.style.every(s => p.style.includes(s))) &&
-            // Filter by tech (if no tech items are selected, this condition is always true)
-            (activeFilters.tech.length === 0 || activeFilters.tech.every(t => p.tech.includes(t))) &&
-            // Filter by mood (if 'all' is selected, this condition is always true)
-            (activeFilters.mood === 'all' || p.mood === activeFilters.mood) &&
+        const filteredProjects = projects.filter(p => {
             // Filter by year (projects must be from or after the selected year)
-            (p.year >= activeFilters.year)
-        );
+            if (p.year < activeFilters.year) return false;
+            
+            // Filter by medium (if no mediums are selected, this condition is always true)
+            if (activeFilters.medium.length > 0) {
+                if (!activeFilters.medium.includes(p.medium)) return false;
+            }
+            
+            // Filter by genre (if no genres are selected, this condition is always true)
+            if (activeFilters.genre.length > 0) {
+                const hasMatch = activeFilters.genre.some(g => p.genre.includes(g));
+                if (!hasMatch) return false;
+            }
+            
+            // Filter by style (if no styles are selected, this condition is always true)
+            if (activeFilters.style.length > 0) {
+                const hasMatch = activeFilters.style.some(s => p.style.includes(s));
+                if (!hasMatch) return false;
+            }
+            
+            // Filter by tech (if no tech items are selected, this condition is always true)
+            if (activeFilters.tech.length > 0) {
+                const hasMatch = activeFilters.tech.some(t => p.tech.includes(t));
+                if (!hasMatch) return false;
+            }
+            
+            // Filter by mood (if no moods are selected, this condition is always true)
+            if (activeFilters.mood.length > 0) {
+                const hasMatch = activeFilters.mood.some(m => p.mood.includes(m));
+                if (!hasMatch) return false;
+            }
+            
+            return true;
+        });
+        
         renderProjects(filteredProjects);
         renderActiveFilterPills();
         renderFacets(filteredProjects); // Re-render facets to update counts based on current filters

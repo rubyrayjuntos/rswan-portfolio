@@ -338,6 +338,51 @@ This project is open source and available under the MIT License. See LICENSE fil
 - **Inter Font**: Typography by Google Fonts
 - **CSS Grid**: Modern layout system by W3C
 
+## 📋 TODO & Future Improvements
+
+### 🔥 High Priority
+- **Refactor JavaScript for Testability**: Convert `script.js` and `markdown-renderer.js` to ES modules or CommonJS exports to enable proper unit testing. Currently using a quick patch in `tests/setup.js` that loads scripts as strings.
+- **Add Real Project Data**: Replace sample projects with actual portfolio content, including proper images, descriptions, and case studies.
+- **Complete Test Coverage**: Ensure all functions have proper unit tests after refactoring.
+
+### 🚀 Medium Priority
+- **Performance Optimization**: Implement lazy loading for images, virtual scrolling for large project lists, and code splitting.
+- **Accessibility Audit**: Conduct comprehensive accessibility testing and implement ARIA improvements.
+- **Cross-Browser Testing**: Test on older browsers and implement polyfills if needed.
+- **SEO Optimization**: Add meta tags, structured data, and sitemap generation.
+
+### 💡 Nice to Have
+- **Theme System**: Implement multiple neumorphic themes (light/dark mode).
+- **Advanced Search**: Full-text search with fuzzy matching and search history.
+- **Image Gallery**: Lightbox functionality for project images with zoom and navigation.
+- **Analytics Integration**: Add Google Analytics or similar for user behavior tracking.
+- **PWA Features**: Service worker for offline functionality and app-like experience.
+- **Internationalization**: Multi-language support for global audience.
+
+### 🛠️ Technical Debt
+- **Code Organization**: Split large files into smaller, focused modules.
+- **Type Safety**: Consider migrating to TypeScript for better development experience.
+- **Build System**: Implement a modern build pipeline with bundling and optimization.
+- **Dependency Management**: Audit and update dependencies regularly.
+- **Documentation**: Add JSDoc comments to all functions and improve inline documentation.
+
+### 🧪 Testing Improvements
+- **Integration Tests**: Add tests for complete user workflows.
+- **Visual Regression Tests**: Implement automated visual testing for UI consistency.
+- **Performance Tests**: Add Lighthouse CI for automated performance monitoring.
+- **E2E Tests**: Expand Playwright tests to cover all user scenarios.
+- **Accessibility Tests**: Add automated accessibility testing with axe-core.
+
+### 📱 Mobile Enhancements
+- **Touch Gestures**: Add swipe navigation and touch-friendly interactions.
+- **Mobile Optimization**: Further optimize for mobile performance and usability.
+- **Offline Support**: Implement service worker for offline project viewing.
+
+### 🔒 Security & Privacy
+- **Content Security Policy**: Implement CSP headers for enhanced security.
+- **API Security**: Add rate limiting and input validation for external APIs.
+- **Privacy Compliance**: Ensure GDPR/CCPA compliance for any data collection.
+
 ---
 
 **Last Updated**: December 2024  
