@@ -76,3 +76,4 @@ public/admin/
 
 # Lighthouse reports
 lighthouse-report.json
+node_modules
