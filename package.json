@@ -1,0 +1,48 @@
+{
+  "name": "rswan-portfolio",
+  "version": "1.0.0",
+  "description": "Neumorphic Portfolio SPA with advanced filtering and markdown support",
+  "main": "index.html",
+  "scripts": {
+    "serve": "npx http-server -p 8080 -c-1",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:visual": "playwright test --grep 'Visual'",
+    "test:performance": "lighthouse http://localhost:8080 --output=json --output-path=./test-results/lighthouse.json"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/dom": "^9.3.3",
+    "playwright": "^1.40.0",
+    "lighthouse": "^11.4.0",
+    "http-server": "^14.1.1"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"],
+    "collectCoverageFrom": [
+      "script.js",
+      "markdown-renderer.js",
+      "!**/node_modules/**",
+      "!**/tests/**"
+    ],
+    "coverageReporters": ["text", "lcov", "html"],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ]
+  },
+  "keywords": [
+    "portfolio",
+    "neumorphic",
+    "spa",
+    "markdown",
+    "filtering"
+  ],
+  "author": "Ray Swan",
+  "license": "MIT"
+} 
