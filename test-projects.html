@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Project Loading</title>
+</head>
+<body>
+    <h1>Test Project Loading</h1>
+    <div id="output"></div>
+    
+    <script>
+        async function testLoadProjects() {
+            const output = document.getElementById('output');
+            
+            try {
+                // Test loading projects from JSON files
+                const projectFiles = [
+                    '_data/sample-project.json',
+                    '_data/papi-chispa-cartas-del-deseo.json',
+                    '_data/projects/brand-identity-workflow.json'
+                ];
+                
+                output.innerHTML = '<p>Testing project loading...</p>';
+                
+                const projectPromises = projectFiles.map(async (file) => {
+                    try {
+                        console.log(`Attempting to load: ${file}`);
+                        const response = await fetch(file);
+                        console.log(`Response for ${file}:`, response.status, response.statusText);
+                        
+                        if (!response.ok) {
+                            console.warn(`Failed to load ${file}: ${response.status} ${response.statusText}`);
+                            return null;
+                        }
+                        
+                        const data = await response.json();
+                        console.log(`Successfully loaded ${file}:`, data);
+                        return data;
+                    } catch (error) {
+                        console.error(`Error loading ${file}:`, error);
+                        return null;
+                    }
+                });
+                
+                const projectData = await Promise.all(projectPromises);
+                const projects = projectData.filter(project => project !== null);
+                
+                output.innerHTML = `
+                    <h2>Results:</h2>
+                    <p>Total projects loaded: ${projects.length}</p>
+                    <ul>
+                        ${projects.map(p => `<li>${p.title}</li>`).join('')}
+                    </ul>
+                    <h3>Console output:</h3>
+                    <p>Check the browser console for detailed loading information.</p>
+                `;
+                
+            } catch (error) {
+                output.innerHTML = `<p>Error: ${error.message}</p>`;
+                console.error('Test failed:', error);
+            }
+        }
+        
+        // Run the test when the page loads
+        testLoadProjects();
+    </script>
+</body>
+</html> 

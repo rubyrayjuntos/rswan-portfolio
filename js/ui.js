@@ -7,10 +7,18 @@ function toggleMotion() {
     window.motionEnabled = !window.motionEnabled;
     document.body.classList.toggle('motion-disabled', !window.motionEnabled);
     
+    console.log('Motion toggled. New state:', window.motionEnabled);
+    
     const button = document.querySelector('.motion-toggle');
     button.innerHTML = window.motionEnabled ? 
         '🎬 Stop Parallax' : 
         '⏸️ Start Parallax';
+        
+    // Recreate particles if motion is enabled
+    if (window.motionEnabled && typeof createParticles === 'function') {
+        console.log('Recreating particles after motion enabled');
+        createParticles();
+    }
 }
 
 // Update gallery section
@@ -167,14 +175,22 @@ function togglePerformanceMode() {
 
 // Check system preference on load
 function checkSystemPreferences() {
+    console.log('Checking system preferences...');
+    console.log('prefers-reduced-motion:', window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        console.log('System prefers reduced motion - disabling motion');
         toggleMotion();
+    } else {
+        console.log('System allows motion - keeping motion enabled');
     }
 }
 
 // Initialize UI
 function initUI() {
-    checkSystemPreferences();
+    console.log('Initializing UI...');
+    // Don't check system preferences immediately - let motion be enabled by default
+    // checkSystemPreferences();
 }
 
 // Export functions for use in other modules

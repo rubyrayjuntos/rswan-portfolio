@@ -59,7 +59,8 @@ async function loadProjects() {
         // Try to load projects from _data directory
         const projectFiles = [
             '_data/sample-project.json',
-            '_data/papi-chispa-cartas-del-deseo.json'
+            '_data/papi-chispa-cartas-del-deseo.json',
+            '_data/projects/brand-identity-workflow.json'
         ];
         
         const projectPromises = projectFiles.map(async (file) => {

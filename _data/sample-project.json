@@ -1,21 +1,21 @@
 {
   "id": 1,
-  "title": "Neumorphic Portfolio",
-  "description": "A sophisticated single-page portfolio application with advanced filtering and natural language search capabilities.",
-  "imageUrl": "https://via.placeholder.com/600x400/e0e5ec/31456A?text=Portfolio+Project",
+  "title": "This Portfolio",
+  "description": "My work spans coding,design, and writing so i needed a flexible portfolio that was built on data and has the user journey first in mind.",
+  "imageUrl": "images/neoHome.jpg",
   "medium": "code",
   "genre": ["Web Development", "Interactive"],
-  "style": ["Modern", "Minimalist", "Responsive"],
+  "style": ["Modern", "Minimalist", "Responsive", "Neumorphic", "Typography-Driven"],
   "tech": ["JavaScript", "HTML/CSS", "React"],
   "mood": "Professional",
-  "year": 2024,
-  "role": "Full Stack Developer",
+  "year": 2025,
+  "role": "Full Stack Developer", "UI/UX Designer", "Writer","Artist",
   "variant": "featured",
   "status": "live",
   "links": {
-    "live": "https://rs@RSwan.org",
-    "github": "https://github.com/rayswan/portfolio",
-    "demo": "https://demo.rs@RSwan.org"
+    "live": "https://@RSwan.org",
+    "github": "https://github.com/rubyrayjuntos/portfolio",
+    "demo": "https://RSwan.org"
   },
   "pitch": "A modern portfolio showcasing multidisciplinary creative work with an intuitive neumorphic design system.",
   "challenge": "Creating a seamless user experience that balances sophisticated functionality with elegant design.",
@@ -33,6 +33,54 @@
       "title": "Filter System",
       "description": "Advanced filtering capabilities with natural language search",
       "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Initial Design Concept",
+      "description": "My first thought was that the portfolio was the web app to show my design skills in a flashy way. The site you see now is the 4th revision."Started with a vision for a modern, interactive portfolio that showcases diverse creative work with an intuitive neumorphic design system""
+    },
+    {
+      "title": "Filter System Development",
+      "description": "I soon realized how i needed to extract my data from the front end so the site could be dynamic. I implemented advanced filtering capabilities with natural language search using AI-powered suggestions for enhanced user experience"
+    },
+    {
+      "title": "Responsive Design Implementation",
+      "description": "Responsive and accessible designs are amongst my top priorities as a designer and I ensured the portfolio works seamlessly across all devices with responsive design principles and mobile-first approach"
+    },
+    {
+      "title": "Performance Optimization",
+      "description": "Optimized for maximum performance using vanilla JavaScript and efficient rendering techniques for smooth user interactions"
+    },
+    {
+      "title": "Testing & Refinement",
+      "description": "Conducted extensive user testing to refine the interface and ensure excellent user experience across all devices"
+    }
+  ],
+  "specs": [
+    {
+      "title": "Frontend Architecture",
+      "description": "Built with vanilla JavaScript for maximum performance, featuring advanced filtering, AI-powered search, and responsive design"
+    },
+    {
+      "title": "Design System",
+      "description": "Neumorphic design system with soft shadows, subtle gradients, and modern UI elements for an elegant user experience"
+    },
+    {
+      "title": "Filter Technology",
+      "description": "Advanced filtering system with natural language processing capabilities and intelligent suggestion algorithms"
+    },
+    {
+      "title": "Performance",
+      "description": "Optimized for fast loading times and smooth interactions with efficient DOM manipulation and lazy loading"
+    },
+    {
+      "title": "Accessibility",
+      "description": "WCAG compliant with proper ARIA labels, keyboard navigation, and screen reader support"
+    },
+    {
+      "title": "Cross-Platform",
+      "description": "Responsive design that works seamlessly across desktop, tablet, and mobile devices"
     }
   ]
 } 

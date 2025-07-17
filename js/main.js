@@ -329,7 +329,12 @@ function init() {
     if (typeof initParallax === 'function') initParallax();
 
     // Initialize features based on support
+    console.log('Checking parallax support and motion...');
+    console.log('supportsParallax():', supportsParallax());
+    console.log('window.motionEnabled:', window.motionEnabled);
+    
     if (supportsParallax() && window.motionEnabled !== false) {
+        console.log('Creating particles from main init...');
         if (typeof createParticles === 'function') createParticles();
         if (typeof setupScrollAnimations === 'function') setupScrollAnimations();
     } else {
@@ -343,8 +348,14 @@ function init() {
     // Ensure particles are created after a short delay
     setTimeout(() => {
         const particlesContainer = document.getElementById('heroParticles');
+        console.log('Checking particles container after delay...');
+        console.log('Container found:', !!particlesContainer);
+        if (particlesContainer) {
+            console.log('Container children count:', particlesContainer.children.length);
+        }
+        
         if (particlesContainer && particlesContainer.children.length === 0) {
-            console.log('Recreating particles...');
+            console.log('Recreating particles from timeout...');
             if (typeof createParticles === 'function') createParticles();
         }
     }, 500);

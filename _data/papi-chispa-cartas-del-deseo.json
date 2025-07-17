@@ -26,5 +26,57 @@
       "description": "The mystical tarot reading interface with AI-powered interpretations",
       "dimensions": "1200x800"
     }
+  ],
+  "journey": [
+    {
+      "title": "Concept Development",
+      "description": "Began with the vision of merging ancient tarot symbolism with modern AI technology to create a truly personal divination experience"
+    },
+    {
+      "title": "AI Prompt Engineering",
+      "description": "Crafted fine-tuned prompts and memory architecture for the Gemini API to understand the interplay between tarot cards and deliver context-aware readings"
+    },
+    {
+      "title": "UI/UX Design",
+      "description": "Designed a minimalist, meditative interface with calming colors and accessible contrast while embracing mystical motifs and spiritual themes"
+    },
+    {
+      "title": "Technical Implementation",
+      "description": "Built with vanilla JavaScript, HTML5, and CSS Grid for a lightweight yet responsive application with ARIA support and WCAG compliance"
+    },
+    {
+      "title": "User Testing & Refinement",
+      "description": "Conducted testing with both tarot enthusiasts and first-time users to refine the tone, flow, and overall user experience"
+    },
+    {
+      "title": "Launch & Feedback",
+      "description": "Successfully launched with positive user feedback highlighting the depth of AI-generated readings and the intuitive, calming UI"
+    }
+  ],
+  "specs": [
+    {
+      "title": "AI Integration",
+      "description": "Gemini API integration with fine-tuned prompts and memory architecture for context-aware, human-like tarot interpretations"
+    },
+    {
+      "title": "Frontend Technology",
+      "description": "Vanilla JavaScript, HTML5, and CSS Grid for lightweight, responsive design with excellent performance across devices"
+    },
+    {
+      "title": "User Experience",
+      "description": "Minimalist, meditative interface with calming color palette, accessible contrast, and mystical design elements"
+    },
+    {
+      "title": "Accessibility",
+      "description": "WCAG compliant with ARIA support for screen readers, keyboard navigation, and inclusive design principles"
+    },
+    {
+      "title": "Performance",
+      "description": "Optimized for fast loading and smooth interactions with efficient API calls and responsive design"
+    },
+    {
+      "title": "Cross-Platform",
+      "description": "Fully responsive design that works seamlessly on desktop, tablet, and mobile devices"
+    }
   ]
 } 
