@@ -43,9 +43,6 @@
             <button class="nav-tab" data-tab="export">
                 <i class="fas fa-file-export"></i> Export
             </button>
-            <button class="nav-tab" data-tab="backup">
-                <i class="fas fa-database"></i> Backup
-            </button>
             <button class="nav-tab" data-tab="settings">
                 <i class="fas fa-cog"></i> Settings
             </button>
@@ -152,9 +149,6 @@
                     <div class="editor-header">
                         <h3 id="editorTitle">Project: Nova Writers Conspiracy</h3>
                         <div class="editor-actions">
-                            <button class="btn btn-info" id="previewProjectBtn">
-                                <i class="fas fa-eye"></i> Preview
-                            </button>
                             <button class="btn btn-secondary" id="cancelEditBtn">Cancel</button>
                             <button class="btn btn-primary" id="saveProjectBtn">Save</button>
                         </div>
@@ -395,64 +389,6 @@
             </div>
         </div>
 
-        <!-- Backup Tab -->
-        <div class="tab-content" id="backup-tab">
-            <div class="backup-header">
-                <h2>Backup & Version Control</h2>
-                <div class="backup-actions">
-                    <button class="btn btn-primary" id="createBackupBtn">
-                        <i class="fas fa-plus"></i> Create Backup
-                    </button>
-                    <button class="btn btn-secondary" id="autoBackupToggle">
-                        <i class="fas fa-clock"></i> Auto Backup: OFF
-                    </button>
-                </div>
-            </div>
-            
-            <div class="backup-container">
-                <div class="backup-stats">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value" id="totalBackups">0</div>
-                            <div class="stat-label">Total Backups</div>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-calendar"></i>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value" id="lastBackupTime">Never</div>
-                            <div class="stat-label">Last Backup</div>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-hdd"></i>
-                        </div>
-                        <div class="stat-info">
-                            <div class="stat-value" id="backupSize">0 KB</div>
-                            <div class="stat-label">Storage Used</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="backup-list">
-                    <h3>Backup History</h3>
-                    <div class="backup-items" id="backupItems">
-                        <div class="empty-state">
-                            <i class="fas fa-database"></i>
-                            <h4>No backups yet</h4>
-                            <p>Create your first backup to protect your data</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Analytics Tab -->
         <div class="tab-content" id="analytics-tab">
             <div class="analytics-header">
@@ -506,25 +442,6 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="cancelLookupBtn">Cancel</button>
                 <button class="btn btn-primary" id="saveLookupBtn">Save</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Project Preview Modal -->
-    <div class="modal" id="projectPreviewModal">
-        <div class="modal-content large">
-            <div class="modal-header">
-                <h3>Project Preview</h3>
-                <button class="modal-close" id="closePreviewModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="project-preview" id="projectPreviewContent">
-                    <!-- Preview content will be generated here -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="closePreviewBtn">Close</button>
-                <button class="btn btn-primary" id="exportPreviewBtn">Export Preview</button>
             </div>
         </div>
     </div>
@@ -657,53 +574,16 @@
           <button class="modal-close" id="closeJourneyModal">&times;</button>
         </div>
         <div class="modal-body">
-                          <form id="journeyForm">
-                    <div class="form-group">
-                        <label for="journeyTitle">Title</label>
-                        <input type="text" id="journeyTitle" name="title" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="journeyDescription">Description</label>
-                        <div class="markdown-editor-container">
-                            <div class="editor-toolbar">
-                                <button type="button" class="editor-btn" data-action="bold" title="Bold">
-                                    <i class="fas fa-bold"></i>
-                                </button>
-                                <button type="button" class="editor-btn" data-action="italic" title="Italic">
-                                    <i class="fas fa-italic"></i>
-                                </button>
-                                <button type="button" class="editor-btn" data-action="link" title="Link">
-                                    <i class="fas fa-link"></i>
-                                </button>
-                                <button type="button" class="editor-btn" data-action="list" title="Bullet List">
-                                    <i class="fas fa-list-ul"></i>
-                                </button>
-                                <div class="editor-divider"></div>
-                                <button type="button" class="editor-btn" data-action="preview" title="Preview">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button type="button" class="editor-btn" data-action="help" title="Markdown Help">
-                                    <i class="fas fa-question-circle"></i>
-                                </button>
-                            </div>
-                            <div class="editor-content">
-                                <textarea id="journeyDescription" name="description" required placeholder="Enter your journey description here... You can use Markdown formatting."></textarea>
-                                <div id="journeyPreview" class="markdown-preview" style="display: none;"></div>
-                            </div>
-                            <div class="editor-help" id="markdownHelp" style="display: none;">
-                                <h4>Markdown Quick Reference</h4>
-                                <div class="help-grid">
-                                    <div><strong>**bold text**</strong> → <strong>bold text</strong></div>
-                                    <div><em>*italic text*</em> → <em>italic text</em></div>
-                                    <div>[link text](url) → <a href="#">link text</a></div>
-                                    <div>- bullet point → • bullet point</div>
-                                    <div># Heading → <strong>Heading</strong></div>
-                                    <div>`code` → <code>code</code></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+          <form id="journeyForm">
+            <div class="form-group">
+              <label for="journeyTitle">Title</label>
+              <input type="text" id="journeyTitle" name="title" required>
+            </div>
+            <div class="form-group">
+              <label for="journeyDescription">Description</label>
+              <textarea id="journeyDescription" name="description" required></textarea>
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button class="btn btn-secondary" id="cancelJourneyBtn">Cancel</button>

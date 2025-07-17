@@ -1,0 +1,115 @@
+{
+  "id": 15,
+  "title": "World Bible",
+  "description": "Process use case for building out a world that represents a fruitful IP, exploring systematic world-building methodologies for creating rich, coherent fictional universes.",
+  "imageUrl": "images/projects/world-bible/world-bible-cover-art.jpg",
+  "medium": "writing",
+  "genre": [
+    "World Building",
+    "Creative Writing",
+    "Process Documentation",
+    "IP Development",
+    "Fictional Universe"
+  ],
+  "style": [
+    "Systematic",
+    "Comprehensive",
+    "Detailed",
+    "Organized",
+    "Creative"
+  ],
+  "tech": [
+    "Creative Writing",
+    "World Building",
+    "Research",
+    "Documentation",
+    "Creative Process"
+  ],
+  "mood": "Creative",
+  "year": 2024,
+  "role": "World Builder, Creative Writer, Process Developer",
+  "variant": "wide",
+  "status": "ongoing",
+  "links": {
+    "process": "#",
+    "examples": "#"
+  },
+  "pitch": "A comprehensive methodology for building fictional worlds that serve as fertile ground for multiple stories and creative projects.",
+  "challenge": "Creating a systematic approach to world-building that ensures consistency, depth, and flexibility for future creative development while maintaining narrative coherence.",
+  "development": "Developed a structured methodology for world-building that covers all aspects from geography to culture to magic systems, ensuring comprehensive and coherent world development.",
+  "outcome": "A proven world-building system that creates rich, detailed universes suitable for multiple stories and creative projects.",
+  "gallery": [
+    {
+      "url": "images/projects/world-bible/world-bible-cover.jpg",
+      "title": "World Bible Cover",
+      "description": "Visual representation of the world-building process",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/projects/world-bible/world-bible-maps.jpg",
+      "title": "World Maps",
+      "description": "Geographic and cultural mapping of the fictional world",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/projects/world-bible/world-bible-cultures.jpg",
+      "title": "Cultural Systems",
+      "description": "Development of cultural systems and social structures",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/projects/world-bible/world-bible-magic-systems.jpg",
+      "title": "Magic Systems",
+      "description": "Development of magic systems and supernatural elements",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Methodology Development",
+      "description": "Created a systematic approach to comprehensive world-building"
+    },
+    {
+      "title": "Geographic Foundation",
+      "description": "Developed techniques for creating coherent geographic and environmental systems"
+    },
+    {
+      "title": "Cultural Development",
+      "description": "Created methods for building cultural systems and social structures"
+    },
+    {
+      "title": "Magic System Design",
+      "description": "Developed approaches to creating consistent and compelling magic systems"
+    },
+    {
+      "title": "Documentation Process",
+      "description": "Created systems for organizing and maintaining world-building documentation"
+    }
+  ],
+  "specs": [
+    {
+      "title": "World-Building Methodology",
+      "description": "Comprehensive system for creating detailed fictional universes"
+    },
+    {
+      "title": "Geographic Systems",
+      "description": "Techniques for creating coherent geographic and environmental foundations"
+    },
+    {
+      "title": "Cultural Development",
+      "description": "Methods for building cultural systems, social structures, and historical backgrounds"
+    },
+    {
+      "title": "Magic System Design",
+      "description": "Approaches to creating consistent and compelling supernatural elements"
+    },
+    {
+      "title": "Documentation Process",
+      "description": "Systems for organizing and maintaining comprehensive world-building documentation"
+    },
+    {
+      "title": "IP Development",
+      "description": "Strategies for creating worlds that support multiple stories and creative projects"
+    }
+  ]
+}
