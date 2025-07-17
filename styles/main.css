@@ -327,4 +327,24 @@ html {
 
 .no-parallax .hero {
     background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-light) 100%);
-} 
+}
+
+/* Phase 3 - Project Type Specific Image Enhancements */
+.hero-section img {
+    width: 100%;
+    border-radius: 15px;
+    /* Enhance with neumorphic shadow variables */
+    box-shadow: 8px 8px 15px var(--shadow-dark), -8px -8px 15px var(--shadow-light);
+}
+
+.narrative-block img {
+    width: 100%;
+    border-radius: 10px;
+    /* Enhance with neumorphic shadow variables */
+    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); /* Add shadow to narrative images */
+    transition: transform 0.3s ease; /* For subtle hover/interaction */
+}
+
+.narrative-block img:hover {
+    transform: scale(1.02); /* Slight scale on hover for interactivity */
+}
