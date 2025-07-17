@@ -56,24 +56,37 @@ const itemsPerPage = 12;
 // --- DATA LOADING ---
 async function loadProjects() {
     try {
-        // First try to load from manifest
-        const manifestLoaded = await loadFromManifest();
+        // Try to load projects from _data directory
+        const projectFiles = [
+            '_data/sample-project.json',
+            '_data/papi-chispa-cartas-del-deseo.json',
+            '_data/projects/brand-identity-workflow.json'
+        ];
         
-        if (manifestLoaded) {
-            console.log(`Loaded ${projects.length} projects from manifest`);
-        } else {
-            // Fallback to legacy loading for existing projects
-            console.warn('Manifest not found, falling back to legacy project discovery');
-            await loadLegacyProjects();
-        }
+        const projectPromises = projectFiles.map(async (file) => {
+            try {
+                const response = await fetch(file);
+                if (!response.ok) {
+                    console.warn(`Failed to load ${file}: ${response.status} ${response.statusText}`);
+                    return null;
+                }
+                return await response.json();
+            } catch (error) {
+                console.warn(`Failed to load ${file}:`, error);
+                return null;
+            }
+        });
         
-        // If still no projects loaded, use fallback data
+        const projectData = await Promise.all(projectPromises);
+        projects = projectData.filter(project => project !== null);
+        
+        // If no projects loaded, use fallback data
         if (projects.length === 0) {
             console.warn('No project files found, using fallback data');
             projects = getFallbackProjects();
         }
         
-        console.log(`Final loaded projects (${projects.length}):`, projects.map(p => p.title));
+        console.log(`Loaded ${projects.length} projects:`, projects.map(p => p.title));
         
         // Initialize filters after data is loaded
         initializeFilters();
@@ -83,80 +96,6 @@ async function loadProjects() {
         projects = getFallbackProjects();
         initializeFilters();
         applyFilters();
-    }
-}
-
-// Load projects using manifest file
-async function loadFromManifest() {
-    try {
-        const manifestResponse = await fetch('_data/projects/manifest.json');
-        if (!manifestResponse.ok) {
-            return false;
-        }
-        
-        const manifest = await manifestResponse.json();
-        const projectPromises = manifest.projects.map(async (projectInfo) => {
-            const filePath = `_data/projects/${projectInfo.file}`;
-            return loadSingleProject(filePath, projectInfo.id);
-        });
-        
-        const projectData = await Promise.allSettled(projectPromises);
-        projects = projectData
-            .filter(result => result.status === 'fulfilled' && result.value !== null)
-            .map(result => result.value);
-            
-        return projects.length > 0;
-    } catch (error) {
-        console.warn('Failed to load from manifest:', error);
-        return false;
-    }
-}
-
-// Legacy project loading for backward compatibility
-async function loadLegacyProjects() {
-    const legacyFiles = [
-        '_data/sample-project.json',
-        '_data/papi-chispa-cartas-del-deseo.json',
-        '_data/mystic-grove-painting.json',
-        '_data/nova-writers-conspiracy.json'
-    ];
-    
-    const projectPromises = legacyFiles.map(file => loadSingleProject(file));
-    const projectData = await Promise.allSettled(projectPromises);
-    
-    projects = projectData
-        .filter(result => result.status === 'fulfilled' && result.value !== null)
-        .map(result => result.value);
-}
-
-// Load a single project file with error handling
-async function loadSingleProject(filePath, projectId = null) {
-    try {
-        const response = await fetch(filePath);
-        if (!response.ok) {
-            if (response.status === 404) {
-                console.warn(`Project file not found: ${filePath}`);
-                return null;
-            }
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const project = await response.json();
-        
-        // Validate basic project structure
-        if (!project.title || !project.description) {
-            console.warn(`Invalid project structure in ${filePath}`);
-            return null;
-        }
-        
-        return project;
-    } catch (error) {
-        if (error.name === 'TypeError' && error.message.includes('fetch')) {
-            console.warn(`Network error loading ${filePath}:`, error.message);
-        } else {
-            console.error(`Error loading ${filePath}:`, error);
-        }
-        return null;
     }
 }
 
@@ -388,27 +327,10 @@ function renderProjects(projectsToRender) {
         return;
     }
     
-    // Track performance
-    const startTime = performance.now();
-    
     projectsToRender.forEach(project => {
         const card = createProjectCard(project);
         projectGrid.appendChild(card);
     });
-    
-    // Initialize lazy loading for new images
-    if (lazyImageLoader) {
-        setTimeout(() => {
-            lazyImageLoader.observeImages();
-        }, 100);
-    }
-    
-    // Track performance metrics
-    if (performanceMonitor) {
-        performanceMonitor.trackProjectRender(projectsToRender.length);
-        const renderTime = performance.now() - startTime;
-        console.log(`⚡ Rendered ${projectsToRender.length} projects in ${Math.round(renderTime)}ms`);
-    }
     // After rendering, check for overflow and add 'truncated' class
     document.querySelectorAll('.card-description').forEach(desc => {
         // Remove class first in case of rerender
@@ -435,21 +357,8 @@ function createProjectCard(project) {
         `<button class="gallery-btn" data-project-id="${project.id}">View Gallery (${project.gallery.length})</button>` : '';
     const statusBadge = project.status ? `<div class="project-status status-${project.status}">${project.status}</div>` : '';
     
-    // Implement lazy loading for images
-    const imageElement = `
-        <div class="image-container">
-            <img class="lazy-image" 
-                 data-src="${project.imageUrl}" 
-                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='100%25' height='100%25' fill='%23e0e5ec'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%2331456A'%3ELoading...%3C/text%3E%3C/svg%3E"
-                 alt="${project.title}">
-            <div class="image-loading-indicator">
-                <div class="loading-spinner"></div>
-            </div>
-        </div>
-    `;
-    
     card.innerHTML = `
-        ${imageElement}
+        <img src="${project.imageUrl}" alt="${project.title}">
         <div class="project-card-content">
             <div class="card-header">
                 <h3>${project.title}</h3>
@@ -860,11 +769,6 @@ function handleFilterChange(e) {
     const type = e.target.name;
     const value = e.target.value;
 
-    // Track filter performance
-    if (performanceMonitor) {
-        performanceMonitor.trackFilterChange(type, value);
-    }
-
     if (type === 'medium' || type === 'mood') {
         activeFilters[type] = value;
         if (type === 'medium') {
@@ -925,19 +829,7 @@ async function handleNaturalSearch() {
         return;
     }
     
-    // Track search performance
-    if (performanceMonitor) {
-        performanceMonitor.trackSearch(query);
-    }
-    
-    const searchStartTime = performance.now();
     const suggestions = await callGeminiAPI(query);
-    
-    if (performanceMonitor) {
-        const searchTime = performance.now() - searchStartTime;
-        console.log(`🔍 Search completed in ${Math.round(searchTime)}ms for query: "${query}"`);
-    }
-    
     renderGuidedResults(suggestions);
 }
 
@@ -1069,340 +961,11 @@ function initializeEventListeners() {
 }
 
 // Initialize the application
-// Global error boundary
-window.addEventListener('error', (event) => {
-    console.error('Global JavaScript error:', event.error);
-    showErrorMessage('An unexpected error occurred. Please refresh the page.');
-});
-
-window.addEventListener('unhandledrejection', (event) => {
-    console.error('Unhandled promise rejection:', event.reason);
-    showErrorMessage('A network or data error occurred. Please check your connection and try again.');
-    event.preventDefault(); // Prevent default browser error handling
-});
-
-// Error display function
-function showErrorMessage(message, type = 'error') {
-    // Create or update error display
-    let errorContainer = document.getElementById('error-container');
-    if (!errorContainer) {
-        errorContainer = document.createElement('div');
-        errorContainer.id = 'error-container';
-        errorContainer.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #fee;
-            border: 1px solid #fcc;
-            border-radius: 8px;
-            padding: 16px;
-            max-width: 400px;
-            z-index: 10000;
-            font-family: Inter, sans-serif;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        `;
-        document.body.appendChild(errorContainer);
-    }
+document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize markdown renderer first
+    await initializeMarkdownRenderer();
     
-    errorContainer.innerHTML = `
-        <div style="display: flex; align-items: flex-start; gap: 12px;">
-            <span style="color: #d32f2f; font-size: 18px;">⚠️</span>
-            <div style="flex: 1;">
-                <div style="font-weight: 600; color: #d32f2f; margin-bottom: 4px;">Error</div>
-                <div style="color: #555; font-size: 14px;">${message}</div>
-            </div>
-            <button onclick="this.parentElement.parentElement.remove()" 
-                    style="border: none; background: none; font-size: 18px; cursor: pointer; color: #999;">×</button>
-        </div>
-    `;
-    
-    // Auto-hide after 10 seconds
-    setTimeout(() => {
-        if (errorContainer.parentElement) {
-            errorContainer.remove();
-        }
-    }, 10000);
-}
-
-// Performance Optimization Classes
-class LazyImageLoader {
-    constructor() {
-        this.imageObserver = null;
-        this.loadedImages = new Set();
-        this.init();
-    }
-    
-    init() {
-        // Create intersection observer for lazy loading
-        if ('IntersectionObserver' in window) {
-            this.imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        this.loadImage(entry.target);
-                        this.imageObserver.unobserve(entry.target);
-                    }
-                });
-            }, {
-                rootMargin: '50px 0px',
-                threshold: 0.1
-            });
-        }
-    }
-    
-    observeImages() {
-        const lazyImages = document.querySelectorAll('.lazy-image:not(.loaded)');
-        lazyImages.forEach(img => {
-            if (this.imageObserver) {
-                this.imageObserver.observe(img);
-            } else {
-                // Fallback for browsers without IntersectionObserver
-                this.loadImage(img);
-            }
-        });
-    }
-    
-    loadImage(img) {
-        if (this.loadedImages.has(img.dataset.src)) return;
-        
-        const container = img.parentElement;
-        const loadingIndicator = container.querySelector('.image-loading-indicator');
-        
-        if (loadingIndicator) {
-            loadingIndicator.style.display = 'flex';
-        }
-        
-        const imageLoader = new Image();
-        
-        imageLoader.onload = () => {
-            img.src = img.dataset.src;
-            img.classList.add('loaded');
-            this.loadedImages.add(img.dataset.src);
-            
-            if (loadingIndicator) {
-                loadingIndicator.style.display = 'none';
-            }
-            
-            // Trigger performance tracking
-            if (typeof performanceMonitor !== 'undefined') {
-                performanceMonitor.trackImageLoad(img.dataset.src);
-            }
-        };
-        
-        imageLoader.onerror = () => {
-            img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect width="100%" height="100%" fill="%23f8f8f8"/%3E%3Ctext x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23999"%3EImage not found%3C/text%3E%3C/svg%3E';
-            img.classList.add('error');
-            
-            if (loadingIndicator) {
-                loadingIndicator.style.display = 'none';
-            }
-        };
-        
-        imageLoader.src = img.dataset.src;
-    }
-}
-
-class PerformanceMonitor {
-    constructor() {
-        this.metrics = {
-            pageLoadTime: 0,
-            imagesLoaded: 0,
-            projectsRendered: 0,
-            searchQueries: 0,
-            filterChanges: 0,
-            lastActivity: Date.now()
-        };
-        this.init();
-    }
-    
-    init() {
-        // Track page load time
-        if (performance.timing) {
-            window.addEventListener('load', () => {
-                this.metrics.pageLoadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-                console.log(`📊 Page load time: ${this.metrics.pageLoadTime}ms`);
-            });
-        }
-        
-        // Track user activity
-        ['click', 'keydown', 'scroll', 'touchstart'].forEach(event => {
-            document.addEventListener(event, () => {
-                this.metrics.lastActivity = Date.now();
-            }, { passive: true });
-        });
-    }
-    
-    trackImageLoad(imageSrc) {
-        this.metrics.imagesLoaded++;
-        console.log(`🖼️ Image loaded: ${imageSrc} (Total: ${this.metrics.imagesLoaded})`);
-    }
-    
-    trackProjectRender(count) {
-        this.metrics.projectsRendered += count;
-        console.log(`📦 Projects rendered: ${count} (Total: ${this.metrics.projectsRendered})`);
-    }
-    
-    trackSearch(query) {
-        this.metrics.searchQueries++;
-        console.log(`🔍 Search performed: "${query}" (Total: ${this.metrics.searchQueries})`);
-    }
-    
-    trackFilterChange(filterType, value) {
-        this.metrics.filterChanges++;
-        console.log(`🔧 Filter changed: ${filterType} = ${value} (Total: ${this.metrics.filterChanges})`);
-    }
-    
-    getMetrics() {
-        return {
-            ...this.metrics,
-            sessionDuration: Date.now() - performance.timing.navigationStart,
-            timeSinceLastActivity: Date.now() - this.metrics.lastActivity
-        };
-    }
-    
-    generatePerformanceReport() {
-        const metrics = this.getMetrics();
-        return {
-            performance: {
-                pageLoadTime: `${metrics.pageLoadTime}ms`,
-                sessionDuration: `${Math.round(metrics.sessionDuration / 1000)}s`,
-                timeSinceLastActivity: `${Math.round(metrics.timeSinceLastActivity / 1000)}s`
-            },
-            usage: {
-                imagesLoaded: metrics.imagesLoaded,
-                projectsRendered: metrics.projectsRendered,
-                searchQueries: metrics.searchQueries,
-                filterChanges: metrics.filterChanges
-            },
-            memory: this.getMemoryInfo()
-        };
-    }
-    
-    getMemoryInfo() {
-        if (performance.memory) {
-            return {
-                used: `${Math.round(performance.memory.usedJSHeapSize / 1024 / 1024)}MB`,
-                total: `${Math.round(performance.memory.totalJSHeapSize / 1024 / 1024)}MB`,
-                limit: `${Math.round(performance.memory.jsHeapSizeLimit / 1024 / 1024)}MB`
-            };
-        }
-        return null;
-    }
-}
-
-class VirtualScrollManager {
-    constructor(container, itemHeight = 300, bufferSize = 5) {
-        this.container = container;
-        this.itemHeight = itemHeight;
-        this.bufferSize = bufferSize;
-        this.scrollTop = 0;
-        this.containerHeight = 0;
-        this.totalItems = 0;
-        this.visibleItems = [];
-        this.init();
-    }
-    
-    init() {
-        this.container.addEventListener('scroll', this.handleScroll.bind(this), { passive: true });
-        this.updateContainerHeight();
-        window.addEventListener('resize', this.updateContainerHeight.bind(this));
-    }
-    
-    updateContainerHeight() {
-        this.containerHeight = this.container.clientHeight;
-    }
-    
-    handleScroll() {
-        this.scrollTop = this.container.scrollTop;
-        this.updateVisibleItems();
-    }
-    
-    setItems(items) {
-        this.totalItems = items.length;
-        this.items = items;
-        this.updateVisibleItems();
-    }
-    
-    updateVisibleItems() {
-        const startIndex = Math.floor(this.scrollTop / this.itemHeight);
-        const endIndex = Math.min(
-            startIndex + Math.ceil(this.containerHeight / this.itemHeight) + this.bufferSize,
-            this.totalItems
-        );
-        
-        this.visibleItems = {
-            startIndex: Math.max(0, startIndex - this.bufferSize),
-            endIndex: endIndex,
-            items: this.items.slice(
-                Math.max(0, startIndex - this.bufferSize),
-                endIndex
-            )
-        };
-        
-        this.renderVisibleItems();
-    }
-    
-    renderVisibleItems() {
-        // This would be implemented based on specific needs
-        // For now, we'll use it for analytics
-        if (typeof performanceMonitor !== 'undefined') {
-            performanceMonitor.trackProjectRender(this.visibleItems.items.length);
-        }
-    }
-}
-
-// Initialize performance monitoring
-let lazyImageLoader;
-let performanceMonitor;
-let virtualScrollManager;
-
-// Enhanced initialization with error handling
-async function initializeApp() {
-    try {
-        console.log('🚀 Initializing portfolio application...');
-        
-        // Initialize performance monitoring
-        performanceMonitor = new PerformanceMonitor();
-        console.log('✅ Performance monitoring initialized');
-        
-        // Initialize lazy image loading
-        lazyImageLoader = new LazyImageLoader();
-        console.log('✅ Lazy image loading initialized');
-        
-        // Initialize markdown renderer first
-        await initializeMarkdownRenderer();
-        console.log('✅ Markdown renderer initialized');
-        
-        // Initialize event listeners
-        initializeEventListeners();
-        console.log('✅ Event listeners initialized');
-        
-        // Load projects with error handling
-        await loadProjects();
-        console.log('✅ Projects loaded successfully');
-        
-        // Initialize virtual scrolling for large project lists
-        const projectGrid = document.getElementById('project-grid');
-        if (projectGrid && projects.length > 20) {
-            virtualScrollManager = new VirtualScrollManager(projectGrid);
-            console.log('✅ Virtual scrolling initialized');
-        }
-        
-    } catch (error) {
-        console.error('❌ Failed to initialize application:', error);
-        showErrorMessage('Failed to initialize the portfolio. Please refresh the page and try again.');
-        
-        // Attempt graceful degradation
-        try {
-            console.log('🔄 Attempting graceful degradation...');
-            projects = getFallbackProjects();
-            initializeFilters();
-            applyFilters();
-            console.log('✅ Graceful degradation successful');
-        } catch (fallbackError) {
-            console.error('❌ Graceful degradation failed:', fallbackError);
-            showErrorMessage('Critical error: Unable to load portfolio content. Please contact the site administrator.');
-        }
-    }
-}
-
-document.addEventListener('DOMContentLoaded', initializeApp); 
+    // Initialize event listeners and load projects
+    initializeEventListeners();
+    loadProjects();
+}); 

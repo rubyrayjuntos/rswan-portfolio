@@ -1,0 +1,428 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-27T10:00:00Z",
+  
+  "lookups": [
+    { "id": 1, "type": "genre", "value": "Web Development", "description": "Web applications and websites", "category": "code", "usage_count": 8, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 2, "type": "genre", "value": "AI/ML", "description": "Artificial Intelligence and Machine Learning", "category": "code", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 3, "type": "genre", "value": "Mobile App", "description": "Mobile applications", "category": "code", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 4, "type": "genre", "value": "Creative Writing", "description": "Fiction and creative writing", "category": "writing", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 5, "type": "genre", "value": "Digital Art", "description": "Digital artwork and illustrations", "category": "art", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 6, "type": "genre", "value": "Game Development", "description": "Video game development", "category": "code", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 7, "type": "genre", "value": "Data Visualization", "description": "Data analysis and visualization", "category": "code", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 8, "type": "genre", "value": "Brand Identity", "description": "Brand design and identity work", "category": "art", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 101, "type": "style", "value": "Modern", "description": "Contemporary design approach", "category": "universal", "usage_count": 6, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 102, "type": "style", "value": "Minimalist", "description": "Clean and simple design", "category": "universal", "usage_count": 4, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 103, "type": "style", "value": "Experimental", "description": "Innovative and experimental approach", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 104, "type": "style", "value": "Vintage", "description": "Retro and vintage aesthetic", "category": "art", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 105, "type": "style", "value": "Futuristic", "description": "Sci-fi and future-oriented design", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 106, "type": "style", "value": "Organic", "description": "Natural and flowing design", "category": "art", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 201, "type": "technology", "value": "React", "description": "JavaScript library for building user interfaces", "category": "code", "usage_count": 5, "metadata": { "website": "https://reactjs.org", "icon": "⚛️" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 202, "type": "technology", "value": "Python", "description": "Programming language", "category": "code", "usage_count": 4, "metadata": { "website": "https://python.org", "icon": "🐍" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 203, "type": "technology", "value": "JavaScript", "description": "Programming language", "category": "code", "usage_count": 8, "metadata": { "website": "https://javascript.info", "icon": "📜" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 204, "type": "technology", "value": "Node.js", "description": "JavaScript runtime", "category": "code", "usage_count": 3, "metadata": { "website": "https://nodejs.org", "icon": "🟢" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 205, "type": "technology", "value": "CSS3", "description": "Styling language", "category": "code", "usage_count": 6, "metadata": { "website": "https://developer.mozilla.org/en-US/docs/Web/CSS", "icon": "🎨" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 206, "type": "technology", "value": "HTML5", "description": "Markup language", "category": "code", "usage_count": 6, "metadata": { "website": "https://developer.mozilla.org/en-US/docs/Web/HTML", "icon": "🌐" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 207, "type": "technology", "value": "TensorFlow", "description": "Machine learning framework", "category": "code", "usage_count": 1, "metadata": { "website": "https://tensorflow.org", "icon": "🧠" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 208, "type": "technology", "value": "Photoshop", "description": "Image editing software", "category": "art", "usage_count": 2, "metadata": { "website": "https://adobe.com/photoshop", "icon": "🖼️" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 209, "type": "technology", "value": "Illustrator", "description": "Vector graphics software", "category": "art", "usage_count": 1, "metadata": { "website": "https://adobe.com/illustrator", "icon": "✏️" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 210, "type": "technology", "value": "Unity", "description": "Game development engine", "category": "code", "usage_count": 1, "metadata": { "website": "https://unity.com", "icon": "🎮" }, "created_at": "2025-01-01T00:00:00Z" },
+
+    { "id": 301, "type": "mood", "value": "Energetic", "description": "High energy and dynamic", "category": "universal", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 302, "type": "mood", "value": "Serene", "description": "Calm and peaceful", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 303, "type": "mood", "value": "Dark", "description": "Mysterious and intense", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 304, "type": "mood", "value": "Mystical", "description": "Magical and enchanting", "category": "universal", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 305, "type": "mood", "value": "Innovative", "description": "Cutting-edge and forward-thinking", "category": "universal", "usage_count": 4, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 306, "type": "mood", "value": "Playful", "description": "Fun and lighthearted", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 307, "type": "mood", "value": "Professional", "description": "Business and corporate", "category": "universal", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 308, "type": "mood", "value": "Experimental", "description": "Avant-garde and boundary-pushing", "category": "universal", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
+
+    { "id": 401, "type": "role", "value": "Lead Developer", "description": "Primary developer and project lead", "category": "code", "usage_count": 4, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 402, "type": "role", "value": "Full Stack Developer", "description": "Frontend and backend development", "category": "code", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 403, "type": "role", "value": "UI/UX Designer", "description": "User interface and experience design", "category": "art", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 404, "type": "role", "value": "Creative Director", "description": "Creative vision and direction", "category": "art", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 405, "type": "role", "value": "Author", "description": "Primary writer and content creator", "category": "writing", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 406, "type": "role", "value": "Solo Developer", "description": "Independent developer", "category": "code", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+
+    { "id": 501, "type": "status", "value": "completed", "description": "Project is finished", "category": "universal", "usage_count": 12, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 502, "type": "status", "value": "in-progress", "description": "Currently being developed", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 503, "type": "status", "value": "development", "description": "In active development", "category": "universal", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 504, "type": "status", "value": "concept", "description": "Conceptual stage", "category": "universal", "usage_count": 0, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 505, "type": "status", "value": "on-hold", "description": "Temporarily paused", "category": "universal", "usage_count": 0, "created_at": "2025-01-01T00:00:00Z" },
+
+    { "id": 601, "type": "variant", "value": "featured", "description": "Featured project display", "category": "universal", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 602, "type": "variant", "value": "wide", "description": "Wide display format", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 603, "type": "variant", "value": "standard", "description": "Standard display format", "category": "universal", "usage_count": 10, "created_at": "2025-01-01T00:00:00Z" },
+
+    { "id": 701, "type": "link_type", "value": "github", "description": "GitHub repository", "category": "code", "usage_count": 8, "metadata": { "icon": "🐙" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 702, "type": "link_type", "value": "demo", "description": "Live demo", "category": "code", "usage_count": 5, "metadata": { "icon": "🚀" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 703, "type": "link_type", "value": "documentation", "description": "Project documentation", "category": "universal", "usage_count": 3, "metadata": { "icon": "📚" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 704, "type": "link_type", "value": "portfolio", "description": "Portfolio link", "category": "universal", "usage_count": 2, "metadata": { "icon": "💼" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 705, "type": "link_type", "value": "behance", "description": "Behance project", "category": "art", "usage_count": 1, "metadata": { "icon": "🎨" }, "created_at": "2025-01-01T00:00:00Z" },
+
+    { "id": 801, "type": "artifact_type", "value": "document", "description": "Documentation or specification", "category": "universal", "usage_count": 5, "metadata": { "icon": "📄" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 802, "type": "artifact_type", "value": "image", "description": "Image or screenshot", "category": "universal", "usage_count": 8, "metadata": { "icon": "🖼️" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 803, "type": "artifact_type", "value": "video", "description": "Video demonstration", "category": "universal", "usage_count": 2, "metadata": { "icon": "🎥" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 804, "type": "artifact_type", "value": "code", "description": "Code repository or snippet", "category": "code", "usage_count": 6, "metadata": { "icon": "💻" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 805, "type": "artifact_type", "value": "design", "description": "Design file or mockup", "category": "art", "usage_count": 3, "metadata": { "icon": "🎨" }, "created_at": "2025-01-01T00:00:00Z" },
+    
+
+    { "id": 901, "type": "content_type", "value": "excerpts", "description": "Writing excerpts", "category": "writing", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 902, "type": "content_type", "value": "themes_analysis", "description": "Thematic analysis", "category": "writing", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 903, "type": "content_type", "value": "process_content", "description": "Creative process documentation", "category": "art", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 904, "type": "content_type", "value": "inspiration_content", "description": "Inspiration and references", "category": "art", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
+
+    { "id": 1001, "type": "file_type", "value": "image", "description": "Image files", "category": "universal", "usage_count": 25, "metadata": { "icon": "🖼️" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 1002, "type": "file_type", "value": "document", "description": "Document files", "category": "universal", "usage_count": 8, "metadata": { "icon": "📄" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 1003, "type": "file_type", "value": "video", "description": "Video files", "category": "universal", "usage_count": 3, "metadata": { "icon": "🎥" }, "created_at": "2025-01-01T00:00:00Z" },
+    { "id": 1004, "type": "file_type", "value": "archive", "description": "Archive files", "category": "universal", "usage_count": 2, "metadata": { "icon": "📦" }, "created_at": "2025-01-01T00:00:00Z" }
+  ],
+  
+  "projects": [
+    {
+      "id": 1,
+      "title": "Nova Writers Conspiracy",
+      "description": "A collaborative writing platform that uses AI to help writers develop their stories through interactive character development and plot generation.",
+      "image_url": "images/projects/nova-writers-conspiracy-cover-art.jpg",
+      "medium": "code",
+      "mood": "Innovative",
+      "year": 2025,
+      "role": "Lead Developer",
+      "variant": "featured",
+      "status": "development",
+      "pitch": "Revolutionizing collaborative storytelling through AI-powered character development and plot generation.",
+      "challenge": "Creating an intuitive interface that balances AI assistance with human creativity, ensuring writers maintain control over their stories.",
+      "development": "Built with React and Node.js, integrating OpenAI's GPT API for character generation and plot suggestions. Implemented real-time collaboration features.",
+      "outcome": "Successfully launched beta with 50+ writers, achieving 85% user satisfaction and generating 200+ story concepts.",
+      "genres": [1, 2],
+      "styles": [101, 102],
+      "technologies": [201, 203, 204, 205, 206],
+      "links": [
+        { "id": 1, "text": "GitHub", "url": "https://github.com/user/nova-writers", "type": 701, "sort_order": 0 },
+        { "id": 2, "text": "Live Demo", "url": "https://nova-writers.demo.com", "type": 702, "sort_order": 1 }
+      ],
+      "gallery": [
+        {
+          "id": 1,
+          "url": "images/projects/nova-writers-conspiracy/nova-chat-interface.jpg",
+          "title": "AI Chat Interface",
+          "description": "Interactive character development chat",
+          "dimensions": "1920x1080",
+          "sort_order": 0
+        },
+        {
+          "id": 2,
+          "url": "images/projects/nova-writers-conspiracy/nova-dashboard-interface.jpg",
+          "title": "Project Dashboard",
+          "description": "Main project management interface",
+          "dimensions": "1920x1080",
+          "sort_order": 1
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 1,
+          "name": "System Architecture",
+          "description": "Technical architecture documentation",
+          "url": "docs/nova-writers-architecture.pdf",
+          "type": 801,
+          "sort_order": 0
+        },
+        {
+          "id": 2,
+          "name": "API Documentation",
+          "description": "REST API specification",
+          "url": "docs/nova-writers-api.md",
+          "type": 801,
+          "sort_order": 1
+        }
+      ],
+      "journey": [
+        {
+          "id": 1,
+          "title": "Concept Development",
+          "description": "Initial brainstorming and market research",
+          "sort_order": 0
+        },
+        {
+          "id": 2,
+          "title": "Prototype Creation",
+          "description": "Building MVP with core AI features",
+          "sort_order": 1
+        },
+        {
+          "id": 3,
+          "title": "Beta Testing",
+          "description": "User testing and feedback integration",
+          "sort_order": 2
+        }
+      ],
+      "specs": [
+        {
+          "id": 1,
+          "title": "AI Integration",
+          "description": "OpenAI GPT-4 integration for character generation",
+          "sort_order": 0
+        },
+        {
+          "id": 2,
+          "title": "Real-time Collaboration",
+          "description": "WebSocket-based real-time editing",
+          "sort_order": 1
+        },
+        {
+          "id": 3,
+          "title": "Character Database",
+          "description": "Persistent character profiles and relationships",
+          "sort_order": 2
+        }
+      ],
+      "files": [
+        {
+          "id": 1,
+          "name": "nova-writers-cover.jpg",
+          "path": "images/projects/nova-writers-conspiracy-cover-art.jpg",
+          "type": 1001,
+          "size": 245760,
+          "mime_type": "image/jpeg",
+          "is_public": true
+        }
+      ],
+      "created_at": "2025-01-15T00:00:00Z",
+      "updated_at": "2025-01-27T09:30:00Z",
+      "is_active": true
+    },
+    
+    {
+      "id": 2,
+      "title": "Echoes of Lumina",
+      "description": "A mystical digital art piece exploring the relationship between light and shadow in urban environments.",
+      "image_url": "images/projects/echoes-of-lumina-cover-art.jpg",
+      "medium": "art",
+      "mood": "Mystical",
+      "year": 2024,
+      "role": "Creative Director",
+      "variant": "wide",
+      "status": "completed",
+      "pitch": "A digital exploration of urban mysticism through light and shadow manipulation.",
+      "challenge": "Capturing the ethereal quality of urban light while maintaining technical precision in digital art.",
+      "development": "Created using Photoshop and Illustrator, with extensive photo manipulation and digital painting techniques.",
+      "outcome": "Exhibited in 3 digital art galleries, featured in 2 design publications, and sold as limited edition prints.",
+      "genres": [5],
+      "styles": [104, 106],
+      "technologies": [208, 209],
+      "links": [
+        { "id": 3, "text": "Behance", "url": "https://behance.net/gallery/echoes-lumina", "type": 705, "sort_order": 0 }
+      ],
+      "gallery": [
+        {
+          "id": 3,
+          "url": "images/projects/echoes-of-lumina/main-piece.jpg",
+          "title": "Main Composition",
+          "description": "Primary artwork showing light and shadow interplay",
+          "dimensions": "3000x2000",
+          "sort_order": 0,
+          "hotspots": [
+            {
+              "id": 1,
+              "x": 25.5,
+              "y": 30.2,
+              "label": "A",
+              "title": "Light Source",
+              "description": "Primary light source creating dramatic shadows"
+            },
+            {
+              "id": 2,
+              "x": 75.8,
+              "y": 65.4,
+              "label": "B",
+              "title": "Shadow Detail",
+              "description": "Intricate shadow patterns revealing hidden forms"
+            }
+          ]
+        }
+      ],
+      "content": {
+        "process_content": "The piece began with extensive urban photography sessions during golden hour, followed by digital manipulation to enhance the mystical elements.",
+        "inspiration_content": "Inspired by the works of James Turrell and urban light installations, focusing on the transformative power of light in cityscapes."
+      },
+      "journey": [
+        {
+          "id": 4,
+          "title": "Research Phase",
+          "description": "Urban photography and light study",
+          "sort_order": 0
+        },
+        {
+          "id": 5,
+          "title": "Digital Creation",
+          "description": "Photo manipulation and digital painting",
+          "sort_order": 1
+        },
+        {
+          "id": 6,
+          "title": "Refinement",
+          "description": "Color correction and detail enhancement",
+          "sort_order": 2
+        }
+      ],
+      "specs": [
+        {
+          "id": 4,
+          "title": "Resolution",
+          "description": "3000x2000 pixels, 300 DPI for print quality",
+          "sort_order": 0
+        },
+        {
+          "id": 5,
+          "title": "Color Profile",
+          "description": "Adobe RGB 1998 for wide color gamut",
+          "sort_order": 1
+        }
+      ],
+      "created_at": "2024-06-15T00:00:00Z",
+      "updated_at": "2024-12-20T00:00:00Z",
+      "published_at": "2024-12-20T00:00:00Z",
+      "is_active": true
+    },
+    
+    {
+      "id": 3,
+      "title": "The Weight of a Name",
+      "description": "A speculative fiction novel exploring identity, memory, and the power of names in a post-apocalyptic world.",
+      "image_url": "images/projects/weight-of-a-name-cover-art.jpg",
+      "medium": "writing",
+      "mood": "Dark",
+      "year": 2024,
+      "role": "Author",
+      "variant": "standard",
+      "status": "completed",
+      "pitch": "In a world where names hold power and memory is currency, one person's quest to reclaim their identity challenges the very fabric of society.",
+      "challenge": "Balancing complex world-building with character development while maintaining narrative tension throughout a 300-page novel.",
+      "development": "Three-year writing process including extensive world-building, character development, and multiple revision cycles.",
+      "outcome": "Completed manuscript of 85,000 words, currently seeking publication. Received positive feedback from beta readers and writing groups.",
+      "genres": [4],
+      "styles": [103],
+      "technologies": [],
+      "links": [
+        { "id": 4, "text": "Sample Chapter", "url": "docs/weight-of-name-chapter1.pdf", "type": 703, "sort_order": 0 }
+      ],
+      "gallery": [
+        {
+          "id": 4,
+          "url": "images/projects/weight-of-a-name/cover-concept.jpg",
+          "title": "Cover Concept",
+          "description": "Initial cover design concept",
+          "dimensions": "1200x1800",
+          "sort_order": 0
+        }
+      ],
+      "content": {
+        "excerpts": "The name hung in the air like a forgotten melody, its syllables carrying the weight of a thousand memories. She reached for it, but it slipped through her fingers like smoke, leaving only the echo of what might have been.",
+        "themes_analysis": "The novel explores themes of identity loss, the commodification of memory, and the redemptive power of self-discovery through the lens of speculative fiction."
+      },
+      "journey": [
+        {
+          "id": 7,
+          "title": "Concept Development",
+          "description": "Initial idea and world-building",
+          "sort_order": 0
+        },
+        {
+          "id": 8,
+          "title": "First Draft",
+          "description": "Complete first draft writing",
+          "sort_order": 1
+        },
+        {
+          "id": 9,
+          "title": "Revision Process",
+          "description": "Multiple revision cycles and beta feedback",
+          "sort_order": 2
+        },
+        {
+          "id": 10,
+          "title": "Final Polish",
+          "description": "Final editing and preparation for submission",
+          "sort_order": 3
+        }
+      ],
+      "specs": [
+        {
+          "id": 6,
+          "title": "Word Count",
+          "description": "85,000 words, approximately 300 pages",
+          "sort_order": 0
+        },
+        {
+          "id": 7,
+          "title": "Genre",
+          "description": "Speculative fiction with elements of dystopian and magical realism",
+          "sort_order": 1
+        },
+        {
+          "id": 8,
+          "title": "Target Audience",
+          "description": "Adult readers interested in speculative fiction and literary fiction",
+          "sort_order": 2
+        }
+      ],
+      "created_at": "2021-03-15T00:00:00Z",
+      "updated_at": "2024-11-30T00:00:00Z",
+      "published_at": "2024-11-30T00:00:00Z",
+      "is_active": true
+    }
+  ],
+  
+  "config": [
+    {
+      "key": "portfolio_title",
+      "value": "RSwan Portfolio",
+      "description": "Main portfolio title",
+      "updated_at": "2025-01-27T00:00:00Z"
+    },
+    {
+      "key": "max_projects_display",
+      "value": "15",
+      "description": "Maximum number of projects to display on homepage",
+      "updated_at": "2025-01-27T00:00:00Z"
+    },
+    {
+      "key": "image_quality",
+      "value": "high",
+      "description": "Default image quality setting",
+      "updated_at": "2025-01-27T00:00:00Z"
+    }
+  ],
+  
+  "audit_log": [
+    {
+      "id": 1,
+      "user_id": "admin",
+      "action": "create",
+      "table_name": "projects",
+      "record_id": 1,
+      "new_values": { "title": "Nova Writers Conspiracy" },
+      "timestamp": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "user_id": "admin",
+      "action": "update",
+      "table_name": "projects",
+      "record_id": 1,
+      "old_values": { "status": "in-progress" },
+      "new_values": { "status": "development" },
+      "timestamp": "2025-01-27T09:30:00Z"
+    },
+    {
+      "id": 3,
+      "user_id": "admin",
+      "action": "create",
+      "table_name": "lookups",
+      "record_id": 2,
+      "new_values": { "type": "genre", "value": "AI/ML" },
+      "timestamp": "2025-01-27T08:45:00Z"
+    }
+  ]
+} 
