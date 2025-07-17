@@ -1,0 +1,118 @@
+{
+  "id": 4,
+  "title": "Nova: Writers Conspiracy",
+  "description": "Collaboration between human and AI, balancing structure and soul in creative agency - your cosmic atelier. A writing workshop for a new tomorrow",
+  "imageUrl": "images/projects/nova-writers-conspiracy/nova-hero-main.jpg",
+  "medium": "code",
+  "genre": ["AI/ML", "Creative Technology", "Web Development"],
+  "style": ["Modern", "Innovative", "Interactive"],
+  "tech": ["Python", "FastAPI", "JavaScript", "AI/ML", "React"],
+  "mood": "innovative",
+  "year": 2024,
+  "role": "Full-Stack Developer & AI Integration Specialist",
+  "variant": "featured",
+  "status": "development",
+  "links": {
+    "live": "https://nova-demo.example.com",
+    "github": "https://github.com/example/nova",
+    "documentation": "https://docs.nova-writers.com"
+  },
+  "pitch": "Collaboration between human and AI in creative agency - your cosmic atelier for collaborative storytelling",
+  "challenge": "Creating a seamless interface for human-AI creative collaboration while maintaining the authenticity and soul of human creativity",
+  "development": "Built with FastAPI backend for real-time AI agent coordination, modern React frontend for intuitive collaboration interfaces, and integrated multi-agent AI system for content generation",
+  "outcome": "A revolutionary platform that enables writers to collaborate with AI agents in creating compelling narratives while preserving human creative vision",
+  "artifacts": [
+    {
+      "name": "System Design Doc",
+      "description": "Comprehensive overview of the multi-agent system architecture and data flows.",
+      "url": "docs/nova_system_design.pdf",
+      "icon": "📄"
+    },
+    {
+      "name": "Frontend Wireframes",
+      "description": "Early-stage UI/UX sketches and wireframes for the collaboration dashboard.",
+      "url": "docs/nova_wireframes.zip",
+      "icon": "🖼️"
+    },
+    {
+      "name": "API Specification",
+      "description": "Detailed FastAPI endpoint documentation for backend integration.",
+      "url": "docs/nova_api_spec.pdf",
+      "icon": "🔗"
+    },
+    {
+      "name": "Agent Workflow Diagram",
+      "description": "Visual breakdown of how different AI agents interact to generate content.",
+      "url": "images/projects/nova-writers-conspiracy/nova-architecture-system.jpg",
+      "icon": "🗺️"
+    },
+    {
+      "name": "Database Schema",
+      "description": "Complete database design and relationship diagrams for user stories and AI interactions.",
+      "url": "docs/nova_db_schema.sql",
+      "icon": "🗃️"
+    },
+    {
+      "name": "User Journey Maps",
+      "description": "Detailed user experience flows for both new and experienced collaborative writers.",
+      "url": "docs/nova_user_journeys.pdf",
+      "icon": "🗺️"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "images/projects/nova-writers-conspiracy/nova-dashboard.jpg",
+      "title": "Main Dashboard",
+      "description": "The central collaboration interface showing active AI agents and story progress",
+      "dimensions": "1920x1080"
+    },
+    {
+      "url": "images/projects/nova-writers-conspiracy/nova-agent-chat.jpg",
+      "title": "Agent Collaboration Panel",
+      "description": "Real-time chat interface for communicating with different AI writing specialists",
+      "dimensions": "1600x900"
+    },
+    {
+      "url": "images/projects/nova-writers-conspiracy/nova-story-editor.jpg",
+      "title": "Collaborative Story Editor",
+      "description": "Split-screen editor showing human input and AI suggestions with version control",
+      "dimensions": "1920x1200"
+    }
+  ],
+  "journey": [
+    {
+      "phase": "Discovery",
+      "description": "Research phase exploring human-AI creative collaboration patterns and writer workflow analysis"
+    },
+    {
+      "phase": "Architecture",
+      "description": "Designed multi-agent system architecture with FastAPI backend and real-time communication protocols"
+    },
+    {
+      "phase": "Development", 
+      "description": "Built core collaboration features, AI agent integration, and intuitive user interfaces"
+    },
+    {
+      "phase": "Testing",
+      "description": "Extensive user testing with writers, iterative refinement of AI interaction patterns"
+    }
+  ],
+  "specs": [
+    {
+      "category": "AI Integration",
+      "details": "Multi-agent system with specialized writing assistants for different narrative elements"
+    },
+    {
+      "category": "Real-time Collaboration",
+      "details": "WebSocket-based communication enabling seamless human-AI creative exchanges"
+    },
+    {
+      "category": "Version Control",
+      "details": "Git-inspired story versioning with branch management for creative experimentation"
+    },
+    {
+      "category": "User Experience",
+      "details": "Intuitive interface design that makes AI collaboration feel natural and empowering"
+    }
+  ]
+}

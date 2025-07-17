@@ -1,0 +1,350 @@
+/* Main CSS - Base styles, layout, and core components */
+
+/* CSS Variables */
+:root {
+    /* Base Colors (Original Theme) - These will be overridden by theme-specific classes */
+    --color-primary-dark: #051772;
+    --color-primary-light: #06000c;
+    --color-secondary-dark: #142263;
+    --color-secondary-light: #17012c;
+
+    /* Generic Text Colors - Used widely across components */
+    --color-text-hero: rgb(223, 99, 17); /* For hero sections, often bright */
+    --color-text-light: rgba(255, 255, 255, 0.9); /* General light text on dark backgrounds */
+    --color-text-dark: #333; /* General dark text on light backgrounds */
+    --color-text-muted: #666; /* Muted text for descriptions, secondary info */
+    --color-text-grey: #6c757d;
+    --color-text-darker-grey: #495057;
+
+    /* Backgrounds - Key for Neumorphism */
+    --color-background-body: #0a0a0a; /* Main body background */
+    --color-background-section-light: #fff; /* For alternating sections */
+    --color-background-section-even: #f8f9fa; /* For alternating sections */
+
+    /* Navigation - Glassmorphic / Neumorphic */
+    --color-nav-bg: rgba(255, 255, 255, 0.1); /* Nav background with transparency */
+    --color-nav-border: rgba(255, 255, 255, 0.2);
+    --color-nav-hover-bg: rgba(255, 255, 255, 0.15);
+
+    /* Accent Colors - For interactive elements, highlights, glows */
+    --color-accent-primary: #5a67d8; /* Your existing accent color, for consistency */
+    --color-accent-orange-bright: rgba(255, 140, 0, 0.6); /* Glows, active states */
+    --color-accent-orange-dark: rgba(255, 69, 0, 0.4);
+    --color-accent-orange-darker: rgba(255, 69, 0, 0.2);
+    --color-accent-orange-nav-hover: rgba(255, 140, 0, 0.4);
+    --color-accent-orange-nav-hover-dark: rgba(255, 69, 0, 0.3);
+    --color-accent-orange-nav-icon: rgba(255, 140, 0, 0.8);
+    --color-accent-orange-drop-shadow: rgba(255, 69, 0, 0.6);
+    --color-accent-blue-scroll: rgb(31, 17, 233); /* Scroll indicator, blue tones */
+    --color-accent-blue-scroll-dark: rgb(68, 14, 219);
+
+    /* Section Separators and Titles */
+    --color-section-border: linear-gradient(45deg, #021777, #0a0014); /* Border under sections */
+    --color-section-title: #2c3e50; /* Main section title color (light theme friendly) */
+    --color-section-title-active: linear-gradient(135deg, #667eea, #764ba2); /* Active state/glow for titles */
+    --color-section-title-line: linear-gradient(45deg, #667eea, #764ba2); /* Line under titles */
+
+    /* Gallery Overlay */
+    --color-gallery-overlay-bg: linear-gradient(45deg, rgba(2, 15, 75, 0.9), rgba(17, 1, 32, 0.9));
+    --color-gallery-overlay-text: rgb(248, 173, 74); /* Text on gallery overlay */
+    --color-gallery-overlay-content-bg: rgba(0, 0, 0, 0.8);
+
+    /* Spec Cards */
+    --color-spec-card-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --color-spec-card-shadow: rgba(102, 126, 234, 0.2); /* Base shadow */
+    --color-spec-card-shadow-hover: rgba(102, 126, 234, 0.4); /* Enhanced shadow on hover */
+    --color-spec-card-overlay: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); /* Overlay on hover */
+    --color-spec-card-circle-overlay: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    --color-spec-card-text: white; /* Text color inside cards */
+    --color-spec-card-text-muted: rgba(255,255,255,0.9);
+    --color-spec-card-border-glow: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+    --color-spec-card-particle: rgba(255,255,255,0.6); /* Particles within spec cards */
+
+    /* Tags (used in overview, tech section) */
+    --color-tag-bg: linear-gradient(45deg, #f8f9fa, #e9ecef);
+    --color-tag-text: #6c757d;
+    --color-tag-border: #dee2e6;
+    --color-tag-hover-bg: linear-gradient(45deg, #ffffff, #f8f9fa);
+    --color-tag-hover-text: #495057;
+
+    /* Links Section */
+    --color-link-card-bg: linear-gradient(135deg, #02125c, #100120);
+    --color-link-card-text: white;
+    --color-link-card-overlay: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+    --color-link-card-shadow: rgba(102, 126, 234, 0.3);
+
+    /* Timeline */
+    --color-timeline-line: linear-gradient(to bottom, #667eea, #764ba2);
+    --color-timeline-arrow: #667eea;
+    --color-timeline-arrow-shadow: rgba(102, 126, 234, 0.8);
+    --color-timeline-arrow-2: #764ba2;
+    --color-timeline-arrow-2-shadow: rgba(118, 75, 162, 0.6);
+    --color-timeline-content-bg: rgba(255, 255, 255, 0.95); /* Content bubble background */
+    --color-timeline-content-border: rgba(255, 255, 255, 0.2);
+    --color-timeline-content-shadow: rgba(0,0,0,0.1);
+    --color-timeline-content-shadow-hover: rgba(0,0,0,0.15);
+    --color-timeline-dot-bg: linear-gradient(45deg, #4252e6, #0c0118);
+    --color-timeline-dot-border: rgb(13, 2, 61);
+    --color-timeline-dot-shadow: #f8f9fa;
+
+    /* Hero Particles / Backgrounds */
+    --color-hero-bg-radial-1: rgba(193, 214, 7, 0.4);
+    --color-hero-bg-radial-2: rgba(255, 193, 7, 0.35);
+    --color-hero-bg-radial-3: rgba(102, 126, 234, 0.3);
+    --color-particle-main: rgba(193, 214, 7, 0.8);
+    --color-particle-shadow: rgba(193, 214, 7, 0.6);
+    --color-particle-5n: rgba(255, 255, 255, 0.9);
+    --color-particle-5n-shadow: rgba(255, 255, 255, 0.8);
+    --color-particle-7n: rgba(255, 193, 7, 0.8);
+    --color-particle-7n-shadow: rgba(255, 193, 7, 0.7);
+    --color-particle-11n: rgba(193, 214, 7, 0.9);
+    --color-particle-11n-shadow: rgba(193, 214, 7, 0.8);
+
+    /* Journey Section (Cosmic/Timeline background) */
+    --color-journey-bg-radial-1: rgba(193, 214, 7, 0.3);
+    --color-journey-bg-radial-2: rgba(255, 193, 7, 0.25);
+    --color-journey-bg-radial-3: rgba(255, 255, 255, 0.2);
+    --color-journey-bg-radial-4: rgba(102, 126, 234, 0.2);
+    --color-journey-bg-radial-5: rgba(118, 75, 162, 0.15);
+    --color-journey-cosmic-1: rgba(255, 255, 255, 0.05);
+    --color-journey-cosmic-2: rgba(102, 126, 234, 0.03);
+    --color-journey-title: white; /* Title on the dark journey background */
+    --color-journey-particle-main: rgba(193, 214, 7, 1);
+    --color-journey-particle-shadow: rgba(193, 214, 7, 0.8);
+    --color-journey-particle-shadow-2: rgba(193, 214, 7, 0.4);
+    --color-journey-particle-5n: rgba(255, 255, 255, 1);
+    --color-journey-particle-5n-shadow: rgba(255, 255, 255, 0.9);
+    --color-journey-particle-5n-shadow-2: rgba(255, 255, 255, 0.5);
+    --color-journey-particle-7n: rgba(255, 193, 7, 1);
+    --color-journey-particle-7n-shadow: rgba(255, 193, 7, 0.8);
+    --color-journey-particle-7n-shadow-2: rgba(255, 193, 7, 0.5);
+    --color-journey-particle-11n: rgba(102, 126, 234, 1);
+    --color-journey-particle-11n-shadow: rgba(102, 126, 234, 0.8);
+    --color-journey-particle-11n-shadow-2: rgba(102, 126, 234, 0.5);
+    --color-journey-particle-13n: rgba(118, 75, 162, 1);
+    --color-journey-particle-13n-shadow: rgba(118, 75, 162, 0.8);
+    --color-journey-particle-13n-shadow-2: rgba(118, 75, 162, 0.5);
+
+    /* Loading Overlay */
+    --color-loading-overlay-bg: linear-gradient(135deg, #142263, #17012c);
+    --color-loader-border: rgba(255,255,255,0.3);
+    --color-loader-border-top: white;
+
+    /* ChiaroscuroCSS base variables (mapping your light neumorphic to these) */
+    --cc-bg-primary: #e0e5ec;
+    --cc-shadow-light: #ffffff;
+    --cc-shadow-dark: #a3b1c6;
+    --cc-text-primary: #31456A;
+    --cc-text-secondary: #6D82A2;
+    --cc-accent-primary: #5a67d8;
+
+    /* Mapping your specific neumorphic variables from index.html to Chiaroscuro's general ones */
+    --bg-color: var(--cc-bg-primary);
+    --shadow-light: var(--cc-shadow-light);
+    --shadow-dark: var(--cc-shadow-dark);
+    --text-color: var(--cc-text-primary);
+    --text-color-light: var(--cc-text-secondary);
+    --accent-color: var(--cc-accent-primary);
+    --scroll-bar-color: #c8d0e7; /* Consider a dynamic variable from CC if available */
+    --scroll-thumb-color: var(--cc-shadow-dark);
+}
+
+/* Ensure all relevant components use these new generic variables in main.css */
+/* For example, ensure any hardcoded colors in .social-icon, .filter-sidebar, etc., are replaced */
+
+/* Update default scrollbar to use variables */
+::-webkit-scrollbar-track {
+    background: var(--scroll-bar-color);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--scroll-thumb-color);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-color); /* Use a more prominent text color on hover */
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    background: var(--color-background-body);
+    overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 0;
+    min-height: 100vh;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 6rem 2rem;
+    position: relative;
+    /* Use dynamic background based on theme's background-section-light/even */
+    background: var(--color-background-section-light); /* Default for odd sections */
+    overflow: hidden;
+    scroll-margin-top: 80px; /* Ensures fixed nav doesn't cover scrolled-to sections */
+}
+
+.content-section:nth-child(even) {
+    background: var(--color-background-section-even); /* Alternating background */
+}
+
+#journey.content-section {
+    background: transparent; /* This section often has its own specialized background */
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Additional cosmic effects - ensure these variables are part of your theme definitions */
+#journey.content-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 50% 50%, var(--color-journey-cosmic-1) 0%, transparent 70%),
+        radial-gradient(circle at 20% 80%, var(--color-journey-cosmic-2) 0%, transparent 60%);
+    animation: cosmicPulse 8s ease-in-out infinite;
+    z-index: 1;
+}
+
+/* Ensure cosmicPulse keyframe is defined in components.css or main.css */
+@keyframes cosmicPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+#journey.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Use theme variables for the primary background of the journey section */
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-light) 100%);
+    z-index: 0;
+}
+
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--color-section-border); /* Use theme-defined border gradient */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Loading Animation */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-loading-overlay-bg);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loader {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--color-loader-border);
+    border-top: 4px solid var(--color-loader-border-top);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Performance mode styles */
+.performance-mode .particle,
+.performance-mode .hero-bg {
+    animation: none !important;
+    transform: none !important;
+}
+
+/* Image error state */
+.image-error {
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.image-error::before {
+    content: 'Image not available';
+}
+
+/* No parallax fallback */
+.no-parallax .hero-bg,
+.no-parallax .particle {
+    display: none;
+}
+
+.no-parallax .hero {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-light) 100%);
+}
+
+/* Phase 3 - Project Type Specific Image Enhancements */
+.hero-section img {
+    width: 100%;
+    border-radius: 15px;
+    /* Enhance with neumorphic shadow variables */
+    box-shadow: 8px 8px 15px var(--shadow-dark), -8px -8px 15px var(--shadow-light);
+}
+
+.narrative-block img {
+    width: 100%;
+    border-radius: 10px;
+    /* Enhance with neumorphic shadow variables */
+    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); /* Add shadow to narrative images */
+    transition: transform 0.3s ease; /* For subtle hover/interaction */
+}
+
+.narrative-block img:hover {
+    transform: scale(1.02); /* Slight scale on hover for interactivity */
+}

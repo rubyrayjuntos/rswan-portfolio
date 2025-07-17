@@ -564,24 +564,6 @@
         let isPanning = false;
         let startX, startY, startLeft, startTop;
 
-        // Helper function for cross-browser matrix parsing
-        function getTransformValues(transform) {
-            if (transform === 'none') return { x: 0, y: 0 };
-            
-            try {
-                const matrix = new DOMMatrixReadOnly(transform);
-                return { x: matrix.m41, y: matrix.m42 };
-            } catch (e) {
-                // Fallback for older browsers
-                const values = transform.match(/matrix.*\((.+)\)/);
-                if (values) {
-                    const parts = values[1].split(', ');
-                    return { x: parseFloat(parts[4]) || 0, y: parseFloat(parts[5]) || 0 };
-                }
-                return { x: 0, y: 0 };
-            }
-        }
-
         function handlePanningMouseDown(e) {
             if (e.button !== 0) return;
             isPanning = true;
@@ -589,9 +571,14 @@
             startX = e.clientX;
             startY = e.clientY;
             const transform = window.getComputedStyle(galleryMainImg).transform;
-            const values = getTransformValues(transform);
-            startLeft = values.x;
-            startTop = values.y;
+            if (transform !== 'none') {
+                const matrix = new DOMMatrixReadOnly(transform);
+                startLeft = matrix.m41;
+                startTop = matrix.m42;
+            } else {
+                startLeft = 0;
+                startTop = 0;
+            }
             e.preventDefault();
         }
 

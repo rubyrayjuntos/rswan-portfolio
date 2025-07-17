@@ -85,7 +85,6 @@
     left: 2rem;
     z-index: 1000;
     background: var(--color-nav-bg);
-    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     border: 1px solid var(--color-nav-border);
     border-radius: 15px;
@@ -344,7 +343,6 @@
     padding: 0.8rem 2rem;
     border-radius: 50px;
     margin-bottom: 2rem;
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     opacity: 0;
     animation: fadeInUp 1s ease 1.5s forwards;
@@ -524,7 +522,6 @@
     background: var(--color-gallery-overlay-content-bg);
     padding: 1.5rem;
     border-radius: 10px;
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
 
@@ -577,7 +574,6 @@
     position: relative;
     overflow: hidden;
     will-change: transform;
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     transform: translateZ(0); /* Ensure hardware acceleration */
 }
@@ -1091,7 +1087,6 @@
 
 .timeline-content {
     background: var(--color-timeline-content-bg); /* Theme-defined background */
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     padding: 2rem; /* Reduced padding */
     border-radius: 15px; /* Consistent border radius */
