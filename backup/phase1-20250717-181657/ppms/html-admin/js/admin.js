@@ -89,7 +89,6 @@ class PPMSDashboard {
         document.getElementById('exportManifestBtn').addEventListener('click', () => this.exportManifest());
         document.getElementById('exportProjectsBtn').addEventListener('click', () => this.exportProjects());
         document.getElementById('exportLookupsBtn').addEventListener('click', () => this.exportLookups());
-        document.getElementById('exportPortfolioBtn')?.addEventListener('click', () => this.exportToPortfolio());
         document.getElementById('importBtn').addEventListener('click', () => this.importData());
         document.getElementById('bulkImportBtn').addEventListener('click', () => this.triggerBulkImport());
         document.getElementById('bulkImportFiles').addEventListener('change', (e) => this.handleBulkImport(e));
@@ -1419,130 +1418,6 @@ class PPMSDashboard {
         };
         this.downloadJSON(exportData, 'portfolio-data.json');
         this.showNotification('All data exported successfully', 'success');
-    }
-
-    // New method for exporting to portfolio format
-    exportToPortfolio() {
-        try {
-            // Convert projects to portfolio format
-            const portfolioProjects = this.convertToPortfolioFormat(this.data.projects);
-            
-            // Create manifest for portfolio
-            const manifest = this.createPortfolioManifest(portfolioProjects);
-            
-            // Export individual project files
-            portfolioProjects.forEach(project => {
-                const filename = `${project.id}-${project.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.json`;
-                this.downloadJSON(project, filename);
-            });
-            
-            // Export manifest
-            this.downloadJSON(manifest, 'manifest.json');
-            
-            this.showNotification(`Exported ${portfolioProjects.length} projects in portfolio format`, 'success');
-            
-        } catch (error) {
-            console.error('Error exporting to portfolio format:', error);
-            this.showNotification('Error exporting to portfolio format', 'error');
-        }
-    }
-
-    // Convert PPMS format to portfolio format
-    convertToPortfolioFormat(projects) {
-        return projects.map(project => {
-            // Convert lookup IDs to string arrays
-            const genres = this.getLookupsAsStrings(project.genres || [], 'genre');
-            const styles = this.getLookupsAsStrings(project.styles || [], 'style');
-            const technologies = this.getLookupsAsStrings(project.technologies || [], 'technology');
-            
-            // Convert mood from string to lookup if needed
-            let mood = project.mood;
-            if (typeof mood === 'number') {
-                const moodLookup = this.data.lookups.find(l => l.id === mood && l.type === 'mood');
-                mood = moodLookup ? moodLookup.value : mood;
-            }
-            
-            // Convert role from string to lookup if needed
-            let role = project.role;
-            if (typeof role === 'number') {
-                const roleLookup = this.data.lookups.find(l => l.id === role && l.type === 'role');
-                role = roleLookup ? roleLookup.value : role;
-            }
-            
-            // Convert status from string to lookup if needed
-            let status = project.status;
-            if (typeof status === 'number') {
-                const statusLookup = this.data.lookups.find(l => l.id === status && l.type === 'status');
-                status = statusLookup ? statusLookup.value : status;
-            }
-            
-            // Convert variant from string to lookup if needed
-            let variant = project.variant || 'standard';
-            if (typeof variant === 'number') {
-                const variantLookup = this.data.lookups.find(l => l.id === variant && l.type === 'variant');
-                variant = variantLookup ? variantLookup.value : variant;
-            }
-            
-            // Convert links from PPMS format to portfolio format
-            let links = {};
-            if (Array.isArray(project.links)) {
-                project.links.forEach(link => {
-                    const linkTypeLookup = this.data.lookups.find(l => l.id === link.type && l.type === 'link_type');
-                    const linkType = linkTypeLookup ? linkTypeLookup.value : 'link';
-                    links[linkType] = link.url;
-                });
-            } else if (typeof project.links === 'object') {
-                links = project.links;
-            }
-            
-            // Convert to portfolio format
-            return {
-                id: project.id,
-                title: project.title,
-                description: project.description,
-                imageUrl: project.image_url,
-                medium: project.medium,
-                genre: genres,
-                style: styles,
-                tech: technologies,
-                mood: mood,
-                year: project.year,
-                role: role,
-                variant: variant,
-                status: status,
-                links: links,
-                pitch: project.pitch,
-                challenge: project.challenge,
-                development: project.development,
-                outcome: project.outcome,
-                gallery: project.gallery || [],
-                journey: project.journey || []
-            };
-        });
-    }
-
-    // Helper to convert lookup IDs to string arrays
-    getLookupsAsStrings(lookupIds, type) {
-        if (!Array.isArray(lookupIds)) return [];
-        
-        return lookupIds.map(id => {
-            const lookup = this.data.lookups.find(l => l.id === id && l.type === type);
-            return lookup ? lookup.value : `Unknown ${type} (${id})`;
-        });
-    }
-
-    // Create portfolio manifest
-    createPortfolioManifest(projects) {
-        return {
-            version: "1.0",
-            lastUpdated: new Date().toISOString().split('T')[0],
-            projects: projects.map(project => ({
-                id: project.id,
-                file: `${project.id}-${project.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}.json`,
-                title: project.title,
-                medium: project.medium
-            }))
-        };
     }
 
     downloadJSON(data, filename) {

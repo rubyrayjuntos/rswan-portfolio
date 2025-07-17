@@ -56,24 +56,37 @@ const itemsPerPage = 12;
 // --- DATA LOADING ---
 async function loadProjects() {
     try {
-        // First try to load from manifest
-        const manifestLoaded = await loadFromManifest();
+        // Try to load projects from _data directory
+        const projectFiles = [
+            '_data/sample-project.json',
+            '_data/papi-chispa-cartas-del-deseo.json',
+            '_data/projects/brand-identity-workflow.json'
+        ];
         
-        if (manifestLoaded) {
-            console.log(`Loaded ${projects.length} projects from manifest`);
-        } else {
-            // Fallback to legacy loading for existing projects
-            console.warn('Manifest not found, falling back to legacy project discovery');
-            await loadLegacyProjects();
-        }
+        const projectPromises = projectFiles.map(async (file) => {
+            try {
+                const response = await fetch(file);
+                if (!response.ok) {
+                    console.warn(`Failed to load ${file}: ${response.status} ${response.statusText}`);
+                    return null;
+                }
+                return await response.json();
+            } catch (error) {
+                console.warn(`Failed to load ${file}:`, error);
+                return null;
+            }
+        });
         
-        // If still no projects loaded, use fallback data
+        const projectData = await Promise.all(projectPromises);
+        projects = projectData.filter(project => project !== null);
+        
+        // If no projects loaded, use fallback data
         if (projects.length === 0) {
             console.warn('No project files found, using fallback data');
             projects = getFallbackProjects();
         }
         
-        console.log(`Final loaded projects (${projects.length}):`, projects.map(p => p.title));
+        console.log(`Loaded ${projects.length} projects:`, projects.map(p => p.title));
         
         // Initialize filters after data is loaded
         initializeFilters();
@@ -83,80 +96,6 @@ async function loadProjects() {
         projects = getFallbackProjects();
         initializeFilters();
         applyFilters();
-    }
-}
-
-// Load projects using manifest file
-async function loadFromManifest() {
-    try {
-        const manifestResponse = await fetch('_data/projects/manifest.json');
-        if (!manifestResponse.ok) {
-            return false;
-        }
-        
-        const manifest = await manifestResponse.json();
-        const projectPromises = manifest.projects.map(async (projectInfo) => {
-            const filePath = `_data/projects/${projectInfo.file}`;
-            return loadSingleProject(filePath, projectInfo.id);
-        });
-        
-        const projectData = await Promise.allSettled(projectPromises);
-        projects = projectData
-            .filter(result => result.status === 'fulfilled' && result.value !== null)
-            .map(result => result.value);
-            
-        return projects.length > 0;
-    } catch (error) {
-        console.warn('Failed to load from manifest:', error);
-        return false;
-    }
-}
-
-// Legacy project loading for backward compatibility
-async function loadLegacyProjects() {
-    const legacyFiles = [
-        '_data/sample-project.json',
-        '_data/papi-chispa-cartas-del-deseo.json',
-        '_data/mystic-grove-painting.json',
-        '_data/nova-writers-conspiracy.json'
-    ];
-    
-    const projectPromises = legacyFiles.map(file => loadSingleProject(file));
-    const projectData = await Promise.allSettled(projectPromises);
-    
-    projects = projectData
-        .filter(result => result.status === 'fulfilled' && result.value !== null)
-        .map(result => result.value);
-}
-
-// Load a single project file with error handling
-async function loadSingleProject(filePath, projectId = null) {
-    try {
-        const response = await fetch(filePath);
-        if (!response.ok) {
-            if (response.status === 404) {
-                console.warn(`Project file not found: ${filePath}`);
-                return null;
-            }
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const project = await response.json();
-        
-        // Validate basic project structure
-        if (!project.title || !project.description) {
-            console.warn(`Invalid project structure in ${filePath}`);
-            return null;
-        }
-        
-        return project;
-    } catch (error) {
-        if (error.name === 'TypeError' && error.message.includes('fetch')) {
-            console.warn(`Network error loading ${filePath}:`, error.message);
-        } else {
-            console.error(`Error loading ${filePath}:`, error);
-        }
-        return null;
     }
 }
 
@@ -1022,94 +961,11 @@ function initializeEventListeners() {
 }
 
 // Initialize the application
-// Global error boundary
-window.addEventListener('error', (event) => {
-    console.error('Global JavaScript error:', event.error);
-    showErrorMessage('An unexpected error occurred. Please refresh the page.');
-});
-
-window.addEventListener('unhandledrejection', (event) => {
-    console.error('Unhandled promise rejection:', event.reason);
-    showErrorMessage('A network or data error occurred. Please check your connection and try again.');
-    event.preventDefault(); // Prevent default browser error handling
-});
-
-// Error display function
-function showErrorMessage(message, type = 'error') {
-    // Create or update error display
-    let errorContainer = document.getElementById('error-container');
-    if (!errorContainer) {
-        errorContainer = document.createElement('div');
-        errorContainer.id = 'error-container';
-        errorContainer.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #fee;
-            border: 1px solid #fcc;
-            border-radius: 8px;
-            padding: 16px;
-            max-width: 400px;
-            z-index: 10000;
-            font-family: Inter, sans-serif;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        `;
-        document.body.appendChild(errorContainer);
-    }
+document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize markdown renderer first
+    await initializeMarkdownRenderer();
     
-    errorContainer.innerHTML = `
-        <div style="display: flex; align-items: flex-start; gap: 12px;">
-            <span style="color: #d32f2f; font-size: 18px;">⚠️</span>
-            <div style="flex: 1;">
-                <div style="font-weight: 600; color: #d32f2f; margin-bottom: 4px;">Error</div>
-                <div style="color: #555; font-size: 14px;">${message}</div>
-            </div>
-            <button onclick="this.parentElement.parentElement.remove()" 
-                    style="border: none; background: none; font-size: 18px; cursor: pointer; color: #999;">×</button>
-        </div>
-    `;
-    
-    // Auto-hide after 10 seconds
-    setTimeout(() => {
-        if (errorContainer.parentElement) {
-            errorContainer.remove();
-        }
-    }, 10000);
-}
-
-// Enhanced initialization with error handling
-async function initializeApp() {
-    try {
-        console.log('🚀 Initializing portfolio application...');
-        
-        // Initialize markdown renderer first
-        await initializeMarkdownRenderer();
-        console.log('✅ Markdown renderer initialized');
-        
-        // Initialize event listeners
-        initializeEventListeners();
-        console.log('✅ Event listeners initialized');
-        
-        // Load projects with error handling
-        await loadProjects();
-        console.log('✅ Projects loaded successfully');
-        
-    } catch (error) {
-        console.error('❌ Failed to initialize application:', error);
-        showErrorMessage('Failed to initialize the portfolio. Please refresh the page and try again.');
-        
-        // Attempt graceful degradation
-        try {
-            console.log('🔄 Attempting graceful degradation...');
-            projects = getFallbackProjects();
-            initializeFilters();
-            applyFilters();
-            console.log('✅ Graceful degradation successful');
-        } catch (fallbackError) {
-            console.error('❌ Graceful degradation failed:', fallbackError);
-            showErrorMessage('Critical error: Unable to load portfolio content. Please contact the site administrator.');
-        }
-    }
-}
-
-document.addEventListener('DOMContentLoaded', initializeApp); 
+    // Initialize event listeners and load projects
+    initializeEventListeners();
+    loadProjects();
+}); 
