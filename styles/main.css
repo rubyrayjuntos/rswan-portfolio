@@ -195,24 +195,24 @@ html {
 .content-section {
     padding: 6rem 2rem;
     position: relative;
-    background: var(--color-background-section-light);
+    /* Use dynamic background based on theme's background-section-light/even */
+    background: var(--color-background-section-light); /* Default for odd sections */
     overflow: hidden;
-    scroll-margin-top: 80px;
+    scroll-margin-top: 80px; /* Ensures fixed nav doesn't cover scrolled-to sections */
 }
 
 .content-section:nth-child(even) {
-    background: var(--color-background-section-even);
+    background: var(--color-background-section-even); /* Alternating background */
 }
 
-/* Journey section with cosmic background */
 #journey.content-section {
-    background: transparent;
+    background: transparent; /* This section often has its own specialized background */
     position: relative;
     min-height: 100vh;
     overflow: hidden;
 }
 
-/* Additional cosmic effects */
+/* Additional cosmic effects - ensure these variables are part of your theme definitions */
 #journey.content-section::after {
     content: '';
     position: absolute;
@@ -220,13 +220,14 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
+    background:
         radial-gradient(circle at 50% 50%, var(--color-journey-cosmic-1) 0%, transparent 70%),
         radial-gradient(circle at 20% 80%, var(--color-journey-cosmic-2) 0%, transparent 60%);
     animation: cosmicPulse 8s ease-in-out infinite;
     z-index: 1;
 }
 
+/* Ensure cosmicPulse keyframe is defined in components.css or main.css */
 @keyframes cosmicPulse {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 0.6; }
@@ -239,10 +240,8 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-light) 100%),
-        radial-gradient(circle at 30% 20%, var(--color-particle-main) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, var(--color-particle-7n) 0%, transparent 50%);
+    /* Use theme variables for the primary background of the journey section */
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-light) 100%);
     z-index: 0;
 }
 
@@ -253,7 +252,7 @@ html {
     left: 0;
     right: 0;
     height: 4px;
-    background: var(--color-section-border);
+    background: var(--color-section-border); /* Use theme-defined border gradient */
 }
 
 .container {

@@ -3,8 +3,8 @@
 // Setup scroll animations with enhanced section title effects
 function setupScrollAnimations() {
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.1, // Trigger when 10% of element is visible
+        rootMargin: '0px 0px -50px 0px' // Adjust trigger point: 50px before end of viewport
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -21,14 +21,15 @@ function setupScrollAnimations() {
 
     // Special observer for section titles
     const titleObserverOptions = {
-        threshold: 0.3,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: 0.3, // Trigger when 30% of title is visible
+        rootMargin: '0px 0px -100px 0px' // Adjust trigger point
     };
 
     const titleObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 // Add staggered delay for each title
+                // Note: This relies on the order of .section-title elements in the DOM
                 const index = Array.from(document.querySelectorAll('.section-title')).indexOf(entry.target);
                 setTimeout(() => {
                     entry.target.classList.add('visible');

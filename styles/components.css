@@ -376,24 +376,33 @@
     margin-bottom: 3rem;
     text-align: center;
     position: relative;
-    color: var(--color-section-title);
+    /* Use themed text color, potentially with a text gradient for 'shine' */
+    color: var(--color-section-title); /* Use a variable that themes update */
     font-weight: 700;
     transform: scale(1.5);
     opacity: 0.3;
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform, opacity, font-size;
     z-index: 10;
+    /* Apply text-shadow for depth, using CC-like colors */
+    text-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 0 10px var(--cc-shadow-light);
 }
 
 /* Journey section title with light color for dark background */
 #journey .section-title {
-    color: var(--color-journey-title);
+    color: var(--color-journey-title); /* Specific for journey section */
 }
 
 .section-title.visible {
     transform: scale(1);
     opacity: 1;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3rem); /* Adjust font-size range if needed */
+    /* Use theme-defined active gradient */
+    background: var(--color-section-title-active);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Softer shadow when active */
 }
 
 .section-title::after {
@@ -404,7 +413,7 @@
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: var(--color-section-title-line);
+    background: var(--color-section-title-line); /* Use theme-defined line gradient */
     border-radius: 2px;
     opacity: 0.8;
     transition: all 0.4s ease;
@@ -417,14 +426,18 @@
     top: 50%;
     width: 2rem;
     height: 3px;
-    background: var(--color-section-title-line);
+    background: var(--color-section-title-line); /* Use theme-defined line gradient */
     transform: translateY(-50%) scaleX(0);
     transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border-radius: 2px;
+    /* Add subtle glow to the before element for visual flair */
+    box-shadow: 0 0 20px var(--cc-accent-primary, rgba(102, 126, 234, 0.3)); /* Use CC accent */
 }
 
 .section-title.visible::before {
     transform: translateY(-50%) scaleX(1);
+    /* Enhanced glow when active */
+    box-shadow: 0 0 30px var(--cc-accent-primary, rgba(102, 126, 234, 0.6));
 }
 
 /* Add floating sparkle to section titles */
@@ -544,37 +557,39 @@
 /* Enhanced Specifications Grid with Parallax */
 .spec-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
-    margin-top: 4rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly adjusted min width */
+    gap: 2.5rem; /* Slightly reduced gap */
+    margin-top: 3.5rem; /* Reduced margin */
     position: relative;
 }
 
 .spec-card {
-    background: var(--color-spec-card-bg);
-    padding: 3rem;
-    border-radius: 25px;
-    box-shadow: 0 20px 60px var(--color-spec-card-shadow);
+    background: var(--color-spec-card-bg); /* Theme-defined background */
+    padding: 2.5rem; /* Reduced padding for compactness */
+    border-radius: 20px; /* Slightly smaller radius for consistency */
+    /* Base neumorphic raised shadow */
+    box-shadow: 8px 8px 16px var(--color-spec-card-shadow), -8px -8px 16px var(--shadow-light); /* Use theme shadow for dark, CC light for light source */
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: none;
     position: relative;
     overflow: hidden;
     will-change: transform;
     backdrop-filter: blur(10px);
-    transform: translateZ(0);
+    transform: translateZ(0); /* Ensure hardware acceleration */
 }
 
 .spec-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--color-spec-card-overlay);
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--color-spec-card-border-glow); /* Theme-defined glow border */
+    border-radius: 22px; /* Slightly larger than card radius */
+    z-index: -1;
     opacity: 0;
     transition: opacity 0.4s ease;
-    z-index: 1;
 }
 
 .spec-card::after {
@@ -584,7 +599,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: var(--color-spec-card-circle-overlay);
+    background: var(--color-spec-card-circle-overlay); /* Theme-defined radial overlay */
     opacity: 0;
     transition: opacity 0.6s ease;
     transform: scale(0);
@@ -592,8 +607,8 @@
 }
 
 .spec-card:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 0 30px 80px var(--color-spec-card-shadow-hover);
+    transform: translateY(-8px) scale(1.01); /* Reduced lift and scale on hover */
+    box-shadow: 12px 12px 24px var(--color-spec-card-shadow-hover), -12px -12px 24px var(--shadow-light); /* Stronger shadow on hover */
 }
 
 .spec-card:hover::before {
@@ -610,17 +625,20 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    font-size: 2rem;
+    font-size: 2.2rem; /* Slightly larger icon */
     opacity: 0.3;
     transition: all 0.4s ease;
     z-index: 2;
     animation: bobbingEmoji 3s ease-in-out infinite;
+    /* Add a subtle neumorphic glow to the icon itself */
+    filter: drop-shadow(0 0 5px var(--cc-accent-primary, rgba(90, 103, 216, 0.5)));
 }
 
 .spec-card:hover .floating-icon {
     opacity: 0.8;
-    transform: rotate(15deg) scale(1.2);
+    transform: rotate(10deg) scale(1.1); /* Reduced rotation and scale */
     animation: bobbingEmoji 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px var(--cc-accent-primary, rgba(90, 103, 216, 0.8))); /* Stronger glow on hover */
 }
 
 /* Animated background patterns */
@@ -643,9 +661,9 @@
 }
 
 .spec-card h3 {
-    color: var(--color-spec-card-text);
-    margin-bottom: 1.5rem;
-    font-size: 1.6rem;
+    color: var(--color-spec-card-text); /* Use theme-defined card text color */
+    margin-bottom: 1rem; /* Slightly reduced */
+    font-size: 1.5rem; /* Slightly smaller */
     font-weight: 700;
     position: relative;
     z-index: 2;
@@ -653,9 +671,9 @@
 }
 
 .spec-card p {
-    color: var(--color-spec-card-text-muted);
-    line-height: 1.8;
-    font-size: 1.1rem;
+    color: var(--color-spec-card-text-muted); /* Use theme-defined muted text color */
+    line-height: 1.7; /* Slightly tighter line height */
+    font-size: 1.05rem; /* Slightly smaller font size */
     position: relative;
     z-index: 2;
     text-shadow: 0 1px 2px rgba(0,0,0,0.2);
@@ -665,32 +683,33 @@
 .spec-card ul {
     list-style: none;
     padding: 0;
-    margin: 1rem 0;
+    margin: 0.8rem 0; /* Reduced margin */
     position: relative;
     z-index: 2;
 }
 
 .spec-card li {
-    color: var(--color-spec-card-text-muted);
-    margin-bottom: 0.8rem;
+    color: var(--color-spec-card-text-muted); /* Use theme-defined muted text color */
+    margin-bottom: 0.6rem; /* Reduced margin */
     padding-left: 1.5rem;
     position: relative;
-    line-height: 1.6;
+    line-height: 1.5; /* Slightly tighter line height */
+    font-size: 0.95rem; /* Slightly smaller font size */
 }
 
 .spec-card li::before {
-    content: '✦';
+    content: '✦'; /* Keep unicode character */
     position: absolute;
     left: 0;
-    color: rgba(255,255,255,0.7);
+    color: var(--cc-text-secondary, rgba(255,255,255,0.7)); /* Use CC secondary text or theme-defined color */
     font-weight: bold;
 }
 
 .spec-card h4 {
-    color: rgba(255,255,255,0.95);
-    font-size: 1.2rem;
+    color: var(--color-spec-card-text); /* Use theme-defined card text color */
+    font-size: 1.1rem; /* Slightly smaller */
     font-weight: 600;
-    margin: 1rem 0 0.5rem 0;
+    margin: 0.8rem 0 0.4rem 0; /* Reduced margin */
     text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
@@ -778,9 +797,9 @@
     position: absolute;
     width: 4px;
     height: 4px;
-    background: var(--color-spec-card-particle);
+    background: var(--color-spec-card-particle); /* Use theme-defined particle color */
     border-radius: 50%;
-    animation: particleFloat 4s linear infinite;
+    animation: particleFloat 4s linear infinite; /* Reuse particleFloat keyframe */
 }
 
 .spec-card .particle-effect::before {
@@ -795,26 +814,28 @@
     animation-delay: 2s;
 }
 
-/* Enhanced Tags */
+/* Enhanced Tags (for Overview, Tech, etc. sections) */
 .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 3rem;
+    gap: 0.8rem; /* Slightly more compact gap */
+    margin-top: 2rem; /* Reduced margin */
     justify-content: center;
 }
 
 .tag {
-    background: var(--color-tag-bg);
-    color: var(--color-tag-text);
-    padding: 0.8rem 1.5rem;
+    background: var(--color-tag-bg); /* Theme-defined background */
+    color: var(--color-tag-text); /* Theme-defined text color */
+    padding: 0.6rem 1.2rem; /* Adjusted padding for a balanced neumorphic pill */
     border-radius: 30px;
-    font-size: 0.95rem;
+    font-size: 0.9rem; /* Slightly smaller font size */
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--color-tag-border);
+    border: 1px solid var(--color-tag-border); /* Theme-defined border color */
+    /* Default neumorphic raised shadow for tags */
+    box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
 }
 
 .tag::before {
@@ -824,15 +845,16 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); /* Subtle shine effect */
     transition: left 0.5s ease;
 }
 
 .tag:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-    background: var(--color-tag-hover-bg);
-    color: var(--color-tag-hover-text);
+    /* Enhanced raised shadow on hover */
+    box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+    background: var(--color-tag-hover-bg); /* Theme-defined hover background */
+    color: var(--color-tag-hover-text); /* Theme-defined hover text color */
 }
 
 .tag:hover::before {
@@ -842,22 +864,24 @@
 /* Links Section */
 .links-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 4rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted min width */
+    gap: 1.5rem; /* Reduced gap */
+    margin-top: 3.5rem; /* Reduced margin */
 }
 
 .link-card {
-    background: var(--color-link-card-bg);
-    color: var(--color-link-card-text);
-    padding: 3rem 2rem;
-    border-radius: 20px;
+    background: var(--color-link-card-bg); /* Theme-defined background */
+    color: var(--color-link-card-text); /* Theme-defined text color */
+    padding: 2.5rem 2rem; /* Reduced padding */
+    border-radius: 15px; /* Consistent border radius */
     text-align: center;
     text-decoration: none;
     transition: all 0.4s ease;
     display: block;
     position: relative;
     overflow: hidden;
+    /* Base neumorphic raised shadow for link cards */
+    box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
 }
 
 .link-card::before {
@@ -867,7 +891,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--color-link-card-overlay);
+    background: var(--color-link-card-overlay); /* Theme-defined overlay */
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -877,32 +901,32 @@
 }
 
 .link-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px var(--color-link-card-shadow);
-    color: white;
+    transform: translateY(-5px); /* Consistent lift on hover */
+    box-shadow: 10px 10px 20px var(--color-link-card-shadow), -10px -10px 20px var(--shadow-light); /* Stronger shadow on hover */
+    color: white; /* Keep white text on hover (if contrasting with bg) */
 }
 
 .link-card .icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 2.2rem; /* Slightly smaller icon */
+    margin-bottom: 0.8rem; /* Reduced margin */
     display: block;
 }
 
 .link-card h3 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    margin-bottom: 0.8rem; /* Reduced margin */
+    font-size: 1.4rem; /* Slightly smaller */
     font-weight: 600;
 }
 
 .link-card p {
     opacity: 0.9;
-    font-size: 1.1rem;
+    font-size: 1rem; /* Slightly smaller */
 }
 
 /* Enhanced Journey Timeline with Hero Background */
 .timeline {
     position: relative;
-    margin-top: 4rem;
+    margin-top: 3rem; /* Reduced margin */
     padding: 2rem 0;
     overflow: hidden;
     z-index: 10;
@@ -990,6 +1014,7 @@
     box-shadow: 0 0 14px var(--color-journey-particle-13n-shadow), 0 0 28px var(--color-journey-particle-13n-shadow-2);
 }
 
+/* Timeline line */
 .timeline::before {
     content: '';
     position: absolute;
@@ -997,7 +1022,7 @@
     transform: translateX(-50%);
     width: 4px;
     height: 100%;
-    background: var(--color-timeline-line);
+    background: var(--color-timeline-line); /* Theme-defined line gradient */
     border-radius: 2px;
     z-index: 4;
 }
@@ -1008,55 +1033,32 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--color-timeline-arrow);
+    color: var(--color-timeline-arrow); /* Theme-defined arrow color */
     font-size: 1.2rem;
     animation: flowDown 8s linear infinite;
-    text-shadow: 0 0 10px var(--color-timeline-arrow-shadow);
+    text-shadow: 0 0 10px var(--color-timeline-arrow-shadow); /* Theme-defined arrow shadow */
 }
 
 /* Add multiple arrows with different delays */
-.timeline .flow-arrow-1 {
-    content: '▼';
+.timeline .flow-arrow-1,
+.timeline .flow-arrow-2,
+.timeline .flow-arrow-3 { /* Grouped for consistency */
+    content: '▼'; /* Ensure content is set for each */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--color-timeline-arrow);
     font-size: 1rem;
-    animation: flowDown 6s linear infinite;
-    animation-delay: 0s;
+    animation: flowDown var(--arrow-speed) linear infinite; /* Use CSS variable for speed */
     text-shadow: 0 0 8px var(--color-timeline-arrow-shadow);
     z-index: 5;
 }
-
-.timeline .flow-arrow-2 {
-    content: '▼';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--color-timeline-arrow-2);
-    font-size: 0.8rem;
-    animation: flowDown 10s linear infinite;
-    animation-delay: 3s;
-    text-shadow: 0 0 6px var(--color-timeline-arrow-2-shadow);
-    z-index: 5;
-}
-
-.timeline .flow-arrow-3 {
-    content: '▼';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--color-timeline-arrow);
-    font-size: 0.9rem;
-    animation: flowDown 7s linear infinite;
-    animation-delay: 5s;
-    text-shadow: 0 0 7px var(--color-timeline-arrow-shadow);
-    z-index: 5;
-}
+.timeline .flow-arrow-1 { color: var(--color-timeline-arrow); --arrow-speed: 6s; animation-delay: 0s; }
+.timeline .flow-arrow-2 { color: var(--color-timeline-arrow-2); --arrow-speed: 10s; animation-delay: 3s; font-size: 0.8rem; }
+.timeline .flow-arrow-3 { color: var(--color-timeline-arrow); --arrow-speed: 7s; animation-delay: 5s; font-size: 0.9rem; }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem; /* Reduced margin */
     width: 50%;
     padding: 2rem;
     opacity: 0;
@@ -1068,13 +1070,13 @@
 
 .timeline-item:nth-child(odd) {
     left: 0;
-    padding-right: 4rem;
+    padding-right: 3rem; /* Reduced padding */
     transform: translateY(50px) translateX(-50px);
 }
 
 .timeline-item:nth-child(even) {
     left: 50%;
-    padding-left: 4rem;
+    padding-left: 3rem; /* Reduced padding */
     transform: translateY(50px) translateX(50px);
 }
 
@@ -1084,16 +1086,17 @@
 }
 
 .timeline-content {
-    background: var(--color-timeline-content-bg);
+    background: var(--color-timeline-content-bg); /* Theme-defined background */
     backdrop-filter: blur(10px);
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px var(--color-timeline-content-shadow);
+    padding: 2rem; /* Reduced padding */
+    border-radius: 15px; /* Consistent border radius */
+    /* Base neumorphic raised shadow for timeline content */
+    box-shadow: 0 8px 20px var(--color-timeline-content-shadow), 0 0 10px var(--shadow-light); /* Combine theme shadow with CC light shadow */
     position: relative;
     transition: all 0.4s ease;
-    opacity: 0;
+    opacity: 0; /* Initial opacity for fade-in */
     transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border: 1px solid var(--color-timeline-content-border);
+    border: 1px solid var(--color-timeline-content-border); /* Theme-defined border */
 }
 
 .timeline-item.visible .timeline-content {
@@ -1101,43 +1104,43 @@
 }
 
 .timeline-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px var(--color-timeline-content-shadow-hover);
+    transform: translateY(-3px); /* Subtle lift on hover */
+    box-shadow: 0 12px 25px var(--color-timeline-content-shadow-hover), 0 0 15px var(--shadow-light); /* Stronger shadow on hover */
 }
 
 .timeline-content::before {
     content: '';
     position: absolute;
     top: 50%;
-    width: 30px;
-    height: 30px;
-    background: var(--color-timeline-dot-bg);
+    width: 25px; /* Slightly smaller dot */
+    height: 25px;
+    background: var(--color-timeline-dot-bg); /* Theme-defined dot background */
     border-radius: 50%;
     transform: translateY(-50%);
-    border: 4px solid var(--color-timeline-dot-border);
-    box-shadow: 0 0 0 4px var(--color-timeline-dot-shadow);
+    border: 3px solid var(--color-timeline-dot-border); /* Theme-defined dot border */
+    box-shadow: 0 0 0 3px var(--color-timeline-dot-shadow); /* Theme-defined dot glow */
     z-index: 10;
 }
 
 .timeline-item:nth-child(odd) .timeline-content::before {
-    right: -17px;
+    right: -14px; /* Adjusted position */
 }
 
 .timeline-item:nth-child(even) .timeline-content::before {
-    left: -17px;
+    left: -14px; /* Adjusted position */
 }
 
 .timeline-content h3 {
-    color: var(--color-section-title);
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
+    color: var(--color-section-title); /* Use theme-defined section title color */
+    margin-bottom: 0.8rem; /* Reduced margin */
+    font-size: 1.3rem; /* Slightly smaller */
     font-weight: 600;
 }
 
 .timeline-content p {
-    color: var(--color-text-muted);
-    line-height: 1.7;
-    font-size: 1.1rem;
+    color: var(--color-text-muted); /* Use theme-defined muted text color */
+    line-height: 1.6; /* Slightly tighter line height */
+    font-size: 1rem; /* Slightly smaller */
 }
 
 /* Scroll Animations */
