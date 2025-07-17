@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPMS Dashboard - Portfolio Project Management System</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body id="ppms-dashboard">
+    <div class="background-layer"></div>
+    
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <h1><i class="fas fa-cube"></i> PPMS Dashboard</h1>
+            <div class="header-actions">
+                <button class="btn btn-secondary" id="exportBtn">
+                    <i class="fas fa-download"></i> Export
+                </button>
+                <button class="btn btn-primary" id="saveBtn">
+                    <i class="fas fa-save"></i> Save All
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="dashboard-nav">
+        <div class="nav-container">
+            <button class="nav-tab active" data-tab="dashboard">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </button>
+            <button class="nav-tab" data-tab="projects">
+                <i class="fas fa-project-diagram"></i> Projects
+            </button>
+            <button class="nav-tab" data-tab="lookups">
+                <i class="fas fa-tags"></i> Lookups
+            </button>
+            <button class="nav-tab" data-tab="files">
+                <i class="fas fa-folder"></i> Files
+            </button>
+            <button class="nav-tab" data-tab="export">
+                <i class="fas fa-file-export"></i> Export
+            </button>
+            <button class="nav-tab" data-tab="settings">
+                <i class="fas fa-cog"></i> Settings
+            </button>
+            <button class="nav-tab" data-tab="analytics">
+                <i class="fas fa-chart-bar"></i> Analytics
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Dashboard Tab -->
+        <div class="tab-content active" id="dashboard-tab">
+            <div class="dashboard-grid">
+                <!-- Quick Stats -->
+                <section class="stats-section">
+                    <h2><i class="fas fa-chart-pie"></i> Quick Stats</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalProjects">15</div>
+                            <div class="stat-label">Projects</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalGenres">8</div>
+                            <div class="stat-label">Genres</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalStyles">12</div>
+                            <div class="stat-label">Styles</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalMediums">3</div>
+                            <div class="stat-label">Mediums</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Activity -->
+                <section class="activity-section">
+                    <h2><i class="fas fa-fire"></i> Recent Activity</h2>
+                    <div class="activity-list" id="recentActivity">
+                        <div class="activity-item">
+                            <i class="fas fa-edit activity-icon"></i>
+                            <div class="activity-content">
+                                <div class="activity-text">Updated "Nova Writers Conspiracy"</div>
+                                <div class="activity-time">2 min ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-plus activity-icon"></i>
+                            <div class="activity-content">
+                                <div class="activity-text">Added new genre "AI/ML"</div>
+                                <div class="activity-time">15 min ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <i class="fas fa-download activity-icon"></i>
+                            <div class="activity-content">
+                                <div class="activity-text">Exported manifest</div>
+                                <div class="activity-time">1 hour ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Validation Issues -->
+                <section class="validation-section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Validation Issues</h2>
+                    <div class="validation-list" id="validationIssues">
+                        <div class="validation-item error">
+                            <i class="fas fa-times-circle"></i>
+                            <span>2 projects missing required fields</span>
+                        </div>
+                        <div class="validation-item warning">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>1 broken image link</span>
+                        </div>
+                        <div class="validation-item info">
+                            <i class="fas fa-info-circle"></i>
+                            <span>3 outdated technology references</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Projects Tab -->
+        <div class="tab-content" id="projects-tab">
+            <div class="projects-header">
+                <h2>Project Management Interface</h2>
+                <button class="btn btn-primary" id="addProjectBtn">
+                    <i class="fas fa-plus"></i> Add New Project
+                </button>
+            </div>
+
+            <div class="projects-container">
+                <!-- Project List -->
+                <div class="project-list" id="projectList">
+                    <!-- Projects will be loaded here -->
+                </div>
+
+                <!-- Project Editor -->
+                <div class="project-editor" id="projectEditor">
+                    <div class="editor-header">
+                        <h3 id="editorTitle">Project: Nova Writers Conspiracy</h3>
+                        <div class="editor-actions">
+                            <button class="btn btn-secondary" id="cancelEditBtn">Cancel</button>
+                            <button class="btn btn-primary" id="saveProjectBtn">Save</button>
+                        </div>
+                    </div>
+
+                    <form id="projectForm" class="project-form">
+                        <!-- Basic Information -->
+                        <section class="form-section">
+                            <h4>Basic Information</h4>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="projectTitle">Title</label>
+                                    <input type="text" id="projectTitle" name="title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectDescription">Description</label>
+                                    <textarea id="projectDescription" name="description" rows="3" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectMedium">Medium</label>
+                                    <select id="projectMedium" name="medium" required>
+                                        <option value="">Select Medium</option>
+                                        <option value="code">Code</option>
+                                        <option value="art">Art</option>
+                                        <option value="writing">Writing</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectYear">Year</label>
+                                    <input type="number" id="projectYear" name="year" min="2000" max="2030" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectRole">Role</label>
+                                    <select id="projectRole" name="role" required>
+                                        <option value="">Select Role</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectMood">Mood</label>
+                                    <select id="projectMood" name="mood" required>
+                                        <option value="">Select Mood</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="projectStatus">Status</label>
+                                    <select id="projectStatus" name="status">
+                                        <option value="completed">Completed</option>
+                                        <option value="in-progress">In Progress</option>
+                                        <option value="development">Development</option>
+                                        <option value="concept">Concept</option>
+                                        <option value="on-hold">On Hold</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Content Sections -->
+                        <section class="form-section">
+                            <h4>Content Sections</h4>
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label for="projectPitch">Pitch</label>
+                                    <textarea id="projectPitch" name="pitch" rows="3" required></textarea>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="projectChallenge">Challenge</label>
+                                    <textarea id="projectChallenge" name="challenge" rows="3" required></textarea>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="projectDevelopment">Development</label>
+                                    <textarea id="projectDevelopment" name="development" rows="3" required></textarea>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="projectOutcome">Outcome</label>
+                                    <textarea id="projectOutcome" name="outcome" rows="3" required></textarea>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Arrays & Relationships -->
+                        <section class="form-section">
+                            <h4>Arrays & Relationships</h4>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>Genres</label>
+                                    <div class="tag-selector" id="genreSelector">
+                                        <!-- Genre tags will be loaded here -->
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-secondary" id="addGenreBtn">
+                                        <i class="fas fa-plus"></i> Add Genre
+                                    </button>
+                                </div>
+                                <div class="form-group">
+                                    <label>Styles</label>
+                                    <div class="tag-selector" id="styleSelector">
+                                        <!-- Style tags will be loaded here -->
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-secondary" id="addStyleBtn">
+                                        <i class="fas fa-plus"></i> Add Style
+                                    </button>
+                                </div>
+                                <div class="form-group">
+                                    <label>Technologies</label>
+                                    <div class="tag-selector" id="techSelector">
+                                        <!-- Technology tags will be loaded here -->
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-secondary" id="addTechBtn">
+                                        <i class="fas fa-plus"></i> Add Technology
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Medium-Specific Content -->
+                        <section class="form-section">
+                            <h4>Medium-Specific Content</h4>
+                            <div class="medium-content" id="mediumContent">
+                                <!-- Content will be loaded based on medium selection -->
+                            </div>
+                        </section>
+
+                        <!-- Validation Status -->
+                        <section class="form-section">
+                            <h4>Validation Status</h4>
+                            <div class="validation-status" id="validationStatus">
+                                <!-- Validation status will be shown here -->
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lookups Tab -->
+        <div class="tab-content" id="lookups-tab">
+            <div class="lookups-header">
+                <h2>Lookup Management</h2>
+                <button class="btn btn-primary" id="addLookupBtn">
+                    <i class="fas fa-plus"></i> Add
+                </button>
+            </div>
+
+            <div class="lookups-container">
+                <!-- Genres -->
+                <section class="lookup-section">
+                    <h3>Genres (<span id="genreCount">15</span> total)</h3>
+                    <div class="lookup-list" id="genreList">
+                        <!-- Genres will be loaded here -->
+                    </div>
+                    <button class="btn btn-sm btn-secondary" id="addNewGenreBtn">
+                        <i class="fas fa-plus"></i> Add New Genre
+                    </button>
+                </section>
+
+                <!-- Technologies -->
+                <section class="lookup-section">
+                    <h3>Technologies (<span id="techCount">23</span> total)</h3>
+                    <div class="lookup-list" id="techList">
+                        <!-- Technologies will be loaded here -->
+                    </div>
+                    <button class="btn btn-sm btn-secondary" id="addNewTechBtn">
+                        <i class="fas fa-plus"></i> Add New Technology
+                    </button>
+                </section>
+
+                <!-- Styles -->
+                <section class="lookup-section">
+                    <h3>Styles (<span id="styleCount">12</span> total)</h3>
+                    <div class="lookup-list" id="styleList">
+                        <!-- Styles will be loaded here -->
+                    </div>
+                    <button class="btn btn-sm btn-secondary" id="addNewStyleBtn">
+                        <i class="fas fa-plus"></i> Add New Style
+                    </button>
+                </section>
+            </div>
+        </div>
+
+        <!-- Files Tab -->
+        <div class="tab-content" id="files-tab">
+            <div class="files-header">
+                <h2>File Management</h2>
+                <button class="btn btn-primary" id="uploadFileBtn">
+                    <i class="fas fa-upload"></i> Upload Files
+                </button>
+            </div>
+            <div class="files-container" id="filesContainer">
+                <!-- File management interface will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Export Tab -->
+        <div class="tab-content" id="export-tab">
+            <div class="export-header">
+                <h2>Export & Import</h2>
+            </div>
+            <div class="export-container">
+                <section class="export-section">
+                    <h3>Export Options</h3>
+                    <div class="export-options">
+                        <button class="btn btn-primary" id="exportManifestBtn">
+                            <i class="fas fa-file-code"></i> Export Manifest
+                        </button>
+                        <button class="btn btn-secondary" id="exportProjectsBtn">
+                            <i class="fas fa-file-json"></i> Export All Projects
+                        </button>
+                        <button class="btn btn-secondary" id="exportLookupsBtn">
+                            <i class="fas fa-tags"></i> Export Lookups
+                        </button>
+                    </div>
+                </section>
+                <section class="import-section">
+                    <h3>Import Options</h3>
+                    <div class="import-options">
+                        <input type="file" id="importFile" accept=".json" style="display: none;">
+                        <button class="btn btn-primary" id="importBtn">
+                            <i class="fas fa-file-import"></i> Import JSON
+                        </button>
+                        <input type="file" id="bulkImportFiles" accept=".json" multiple style="display: none;">
+                        <button class="btn btn-secondary" id="bulkImportBtn">
+                            <i class="fas fa-folder-open"></i> Bulk Import Projects
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-content" id="settings-tab">
+            <div class="settings-header">
+                <h2>System Settings</h2>
+            </div>
+            <div class="settings-container" id="settingsContainer">
+                <!-- Settings interface will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Analytics Tab -->
+        <div class="tab-content" id="analytics-tab">
+            <div class="analytics-header">
+                <h2>Analytics & Reports</h2>
+            </div>
+            <div class="analytics-container" id="analyticsContainer">
+                <!-- Analytics interface will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div class="modal" id="addLookupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Lookup</h3>
+                <button class="modal-close" id="closeLookupModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="lookupForm">
+                    <div class="form-group">
+                        <label for="lookupType">Type</label>
+                        <select id="lookupType" name="type" required>
+                            <option value="">Select Type</option>
+                            <option value="genre">Genre</option>
+                            <option value="style">Style</option>
+                            <option value="technology">Technology</option>
+                            <option value="mood">Mood</option>
+                            <option value="role">Role</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="lookupValue">Value</label>
+                        <input type="text" id="lookupValue" name="value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lookupDescription">Description</label>
+                        <textarea id="lookupDescription" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="lookupCategory">Category</label>
+                        <select id="lookupCategory" name="category">
+                            <option value="universal">Universal</option>
+                            <option value="code">Code</option>
+                            <option value="art">Art</option>
+                            <option value="writing">Writing</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelLookupBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveLookupBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications -->
+    <div class="notifications" id="notifications"></div>
+
+    <!-- Gallery Modal -->
+    <div class="modal" id="galleryModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="galleryModalTitle">Edit Gallery Image</h3>
+          <button class="modal-close" id="closeGalleryModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="galleryForm">
+            <div class="form-group">
+              <label for="galleryImageUrl">Image URL</label>
+              <div class="input-group">
+                <input type="text" id="galleryImageUrl" name="url" required>
+                <button type="button" class="btn btn-sm btn-secondary" id="uploadImageBtn">
+                  <i class="fas fa-upload"></i> Upload
+                </button>
+              </div>
+              <input type="file" id="galleryImageFile" accept="image/*" style="display: none;">
+            </div>
+            <div class="form-group">
+              <label for="galleryImageTitle">Title</label>
+              <input type="text" id="galleryImageTitle" name="title" required>
+            </div>
+            <div class="form-group">
+              <label for="galleryImageDescription">Description</label>
+              <textarea id="galleryImageDescription" name="description"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="galleryImageDimensions">Dimensions</label>
+              <input type="text" id="galleryImageDimensions" name="dimensions">
+            </div>
+            <div class="image-preview" id="imagePreview" style="display: none;">
+              <img id="previewImage" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px;">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelGalleryBtn">Cancel</button>
+          <button class="btn btn-primary" id="saveGalleryBtn">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Upload Modal -->
+    <div class="modal" id="imageUploadModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Upload Images</h3>
+          <button class="modal-close" id="closeImageUploadModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="upload-section">
+            <h4>Upload Images for Project</h4>
+            <p>Select multiple images to upload to your project gallery</p>
+            
+            <div class="upload-area" id="uploadArea">
+              <input type="file" id="bulkImageUpload" accept="image/*" multiple style="display: none;">
+              <div class="upload-placeholder">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Click to select images or drag and drop</p>
+                <button class="btn btn-primary" id="selectImagesBtn">
+                  <i class="fas fa-images"></i> Select Images
+                </button>
+              </div>
+            </div>
+            
+            <div class="upload-progress" id="uploadProgress" style="display: none;">
+              <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <p id="progressText">Uploading images...</p>
+            </div>
+            
+            <div class="uploaded-images" id="uploadedImages">
+              <!-- Uploaded images will be displayed here -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelImageUploadBtn">Cancel</button>
+          <button class="btn btn-primary" id="confirmImageUploadBtn" disabled>Add to Gallery</button>
+        </div>
+      </div>
+    </div>
+    <!-- Artifact Modal -->
+    <div class="modal" id="artifactModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="artifactModalTitle">Edit Artifact</h3>
+          <button class="modal-close" id="closeArtifactModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="artifactForm">
+            <div class="form-group">
+              <label for="artifactName">Name</label>
+              <input type="text" id="artifactName" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="artifactDescription">Description</label>
+              <textarea id="artifactDescription" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="artifactUrl">URL</label>
+              <input type="text" id="artifactUrl" name="url">
+            </div>
+            <div class="form-group">
+              <label for="artifactType">Type</label>
+              <input type="text" id="artifactType" name="type">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelArtifactBtn">Cancel</button>
+          <button class="btn btn-primary" id="saveArtifactBtn">Save</button>
+        </div>
+      </div>
+    </div>
+    <!-- Journey Modal -->
+    <div class="modal" id="journeyModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="journeyModalTitle">Edit Journey Phase</h3>
+          <button class="modal-close" id="closeJourneyModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="journeyForm">
+            <div class="form-group">
+              <label for="journeyTitle">Title</label>
+              <input type="text" id="journeyTitle" name="title" required>
+            </div>
+            <div class="form-group">
+              <label for="journeyDescription">Description</label>
+              <textarea id="journeyDescription" name="description" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelJourneyBtn">Cancel</button>
+          <button class="btn btn-primary" id="saveJourneyBtn">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Project Modal -->
+    <div class="modal" id="addProjectModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Add New Project</h3>
+          <button class="modal-close" id="closeAddProjectModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="add-project-options">
+            <div class="option-card" id="startFreshOption">
+              <div class="option-icon">
+                <i class="fas fa-plus-circle"></i>
+              </div>
+              <h4>Start Fresh</h4>
+              <p>Create a new project from scratch with empty fields</p>
+              <button class="btn btn-primary" id="startFreshBtn">
+                <i class="fas fa-plus"></i> Start Fresh
+              </button>
+            </div>
+            <div class="option-card" id="loadFromJsonOption">
+              <div class="option-icon">
+                <i class="fas fa-file-import"></i>
+              </div>
+              <h4>Load from JSON</h4>
+              <p>Import project data from an existing JSON file</p>
+              <input type="file" id="projectJsonFile" accept=".json" style="display: none;">
+              <button class="btn btn-secondary" id="loadFromJsonBtn">
+                <i class="fas fa-upload"></i> Choose JSON File
+              </button>
+            </div>
+          </div>
+          <div class="json-preview" id="jsonPreview" style="display: none;">
+            <h4>JSON Preview</h4>
+            <div class="preview-content" id="previewContent"></div>
+            <div class="preview-actions">
+              <button class="btn btn-secondary" id="cancelJsonBtn">Cancel</button>
+              <button class="btn btn-primary" id="confirmJsonBtn">Load This Project</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html> 

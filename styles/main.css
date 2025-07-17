@@ -198,21 +198,19 @@ html {
     /* Use dynamic background based on theme's background-section-light/even */
     background: var(--color-background-section-light); /* Default for odd sections */
     overflow: hidden;
-    scroll-margin-top: 80px; /* Ensures fixed nav doesn't cover scrolled-to sections */
 }
 
 .content-section:nth-child(even) {
-    background: var(--color-background-section-even); /* Alternating background */
+    background: var(--color-background-section-even); /* Even sections get different background */
 }
 
 #journey.content-section {
-    background: transparent; /* This section often has its own specialized background */
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-light) 100%);
+    color: white;
     position: relative;
-    min-height: 100vh;
     overflow: hidden;
 }
 
-/* Additional cosmic effects - ensure these variables are part of your theme definitions */
 #journey.content-section::after {
     content: '';
     position: absolute;
@@ -220,17 +218,19 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background:
-        radial-gradient(circle at 50% 50%, var(--color-journey-cosmic-1) 0%, transparent 70%),
-        radial-gradient(circle at 20% 80%, var(--color-journey-cosmic-2) 0%, transparent 60%);
-    animation: cosmicPulse 8s ease-in-out infinite;
-    z-index: 1;
+    background: 
+        radial-gradient(circle at 20% 50%, var(--color-journey-bg-radial-1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--color-journey-bg-radial-2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, var(--color-journey-bg-radial-3) 0%, transparent 50%),
+        radial-gradient(circle at 60% 30%, var(--color-journey-bg-radial-4) 0%, transparent 50%),
+        radial-gradient(circle at 10% 70%, var(--color-journey-bg-radial-5) 0%, transparent 50%);
+    animation: cosmicPulse 20s ease-in-out infinite alternate;
+    z-index: 0;
 }
 
-/* Ensure cosmicPulse keyframe is defined in components.css or main.css */
 @keyframes cosmicPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.6; }
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.05); }
 }
 
 #journey.content-section::before {
@@ -240,9 +240,10 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    /* Use theme variables for the primary background of the journey section */
-    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-light) 100%);
-    z-index: 0;
+    background: 
+        radial-gradient(circle at 30% 60%, var(--color-journey-cosmic-1) 0%, transparent 70%),
+        radial-gradient(circle at 70% 40%, var(--color-journey-cosmic-2) 0%, transparent 70%);
+    z-index: 1;
 }
 
 .content-section::before {
@@ -252,17 +253,18 @@ html {
     left: 0;
     right: 0;
     height: 4px;
-    background: var(--color-section-border); /* Use theme-defined border gradient */
+    background: var(--color-section-border);
+    z-index: 2;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
-    z-index: 10;
+    z-index: 3;
 }
 
-/* Loading Animation */
+/* Loading Overlay */
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -270,24 +272,23 @@ html {
     width: 100%;
     height: 100%;
     background: var(--color-loading-overlay-bg);
-    z-index: 9999;
     display: flex;
-    align-items: center;
     justify-content: center;
-    opacity: 1;
-    transition: opacity 0.5s ease;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .loading-overlay.hidden {
     opacity: 0;
-    pointer-events: none;
+    visibility: hidden;
 }
 
 .loader {
-    width: 60px;
-    height: 60px;
-    border: 4px solid var(--color-loader-border);
-    border-top: 4px solid var(--color-loader-border-top);
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--color-loader-border);
+    border-top: 3px solid var(--color-loader-border-top);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -297,54 +298,736 @@ html {
     100% { transform: rotate(360deg); }
 }
 
-/* Performance mode styles */
+/* Performance Mode Styles */
 .performance-mode .particle,
 .performance-mode .hero-bg {
     animation: none !important;
     transform: none !important;
 }
 
-/* Image error state */
+/* Image Error Handling */
 .image-error {
+    position: relative;
     background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 200px;
     color: #6c757d;
-    font-style: italic;
 }
 
 .image-error::before {
-    content: 'Image not available';
+    content: '⚠️ Image not available';
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
-/* No parallax fallback */
+/* Parallax Disabled States */
 .no-parallax .hero-bg,
 .no-parallax .particle {
-    display: none;
+    animation: none !important;
+    transform: none !important;
 }
 
 .no-parallax .hero {
-    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-light) 100%);
+    background-attachment: scroll !important;
 }
 
-/* Phase 3 - Project Type Specific Image Enhancements */
+/* Enhanced Image Styles */
 .hero-section img {
     width: 100%;
-    border-radius: 15px;
-    /* Enhance with neumorphic shadow variables */
-    box-shadow: 8px 8px 15px var(--shadow-dark), -8px -8px 15px var(--shadow-light);
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
 }
 
 .narrative-block img {
     width: 100%;
-    border-radius: 10px;
-    /* Enhance with neumorphic shadow variables */
-    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light); /* Add shadow to narrative images */
-    transition: transform 0.3s ease; /* For subtle hover/interaction */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
 
 .narrative-block img:hover {
-    transform: scale(1.02); /* Slight scale on hover for interactivity */
+    transform: scale(1.02);
 }
+
+/* ===== GALLERY PAGE SPECIFIC STYLES ===== */
+/* These styles are specifically for the index.html gallery page */
+
+/* Gallery Page Body Styles */
+body#gallery-page {
+    font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont;
+    background-color: var(--bg-color);
+    color: var(--text-color-light);
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* New background element for subtle scroll parallax */
+.portfolio-background-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background:
+        radial-gradient(circle at 10% 90%, var(--cc-accent-primary, #5a67d8, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 90% 10%, var(--cc-accent-primary, #5a67d8, 0.02) 0%, transparent 50%);
+    z-index: -1;
+    pointer-events: none;
+    animation: floatBackgroundSubtle 30s ease-in-out infinite alternate;
+    will-change: transform;
+    filter: blur(5px);
+    opacity: 0.5;
+}
+
+@keyframes floatBackgroundSubtle {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-20px, -20px, 0); }
+}
+
+/* Floating Filter Navigation */
+.filter-sidebar {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 1000;
+    background: var(--bg-color);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(163, 177, 198, 0.3);
+    border-radius: 15px;
+    padding: 0.8rem;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow:
+        10px 10px 20px var(--shadow-dark),
+        -10px -10px 20px var(--shadow-light);
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-sidebar:hover,
+.filter-sidebar.hover {
+    width: 300px;
+    height: 80vh;
+    max-height: 600px;
+    background: var(--bg-color);
+    box-shadow:
+        15px 15px 30px var(--shadow-dark),
+        -15px -15px 30px var(--shadow-light);
+}
+
+@media (max-width: 1024px) {
+    .filter-sidebar {
+        top: 1rem;
+        left: 1rem;
+        width: 50px;
+        height: 50px;
+    }
+    .filter-sidebar:hover,
+    .filter-sidebar.hover {
+        width: 280px;
+        height: 70vh;
+        max-height: 500px;
+    }
+}
+
+/* Filter Navigation Content */
+.filter-nav-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding-top: 1rem;
+}
+
+/* Enhanced filter-nav-icon for a neumorphic button feel */
+.filter-nav-icon {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    background: var(--bg-color);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+    transition: all 0.2s ease;
+}
+
+.filter-sidebar:not(:hover) .filter-nav-icon,
+.filter-sidebar:not(.hover) .filter-nav-icon {
+    margin: 0 auto;
+}
+
+.filter-nav-icon:hover {
+    box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light), 0 0 0 2px var(--accent-color);
+}
+
+.filter-sidebar h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--cc-text-primary);
+}
+
+/* Natural Language Search Section */
+.search-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(163, 177, 198, 0.2);
+}
+
+.neumorphic-input {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--bg-color);
+    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.neumorphic-input::placeholder {
+    color: var(--text-color-light);
+}
+
+.neumorphic-input:focus {
+    box-shadow: inset 1px 1px 3px var(--shadow-dark), inset -1px -1px 3px var(--shadow-light), 0 0 0 2px var(--accent-color);
+}
+
+.neumorphic-button {
+    padding: 0.65rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.neumorphic-button:hover {
+    box-shadow: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
+    color: var(--accent-color);
+}
+
+.neumorphic-button:active {
+    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+    background-color: #d1d9e6;
+}
+
+.neumorphic-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+}
+
+.guided-search-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: var(--bg-color);
+    border-radius: 16px;
+    box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
+    font-size: 0.85rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.guided-search-pill:hover {
+    box-shadow: 1px 1px 3px var(--shadow-dark), -1px -1px 3px var(--shadow-light);
+    color: var(--accent-color);
+}
+
+.guided-search-pill:active {
+    box-shadow: inset 1px 1px 3px var(--shadow-dark), inset -1px -1px 3px var(--shadow-light);
+}
+
+/* Facet Group Styles */
+.facet-group {
+    margin-bottom: 0.75rem;
+    border: none;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+    background: var(--bg-color);
+    flex-shrink: 0;
+}
+
+.facet-group summary {
+    font-weight: 600;
+    color: var(--text-color);
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    font-size: 1rem;
+}
+
+.facet-group summary::-webkit-details-marker { display: none; }
+
+.facet-group summary::after {
+    content: '+';
+    position: absolute;
+    right: 1rem;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease;
+}
+
+.facet-group[open] > summary::after { transform: rotate(45deg); }
+
+.facet-content { padding: 0 0.8rem 0.8rem 0.8rem; }
+
+.facet-group ul { list-style: none; padding: 0; margin: 0; }
+
+.facet-group li { margin-bottom: 0.5rem; }
+
+/* Neumorphic Checkbox/Radio Controls */
+.neumorphic-control {
+    display: flex; align-items: center; cursor: pointer;
+    padding: 4px; border-radius: 8px; transition: all 0.2s ease-in-out;
+    color: var(--cc-text-primary);
+    font-size: 0.95rem;
+}
+
+.neumorphic-control:hover { background-color: #d1d9e6; }
+
+.neumorphic-control input { display: none; }
+
+.neumorphic-control .checkmark {
+    display: inline-block; width: 18px; height: 18px; background: var(--bg-color);
+    border-radius: 4px; margin-right: 12px;
+    box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
+    position: relative; transition: box-shadow 0.2s ease-in-out;
+}
+
+.neumorphic-control input:checked + .checkmark {
+    box-shadow: 1px 1px 2px var(--shadow-dark), -1px -1px 2px var(--shadow-light);
+    background-color: var(--bg-color);
+}
+
+.neumorphic-control input:checked + .checkmark::after {
+    content: '✔'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); color: var(--accent-color);
+    font-size: 12px; font-weight: bold;
+}
+
+.neumorphic-control input[type="radio"] + .checkmark { border-radius: 50%; }
+
+.neumorphic-control input[type="radio"]:checked + .checkmark::after {
+    content: ''; width: 8px; height: 8px;
+    background: var(--accent-color); border-radius: 50%;
+}
+
+.facet-count {
+    margin-left: auto; font-size: 0.75rem; background-color: #d1d9e6;
+    padding: 2px 6px; border-radius: 4px; color: var(--text-color-light);
+}
+
+/* Neumorphic Slider Styles */
+.slider-container { padding: 0.5rem 0; }
+
+.slider-label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+.neumorphic-slider {
+    -webkit-appearance: none; appearance: none; width: 100%; height: 6px;
+    background: var(--bg-color); outline: none; border-radius: 4px;
+    box-shadow: inset 1px 1px 3px var(--shadow-dark), inset -1px -1px 3px var(--shadow-light);
+}
+
+.neumorphic-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; width: 18px; height: 18px;
+    border-radius: 50%; background: var(--accent-color); cursor: pointer;
+    box-shadow: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
+}
+
+.neumorphic-slider::-moz-range-thumb {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent-color); cursor: pointer; border: none;
+    box-shadow: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
+}
+
+/* Project Gallery Container */
+.project-gallery {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-right: 1rem;
+    padding-bottom: 4rem;
+    margin-left: calc(2rem + 40px + 2rem);
+    width: auto;
+}
+
+@media (max-width: 1024px) {
+    .project-gallery {
+        padding-right: 0;
+        padding-bottom: 2rem;
+        margin-left: calc(1rem + 50px + 1rem);
+    }
+}
+
+/* Project Grid */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-left: 0;
+    padding-top: 1rem;
+}
+
+/* Project Card */
+.project-card {
+    position: relative;
+    background: var(--bg-color);
+    border-radius: 12px;
+    box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    perspective: 1000px;
+    will-change: transform;
+}
+
+.project-card:hover {
+    box-shadow: 12px 12px 20px var(--shadow-dark), -12px -12px 20px var(--shadow-light);
+}
+
+.project-card-hero {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light);
+}
+
+.project-card-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-medium-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #10b981;
+    color: #fff;
+    padding: 0.3em 0.7em;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 2px 2px 5px rgba(50,50,80,0.15);
+    z-index: 2;
+    pointer-events: none;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+}
+
+.project-card-content {
+    padding: 1rem 1.2rem;
+    flex-grow: 1;
+}
+
+.card-header {
+    margin-bottom: 0.5rem;
+}
+
+.project-card h3 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    line-height: 1.3;
+    flex: 1;
+}
+
+.card-year {
+    color: var(--text-color);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    flex-shrink: 0;
+    box-shadow: inset 1px 1px 3px var(--shadow-dark), inset -1px -1px 3px var(--shadow-light);
+    background: var(--bg-color);
+}
+
+.card-description {
+    margin: 0 0 0.8rem 0;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    color: var(--text-color-light);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-role {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    font-style: italic;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.8rem;
+}
+
+.card-tag {
+    background: #d1d9e6;
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+    color: var(--text-color);
+    text-transform: capitalize;
+    box-shadow: inset 1px 1px 2px var(--shadow-dark), inset -1px -1px 2px var(--shadow-light);
+}
+
+.card-tech-stack {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    padding-top: 0.6rem;
+    margin-top: 0.6rem;
+    border-top: 1px solid rgba(163, 177, 198, 0.2);
+}
+
+.tech-label {
+    font-size: 0.7rem;
+}
+
+.card-tech-tag {
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+    box-shadow: inset 1px 1px 2px var(--shadow-dark), inset -1px -1px 2px var(--shadow-light);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.tech-more {
+    font-size: 0.65rem;
+    font-style: italic;
+}
+
+.card-gallery-section {
+    margin-top: 0.8rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid rgba(163, 177, 198, 0.2);
+}
+
+.gallery-btn {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 6px;
+    background: var(--accent-color);
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
+    transition: all 0.2s ease;
+}
+
+.gallery-btn:hover {
+    box-shadow: 1px 1px 3px var(--shadow-dark), -1px -1px 3px var(--shadow-light);
+    transform: translateY(-1px);
+}
+
+/* Responsive adjustments for project grid on smaller screens */
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+    .project-card-hero {
+        height: 140px;
+    }
+    .project-card-content {
+        padding: 0.8rem 1rem;
+    }
+    .project-card h3 {
+        font-size: 1rem;
+    }
+    .card-description {
+        font-size: 0.8rem;
+        -webkit-line-clamp: 4;
+    }
+    .card-tech-stack, .card-tags {
+        font-size: 0.7rem;
+    }
+    .card-tech-tag, .card-tag {
+        padding: 0.15rem 0.3rem;
+        font-size: 0.7rem;
+    }
+    .project-card {
+        perspective: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transform: none !important;
+    }
+    .project-card:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Ensure this is disabled when prefers-reduced-motion is active */
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-background-layer {
+        animation: none !important;
+        transform: none !important;
+        background: none !important;
+        opacity: 0 !important;
+    }
+    .project-card {
+        perspective: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transform: none !important;
+    }
+    .project-card:hover {
+        transform: translateY(-3px);
+    }
+}
+
+.motion-disabled .portfolio-background-layer {
+    animation: none !important;
+    transform: none !important;
+    background: none !important;
+    opacity: 0 !important;
+}
+
+.motion-disabled .project-card {
+    transform: none !important;
+    transition: none !important;
+}
+
+
+/* --- MODAL STYLES --- */
+.modal-overlay {
+    background-color: rgba(224, 229, 236, 0.85); /* Keep a subtle frosted glass effect */
+}
+.modal-content {
+    padding: 2.5rem;
+    background: var(--bg-color);
+    border-radius: 20px;
+    /* Stronger neumorphic raised shadow for the modal itself */
+    box-shadow:
+        15px 15px 30px var(--shadow-dark),
+        -15px -15px 30px var(--shadow-light);
+    color: var(--text-color);
+    width: 90%;
+    max-width: 700px;
+    position: relative;
+    line-height: 1.6;
+}
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    background: var(--bg-color); /* Match background for seamless neumorphic look */
+    border: none;
+    font-size: 2rem;
+    color: var(--text-color-light);
+    cursor: pointer;
+    transition: all 0.2s ease; /* Transition for all properties */
+    padding: 0; /* Remove default padding from button for a tighter circle */
+    width: 44px; /* Ensure good tap target */
+    height: 44px; /* Ensure good tap target */
+    border-radius: 50%; /* Circular button */
+    display: flex; /* For centering the X icon */
+    align-items: center;
+    justify-content: center;
+    /* Neumorphic inset shadow for a "pressed" look when idle */
+    box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
+}
+.modal-close-btn:hover {
+    color: var(--accent-color); /* Accent color on hover */
+    /* Subtle hover effect with a slight outer glow */
+    box-shadow: inset 1px 1px 3px var(--shadow-dark), inset -1px -1px 3px var(--shadow-light), 0 0 0 2px var(--accent-color);
+    background-color: #d1d9e6; /* Subtle background change on hover */
+}
+.modal-close-btn:active {
+    /* More pronounced inset on active/pressed state */
+    box-shadow: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+}
+
+
+/* contact-links a - These are already good, just ensure they align with neumorphic-button styles if you merge */
+.contact-links a {
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: 600;
+    border-radius: 10px;
+    background: var(--bg-color);
+    box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+    transition: all 0.2s ease;
+}
+.contact-links a:hover {
+    box-shadow: 2px 2px 5px var(--shadow-dark), -2px -2px 5px var(--shadow-light);
+}
+
+
+/* --- FOOTER STYLES --- */
+.portfolio-footer {
+    background: var(--bg-color);
+    /* Remove original border-top and use a full neumorphic inset shadow to define the boundary */
+    border-top: none;
+    box-shadow: inset 0 8px 15px var(--shadow-dark), inset 0 -8px 15px var(--shadow-light);
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    padding: 2rem 0;
+}
+
+
+/* Your .footer-content and .footer-copyright p styles are good. */
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--text-color-light); /* Use a softer text color for social icons */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    color: var(--accent-color); /* Accent color on hover */
+    transform: translateY(-2px); /* Subtle lift on hover */
+}
+/* No explicit neumorphic shadow on icons themselves, they inherit the footer's context */

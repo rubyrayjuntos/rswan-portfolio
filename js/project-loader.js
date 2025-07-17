@@ -1,328 +1,303 @@
-// Project Loader - Handles loading project data and populating detail pages
+/**
+ * Dynamic Project Loader
+ * Automatically discovers and loads all project JSON files from _data/projects/
+ */
 
-// Project data structure for different types
-const projectTemplates = {
-    code: {
-        sections: ['overview', 'gallery', 'journey', 'specs', 'links'],
-        sectionTitles: {
-            overview: 'Project Overview',
-            gallery: 'Gallery',
-            journey: 'Development Journey', 
-            specs: 'Technical Specifications',
-            links: 'Project Links'
-        }
-    },
-    art: {
-        sections: ['overview', 'gallery', 'process', 'inspiration', 'links'],
-        sectionTitles: {
-            overview: 'Artwork Overview',
-            gallery: 'Gallery',
-            process: 'Creative Process',
-            inspiration: 'Inspiration & Concept',
-            links: 'Art Links'
-        }
-    },
-    writing: {
-        sections: ['overview', 'excerpts', 'process', 'themes', 'links'],
-        sectionTitles: {
-            overview: 'Writing Overview',
-            excerpts: 'Excerpts',
-            process: 'Writing Process',
-            themes: 'Themes & Analysis',
-            links: 'Writing Links'
-        }
+class ProjectLoader {
+    constructor() {
+        this.projects = [];
+        this.loadedProjects = new Map(); // Track loaded projects by ID
+        this.loadingPromises = new Map(); // Prevent duplicate loads
     }
-};
 
-// Load and populate project data
-function loadProjectData() {
-    const projectData = sessionStorage.getItem('currentProject');
-    
-    if (!projectData) {
-        // No project data found, redirect back to portfolio
-        window.location.href = 'index.html';
-        return;
-    }
-    
-    try {
-        const project = JSON.parse(projectData);
-        const projectType = project.medium.toLowerCase();
-    
-    // Update page title and meta
-    document.title = `${project.title} - Project Details`;
-    updateMetaTags(project);
-    
-    // Populate hero section
-    populateHeroSection(project);
-    
-    // Populate overview section
-    populateOverviewSection(project);
-    
-    // Populate sections based on project type
-    const template = projectTemplates[projectType] || projectTemplates.code;
-    
-    // Show/hide sections based on project type
-    showRelevantSections(template.sections, template.sectionTitles);
-    
-    // Populate content for each section
-    populateProjectSections(project, template);
-    
-    // Update navigation links
-    updateNavigationLinks(template.sections);
-    } catch (error) {
-        console.error('Error loading project data:', error);
-        // Redirect back to portfolio on error
-        window.location.href = 'index.html';
-    }
-}
-
-// Update meta tags for SEO
-function updateMetaTags(project) {
-    const metaDescription = document.querySelector('meta[name="description"]');
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    const ogDescription = document.querySelector('meta[property="og:description"]');
-    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-    const twitterDescription = document.querySelector('meta[name="twitter:description"]');
-    
-    if (metaDescription) metaDescription.content = project.description;
-    if (ogTitle) ogTitle.content = project.title;
-    if (ogDescription) ogDescription.content = project.description;
-    if (twitterTitle) twitterTitle.content = project.title;
-    if (twitterDescription) twitterDescription.content = project.description;
-}
-
-// Populate hero section
-function populateHeroSection(project) {
-    const typeBadge = document.getElementById('projectTypeBadge');
-    const title = document.getElementById('projectTitle');
-    const subtitle = document.getElementById('projectSubtitle');
-    
-    if (typeBadge) typeBadge.textContent = `${project.medium} Project`;
-    if (title) title.textContent = project.title;
-    if (subtitle) subtitle.textContent = project.pitch || project.description;
-}
-
-// Populate overview section
-function populateOverviewSection(project) {
-    const description = document.getElementById('projectDescription');
-    const tags = document.getElementById('projectTags');
-    
-    if (description) description.textContent = project.description;
-    
-    if (tags && project.tech) {
-        tags.innerHTML = '';
-        project.tech.forEach(tech => {
-            const tag = document.createElement('span');
-            tag.className = 'tag';
-            tag.textContent = tech;
-            tags.appendChild(tag);
-        });
-    }
-}
-
-// Show relevant sections and hide others
-function showRelevantSections(sections, sectionTitles) {
-    const allSections = ['overview', 'gallery', 'journey', 'specs', 'links', 'process', 'inspiration', 'excerpts', 'themes'];
-    
-    allSections.forEach(sectionId => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            if (sections.includes(sectionId)) {
-                section.style.display = 'block';
-                // Update section title if we have a custom one
-                const titleElement = section.querySelector('.section-title');
-                if (titleElement && sectionTitles[sectionId]) {
-                    titleElement.innerHTML = `${sectionTitles[sectionId]}<span class="title-sparkle">✨</span>`;
-                }
-            } else {
-                section.style.display = 'none';
-            }
-        }
-    });
-}
-
-// Update navigation links
-function updateNavigationLinks(sections) {
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        const sectionId = href.replace('#', '');
+    /**
+     * Dynamically discover and load all project JSON files
+     * Uses a combination of known patterns and dynamic discovery
+     */
+    async loadAllProjects() {
+        console.log('🔄 Starting dynamic project discovery...');
         
-        if (sectionId === 'home' || sections.includes(sectionId)) {
-            link.style.display = 'block';
-        } else {
-            link.style.display = 'none';
+        try {
+            // First, try to load a project manifest if it exists
+            const manifest = await this.loadProjectManifest();
+            
+            if (manifest && manifest.projects) {
+                // Use manifest if available
+                console.log('📋 Using project manifest for loading');
+                await this.loadProjectsFromManifest(manifest.projects);
+            } else {
+                // Fallback to dynamic discovery
+                console.log('🔍 No manifest found, using dynamic discovery');
+                await this.discoverAndLoadProjects();
+            }
+            
+            console.log(`✅ Successfully loaded ${this.projects.length} projects`);
+            return this.projects;
+            
+        } catch (error) {
+            console.error('❌ Error loading projects:', error);
+            return this.getFallbackProjects();
         }
-    });
-}
+    }
 
-// Populate project sections based on type
-function populateProjectSections(project, template) {
-    template.sections.forEach(sectionId => {
-        switch (sectionId) {
-            case 'gallery':
-                populateGallerySection(project);
-                break;
-            case 'journey':
-                populateJourneySection(project);
-                break;
-            case 'specs':
-                populateSpecsSection(project);
-                break;
-            case 'links':
-                populateLinksSection(project);
-                break;
-            case 'process':
-                populateProcessSection(project);
-                break;
-            case 'inspiration':
-                populateInspirationSection(project);
-                break;
-            case 'excerpts':
-                populateExcerptsSection(project);
-                break;
-            case 'themes':
-                populateThemesSection(project);
-                break;
+    /**
+     * Try to load a project manifest file
+     */
+    async loadProjectManifest() {
+        try {
+            const response = await fetch('_data/projects/manifest.json');
+            if (response.ok) {
+                return await response.json();
+            }
+        } catch (error) {
+            console.log('No project manifest found, will use dynamic discovery');
         }
-    });
-}
+        return null;
+    }
 
-// Populate gallery section
-function populateGallerySection(project) {
-    const galleryGrid = document.getElementById('galleryGrid');
-    if (!galleryGrid || !project.gallery) return;
-    
-    galleryGrid.innerHTML = '';
-    project.gallery.forEach(item => {
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
-        galleryItem.innerHTML = `
-            <img src="${item.url}" alt="${item.title}" loading="lazy">
-            <div class="gallery-overlay">
-                <div class="gallery-overlay-content">
-                    <h3>${item.title}</h3>
-                    <p>${item.description}</p>
-                </div>
-            </div>
-        `;
-        galleryGrid.appendChild(galleryItem);
-    });
-}
+    /**
+     * Load projects from a manifest file
+     */
+    async loadProjectsFromManifest(projectList) {
+        const loadPromises = projectList.map(async (projectInfo) => {
+            const filePath = projectInfo.file || `_data/projects/${projectInfo.id}.json`;
+            return this.loadSingleProject(filePath, projectInfo.id);
+        });
 
-// Populate journey section
-function populateJourneySection(project) {
-    const timelineContainer = document.getElementById('timelineContainer');
-    if (!timelineContainer || !project.journey) return;
-    
-    timelineContainer.innerHTML = '';
-    project.journey.forEach((item, index) => {
-        const timelineItem = document.createElement('div');
-        timelineItem.className = 'timeline-item';
-        timelineItem.innerHTML = `
-            <div class="timeline-content">
-                <h3>${item.title}</h3>
-                <p>${item.description}</p>
-            </div>
-        `;
-        timelineContainer.appendChild(timelineItem);
-    });
-}
+        const results = await Promise.allSettled(loadPromises);
+        
+        // Filter successful loads and maintain order
+        this.projects = results
+            .map((result, index) => {
+                if (result.status === 'fulfilled' && result.value) {
+                    return result.value;
+                } else {
+                    console.warn(`Failed to load project ${projectList[index]?.id || index}:`, result.reason);
+                    return null;
+                }
+            })
+            .filter(project => project !== null);
+    }
 
-// Populate specs section
-function populateSpecsSection(project) {
-    const specsGrid = document.getElementById('specsGrid');
-    if (!specsGrid || !project.specs) return;
-    
-    specsGrid.innerHTML = '';
-    project.specs.forEach(spec => {
-        const specCard = document.createElement('div');
-        specCard.className = 'spec-card';
-        specCard.innerHTML = `
-            <h3>${spec.title}</h3>
-            <p>${spec.description}</p>
-        `;
-        specsGrid.appendChild(specCard);
-    });
-}
+    /**
+     * Dynamic discovery of project files
+     * Uses common naming patterns and known project IDs
+     */
+    async discoverAndLoadProjects() {
+        // Common project patterns to try
+        const projectPatterns = [
+            // Known project files
+            'echoes-of-lumina.json',
+            'nova-writers-conspiracy.json',
+            'henri-ruben.json',
+            'graphic-novel.json',
+            'weight-of-a-name.json',
+            'character-design.json',
+            'arcana.json',
+            'tarot-deck.json',
+            'brand-automation.json',
+            'asteroids.json',
+            'elyra.json',
+            'set-design.json',
+            'world-bible.json',
+            'sticker-pack.json',
+            'tarot-awakened.json',
+            'brand-identity-workflow.json',
+            
+            // Additional patterns to try
+            'sample-project.json',
+            'papi-chispa-cartas-del-deseo.json'
+        ];
 
-// Populate links section
-function populateLinksSection(project) {
-    const linksSection = document.getElementById('linksSection');
-    if (!linksSection || !project.links) return;
-    
-    linksSection.innerHTML = '';
-    Object.entries(project.links).forEach(([text, url]) => {
-        const linkCard = document.createElement('a');
-        linkCard.className = 'link-card';
-        linkCard.href = url;
-        linkCard.target = '_blank';
-        linkCard.rel = 'noopener noreferrer';
-        linkCard.innerHTML = `
-            <span class="icon">🔗</span>
-            <h3>${text}</h3>
-            <p>Visit ${text}</p>
-        `;
-        linksSection.appendChild(linkCard);
-    });
-}
+        // Try to load each project file
+        const loadPromises = projectPatterns.map(async (filename) => {
+            const filePath = `_data/projects/${filename}`;
+            return this.loadSingleProject(filePath);
+        });
 
-// Populate process section (for art projects)
-function populateProcessSection(project) {
-    const processContent = document.getElementById('processContent');
-    if (!processContent || !project.process) return;
-    
-    processContent.innerHTML = `
-        <div class="process-content">
-            <p>${project.process}</p>
-        </div>
-    `;
-}
+        const results = await Promise.allSettled(loadPromises);
+        
+        // Filter successful loads
+        this.projects = results
+            .map((result, index) => {
+                if (result.status === 'fulfilled' && result.value) {
+                    return result.value;
+                } else {
+                    console.log(`Project file not found or failed to load: ${projectPatterns[index]}`);
+                    return null;
+                }
+            })
+            .filter(project => project !== null);
 
-// Populate inspiration section (for art projects)
-function populateInspirationSection(project) {
-    const inspirationContent = document.getElementById('inspirationContent');
-    if (!inspirationContent || !project.inspiration) return;
-    
-    inspirationContent.innerHTML = `
-        <div class="inspiration-content">
-            <p>${project.inspiration}</p>
-        </div>
-    `;
-}
+        // Sort projects by ID for consistent ordering
+        this.projects.sort((a, b) => (a.id || 0) - (b.id || 0));
+    }
 
-// Populate excerpts section (for writing projects)
-function populateExcerptsSection(project) {
-    const excerptsContent = document.getElementById('excerptsContent');
-    if (!excerptsContent || !project.excerpts) return;
-    
-    excerptsContent.innerHTML = `
-        <div class="excerpts-content">
-            <p>${project.excerpts}</p>
-        </div>
-    `;
-}
+    /**
+     * Load a single project file
+     */
+    async loadSingleProject(filePath, expectedId = null) {
+        // Check if already loaded
+        if (this.loadedProjects.has(filePath)) {
+            return this.loadedProjects.get(filePath);
+        }
 
-// Populate themes section (for writing projects)
-function populateThemesSection(project) {
-    const themesContent = document.getElementById('themesContent');
-    if (!themesContent || !project.themes) return;
-    
-    themesContent.innerHTML = `
-        <div class="themes-content">
-            <p>${project.themes}</p>
-        </div>
-    `;
-}
+        // Check if already loading
+        if (this.loadingPromises.has(filePath)) {
+            return this.loadingPromises.get(filePath);
+        }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Add a small delay to ensure all elements are loaded
-    setTimeout(() => {
-        loadProjectData();
-    }, 100);
-});
+        // Create loading promise
+        const loadPromise = this._loadProjectFile(filePath, expectedId);
+        this.loadingPromises.set(filePath, loadPromise);
+
+        try {
+            const project = await loadPromise;
+            if (project) {
+                this.loadedProjects.set(filePath, project);
+                console.log(`✅ Loaded project: ${project.title} (ID: ${project.id})`);
+            }
+            return project;
+        } finally {
+            this.loadingPromises.delete(filePath);
+        }
+    }
+
+    /**
+     * Internal method to load a project file
+     */
+    async _loadProjectFile(filePath, expectedId = null) {
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) {
+                if (response.status === 404) {
+                    return null; // File doesn't exist, not an error
+                }
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+
+            const project = await response.json();
+            
+            // Validate project structure
+            if (!this.validateProject(project)) {
+                console.warn(`Invalid project structure in ${filePath}`);
+                return null;
+            }
+
+            // Ensure project has an ID
+            if (!project.id && expectedId) {
+                project.id = expectedId;
+            }
+
+            return project;
+
+        } catch (error) {
+            if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                // Network error, file might not exist
+                return null;
+            }
+            console.error(`Error loading ${filePath}:`, error);
+            return null;
+        }
+    }
+
+    /**
+     * Validate project structure
+     */
+    validateProject(project) {
+        const requiredFields = ['title', 'description', 'medium'];
+        return requiredFields.every(field => project.hasOwnProperty(field));
+    }
+
+    /**
+     * Get projects filtered by criteria
+     */
+    getProjectsByFilter(filterFn) {
+        return this.projects.filter(filterFn);
+    }
+
+    /**
+     * Get project by ID
+     */
+    getProjectById(id) {
+        return this.projects.find(p => p.id === id);
+    }
+
+    /**
+     * Get projects by medium
+     */
+    getProjectsByMedium(medium) {
+        return this.projects.filter(p => p.medium === medium);
+    }
+
+    /**
+     * Get all unique mediums
+     */
+    getUniqueMediums() {
+        return [...new Set(this.projects.map(p => p.medium))];
+    }
+
+    /**
+     * Get all unique genres
+     */
+    getUniqueGenres() {
+        const allGenres = this.projects.flatMap(p => p.genre || []);
+        return [...new Set(allGenres)];
+    }
+
+    /**
+     * Get all unique technologies
+     */
+    getUniqueTechnologies() {
+        const allTech = this.projects.flatMap(p => p.tech || []);
+        return [...new Set(allTech)];
+    }
+
+    /**
+     * Get fallback projects if loading fails
+     */
+    getFallbackProjects() {
+        return [{
+            id: 1,
+            title: "Portfolio (Interactive Web Portfolio)",
+            description: "A dynamic and multi-faceted web portfolio designed to comprehensively showcase diverse creative and technical work across Code, Writing, and Art.",
+            imageUrl: "https://via.placeholder.com/600x400/e0e5ec/31456A?text=Interactive+Portfolio",
+            medium: "code",
+            genre: ["Web Development", "Personal Branding", "UX/UI Design"],
+            style: ["Soft UI/Neumorphic", "Modern", "Professional"],
+            tech: ["HTML", "CSS", "JavaScript", "JSON", "Markdown"],
+            mood: "Innovative",
+            year: 2025,
+            role: "Lead Designer, Frontend Developer",
+            variant: "featured",
+            status: "live",
+            links: {
+                live: "C:/Users/raycs/Documents/Projects/rswan-portfolio",
+                github: "https://github.com/rayswan/rswan-portfolio",
+                demo: "C:/Users/raycs/Documents/Projects/rswan-portfolio"
+            },
+            pitch: "A sophisticated, data-driven interactive web portfolio that transcends traditional showcases.",
+            challenge: "The primary challenge involved architecting a flexible and scalable system capable of dynamically presenting a large and diverse body of work.",
+            development: "The development process in 2025 was highly iterative, undergoing three major redesigns as the fundamental understanding shifted towards making the underlying data structure the most critical element.",
+            outcome: "The outcome is a highly organized, professional, and interactive portfolio that not only presents diverse projects but also actively demonstrates advanced information architecture."
+        }];
+    }
+
+    /**
+     * Reload all projects
+     */
+    async reload() {
+        this.projects = [];
+        this.loadedProjects.clear();
+        this.loadingPromises.clear();
+        return await this.loadAllProjects();
+    }
+}
 
 // Export for use in other modules
-window.loadProjectData = loadProjectData; 
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = ProjectLoader;
+} else {
+    // Browser environment
+    window.ProjectLoader = ProjectLoader;
+} 

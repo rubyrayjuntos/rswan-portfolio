@@ -56,70 +56,113 @@
             padding: 2rem;
             box-sizing: border-box;
             min-height: 100vh; /* Ensure view takes full height */
+            position: relative;
         }
 
         /* --- GALLERY VIEW STYLES --- */
         #gallery-view .portfolio-container {
-            display: grid;
-            grid-template-columns: 300px 1fr; /* Default desktop layout */
-            gap: 2.5rem;
-            height: calc(100vh - 4rem); /* Full viewport height minus padding */
+            display: block; /* Changed from grid to block */
+            min-height: calc(100vh - 4rem); /* Changed from height to min-height */
             max-width: 1600px;
             margin: 0 auto;
+            position: relative; /* For floating nav positioning */
         }
 
         /* Responsive adjustments for portfolio container */
         @media (max-width: 1024px) {
             #gallery-view .portfolio-container {
-                grid-template-columns: 1fr; /* Stack sidebar and gallery on smaller screens */
                 height: auto; /* Allow height to adjust to content */
             }
         }
 
+        /* Floating Filter Navigation */
         .filter-sidebar {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1000;
             background: var(--bg-color);
-            border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: 9px 9px 16px var(--shadow-dark), -9px -9px 16px var(--shadow-light);
-            overflow-y: auto; /* Enable scrolling for long filter lists */
-            height: 100%; /* Take full height of grid cell */
-            display: flex; /* Use flexbox for search and filters */
-            flex-direction: column;
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--scroll-bar-color);
+            border-radius: 15px;
+            padding: 0.8rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                0 0 20px var(--accent-color),
+                0 0 40px rgba(90, 103, 216, 0.3);
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .filter-sidebar:hover,
+        .filter-sidebar.hover {
+            width: 300px;
+            height: 80vh;
+            max-height: 600px;
+            background: var(--bg-color);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.2),
+                0 0 30px var(--accent-color),
+                0 0 60px rgba(90, 103, 216, 0.4);
         }
 
         @media (max-width: 1024px) {
             .filter-sidebar {
-                height: auto; /* Auto height on smaller screens */
-                margin-bottom: 2rem; /* Spacing when stacked */
+                top: 1rem;
+                left: 1rem;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .filter-sidebar:hover,
+            .filter-sidebar.hover {
+                width: 280px;
+                height: 70vh;
+                max-height: 500px;
             }
         }
 
-        .sidebar-header {
-            padding-bottom: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid var(--scroll-bar-color);
+        /* Filter Navigation Content */
+        .filter-nav-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
         }
-        .sidebar-header h1 {
-            font-size: 1.75rem;
+
+        .filter-nav-icon {
+            font-size: 1.2rem;
             color: var(--text-color);
-            margin: 0;
-            cursor: pointer;
-            transition: color 0.2s ease;
+            text-align: center;
+            flex-shrink: 0;
+            text-shadow: 0 0 10px var(--accent-color);
         }
-        .sidebar-header h1:hover {
-            color: var(--accent-color);
+
+        .filter-sidebar:not(:hover) .filter-nav-icon {
+            margin: 0 auto;
         }
-        .sidebar-header p {
-            margin: 0.25rem 0 0 0;
-            font-size: 1rem;
-            color: var(--accent-color);
-            cursor: pointer;
-            text-decoration: none;
-            transition: color 0.2s ease;
+
+        .filter-nav-content {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            flex: 1;
         }
-        .sidebar-header p:hover {
-            text-decoration: underline;
+
+        .filter-sidebar:hover .filter-nav-content,
+        .filter-sidebar.hover .filter-nav-content {
+            opacity: 1;
+            transform: translateY(0);
         }
+
+
 
         .filter-sidebar h2 {
             color: var(--text-color);
@@ -307,6 +350,7 @@
             flex-direction: column; 
             overflow-y: auto; 
             padding-right: 1rem; /* Space for scrollbar */
+            width: 100%; /* Take full width since sidebar is floating */
         }
 
         @media (max-width: 1024px) {
@@ -315,14 +359,69 @@
             }
         }
 
+
+        
+        /* Portfolio Header */
+        .portfolio-header {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 999;
+            text-align: right;
+        }
+
+        .header-content h1 {
+            font-size: 1.75rem;
+            color: var(--text-color);
+            margin: 0;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .header-content h1:hover {
+            color: var(--accent-color);
+        }
+
+        .header-content p {
+            margin: 0.25rem 0 0 0;
+            font-size: 1rem;
+            color: var(--accent-color);
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .header-content p:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 1024px) {
+            .portfolio-header {
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .header-content h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header-content p {
+                font-size: 0.9rem;
+            }
+        }
+
         .active-filters { 
             margin-bottom: 1.5rem; 
+            margin-top: 1rem; /* Add top margin to account for floating filter */
+            margin-left: 5rem; /* Add left margin to start after the floating nav */
             display: flex; 
             flex-wrap: wrap; 
             gap: 0.75rem; 
             padding: 0.5rem; 
             min-height: 40px; 
         }
+
+
         .filter-pill {
             display: inline-flex; align-items: center; padding: 0.5rem 1rem;
             background: var(--bg-color); border-radius: 20px;
@@ -341,6 +440,7 @@
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
             gap: 2rem; 
+            margin-left: 5rem; /* Add left margin to prevent cards from being cut off */
         }
 
         .project-card {
@@ -961,6 +1061,81 @@
             color: var(--text-color-light);
         }
 
+        /* Footer Styles */
+        .portfolio-footer {
+            background: var(--bg-color);
+            border-top: 1px solid var(--scroll-bar-color);
+            padding: 2rem 0;
+            box-shadow: inset 0 5px 10px var(--shadow-dark);
+            width: 100%;
+            position: relative;
+            left: 0;
+            right: 0;
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-copyright p {
+            margin: 0;
+            color: var(--text-color-light);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--text-color-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+                padding: 0 1rem;
+            }
+            
+            .footer-social {
+                gap: 2rem;
+            }
+            
+            .social-icon {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .project-grid {
+                margin-left: 3rem; /* Reduce margin on mobile */
+            }
+            
+            .active-filters {
+                margin-left: 3rem; /* Reduce margin on mobile */
+            }
+        }
+
         /* General mobile padding adjustment */
         @media (max-width: 768px) {
             .view {
@@ -1326,41 +1501,50 @@
 
     </style>
 </head>
-<body id="gallery-page">
+    <body id="gallery-page">
+        <div class="portfolio-background-layer" aria-hidden="true"></div>
 
     <!-- GALLERY VIEW: Displays all portfolio projects with filtering options -->
     <div id="gallery-view" class="view">
         <div class="portfolio-container">
-            <!-- Filter Sidebar: Allows users to filter projects by various criteria -->
+            <!-- Floating Filter Navigation: Allows users to filter projects by various criteria -->
             <aside class="filter-sidebar">
-                <div class="sidebar-header">
+                <div class="filter-nav-icon">🔍</div>
+                <div class="filter-nav-content">
+                    <h2>Filters</h2>
+                    <!-- Natural Language Search Section -->
+                    <div class="search-section">
+                        <input type="text" id="natural-search-input" placeholder="Search projects..." class="neumorphic-input">
+                        <button id="natural-search-button" class="neumorphic-button">Search</button>
+                        <div id="search-loading" style="display: none; text-align: center; margin-top: 1rem;">Loading...</div>
+                        <div id="guided-results-container" class="guided-results-container">
+                            <!-- Guided search results will be injected here -->
+                        </div>
+                    </div>
+
+                    <!-- Medium Filter (Radio buttons) -->
+                    <details class="facet-group"><summary>Medium</summary><div class="facet-content"><ul id="medium-filter-list"></ul></div></details>
+                    <!-- Genre Filter (Checkboxes) -->
+                    <details class="facet-group"><summary>Genre</summary><div class="facet-content"><ul id="genre-filter-list"></ul></div></details>
+                    <!-- Technology Filter (Checkboxes) -->
+                    <details class="facet-group"><summary>Technology</summary><div class="facet-content"><ul id="tech-filter-list"></ul></div></details>
+                    <!-- Style / Theme Filter (Checkboxes) -->
+                    <details class="facet-group"><summary>Style / Theme</summary><div class="facet-content"><ul id="style-filter-list"></ul></div></details>
+                    <!-- Mood Filter (Radio buttons) -->
+                    <details class="facet-group"><summary>Mood</summary><div class="facet-content"><ul id="mood-filter-list"></ul></div></details>
+                    <!-- Year Filter (Slider) -->
+                    <details class="facet-group"><summary>Year</summary><div class="facet-content slider-container"><label for="year-filter" class="slider-label"><span>After:</span><span id="year-value">2020</span></label><input type="range" id="year-filter" class="neumorphic-slider" name="year" min="2020" max="2024" value="2020"></div></details>
+                </div>
+            </aside>
+            
+            <!-- Header Section with Name and Email -->
+            <header class="portfolio-header">
+                <div class="header-content">
                     <h1 id="open-about-modal">Ray Swan</h1>
                     <p id="open-contact-modal">rayswan.org</p>
                 </div>
-                <h2>Filters</h2>
-                <!-- Natural Language Search Section -->
-                <div class="search-section">
-                    <input type="text" id="natural-search-input" placeholder="Search projects..." class="neumorphic-input">
-                    <button id="natural-search-button" class="neumorphic-button">Search</button>
-                    <div id="search-loading" style="display: none; text-align: center; margin-top: 1rem;">Loading...</div>
-                    <div id="guided-results-container" class="guided-results-container">
-                        <!-- Guided search results will be injected here -->
-                    </div>
-                </div>
-
-                <!-- Medium Filter (Radio buttons) -->
-                <details class="facet-group" open><summary>Medium</summary><div class="facet-content"><ul id="medium-filter-list"></ul></div></details>
-                <!-- Genre Filter (Checkboxes) -->
-                <details class="facet-group" open><summary>Genre</summary><div class="facet-content"><ul id="genre-filter-list"></ul></div></details>
-                <!-- Technology Filter (Checkboxes) -->
-                <details class="facet-group" open><summary>Technology</summary><div class="facet-content"><ul id="tech-filter-list"></ul></div></details>
-                <!-- Style / Theme Filter (Checkboxes) -->
-                <details class="facet-group" open><summary>Style / Theme</summary><div class="facet-content"><ul id="style-filter-list"></ul></div></details>
-                <!-- Mood Filter (Radio buttons) -->
-                <details class="facet-group"><summary>Mood</summary><div class="facet-content"><ul id="mood-filter-list"></ul></div></details>
-                <!-- Year Filter (Slider) -->
-                <details class="facet-group"><summary>Year</summary><div class="facet-content slider-container"><label for="year-filter" class="slider-label"><span>After:</span><span id="year-value">2020</span></label><input type="range" id="year-filter" class="neumorphic-slider" name="year" min="2020" max="2024" value="2020"></div></details>
-            </aside>
+            </header>
+            
             <!-- Project Gallery Main Content -->
             <main class="project-gallery">
                 <!-- Displays active filter pills for easy removal -->
@@ -1444,9 +1628,30 @@
                 </section>
             </main>
         </div>
-    </div>
+        </div>
 
-<!-- About Modal -->
+    <!-- Footer -->
+    <footer class="portfolio-footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                <p>&copy; 2025 Ray Swan</p>
+            </div>
+            <div class="footer-social">
+                <a href="https://linkedin.com/in/rayswan" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/rayswan" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- About Modal -->
 <div id="about-modal" class="modal-overlay">
     <div class="modal-content">
       <button class="modal-close-btn" data-modal-id="about-modal">&times;</button>
@@ -1498,112 +1703,126 @@
         </div>
     </div>
 
+<script src="js/theme.js"></script>
+<script src="js/project-loader.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- DATA SOURCE ---
-    // Array of project objects, each containing details for both gallery and case study views.
-    const projects = [
-        { 
-            id: 3, 
-            title: "AI Tarot Reader", 
-            description: "An interactive web app using generative AI to provide mystical tarot readings.", 
-            imageUrl: "images/char-backstory-card-hero.JPG", 
-            medium: "code", 
-            genre: ["ai-agent", "tarot"], 
-            style: ["minimalist", "modern"], 
-            mood: 'serene', 
-            year: 2024, 
-            role: "Lead Developer, UX Designer", 
-            links: { "Live Site": "#" }, 
-            pitch: "Combining ancient symbolism with modern AI to create a personal divination experience.", 
-            challenge: "The primary challenge was to create an AI that didn't just give generic answers, but provided nuanced, context-aware interpretations of tarot spreads, making the experience feel authentic and personal.", 
-            development: "Using a fine-tuned language model, I developed a system that understands the relationships between cards. The front-end, built with vanilla JS, focuses on a clean, meditative user experience to complement the mystical theme.", 
-            outcome: "The final app saw high user engagement, with an average session duration of over 5 minutes. It was praised for its intuitive interface and the depth of its AI-generated readings.", 
-            tech: ["JavaScript", "HTML5", "CSS Grid", "Gemini API"] 
-        },
-        { 
-            id: 1, 
-            title: "Nova: Writer's Conspiracy", 
-            description: "Agentic helpers aid writers in creating novels. It's a cosmic atelier where storytellers conspire with AI to birth entire universes, balancing structure and soul in creative agency.", 
-            imageUrl: "images/graphic-novel-card-hero.jpg",
-            medium: "Code", 
-            genre: ["Full Stack","Web App","AI","Agentic Workflow"], 
-            style: ["Collaborative","Writing Help", "dark"], 
-            mood: 'Collaborative', 
-            year: 2025, 
-            role:["Designer","System Architect", "Developer"], 
-            links: { "Sample Chapter": "#" }, 
-            pitch: "A story of rebellion and identity in a rain-slicked, neon-drenched metropolis.", 
-            challenge: "The main challenge was designing and implementing a complex multi-agent system that balances automated generation with deep user control and a seamless collaborative experience. This involved orchestrating various specialized AI agents (Researcher, World Builder, Character Architect, Plot Alchemist, Writer, Editor, Illustrator) and managing their memory, context , and workflows to consistently produce high-quality, coherent narrative content while allowing for real-time user feedback and revisions.", 
-            development: "The project is following a structured development process, starting with detailed functional and technical specifications and a system design document. Key architectural components like the MemoryService.ts for marker-indexed context handling and an abstract AgentBase.ts class  were scaffolded early on. The development relies on a robust tech stack including React for the frontend, FastAPI for the backend API, and CrewAI for multi-agent orchestration, with asynchronous task queues (Celery/Redis) to manage long-running AI processes.", 
-            outcome: "I have Completed Defining the MVP, which starts from a 5 point story outline with a set outcome. The character agents will help to flesh out the story.", 
-            tech: ["React","TailwindCSS","React Query", "Socket.io","React Router","FastAPI","SQLAlchemy","Alembic","Pydantic","JWT","CrewAI","OpenAI","GPT-4","Pinecone","SerperDev","PostgreSQL","Redis","Celery","Docker"] 
-        },
-        { 
-            id: 2, 
-            title: "Full-Stack RPG", 
-            description: "A browser-based RPG with a custom backend and dynamic front-end.", 
-            imageUrl: "images/character-design-card-hero.jpg",
-            medium: "code", 
-            genre: ["games"], 
-            style: ["fantasy"], 
-            mood: 'energetic', 
-            year: 2023, 
-            role: "Full-Stack Developer, Game Designer", 
-            links: { "GitHub": "#", "Play Now": "#" }, 
-            pitch: "Explore the world of Eldoria in a classic fantasy RPG built for the modern web.", 
-            challenge: "Architecting a real-time combat system and managing player state efficiently on the backend, while delivering a smooth, responsive experience on the frontend without a heavy framework.", 
-            development: "I built a custom Node.js backend with WebSocket support for real-time communication. The frontend uses a canvas-based rendering engine for the game world, with a simple DOM-based UI for menus and inventory.", 
-            outcome: "The game supports up to 100 concurrent players with low latency. It has been lauded by players for its classic feel and modern performance.", 
-            tech: ["Node.js", "WebSocket", "HTML Canvas", "JavaScript"] 
-        },
-        { 
-            id: 4, 
-            title: "Cyberpunk Art Collection", 
-            description: "A comprehensive collection of cyberpunk-themed digital art and concept designs.", 
-            imageUrl: "images/character-design-card-hero.jpg",
-            medium: "art",
-            genre: ["digital-art", "concept-art"],
-            style: ["cyberpunk", "futuristic"],
-            mood: 'dark',
-            year: 2024,
-            role: "Digital Artist, Concept Designer", 
-            links: { "View Gallery": "#" }, 
-            pitch: "Exploring the intersection of technology and humanity through cyberpunk aesthetics.", 
-            challenge: "Creating a cohesive visual language that captures the essence of cyberpunk while maintaining artistic integrity and technical excellence.", 
-            development: "The collection evolved through multiple phases, starting with rough sketches and progressing through detailed concept art to final digital paintings. Each piece explores different aspects of the cyberpunk genre.", 
-            outcome: "The collection has been featured in several digital art exhibitions and has received recognition for its innovative approach to cyberpunk aesthetics.", 
-            tech: ["Photoshop", "Procreate", "Blender"],
-            gallery: [
-                { url: "./assets/gallery/cyberpunk/neon-dreams.jpg", title: "Neon Dreams", description: "Urban nightscape with neon lighting", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/digital-rain.jpg", title: "Digital Rain", description: "Matrix-style digital effects", dimensions: "1200x800" },
-                { url: "./assets/gallery/cyberpunk/holographic-interface.jpg", title: "Holographic Interface", description: "Futuristic UI design", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/augmented-reality.jpg", title: "Augmented Reality", description: "AR overlay concepts", dimensions: "800x1200" },
-                { url: "./assets/gallery/cyberpunk/neural-networks.jpg", title: "Neural Networks", description: "AI visualization", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/virtual-city.jpg", title: "Virtual City", description: "3D cityscape rendering", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/data-streams.jpg", title: "Data Streams", description: "Information flow visualization", dimensions: "1200x800" },
-                { url: "./assets/gallery/cyberpunk/quantum-interface.jpg", title: "Quantum Interface", description: "Advanced UI concepts", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/digital-consciousness.jpg", title: "Digital Consciousness", description: "Mind-machine interface", dimensions: "800x1200" },
-                { url: "./assets/gallery/cyberpunk/synthetic-life.jpg", title: "Synthetic Life", description: "Artificial life forms", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/neural-implants.jpg", title: "Neural Implants", description: "Cybernetic enhancements", dimensions: "1200x800" },
-                { url: "./assets/gallery/cyberpunk/digital-evolution.jpg", title: "Digital Evolution", description: "Evolution of digital life", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/virtual-realms.jpg", title: "Virtual Realms", description: "Immersive digital worlds", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/quantum-computing.jpg", title: "Quantum Computing", description: "Computing visualization", dimensions: "800x1200" },
-                { url: "./assets/gallery/cyberpunk/digital-architecture.jpg", title: "Digital Architecture", description: "Futuristic building designs", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/neural-networks-2.jpg", title: "Neural Networks", description: "Brain-computer interfaces", dimensions: "1200x800" },
-                { url: "./assets/gallery/cyberpunk/digital-ecosystems.jpg", title: "Digital Ecosystems", description: "Virtual environments", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/synthetic-intelligence.jpg", title: "Synthetic Intelligence", description: "AI consciousness", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/digital-transformation.jpg", title: "Digital Transformation", description: "Human-machine fusion", dimensions: "800x1200" },
-                { url: "./assets/gallery/cyberpunk/virtual-reality.jpg", title: "Virtual Reality", description: "Immersive experiences", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/digital-artifacts.jpg", title: "Digital Artifacts", description: "Virtual objects and relics", dimensions: "1200x800" },
-                { url: "./assets/gallery/cyberpunk/neural-pathways.jpg", title: "Neural Pathways", description: "Brain mapping visualization", dimensions: "1920x1080" },
-                { url: "./assets/gallery/cyberpunk/digital-consciousness-2.jpg", title: "Digital Consciousness", description: "Mind upload concepts", dimensions: "1600x900" },
-                { url: "./assets/gallery/cyberpunk/virtual-evolution.jpg", title: "Virtual Evolution", description: "Digital life evolution", dimensions: "800x1200" },
-                { url: "./assets/gallery/cyberpunk/synthetic-reality.jpg", title: "Synthetic Reality", description: "Artificial world creation", dimensions: "1920x1080" }
-            ]
+    // Projects will be loaded from JSON files
+    let projects = [];
+
+    // New function for project card mouse parallax
+    function setupProjectCardParallax() {
+        const projectGrid = document.getElementById('project-grid-container');
+        // Ensure window.motionEnabled is defined and true (managed by theme.js)
+        if (!projectGrid || !window.motionEnabled) {
+            console.log("Project card parallax skipped: Grid not found or motion disabled.");
+            return;
         }
-    ];
+
+        projectGrid.addEventListener('mousemove', (e) => {
+            requestAnimationFrame(() => {
+                const cards = projectGrid.querySelectorAll('.project-card');
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    // Only animate cards that are within the viewport for performance
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const centerX = rect.left + rect.width / 2;
+                        const centerY = rect.top + rect.height / 2;
+
+                        const mouseX = e.clientX - centerX;
+                        const mouseY = e.clientY - centerY;
+
+                        // Define sensitivity for movement (adjust these values for desired effect)
+                        const moveX = mouseX * 0.02; // Very slight X movement
+                        const moveY = mouseY * 0.02; // Very slight Y movement
+                        const rotateX = -mouseY * 0.005; // Subtle tilt up/down
+                        const rotateY = mouseX * 0.005;  // Subtle tilt left/right
+
+                        // Apply transform. Use translate3d for hardware acceleration
+                        card.style.transform = `perspective(1000px) translate3d(${moveX}px, ${moveY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                        card.style.transition = 'transform 0.1s ease-out'; // Smooth transition for quick reaction
+                    }
+                });
+            });
+        });
+
+        // Reset cards when mouse leaves the grid
+        projectGrid.addEventListener('mouseleave', () => {
+            const cards = projectGrid.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                // Reset to original transform and use a slower transition for smooth return
+                card.style.transform = 'perspective(1000px) translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg)';
+                card.style.transition = 'transform 0.3s ease-out';
+            });
+        });
+        console.log("Project card parallax setup complete.");
+    }
+
+    // Load projects using the dynamic project loader
+    async function loadProjects() {
+        try {
+            console.log('🔄 Starting dynamic project loading...');
+            
+            // Initialize the project loader
+            const projectLoader = new ProjectLoader();
+            
+            // Load all projects dynamically
+            projects = await projectLoader.loadAllProjects();
+            
+            // If no projects loaded, use fallback data
+            if (projects.length === 0) {
+                console.warn('No project files found, using fallback data');
+                projects = getFallbackProjects();
+            }
+            
+            console.log(`✅ Successfully loaded ${projects.length} projects:`, projects.map(p => `${p.title} (ID: ${p.id})`));
+            
+            // Initialize filters and render projects
+            console.log('Initializing filters...');
+            initializeFilters();
+            console.log('Applying filters...');
+            applyFilters();
+            console.log('Projects loaded and rendered successfully');
+            
+        } catch (error) {
+            console.error('❌ Error loading projects:', error);
+            projects = getFallbackProjects();
+            initializeFilters();
+            applyFilters();
+        }
+    }
+
+    // Fallback project data if no files are found
+    function getFallbackProjects() {
+        return [
+            {
+                id: 1,
+                title: "Portfolio (Interactive Web Portfolio)",
+                description: "A dynamic and multi-faceted web portfolio designed to comprehensively showcase diverse creative and technical work across Code, Writing, and Art.",
+                imageUrl: "https://via.placeholder.com/600x400/e0e5ec/31456A?text=Interactive+Portfolio",
+                medium: "code",
+                genre: ["Web Development", "Personal Branding", "UX/UI Design"],
+                style: ["Soft UI/Neumorphic", "Modern", "Professional"],
+                tech: ["HTML", "CSS", "JavaScript", "JSON", "Markdown"],
+                mood: "Innovative",
+                year: 2025,
+                role: "Lead Designer, Frontend Developer",
+                variant: "featured",
+                status: "live",
+                links: {
+                    live: "C:/Users/raycs/Documents/Projects/rswan-portfolio",
+                    github: "https://github.com/rayswan/rswan-portfolio",
+                    demo: "C:/Users/raycs/Documents/Projects/rswan-portfolio"
+                },
+                pitch: "A sophisticated, data-driven interactive web portfolio that transcends traditional showcases.",
+                challenge: "The primary challenge involved architecting a flexible and scalable system capable of dynamically presenting a large and diverse body of work.",
+                development: "The development process in 2025 was highly iterative, undergoing three major redesigns as the fundamental understanding shifted towards making the underlying data structure the most critical element.",
+                outcome: "The outcome is a highly organized, professional, and interactive portfolio that not only presents diverse projects but also actively demonstrates advanced information architecture."
+            }
+        ];
+    }
 
     // --- DOM ELEMENT REFERENCES ---
     const galleryView = document.getElementById('gallery-view');
@@ -1621,6 +1840,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearValueSpan = document.getElementById('year-value');
     const sidebar = document.querySelector('.filter-sidebar');
     const backToGalleryBtn = document.getElementById('back-to-gallery-btn');
+    
+    // Debug DOM element references
+    console.log('DOM element references:');
+    console.log('galleryView:', galleryView);
+    console.log('detailView:', detailView);
+    console.log('projectGrid:', projectGrid);
+    console.log('activeFiltersContainer:', activeFiltersContainer);
+    console.log('filterLists:', filterLists);
+    console.log('yearSlider:', yearSlider);
+    console.log('yearValueSpan:', yearValueSpan);
+    console.log('sidebar:', sidebar);
+    console.log('backToGalleryBtn:', backToGalleryBtn);
 
     // New DOM references for natural language search
     const naturalSearchInput = document.getElementById('natural-search-input');
@@ -1656,11 +1887,31 @@ document.addEventListener('DOMContentLoaded', () => {
         genre: [], 
         style: [], 
         mood: 'all', 
-        year: parseInt(yearSlider.value, 10), // Initialize with slider's default value
+        year: yearSlider ? parseInt(yearSlider.value, 10) : 2020, // Initialize with slider's default value
         tech: []
     };
 
     // --- HELPER FUNCTIONS FOR FILTER MANAGEMENT ---
+
+    /**
+     * Initializes the filter system with the loaded projects.
+     */
+    function initializeFilters() {
+        console.log('initializeFilters called with projects:', projects.length);
+        console.log('yearSlider:', yearSlider);
+        console.log('yearValueSpan:', yearValueSpan);
+        
+        // Set initial year value
+        if (yearSlider && yearValueSpan) {
+            activeFilters.year = parseInt(yearSlider.value, 10);
+            yearValueSpan.textContent = yearSlider.value;
+        } else {
+            console.warn('Year slider elements not found');
+        }
+        
+        // Initialize facets with all projects
+        renderFacets(projects);
+    }
 
     /**
      * Resets all filter values to their default states.
@@ -1717,6 +1968,14 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {Array<Object>} projectsToRender - The array of project objects to display.
      */
     function renderProjects(projectsToRender) {
+        console.log('renderProjects called with:', projectsToRender.length, 'projects');
+        console.log('projectGrid element:', projectGrid);
+        
+        if (!projectGrid) {
+            console.error('Project grid element not found');
+            return;
+        }
+        
         projectGrid.innerHTML = ''; // Clear existing projects
         if (projectsToRender.length === 0) {
             projectGrid.innerHTML = '<p style="text-align: center; color: var(--text-color);">No projects match the selected filters.</p>';
@@ -1857,10 +2116,18 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param {Array<Object>} availableProjects - Projects that currently match filters, used for counting.
      */
     function renderFacets(availableProjects) {
+        console.log('renderFacets called with availableProjects:', availableProjects.length);
+        console.log('filterLists:', filterLists);
+        
         // Determine the pool of projects to count against (all projects if medium is 'all', otherwise filtered by selected medium)
         const facetPool = activeFilters.medium === 'all' ? projects : projects.filter(p => p.medium === activeFilters.medium);
 
         // Render Medium filter
+        if (!filterLists.medium) {
+            console.warn('Medium filter list element not found');
+            return;
+        }
+        
         const mediumCounts = projects.reduce((acc, p) => ({ ...acc, [p.medium]: (acc[p.medium] || 0) + 1 }), { all: projects.length });
         filterLists.medium.innerHTML = ['all', 'code', 'art', 'writing'].map(m => `
             <li>
@@ -1875,6 +2142,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Render Genre, Style, and Tech filters (checkboxes)
         ['genre', 'style', 'tech'].forEach(type => {
+            if (!filterLists[type]) {
+                console.warn(`Filter list element not found for type: ${type}`);
+                return;
+            }
+            
             const counts = availableProjects.reduce((acc, p) => { 
                 (p[type] || []).forEach(v => { acc[v] = (acc[v] || 0) + 1; }); 
                 return acc; 
@@ -1899,6 +2171,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Render Mood filter (radio buttons)
+        if (!filterLists.mood) {
+            console.warn('Mood filter list element not found');
+            return;
+        }
+        
         const moodCounts = availableProjects.reduce((acc, p) => ({ ...acc, [p.mood]: (acc[p.mood] || 0) + 1 }), {});
         // Get all unique mood values from the facetPool, plus 'all' option
         const allMoods = ['all', ...[...new Set(facetPool.map(p => p.mood))].sort()];
@@ -1945,6 +2222,9 @@ document.addEventListener('DOMContentLoaded', () => {
      * Applies all active filters to the projects data and re-renders the UI.
      */
     function applyFilters() {
+        console.log('applyFilters called with projects:', projects.length);
+        console.log('activeFilters:', activeFilters);
+        
         const filteredProjects = projects.filter(p => 
             // Filter by medium (if 'all' is selected, this condition is always true)
             (activeFilters.medium === 'all' || p.medium === activeFilters.medium) &&
@@ -1959,6 +2239,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Filter by year (projects must be from or after the selected year)
             (p.year >= activeFilters.year)
         );
+        
+        console.log('Filtered projects:', filteredProjects.length);
         renderProjects(filteredProjects);
         renderActiveFilterPills();
         renderFacets(filteredProjects); // Re-render facets to update counts based on current filters
@@ -2146,10 +2428,29 @@ Provide the response as a JSON array. Each object in the array should have a 'la
      * @param {Event} e - The click event object.
      */
     function handleProjectClick(e) {
+        console.log('handleProjectClick called');
         const card = e.target.closest('.project-card'); // Find the closest project card element
+        console.log('Card element:', card);
+        
         if (card) {
             const projectId = parseInt(card.dataset.id, 10); // Get the project ID from data attribute
-            showDetailView(projectId);
+            console.log('Project ID:', projectId);
+            const project = projects.find(p => p.id === projectId);
+            console.log('Found project:', project);
+            
+            if (project) {
+                // Store the project data in sessionStorage for the detail page
+                const projectJson = JSON.stringify(project);
+                console.log('Storing project in sessionStorage:', projectJson);
+                sessionStorage.setItem('currentProject', projectJson);
+                // Navigate to the detail page
+                console.log('Navigating to ParallaxThemes.html');
+                window.location.href = 'ParallaxThemes.html';
+            } else {
+                console.error('Project not found for ID:', projectId);
+            }
+        } else {
+            console.log('No project card found');
         }
     }
 
@@ -2257,15 +2558,17 @@ Provide the response as a JSON array. Each object in the array should have a 'la
     }
     
     // Modal event listeners
-    openAboutBtn.addEventListener('click', () => openModal(aboutModal));
-    openContactBtn.addEventListener('click', () => openModal(contactModal));
-    closeButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const modalId = e.currentTarget.dataset.modalId;
-            const modal = document.getElementById(modalId);
-            closeModal(modal);
+    if (openAboutBtn) openAboutBtn.addEventListener('click', () => openModal(aboutModal));
+    if (openContactBtn) openContactBtn.addEventListener('click', () => openModal(contactModal));
+    if (closeButtons.length > 0) {
+        closeButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const modalId = e.currentTarget.dataset.modalId;
+                const modal = document.getElementById(modalId);
+                closeModal(modal);
+            });
         });
-    });
+    }
     window.addEventListener('click', (event) => {
         if (event.target.classList.contains('modal-overlay')) {
             closeModal(event.target);
@@ -2274,40 +2577,76 @@ Provide the response as a JSON array. Each object in the array should have a 'la
 
     // --- INITIALIZATION ---
     // Attach event listeners to filter sidebar, year slider, active filters container, and project grid.
-    sidebar.addEventListener('change', handleFilterChange);
-    yearSlider.addEventListener('input', (e) => { 
-        yearValueSpan.textContent = e.target.value; // Update year display as slider moves
-    });
-    yearSlider.addEventListener('change', handleFilterChange); // Apply filter when slider value is committed
-    activeFiltersContainer.addEventListener('click', handlePillRemove);
-    projectGrid.addEventListener('click', handleProjectClick);
-    backToGalleryBtn.addEventListener('click', showGalleryView);
+    if (sidebar) sidebar.addEventListener('change', handleFilterChange);
+    if (yearSlider) {
+        yearSlider.addEventListener('input', (e) => { 
+            yearValueSpan.textContent = e.target.value; // Update year display as slider moves
+        });
+        yearSlider.addEventListener('change', handleFilterChange); // Apply filter when slider value is committed
+    }
+    if (activeFiltersContainer) activeFiltersContainer.addEventListener('click', handlePillRemove);
+    if (projectGrid) projectGrid.addEventListener('click', handleProjectClick);
+    if (backToGalleryBtn) backToGalleryBtn.addEventListener('click', showGalleryView);
 
     // Attach event listeners for natural language search
-    naturalSearchButton.addEventListener('click', handleNaturalSearch);
-    naturalSearchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            handleNaturalSearch();
-        }
-    });
-    guidedResultsContainer.addEventListener('click', handleGuidedResultClick);
+    if (naturalSearchButton) naturalSearchButton.addEventListener('click', handleNaturalSearch);
+    if (naturalSearchInput) {
+        naturalSearchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleNaturalSearch();
+            }
+        });
+    }
+    if (guidedResultsContainer) guidedResultsContainer.addEventListener('click', handleGuidedResultClick);
     
     // Gallery event listeners
-    galleryPrevBtn.addEventListener('click', prevGalleryPage);
-    galleryNextBtn.addEventListener('click', nextGalleryPage);
+    if (galleryPrevBtn) galleryPrevBtn.addEventListener('click', prevGalleryPage);
+    if (galleryNextBtn) galleryNextBtn.addEventListener('click', nextGalleryPage);
     
     // Gallery button clicks (delegated)
-    projectGrid.addEventListener('click', (e) => {
-        if (e.target.classList.contains('gallery-btn')) {
-            e.stopPropagation(); // Prevent project card click
-            const projectId = parseInt(e.target.dataset.projectId, 10);
-            openGalleryModal(projectId);
-        }
-    });
+    if (projectGrid) {
+        projectGrid.addEventListener('click', (e) => {
+            if (e.target.classList.contains('gallery-btn')) {
+                e.stopPropagation(); // Prevent project card click
+                const projectId = parseInt(e.target.dataset.projectId, 10);
+                openGalleryModal(projectId);
+            }
+        });
+    }
 
 
-    // Initial render of projects and facets when the page loads.
-    applyFilters();
+    // Load projects and initialize the page
+    console.log('About to call loadProjects()');
+    loadProjects();
+    console.log('loadProjects() called');
+    
+    // Setup project card parallax effect
+    setupProjectCardParallax();
+    
+    // Mobile touch support for floating filter
+    const filterSidebar = document.querySelector('.filter-sidebar');
+    let touchTimeout;
+    
+    if (filterSidebar) {
+        filterSidebar.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.classList.add('hover');
+        });
+        
+        filterSidebar.addEventListener('touchend', function(e) {
+            touchTimeout = setTimeout(() => {
+                this.classList.remove('hover');
+            }, 3000); // Keep open for 3 seconds after touch
+        });
+        
+        // Close on touch outside
+        document.addEventListener('touchstart', function(e) {
+            if (!filterSidebar.contains(e.target)) {
+                filterSidebar.classList.remove('hover');
+                clearTimeout(touchTimeout);
+            }
+        });
+    }
 });
 </script>
 </body>
