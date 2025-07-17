@@ -388,27 +388,10 @@ function renderProjects(projectsToRender) {
         return;
     }
     
-    // Track performance
-    const startTime = performance.now();
-    
     projectsToRender.forEach(project => {
         const card = createProjectCard(project);
         projectGrid.appendChild(card);
     });
-    
-    // Initialize lazy loading for new images
-    if (lazyImageLoader) {
-        setTimeout(() => {
-            lazyImageLoader.observeImages();
-        }, 100);
-    }
-    
-    // Track performance metrics
-    if (performanceMonitor) {
-        performanceMonitor.trackProjectRender(projectsToRender.length);
-        const renderTime = performance.now() - startTime;
-        console.log(`⚡ Rendered ${projectsToRender.length} projects in ${Math.round(renderTime)}ms`);
-    }
     // After rendering, check for overflow and add 'truncated' class
     document.querySelectorAll('.card-description').forEach(desc => {
         // Remove class first in case of rerender
@@ -435,21 +418,8 @@ function createProjectCard(project) {
         `<button class="gallery-btn" data-project-id="${project.id}">View Gallery (${project.gallery.length})</button>` : '';
     const statusBadge = project.status ? `<div class="project-status status-${project.status}">${project.status}</div>` : '';
     
-    // Implement lazy loading for images
-    const imageElement = `
-        <div class="image-container">
-            <img class="lazy-image" 
-                 data-src="${project.imageUrl}" 
-                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='100%25' height='100%25' fill='%23e0e5ec'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%2331456A'%3ELoading...%3C/text%3E%3C/svg%3E"
-                 alt="${project.title}">
-            <div class="image-loading-indicator">
-                <div class="loading-spinner"></div>
-            </div>
-        </div>
-    `;
-    
     card.innerHTML = `
-        ${imageElement}
+        <img src="${project.imageUrl}" alt="${project.title}">
         <div class="project-card-content">
             <div class="card-header">
                 <h3>${project.title}</h3>
@@ -860,11 +830,6 @@ function handleFilterChange(e) {
     const type = e.target.name;
     const value = e.target.value;
 
-    // Track filter performance
-    if (performanceMonitor) {
-        performanceMonitor.trackFilterChange(type, value);
-    }
-
     if (type === 'medium' || type === 'mood') {
         activeFilters[type] = value;
         if (type === 'medium') {
@@ -925,19 +890,7 @@ async function handleNaturalSearch() {
         return;
     }
     
-    // Track search performance
-    if (performanceMonitor) {
-        performanceMonitor.trackSearch(query);
-    }
-    
-    const searchStartTime = performance.now();
     const suggestions = await callGeminiAPI(query);
-    
-    if (performanceMonitor) {
-        const searchTime = performance.now() - searchStartTime;
-        console.log(`🔍 Search completed in ${Math.round(searchTime)}ms for query: "${query}"`);
-    }
-    
     renderGuidedResults(suggestions);
 }
 
@@ -1124,249 +1077,10 @@ function showErrorMessage(message, type = 'error') {
     }, 10000);
 }
 
-// Performance Optimization Classes
-class LazyImageLoader {
-    constructor() {
-        this.imageObserver = null;
-        this.loadedImages = new Set();
-        this.init();
-    }
-    
-    init() {
-        // Create intersection observer for lazy loading
-        if ('IntersectionObserver' in window) {
-            this.imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        this.loadImage(entry.target);
-                        this.imageObserver.unobserve(entry.target);
-                    }
-                });
-            }, {
-                rootMargin: '50px 0px',
-                threshold: 0.1
-            });
-        }
-    }
-    
-    observeImages() {
-        const lazyImages = document.querySelectorAll('.lazy-image:not(.loaded)');
-        lazyImages.forEach(img => {
-            if (this.imageObserver) {
-                this.imageObserver.observe(img);
-            } else {
-                // Fallback for browsers without IntersectionObserver
-                this.loadImage(img);
-            }
-        });
-    }
-    
-    loadImage(img) {
-        if (this.loadedImages.has(img.dataset.src)) return;
-        
-        const container = img.parentElement;
-        const loadingIndicator = container.querySelector('.image-loading-indicator');
-        
-        if (loadingIndicator) {
-            loadingIndicator.style.display = 'flex';
-        }
-        
-        const imageLoader = new Image();
-        
-        imageLoader.onload = () => {
-            img.src = img.dataset.src;
-            img.classList.add('loaded');
-            this.loadedImages.add(img.dataset.src);
-            
-            if (loadingIndicator) {
-                loadingIndicator.style.display = 'none';
-            }
-            
-            // Trigger performance tracking
-            if (typeof performanceMonitor !== 'undefined') {
-                performanceMonitor.trackImageLoad(img.dataset.src);
-            }
-        };
-        
-        imageLoader.onerror = () => {
-            img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect width="100%" height="100%" fill="%23f8f8f8"/%3E%3Ctext x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23999"%3EImage not found%3C/text%3E%3C/svg%3E';
-            img.classList.add('error');
-            
-            if (loadingIndicator) {
-                loadingIndicator.style.display = 'none';
-            }
-        };
-        
-        imageLoader.src = img.dataset.src;
-    }
-}
-
-class PerformanceMonitor {
-    constructor() {
-        this.metrics = {
-            pageLoadTime: 0,
-            imagesLoaded: 0,
-            projectsRendered: 0,
-            searchQueries: 0,
-            filterChanges: 0,
-            lastActivity: Date.now()
-        };
-        this.init();
-    }
-    
-    init() {
-        // Track page load time
-        if (performance.timing) {
-            window.addEventListener('load', () => {
-                this.metrics.pageLoadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-                console.log(`📊 Page load time: ${this.metrics.pageLoadTime}ms`);
-            });
-        }
-        
-        // Track user activity
-        ['click', 'keydown', 'scroll', 'touchstart'].forEach(event => {
-            document.addEventListener(event, () => {
-                this.metrics.lastActivity = Date.now();
-            }, { passive: true });
-        });
-    }
-    
-    trackImageLoad(imageSrc) {
-        this.metrics.imagesLoaded++;
-        console.log(`🖼️ Image loaded: ${imageSrc} (Total: ${this.metrics.imagesLoaded})`);
-    }
-    
-    trackProjectRender(count) {
-        this.metrics.projectsRendered += count;
-        console.log(`📦 Projects rendered: ${count} (Total: ${this.metrics.projectsRendered})`);
-    }
-    
-    trackSearch(query) {
-        this.metrics.searchQueries++;
-        console.log(`🔍 Search performed: "${query}" (Total: ${this.metrics.searchQueries})`);
-    }
-    
-    trackFilterChange(filterType, value) {
-        this.metrics.filterChanges++;
-        console.log(`🔧 Filter changed: ${filterType} = ${value} (Total: ${this.metrics.filterChanges})`);
-    }
-    
-    getMetrics() {
-        return {
-            ...this.metrics,
-            sessionDuration: Date.now() - performance.timing.navigationStart,
-            timeSinceLastActivity: Date.now() - this.metrics.lastActivity
-        };
-    }
-    
-    generatePerformanceReport() {
-        const metrics = this.getMetrics();
-        return {
-            performance: {
-                pageLoadTime: `${metrics.pageLoadTime}ms`,
-                sessionDuration: `${Math.round(metrics.sessionDuration / 1000)}s`,
-                timeSinceLastActivity: `${Math.round(metrics.timeSinceLastActivity / 1000)}s`
-            },
-            usage: {
-                imagesLoaded: metrics.imagesLoaded,
-                projectsRendered: metrics.projectsRendered,
-                searchQueries: metrics.searchQueries,
-                filterChanges: metrics.filterChanges
-            },
-            memory: this.getMemoryInfo()
-        };
-    }
-    
-    getMemoryInfo() {
-        if (performance.memory) {
-            return {
-                used: `${Math.round(performance.memory.usedJSHeapSize / 1024 / 1024)}MB`,
-                total: `${Math.round(performance.memory.totalJSHeapSize / 1024 / 1024)}MB`,
-                limit: `${Math.round(performance.memory.jsHeapSizeLimit / 1024 / 1024)}MB`
-            };
-        }
-        return null;
-    }
-}
-
-class VirtualScrollManager {
-    constructor(container, itemHeight = 300, bufferSize = 5) {
-        this.container = container;
-        this.itemHeight = itemHeight;
-        this.bufferSize = bufferSize;
-        this.scrollTop = 0;
-        this.containerHeight = 0;
-        this.totalItems = 0;
-        this.visibleItems = [];
-        this.init();
-    }
-    
-    init() {
-        this.container.addEventListener('scroll', this.handleScroll.bind(this), { passive: true });
-        this.updateContainerHeight();
-        window.addEventListener('resize', this.updateContainerHeight.bind(this));
-    }
-    
-    updateContainerHeight() {
-        this.containerHeight = this.container.clientHeight;
-    }
-    
-    handleScroll() {
-        this.scrollTop = this.container.scrollTop;
-        this.updateVisibleItems();
-    }
-    
-    setItems(items) {
-        this.totalItems = items.length;
-        this.items = items;
-        this.updateVisibleItems();
-    }
-    
-    updateVisibleItems() {
-        const startIndex = Math.floor(this.scrollTop / this.itemHeight);
-        const endIndex = Math.min(
-            startIndex + Math.ceil(this.containerHeight / this.itemHeight) + this.bufferSize,
-            this.totalItems
-        );
-        
-        this.visibleItems = {
-            startIndex: Math.max(0, startIndex - this.bufferSize),
-            endIndex: endIndex,
-            items: this.items.slice(
-                Math.max(0, startIndex - this.bufferSize),
-                endIndex
-            )
-        };
-        
-        this.renderVisibleItems();
-    }
-    
-    renderVisibleItems() {
-        // This would be implemented based on specific needs
-        // For now, we'll use it for analytics
-        if (typeof performanceMonitor !== 'undefined') {
-            performanceMonitor.trackProjectRender(this.visibleItems.items.length);
-        }
-    }
-}
-
-// Initialize performance monitoring
-let lazyImageLoader;
-let performanceMonitor;
-let virtualScrollManager;
-
 // Enhanced initialization with error handling
 async function initializeApp() {
     try {
         console.log('🚀 Initializing portfolio application...');
-        
-        // Initialize performance monitoring
-        performanceMonitor = new PerformanceMonitor();
-        console.log('✅ Performance monitoring initialized');
-        
-        // Initialize lazy image loading
-        lazyImageLoader = new LazyImageLoader();
-        console.log('✅ Lazy image loading initialized');
         
         // Initialize markdown renderer first
         await initializeMarkdownRenderer();
@@ -1379,13 +1093,6 @@ async function initializeApp() {
         // Load projects with error handling
         await loadProjects();
         console.log('✅ Projects loaded successfully');
-        
-        // Initialize virtual scrolling for large project lists
-        const projectGrid = document.getElementById('project-grid');
-        if (projectGrid && projects.length > 20) {
-            virtualScrollManager = new VirtualScrollManager(projectGrid);
-            console.log('✅ Virtual scrolling initialized');
-        }
         
     } catch (error) {
         console.error('❌ Failed to initialize application:', error);
