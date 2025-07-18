@@ -4,7 +4,7 @@
   "description": "A dynamic and multi-faceted web portfolio.",
   "main": "index.js",
   "scripts": {
-    "serve": ""serve": "npx http-server -p 8080 -c-1",
+    "serve": "serve": "npx http-server -p 8080 -c-1",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
