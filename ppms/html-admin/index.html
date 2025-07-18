@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PPMS Dashboard - Portfolio Project Management System</title>
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/reconciliation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body id="ppms-dashboard">
@@ -51,6 +52,9 @@
             </button>
             <button class="nav-tab" data-tab="analytics">
                 <i class="fas fa-chart-bar"></i> Analytics
+            </button>
+            <button class="nav-tab" data-tab="reconciliation">
+                <i class="fas fa-sync-alt"></i> Data Sync
             </button>
         </div>
     </nav>
@@ -477,6 +481,14 @@
                     </button>
                 </div>
             </div>
+            <div class="analytics-data-source">
+                <p><i class="fas fa-info-circle"></i> 
+                   <strong>Data Sources:</strong> 
+                   <span class="data-source-real">Real project data</span> • 
+                   <span class="data-source-estimated">Estimated metrics</span> • 
+                   <span class="data-source-simulated">Simulated usage</span>
+                </p>
+            </div>
             
             <div class="analytics-container">
                 <!-- Performance Metrics -->
@@ -591,6 +603,131 @@
                                 <!-- System health will be rendered here -->
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reconciliation Tab -->
+        <div class="tab-content" id="reconciliation-tab">
+            <div class="reconciliation-header">
+                <h2><i class="fas fa-sync-alt"></i> Data Synchronization</h2>
+                <div class="reconciliation-actions">
+                    <button class="btn btn-primary" id="runReconciliationBtn">
+                        <i class="fas fa-search"></i> Analyze Data
+                    </button>
+                    <button class="btn btn-secondary" id="syncPortfolioBtn">
+                        <i class="fas fa-upload"></i> Sync to Portfolio
+                    </button>
+                    <button class="btn btn-info" id="viewFileManagerBtn">
+                        <i class="fas fa-folder-open"></i> File Manager
+                    </button>
+                </div>
+            </div>
+
+            <div class="reconciliation-container">
+                <!-- Sync Status -->
+                <div class="sync-status-section">
+                    <h3>Sync Status</h3>
+                    <div class="status-grid">
+                        <div class="status-card">
+                            <div class="status-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="status-info">
+                                <div class="status-label">PPMS Projects</div>
+                                <div class="status-value" id="ppmsProjectCount">--</div>
+                            </div>
+                        </div>
+                        
+                        <div class="status-card">
+                            <div class="status-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="status-info">
+                                <div class="status-label">Portfolio Projects</div>
+                                <div class="status-value" id="portfolioProjectCount">--</div>
+                            </div>
+                        </div>
+                        
+                        <div class="status-card">
+                            <div class="status-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="status-info">
+                                <div class="status-label">In Sync</div>
+                                <div class="status-value" id="syncStatus">--</div>
+                            </div>
+                        </div>
+                        
+                        <div class="status-card">
+                            <div class="status-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="status-info">
+                                <div class="status-label">Issues Found</div>
+                                <div class="status-value" id="issueCount">--</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reconciliation Results -->
+                <div class="reconciliation-results" id="reconciliationResults" style="display: none;">
+                    <h3>Analysis Results</h3>
+                    <div class="results-tabs">
+                        <button class="result-tab active" data-tab="summary">Summary</button>
+                        <button class="result-tab" data-tab="missing">Missing Projects</button>
+                        <button class="result-tab" data-tab="duplicates">Duplicates</button>
+                        <button class="result-tab" data-tab="format">Format Issues</button>
+                        <button class="result-tab" data-tab="recommendations">Recommendations</button>
+                    </div>
+                    
+                    <div class="result-content">
+                        <div class="result-panel active" id="summary-panel">
+                            <div class="summary-stats" id="summaryStats"></div>
+                        </div>
+                        
+                        <div class="result-panel" id="missing-panel">
+                            <div class="missing-projects" id="missingProjects"></div>
+                        </div>
+                        
+                        <div class="result-panel" id="duplicates-panel">
+                            <div class="duplicate-projects" id="duplicateProjects"></div>
+                        </div>
+                        
+                        <div class="result-panel" id="format-panel">
+                            <div class="format-issues" id="formatIssues"></div>
+                        </div>
+                        
+                        <div class="result-panel" id="recommendations-panel">
+                            <div class="recommendations" id="recommendations"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- File Manager Interface -->
+                <div class="file-manager-section" id="fileManagerSection" style="display: none;">
+                    <h3>Portfolio File Manager</h3>
+                    <div class="file-manager-controls">
+                        <button class="btn btn-primary" id="loadManifestBtn">
+                            <i class="fas fa-folder-open"></i> Load Manifest
+                        </button>
+                        <button class="btn btn-secondary" id="refreshProjectsBtn">
+                            <i class="fas fa-sync"></i> Refresh Projects
+                        </button>
+                        <button class="btn btn-info" id="exportToPortfolioBtn">
+                            <i class="fas fa-upload"></i> Export to Portfolio
+                        </button>
+                    </div>
+                    
+                    <div class="file-manager-status" id="fileManagerStatus">
+                        <div class="status-message">Click "Load Manifest" to start managing portfolio files</div>
+                    </div>
+                    
+                    <div class="file-manager-content" id="fileManagerContent" style="display: none;">
+                        <div class="manifest-info" id="manifestInfo"></div>
+                        <div class="project-list" id="fileManagerProjectList"></div>
                     </div>
                 </div>
             </div>
@@ -779,6 +916,41 @@
         </div>
     </div>
 
+    <!-- Gallery and Media Fields -->
+    <div class="form-section gallery-section">
+        <h3>Gallery & Media</h3>
+        <div class="form-content">
+                                <div class="form-group">
+                        <label for="projectGallery">Gallery Images</label>
+                        <small class="form-help">The first image will be used as the hero image for previews and portfolio display</small>
+                        <div class="gallery-input-container">
+                            <textarea id="projectGallery" name="gallery" rows="3" placeholder="Enter image URLs, one per line..."></textarea>
+                            <div class="gallery-preview" id="galleryPreview">
+                                <!-- Gallery preview will be shown here -->
+                            </div>
+                        </div>
+                        <div class="gallery-actions">
+                            <button type="button" class="btn btn-sm btn-secondary" id="addGalleryImageBtn">
+                                <i class="fas fa-plus"></i> Add Image URL
+                            </button>
+                            <button type="button" class="btn btn-sm btn-primary" onclick="dashboard.openImageUploadModal()">
+                                <i class="fas fa-upload"></i> Upload Images
+                            </button>
+                        </div>
+                    </div>
+
+            <div class="form-group">
+                <label for="projectMedia">Media Files</label>
+                <div class="media-input-container">
+                    <textarea id="projectMedia" name="media" rows="2" placeholder="Enter media file URLs (videos, PDFs, etc.), one per line..."></textarea>
+                </div>
+                <button type="button" class="btn btn-sm btn-secondary" id="addMediaFileBtn">
+                    <i class="fas fa-plus"></i> Add Media
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Notifications -->
     <div class="notifications" id="notifications"></div>
 
@@ -899,6 +1071,121 @@
         </div>
       </div>
     </div>
+    <!-- Bulk Actions Modal -->
+    <div class="modal" id="bulkActionsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Bulk Actions</h3>
+                <button class="modal-close" id="closeBulkActionsModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="bulk-actions-header">
+                    <div class="bulk-selection-controls">
+                        <button class="btn btn-sm btn-secondary" id="selectAllProjects">
+                            <i class="fas fa-check-square"></i> Select All
+                        </button>
+                        <button class="btn btn-sm btn-secondary" id="selectNoneProjects">
+                            <i class="fas fa-square"></i> Select None
+                        </button>
+                    </div>
+                    <div class="bulk-actions-info">
+                        <span id="selectedCount">0</span> projects selected
+                    </div>
+                </div>
+                
+                <div class="bulk-project-list" id="bulkProjectList">
+                    <!-- Projects will be loaded here -->
+                </div>
+                
+                <div class="bulk-actions-toolbar">
+                    <button class="btn btn-primary" id="bulkUpdateStatus">
+                        <i class="fas fa-edit"></i> Update Status
+                    </button>
+                    <button class="btn btn-primary" id="bulkAddTechnology">
+                        <i class="fas fa-tags"></i> Add Technology
+                    </button>
+                    <button class="btn btn-secondary" id="bulkExport">
+                        <i class="fas fa-download"></i> Export Selected
+                    </button>
+                    <button class="btn btn-danger" id="bulkDelete">
+                        <i class="fas fa-trash"></i> Delete Selected
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates Modal -->
+    <div class="modal" id="templateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Project Templates</h3>
+                <button class="modal-close" id="closeTemplateModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="template-actions">
+                    <button class="btn btn-primary" id="createTemplateBtn">
+                        <i class="fas fa-plus"></i> Create Template
+                    </button>
+                    <button class="btn btn-secondary" id="importTemplateBtn">
+                        <i class="fas fa-upload"></i> Import Template
+                    </button>
+                </div>
+                
+                <div class="template-list" id="templateList">
+                    <!-- Templates will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Template Modal -->
+    <div class="modal" id="createTemplateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Template</h3>
+                <button class="modal-close" id="closeCreateTemplateModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="templateForm">
+                    <div class="form-group">
+                        <label for="templateName">Template Name</label>
+                        <input type="text" id="templateName" name="name" required placeholder="Enter template name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="templateDescription">Description</label>
+                        <textarea id="templateDescription" name="description" rows="3" placeholder="Describe this template..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="templateCategory">Category</label>
+                        <select id="templateCategory" name="category" required>
+                            <option value="">Select category</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="design">Design</option>
+                            <option value="writing">Writing</option>
+                            <option value="art">Art</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="templateBaseProject">Base on Existing Project (Optional)</label>
+                        <select id="templateBaseProject" name="baseProject">
+                            <option value="">Create from scratch</option>
+                            <!-- Project options will be loaded here -->
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelCreateTemplate">Cancel</button>
+                <button class="btn btn-primary" type="submit" form="templateForm">Create Template</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Journey Modal -->
     <div class="modal" id="journeyModal">
       <div class="modal-content">
@@ -1006,5 +1293,7 @@
     </div>
 
     <script src="js/admin.js"></script>
+    <script src="js/data-reconciliation.js"></script>
+    <script src="js/portfolio-file-manager.js"></script>
 </body>
 </html> 

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPMS Integration Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #1a1a1a;
+            color: #e0e5ec;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .test-result {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
+        }
+        .test-result.success {
+            border-left-color: #28a745;
+        }
+        .test-result.error {
+            border-left-color: #dc3545;
+        }
+        .test-result.warning {
+            border-left-color: #ffc107;
+        }
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-indicator.success { background: #28a745; }
+        .status-indicator.error { background: #dc3545; }
+        .status-indicator.warning { background: #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔧 PPMS Integration Test</h1>
+        <p>Testing the foundation components for PPMS direct integration with portfolio site.</p>
+
+        <div class="test-section">
+            <h2>📊 Data Reconciliation Test</h2>
+            <p>Test the data reconciliation system to identify differences between PPMS and portfolio data.</p>
+            <button class="test-button" onclick="runReconciliationTest()">
+                Run Reconciliation Test
+            </button>
+            <div id="reconciliation-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📁 Portfolio File Manager Test</h2>
+            <p>Test the portfolio file manager to read portfolio data directly.</p>
+            <button class="test-button" onclick="runFileManagerTest()">
+                Test File Manager
+            </button>
+            <div id="file-manager-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔄 Integration Status</h2>
+            <div id="integration-status">
+                <p>Click the test buttons above to check integration status.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="html-admin/js/data-reconciliation.js"></script>
+    <script src="html-admin/js/portfolio-file-manager.js"></script>
+    <script>
+        let testResults = {
+            reconciliation: false,
+            fileManager: false
+        };
+
+        function updateIntegrationStatus() {
+            const statusDiv = document.getElementById('integration-status');
+            const allPassed = Object.values(testResults).every(result => result);
+            
+            statusDiv.innerHTML = `
+                <div class="test-result ${allPassed ? 'success' : 'warning'}">
+                    <h3>Integration Status</h3>
+                    <p><span class="status-indicator ${testResults.reconciliation ? 'success' : 'error'}"></span>
+                       Data Reconciliation: ${testResults.reconciliation ? 'PASSED' : 'FAILED'}</p>
+                    <p><span class="status-indicator ${testResults.fileManager ? 'success' : 'error'}"></span>
+                       File Manager: ${testResults.fileManager ? 'PASSED' : 'FAILED'}</p>
+                    <p><strong>Overall Status: ${allPassed ? 'READY FOR INTEGRATION' : 'NEEDS FIXES'}</strong></p>
+                </div>
+            `;
+        }
+
+        async function runReconciliationTest() {
+            const resultDiv = document.getElementById('reconciliation-result');
+            resultDiv.innerHTML = '<div class="test-result">Running reconciliation test...</div>';
+
+            try {
+                const reconciliation = new DataReconciliation();
+                const report = await reconciliation.performFullReconciliation();
+                
+                testResults.reconciliation = true;
+                
+                resultDiv.innerHTML = `
+                    <div class="test-result success">
+                        <h3>✅ Reconciliation Test Passed</h3>
+                        <p><strong>Portfolio Projects:</strong> ${report.summary.portfolioProjects}</p>
+                        <p><strong>PPMS Projects:</strong> ${report.summary.ppmsProjects}</p>
+                        <p><strong>Sync Status:</strong> ${report.summary.syncStatus}</p>
+                        <p><strong>Issues Found:</strong> ${report.summary.issuesFound}</p>
+                        
+                        ${report.details.missingInPPMS.length > 0 ? `
+                            <h4>Missing in PPMS:</h4>
+                            <ul>
+                                ${report.details.missingInPPMS.map(p => `<li>${p.title}</li>`).join('')}
+                            </ul>
+                        ` : ''}
+                        
+                        ${report.details.missingInPortfolio.length > 0 ? `
+                            <h4>Missing in Portfolio:</h4>
+                            <ul>
+                                ${report.details.missingInPortfolio.map(p => `<li>${p.title}</li>`).join('')}
+                            </ul>
+                        ` : ''}
+                    </div>
+                `;
+                
+            } catch (error) {
+                testResults.reconciliation = false;
+                resultDiv.innerHTML = `
+                    <div class="test-result error">
+                        <h3>❌ Reconciliation Test Failed</h3>
+                        <p>Error: ${error.message}</p>
+                        <pre>${error.stack}</pre>
+                    </div>
+                `;
+            }
+            
+            updateIntegrationStatus();
+        }
+
+        async function runFileManagerTest() {
+            const resultDiv = document.getElementById('file-manager-result');
+            resultDiv.innerHTML = '<div class="test-result">Running file manager test...</div>';
+
+            try {
+                const fileManager = new PortfolioFileManager();
+                const initialized = await fileManager.initialize();
+                
+                if (!initialized) {
+                    throw new Error('Failed to initialize file manager');
+                }
+                
+                // Test loading manifest
+                const manifest = await fileManager.loadManifest();
+                
+                // Test loading projects
+                const projects = await fileManager.loadAllProjects();
+                
+                // Test getting stats
+                const stats = await fileManager.getProjectStats();
+                
+                testResults.fileManager = true;
+                
+                resultDiv.innerHTML = `
+                    <div class="test-result success">
+                        <h3>✅ File Manager Test Passed</h3>
+                        <p><strong>Manifest Projects:</strong> ${manifest.projects.length}</p>
+                        <p><strong>Loaded Projects:</strong> ${projects.length}</p>
+                        <p><strong>Total Projects:</strong> ${stats.totalProjects}</p>
+                        
+                        <h4>Projects by Medium:</h4>
+                        <ul>
+                            ${Object.entries(stats.byMedium).map(([medium, count]) => 
+                                `<li>${medium}: ${count}</li>`
+                            ).join('')}
+                        </ul>
+                        
+                        <h4>Projects by Status:</h4>
+                        <ul>
+                            ${Object.entries(stats.byStatus).map(([status, count]) => 
+                                `<li>${status}: ${count}</li>`
+                            ).join('')}
+                        </ul>
+                    </div>
+                `;
+                
+            } catch (error) {
+                testResults.fileManager = false;
+                resultDiv.innerHTML = `
+                    <div class="test-result error">
+                        <h3>❌ File Manager Test Failed</h3>
+                        <p>Error: ${error.message}</p>
+                        <pre>${error.stack}</pre>
+                    </div>
+                `;
+            }
+            
+            updateIntegrationStatus();
+        }
+
+        // Auto-run tests when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                runReconciliationTest();
+                setTimeout(() => {
+                    runFileManagerTest();
+                }, 1000);
+            }, 500);
+        });
+    </script>
+</body>
+</html> 

@@ -448,12 +448,113 @@
     box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
 }
 
+/* Enhanced Error States */
 .markdown-error {
     color: var(--accent-tertiary);
     background: rgba(245, 87, 108, 0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-tertiary);
+    margin: 1rem 0;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.markdown-error h3 {
+    color: var(--accent-tertiary);
+    margin: 0 0 1rem 0;
+    font-size: 1.2rem;
+}
+
+.markdown-error p {
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+}
+
+.markdown-error details {
+    margin: 1rem 0;
+}
+
+.markdown-error summary {
+    cursor: pointer;
+    color: var(--accent-tertiary);
+    font-weight: 500;
+    padding: 0.5rem 0;
+}
+
+.markdown-error pre {
+    background: rgba(0, 0, 0, 0.1);
     padding: 1rem;
     border-radius: 8px;
-    border-left: 4px solid var(--accent-tertiary);
+    font-size: 0.9rem;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+}
+
+.markdown-error button {
+    background: var(--accent-tertiary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.markdown-error button:hover {
+    background: var(--accent-tertiary-hover);
+}
+
+/* Error states for specific elements */
+.markdown-image-error,
+.markdown-link-error,
+.markdown-html-error {
+    display: inline-block;
+    background: rgba(245, 87, 108, 0.1);
+    color: var(--accent-tertiary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(245, 87, 108, 0.3);
+}
+
+/* Fallback content styling */
+.markdown-content .fallback-content {
+    background: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #ffc107;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.markdown-content .fallback-content::before {
+    content: "⚠️ Fallback rendering used";
+    display: block;
+    font-weight: 600;
+    color: #856404;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Loading state improvements */
+.markdown-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: var(--text-color-light);
+    font-style: italic;
+}
+
+.markdown-loading::before {
+    content: "⏳";
+    margin-right: 0.5rem;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* --- RESPONSIVE DESIGN --- */

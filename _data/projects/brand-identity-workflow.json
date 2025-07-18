@@ -1,5 +1,5 @@
 {
-  "id": 3,
+  "id": 1050,
   "title": "Brand Identity Management Workflow",
   "description": "A comprehensive AI-powered system for automating brand identity creation and marketing campaign development using multi-agent orchestration.",
   "imageUrl": "images/dashboard.jpg",
@@ -76,7 +76,8 @@
   "specs": [
     {
       "title": "Architecture",
-      "description": "Hierarchical multi-agent system with manager agents coordinating specialized worker agents for brand identity and marketing tasks"
+      "description": "Hierarchical multi-agent system with manager agents coordinating specialized worker agents for brand identity and marketing tasks",
+      "markdown": "# System Architecture\n\n## Overview\nThe Brand Identity Management Workflow uses a **hierarchical multi-agent system** where manager agents coordinate specialized worker agents.\n\n## Agent Hierarchy\n\n### Manager Agents\n- **Brand Identity Coordinator**: Orchestrates the entire brand creation process\n- **Marketing Strategy Coordinator**: Manages marketing campaign development\n\n### Worker Agents\n- **Logo Designer**: Creates logo concepts and variations\n- **Color Specialist**: Develops color palettes and schemes\n- **Style Guide Creator**: Generates comprehensive style guides\n- **Social Media Strategist**: Plans social media campaigns\n- **Email Marketer**: Designs email marketing sequences\n- **Video Producer**: Creates video content strategies\n\n## Data Flow\n```mermaid\ngraph TD\n    A[User Input] --> B[Brand Coordinator]\n    B --> C[Logo Designer]\n    B --> D[Color Specialist]\n    B --> E[Style Guide Creator]\n    B --> F[Marketing Coordinator]\n    F --> G[Social Media Strategist]\n    F --> H[Email Marketer]\n    F --> I[Video Producer]\n```\n\n## Benefits\n- **Scalable**: Easy to add new agent types\n- **Modular**: Each agent has a specific responsibility\n- **Reliable**: Structured data validation at each step"
     },
     {
       "title": "Technology Stack",
@@ -97,6 +98,56 @@
     {
       "title": "Cost Efficiency",
       "description": "~$0.02-0.05 per brand identity generation, with comprehensive outputs including logos, color palettes, style guides, and marketing strategies"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "README.md",
+      "description": "Comprehensive overview of the multi-agent system architecture and data flows",
+      "url": "_data/projects/README.md",
+      "icon": "🏗️"
+    },
+    {
+      "name": "API Specification",
+      "description": "Detailed FastAPI endpoint documentation for backend integration",
+      "url": "docs/brand-workflow-api-spec.pdf",
+      "icon": "🔗"
+    },
+    {
+      "name": "Agent Workflow Diagrams",
+      "description": "Visual breakdown of how different AI agents interact to generate content",
+      "url": "docs/agent-workflow-diagrams.pdf",
+      "icon": "🗺️"
+    },
+    {
+      "name": "Pydantic Data Models",
+      "description": "Complete data model definitions for structured outputs",
+      "url": "docs/pydantic-models.py",
+      "icon": "📊"
+    },
+    {
+      "name": "Deployment Guide",
+      "description": "Step-by-step instructions for deploying the system",
+      "url": "docs/deployment-guide.md",
+      "icon": "🚀"
+    },
+    {
+      "name": "Technical Specifications",
+      "description": "Detailed technical specifications and implementation details",
+      "url": "docs/technical-specs.md",
+      "icon": "📋"
+    },
+    {
+      "name": "Functional Requirements",
+      "description": "Complete functional requirements and user stories",
+      "url": "docs/functional-requirements.md",
+      "icon": "📝"
+    },
+    {
+      "name": "Usage Examples",
+      "description": "Practical examples and code snippets for implementation",
+      "url": "docs/usage-examples.zip",
+      "icon": "💡"
     }
   ],
   "features": [

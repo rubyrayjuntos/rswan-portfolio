@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Data Synchronization</title>
+    <link rel="stylesheet" href="html-admin/css/admin.css">
+    <link rel="stylesheet" href="html-admin/css/reconciliation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: #e0e5ec; }
+        .container { max-width: 900px; margin: 2rem auto; background: #fff; border-radius: 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); padding: 2.5rem; }
+        .header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+        .header h1 { font-size: 2rem; color: #31456A; margin: 0; }
+        .header .fa-sync-alt { color: #5a67d8; font-size: 2.2rem; }
+        .stats-row { display: flex; gap: 2rem; margin-bottom: 1.5rem; }
+        .stat-card { flex: 1; background: #e0e5ec; border-radius: 12px; padding: 1.2rem; text-align: center; box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #fff; }
+        .stat-label { color: #6D82A2; font-size: 1rem; margin-bottom: 0.3rem; }
+        .stat-value { color: #31456A; font-size: 2rem; font-weight: 700; }
+        .actions { margin-bottom: 1.5rem; }
+        .actions button { margin-right: 1rem; }
+        .sync-status { margin-bottom: 1.5rem; }
+        .sync-status .status-label { font-weight: 600; color: #31456A; }
+        .sync-status .status-value { font-size: 1.1rem; margin-left: 0.5rem; }
+        .sync-status .success { color: #10b981; }
+        .sync-status .warning { color: #f59e1a; }
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+        .tab-btn { background: #e0e5ec; border: none; border-radius: 8px 8px 0 0; padding: 0.7rem 1.5rem; font-weight: 600; color: #31456A; cursor: pointer; box-shadow: 2px 2px 6px #a3b1c6, -2px -2px 6px #fff; }
+        .tab-btn.active { background: #fff; color: #5a67d8; border-bottom: 2px solid #5a67d8; }
+        .tab-panel { display: none; background: #fff; border-radius: 0 0 12px 12px; box-shadow: 2px 2px 6px #a3b1c6, -2px -2px 6px #fff; padding: 1.5rem; }
+        .tab-panel.active { display: block; }
+        .file-manager-section { display: none; margin-top: 2rem; background: #f8fafc; border-radius: 12px; padding: 1.5rem; }
+        .file-manager-controls { margin-bottom: 1rem; }
+        .file-manager-controls button { margin-right: 1rem; }
+        .status-message { color: #6D82A2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <i class="fas fa-sync-alt"></i>
+            <h1>Portfolio Data Synchronization</h1>
+        </div>
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-label">PPMS Projects</div>
+                <div class="stat-value" id="ppmsProjectCount">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Portfolio Projects</div>
+                <div class="stat-value" id="portfolioProjectCount">--</div>
+            </div>
+        </div>
+        <div class="actions">
+            <button class="btn btn-primary" id="analyzeBtn"><i class="fas fa-search"></i> Analyze Data</button>
+            <button class="btn btn-secondary" id="toggleFileManagerBtn"><i class="fas fa-folder-open"></i> File Manager</button>
+        </div>
+        <div class="sync-status">
+            <span class="status-label">Sync Status:</span>
+            <span class="status-value" id="syncStatus">--</span>
+            <span class="status-label">Issues:</span>
+            <span class="status-value" id="issueCount">--</span>
+        </div>
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="summary">Summary</button>
+            <button class="tab-btn" data-tab="missing">Missing Projects</button>
+            <button class="tab-btn" data-tab="duplicates">Duplicates</button>
+            <button class="tab-btn" data-tab="format">Format Issues</button>
+            <button class="tab-btn" data-tab="recommendations">Recommendations</button>
+        </div>
+        <div class="tab-panel active" id="summary-panel">
+            <div id="summaryStats"></div>
+        </div>
+        <div class="tab-panel" id="missing-panel">
+            <div id="missingProjects"></div>
+        </div>
+        <div class="tab-panel" id="duplicates-panel">
+            <div id="duplicateProjects"></div>
+        </div>
+        <div class="tab-panel" id="format-panel">
+            <div id="formatIssues"></div>
+        </div>
+        <div class="tab-panel" id="recommendations-panel">
+            <div id="recommendations"></div>
+        </div>
+        <div class="file-manager-section" id="fileManagerSection">
+            <h3>Portfolio File Manager</h3>
+            <div class="file-manager-controls">
+                <button class="btn btn-primary" id="loadManifestBtn"><i class="fas fa-folder-open"></i> Load Manifest</button>
+                <button class="btn btn-secondary" id="refreshProjectsBtn"><i class="fas fa-sync"></i> Refresh Projects</button>
+                <button class="btn btn-info" id="exportToPortfolioBtn"><i class="fas fa-upload"></i> Export to Portfolio</button>
+            </div>
+            <div class="status-message" id="fileManagerStatus">Click "Load Manifest" to start managing portfolio files</div>
+            <div id="fileManagerContent" style="display:none;">
+                <div id="manifestInfo"></div>
+                <div id="fileManagerProjectList"></div>
+            </div>
+        </div>
+    </div>
+    <script src="html-admin/js/data-reconciliation.js"></script>
+    <script src="html-admin/js/portfolio-file-manager.js"></script>
+    <script>
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(btn.dataset.tab + '-panel').classList.add('active');
+        });
+    });
+    // File Manager toggle
+    document.getElementById('toggleFileManagerBtn').addEventListener('click', function() {
+        const fm = document.getElementById('fileManagerSection');
+        fm.style.display = fm.style.display === 'block' ? 'none' : 'block';
+    });
+    // File Manager controls
+    document.getElementById('loadManifestBtn').addEventListener('click', async function() {
+        if (typeof PortfolioFileManager === 'undefined') return alert('PortfolioFileManager not loaded');
+        const fm = new PortfolioFileManager();
+        const manifest = await fm.loadManifest();
+        document.getElementById('manifestInfo').innerHTML = `<div><strong>Total Projects:</strong> ${manifest.projects.length}</div><div><strong>Last Updated:</strong> ${manifest.last_updated || 'Unknown'}</div>`;
+        document.getElementById('fileManagerContent').style.display = 'block';
+        document.getElementById('fileManagerStatus').style.display = 'none';
+        document.getElementById('fileManagerProjectList').innerHTML = manifest.projects.map(p => `<div><strong>${p.title || p.id}</strong> <span style='color:#6D82A2'>(File: ${p.file})</span></div>`).join('');
+    });
+    document.getElementById('refreshProjectsBtn').addEventListener('click', function() {
+        document.getElementById('loadManifestBtn').click();
+    });
+    document.getElementById('exportToPortfolioBtn').addEventListener('click', function() {
+        alert('Export to Portfolio not implemented in this demo.');
+    });
+    // Analyze Data
+    document.getElementById('analyzeBtn').addEventListener('click', async function() {
+        if (typeof DataReconciliation === 'undefined') return alert('DataReconciliation not loaded');
+        const reconciliation = new DataReconciliation();
+        const report = await reconciliation.performFullReconciliation();
+        // Update stats
+        document.getElementById('ppmsProjectCount').textContent = report.summary.ppmsProjects;
+        document.getElementById('portfolioProjectCount').textContent = report.summary.portfolioProjects;
+        const totalIssues = report.summary.missingProjects + report.summary.duplicateProjects + report.summary.formatIssues;
+        document.getElementById('issueCount').textContent = totalIssues;
+        const syncStatus = document.getElementById('syncStatus');
+        if (totalIssues === 0) {
+            syncStatus.textContent = '✓ In Sync';
+            syncStatus.className = 'status-value success';
+        } else {
+            syncStatus.textContent = '⚠ Needs Sync';
+            syncStatus.className = 'status-value warning';
+        }
+        // Summary
+        document.getElementById('summaryStats').innerHTML = `
+            <div><strong>Total Projects Analyzed:</strong> ${report.summary.totalProjects}</div>
+            <div><strong>PPMS Projects:</strong> ${report.summary.ppmsProjects}</div>
+            <div><strong>Portfolio Projects:</strong> ${report.summary.portfolioProjects}</div>
+            <div><strong>Missing Projects:</strong> <span style='color:#f59e1a'>${report.summary.missingProjects}</span></div>
+            <div><strong>Duplicate Projects:</strong> <span style='color:#f59e1a'>${report.summary.duplicateProjects}</span></div>
+            <div><strong>Format Issues:</strong> <span style='color:#f59e1a'>${report.summary.formatIssues}</span></div>
+        `;
+        // Missing
+        document.getElementById('missingProjects').innerHTML = report.missingProjects.length === 0 ? '<div>No missing projects found.</div>' : report.missingProjects.map(p => `<div><strong>${p.title || p.id}</strong>: ${p.description || ''}</div>`).join('');
+        // Duplicates
+        document.getElementById('duplicateProjects').innerHTML = report.duplicateProjects.length === 0 ? '<div>No duplicate projects found.</div>' : report.duplicateProjects.map(group => `<div><strong>Group (${group.length}):</strong> ${group.map(p => p.title || p.id).join(', ')}</div>`).join('');
+        // Format Issues
+        document.getElementById('formatIssues').innerHTML = report.formatIssues.length === 0 ? '<div>No format issues found.</div>' : report.formatIssues.map(issue => `<div><strong>${issue.projectTitle || issue.projectId}</strong>: ${issue.description} <em>(${issue.field})</em></div>`).join('');
+        // Recommendations
+        document.getElementById('recommendations').innerHTML = report.recommendations.length === 0 ? '<div>No recommendations.</div>' : report.recommendations.map(rec => `<div><strong>${rec.title}</strong>: ${rec.description} <em>[${rec.priority}]</em></div>`).join('');
+    });
+    </script>
+</body>
+</html> 

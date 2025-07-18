@@ -1,0 +1,540 @@
+import React, { useState, useRef, useEffect } from 'react';
+
+const ImageViewer = () => {
+  const [activeHotspot, setActiveHotspot] = useState(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [animatedElements, setAnimatedElements] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({ title: '', message: '' });
+  const imageRef = useRef(null);
+
+  // Sample images with different hotspot configurations
+  const images = [
+    {
+      id: 1,
+      url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop",
+      title: "Mountain Landscape",
+      hotspots: [
+        {
+          id: 1,
+          x: 25,
+          y: 30,
+          title: "Ancient Architecture",
+          description: "Explore the historic stonework",
+          animation: "pulse",
+          color: "#3b82f6"
+        },
+        {
+          id: 2,
+          x: 65,
+          y: 20,
+          title: "Mountain Peak",
+          description: "Majestic summit view",
+          animation: "bounce",
+          color: "#10b981"
+        },
+        {
+          id: 3,
+          x: 80,
+          y: 60,
+          title: "Forest Canopy",
+          description: "Dense woodland area",
+          animation: "shake",
+          color: "#f59e0b"
+        }
+      ]
+    },
+    {
+      id: 2,
+      url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=800&fit=crop",
+      title: "Forest Path",
+      hotspots: [
+        {
+          id: 1,
+          x: 30,
+          y: 40,
+          title: "Hidden Creature",
+          description: "A magical being emerges from the shadows",
+          animation: "gif-transform",
+          color: "#8b5cf6",
+          staticImage: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=150&h=150&fit=crop",
+          animatedGif: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif"
+        },
+        {
+          id: 2,
+          x: 70,
+          y: 25,
+          title: "Floating Orb",
+          description: "Mysterious energy sphere",
+          animation: "morph",
+          color: "#ec4899"
+        },
+        {
+          id: 3,
+          x: 15,
+          y: 70,
+          title: "Walking Shadow",
+          description: "Watch as the shadow comes alive",
+          animation: "walkout",
+          color: "#06b6d4",
+          walkoutButton: true
+        }
+      ]
+    },
+    {
+      id: 3,
+      url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop",
+      title: "Enchanted Castle",
+      hotspots: [
+        {
+          id: 1,
+          x: 50,
+          y: 45,
+          title: "Castle Door",
+          description: "The door creaks open revealing mysteries within",
+          animation: "door-open",
+          color: "#f97316"
+        },
+        {
+          id: 2,
+          x: 25,
+          y: 60,
+          title: "Garden Sprite",
+          description: "A tiny fairy dances in the moonlight",
+          animation: "sprite-dance",
+          color: "#84cc16"
+        }
+      ]
+    }
+  ];
+
+  const currentImage = images[currentImageIndex];
+
+  // Function to show the custom modal
+  const openModal = (title, message) => {
+    setModalContent({ title, message });
+    setShowModal(true);
+  };
+
+  // Function to close the custom modal
+  const closeModal = () => {
+    setShowModal(false);
+    setModalContent({ title: '', message: '' });
+  };
+
+  const handleHotspotEnter = (hotspot) => {
+    setActiveHotspot(hotspot);
+
+    // Trigger special animations based on type
+    if (hotspot.animation === 'gif-transform' || hotspot.animation === 'walkout' || hotspot.animation === 'door-open' || hotspot.animation === 'sprite-dance') {
+      setAnimatedElements(prev => ({
+        ...prev,
+        [hotspot.id]: { type: hotspot.animation, active: true }
+      }));
+    }
+  };
+
+  const handleHotspotLeave = (hotspot) => {
+    setActiveHotspot(null);
+
+    // Reset animations after delay
+    // This timeout ensures the animation plays out before the element potentially disappears
+    setTimeout(() => {
+      setAnimatedElements(prev => ({
+        ...prev,
+        [hotspot.id]: { ...prev[hotspot.id], active: false }
+      }));
+    }, 500); // Adjust this delay based on your animation durations
+  };
+
+  const handleImageChange = (index) => {
+    setImageLoaded(false); // Set imageLoaded to false to show loading spinner
+    setCurrentImageIndex(index); // Update the current image index
+    setAnimatedElements({}); // Clear any active special animations
+    setActiveHotspot(null); // Clear active hotspot and its tooltip
+  };
+
+  const renderSpecialHotspot = (hotspot) => {
+    const element = animatedElements[hotspot.id];
+
+    // GIF Transform Animation
+    if (hotspot.animation === 'gif-transform' && element?.active) {
+      return (
+        <div
+          className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 z-30"
+          style={{
+            left: `${hotspot.x}%`,
+            top: `${hotspot.y}%`,
+          }}
+        >
+          <div className="relative">
+            <img
+              src={hotspot.animatedGif}
+              alt="Animated character"
+              className="w-24 h-24 rounded-full border-4 border-white shadow-lg animate-bounce"
+              style={{
+                filter: 'drop-shadow(0 0 15px rgba(139, 92, 246, 0.8))'
+              }}
+              // Fallback for image loading errors
+              onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/150x150/8b5cf6/ffffff?text=GIF+Error"; }}
+            />
+            <div className="absolute -top-2 -right-2 w-6 h-6 bg-purple-500 rounded-full animate-ping"></div>
+          </div>
+        </div>
+      );
+    }
+
+    // Walkout Animation
+    if (hotspot.animation === 'walkout' && element?.active) {
+      return (
+        <div
+          className="absolute transform -translate-x-1/2 -translate-y-1/2 z-30"
+          style={{
+            left: `${hotspot.x}%`,
+            top: `${hotspot.y}%`,
+          }}
+        >
+          <div className="relative">
+            {/* Walking shadow figure */}
+            <div
+              className="w-16 h-20 bg-gradient-to-b from-gray-700 to-gray-900 rounded-full opacity-80 transition-all duration-1000 transform"
+              style={{
+                clipPath: 'polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%)',
+                animation: 'walkOut 2s ease-out forwards'
+              }}
+            />
+
+            {/* Emerging button - now uses custom modal */}
+            <button
+              className="absolute top-0 left-8 bg-cyan-500 hover:bg-cyan-400 text-white px-4 py-2 rounded-lg shadow-lg transform transition-all duration-500 opacity-0"
+              style={{
+                animation: 'emergeButton 2s ease-out 1s forwards'
+              }}
+              onClick={() => openModal('Shadow Guide', 'The shadow figure invites you to follow its path into the unknown!')}
+            >
+              Follow Me
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    // Door Open Animation
+    if (hotspot.animation === 'door-open' && element?.active) {
+      return (
+        <div
+          className="absolute transform -translate-x-1/2 -translate-y-1/2 z-30"
+          style={{
+            left: `${hotspot.x}%`,
+            top: `${hotspot.y}%`,
+          }}
+        >
+          <div className="relative w-24 h-32 bg-gray-700 rounded-lg overflow-hidden border-2 border-gray-500">
+            {/* Left Door */}
+            <div
+              className="absolute inset-y-0 left-0 w-1/2 bg-amber-800 transform origin-left transition-transform duration-1000"
+              style={{ animation: 'doorOpenLeft 1s forwards' }}
+            ></div>
+            {/* Right Door */}
+            <div
+              className="absolute inset-y-0 right-0 w-1/2 bg-amber-800 transform origin-right transition-transform duration-1000"
+              style={{ animation: 'doorOpenRight 1s forwards' }}
+            ></div>
+            {/* Door handle */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-gray-400 rounded-full border-2 border-gray-600 z-10"></div>
+          </div>
+        </div>
+      );
+    }
+
+    // Sprite Dance Animation (using emojis for simplicity)
+    if (hotspot.animation === 'sprite-dance' && element?.active) {
+      return (
+        <div
+          className="absolute transform -translate-x-1/2 -translate-y-1/2 z-30"
+          style={{
+            left: `${hotspot.x}%`,
+            top: `${hotspot.y}%`,
+          }}
+        >
+          <div
+            className="text-6xl animate-spriteDance"
+            role="img"
+            aria-label="Dancing fairy sprite"
+          >
+            🧚‍♀️
+          </div>
+          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-amber-300 text-xl animate-pulse-slow">✨</div>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-900 p-8 font-inter">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl font-bold text-white mb-8 text-center">
+          Interactive Image Viewer - Advanced Animations
+        </h1>
+
+        {/* Image Selector */}
+        <div className="mb-8 flex flex-wrap justify-center gap-4">
+          {images.map((image, index) => (
+            <button
+              key={image.id}
+              onClick={() => handleImageChange(index)}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
+                ${currentImageIndex === index
+                  ? 'bg-blue-600 text-white shadow-lg scale-105'
+                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                }`}
+            >
+              {image.title}
+            </button>
+          ))}
+        </div>
+
+        <div className="relative inline-block bg-gray-800 rounded-lg overflow-hidden shadow-2xl w-full">
+          {/* Main Image */}
+          <img
+            ref={imageRef}
+            src={currentImage.url}
+            alt={currentImage.title}
+            className={`max-w-full h-auto transition-all duration-500 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => setImageLoaded(true)}
+            // Fallback for image loading errors
+            onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/1200x800/333333/ffffff?text=Image+Load+Error"; setImageLoaded(true); }}
+          />
+
+          {/* Hotspots */}
+          {imageLoaded && currentImage.hotspots.map((hotspot) => (
+            <div key={hotspot.id}>
+              {/* Hotspot marker - visible for all types, but special animations render their own content */}
+              <div
+                className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10"
+                style={{
+                  left: `${hotspot.x}%`,
+                  top: `${hotspot.y}%`,
+                }}
+                onMouseEnter={() => handleHotspotEnter(hotspot)}
+                onMouseLeave={() => handleHotspotLeave(hotspot)}
+              >
+                {/* Only show the default marker if no special animation is active for it */}
+                {!(animatedElements[hotspot.id]?.active && (hotspot.animation === 'gif-transform' || hotspot.animation === 'walkout' || hotspot.animation === 'door-open' || hotspot.animation === 'sprite-dance')) && (
+                  <div
+                    className={`relative w-6 h-6 rounded-full border-2 border-white shadow-lg transition-all duration-300 hover:scale-150
+                      ${activeHotspot?.id === hotspot.id ? 'scale-150' : 'scale-100'}
+                      ${hotspot.animation === 'pulse' && activeHotspot?.id === hotspot.id ? 'animate-pulse' : ''}
+                      ${hotspot.animation === 'bounce' && activeHotspot?.id === hotspot.id ? 'animate-bounce' : ''}
+                      ${hotspot.animation === 'shake' && activeHotspot?.id === hotspot.id ? 'animate-ping' : ''}
+                      ${hotspot.animation === 'morph' && activeHotspot?.id === hotspot.id ? 'animate-spin' : ''}
+                    `}
+                    style={{
+                      backgroundColor: hotspot.color,
+                      boxShadow: activeHotspot?.id === hotspot.id
+                        ? `0 0 20px ${hotspot.color}`
+                        : 'none'
+                    }}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-center text-white text-xs font-bold">
+                      {hotspot.id}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Render special animations */}
+              {renderSpecialHotspot(hotspot)}
+            </div>
+          ))}
+
+          {/* Tooltip */}
+          {activeHotspot && (
+            <div
+              className="absolute z-40 bg-gray-800 text-white p-4 rounded-lg shadow-xl border border-gray-600 transition-all duration-300 transform -translate-x-1/2 min-w-64"
+              style={{
+                left: `${activeHotspot.x}%`,
+                top: `${activeHotspot.y - 15}%`, // Adjust tooltip position
+                animation: 'slideIn 0.3s ease-out'
+              }}
+            >
+              <div className="flex items-center mb-2">
+                <div
+                  className="w-3 h-3 rounded-full mr-2"
+                  style={{ backgroundColor: activeHotspot.color }}
+                />
+                <h3 className="text-lg font-semibold">{activeHotspot.title}</h3>
+              </div>
+              <p className="text-gray-300 text-sm">{activeHotspot.description}</p>
+
+              {/* Tooltip arrow */}
+              <div
+                className="absolute w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-gray-800"
+                style={{
+                  left: '50%',
+                  bottom: '-8px',
+                  transform: 'translateX(-50%)'
+                }}
+              />
+            </div>
+          )}
+
+          {/* Loading Overlay */}
+          {!imageLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+            </div>
+          )}
+        </div>
+
+        {/* Instructions */}
+        <div className="mt-8 text-center">
+          <p className="text-gray-300 mb-4">
+            Switch between images and hover over hotspots to see different animation types
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm max-w-4xl mx-auto">
+            <div className="flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
+              <span className="text-gray-400">Pulse Animation</span>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+              <span className="text-gray-400">Bounce Animation</span>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-purple-500 mr-2"></div>
+              <span className="text-gray-400">GIF Transform</span>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-cyan-500 mr-2"></div>
+              <span className="text-gray-400">Walkout Effect</span>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-orange-500 mr-2"></div>
+              <span className="text-gray-400">Door Open</span>
+            </div>
+            <div className="flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-lime-500 mr-2"></div>
+              <span className="text-gray-400">Sprite Dance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Custom Modal Component */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-800 p-8 rounded-lg shadow-2xl max-w-md w-full border border-gray-600 animate-scaleIn">
+            <h2 className="text-2xl font-bold text-white mb-4">{modalContent.title}</h2>
+            <p className="text-gray-300 mb-6">{modalContent.message}</p>
+            <button
+              onClick={closeModal}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Custom Animations */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+          font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes ripple {
+          0% {
+            transform: scale(1);
+            opacity: 0.7;
+          }
+          100% {
+            transform: scale(3);
+            opacity: 0;
+          }
+        }
+
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(-50%) translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+          }
+        }
+
+        @keyframes walkOut {
+          0% {
+            transform: translateX(0) scaleX(1);
+            opacity: 0.8;
+          }
+          50% {
+            transform: translateX(20px) scaleX(1.2);
+            opacity: 0.6;
+          }
+          100% {
+            transform: translateX(40px) scaleX(0.8);
+            opacity: 0.3;
+          }
+        }
+
+        @keyframes emergeButton {
+          0% {
+            opacity: 0;
+            transform: translateY(10px) scale(0.8);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        @keyframes ping {
+          75%, 100% {
+            transform: scale(1.1);
+            opacity: 0;
+          }
+        }
+
+        @keyframes doorOpenLeft {
+          0% { transform: perspective(1000px) rotateY(0deg); }
+          100% { transform: perspective(1000px) rotateY(-120deg); }
+        }
+
+        @keyframes doorOpenRight {
+          0% { transform: perspective(1000px) rotateY(0deg); }
+          100% { transform: perspective(1000px) rotateY(120deg); }
+        }
+
+        @keyframes spriteDance {
+          0% { transform: translateY(0) rotate(0deg); }
+          25% { transform: translateY(-10px) rotate(10deg); }
+          50% { transform: translateY(0) rotate(0deg); }
+          75% { transform: translateY(-10px) rotate(-10deg); }
+          100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.7; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        @keyframes scaleIn {
+          from { transform: scale(0.9); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default ImageViewer;
