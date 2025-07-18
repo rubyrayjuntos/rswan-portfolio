@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio to PPMS Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #007bff;
+            background: #f8f9fa;
+        }
+        .status.success {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        .status.error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        .status.warning {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+        .log {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+        .report {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9ecef;
+            border-radius: 5px;
+        }
+        .report h3 {
+            margin-top: 0;
+            color: #495057;
+        }
+        .report-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 3px;
+        }
+        
+        .lookup-dialog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .lookup-dialog-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .lookup-dialog h3 {
+            margin-top: 0;
+            color: #dc3545;
+            border-bottom: 2px solid #dc3545;
+            padding-bottom: 10px;
+        }
+        
+        .lookup-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .lookup-info p {
+            margin: 8px 0;
+        }
+        
+        .lookup-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .lookup-actions .btn {
+            min-width: 100px;
+        }
+        
+        .lookup-management {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        
+        .lookup-management h4 {
+            margin-top: 0;
+            color: #495057;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 8px;
+        }
+        
+        .lookup-search, .lookup-add, .lookup-edit {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 3px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .lookup-search label, .lookup-add label, .lookup-edit label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #495057;
+        }
+        
+        .lookup-search input, .lookup-add input, .lookup-edit input,
+        .lookup-add select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 3px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .lookup-search-results {
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #dee2e6;
+            border-radius: 3px;
+            background: white;
+        }
+        
+        .lookup-result-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid #f1f3f4;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .lookup-result-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .lookup-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .lookup-result-type {
+            font-size: 12px;
+            color: #6c757d;
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .lookup-add, .lookup-edit {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        
+        .lookup-add select {
+            width: auto;
+            min-width: 120px;
+        }
+        
+        .lookup-add input, .lookup-edit input {
+            flex: 1;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portfolio to PPMS Converter</h1>
+        
+        <div class="status" id="status">
+            Ready to convert portfolio projects to PPMS format.
+        </div>
+        
+        <div style="text-align: center;">
+            <button class="btn" id="convertBtn" onclick="runConversion()">Convert Portfolio to PPMS</button>
+            <button class="btn" id="testBtn" onclick="testConversion()">Test Conversion Only</button>
+            <button class="btn" id="loadBtn" onclick="loadSavedData()">Load Saved Data</button>
+            <button class="btn" id="debugBtn" onclick="runDebugConversion()">Debug Mode</button>
+        </div>
+        
+        <div class="log" id="log"></div>
+        
+        <div class="report" id="report" style="display: none;"></div>
+    </div>
+
+    <!-- Lookup Dialog -->
+    <div id="lookupDialog" class="lookup-dialog" style="display: none;">
+        <div class="lookup-dialog-content">
+            <h3>Lookup Debug Dialog</h3>
+            
+            <!-- Current Lookup Info -->
+            <div class="lookup-info">
+                <p><strong>Type:</strong> <span id="lookupType"></span></p>
+                <p><strong>Value:</strong> <span id="lookupValue"></span></p>
+                <p><strong>ID:</strong> <span id="lookupId"></span></p>
+                <p><strong>Current Project:</strong> <span id="currentProject"></span></p>
+            </div>
+            
+            <!-- Lookup Management Section -->
+            <div class="lookup-management">
+                <h4>Lookup Management</h4>
+                
+                <!-- Search Existing Lookups -->
+                <div class="lookup-search">
+                    <label>Search existing lookups:</label>
+                    <input type="text" id="lookupSearch" placeholder="Search by type or value..." onkeyup="searchLookups()">
+                    <div id="lookupSearchResults" class="lookup-search-results"></div>
+                </div>
+                
+                <!-- Add New Lookup -->
+                <div class="lookup-add">
+                    <label>Add new lookup:</label>
+                    <select id="newLookupType">
+                        <option value="genre">Genre</option>
+                        <option value="technology">Technology</option>
+                        <option value="style">Style</option>
+                        <option value="medium">Medium</option>
+                    </select>
+                    <input type="text" id="newLookupValue" placeholder="Enter lookup value...">
+                    <button class="btn btn-small" onclick="addNewLookup()">Add</button>
+                </div>
+                
+                <!-- Edit Current Lookup -->
+                <div class="lookup-edit">
+                    <label>Edit current lookup:</label>
+                    <input type="text" id="editLookupValue" placeholder="Edit lookup value...">
+                    <button class="btn btn-small" onclick="editCurrentLookup()">Update</button>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="lookup-actions">
+                <button class="btn" onclick="continueLookup()">Continue</button>
+                <button class="btn" onclick="skipLookup()">Skip This Lookup</button>
+                <button class="btn" onclick="stopConversion()">Stop Conversion</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/portfolio-to-ppms-converter.js"></script>
+    <script>
+        let converter = null;
+        let logElement = null;
+        let statusElement = null;
+        let currentLookupPromise = null;
+        let currentProjectTitle = '';
+        
+        // Make currentProjectTitle globally accessible
+        window.currentProjectTitle = '';
+
+        function log(message) {
+            if (logElement) {
+                logElement.textContent += message + '\n';
+                logElement.scrollTop = logElement.scrollHeight;
+            }
+            console.log(message);
+        }
+
+        function updateStatus(message, type = 'info') {
+            if (statusElement) {
+                statusElement.textContent = message;
+                statusElement.className = `status ${type}`;
+            }
+        }
+
+        async function runConversion() {
+            logElement = document.getElementById('log');
+            statusElement = document.getElementById('status');
+            const convertBtn = document.getElementById('convertBtn');
+            const testBtn = document.getElementById('testBtn');
+            const loadBtn = document.getElementById('loadBtn');
+            
+            logElement.textContent = '';
+            updateStatus('Starting conversion...', 'info');
+            convertBtn.disabled = true;
+            testBtn.disabled = true;
+            loadBtn.disabled = true;
+            
+            try {
+                converter = new PortfolioToPPMSConverter();
+                log('Converter initialized');
+                
+                updateStatus('Loading portfolio projects...', 'info');
+                await converter.loadAndConvertPortfolioProjects();
+                log('Portfolio projects loaded and converted');
+                
+                updateStatus('Saving PPMS data...', 'info');
+                const saved = await converter.savePPMSData();
+                
+                if (saved) {
+                    updateStatus('Conversion completed successfully!', 'success');
+                    log('PPMS data saved successfully');
+                    showReport();
+                } else {
+                    updateStatus('Failed to save PPMS data', 'error');
+                    log('ERROR: Failed to save PPMS data');
+                }
+            } catch (error) {
+                updateStatus('Conversion failed: ' + error.message, 'error');
+                log('ERROR: ' + error.message);
+                console.error(error);
+            } finally {
+                convertBtn.disabled = false;
+                testBtn.disabled = false;
+                loadBtn.disabled = false;
+            }
+        }
+
+        async function testConversion() {
+            logElement = document.getElementById('log');
+            statusElement = document.getElementById('status');
+            const convertBtn = document.getElementById('convertBtn');
+            const testBtn = document.getElementById('testBtn');
+            const loadBtn = document.getElementById('loadBtn');
+            
+            logElement.textContent = '';
+            updateStatus('Testing conversion...', 'info');
+            convertBtn.disabled = true;
+            testBtn.disabled = true;
+            loadBtn.disabled = true;
+            
+            try {
+                converter = new PortfolioToPPMSConverter();
+                log('Converter initialized for testing');
+                
+                updateStatus('Loading portfolio projects...', 'info');
+                await converter.loadAndConvertPortfolioProjects();
+                log('Portfolio projects loaded and converted (test mode)');
+                
+                updateStatus('Test conversion completed!', 'success');
+                showReport();
+            } catch (error) {
+                updateStatus('Test conversion failed: ' + error.message, 'error');
+                log('ERROR: ' + error.message);
+                console.error(error);
+            } finally {
+                convertBtn.disabled = false;
+                testBtn.disabled = false;
+                loadBtn.disabled = false;
+            }
+        }
+
+        async function loadSavedData() {
+            logElement = document.getElementById('log');
+            statusElement = document.getElementById('status');
+            const convertBtn = document.getElementById('convertBtn');
+            const testBtn = document.getElementById('testBtn');
+            const loadBtn = document.getElementById('loadBtn');
+            
+            logElement.textContent = '';
+            updateStatus('Loading saved data...', 'info');
+            convertBtn.disabled = true;
+            testBtn.disabled = true;
+            loadBtn.disabled = true;
+            
+            try {
+                converter = new PortfolioToPPMSConverter();
+                log('Converter initialized');
+                
+                const loaded = converter.loadSavedData();
+                if (loaded) {
+                    updateStatus('Saved data loaded successfully!', 'success');
+                    log('Saved PPMS data loaded');
+                    showReport();
+                } else {
+                    updateStatus('No saved data found', 'warning');
+                    log('No saved data found in localStorage');
+                }
+            } catch (error) {
+                updateStatus('Failed to load saved data: ' + error.message, 'error');
+                log('ERROR: ' + error.message);
+                console.error(error);
+            } finally {
+                convertBtn.disabled = false;
+                testBtn.disabled = false;
+                loadBtn.disabled = false;
+            }
+        }
+
+        async function runDebugConversion() {
+            logElement = document.getElementById('log');
+            statusElement = document.getElementById('status');
+            const convertBtn = document.getElementById('convertBtn');
+            const testBtn = document.getElementById('testBtn');
+            const loadBtn = document.getElementById('loadBtn');
+            const debugBtn = document.getElementById('debugBtn');
+            
+            logElement.textContent = '';
+            updateStatus('Starting debug conversion...', 'info');
+            convertBtn.disabled = true;
+            testBtn.disabled = true;
+            loadBtn.disabled = true;
+            debugBtn.disabled = true;
+            
+            try {
+                converter = new PortfolioToPPMSConverter();
+                log('Converter initialized for debug mode');
+                
+                // Enable lookup dialog
+                converter.enableLookupDialog(showLookupDialog);
+                
+                updateStatus('Loading portfolio projects (debug mode)...', 'info');
+                await converter.loadAndConvertPortfolioProjects();
+                log('Portfolio projects loaded and converted (debug mode)');
+                
+                updateStatus('Debug conversion completed!', 'success');
+                showReport();
+            } catch (error) {
+                updateStatus('Debug conversion failed: ' + error.message, 'error');
+                log('ERROR: ' + error.message);
+                console.error(error);
+            } finally {
+                convertBtn.disabled = false;
+                testBtn.disabled = false;
+                loadBtn.disabled = false;
+                debugBtn.disabled = false;
+                converter.disableLookupDialog();
+            }
+        }
+
+        function showLookupDialog(type, value, id) {
+            return new Promise((resolve) => {
+                currentLookupPromise = resolve;
+                
+                document.getElementById('lookupType').textContent = type;
+                document.getElementById('lookupValue').textContent = value;
+                document.getElementById('lookupId').textContent = id;
+                document.getElementById('currentProject').textContent = currentProjectTitle;
+                
+                // Set edit field to current value
+                document.getElementById('editLookupValue').value = value;
+                
+                // Clear search
+                document.getElementById('lookupSearch').value = '';
+                document.getElementById('lookupSearchResults').innerHTML = '';
+                
+                // Set new lookup type to current type
+                document.getElementById('newLookupType').value = type;
+                
+                document.getElementById('lookupDialog').style.display = 'flex';
+            });
+        }
+
+        function continueLookup() {
+            document.getElementById('lookupDialog').style.display = 'none';
+            if (currentLookupPromise) {
+                currentLookupPromise(true);
+                currentLookupPromise = null;
+            }
+        }
+
+        function skipLookup() {
+            document.getElementById('lookupDialog').style.display = 'none';
+            if (currentLookupPromise) {
+                currentLookupPromise(false);
+                currentLookupPromise = null;
+            }
+        }
+
+        function searchLookups() {
+            const searchTerm = document.getElementById('lookupSearch').value.toLowerCase();
+            const resultsDiv = document.getElementById('lookupSearchResults');
+            
+            if (!searchTerm) {
+                resultsDiv.innerHTML = '';
+                return;
+            }
+            
+            if (!converter || !converter.ppmsData || !converter.ppmsData.lookups) {
+                resultsDiv.innerHTML = '<div class="lookup-result-item">No lookups available</div>';
+                return;
+            }
+            
+            const matchingLookups = converter.ppmsData.lookups.filter(lookup => 
+                lookup.type.toLowerCase().includes(searchTerm) || 
+                lookup.value.toLowerCase().includes(searchTerm)
+            );
+            
+            if (matchingLookups.length === 0) {
+                resultsDiv.innerHTML = '<div class="lookup-result-item">No matching lookups found</div>';
+                return;
+            }
+            
+            resultsDiv.innerHTML = matchingLookups.map(lookup => `
+                <div class="lookup-result-item" onclick="selectLookup('${lookup.type}', '${lookup.value}', ${lookup.id})">
+                    <div>
+                        <strong>${lookup.value}</strong>
+                        <span class="lookup-result-type">${lookup.type}</span>
+                    </div>
+                    <div>ID: ${lookup.id}</div>
+                </div>
+            `).join('');
+        }
+        
+        function selectLookup(type, value, id) {
+            // Update the current lookup with the selected one
+            document.getElementById('lookupType').textContent = type;
+            document.getElementById('lookupValue').textContent = value;
+            document.getElementById('lookupId').textContent = id;
+            document.getElementById('editLookupValue').value = value;
+            
+            // Clear search
+            document.getElementById('lookupSearch').value = '';
+            document.getElementById('lookupSearchResults').innerHTML = '';
+            
+            log(`Selected existing lookup: ${type} - ${value} (ID: ${id})`);
+        }
+        
+        function addNewLookup() {
+            const type = document.getElementById('newLookupType').value;
+            const value = document.getElementById('newLookupValue').value.trim();
+            
+            if (!value) {
+                alert('Please enter a lookup value');
+                return;
+            }
+            
+            if (!converter) {
+                alert('Converter not available');
+                return;
+            }
+            
+            // Check if lookup already exists
+            const existing = converter.ppmsData.lookups.find(l => l.type === type && l.value === value);
+            if (existing) {
+                alert(`Lookup already exists: ${type} - ${value} (ID: ${existing.id})`);
+                return;
+            }
+            
+            // Add new lookup
+            const newId = converter.nextLookupId++;
+            converter.ppmsData.lookups.push({
+                id: newId,
+                type,
+                value,
+                description: `${type} category`
+            });
+            
+            // Update dialog to show new lookup
+            document.getElementById('lookupType').textContent = type;
+            document.getElementById('lookupValue').textContent = value;
+            document.getElementById('lookupId').textContent = newId;
+            document.getElementById('editLookupValue').value = value;
+            
+            // Clear new lookup form
+            document.getElementById('newLookupValue').value = '';
+            
+            log(`Added new lookup: ${type} - ${value} (ID: ${newId})`);
+        }
+        
+        function editCurrentLookup() {
+            const newValue = document.getElementById('editLookupValue').value.trim();
+            const currentType = document.getElementById('lookupType').textContent;
+            const currentId = parseInt(document.getElementById('lookupId').textContent);
+            
+            if (!newValue) {
+                alert('Please enter a lookup value');
+                return;
+            }
+            
+            if (!converter) {
+                alert('Converter not available');
+                return;
+            }
+            
+            // Find and update the lookup
+            const lookup = converter.ppmsData.lookups.find(l => l.id === currentId);
+            if (lookup) {
+                const oldValue = lookup.value;
+                lookup.value = newValue;
+                
+                // Update dialog display
+                document.getElementById('lookupValue').textContent = newValue;
+                
+                log(`Updated lookup: ${currentType} - "${oldValue}" → "${newValue}" (ID: ${currentId})`);
+            } else {
+                alert('Lookup not found');
+            }
+        }
+        
+        function stopConversion() {
+            document.getElementById('lookupDialog').style.display = 'none';
+            if (currentLookupPromise) {
+                currentLookupPromise(false);
+                currentLookupPromise = null;
+            }
+            updateStatus('Conversion stopped by user', 'warning');
+        }
+
+        function showReport() {
+            if (!converter) return;
+            
+            const report = converter.generateReport();
+            const reportElement = document.getElementById('report');
+            
+            let reportHtml = `
+                <h3>Conversion Report</h3>
+                <div class="report-item">
+                    <strong>Total Projects:</strong> ${report.totalProjects}
+                </div>
+                <div class="report-item">
+                    <strong>Total Lookups:</strong> ${report.totalLookups}
+                </div>
+                <div class="report-item">
+                    <strong>Lookup Breakdown:</strong><br>
+                    ${Object.entries(report.lookupBreakdown).map(([type, count]) => 
+                        `• ${type}: ${count}`
+                    ).join('<br>')}
+                </div>
+                <div class="report-item">
+                    <strong>Projects:</strong><br>
+                    ${report.projects.map(p => 
+                        `• ${p.title} (${p.year}, ${p.status})`
+                    ).join('<br>')}
+                </div>
+            `;
+            
+            reportElement.innerHTML = reportHtml;
+            reportElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html> 

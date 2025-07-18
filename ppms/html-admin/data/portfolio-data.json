@@ -1,106 +1,522 @@
 {
   "version": "1.0.0",
-  "last_updated": "2025-01-27T10:00:00Z",
-  
+  "last_updated": "2025-07-18T02:09:02.243Z",
   "lookups": [
-    { "id": 1, "type": "genre", "value": "Web Development", "description": "Web applications and websites", "category": "code", "usage_count": 8, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 2, "type": "genre", "value": "AI/ML", "description": "Artificial Intelligence and Machine Learning", "category": "code", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 3, "type": "genre", "value": "Mobile App", "description": "Mobile applications", "category": "code", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 4, "type": "genre", "value": "Creative Writing", "description": "Fiction and creative writing", "category": "writing", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 5, "type": "genre", "value": "Digital Art", "description": "Digital artwork and illustrations", "category": "art", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 6, "type": "genre", "value": "Game Development", "description": "Video game development", "category": "code", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 7, "type": "genre", "value": "Data Visualization", "description": "Data analysis and visualization", "category": "code", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 8, "type": "genre", "value": "Brand Identity", "description": "Brand design and identity work", "category": "art", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 101, "type": "style", "value": "Modern", "description": "Contemporary design approach", "category": "universal", "usage_count": 6, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 102, "type": "style", "value": "Minimalist", "description": "Clean and simple design", "category": "universal", "usage_count": 4, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 103, "type": "style", "value": "Experimental", "description": "Innovative and experimental approach", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 104, "type": "style", "value": "Vintage", "description": "Retro and vintage aesthetic", "category": "art", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 105, "type": "style", "value": "Futuristic", "description": "Sci-fi and future-oriented design", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 106, "type": "style", "value": "Organic", "description": "Natural and flowing design", "category": "art", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 201, "type": "technology", "value": "React", "description": "JavaScript library for building user interfaces", "category": "code", "usage_count": 5, "metadata": { "website": "https://reactjs.org", "icon": "⚛️" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 202, "type": "technology", "value": "Python", "description": "Programming language", "category": "code", "usage_count": 4, "metadata": { "website": "https://python.org", "icon": "🐍" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 203, "type": "technology", "value": "JavaScript", "description": "Programming language", "category": "code", "usage_count": 8, "metadata": { "website": "https://javascript.info", "icon": "📜" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 204, "type": "technology", "value": "Node.js", "description": "JavaScript runtime", "category": "code", "usage_count": 3, "metadata": { "website": "https://nodejs.org", "icon": "🟢" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 205, "type": "technology", "value": "CSS3", "description": "Styling language", "category": "code", "usage_count": 6, "metadata": { "website": "https://developer.mozilla.org/en-US/docs/Web/CSS", "icon": "🎨" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 206, "type": "technology", "value": "HTML5", "description": "Markup language", "category": "code", "usage_count": 6, "metadata": { "website": "https://developer.mozilla.org/en-US/docs/Web/HTML", "icon": "🌐" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 207, "type": "technology", "value": "TensorFlow", "description": "Machine learning framework", "category": "code", "usage_count": 1, "metadata": { "website": "https://tensorflow.org", "icon": "🧠" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 208, "type": "technology", "value": "Photoshop", "description": "Image editing software", "category": "art", "usage_count": 2, "metadata": { "website": "https://adobe.com/photoshop", "icon": "🖼️" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 209, "type": "technology", "value": "Illustrator", "description": "Vector graphics software", "category": "art", "usage_count": 1, "metadata": { "website": "https://adobe.com/illustrator", "icon": "✏️" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 210, "type": "technology", "value": "Unity", "description": "Game development engine", "category": "code", "usage_count": 1, "metadata": { "website": "https://unity.com", "icon": "🎮" }, "created_at": "2025-01-01T00:00:00Z" },
-
-    { "id": 301, "type": "mood", "value": "Energetic", "description": "High energy and dynamic", "category": "universal", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 302, "type": "mood", "value": "Serene", "description": "Calm and peaceful", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 303, "type": "mood", "value": "Dark", "description": "Mysterious and intense", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 304, "type": "mood", "value": "Mystical", "description": "Magical and enchanting", "category": "universal", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 305, "type": "mood", "value": "Innovative", "description": "Cutting-edge and forward-thinking", "category": "universal", "usage_count": 4, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 306, "type": "mood", "value": "Playful", "description": "Fun and lighthearted", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 307, "type": "mood", "value": "Professional", "description": "Business and corporate", "category": "universal", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 308, "type": "mood", "value": "Experimental", "description": "Avant-garde and boundary-pushing", "category": "universal", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
-
-    { "id": 401, "type": "role", "value": "Lead Developer", "description": "Primary developer and project lead", "category": "code", "usage_count": 4, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 402, "type": "role", "value": "Full Stack Developer", "description": "Frontend and backend development", "category": "code", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 403, "type": "role", "value": "UI/UX Designer", "description": "User interface and experience design", "category": "art", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 404, "type": "role", "value": "Creative Director", "description": "Creative vision and direction", "category": "art", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 405, "type": "role", "value": "Author", "description": "Primary writer and content creator", "category": "writing", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 406, "type": "role", "value": "Solo Developer", "description": "Independent developer", "category": "code", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-
-    { "id": 501, "type": "status", "value": "completed", "description": "Project is finished", "category": "universal", "usage_count": 12, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 502, "type": "status", "value": "in-progress", "description": "Currently being developed", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 503, "type": "status", "value": "development", "description": "In active development", "category": "universal", "usage_count": 1, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 504, "type": "status", "value": "concept", "description": "Conceptual stage", "category": "universal", "usage_count": 0, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 505, "type": "status", "value": "on-hold", "description": "Temporarily paused", "category": "universal", "usage_count": 0, "created_at": "2025-01-01T00:00:00Z" },
-
-    { "id": 601, "type": "variant", "value": "featured", "description": "Featured project display", "category": "universal", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 602, "type": "variant", "value": "wide", "description": "Wide display format", "category": "universal", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 603, "type": "variant", "value": "standard", "description": "Standard display format", "category": "universal", "usage_count": 10, "created_at": "2025-01-01T00:00:00Z" },
-
-    { "id": 701, "type": "link_type", "value": "github", "description": "GitHub repository", "category": "code", "usage_count": 8, "metadata": { "icon": "🐙" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 702, "type": "link_type", "value": "demo", "description": "Live demo", "category": "code", "usage_count": 5, "metadata": { "icon": "🚀" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 703, "type": "link_type", "value": "documentation", "description": "Project documentation", "category": "universal", "usage_count": 3, "metadata": { "icon": "📚" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 704, "type": "link_type", "value": "portfolio", "description": "Portfolio link", "category": "universal", "usage_count": 2, "metadata": { "icon": "💼" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 705, "type": "link_type", "value": "behance", "description": "Behance project", "category": "art", "usage_count": 1, "metadata": { "icon": "🎨" }, "created_at": "2025-01-01T00:00:00Z" },
-
-    { "id": 801, "type": "artifact_type", "value": "document", "description": "Documentation or specification", "category": "universal", "usage_count": 5, "metadata": { "icon": "📄" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 802, "type": "artifact_type", "value": "image", "description": "Image or screenshot", "category": "universal", "usage_count": 8, "metadata": { "icon": "🖼️" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 803, "type": "artifact_type", "value": "video", "description": "Video demonstration", "category": "universal", "usage_count": 2, "metadata": { "icon": "🎥" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 804, "type": "artifact_type", "value": "code", "description": "Code repository or snippet", "category": "code", "usage_count": 6, "metadata": { "icon": "💻" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 805, "type": "artifact_type", "value": "design", "description": "Design file or mockup", "category": "art", "usage_count": 3, "metadata": { "icon": "🎨" }, "created_at": "2025-01-01T00:00:00Z" },
-    
-
-    { "id": 901, "type": "content_type", "value": "excerpts", "description": "Writing excerpts", "category": "writing", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 902, "type": "content_type", "value": "themes_analysis", "description": "Thematic analysis", "category": "writing", "usage_count": 2, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 903, "type": "content_type", "value": "process_content", "description": "Creative process documentation", "category": "art", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 904, "type": "content_type", "value": "inspiration_content", "description": "Inspiration and references", "category": "art", "usage_count": 3, "created_at": "2025-01-01T00:00:00Z" },
-
-    { "id": 1001, "type": "file_type", "value": "image", "description": "Image files", "category": "universal", "usage_count": 25, "metadata": { "icon": "🖼️" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 1002, "type": "file_type", "value": "document", "description": "Document files", "category": "universal", "usage_count": 8, "metadata": { "icon": "📄" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 1003, "type": "file_type", "value": "video", "description": "Video files", "category": "universal", "usage_count": 3, "metadata": { "icon": "🎥" }, "created_at": "2025-01-01T00:00:00Z" },
-    { "id": 1004, "type": "file_type", "value": "archive", "description": "Archive files", "category": "universal", "usage_count": 2, "metadata": { "icon": "📦" }, "created_at": "2025-01-01T00:00:00Z" }
+    {
+      "id": 1,
+      "type": "medium",
+      "value": "code",
+      "description": "medium category"
+    },
+    {
+      "id": 1,
+      "type": "technology",
+      "value": "React",
+      "description": "technology category"
+    },
+    {
+      "id": 2,
+      "type": "technology",
+      "value": "JavaScript",
+      "description": "technology category"
+    },
+    {
+      "id": 3,
+      "type": "technology",
+      "value": "Node.js",
+      "description": "technology category"
+    },
+    {
+      "id": 4,
+      "type": "technology",
+      "value": "CSS3",
+      "description": "technology category"
+    },
+    {
+      "id": 5,
+      "type": "technology",
+      "value": "HTML5",
+      "description": "technology category"
+    },
+    {
+      "id": 1,
+      "type": "genre",
+      "value": "Web Development",
+      "description": "genre category"
+    },
+    {
+      "id": 2,
+      "type": "genre",
+      "value": "AI/ML",
+      "description": "genre category"
+    },
+    {
+      "id": 1,
+      "type": "style",
+      "value": "Modern",
+      "description": "style category"
+    },
+    {
+      "id": 2,
+      "type": "style",
+      "value": "Minimalist",
+      "description": "style category"
+    },
+    {
+      "id": 2,
+      "type": "medium",
+      "value": "art",
+      "description": "medium category"
+    },
+    {
+      "id": 6,
+      "type": "technology",
+      "value": "Photoshop",
+      "description": "technology category"
+    },
+    {
+      "id": 7,
+      "type": "technology",
+      "value": "Illustrator",
+      "description": "technology category"
+    },
+    {
+      "id": 3,
+      "type": "genre",
+      "value": "Digital Art",
+      "description": "genre category"
+    },
+    {
+      "id": 3,
+      "type": "style",
+      "value": "Vintage",
+      "description": "style category"
+    },
+    {
+      "id": 4,
+      "type": "style",
+      "value": "Organic",
+      "description": "style category"
+    },
+    {
+      "id": 3,
+      "type": "medium",
+      "value": "writing",
+      "description": "medium category"
+    },
+    {
+      "id": 4,
+      "type": "genre",
+      "value": "Creative Writing",
+      "description": "genre category"
+    },
+    {
+      "id": 5,
+      "type": "style",
+      "value": "Experimental",
+      "description": "style category"
+    },
+    {
+      "id": 8,
+      "type": "technology",
+      "value": "Unknown technology (1015)",
+      "description": "technology category"
+    },
+    {
+      "id": 9,
+      "type": "technology",
+      "value": "Unknown technology (1016)",
+      "description": "technology category"
+    },
+    {
+      "id": 10,
+      "type": "technology",
+      "value": "Unknown technology (1017)",
+      "description": "technology category"
+    },
+    {
+      "id": 11,
+      "type": "technology",
+      "value": "Unknown technology (1018)",
+      "description": "technology category"
+    },
+    {
+      "id": 12,
+      "type": "technology",
+      "value": "Unknown technology (1019)",
+      "description": "technology category"
+    },
+    {
+      "id": 5,
+      "type": "genre",
+      "value": "Fantasy",
+      "description": "genre category"
+    },
+    {
+      "id": 6,
+      "type": "genre",
+      "value": "Archetypal Fiction",
+      "description": "genre category"
+    },
+    {
+      "id": 7,
+      "type": "genre",
+      "value": "Cosmic Drama",
+      "description": "genre category"
+    },
+    {
+      "id": 8,
+      "type": "genre",
+      "value": "Philosophical Fiction",
+      "description": "genre category"
+    },
+    {
+      "id": 9,
+      "type": "genre",
+      "value": "Tarot-Inspired",
+      "description": "genre category"
+    },
+    {
+      "id": 6,
+      "type": "style",
+      "value": "Epic",
+      "description": "style category"
+    },
+    {
+      "id": 7,
+      "type": "style",
+      "value": "Archetypal",
+      "description": "style category"
+    },
+    {
+      "id": 8,
+      "type": "style",
+      "value": "Cosmic",
+      "description": "style category"
+    },
+    {
+      "id": 9,
+      "type": "style",
+      "value": "Philosophical",
+      "description": "style category"
+    },
+    {
+      "id": 10,
+      "type": "style",
+      "value": "Mythological",
+      "description": "style category"
+    },
+    {
+      "id": 13,
+      "type": "technology",
+      "value": "Unknown technology (1031)",
+      "description": "technology category"
+    },
+    {
+      "id": 14,
+      "type": "technology",
+      "value": "Unknown technology (1032)",
+      "description": "technology category"
+    },
+    {
+      "id": 15,
+      "type": "technology",
+      "value": "Unknown technology (1033)",
+      "description": "technology category"
+    },
+    {
+      "id": 16,
+      "type": "technology",
+      "value": "Unknown technology (1034)",
+      "description": "technology category"
+    },
+    {
+      "id": 17,
+      "type": "technology",
+      "value": "Unknown technology (1035)",
+      "description": "technology category"
+    },
+    {
+      "id": 18,
+      "type": "technology",
+      "value": "Unknown technology (1036)",
+      "description": "technology category"
+    },
+    {
+      "id": 10,
+      "type": "genre",
+      "value": "Mobile Game",
+      "description": "genre category"
+    },
+    {
+      "id": 11,
+      "type": "genre",
+      "value": "Arcade",
+      "description": "genre category"
+    },
+    {
+      "id": 12,
+      "type": "genre",
+      "value": "Retro",
+      "description": "genre category"
+    },
+    {
+      "id": 13,
+      "type": "genre",
+      "value": "Action",
+      "description": "genre category"
+    },
+    {
+      "id": 14,
+      "type": "genre",
+      "value": "Space Shooter",
+      "description": "genre category"
+    },
+    {
+      "id": 11,
+      "type": "style",
+      "value": "Retro",
+      "description": "style category"
+    },
+    {
+      "id": 12,
+      "type": "style",
+      "value": "Mobile-Optimized",
+      "description": "style category"
+    },
+    {
+      "id": 13,
+      "type": "style",
+      "value": "Responsive",
+      "description": "style category"
+    },
+    {
+      "id": 14,
+      "type": "style",
+      "value": "Touch-Friendly",
+      "description": "style category"
+    },
+    {
+      "id": 19,
+      "type": "technology",
+      "value": "Unknown technology (1044)",
+      "description": "technology category"
+    },
+    {
+      "id": 20,
+      "type": "technology",
+      "value": "Unknown technology (1045)",
+      "description": "technology category"
+    },
+    {
+      "id": 21,
+      "type": "technology",
+      "value": "Unknown technology (1046)",
+      "description": "technology category"
+    },
+    {
+      "id": 22,
+      "type": "technology",
+      "value": "Unknown technology (1047)",
+      "description": "technology category"
+    },
+    {
+      "id": 23,
+      "type": "technology",
+      "value": "Unknown technology (1048)",
+      "description": "technology category"
+    },
+    {
+      "id": 24,
+      "type": "technology",
+      "value": "Unknown technology (1049)",
+      "description": "technology category"
+    },
+    {
+      "id": 15,
+      "type": "genre",
+      "value": "Automation",
+      "description": "genre category"
+    },
+    {
+      "id": 16,
+      "type": "genre",
+      "value": "Brand Design",
+      "description": "genre category"
+    },
+    {
+      "id": 17,
+      "type": "genre",
+      "value": "Marketing",
+      "description": "genre category"
+    },
+    {
+      "id": 15,
+      "type": "style",
+      "value": "Professional",
+      "description": "style category"
+    },
+    {
+      "id": 16,
+      "type": "style",
+      "value": "Innovative",
+      "description": "style category"
+    },
+    {
+      "id": 25,
+      "type": "technology",
+      "value": "Unknown technology (1062)",
+      "description": "technology category"
+    },
+    {
+      "id": 26,
+      "type": "technology",
+      "value": "Unknown technology (1063)",
+      "description": "technology category"
+    },
+    {
+      "id": 27,
+      "type": "technology",
+      "value": "Unknown technology (1064)",
+      "description": "technology category"
+    },
+    {
+      "id": 28,
+      "type": "technology",
+      "value": "Unknown technology (1065)",
+      "description": "technology category"
+    },
+    {
+      "id": 29,
+      "type": "technology",
+      "value": "Unknown technology (1066)",
+      "description": "technology category"
+    },
+    {
+      "id": 30,
+      "type": "technology",
+      "value": "Unknown technology (1067)",
+      "description": "technology category"
+    },
+    {
+      "id": 18,
+      "type": "genre",
+      "value": "Character Design",
+      "description": "genre category"
+    },
+    {
+      "id": 19,
+      "type": "genre",
+      "value": "Process Documentation",
+      "description": "genre category"
+    },
+    {
+      "id": 20,
+      "type": "genre",
+      "value": "Art Education",
+      "description": "genre category"
+    },
+    {
+      "id": 21,
+      "type": "genre",
+      "value": "Concept Art",
+      "description": "genre category"
+    },
+    {
+      "id": 22,
+      "type": "genre",
+      "value": "Visual Development",
+      "description": "genre category"
+    },
+    {
+      "id": 17,
+      "type": "style",
+      "value": "Concept Art",
+      "description": "style category"
+    },
+    {
+      "id": 18,
+      "type": "style",
+      "value": "Character Development",
+      "description": "style category"
+    },
+    {
+      "id": 19,
+      "type": "style",
+      "value": "Process Documentation",
+      "description": "style category"
+    },
+    {
+      "id": 20,
+      "type": "style",
+      "value": "Expressive Design",
+      "description": "style category"
+    },
+    {
+      "id": 21,
+      "type": "style",
+      "value": "Visual Storytelling",
+      "description": "style category"
+    },
+    {
+      "id": 23,
+      "type": "genre",
+      "value": "Science Fantasy",
+      "description": "genre category"
+    },
+    {
+      "id": 24,
+      "type": "genre",
+      "value": "Literary Fiction",
+      "description": "genre category"
+    },
+    {
+      "id": 25,
+      "type": "genre",
+      "value": "Speculative",
+      "description": "genre category"
+    },
+    {
+      "id": 22,
+      "type": "style",
+      "value": "Lyrical",
+      "description": "style category"
+    },
+    {
+      "id": 23,
+      "type": "style",
+      "value": "Atmospheric",
+      "description": "style category"
+    }
   ],
-  
   "projects": [
     {
       "id": 1,
       "title": "Nova Writers Conspiracy",
       "description": "A collaborative writing platform that uses AI to help writers develop their stories through interactive character development and plot generation.",
-      "image_url": "images/projects/nova-writers-conspiracy-cover-art.jpg",
-      "medium": "code",
-      "mood": "Innovative",
       "year": 2025,
-      "role": "Lead Developer",
-      "variant": "featured",
+      "medium": 1,
+      "technologies": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "genres": [
+        1,
+        2
+      ],
+      "styles": [
+        1,
+        2
+      ],
+      "image_url": "images/projects/nova-writers-conspiracy-cover-art.jpg",
       "status": "development",
       "pitch": "Revolutionizing collaborative storytelling through AI-powered character development and plot generation.",
       "challenge": "Creating an intuitive interface that balances AI assistance with human creativity, ensuring writers maintain control over their stories.",
       "development": "Built with React and Node.js, integrating OpenAI's GPT API for character generation and plot suggestions. Implemented real-time collaboration features.",
       "outcome": "Successfully launched beta with 50+ writers, achieving 85% user satisfaction and generating 200+ story concepts.",
-      "genres": [1, 2],
-      "styles": [101, 102],
-      "technologies": [201, 203, 204, 205, 206],
-      "links": [
-        { "id": 1, "text": "GitHub", "url": "https://github.com/user/nova-writers", "type": 701, "sort_order": 0 },
-        { "id": 2, "text": "Live Demo", "url": "https://nova-writers.demo.com", "type": 702, "sort_order": 1 }
-      ],
       "gallery": [
         {
           "id": 1,
@@ -119,24 +535,7 @@
           "sort_order": 1
         }
       ],
-      "artifacts": [
-        {
-          "id": 1,
-          "name": "System Architecture",
-          "description": "Technical architecture documentation",
-          "url": "docs/nova-writers-architecture.pdf",
-          "type": 801,
-          "sort_order": 0
-        },
-        {
-          "id": 2,
-          "name": "API Documentation",
-          "description": "REST API specification",
-          "url": "docs/nova-writers-api.md",
-          "type": 801,
-          "sort_order": 1
-        }
-      ],
+      "artifacts": [],
       "journey": [
         {
           "id": 1,
@@ -157,63 +556,37 @@
           "sort_order": 2
         }
       ],
-      "specs": [
-        {
-          "id": 1,
-          "title": "AI Integration",
-          "description": "OpenAI GPT-4 integration for character generation",
-          "sort_order": 0
-        },
-        {
-          "id": 2,
-          "title": "Real-time Collaboration",
-          "description": "WebSocket-based real-time editing",
-          "sort_order": 1
-        },
-        {
-          "id": 3,
-          "title": "Character Database",
-          "description": "Persistent character profiles and relationships",
-          "sort_order": 2
-        }
-      ],
-      "files": [
-        {
-          "id": 1,
-          "name": "nova-writers-cover.jpg",
-          "path": "images/projects/nova-writers-conspiracy-cover-art.jpg",
-          "type": 1001,
-          "size": 245760,
-          "mime_type": "image/jpeg",
-          "is_public": true
-        }
-      ],
-      "created_at": "2025-01-15T00:00:00Z",
-      "updated_at": "2025-01-27T09:30:00Z",
-      "is_active": true
+      "role": "Lead Developer",
+      "mood": "Innovative",
+      "links": {
+        "github": "https://github.com/user/nova-writers",
+        "demo": "https://nova-writers.demo.com"
+      },
+      "specs": []
     },
-    
     {
       "id": 2,
       "title": "Echoes of Lumina",
       "description": "A mystical digital art piece exploring the relationship between light and shadow in urban environments.",
-      "image_url": "images/projects/echoes-of-lumina-cover-art.jpg",
-      "medium": "art",
-      "mood": "Mystical",
       "year": 2024,
-      "role": "Creative Director",
-      "variant": "wide",
+      "medium": 2,
+      "technologies": [
+        6,
+        7
+      ],
+      "genres": [
+        3
+      ],
+      "styles": [
+        3,
+        4
+      ],
+      "image_url": "images/projects/echoes-of-lumina-cover-art.jpg",
       "status": "completed",
       "pitch": "A digital exploration of urban mysticism through light and shadow manipulation.",
       "challenge": "Capturing the ethereal quality of urban light while maintaining technical precision in digital art.",
       "development": "Created using Photoshop and Illustrator, with extensive photo manipulation and digital painting techniques.",
       "outcome": "Exhibited in 3 digital art galleries, featured in 2 design publications, and sold as limited edition prints.",
-      "genres": [5],
-      "styles": [104, 106],
-      "technologies": [208, 209],
-      "links": [
-        { "id": 3, "text": "Behance", "url": "https://behance.net/gallery/echoes-lumina", "type": 705, "sort_order": 0 }
-      ],
       "gallery": [
         {
           "id": 3,
@@ -242,10 +615,7 @@
           ]
         }
       ],
-      "content": {
-        "process_content": "The piece began with extensive urban photography sessions during golden hour, followed by digital manipulation to enhance the mystical elements.",
-        "inspiration_content": "Inspired by the works of James Turrell and urban light installations, focusing on the transformative power of light in cityscapes."
-      },
+      "artifacts": [],
       "journey": [
         {
           "id": 4,
@@ -266,47 +636,32 @@
           "sort_order": 2
         }
       ],
-      "specs": [
-        {
-          "id": 4,
-          "title": "Resolution",
-          "description": "3000x2000 pixels, 300 DPI for print quality",
-          "sort_order": 0
-        },
-        {
-          "id": 5,
-          "title": "Color Profile",
-          "description": "Adobe RGB 1998 for wide color gamut",
-          "sort_order": 1
-        }
-      ],
-      "created_at": "2024-06-15T00:00:00Z",
-      "updated_at": "2024-12-20T00:00:00Z",
-      "published_at": "2024-12-20T00:00:00Z",
-      "is_active": true
+      "role": "Creative Director",
+      "mood": "Mystical",
+      "links": {
+        "behance": "https://behance.net/gallery/echoes-lumina"
+      },
+      "specs": []
     },
-    
     {
       "id": 3,
       "title": "The Weight of a Name",
       "description": "A speculative fiction novel exploring identity, memory, and the power of names in a post-apocalyptic world.",
-      "image_url": "images/projects/weight-of-a-name-cover-art.jpg",
-      "medium": "writing",
-      "mood": "Dark",
       "year": 2024,
-      "role": "Author",
-      "variant": "standard",
+      "medium": 3,
+      "technologies": [],
+      "genres": [
+        4
+      ],
+      "styles": [
+        5
+      ],
+      "image_url": "images/projects/weight-of-a-name-cover-art.jpg",
       "status": "completed",
       "pitch": "In a world where names hold power and memory is currency, one person's quest to reclaim their identity challenges the very fabric of society.",
       "challenge": "Balancing complex world-building with character development while maintaining narrative tension throughout a 300-page novel.",
       "development": "Three-year writing process including extensive world-building, character development, and multiple revision cycles.",
       "outcome": "Completed manuscript of 85,000 words, currently seeking publication. Received positive feedback from beta readers and writing groups.",
-      "genres": [4],
-      "styles": [103],
-      "technologies": [],
-      "links": [
-        { "id": 4, "text": "Sample Chapter", "url": "docs/weight-of-name-chapter1.pdf", "type": 703, "sort_order": 0 }
-      ],
       "gallery": [
         {
           "id": 4,
@@ -317,10 +672,7 @@
           "sort_order": 0
         }
       ],
-      "content": {
-        "excerpts": "The name hung in the air like a forgotten melody, its syllables carrying the weight of a thousand memories. She reached for it, but it slipped through her fingers like smoke, leaving only the echo of what might have been.",
-        "themes_analysis": "The novel explores themes of identity loss, the commodification of memory, and the redemptive power of self-discovery through the lens of speculative fiction."
-      },
+      "artifacts": [],
       "journey": [
         {
           "id": 7,
@@ -347,82 +699,456 @@
           "sort_order": 3
         }
       ],
-      "specs": [
+      "role": "Author",
+      "mood": "Dark",
+      "links": {
+        "documentation": "docs/weight-of-name-chapter1.pdf"
+      },
+      "specs": []
+    },
+    {
+      "id": 4,
+      "title": "Arcana",
+      "description": "Major arcana archetypes as characters in a story as grand as the universe, exploring the timeless wisdom and cosmic drama of the tarot through narrative.",
+      "year": 2024,
+      "medium": 3,
+      "technologies": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "genres": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "styles": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "image_url": "",
+      "status": "in-progress",
+      "pitch": "A cosmic drama where the major arcana come to life as characters in a story that spans the universe, exploring timeless wisdom through epic narrative.",
+      "challenge": "Balancing the cosmic scale of the story with intimate character moments, ensuring each arcana character feels both archetypal and uniquely individual while maintaining narrative coherence.",
+      "development": "Extensive research into tarot symbolism and archetypal psychology. Deep world-building that connects cosmic forces with personal transformation.",
+      "outcome": "A grand narrative that brings the wisdom of the tarot to life through compelling characters and cosmic drama.",
+      "gallery": [
         {
-          "id": 6,
-          "title": "Word Count",
-          "description": "85,000 words, approximately 300 pages",
-          "sort_order": 0
+          "url": "images/projects/arcana/arcana-cover-art.jpg",
+          "title": "Arcana Cover",
+          "description": "Visual representation of the major arcana as cosmic characters",
+          "dimensions": "1200x800"
         },
         {
-          "id": 7,
-          "title": "Genre",
-          "description": "Speculative fiction with elements of dystopian and magical realism",
-          "sort_order": 1
+          "url": "images/projects/arcana/arcana-character-designs.jpg",
+          "title": "Arcana Characters",
+          "description": "Character designs for the major arcana archetypes",
+          "dimensions": "1200x800"
         },
         {
-          "id": 8,
-          "title": "Target Audience",
-          "description": "Adult readers interested in speculative fiction and literary fiction",
-          "sort_order": 2
+          "url": "images/projects/arcana/arcana-cosmic-setting.jpg",
+          "title": "Cosmic Setting",
+          "description": "The vast universe where the arcana drama unfolds",
+          "dimensions": "1200x800"
         }
       ],
-      "created_at": "2021-03-15T00:00:00Z",
-      "updated_at": "2024-11-30T00:00:00Z",
-      "published_at": "2024-11-30T00:00:00Z",
-      "is_active": true
+      "artifacts": [],
+      "journey": [
+        {
+          "title": "Tarot Research",
+          "description": "Deep study of tarot symbolism, history, and archetypal meanings"
+        },
+        {
+          "title": "Character Development",
+          "description": "Transformed each major arcana into a fully realized character with unique personality and role"
+        },
+        {
+          "title": "World Building",
+          "description": "Created a cosmic setting that reflects the universal nature of the tarot"
+        },
+        {
+          "title": "Narrative Structure",
+          "description": "Crafted a story that balances cosmic drama with intimate character moments"
+        },
+        {
+          "title": "Philosophical Integration",
+          "description": "Wove timeless wisdom and philosophical themes throughout the narrative"
+        }
+      ],
+      "role": "Author, World Builder, Archetypal Researcher",
+      "mood": "Mystical",
+      "links": {
+        "excerpt": "#",
+        "manuscript": "#"
+      },
+      "specs": []
+    },
+    {
+      "id": 5,
+      "title": "Asteroids",
+      "description": "Classic arcade game modernized for mobile, bringing the timeless gameplay of Asteroids to contemporary mobile devices with enhanced graphics and touch controls.",
+      "year": 2024,
+      "medium": 1,
+      "technologies": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "genres": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "styles": [
+        11,
+        1,
+        12,
+        13,
+        14
+      ],
+      "image_url": "",
+      "status": "development",
+      "pitch": "A modern take on the classic Asteroids arcade game, optimized for mobile devices while preserving the timeless gameplay that made the original so beloved.",
+      "challenge": "Adapting the classic keyboard/mouse controls to touch interfaces while maintaining the precise, responsive feel of the original game.",
+      "development": "Recreated the core gameplay mechanics using modern web technologies, optimized for mobile performance and touch controls.",
+      "outcome": "A faithful recreation of the classic Asteroids experience that works seamlessly on mobile devices.",
+      "gallery": [
+        {
+          "url": "images/projects/asteroids/asteroids-gameplay-screenshot.jpg",
+          "title": "Gameplay Screenshot",
+          "description": "In-game screenshot showing the modernized Asteroids gameplay",
+          "dimensions": "1200x800"
+        },
+        {
+          "url": "images/projects/asteroids/asteroids-mobile-interface.jpg",
+          "title": "Mobile Interface",
+          "description": "Touch-optimized controls and mobile interface design",
+          "dimensions": "1200x800"
+        },
+        {
+          "url": "images/projects/asteroids/asteroids-enhanced-graphics.jpg",
+          "title": "Enhanced Graphics",
+          "description": "Modern graphics and visual effects while maintaining retro aesthetic",
+          "dimensions": "1200x800"
+        }
+      ],
+      "artifacts": [],
+      "journey": [
+        {
+          "title": "Game Analysis",
+          "description": "Studied the original Asteroids gameplay mechanics and design principles"
+        },
+        {
+          "title": "Mobile Adaptation",
+          "description": "Designed touch controls that preserve the original game feel"
+        },
+        {
+          "title": "Technical Implementation",
+          "description": "Built the game using HTML5 Canvas and JavaScript for cross-platform compatibility"
+        },
+        {
+          "title": "Performance Optimization",
+          "description": "Optimized for smooth gameplay on mobile devices"
+        },
+        {
+          "title": "User Testing",
+          "description": "Refined controls and gameplay based on user feedback"
+        }
+      ],
+      "role": "Game Developer, Mobile Developer, UI/UX Designer",
+      "mood": "Nostalgic",
+      "links": {
+        "github": "#",
+        "play": "#"
+      },
+      "specs": []
+    },
+    {
+      "id": 6,
+      "title": "Brand Identity Management Workflow",
+      "description": "A comprehensive AI-powered system for automating brand identity creation and marketing campaign development using multi-agent orchestration.",
+      "year": 2024,
+      "medium": 1,
+      "technologies": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "genres": [
+        2,
+        15,
+        16,
+        17
+      ],
+      "styles": [
+        1,
+        15,
+        16
+      ],
+      "image_url": "",
+      "status": "live",
+      "pitch": "An advanced multi-agent system that automates complete brand identity creation and marketing strategy development using AI orchestration.",
+      "challenge": "Creating a sophisticated workflow that can generate production-ready brand assets and marketing strategies through intelligent agent coordination while maintaining structured, validated outputs.",
+      "development": "Built with CrewAI framework implementing hierarchical agent architecture, Pydantic models for data validation, and multiple deployment options from simple HTML interface to advanced multi-agent system.",
+      "outcome": "A comprehensive brand identity automation system that delivers structured, production-ready brand assets and marketing strategies with both simple and advanced implementation options.",
+      "gallery": [
+        {
+          "url": "images/dashboard.jpg",
+          "title": "Multi-Agent System Architecture",
+          "description": "Hierarchical agent coordination for brand identity creation",
+          "dimensions": "1200x800"
+        },
+        {
+          "url": "images/character-brainstorming.jpg",
+          "title": "Simple HTML Interface",
+          "description": "Zero-setup brand identity generator with OpenAI integration",
+          "dimensions": "1200x800"
+        },
+        {
+          "url": "images/graphic-novel-card-hero.JPG",
+          "title": "Generated Brand Assets",
+          "description": "Complete brand identity package including logos, colors, and style guides",
+          "dimensions": "1200x800"
+        },
+        {
+          "url": "images/manuscript-view.jpg",
+          "title": "Marketing Strategy Output",
+          "description": "Comprehensive marketing strategies across multiple channels",
+          "dimensions": "1200x800"
+        }
+      ],
+      "artifacts": [],
+      "journey": [
+        {
+          "title": "System Architecture Design",
+          "description": "Designed hierarchical multi-agent system with manager and worker agents for specialized brand identity and marketing tasks"
+        },
+        {
+          "title": "Pydantic Model Implementation",
+          "description": "Created comprehensive data models for structured outputs including LogoConcept, ColorPalette, StyleGuide, and MarketingOutput"
+        },
+        {
+          "title": "Agent Development",
+          "description": "Implemented specialized agents for logo design, color theory, style guide creation, and marketing strategy development"
+        },
+        {
+          "title": "Simple HTML Interface",
+          "description": "Built zero-setup HTML interface for immediate brand identity generation without installation requirements"
+        },
+        {
+          "title": "Advanced Multi-Agent System",
+          "description": "Developed full CrewAI-based system with hierarchical delegation and comprehensive workflow orchestration"
+        },
+        {
+          "title": "Documentation & Examples",
+          "description": "Created comprehensive documentation, usage examples, and configuration templates for easy adoption"
+        }
+      ],
+      "role": "Full Stack Developer & AI Engineer",
+      "mood": "Innovative",
+      "links": {
+        "live": "https://github.com/rayswan/brand-identity-workflow",
+        "github": "https://github.com/rayswan/brand-identity-workflow",
+        "demo": "https://brand-workflow-demo.streamlit.app"
+      },
+      "specs": []
+    },
+    {
+      "id": 7,
+      "title": "Character Design",
+      "description": "Process use case for designing characters that have depth, exploring the methodology and techniques for creating compelling, multi-dimensional characters.",
+      "year": 2024,
+      "medium": 2,
+      "technologies": [
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "genres": [
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "styles": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "image_url": "",
+      "status": "ongoing",
+      "pitch": "A comprehensive exploration of character design methodology, demonstrating how to create characters with genuine depth and emotional resonance.",
+      "challenge": "Developing a systematic approach to character design that ensures depth and complexity while maintaining visual appeal and clear communication of character traits.",
+      "development": "Created a structured methodology for character development, including personality mapping, visual design principles, and iterative refinement processes.",
+      "outcome": "A comprehensive character design system that produces compelling, multi-dimensional characters suitable for various media and storytelling contexts.",
+      "gallery": [
+        {
+          "url": "images/projects/character-design/character-design-process-overview.jpg",
+          "title": "Design Process Overview",
+          "description": "Visual documentation of the character design methodology",
+          "dimensions": "1200x800"
+        },
+        {
+          "url": "images/projects/character-design/character-design-sketches.jpg",
+          "title": "Character Sketches",
+          "description": "Initial sketches and exploration of character concepts",
+          "dimensions": "1200x800"
+        },
+        {
+          "url": "images/projects/character-design/character-design-development.jpg",
+          "title": "Character Development",
+          "description": "Progression from concept to final character design",
+          "dimensions": "1200x800"
+        },
+        {
+          "url": "images/projects/character-design/character-design-expressions.jpg",
+          "title": "Expression Studies",
+          "description": "Exploration of character emotions and expressions",
+          "dimensions": "1200x800"
+        }
+      ],
+      "artifacts": [],
+      "journey": [
+        {
+          "title": "Methodology Development",
+          "description": "Created a systematic approach to character design that ensures depth and complexity"
+        },
+        {
+          "title": "Personality Mapping",
+          "description": "Developed techniques for translating character traits into visual design elements"
+        },
+        {
+          "title": "Visual Design Principles",
+          "description": "Established principles for creating visually appealing and communicative character designs"
+        },
+        {
+          "title": "Process Documentation",
+          "description": "Documented the character design process for educational and reference purposes"
+        },
+        {
+          "title": "Iterative Refinement",
+          "description": "Created systems for refining and improving character designs through feedback and iteration"
+        },
+        {
+          "title": "Application Testing",
+          "description": "Tested the methodology across different character types and storytelling contexts"
+        }
+      ],
+      "role": "Character Designer, Process Developer, Art Educator",
+      "mood": "Creative",
+      "links": {
+        "process": "#",
+        "portfolio": "#"
+      },
+      "specs": []
+    },
+    {
+      "id": 8,
+      "title": "Echoes of Lumina (Novella)",
+      "description": "A science fantasy novella exploring the intersection of quantum consciousness, ancestral memory, and free will in a city born of starlight and whispers",
+      "year": 2024,
+      "medium": 3,
+      "technologies": [
+        8,
+        11,
+        12
+      ],
+      "genres": [
+        23,
+        24,
+        25
+      ],
+      "styles": [
+        22,
+        9,
+        23
+      ],
+      "image_url": "",
+      "status": "completed",
+      "pitch": "A haunting exploration of consciousness and destiny in a city where memories crystallize into reality and every choice echoes across quantum dimensions",
+      "challenge": "Weaving complex philosophical themes about free will and predetermined fate into an emotionally resonant narrative that remains accessible and compelling",
+      "development": "Written over 18 months, combining intensive world-building with character psychology, drawing from quantum physics, consciousness studies, and ancestral wisdom traditions",
+      "outcome": "A thought-provoking novella that questions the nature of choice and identity while delivering a deeply moving story about connection and transformation",
+      "gallery": [
+        {
+          "url": "images/writing/lumina-cover-art.jpg",
+          "title": "Cover Design",
+          "description": "Original cover art featuring the crystalline spires of Lumina against the quantum aurora",
+          "dimensions": "1200x1800"
+        },
+        {
+          "url": "images/writing/lumina-city-concept.jpg",
+          "title": "Lumina City Concept",
+          "description": "Detailed concept art showing the architecture and energy flows of the mystical city",
+          "dimensions": "1600x900"
+        },
+        {
+          "url": "images/writing/memory-wells-illustration.jpg",
+          "title": "Memory Wells",
+          "description": "Artistic interpretation of the luminescent memory repositories that hold ancestral wisdom",
+          "dimensions": "1200x800"
+        },
+        {
+          "url": "images/writing/character-studies.jpg",
+          "title": "Character Design Studies",
+          "description": "Visual development of Maya Chen and other key characters from the novella",
+          "dimensions": "1400x1000"
+        }
+      ],
+      "artifacts": [],
+      "journey": [
+        {
+          "phase": "Concept & Research",
+          "description": "Initial inspiration from quantum consciousness studies and exploration of free will vs. determinism themes"
+        },
+        {
+          "phase": "World Building",
+          "description": "Development of Lumina's unique properties, memory wells, and the relationship between consciousness and reality"
+        },
+        {
+          "phase": "Character Development",
+          "description": "Creating Maya Chen's arc and supporting characters, establishing their connections to ancestral memory"
+        },
+        {
+          "phase": "First Draft",
+          "description": "Writing the complete narrative while balancing philosophical depth with emotional accessibility"
+        },
+        {
+          "phase": "Revision & Refinement",
+          "description": "Multiple editing rounds focusing on lyrical prose, thematic consistency, and character authenticity"
+        }
+      ],
+      "role": "Author & World Designer",
+      "mood": "mystical",
+      "links": {
+        "read": "https://medium.com/@author/echoes-of-lumina",
+        "audiobook": "https://audible.com/echoes-of-lumina",
+        "discussion": "https://goodreads.com/book/echoes-of-lumina"
+      },
+      "specs": []
     }
   ],
-  
-  "config": [
-    {
-      "key": "portfolio_title",
-      "value": "RSwan Portfolio",
-      "description": "Main portfolio title",
-      "updated_at": "2025-01-27T00:00:00Z"
-    },
-    {
-      "key": "max_projects_display",
-      "value": "15",
-      "description": "Maximum number of projects to display on homepage",
-      "updated_at": "2025-01-27T00:00:00Z"
-    },
-    {
-      "key": "image_quality",
-      "value": "high",
-      "description": "Default image quality setting",
-      "updated_at": "2025-01-27T00:00:00Z"
-    }
-  ],
-  
-  "audit_log": [
-    {
-      "id": 1,
-      "user_id": "admin",
-      "action": "create",
-      "table_name": "projects",
-      "record_id": 1,
-      "new_values": { "title": "Nova Writers Conspiracy" },
-      "timestamp": "2025-01-15T00:00:00Z"
-    },
-    {
-      "id": 2,
-      "user_id": "admin",
-      "action": "update",
-      "table_name": "projects",
-      "record_id": 1,
-      "old_values": { "status": "in-progress" },
-      "new_values": { "status": "development" },
-      "timestamp": "2025-01-27T09:30:00Z"
-    },
-    {
-      "id": 3,
-      "user_id": "admin",
-      "action": "create",
-      "table_name": "lookups",
-      "record_id": 2,
-      "new_values": { "type": "genre", "value": "AI/ML" },
-      "timestamp": "2025-01-27T08:45:00Z"
-    }
-  ]
-} 
+  "config": [],
+  "audit_log": []
+}

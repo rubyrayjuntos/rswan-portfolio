@@ -1,17 +1,18 @@
 {
   "name": "rswan-portfolio",
   "version": "1.0.0",
-  "description": "Neumorphic Portfolio SPA with advanced filtering and markdown support",
-  "main": "index.html",
+  "description": "A dynamic and multi-faceted web portfolio.",
+  "main": "index.js",
   "scripts": {
     "serve": "npx http-server -p 8080 -c-1",
-    "test": "jest",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:visual": "playwright test --grep 'Visual'",
-    "test:performance": "lighthouse http://localhost:8080 --output=json --output-path=./test-results/lighthouse.json"
+    "test:performance": "lighthouse http://localhost:8080 --output=json --output-path=./test-results/lighthouse.json",
+    "manifest": "node scripts/generate-manifest.js"
   },
   "devDependencies": {
     "jest": "^29.7.0",
@@ -38,6 +39,7 @@
   },
   "keywords": [
     "portfolio",
+    "web",
     "neumorphic",
     "spa",
     "markdown",

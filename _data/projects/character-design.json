@@ -2,7 +2,6 @@
   "id": 8,
   "title": "Character Design",
   "description": "Process use case for designing characters that have depth, exploring the methodology and techniques for creating compelling, multi-dimensional characters.",
-  "imageUrl": "images/projects/character-design/character-design-cover-art.jpg",
   "medium": "art",
   "genre": [
     "Character Design",
@@ -43,25 +42,41 @@
   "inspiration": "Inspired by the need for more systematic approaches to character development in creative industries. The methodology draws from psychology, visual design principles, and storytelling techniques to create characters with genuine depth and appeal.",
   "gallery": [
     {
-      "url": "images/projects/character-design/character-design-process-overview.jpg",
+      "url": "character-design-process-overview.jpg",
       "title": "Design Process Overview",
       "description": "Visual documentation of the character design methodology",
-      "dimensions": "1200x800"
+      "dimensions": "1200x800",
+      "hotspots": [
+        {
+          "x": 25,
+          "y": 40,
+          "label": "1",
+          "title": "Personality Mapping",
+          "description": "Here, we translate core personality traits into visual language. For example, 'courage' might be represented by strong, angular shapes and a warm color palette."
+        },
+        {
+          "x": 60,
+          "y": 70,
+          "label": "2",
+          "title": "Iterative Sketching",
+          "description": "This phase involves rapid exploration of silhouettes and forms. We focus on capturing the character's essence before committing to details."
+        }
+      ]
     },
     {
-      "url": "images/projects/character-design/character-design-sketches.jpg",
+      "url": "character-design-sketches.jpg",
       "title": "Character Sketches",
       "description": "Initial sketches and exploration of character concepts",
       "dimensions": "1200x800"
     },
     {
-      "url": "images/projects/character-design/character-design-development.jpg",
+      "url": "character-design-development.jpg",
       "title": "Character Development",
       "description": "Progression from concept to final character design",
       "dimensions": "1200x800"
     },
     {
-      "url": "images/projects/character-design/character-design-expressions.jpg",
+      "url": "character-design-expressions.jpg",
       "title": "Expression Studies",
       "description": "Exploration of character emotions and expressions",
       "dimensions": "1200x800"

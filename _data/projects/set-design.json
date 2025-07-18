@@ -2,7 +2,6 @@
   "id": 14,
   "title": "Set Design",
   "description": "Telling stories through the places the characters inhabit, exploring how environments shape narrative and character development through visual storytelling.",
-  "imageUrl": "images/projects/set-design/set-design-cover-art.jpg",
   "medium": "art",
   "genre": [
     "Set Design",
@@ -38,27 +37,29 @@
   "challenge": "Creating environments that not only look compelling but also serve the narrative, revealing character traits and advancing the story through visual design.",
   "development": "Developed a systematic approach to environmental storytelling, where each set element contributes to character development and narrative progression.",
   "outcome": "A comprehensive set design methodology that enhances storytelling through environmental design and atmospheric detail.",
+  "process": "<h3>A Tale of Two Worlds</h3><p>The creative process was a journey in itself, balancing two key elements: the intimate, character-driven spaces and the grand, narrative-defining environments.</p><h4>1. Character-Centric Design</h4><p>We started by asking, 'What does this character's home say about them?' This led to detailed studies of personal props, color palettes, and architectural styles that reflected their inner world.</p><h4>2. Narrative-Driven Environments</h4><p>Next, we designed key locations that would advance the plot. A seemingly innocent market stall, for example, was designed with hidden compartments and sightlines that would be crucial for a later scene.</p>",
+  "inspiration": "<h3>The Soul of a Place</h3><p>Inspiration for this project came from the idea that environments are characters in their own right. We drew from the moody, atmospheric cinematography of film noir, the intricate world-building of epic fantasy novels, and the subtle environmental storytelling in games like 'What Remains of Edith Finch'.</p><p>The goal was to create spaces that felt lived-in and layered with history, where every object and architectural choice tells a story about the people who inhabit them.</p>",
   "gallery": [
     {
-      "url": "images/projects/set-design/set-design-overview.jpg",
+      "url": "set-design-overview.jpg",
       "title": "Set Design Overview",
       "description": "Overview of the set design process and methodology",
       "dimensions": "1200x800"
     },
     {
-      "url": "images/projects/set-design/set-design-character-spaces.jpg",
+      "url": "set-design-character-spaces.jpg",
       "title": "Character Spaces",
       "description": "How different characters' environments reflect their personalities",
       "dimensions": "1200x800"
     },
     {
-      "url": "images/projects/set-design/set-design-narrative-environments.jpg",
+      "url": "set-design-narrative-environments.jpg",
       "title": "Narrative Environments",
       "description": "Environments that advance the story and reveal plot elements",
       "dimensions": "1200x800"
     },
     {
-      "url": "images/projects/set-design/set-design-atmospheric-details.jpg",
+      "url": "set-design-atmospheric-details.jpg",
       "title": "Atmospheric Details",
       "description": "Small details that create mood and atmosphere",
       "dimensions": "1200x800"

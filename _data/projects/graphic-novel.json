@@ -1,8 +1,7 @@
 {
-  "id": 6,
+  "id": 19,
   "title": "Graphic Novel",
   "description": "Comic book style graphic novel that follows our everyman as he is pushed deeper underground and out into the stars, exploring themes of transformation and cosmic journey.",
-  "imageUrl": "images/projects/graphic-novel/graphic-novel-cover-art.jpg",
   "medium": "art",
   "genre": [
     "Comic Book",
@@ -44,25 +43,25 @@
   "inspiration": "Inspired by classic hero's journey narratives and the concept of transformation through adversity. The underground-to-stars journey represents the human capacity for growth and the universal quest for meaning and purpose.",
   "gallery": [
     {
-      "url": "images/projects/graphic-novel/graphic-novel-cover-art.jpg",
+      "url": "cover-art.jpg",
       "title": "Cover Art",
       "description": "The striking cover showing the protagonist's journey from underground to stars",
       "dimensions": "1200x800"
     },
     {
-      "url": "images/projects/graphic-novel/graphic-novel-underground-sequence.jpg",
+      "url": "underground-sequence.jpg",
       "title": "Underground Sequence",
       "description": "Dark, atmospheric panels showing the protagonist's underground journey",
       "dimensions": "1200x800"
     },
     {
-      "url": "images/projects/graphic-novel/graphic-novel-transformation-sequence.jpg",
+      "url": "transformation-sequence.jpg",
       "title": "Transformation Sequence",
       "description": "Key moments of the protagonist's transformation and growth",
       "dimensions": "1200x800"
     },
     {
-      "url": "images/projects/graphic-novel/graphic-novel-cosmic-journey.jpg",
+      "url": "cosmic-journey.jpg",
       "title": "Cosmic Journey",
       "description": "Epic space scenes showing the protagonist's journey among the stars",
       "dimensions": "1200x800"
@@ -70,53 +69,53 @@
   ],
   "journey": [
     {
-      "title": "Concept Development",
+      "title": "The Spark: From Underground to the Stars",
       "description": "Conceived the story of an everyman's journey from underground depths to cosmic heights"
     },
     {
-      "title": "Character Design",
+      "title": "Forging the Everyman",
       "description": "Developed the protagonist and supporting characters with distinct visual identities"
     },
     {
-      "title": "World Building",
+      "title": "Building the Underbelly & the Cosmos",
       "description": "Created detailed environments from underground tunnels to cosmic landscapes"
     },
     {
-      "title": "Storyboarding",
+      "title": "Choreographing the Narrative",
       "description": "Planned the visual narrative flow and key dramatic moments"
     },
     {
-      "title": "Art Development",
+      "title": "Painting with Light and Shadow",
       "description": "Crafted individual pages with attention to composition, lighting, and emotional impact"
     },
     {
-      "title": "Sequential Refinement",
+      "title": "Polishing the Panels",
       "description": "Refined the visual storytelling to ensure smooth narrative flow and emotional resonance"
     }
   ],
   "specs": [
     {
-      "title": "Art Style",
+      "title": "Kinetic Art Style",
       "description": "Dynamic comic book art with expressive characters and atmospheric lighting"
     },
     {
-      "title": "Layout Design",
+      "title": "Emotional Paneling",
       "description": "Varied panel layouts that enhance storytelling and emotional impact"
     },
     {
-      "title": "Color Palette",
+      "title": "Chromatic Storytelling",
       "description": "Contrasting dark underground tones with vibrant cosmic colors"
     },
     {
-      "title": "Character Design",
+      "title": "Evolving Character Design",
       "description": "Distinctive character designs that evolve throughout the story"
     },
     {
-      "title": "Visual Storytelling",
+      "title": "Silent Storytelling",
       "description": "Sequential art that advances plot while developing character and theme"
     },
     {
-      "title": "Thematic Elements",
+      "title": "Symbolic Resonance",
       "description": "Visual metaphors for transformation, growth, and the human spirit's resilience"
     }
   ]

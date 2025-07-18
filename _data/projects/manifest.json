@@ -1,96 +1,19 @@
-{
-  "version": "1.0",
-  "lastUpdated": "2025-07-17",
-  "projects": [
-    {
-      "id": 4,
-      "file": "nova-writers-conspiracy.json",
-      "title": "Nova: Writers Conspiracy",
-      "medium": "code"
-    },
-    {
-      "id": 5,
-      "file": "henri-ruben.json",
-      "title": "Henri Ruben",
-      "medium": "art"
-    },
-    {
-      "id": 6,
-      "file": "echoes-of-lumina.json",
-      "title": "Echoes of Lumina (Novella)",
-      "medium": "writing"
-    },
-    {
-      "id": 7,
-      "file": "graphic-novel.json",
-      "title": "Graphic Novel",
-      "medium": "art"
-    },
-    {
-      "id": 8,
-      "file": "weight-of-a-name.json",
-      "title": "Weight of a Name",
-      "medium": "writing"
-    },
-    {
-      "id": 9,
-      "file": "character-design.json",
-      "title": "Character Design",
-      "medium": "art"
-    },
-    {
-      "id": 10,
-      "file": "arcana.json",
-      "title": "Arcana",
-      "medium": "art"
-    },
-    {
-      "id": 11,
-      "file": "tarot-deck.json",
-      "title": "Tarot Deck",
-      "medium": "art"
-    },
-    {
-      "id": 13,
-      "file": "asteroids.json",
-      "title": "Asteroids",
-      "medium": "code"
-    },
-    {
-      "id": 14,
-      "file": "elyra.json",
-      "title": "Elyra",
-      "medium": "art"
-    },
-    {
-      "id": 15,
-      "file": "set-design.json",
-      "title": "Set Design",
-      "medium": "art"
-    },
-    {
-      "id": 16,
-      "file": "world-bible.json",
-      "title": "World Bible",
-      "medium": "writing"
-    },
-    {
-      "id": 17,
-      "file": "sticker-pack.json",
-      "title": "Sticker Pack",
-      "medium": "art"
-    },
-    {
-      "id": 18,
-      "file": "tarot-awakened.json",
-      "title": "Tarot Awakened",
-      "medium": "art"
-    },
-    {
-      "id": 19,
-      "file": "brand-identity-workflow.json",
-      "title": "Brand Identity Workflow",
-      "medium": "code"
-    }
-  ]
-}
+[
+  "_data/projects/arcana.json",
+  "_data/projects/archetypes-at-rest.json",
+  "_data/projects/asteroids.json",
+  "_data/projects/brand-identity-workflow.json",
+  "_data/projects/character-design.json",
+  "_data/projects/echoes-of-lumina.json",
+  "_data/projects/elyra.json",
+  "_data/projects/graphic-novel.json",
+  "_data/projects/henri-ruben.json",
+  "_data/projects/interactive-3d-gallery.json",
+  "_data/projects/nova-writers-conspiracy.json",
+  "_data/projects/set-design.json",
+  "_data/projects/sticker-pack.json",
+  "_data/projects/tarot-awakened.json",
+  "_data/projects/tarot-deck.json",
+  "_data/projects/weight-of-a-name.json",
+  "_data/projects/world-bible.json"
+]

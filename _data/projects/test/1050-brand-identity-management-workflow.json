@@ -1,0 +1,91 @@
+{
+  "id": 1050,
+  "title": "Brand Identity Management Workflow",
+  "description": "A comprehensive AI-powered system for automating brand identity creation and marketing campaign development using multi-agent orchestration.",
+  "medium": "code",
+  "genre": [
+    "AI/ML",
+    "Automation",
+    "Brand Design",
+    "Marketing"
+  ],
+  "style": [
+    "Modern",
+    "Professional",
+    "Innovative"
+  ],
+  "tech": [
+    "Unknown technology (1044)",
+    "Unknown technology (1045)",
+    "Unknown technology (1046)",
+    "Unknown technology (1047)",
+    "Unknown technology (1048)",
+    "Unknown technology (1049)"
+  ],
+  "mood": "Innovative",
+  "year": 2024,
+  "role": "Full Stack Developer & AI Engineer",
+  "variant": "featured",
+  "status": "live",
+  "links": {
+    "live": "https://github.com/rayswan/brand-identity-workflow",
+    "github": "https://github.com/rayswan/brand-identity-workflow",
+    "demo": "https://brand-workflow-demo.streamlit.app"
+  },
+  "pitch": "An advanced multi-agent system that automates complete brand identity creation and marketing strategy development using AI orchestration.",
+  "challenge": "Creating a sophisticated workflow that can generate production-ready brand assets and marketing strategies through intelligent agent coordination while maintaining structured, validated outputs.",
+  "development": "Built with CrewAI framework implementing hierarchical agent architecture, Pydantic models for data validation, and multiple deployment options from simple HTML interface to advanced multi-agent system.",
+  "outcome": "A comprehensive brand identity automation system that delivers structured, production-ready brand assets and marketing strategies with both simple and advanced implementation options.",
+  "gallery": [
+    {
+      "url": "images/dashboard.jpg",
+      "title": "Multi-Agent System Architecture",
+      "description": "Hierarchical agent coordination for brand identity creation",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/character-brainstorming.jpg",
+      "title": "Simple HTML Interface",
+      "description": "Zero-setup brand identity generator with OpenAI integration",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/graphic-novel-card-hero.JPG",
+      "title": "Generated Brand Assets",
+      "description": "Complete brand identity package including logos, colors, and style guides",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/manuscript-view.jpg",
+      "title": "Marketing Strategy Output",
+      "description": "Comprehensive marketing strategies across multiple channels",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "System Architecture Design",
+      "description": "Designed hierarchical multi-agent system with manager and worker agents for specialized brand identity and marketing tasks"
+    },
+    {
+      "title": "Pydantic Model Implementation",
+      "description": "Created comprehensive data models for structured outputs including LogoConcept, ColorPalette, StyleGuide, and MarketingOutput"
+    },
+    {
+      "title": "Agent Development",
+      "description": "Implemented specialized agents for logo design, color theory, style guide creation, and marketing strategy development"
+    },
+    {
+      "title": "Simple HTML Interface",
+      "description": "Built zero-setup HTML interface for immediate brand identity generation without installation requirements"
+    },
+    {
+      "title": "Advanced Multi-Agent System",
+      "description": "Developed full CrewAI-based system with hierarchical delegation and comprehensive workflow orchestration"
+    },
+    {
+      "title": "Documentation & Examples",
+      "description": "Created comprehensive documentation, usage examples, and configuration templates for easy adoption"
+    }
+  ]
+}

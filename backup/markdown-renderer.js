@@ -38,6 +38,7 @@ async function initializeMarkdownRenderer() {
 function configureMarked() {
     if (!marked) return;
     
+    // Set more robust options to handle edge cases
     marked.setOptions({
         breaks: true,
         gfm: true,
@@ -45,18 +46,25 @@ function configureMarked() {
         mangle: false,
         sanitize: false,
         smartLists: true,
-        smartypants: true,
-        xhtml: false
+        smartypants: false, // Disable to avoid conflicts
+        xhtml: false,
+        pedantic: false, // Be more lenient with parsing
+        silent: false // Show warnings for debugging
     });
     
     // Custom renderer for enhanced features
     const renderer = new marked.Renderer();
     
-    // Enhanced code block rendering
+    // Enhanced code block rendering with error handling
     renderer.code = function(code, language) {
-        const validLanguage = Prism.languages[language] ? language : 'markup';
-        const highlighted = Prism.highlight(code, Prism.languages[validLanguage], validLanguage);
-        return `<pre class="markdown-code-block"><code class="language-${validLanguage}">${highlighted}</code></pre>`;
+        try {
+            const validLanguage = Prism.languages[language] ? language : 'markup';
+            const highlighted = Prism.highlight(code, Prism.languages[validLanguage], validLanguage);
+            return `<pre class="markdown-code-block"><code class="language-${validLanguage}">${highlighted}</code></pre>`;
+        } catch (error) {
+            console.warn('Code highlighting failed:', error);
+            return `<pre class="markdown-code-block"><code>${code}</code></pre>`;
+        }
     };
     
     // Enhanced table rendering
@@ -64,19 +72,41 @@ function configureMarked() {
         return `<div class="markdown-table-container"><table class="markdown-table">${header}${body}</table></div>`;
     };
     
-    // Enhanced image rendering
+    // Enhanced image rendering with error handling
     renderer.image = function(href, title, text) {
-        const imgClass = 'markdown-image';
-        const titleAttr = title ? ` title="${title}"` : '';
-        return `<img src="${href}" alt="${text}" class="${imgClass}"${titleAttr} loading="lazy">`;
+        try {
+            const imgClass = 'markdown-image';
+            const titleAttr = title ? ` title="${title}"` : '';
+            const safeHref = href ? href.replace(/[<>]/g, '') : '';
+            return `<img src="${safeHref}" alt="${text || ''}" class="${imgClass}"${titleAttr} loading="lazy">`;
+        } catch (error) {
+            console.warn('Image rendering failed:', error);
+            return `<span class="markdown-image-error">[Image: ${text || 'Error loading image'}]</span>`;
+        }
     };
     
-    // Enhanced link rendering
+    // Enhanced link rendering with URL validation
     renderer.link = function(href, title, text) {
-        const isExternal = href.startsWith('http');
-        const target = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-        const titleAttr = title ? ` title="${title}"` : '';
-        return `<a href="${href}" class="markdown-link"${target}${titleAttr}>${text}</a>`;
+        try {
+            const isExternal = href && href.startsWith('http');
+            const target = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+            const titleAttr = title ? ` title="${title}"` : '';
+            const safeHref = href ? href.replace(/[<>]/g, '') : '#';
+            return `<a href="${safeHref}" class="markdown-link"${target}${titleAttr}>${text || href}</a>`;
+        } catch (error) {
+            console.warn('Link rendering failed:', error);
+            return `<span class="markdown-link-error">[Link: ${text || 'Error loading link'}]</span>`;
+        }
+    };
+    
+    // Add error handling for other renderer methods
+    renderer.html = function(html) {
+        try {
+            return html;
+        } catch (error) {
+            console.warn('HTML rendering failed:', error);
+            return `<span class="markdown-html-error">[HTML content]</span>`;
+        }
     };
     
     marked.use({ renderer });
@@ -120,8 +150,11 @@ function renderInlineMarkdown(containerId, markdownContent, options = {}) {
     const config = { ...defaultOptions, ...options };
     
     try {
+        // Pre-process markdown content to fix common issues
+        const sanitizedContent = sanitizeMarkdownContent(markdownContent);
+        
         // Parse and render markdown
-        const html = marked.parse(markdownContent);
+        const html = marked.parse(sanitizedContent);
         
         // Create wrapper with classes
         const wrapper = document.createElement('div');
@@ -158,8 +191,127 @@ function renderInlineMarkdown(containerId, markdownContent, options = {}) {
         
     } catch (error) {
         console.error('Error rendering inline markdown:', error);
-        container.innerHTML = `<p class="markdown-error">Error rendering content: ${error.message}</p>`;
+        
+        // Try fallback rendering with simplified content
+        try {
+            const fallbackContent = createFallbackContent(markdownContent);
+            container.innerHTML = `<div class="markdown-content ${config.className}">${fallbackContent}</div>`;
+        } catch (fallbackError) {
+            console.error('Fallback rendering also failed:', fallbackError);
+            container.innerHTML = `
+                <div class="markdown-error">
+                    <h3>Error Rendering Content</h3>
+                    <p>The markdown content could not be rendered due to a parsing error.</p>
+                    <details>
+                        <summary>Technical Details</summary>
+                        <pre>${error.message}</pre>
+                    </details>
+                    <button onclick="this.parentElement.innerHTML = '<pre>' + ${JSON.stringify(markdownContent)} + '</pre>'">
+                        Show Raw Content
+                    </button>
+                </div>
+            `;
+        }
     }
+}
+
+/**
+ * Sanitizes markdown content to fix common parsing issues
+ * @param {string} content - Raw markdown content
+ * @returns {string} Sanitized markdown content
+ */
+function sanitizeMarkdownContent(content) {
+    if (!content) return '';
+    
+    let sanitized = content;
+    
+    // Fix URLs with parentheses by encoding them
+    sanitized = sanitized.replace(/\[([^\]]+)\]\(([^)]*)\)/g, (match, text, url) => {
+        // Encode parentheses in URLs
+        const encodedUrl = url.replace(/\(/g, '%28').replace(/\)/g, '%29');
+        return `[${text}](${encodedUrl})`;
+    });
+    
+    // Fix double parentheses in URLs
+    sanitized = sanitized.replace(/\[([^\]]+)\]\(([^)]*)\)\)/g, (match, text, url) => {
+        // Remove extra closing parenthesis
+        const cleanUrl = url.replace(/\)$/, '');
+        const encodedUrl = cleanUrl.replace(/\(/g, '%28').replace(/\)/g, '%29');
+        return `[${text}](${encodedUrl})`;
+    });
+    
+    // Fix unescaped special characters in code blocks
+    sanitized = sanitized.replace(/```([\s\S]*?)```/g, (match, code) => {
+        // Escape special characters in code blocks
+        return '```' + code.replace(/[&<>]/g, (char) => {
+            const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;' };
+            return entities[char];
+        }) + '```';
+    });
+    
+    // Fix unescaped backticks in inline code
+    sanitized = sanitized.replace(/`([^`]+)`/g, (match, code) => {
+        // Escape special characters in inline code
+        return '`' + code.replace(/[&<>]/g, (char) => {
+            const entities = { '&': '&amp;', '<': '&lt;', '>': '&gt;' };
+            return entities[char];
+        }) + '`';
+    });
+    
+    return sanitized;
+}
+
+/**
+ * Creates fallback content when markdown parsing fails
+ * @param {string} content - Raw markdown content
+ * @returns {string} HTML fallback content
+ */
+function createFallbackContent(content) {
+    if (!content) return '<p>No content available.</p>';
+    
+    // Simple markdown to HTML conversion for fallback
+    let html = content
+        // Headers
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        
+        // Bold and italic
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        
+        // Code blocks
+        .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        
+        // Links (simplified)
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+        
+        // Lists
+        .replace(/^\- (.*$)/gim, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+        .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/s, '<ol>$1</ol>')
+        
+        // Paragraphs
+        .replace(/\n\n/g, '</p><p>');
+    
+    // Wrap in paragraph tags
+    html = '<p>' + html + '</p>';
+    
+    // Clean up empty paragraphs and fix structure
+    html = html
+        .replace(/<p><\/p>/g, '')
+        .replace(/<p>(<h[1-6]>)/g, '$1')
+        .replace(/(<\/h[1-6]>)<\/p>/g, '$1')
+        .replace(/<p>(<ul>)/g, '$1')
+        .replace(/(<\/ul>)<\/p>/g, '$1')
+        .replace(/<p>(<ol>)/g, '$1')
+        .replace(/(<\/ol>)<\/p>/g, '$1')
+        .replace(/<p>(<pre>)/g, '$1')
+        .replace(/(<\/pre>)<\/p>/g, '$1');
+    
+    return html;
 }
 
 // --- MODAL MARKDOWN READER ---

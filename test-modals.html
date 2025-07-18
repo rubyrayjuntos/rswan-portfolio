@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            color: #333;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .modal-close:hover {
+            color: #333;
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔧 Modal Test Page</h1>
+        <p>Testing modal functionality to ensure it works before implementing in PPMS.</p>
+        
+        <div class="test-buttons">
+            <button class="btn btn-primary" onclick="openTestModal('bulkActionsModal')">
+                Test Bulk Actions Modal
+            </button>
+            <button class="btn btn-secondary" onclick="openTestModal('templateModal')">
+                Test Templates Modal
+            </button>
+            <button class="btn btn-primary" onclick="openTestModal('createTemplateModal')">
+                Test Create Template Modal
+            </button>
+        </div>
+        
+        <div id="test-results">
+            <h3>Test Results:</h3>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <!-- Bulk Actions Modal -->
+    <div class="modal" id="bulkActionsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Bulk Actions</h3>
+                <button class="modal-close" onclick="closeTestModal('bulkActionsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This is the Bulk Actions modal. It should appear when you click the button.</p>
+                <div class="bulk-actions-header">
+                    <div class="bulk-selection-controls">
+                        <button class="btn btn-secondary">Select All</button>
+                        <button class="btn btn-secondary">Select None</button>
+                    </div>
+                    <div class="bulk-actions-info">
+                        <span>0 projects selected</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates Modal -->
+    <div class="modal" id="templateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Project Templates</h3>
+                <button class="modal-close" onclick="closeTestModal('templateModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This is the Templates modal. It should appear when you click the button.</p>
+                <div class="template-actions">
+                    <button class="btn btn-primary">Create Template</button>
+                    <button class="btn btn-secondary">Import Template</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Template Modal -->
+    <div class="modal" id="createTemplateModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Template</h3>
+                <button class="modal-close" onclick="closeTestModal('createTemplateModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This is the Create Template modal. It should appear when you click the button.</p>
+                <form>
+                    <div style="margin-bottom: 15px;">
+                        <label>Template Name:</label>
+                        <input type="text" placeholder="Enter template name" style="width: 100%; padding: 8px; margin-top: 5px;">
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                        <label>Description:</label>
+                        <textarea placeholder="Describe this template..." style="width: 100%; padding: 8px; margin-top: 5px; height: 80px;"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeTestModal('createTemplateModal')">Cancel</button>
+                <button class="btn btn-primary">Create Template</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTestModal(modalId) {
+            console.log(`Opening modal: ${modalId}`);
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                console.log(`Modal ${modalId} opened successfully`);
+                addResult(`✅ Modal ${modalId} opened successfully`);
+            } else {
+                console.error(`Modal with id '${modalId}' not found`);
+                addResult(`❌ Modal ${modalId} not found`);
+            }
+        }
+
+        function closeTestModal(modalId) {
+            console.log(`Closing modal: ${modalId}`);
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                console.log(`Modal ${modalId} closed successfully`);
+                addResult(`✅ Modal ${modalId} closed successfully`);
+            }
+        }
+
+        function addResult(message) {
+            const results = document.getElementById('results');
+            const timestamp = new Date().toLocaleTimeString();
+            results.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+        }
+
+        // Test modal functionality on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            addResult('🚀 Modal test page loaded');
+            addResult('Click the buttons above to test modal functionality');
+        });
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                const modalId = e.target.id;
+                closeTestModal(modalId);
+            }
+        });
+    </script>
+</body>
+</html> 

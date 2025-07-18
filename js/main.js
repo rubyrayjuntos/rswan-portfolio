@@ -390,35 +390,53 @@ function switchProjectType(type) {
 
 // Update project content
 function updateProjectContent() {
+    console.log('🔧 updateProjectContent() called from main.js');
+    
+    // Check if we're on the detail page and have sessionStorage data
+    const currentProjectJson = sessionStorage.getItem('currentProject');
+    if (currentProjectJson && window.location.pathname.includes('ParallaxThemes.html')) {
+        console.log('📦 Found sessionStorage data on detail page - skipping hardcoded content');
+        console.log('   - This prevents main.js from overriding dynamic content');
+        return; // Don't override dynamic content on detail page
+    }
+    
+    console.log('📋 Using hardcoded projectData for:', currentProject);
     const project = projectData[currentProject];
     
     // Update hero section
-    document.getElementById('projectTypeBadge').textContent = project.type;
-    document.getElementById('projectTitle').textContent = project.title;
-    document.getElementById('projectSubtitle').textContent = project.subtitle;
-    document.getElementById('projectDescription').textContent = project.description;
+    const projectTypeBadge = document.getElementById('projectTypeBadge');
+    const projectTitle = document.getElementById('projectTitle');
+    const projectSubtitle = document.getElementById('projectSubtitle');
+    const projectDescription = document.getElementById('projectDescription');
+    
+    if (projectTypeBadge) projectTypeBadge.textContent = project.type;
+    if (projectTitle) projectTitle.textContent = project.title;
+    if (projectSubtitle) projectSubtitle.textContent = project.subtitle;
+    if (projectDescription) projectDescription.textContent = project.description;
     
     // Update tags
     const tagsContainer = document.getElementById('projectTags');
-    tagsContainer.innerHTML = '';
-    project.tags.forEach(tag => {
-        const tagElement = document.createElement('span');
-        tagElement.className = 'tag';
-        tagElement.textContent = tag;
-        tagsContainer.appendChild(tagElement);
-    });
+    if (tagsContainer) {
+        tagsContainer.innerHTML = '';
+        project.tags.forEach(tag => {
+            const tagElement = document.createElement('span');
+            tagElement.className = 'tag';
+            tagElement.textContent = tag;
+            tagsContainer.appendChild(tagElement);
+        });
+    }
     
     // Update gallery
-    updateGallery(project.gallery);
+    if (typeof updateGallery === 'function') updateGallery(project.gallery);
     
     // Update journey
-    updateJourney(project.journey);
+    if (typeof updateJourney === 'function') updateJourney(project.journey);
     
     // Update specs
-    updateSpecs(project.specs);
+    if (typeof updateSpecs === 'function') updateSpecs(project.specs);
     
     // Update links
-    updateLinks(project.links);
+    if (typeof updateLinks === 'function') updateLinks(project.links);
 }
 
 // Initialize when DOM is loaded

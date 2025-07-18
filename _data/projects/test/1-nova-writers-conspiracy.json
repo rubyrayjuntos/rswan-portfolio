@@ -1,0 +1,73 @@
+{
+  "id": 1,
+  "title": "Nova Writers Conspiracy",
+  "description": "A collaborative writing platform that uses AI to help writers develop their stories through interactive character development and plot generation.",
+  "imageUrl": "images/projects/nova-writers-conspiracy-cover-art.jpg",
+  "medium": "code",
+  "genre": [
+    "Web Development",
+    "AI/ML"
+  ],
+  "style": [
+    "Modern",
+    "Minimalist"
+  ],
+  "tech": [
+    "React",
+    "JavaScript",
+    "Node.js",
+    "CSS3",
+    "HTML5"
+  ],
+  "mood": "Innovative",
+  "year": 2025,
+  "role": "Lead Developer",
+  "variant": "featured",
+  "status": "development",
+  "links": {
+    "github": "https://github.com/user/nova-writers",
+    "demo": "https://nova-writers.demo.com"
+  },
+  "pitch": "Revolutionizing collaborative storytelling through AI-powered character development and plot generation.",
+  "challenge": "Creating an intuitive interface that balances AI assistance with human creativity, ensuring writers maintain control over their stories.",
+  "development": "Built with React and Node.js, integrating OpenAI's GPT API for character generation and plot suggestions. Implemented real-time collaboration features.",
+  "outcome": "Successfully launched beta with 50+ writers, achieving 85% user satisfaction and generating 200+ story concepts.",
+  "gallery": [
+    {
+      "id": 1,
+      "url": "images/projects/nova-writers-conspiracy/nova-chat-interface.jpg",
+      "title": "AI Chat Interface",
+      "description": "Interactive character development chat",
+      "dimensions": "1920x1080",
+      "sort_order": 0
+    },
+    {
+      "id": 2,
+      "url": "images/projects/nova-writers-conspiracy/nova-dashboard-interface.jpg",
+      "title": "Project Dashboard",
+      "description": "Main project management interface",
+      "dimensions": "1920x1080",
+      "sort_order": 1
+    }
+  ],
+  "journey": [
+    {
+      "id": 1,
+      "title": "Concept Development",
+      "description": "Initial brainstorming and market research",
+      "sort_order": 0
+    },
+    {
+      "id": 2,
+      "title": "Prototype Creation",
+      "description": "Building MVP with core AI features",
+      "sort_order": 1
+    },
+    {
+      "id": 3,
+      "title": "Beta Testing",
+      "description": "User testing and feedback integration",
+      "sort_order": 2
+    }
+  ]
+}
