@@ -10,56 +10,127 @@ class ProjectLoader {
         this.loadingPromises = new Map(); // Prevent duplicate loads
     }
 
+    /**
+     * Dynamically discover and load all project JSON files
+     * Uses a combination of known patterns and dynamic discovery
+     */
     async loadAllProjects() {
+        console.log('🔄 Starting dynamic project discovery...');
+        
         try {
-            const projectList = await this.loadProjectManifest();
-            const projectPromises = projectList.map(filePath => this.loadSingleProject(filePath));
-            const loadedProjects = await Promise.all(projectPromises);
+            // First, try to load a project manifest if it exists
+            const manifest = await this.loadProjectManifest();
             
-            // Filter out any nulls from failed loads and sort by ID
-            this.projects = loadedProjects
-                .filter(p => p !== null)
-                .sort((a, b) => a.id - b.id);
+            if (manifest && manifest.projects) {
+                // Use manifest if available
+                console.log('📋 Using project manifest for loading');
+                await this.loadProjectsFromManifest(manifest.projects);
+            } else {
+                // Fallback to dynamic discovery
+                console.log('🔍 No manifest found, using dynamic discovery');
+                await this.discoverAndLoadProjects();
+            }
             
-            this.projects.forEach(p => this.loadedProjects.set(p.id, p));
-
+            console.log(`✅ Successfully loaded ${this.projects.length} projects`);
             return this.projects;
+            
         } catch (error) {
-            console.error('❌ Failed to load all projects:', error);
-            // Fallback to a minimal set if manifest fails
+            console.error('❌ Error loading projects:', error);
             return this.getFallbackProjects();
         }
     }
 
+    /**
+     * Try to load a project manifest file
+     */
     async loadProjectManifest() {
         try {
-            console.log('📄 Fetching project manifest...');
             const response = await fetch('_data/projects/manifest.json');
-            if (!response.ok) {
-                throw new Error(`Manifest fetch failed with status ${response.status}`);
+            if (response.ok) {
+                return await response.json();
             }
-            const manifest = await response.json();
-            console.log(`✅ Manifest loaded successfully with ${manifest.length} projects.`);
-            return manifest;
         } catch (error) {
-            console.error('⚠️ Could not load manifest.json:', error);
-            console.warn('Falling back to empty project list. Please run "npm run manifest".');
-            return []; // Return empty array on failure
+            console.log('No project manifest found, will use dynamic discovery');
         }
+        return null;
     }
 
+    /**
+     * Load projects from a manifest file
+     */
     async loadProjectsFromManifest(projectList) {
-        const loadPromises = projectList.map(filePath => this.loadSingleProject(filePath));
-        const projects = await Promise.all(loadPromises);
-        return projects.filter(p => p !== null); // Filter out any that failed to load
+        const loadPromises = projectList.map(async (projectInfo) => {
+            const filePath = projectInfo.file || `_data/projects/${projectInfo.id}.json`;
+            return this.loadSingleProject(filePath, projectInfo.id);
+        });
+
+        const results = await Promise.allSettled(loadPromises);
+        
+        // Filter successful loads and maintain order
+        this.projects = results
+            .map((result, index) => {
+                if (result.status === 'fulfilled' && result.value) {
+                    return result.value;
+                } else {
+                    console.warn(`Failed to load project ${projectList[index]?.id || index}:`, result.reason);
+                    return null;
+                }
+            })
+            .filter(project => project !== null);
     }
-    
+
+    /**
+     * Dynamic discovery of project files
+     * Uses common naming patterns and known project IDs
+     */
     async discoverAndLoadProjects() {
-        // This method is now effectively replaced by loadAllProjects,
-        // which uses the manifest. We'll keep it for potential future use
-        // but the primary mechanism is now manifest-driven.
-        console.warn('discoverAndLoadProjects is deprecated. Using manifest-based loading.');
-        return this.loadAllProjects();
+        // Common project patterns to try
+        const projectPatterns = [
+            // Known project files
+            'echoes-of-lumina.json',
+            'nova-writers-conspiracy.json',
+            'henri-ruben.json',
+            'graphic-novel.json',
+            'weight-of-a-name.json',
+            'character-design.json',
+            'arcana.json',
+            'tarot-deck.json',
+            'brand-automation.json',
+            'asteroids.json',
+            'elyra.json',
+            'set-design.json',
+            'world-bible.json',
+            'sticker-pack.json',
+            'tarot-awakened.json',
+            'brand-identity-workflow.json',
+            
+            // Additional patterns to try
+            'sample-project.json',
+            'papi-chispa-cartas-del-deseo.json'
+        ];
+
+        // Try to load each project file
+        const loadPromises = projectPatterns.map(async (filename) => {
+            const filePath = `_data/projects/${filename}`;
+            return this.loadSingleProject(filePath);
+        });
+
+        const results = await Promise.allSettled(loadPromises);
+        
+        // Filter successful loads
+        this.projects = results
+            .map((result, index) => {
+                if (result.status === 'fulfilled' && result.value) {
+                    return result.value;
+                } else {
+                    console.log(`Project file not found or failed to load: ${projectPatterns[index]}`);
+                    return null;
+                }
+            })
+            .filter(project => project !== null);
+
+        // Sort projects by ID for consistent ordering
+        this.projects.sort((a, b) => (a.id || 0) - (b.id || 0));
     }
 
     /**
