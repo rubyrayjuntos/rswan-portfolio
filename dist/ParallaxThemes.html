@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Project Details</title>
+    <meta name="description" id="pageDescription" content="Project details">
+    <meta property="og:title" id="ogTitle" content="Project Details">
+    <meta property="og:description" id="ogDescription" content="Project details">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitterTitle" content="Project Details">
+    <meta name="twitter:description" id="twitterDescription" content="Project details">
+    
+    <!-- External CSS Files -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/themes.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="backup/markdown-styles.css">
+</head>
+<body id="detail-page">
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <nav class="floating-nav" id="floatingNav">
+        <div class="nav-content">
+            <div class="nav-icon">🧭</div>
+            <ul class="nav-links">
+                <li><a href="#home">🏠 Home</a></li>
+                <li><a href="#overview">📋 Overview</a></li>
+                <li><a href="#gallery">🖼️ Gallery</a></li>
+                <li><a href="#journey">🚀 Journey</a></li>
+                <li><a href="#specs">⚙️ Specifications</a></li>
+                <li><a href="#links">🔗 Links</a></li>
+                <li><button class="motion-toggle" onclick="toggleMotion()" aria-label="Toggle motion effects">🎬 Stop Parallax</button></li>
+                <li class="theme-switcher-container">
+                    <label for="theme-select">🎨 Theme:</label>
+                    <select id="theme-select" onchange="setTheme(this.value)" aria-label="Select website theme">
+                        <option value="original">Original</option>
+                        <option value="dark">Dark</option>
+                        <option value="ocean">Ocean</option>
+                        <option value="forest">Forest</option>
+                        <option value="sunset">Sunset</option>
+                        <option value="twilight">Twilight</option>
+                        <option value="lavender">Lavender</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content" role="main" id="project-detail-main">
+        <section class="hero" id="home" aria-label="Hero Section">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="hero-particles" aria-hidden="true" id="heroParticles"></div>
+            <div class="hero-content">
+                <div class="project-type-badge" id="projectTypeBadge">Loading...</div>
+                <h1 id="projectTitle">Loading...</h1>
+                <p class="subtitle" id="projectSubtitle">Loading...</p>
+            </div>
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+            </div>
+        </section>
+
+        <section class="content-section fade-in" id="overview" aria-label="Project Overview">
+            <div class="container">
+                <h2 class="section-title">Project Overview<span class="title-sparkle">✨</span></h2>
+                <p id="projectDescription">Loading project description...</p>
+                
+                <div class="tags" id="projectTags">
+                    <span class="tag">Loading...</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section fade-in" id="gallery" aria-label="Project Gallery">
+            <div class="container">
+                <h2 class="section-title">Gallery<span class="title-sparkle">✨</span></h2>
+                <div class="gallery-container">
+                    <div class="gallery-grid" id="galleryGrid">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section fade-in" id="journey" aria-label="Development Journey">
+            <div class="container">
+                <h2 class="section-title">Development Journey<span class="title-sparkle">✨</span></h2>
+                <div class="timeline" id="timelineContainer">
+                    </div>
+            </div>
+        </section>
+
+        <section class="content-section fade-in" id="specs" aria-label="Unique Value Propositions">
+            <div class="container">
+                <h2 class="section-title">Unique Value Propositions<span class="title-sparkle">✨</span></h2>
+                <div class="spec-grid" id="specsGrid">
+                    </div>
+            </div>
+        </section>
+
+        <section class="content-section fade-in" id="artifacts" aria-label="Project Artifacts" style="display: none;">
+            <div class="container">
+                <h2 class="section-title">Project Artifacts<span class="title-sparkle">💾</span></h2>
+                <p class="section-description text-center">Dive deeper into the technical and design documents.</p>
+                <div class="artifacts-grid" id="artifactsGrid">
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section fade-in" id="process" aria-label="Creative Process" style="display: none;">
+            <div class="container">
+                <h2 class="section-title">Creative Process<span class="title-sparkle">🎨</span></h2>
+                <div class="process-content" id="processContent">
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section fade-in" id="inspiration" aria-label="Inspiration & Influences" style="display: none;">
+            <div class="container">
+                <h2 class="section-title">Inspiration & Influences<span class="title-sparkle">💡</span></h2>
+                <div class="inspiration-content" id="inspirationContent">
+                    <!-- Content populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Writing-specific sections -->
+        <section class="content-section fade-in" id="excerpts" aria-label="Excerpts" style="display: none;">
+            <div class="container">
+                <h2 class="section-title">Excerpts<span class="title-sparkle">✨</span></h2>
+                <p class="section-description text-center">Sample passages and character revelations from the story.</p>
+                <div class="excerpts-content" id="excerptsContent">
+                    <!-- Content will be populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section fade-in" id="themes" aria-label="Themes & Analysis" style="display: none;">
+            <div class="container">
+                <h2 class="section-title">Themes & Analysis<span class="title-sparkle">✨</span></h2>
+                <p class="section-description text-center">Deep dive into the philosophical and narrative themes.</p>
+                <div class="themes-content" id="themesContent">
+                    <!-- Content will be populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section fade-in" id="links" aria-label="Project Links">
+            <div class="container">
+                <h2 class="section-title">Project Links<span class="title-sparkle">✨</span></h2>
+                <div class="links-section" id="linksSection">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Image Gallery Modal -->
+    <div id="gallery-modal" class="gallery-modal-overlay">
+        <div class="gallery-modal-content">
+            <div class="gallery-header">
+                <h3 class="gallery-title" id="gallery-modal-title">Art Gallery</h3>
+                <button class="gallery-close-btn" data-modal-id="gallery-modal-overlay">&times;</button>
+            </div>
+            <div class="gallery-modal-grid" id="gallery-modal-grid">
+                <!-- Gallery items will be dynamically populated -->
+            </div>
+            <div class="gallery-controls">
+                <button class="gallery-nav-btn" id="gallery-prev-btn">← Previous</button>
+                <button class="gallery-nav-btn" id="gallery-next-btn">Next →</button>
+            </div>
+            <div class="gallery-info" id="gallery-info">
+                <!-- Gallery info will be dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <script type="application/ld+json" id="structuredData">
+    {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Loading...",
+        "description": "Loading...",
+        "author": {
+            "@type": "Person",
+            "name": "Ray Swan"
+        },
+        "genre": "Loading...",
+        "keywords": "Loading..."
+    }
+    </script>
+
+    <!-- Modular JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/parallax.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/ui.js"></script>
+    
+    <!-- Markdown Renderer -->
+    <script src="backup/markdown-renderer.js"></script>
+
+    <!-- Phase 3: Project Type Specific Functionality -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('🚀 ParallaxThemes.html DOMContentLoaded event fired');
+        console.log('📍 Current URL:', window.location.href);
+        console.log('📍 Referrer:', document.referrer);
+
+        // Dynamic project loading - no hardcoded data
+        let currentProject = null;
+
+        // --- NEW: Helper function for creating slugs ---
+        function createSlug(title) {
+            if (!title) return '';
+            return title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        }
+
+        // Get current project from sessionStorage (set by main gallery page)
+        console.log('🔍 Checking sessionStorage for currentProject...');
+        const currentProjectJson = sessionStorage.getItem('currentProject');
+        console.log('📦 Raw sessionStorage data:', currentProjectJson);
+
+        if (currentProjectJson) {
+            try {
+                currentProject = JSON.parse(currentProjectJson);
+                console.log('✅ Successfully parsed currentProject from sessionStorage:');
+                console.log('   - Project ID:', currentProject.id);
+                console.log('   - Project Title:', currentProject.title);
+                console.log('   - Project Medium:', currentProject.medium);
+                console.log('   - Full project object:', currentProject);
+            } catch (e) {
+                console.error('❌ Error parsing current project from sessionStorage:', e);
+                console.error('   - Raw data that failed to parse:', currentProjectJson);
+                currentProject = null;
+            }
+        } else {
+            console.warn('⚠️ No currentProject found in sessionStorage');
+            console.log('🔍 Available sessionStorage keys:', Object.keys(sessionStorage));
+            currentProject = null;
+        }
+
+        // New DOM references for project type specific sections
+        const artifactsSection = document.getElementById('artifacts');
+        const artifactsGrid = document.getElementById('artifactsGrid');
+        const processSection = document.getElementById('process');
+        const inspirationSection = document.getElementById('inspiration');
+        const excerptsSection = document.getElementById('excerpts');
+        const themesAnalysisSection = document.getElementById('themes');
+
+        // New DOM references for gallery modal enhancements
+        const galleryModal = document.getElementById('gallery-modal');
+        const galleryModalGrid = document.getElementById('gallery-modal-grid');
+        const galleryModalTitle = document.getElementById('gallery-modal-title');
+        const galleryControls = document.querySelector('.gallery-controls');
+        const galleryPrevBtn = document.getElementById('gallery-prev-btn');
+        const galleryNextBtn = document.getElementById('gallery-next-btn');
+        const galleryInfo = document.getElementById('gallery-info');
+
+        const galleryModalImgContainer = document.createElement('div');
+        galleryModalImgContainer.className = 'gallery-modal-img-container';
+        const galleryMainImg = document.createElement('img');
+        galleryMainImg.className = 'gallery-modal-fullscreen-image';
+        galleryModalImgContainer.appendChild(galleryMainImg);
+        const galleryHotspotPanel = document.createElement('div');
+        galleryHotspotPanel.className = 'hotspot-detail-panel';
+        galleryHotspotPanel.innerHTML = '<button class="close-panel-btn">&times;</button><h4></h4><p></p>';
+        galleryModalImgContainer.appendChild(galleryHotspotPanel);
+
+        // Get a reference to the main-content element for background effects
+        const mainContentElement = document.getElementById('project-detail-main');
+
+        // Gallery state
+        let currentGallery = [];
+        let currentGalleryIndex = 0;
+        const itemsPerPage = 6;
+
+        // Debug new DOM element references
+        console.log('New DOM references:');
+        console.log('artifactsSection:', artifactsSection);
+        console.log('artifactsGrid:', artifactsGrid);
+        console.log('processSection:', processSection);
+        console.log('inspirationSection:', inspirationSection);
+        console.log('excerptsSection:', excerptsSection);
+        console.log('themesAnalysisSection:', themesAnalysisSection);
+        console.log('galleryModalImgContainer:', galleryModalImgContainer);
+        console.log('galleryMainImg:', galleryMainImg);
+        console.log('galleryHotspotPanel:', galleryHotspotPanel);
+        console.log('mainContentElement:', mainContentElement);
+
+        // Function to render project detail page
+        function renderDetailPage(project) {
+            console.log('🎨 renderDetailPage() called with project:', project);
+            
+            if (!project) {
+                console.error('❌ No project data provided to renderDetailPage()');
+                return;
+            }
+
+            console.log('✅ Project data validated, starting render process...');
+            console.log('   - Project ID:', project.id);
+            console.log('   - Project Title:', project.title);
+            console.log('   - Project Medium:', project.medium);
+
+            // --- NEW: Project Slug for Image Paths ---
+            const projectSlug = createSlug(project.title);
+            console.log(`📂 Project slug created: ${projectSlug}`);
+
+            // Update page title and meta tags
+            console.log('📝 Updating page metadata...');
+            updatePageMetadata(project);
+
+            // Update hero section
+            console.log('🎭 Updating hero section...');
+            updateHeroSection(project);
+
+            // Update navigation
+            console.log('🧭 Updating navigation...');
+            updateNavigation(project);
+
+            // Update overview section
+            console.log('📋 Updating overview section...');
+            updateOverviewSection(project);
+
+            // Update structured data
+            console.log('🏷️ Updating structured data...');
+            updateStructuredData(project);
+
+            // --- Conditional Section Display based on project.medium ---
+            // Hide all type-specific sections first
+            if (artifactsSection) artifactsSection.style.display = 'none';
+            if (processSection) processSection.style.display = 'none';
+            if (inspirationSection) inspirationSection.style.display = 'none';
+            if (excerptsSection) excerptsSection.style.display = 'none';
+            if (themesAnalysisSection) themesAnalysisSection.style.display = 'none';
+
+            // Show relevant sections based on project medium
+            console.log('🎯 Checking medium-specific sections for:', project.medium);
+            switch (project.medium.toLowerCase()) {
+                case 'code':
+                    console.log('💻 Code project detected - showing artifacts section');
+                    if (artifactsSection) {
+                        artifactsSection.style.display = 'block';
+                        console.log('   ✅ Artifacts section displayed');
+                        // Populate artifacts for code projects
+                        console.log('   - Project artifacts data:', project.artifacts);
+                        populateArtifacts(project.artifacts);
+                    } else {
+                        console.warn('   ⚠️ Artifacts section element not found');
+                    }
+                    break;
+                case 'art':
+                    console.log('🎨 Art project detected - showing process and inspiration sections');
+                    if (processSection) {
+                        processSection.style.display = 'block';
+                        console.log('   ✅ Process section displayed');
+                        const processContent = document.getElementById('processContent');
+                        if (processContent && project.process) {
+                            processContent.innerHTML = project.process;
+                        } else if (processContent) {
+                            processContent.innerHTML = '<p>Details on the creative process for this project are not yet available.</p>';
+                        }
+                    } else {
+                        console.warn('   ⚠️ Process section element not found');
+                    }
+                    if (inspirationSection) {
+                        inspirationSection.style.display = 'block';
+                        console.log('   ✅ Inspiration section displayed');
+                        const inspirationContent = document.getElementById('inspirationContent');
+                        if (inspirationContent && project.inspiration) {
+                            inspirationContent.innerHTML = project.inspiration;
+                        } else if (inspirationContent) {
+                            inspirationContent.innerHTML = '<p>Information about inspirations and influences for this project is not yet available.</p>';
+                        }
+                    } else {
+                        console.warn('   ⚠️ Inspiration section element not found');
+                    }
+                    // Populate process/inspiration content if you have it in JSON
+                    // document.getElementById('processContent').innerHTML = project.processContent || '';
+                    // document.getElementById('inspirationContent').innerHTML = project.inspirationContent || '';
+                    break;
+                case 'writing':
+                    console.log('✍️ Writing project detected - showing excerpts and themes sections');
+                    if (excerptsSection) {
+                        excerptsSection.style.display = 'block';
+                        excerptsSection.style.opacity = '1';
+                        excerptsSection.style.transform = 'translateY(0)';
+                        console.log('   ✅ Excerpts section displayed');
+                    } else {
+                        console.warn('   ⚠️ Excerpts section element not found');
+                    }
+                    if (themesAnalysisSection) {
+                        themesAnalysisSection.style.display = 'block';
+                        themesAnalysisSection.style.opacity = '1';
+                        themesAnalysisSection.style.transform = 'translateY(0)';
+                        console.log('   ✅ Themes analysis section displayed');
+                    } else {
+                        console.warn('   ⚠️ Themes analysis section element not found');
+                    }
+                    // Populate excerpts/themes content
+                    console.log('📖 Populating excerpts content...');
+                    console.log('   - Project excerpts data:', project.excerpts ? 'Available' : 'Not available');
+                    if (project.excerpts) {
+                        const excerptsContent = document.getElementById('excerptsContent');
+                        console.log('   - excerptsContent element found:', !!excerptsContent);
+                        if (excerptsContent) {
+                            excerptsContent.innerHTML = project.excerpts;
+                            console.log('   ✅ Excerpts content populated');
+                            console.log('   - Content length:', excerptsContent.innerHTML.length);
+                            console.log('   - Element display style:', window.getComputedStyle(excerptsContent).display);
+                        } else {
+                            console.warn('   ⚠️ excerptsContent element not found');
+                        }
+                                            } else {
+                            console.log('   ℹ️ No excerpts data available');
+                            // Add fallback content for debugging
+                            const excerptsContent = document.getElementById('excerptsContent');
+                            if (excerptsContent) {
+                                excerptsContent.innerHTML = '<p><strong>DEBUG:</strong> No excerpts data found in project. Project data: ' + JSON.stringify(project).substring(0, 200) + '...</p>';
+                            }
+                        }
+                    
+                    console.log('🎭 Populating themes analysis content...');
+                    const themesData = project.themesAnalysis || project.themes;
+                    console.log('   - Themes data available:', !!themesData);
+                    if (themesData) {
+                        const themesContent = document.getElementById('themesContent');
+                        console.log('   - themesContent element found:', !!themesContent);
+                        if (themesContent) {
+                            themesContent.innerHTML = themesData;
+                            console.log('   ✅ Themes analysis content populated');
+                            console.log('   - Content length:', themesContent.innerHTML.length);
+                            console.log('   - Element display style:', window.getComputedStyle(themesContent).display);
+                        } else {
+                            console.warn('   ⚠️ themesContent element not found');
+                        }
+                    } else {
+                        console.log('   ℹ️ No themes analysis data available');
+                        // Add fallback content for debugging
+                        const themesContent = document.getElementById('themesContent');
+                        if (themesContent) {
+                            themesContent.innerHTML = '<p><strong>DEBUG:</strong> No themes data found in project. Available fields: ' + Object.keys(project).join(', ') + '</p>';
+                        }
+                    }
+                    break;
+            }
+
+            // Populate all static detail page elements (if elements exist)
+            const detailHeroImg = document.getElementById('detail-hero-img');
+            const detailTitle = document.getElementById('detail-title');
+            const detailPitch = document.getElementById('detail-pitch');
+            const detailRole = document.getElementById('detail-role');
+            const detailYear = document.getElementById('detail-year');
+            const detailChallenge = document.getElementById('detail-challenge');
+            const detailDevelopment = document.getElementById('detail-development');
+            const detailOutcome = document.getElementById('detail-outcome');
+
+            if (detailHeroImg) detailHeroImg.src = project.imageUrl;
+            if (detailTitle) detailTitle.textContent = project.title;
+            if (detailPitch) detailPitch.textContent = project.pitch;
+            if (detailRole) detailRole.textContent = project.role;
+            if (detailYear) detailYear.textContent = project.year;
+            if (detailChallenge) detailChallenge.textContent = project.challenge;
+            if (detailDevelopment) detailDevelopment.textContent = project.development;
+            if (detailOutcome) detailOutcome.textContent = project.outcome;
+
+            // Populate Links dynamically
+            const linksContainer = document.getElementById('linksSection');
+            if (linksContainer && project.links) {
+                linksContainer.innerHTML = '';
+                for (const [text, url] of Object.entries(project.links)) {
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.textContent = text;
+                    link.className = 'link-card';
+                    link.innerHTML = `
+                        <span class="icon">🔗</span>
+                        <h3>${text}</h3>
+                        <p>Visit ${text.toLowerCase()}</p>
+                    `;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                    linksContainer.appendChild(link);
+                }
+            }
+
+            // Populate Tech Tags dynamically
+            const techTagsContainer = document.getElementById('detail-tech-tags');
+            if (techTagsContainer && project.tech) {
+                techTagsContainer.innerHTML = '';
+                project.tech.forEach(tech => {
+                    const tag = document.createElement('div');
+                    tag.className = 'tag';
+                    tag.textContent = tech;
+                    techTagsContainer.appendChild(tag);
+                });
+            }
+
+            // Populate Gallery section
+            console.log('🖼️ Populating gallery section...');
+            populateGallery(project, projectSlug);
+
+            // Populate Journey section
+            console.log('🚀 Populating journey section...');
+            populateJourney(project.journey);
+
+            // Populate Specs section
+            console.log('⚙️ Populating specs section...');
+            populateSpecs(project.specs);
+        }
+
+        // Update page metadata (title, meta tags)
+        function updatePageMetadata(project) {
+            console.log('🔧 updatePageMetadata() called with project:', project.title);
+            
+            const title = `${project.title} - Project Details`;
+            const description = project.description || project.pitch || 'Project details';
+            
+            console.log('   - Setting page title to:', title);
+            console.log('   - Setting description to:', description);
+            
+            // Update page title
+            document.title = title;
+            const pageTitleElement = document.getElementById('pageTitle');
+            if (pageTitleElement) {
+                pageTitleElement.textContent = title;
+                console.log('   ✅ Page title updated');
+            } else {
+                console.warn('   ⚠️ pageTitle element not found');
+            }
+            
+            // Update meta tags
+            const metaElements = {
+                pageDescription: document.getElementById('pageDescription'),
+                ogTitle: document.getElementById('ogTitle'),
+                ogDescription: document.getElementById('ogDescription'),
+                twitterTitle: document.getElementById('twitterTitle'),
+                twitterDescription: document.getElementById('twitterDescription')
+            };
+            
+            Object.entries(metaElements).forEach(([name, element]) => {
+                if (element) {
+                    element.setAttribute('content', name.includes('Description') ? description : project.title);
+                    console.log(`   ✅ ${name} meta tag updated`);
+                } else {
+                    console.warn(`   ⚠️ ${name} meta element not found`);
+                }
+            });
+        }
+
+        // Update hero section
+        function updateHeroSection(project) {
+            console.log('🎭 updateHeroSection() called with project:', project.title);
+            
+            const projectTypeBadge = document.getElementById('projectTypeBadge');
+            const projectTitle = document.getElementById('projectTitle');
+            const projectSubtitle = document.getElementById('projectSubtitle');
+
+            console.log('   - Looking for hero elements...');
+            console.log('   - projectTypeBadge found:', !!projectTypeBadge);
+            console.log('   - projectTitle found:', !!projectTitle);
+            console.log('   - projectSubtitle found:', !!projectSubtitle);
+
+            if (projectTypeBadge) {
+                const medium = project.medium || 'Project';
+                const badgeText = `${medium.charAt(0).toUpperCase() + medium.slice(1)} Project`;
+                projectTypeBadge.textContent = badgeText;
+                console.log('   ✅ Project type badge updated to:', badgeText);
+            } else {
+                console.warn('   ⚠️ projectTypeBadge element not found');
+            }
+
+            if (projectTitle) {
+                projectTitle.textContent = project.title;
+                console.log('   ✅ Project title updated to:', project.title);
+            } else {
+                console.warn('   ⚠️ projectTitle element not found');
+            }
+
+            if (projectSubtitle) {
+                const subtitleText = project.pitch || project.description || 'Project details';
+                projectSubtitle.textContent = subtitleText;
+                console.log('   ✅ Project subtitle updated to:', subtitleText);
+            } else {
+                console.warn('   ⚠️ projectSubtitle element not found');
+            }
+        }
+
+        // Update overview section
+        function updateOverviewSection(project) {
+            console.log('📋 updateOverviewSection() called with project:', project.title);
+            
+            const projectDescription = document.getElementById('projectDescription');
+            const projectTags = document.getElementById('projectTags');
+
+            console.log('   - Looking for overview elements...');
+            console.log('   - projectDescription found:', !!projectDescription);
+            console.log('   - projectTags found:', !!projectTags);
+
+            if (projectDescription) {
+                const descriptionText = project.description || project.pitch || 'Project description not available.';
+                projectDescription.textContent = descriptionText;
+                console.log('   ✅ Project description updated to:', descriptionText.substring(0, 50) + '...');
+            } else {
+                console.warn('   ⚠️ projectDescription element not found');
+            }
+
+            if (projectTags) {
+                projectTags.innerHTML = '';
+                const tags = project.tech || project.genre || [];
+                console.log('   - Tags to add:', tags);
+                
+                if (tags.length > 0) {
+                    tags.forEach(tag => {
+                        const tagElement = document.createElement('span');
+                        tagElement.className = 'tag';
+                        tagElement.textContent = tag;
+                        projectTags.appendChild(tagElement);
+                    });
+                    console.log(`   ✅ Added ${tags.length} tags`);
+                } else {
+                    const defaultTag = document.createElement('span');
+                    defaultTag.className = 'tag';
+                    defaultTag.textContent = project.medium || 'Project';
+                    projectTags.appendChild(defaultTag);
+                    console.log('   ✅ Added default tag:', defaultTag.textContent);
+                }
+            } else {
+                console.warn('   ⚠️ projectTags element not found');
+            }
+        }
+
+        // Update structured data
+        function updateStructuredData(project) {
+            const structuredDataElement = document.getElementById('structuredData');
+            if (structuredDataElement) {
+                const structuredData = {
+                    "@context": "https://schema.org",
+                    "@type": "CreativeWork",
+                    "name": project.title,
+                    "description": project.description || project.pitch || 'Project details',
+                    "author": {
+                        "@type": "Person",
+                        "name": "Ray Swan"
+                    },
+                    "genre": project.genre ? project.genre.join(', ') : project.medium,
+                    "keywords": project.tech ? project.tech.join(', ') : project.medium
+                };
+                
+                structuredDataElement.textContent = JSON.stringify(structuredData, null, 2);
+            }
+        }
+
+        function setupGalleryParallax() {
+            if (!window.motionEnabled) return;
+
+            const galleryGrid = document.getElementById('galleryGrid');
+            const galleryItems = galleryGrid.querySelectorAll('.gallery-item');
+
+            if (!galleryGrid || galleryItems.length === 0) return;
+
+            const handleScroll = () => {
+                const galleryRect = galleryGrid.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Only animate if the gallery is roughly in the viewport
+                if (galleryRect.bottom < 0 || galleryRect.top > windowHeight) {
+                    return;
+                }
+
+                galleryItems.forEach((item, index) => {
+                    const itemRect = item.getBoundingClientRect();
+                    
+                    // Calculate the progress of the item through the viewport (0 at bottom, 1 at top)
+                    const progress = 1 - (itemRect.top + itemRect.height / 2) / windowHeight;
+                    
+                    // The parallax effect will be stronger for items in the middle of the screen
+                    const intensity = Math.sin(progress * Math.PI); // Creates a curve from 0 to 1 and back to 0
+                    
+                    // Apply a vertical translation based on progress and index
+                    // Staggering the effect slightly by index
+                    const translateY = -intensity * 40 * (1 + (index % 3) * 0.2);
+
+                    // Apply a slight rotation and scale for more depth
+                    const rotateX = -intensity * 5;
+                    const scale = 1 + intensity * 0.05;
+
+                    item.style.transform = `translateY(${translateY}px) scale(${scale}) rotateX(${rotateX}deg)`;
+                });
+            };
+
+            window.addEventListener('scroll', handleScroll, { passive: true });
+        }
+
+        function updateNavigation(project) {
+            const navLinks = document.querySelector('.nav-links');
+            if (!navLinks) {
+                console.warn('Nav links container not found.');
+                return;
+            }
+
+            // Remove existing medium-specific links to avoid duplicates
+            navLinks.querySelectorAll('.medium-specific-nav').forEach(el => el.remove());
+
+            let specificLinks = [];
+            switch (project.medium.toLowerCase()) {
+                case 'code':
+                    if (project.artifacts && project.artifacts.length > 0) {
+                        specificLinks.push({ href: '#artifacts', text: '💾 Artifacts' });
+                    }
+                    break;
+                case 'art':
+                    specificLinks.push({ href: '#process', text: '🎨 Process' });
+                    specificLinks.push({ href: '#inspiration', text: '💡 Inspiration' });
+                    break;
+                case 'writing':
+                    if (project.excerpts) {
+                        specificLinks.push({ href: '#excerpts', text: '📖 Excerpts' });
+                    }
+                    if (project.themes || project.themesAnalysis) {
+                        specificLinks.push({ href: '#themes', text: '🧠 Themes' });
+                    }
+                    break;
+            }
+
+            const linksNavItem = navLinks.querySelector('a[href="#links"]')?.parentElement;
+            if (!linksNavItem) {
+                console.warn('Could not find the "Links" nav item to insert before.');
+                return;
+            }
+
+            specificLinks.forEach(linkInfo => {
+                const li = document.createElement('li');
+                li.className = 'medium-specific-nav';
+                li.innerHTML = `<a href="${linkInfo.href}">${linkInfo.text}</a>`;
+                navLinks.insertBefore(li, linksNavItem);
+            });
+        }
+
+        /**
+         * Populates the artifacts grid for code projects with markdown support and parallax effects.
+         * @param {Array<Object>} artifacts - Array of artifact objects {name, description, url, icon, type}.
+         */
+        function populateArtifacts(artifacts) {
+            if (!artifactsGrid || !artifacts) {
+                console.warn("Artifacts grid or data not available.");
+                return;
+            }
+            artifactsGrid.innerHTML = ''; // Clear existing artifacts
+            if (artifacts.length === 0) {
+                artifactsGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No artifacts available for this project.</p>';
+                return;
+            }
+
+            // Add parallax attributes to the artifacts grid container
+            artifactsGrid.setAttribute('data-parallax', 'true');
+            artifactsGrid.setAttribute('data-speed', '0.05');
+            artifactsGrid.classList.add('artifacts-grid-parallax');
+
+            artifacts.forEach((artifact, index) => {
+                const card = document.createElement('div');
+                card.className = 'artifact-card';
+                
+                // Add parallax attributes to each card with staggered delays
+                card.setAttribute('data-parallax', 'true');
+                card.setAttribute('data-speed', (0.1 + index * 0.02).toString());
+                card.setAttribute('data-delay', (index * 0.1).toString());
+                card.style.setProperty('--data-delay', (index * 0.1).toString());
+                
+                // Check if this is a markdown file
+                const isMarkdownFile = artifact.url && artifact.url.toLowerCase().endsWith('.md');
+                
+                if (isMarkdownFile) {
+                    // Markdown file - make clickable to open in modal
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', () => {
+                        openArtifactMarkdownModal(artifact, index);
+                    });
+                } else {
+                    // Regular link - make it a clickable link
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', () => {
+                        if (artifact.url) {
+                            window.open(artifact.url, '_blank', 'noopener,noreferrer');
+                        }
+                    });
+                }
+
+                card.innerHTML = `
+                    <div class="artifact-card-bg"></div>
+                    <div class="artifact-card-content">
+                        <span class="artifact-icon">${artifact.icon || '📄'}</span>
+                        <h4>${artifact.name}</h4>
+                        <p>${artifact.description}</p>
+                        <span class="artifact-link-icon">${isMarkdownFile ? '📖' : '→'}</span>
+                    </div>
+                    <div class="artifact-card-particles"></div>
+                `;
+                artifactsGrid.appendChild(card);
+            });
+
+            // Initialize artifacts parallax after a short delay
+            setTimeout(() => {
+                setupArtifactsParallax();
+            }, 100);
+        }
+
+        /**
+         * Sets up parallax effects for the artifacts section.
+         */
+        function setupArtifactsParallax() {
+            if (!window.motionEnabled) return;
+
+            const artifactsSection = document.getElementById('artifacts');
+            const artifactsGrid = document.getElementById('artifactsGrid');
+            const artifactCards = document.querySelectorAll('.artifact-card[data-parallax="true"]');
+
+            if (!artifactsSection || !artifactsGrid) return;
+
+            // Clean up any existing particles first
+            cleanupArtifactsParticles(artifactsGrid);
+
+            // Create floating particles for the artifacts grid background
+            createArtifactsParticles(artifactsGrid);
+
+            // Remove any existing scroll listener to prevent duplicates
+            if (window.artifactsScrollHandler) {
+                window.removeEventListener('scroll', window.artifactsScrollHandler);
+            }
+
+            // Create throttled scroll handler for better performance
+            let ticking = false;
+            const handleArtifactsScroll = () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const rect = artifactsSection.getBoundingClientRect();
+                        const windowHeight = window.innerHeight;
+                        
+                        // Only animate when section is in view
+                        if (rect.top < windowHeight && rect.bottom > 0) {
+                            const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / (windowHeight + rect.height)));
+                            
+                            // Animate the recessed tray effect
+                            artifactsGrid.style.transform = `translateY(${progress * 10}px) scale(${1 + progress * 0.02})`;
+                            
+                            // Animate individual cards with staggered effect
+                            artifactCards.forEach((card, index) => {
+                                const cardProgress = Math.max(0, progress - (index * 0.1));
+                                const speed = parseFloat(card.getAttribute('data-speed') || '0.1');
+                                const delay = parseFloat(card.getAttribute('data-delay') || '0');
+                                
+                                const translateY = cardProgress * 20 * speed;
+                                const translateX = Math.sin(progress * Math.PI + delay) * 5;
+                                const scale = 1 + cardProgress * 0.05;
+                                
+                                card.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+                                card.style.opacity = 0.7 + cardProgress * 0.3;
+                            });
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            };
+
+            // Store the handler for cleanup
+            window.artifactsScrollHandler = handleArtifactsScroll;
+
+            // Add scroll listener
+            window.addEventListener('scroll', handleArtifactsScroll, { passive: true });
+            
+            // Initial call
+            handleArtifactsScroll();
+        }
+
+        /**
+         * Cleans up artifacts particles to prevent memory leaks.
+         */
+        function cleanupArtifactsParticles(container) {
+            const existingParticles = container.querySelectorAll('.artifact-particle');
+            existingParticles.forEach(particle => {
+                particle.remove();
+            });
+        }
+
+        /**
+         * Creates floating particles for the artifacts grid background.
+         */
+        function createArtifactsParticles(container) {
+            if (!window.motionEnabled) return;
+
+            const particleCount = 6; // Reduced from 8 to improve performance
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'artifact-particle';
+                
+                // Use CSS custom properties for better performance
+                const delay = i * 1.5;
+                const duration = 6 + Math.random() * 4; // 6-10 seconds
+                const startX = Math.random() * 100;
+                const startY = Math.random() * 100;
+                const endX = startX + (Math.random() - 0.5) * 40; // ±20px movement
+                const endY = startY + (Math.random() - 0.5) * 40;
+                
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 3px;
+                    height: 3px;
+                    background: var(--accent-color);
+                    border-radius: 50%;
+                    opacity: 0.2;
+                    pointer-events: none;
+                    left: ${startX}%;
+                    top: ${startY}%;
+                    transform: translate(0, 0);
+                    animation: artifactParticleFloat ${duration}s infinite ease-in-out;
+                    animation-delay: ${delay}s;
+                    will-change: transform, opacity;
+                `;
+                
+                // Add CSS animation using keyframes
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes artifactParticleFloat-${i} {
+                        0%, 100% {
+                            transform: translate(0, 0);
+                            opacity: 0.2;
+                        }
+                        25% {
+                            transform: translate(${endX - startX}px, ${endY - startY}px);
+                            opacity: 0.4;
+                        }
+                        50% {
+                            transform: translate(${endX - startX}px, ${endY - startY - 10}px);
+                            opacity: 0.6;
+                        }
+                        75% {
+                            transform: translate(${(endX - startX) * 0.5}px, ${(endY - startY) * 0.5}px);
+                            opacity: 0.4;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Apply the specific animation
+                particle.style.animation = `artifactParticleFloat-${i} ${duration}s infinite ease-in-out ${delay}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        /**
+         * Opens a markdown artifact in a modal with blurred background.
+         * @param {Object} artifact - The artifact object
+         * @param {number} index - The artifact index
+         */
+        function openArtifactMarkdownModal(artifact, index) {
+            console.log(`📖 Opening markdown modal for artifact: ${artifact.name}`);
+            
+            // Create modal if it doesn't exist
+            let modal = document.getElementById('artifact-markdown-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'artifact-markdown-modal';
+                modal.className = 'artifact-markdown-modal';
+                modal.innerHTML = `
+                    <div class="modal-backdrop"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 id="modal-title">${artifact.name}</h2>
+                            <button class="close-btn" onclick="closeArtifactMarkdownModal()">&times;</button>
+                        </div>
+                        <div class="modal-body" id="modal-body">
+                            <div class="loading-spinner">Loading...</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-secondary" onclick="closeArtifactMarkdownModal()">Close</button>
+                            <button class="btn-primary" onclick="downloadArtifact('${artifact.url}')">Download</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+
+            // Update modal title
+            const modalTitle = modal.querySelector('#modal-title');
+            if (modalTitle) modalTitle.textContent = artifact.name;
+
+            // Show modal
+            modal.style.display = 'flex';
+
+            // Load and render markdown content
+            loadArtifactMarkdown(artifact.url, modal.querySelector('#modal-body'));
+        }
+
+        /**
+         * Closes the artifact markdown modal.
+         */
+        function closeArtifactMarkdownModal() {
+            const modal = document.getElementById('artifact-markdown-modal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        /**
+         * Loads and renders markdown content for an artifact.
+         * @param {string} url - The markdown file URL
+         * @param {HTMLElement} container - The container to render into
+         */
+        async function loadArtifactMarkdown(url, container) {
+            try {
+                console.log(`📥 Loading markdown from: ${url}`);
+                
+                // Show loading state
+                container.innerHTML = '<div class="loading-spinner">Loading document...</div>';
+                
+                // Fetch markdown content
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to load markdown: ${response.status} ${response.statusText}`);
+                }
+                
+                const markdownContent = await response.text();
+                
+                // Render markdown if renderer is available
+                if (typeof renderInlineMarkdown === 'function') {
+                    renderInlineMarkdown(container.id || 'modal-body', markdownContent, {
+                        className: 'artifact-markdown',
+                        showToc: true,
+                        maxHeight: 'none',
+                        collapsible: true
+                    });
+                } else {
+                    // Fallback to simple text display
+                    container.innerHTML = `<pre>${markdownContent}</pre>`;
+                }
+                
+            } catch (error) {
+                console.error('Error loading artifact markdown:', error);
+                container.innerHTML = `
+                    <div class="error-message">
+                        <h3>Error Loading Document</h3>
+                        <p>Could not load the markdown file: ${error.message}</p>
+                        <button class="btn-secondary" onclick="window.open('${url}', '_blank')">Open in New Tab</button>
+                    </div>
+                `;
+            }
+        }
+
+        /**
+         * Downloads an artifact file.
+         * @param {string} url - The file URL to download
+         */
+        function downloadArtifact(url) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = url.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        /**
+         * Populates the gallery section with project images.
+         * @param {object} project - The full project object.
+         * @param {string} projectSlug - The slug for constructing image paths.
+         */
+        function populateGallery(project, projectSlug) {
+            const galleryGrid = document.getElementById('galleryGrid');
+            if (!galleryGrid) {
+                console.warn('Gallery grid element not found');
+                return;
+            }
+
+            const gallery = project.gallery;
+
+            console.log('   - Gallery data:', gallery);
+            galleryGrid.innerHTML = ''; // Clear existing gallery
+
+            if (!gallery || gallery.length === 0) {
+                galleryGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No gallery images available for this project.</p>';
+                console.log('   - No gallery data available');
+                return;
+            }
+
+            gallery.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                // --- NEW: Construct full image URL ---
+                const imageUrl = `images/projects/${projectSlug}/${item.url}`;
+
+                galleryItem.innerHTML = `
+                    <img src="${imageUrl}" alt="${item.title || 'Gallery image'}" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>${item.title || 'Image'}</h3>
+                            <p>${item.description || ''}</p>
+                        </div>
+                    </div>
+                `;
+                
+                // Add click listener to open modal, passing project ID and image index
+                galleryItem.addEventListener('click', () => {
+                    console.log(`Gallery item clicked. Project ID: ${project.id}, Image index: ${index}`);
+                    openGalleryModal(project.id, index);
+                });
+
+                galleryGrid.appendChild(galleryItem);
+                console.log(`   ✅ Added gallery item ${index + 1}: ${item.title}`);
+            });
+
+            // After populating, set up the parallax effect
+            setTimeout(setupGalleryParallax, 100);
+        }
+
+        /**
+         * Populates the journey timeline section.
+         * @param {Array<Object>} journey - Array of journey objects {title, description}.
+         */
+        function populateJourney(journey) {
+            const timelineContainer = document.getElementById('timelineContainer');
+            if (!timelineContainer) {
+                console.warn('Timeline container element not found');
+                return;
+            }
+
+            console.log('   - Journey data:', journey);
+            timelineContainer.innerHTML = ''; // Clear existing timeline
+
+            if (!journey || journey.length === 0) {
+                timelineContainer.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No journey information available for this project.</p>';
+                console.log('   - No journey data available');
+                return;
+            }
+
+            journey.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.innerHTML = `
+                    <div class="timeline-content">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </div>
+                `;
+                timelineContainer.appendChild(timelineItem);
+                console.log(`   ✅ Added journey item ${index + 1}: ${item.title}`);
+            });
+        }
+
+        /**
+         * Populates the specs grid section with marketing copy and value propositions.
+         * @param {Array<Object>} specs - Array of spec objects {title, description}.
+         */
+        function populateSpecs(specs) {
+            const specsGrid = document.getElementById('specsGrid');
+            if (!specsGrid) {
+                console.warn('Specs grid element not found');
+                return;
+            }
+
+            console.log('   - Specs data:', specs);
+            specsGrid.innerHTML = ''; // Clear existing specs
+
+            if (!specs || specs.length === 0) {
+                specsGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No specifications available for this project.</p>';
+                console.log('   - No specs data available');
+                return;
+            }
+
+            specs.forEach((item, index) => {
+                const specCard = document.createElement('div');
+                specCard.className = 'spec-card';
+                
+                // Simple marketing copy - no markdown needed
+                specCard.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p>${item.description}</p>
+                `;
+                specsGrid.appendChild(specCard);
+                
+                console.log(`   ✅ Added spec item ${index + 1}: ${item.title}`);
+            });
+        }
+
+        // Gallery Modal Functions
+        function openGalleryModal(projectId, startIndex = 0) {
+            console.log('Opening gallery modal for project:', projectId, 'starting at index', startIndex);
+            const project = projects.find(p => p.id === projectId) || currentProject;
+            if (!project || !project.gallery || project.gallery.length === 0) {
+                alert("No gallery images available for this project.");
+                return;
+            }
+
+            currentGallery = project.gallery;
+            
+            if (galleryModalTitle) galleryModalTitle.textContent = `${project.title} Gallery`;
+
+            // Clear previous content
+            if (galleryModalGrid) galleryModalGrid.innerHTML = '';
+            galleryHotspotPanel.classList.remove('visible');
+
+            // Determine if project is 'art' to use fullscreen/hotspot mode, or 'code' for grid view
+            const isArtProject = project.medium.toLowerCase() === 'art';
+
+            if (isArtProject && galleryModal) {
+                // Art project: Show single full-screen image with navigation and potential hotspots
+                if (galleryModalGrid) galleryModalGrid.style.display = 'none';
+                if (!galleryModalImgContainer.parentNode) {
+                    galleryModal.querySelector('.gallery-modal-content').insertBefore(galleryModalImgContainer, galleryControls);
+                }
+                if (galleryControls) galleryControls.style.display = 'flex';
+                
+                currentGalleryIndex = startIndex; // For art projects, index is the image index
+                renderArtGalleryImage(currentGalleryIndex);
+            } else {
+                // Default (e.g., Code/Writing project): Show image grid
+                if (galleryModalGrid) galleryModalGrid.style.display = 'grid';
+                if (galleryModalImgContainer.parentNode) {
+                    galleryModalImgContainer.parentNode.removeChild(galleryModalImgContainer);
+                }
+                if (galleryControls) galleryControls.style.display = 'flex';
+
+                // For grid view, calculate page index from starting image index
+                currentGalleryIndex = Math.floor(startIndex / itemsPerPage);
+                renderGalleryPage();
+            }
+
+            // Show modal
+            if (galleryModal) {
+                galleryModal.style.display = 'flex';
+            }
+        }
+
+        // New function to render a single image in the gallery modal (for Art projects)
+        function renderArtGalleryImage(index) {
+            if (!currentGallery || index < 0 || index >= currentGallery.length) return;
+
+            const item = currentGallery[index];
+            const projectSlug = createSlug(currentProject.title);
+            
+            const transitionSpeed = 400; // ms
+
+            // 1. Fade out the current image
+            galleryMainImg.classList.add('fade-out');
+
+            setTimeout(() => {
+                // 2. After fade out, update the image source
+                galleryMainImg.src = `images/projects/${projectSlug}/${item.url}`;
+                galleryMainImg.alt = item.title;
+
+                // Clear previous hotspots and hide panel
+                galleryModalImgContainer.querySelectorAll('.hotspot-btn').forEach(btn => btn.remove());
+                galleryHotspotPanel.classList.remove('visible');
+
+                // Add new hotspots if they exist
+                if (item.hotspots && item.hotspots.length > 0) {
+                    item.hotspots.forEach(hotspot => {
+                        const hotspotBtn = document.createElement('button');
+                        hotspotBtn.className = 'hotspot-btn';
+                        hotspotBtn.style.left = `${hotspot.x}%`;
+                        hotspotBtn.style.top = `${hotspot.y}%`;
+                        hotspotBtn.textContent = hotspot.label || '+';
+
+                        hotspotBtn.addEventListener('click', () => {
+                            galleryHotspotPanel.querySelector('h4').textContent = hotspot.title;
+                            galleryHotspotPanel.querySelector('p').textContent = hotspot.description;
+                            galleryHotspotPanel.classList.add('visible');
+                        });
+                        galleryModalImgContainer.appendChild(hotspotBtn);
+                    });
+                }
+
+                // 3. Force a reflow before fading in, then fade in the new image
+                // This ensures the fade-in animation plays correctly on the new image
+                void galleryMainImg.offsetWidth; // Reflow trick
+                galleryMainImg.classList.remove('fade-out');
+                galleryMainImg.classList.add('fade-in');
+
+                // After the new image is loaded and faded in, remove the fade-in class
+                setTimeout(() => {
+                    galleryMainImg.classList.remove('fade-in');
+                }, transitionSpeed);
+
+            }, transitionSpeed);
+
+
+            // Update info text
+            if (galleryInfo) {
+                galleryInfo.textContent = `Image ${index + 1} of ${currentGallery.length} • ${item.dimensions || 'N/A'}`;
+            }
+
+            // Enable/disable nav buttons
+            if (galleryPrevBtn) galleryPrevBtn.disabled = index === 0;
+            if (galleryNextBtn) galleryNextBtn.disabled = index === currentGallery.length - 1;
+
+            // Reset panning
+            galleryMainImg.style.transform = 'translate3d(0,0,0)';
+
+            // Set up panning for large images if motion is enabled
+            if (window.motionEnabled) {
+                setupImagePanning(galleryMainImg);
+            }
+        }
+
+        function renderGalleryPage() {
+            if (!galleryModalGrid || !currentGallery) return;
+
+            galleryModalGrid.innerHTML = '';
+            const startIndex = currentGalleryIndex * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, currentGallery.length);
+
+            for (let i = startIndex; i < endIndex; i++) {
+                const item = currentGallery[i];
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.url}" alt="${item.title}" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-overlay-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                        </div>
+                    </div>
+                `;
+                galleryModalGrid.appendChild(galleryItem);
+            }
+
+            // Update info and navigation
+            if (galleryInfo) {
+                galleryInfo.textContent = `Page ${currentGalleryIndex + 1} of ${Math.ceil(currentGallery.length / itemsPerPage)}`;
+            }
+            if (galleryPrevBtn) galleryPrevBtn.disabled = currentGalleryIndex === 0;
+            if (galleryNextBtn) galleryNextBtn.disabled = (currentGalleryIndex + 1) * itemsPerPage >= currentGallery.length;
+        }
+
+        // Navigation functions
+        function nextGalleryPage() {
+            if (!currentGallery) return;
+            const isArtProject = galleryModalImgContainer.parentNode !== null;
+            if (isArtProject) {
+                if (currentGalleryIndex < currentGallery.length - 1) {
+                    currentGalleryIndex++;
+                    renderArtGalleryImage(currentGalleryIndex);
+                }
+            } else {
+                if ((currentGalleryIndex + 1) * itemsPerPage < currentGallery.length) {
+                    currentGalleryIndex++;
+                    renderGalleryPage();
+                }
+            }
+        }
+
+        function prevGalleryPage() {
+            if (!currentGallery) return;
+            const isArtProject = galleryModalImgContainer.parentNode !== null;
+            if (isArtProject) {
+                if (currentGalleryIndex > 0) {
+                    currentGalleryIndex--;
+                    renderArtGalleryImage(currentGalleryIndex);
+                }
+            } else {
+                if (currentGalleryIndex > 0) {
+                    currentGalleryIndex--;
+                    renderGalleryPage();
+                }
+            }
+        }
+
+        // Image Panning functionality
+        let isPanning = false;
+        let startX, startY, startLeft, startTop;
+
+        // Helper function for cross-browser matrix parsing
+        function getTransformValues(transform) {
+            if (transform === 'none') return { x: 0, y: 0 };
+            
+            try {
+                const matrix = new DOMMatrixReadOnly(transform);
+                return { x: matrix.m41, y: matrix.m42 };
+            } catch (e) {
+                // Fallback for older browsers
+                const values = transform.match(/matrix.*\((.+)\)/);
+                if (values) {
+                    const parts = values[1].split(', ');
+                    return { x: parseFloat(parts[4]) || 0, y: parseFloat(parts[5]) || 0 };
+                }
+                return { x: 0, y: 0 };
+            }
+        }
+
+        function handlePanningMouseDown(e) {
+            if (e.button !== 0) return;
+            isPanning = true;
+            galleryMainImg.classList.add('panning');
+            startX = e.clientX;
+            startY = e.clientY;
+            const transform = window.getComputedStyle(galleryMainImg).transform;
+            const values = getTransformValues(transform);
+            startLeft = values.x;
+            startTop = values.y;
+            e.preventDefault();
+        }
+
+        function handlePanningMouseMove(e) {
+            if (!isPanning) return;
+            requestAnimationFrame(() => {
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                const newX = startLeft + dx;
+                const newY = startTop + dy;
+                galleryMainImg.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
+            });
+        }
+
+        function handlePanningMouseUp() {
+            isPanning = false;
+            galleryMainImg.classList.remove('panning');
+            document.removeEventListener('mousemove', handlePanningMouseMove);
+            document.removeEventListener('mouseup', handlePanningMouseUp);
+        }
+
+        function setupImagePanning(img) {
+            img.addEventListener('mousedown', handlePanningMouseDown);
+            img.addEventListener('mousedown', () => {
+                document.addEventListener('mousemove', handlePanningMouseMove);
+                document.addEventListener('mouseup', handlePanningMouseUp);
+            });
+        }
+
+        // Writing Section Focus Effect
+        let currentFocusedSection = null;
+
+        const writingSectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+                    currentFocusedSection = entry.target.id;
+                } else if (entry.target.id === currentFocusedSection && entry.intersectionRatio <= 0.4) {
+                    currentFocusedSection = null;
+                }
+            });
+            // Apply/remove focus class to main content
+            if (mainContentElement) {
+                mainContentElement.classList.toggle('section-focused', 
+                    currentFocusedSection === 'excerpts' || currentFocusedSection === 'themes');
+            }
+        }, {
+            threshold: [0.4, 0.6],
+            rootMargin: '0px 0px -10% 0px'
+        });
+
+        // Observe the writing sections
+        if (excerptsSection) writingSectionObserver.observe(excerptsSection);
+        if (themesAnalysisSection) writingSectionObserver.observe(themesAnalysisSection);
+
+        // Event listeners for gallery navigation
+        if (galleryPrevBtn) galleryPrevBtn.addEventListener('click', prevGalleryPage);
+        if (galleryNextBtn) galleryNextBtn.addEventListener('click', nextGalleryPage);
+
+        // Event listener for hotspot panel close button
+        if (galleryHotspotPanel) {
+            galleryHotspotPanel.querySelector('.close-panel-btn').addEventListener('click', () => {
+                galleryHotspotPanel.classList.remove('visible');
+            });
+        }
+
+        // Make functions globally available
+        window.openGalleryModal = openGalleryModal;
+        window.nextGalleryPage = nextGalleryPage;
+        window.prevGalleryPage = prevGalleryPage;
+        window.closeArtifactMarkdownModal = closeArtifactMarkdownModal;
+        window.downloadArtifact = downloadArtifact;
+
+        // Add keyboard support for modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeArtifactMarkdownModal();
+                if (galleryModal && galleryModal.style.display === 'flex') {
+                    galleryModal.style.display = 'none';
+                }
+            }
+        });
+
+        // Close modal on overlay click
+        if (galleryModal) {
+            galleryModal.addEventListener('click', (e) => {
+                if (e.target === galleryModal) {
+                    galleryModal.style.display = 'none';
+                }
+            });
+            const closeBtn = galleryModal.querySelector('.gallery-close-btn');
+            if(closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    galleryModal.style.display = 'none';
+                });
+            }
+        }
+
+        // Initialize markdown renderer
+        console.log('📚 Initializing markdown renderer...');
+        if (typeof initializeMarkdownRenderer === 'function') {
+            initializeMarkdownRenderer().then(() => {
+                console.log('✅ Markdown renderer initialized');
+            }).catch(error => {
+                console.warn('⚠️ Markdown renderer initialization failed:', error);
+            });
+        } else {
+            console.warn('⚠️ Markdown renderer function not found');
+        }
+
+        // Initialize the page with the current project
+        console.log('🎯 Starting page initialization...');
+        console.log('   - currentProject available:', !!currentProject);
+        
+        if (currentProject) {
+            console.log('✅ Calling renderDetailPage() with currentProject');
+            renderDetailPage(currentProject);
+        } else {
+            console.error('❌ No project data found in sessionStorage');
+            console.log('🔍 Showing error message to user...');
+            
+            // Show error message to user
+            const projectTitle = document.getElementById('projectTitle');
+            if (projectTitle) {
+                projectTitle.textContent = 'Project Not Found';
+                console.log('   ✅ Error message set in projectTitle');
+            } else {
+                console.warn('   ⚠️ projectTitle element not found for error message');
+            }
+            
+            const projectSubtitle = document.getElementById('projectSubtitle');
+            if (projectSubtitle) {
+                projectSubtitle.textContent = 'The requested project could not be loaded. Please return to the gallery and try again.';
+                console.log('   ✅ Error message set in projectSubtitle');
+            } else {
+                console.warn('   ⚠️ projectSubtitle element not found for error message');
+            }
+        }
+
+        console.log('🎉 Phase 3 functionality setup complete');
+
+        // Cleanup function for when page is unloaded
+        function cleanupArtifactsParallax() {
+            // Remove scroll listener
+            if (window.artifactsScrollHandler) {
+                window.removeEventListener('scroll', window.artifactsScrollHandler);
+                window.artifactsScrollHandler = null;
+            }
+            
+            // Clean up particles
+            const artifactsGrid = document.getElementById('artifactsGrid');
+            if (artifactsGrid) {
+                cleanupArtifactsParticles(artifactsGrid);
+            }
+            
+            // Remove any dynamically added styles
+            const dynamicStyles = document.querySelectorAll('style[data-artifact-particle]');
+            dynamicStyles.forEach(style => style.remove());
+        }
+
+        // Add cleanup on page unload
+        window.addEventListener('beforeunload', cleanupArtifactsParallax);
+        
+        // Add cleanup on visibility change (when tab becomes hidden)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Pause animations when tab is not visible
+                const particles = document.querySelectorAll('.artifact-particle');
+                particles.forEach(particle => {
+                    particle.style.animationPlayState = 'paused';
+                });
+            } else {
+                // Resume animations when tab becomes visible
+                const particles = document.querySelectorAll('.artifact-particle');
+                particles.forEach(particle => {
+                    particle.style.animationPlayState = 'running';
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>

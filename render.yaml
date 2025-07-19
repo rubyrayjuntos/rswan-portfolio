@@ -1,8 +1,24 @@
 services:
-  - type: web
+  - type: static_site
+    name: rswan-portfolio
     plan: free
-    name: django-app
-    runtime: python
     repo: https://github.com/rubyrayjuntos/rswan-portfolio.git
     buildCommand: './build.sh'
-    startCommand: 'python -m http.serve:8080"
+    staticPublishPath: './dist'
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*.js
+        name: Cache-Control
+        value: public, max-age=31536000
+      - path: /*.css
+        name: Cache-Control
+        value: public, max-age=31536000
+      - path: /images/*
+        name: Cache-Control
+        value: public, max-age=31536000
