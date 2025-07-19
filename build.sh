@@ -6,10 +6,12 @@ echo "Building production version..."
 # Create a dist directory for production build
 mkdir -p dist
 
-# Copy all static files to dist directory
-cp index.html dist/
+# TEMPORARY: Use test deployment file
+cp test-deploy.html dist/index.html
+
+# Copy static assets (if they exist)
 cp -r js/ dist/ 2>/dev/null || true
-cp -r styles/ dist/ 2>/dev/null || true
+cp -r styles/ dist/ 2>/dev/null || true  
 cp -r images/ dist/ 2>/dev/null || true
 cp script.js dist/ 2>/dev/null || true
 cp styles.css dist/ 2>/dev/null || true
