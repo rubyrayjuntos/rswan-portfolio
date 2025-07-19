@@ -5,4 +5,4 @@ services:
     runtime: python
     repo: https://github.com/rubyrayjuntos/rswan-portfolio.git
     buildCommand: './build.sh'
-    startCommand: 'python -m http.server:8080"
+    startCommand: 'python -m http.serve:8080"
