@@ -323,6 +323,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // --- Project Card Rendering ---
+    
+    // Function to truncate description to specified number of lines
+    function truncateDescription(description, maxLines = 4) {
+        if (!description) return '';
+        
+        // Remove HTML tags for line counting but preserve basic formatting
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = description;
+        const plainText = tempDiv.textContent || tempDiv.innerText || '';
+        
+        // Split into lines and limit to maxLines
+        const lines = plainText.split('\n').filter(line => line.trim());
+        if (lines.length <= maxLines) {
+            // If within limit, return the original HTML but clean up spacing
+            return description.replace(/\s*<br\s*\/?>\s*/gi, ' ').replace(/\s+/g, ' ').trim();
+        }
+        
+        // Take first maxLines and add ellipsis
+        const truncatedLines = lines.slice(0, maxLines);
+        const truncatedText = truncatedLines.join(' ') + '...';
+        
+        return truncatedText;
+    }
+    
     function renderProjects(projectsToRender) {
         projectGrid.innerHTML = '';
         if (projectsToRender.length === 0) {
@@ -370,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h3>${project.title}</h3>
                         <div class="card-year">${project.year || ''}</div>
                     </div>
-                    <p class="card-description">${project.description}</p>
+                    <p class="card-description">${truncateDescription(project.description)}</p>
                     <div class="card-info-section">
                         ${createTagsHTML(project.role, 'Role', 'tag-role')}
                         ${createTagsHTML(project.genre, 'Genre', 'tag-genre')}
