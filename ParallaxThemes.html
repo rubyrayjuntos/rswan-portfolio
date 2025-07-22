@@ -462,7 +462,7 @@
                 z-index: 10;
             }
     
-            /* Enhanced section title parallax with better visual effects */
+            /* Enhanced section title parallax with triggered animation */
             .section-title {
                 font-size: clamp(4rem, 12vw, 8rem); /* Start much larger for dramatic effect */
                 margin-bottom: 3rem;
@@ -472,7 +472,7 @@
                 font-weight: 700;
                 transform: scale(2.5) translateY(100px) rotateX(15deg); /* Start very large, offset, and slightly rotated */
                 opacity: 0.2; /* Start very faded */
-                transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Longer, smoother transition */
                 will-change: transform, opacity, font-size;
                 z-index: 10;
                 /* Add perspective for 3D effect */
@@ -496,28 +496,6 @@
                 opacity: 1;
                 font-size: clamp(2rem, 4vw, 3rem);
                 text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            /* Add intermediate states for smooth parallax */
-            .section-title.parallax-75 {
-                transform: scale(1.8) translateY(75px) rotateX(8deg);
-                opacity: 0.4;
-                font-size: clamp(3rem, 6vw, 4.5rem);
-                text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            }
-
-            .section-title.parallax-50 {
-                transform: scale(1.5) translateY(50px) rotateX(5deg);
-                opacity: 0.6;
-                font-size: clamp(2.5rem, 5vw, 3.5rem);
-                text-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
-            }
-
-            .section-title.parallax-25 {
-                transform: scale(1.2) translateY(25px) rotateX(2deg);
-                opacity: 0.8;
-                font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-                text-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
             }
 
             /* Add a subtle glow effect that intensifies as the title comes into view */
@@ -2858,32 +2836,25 @@
                 console.log('Created', particleCount, 'particles');
             }
 
-            // Setup scroll animations with enhanced parallax for section titles
+            // Setup scroll animations with triggered section title animation
             function setupScrollAnimations() {
                 const observerOptions = {
-                    threshold: [0, 0.25, 0.5, 0.75, 1],
-                    rootMargin: '0px 0px -50px 0px'
+                    threshold: 0.3, // Trigger when 30% of the element is visible
+                    rootMargin: '0px 0px -100px 0px'
                 };
 
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            // Handle section titles with parallax effect
+                            // For section titles, add the 'visible' class to trigger the animation
                             if (entry.target.classList.contains('section-title')) {
-                                const intersectionRatio = entry.intersectionRatio;
-                                
-                                // Remove all parallax classes first
-                                entry.target.classList.remove('parallax-25', 'parallax-50', 'parallax-75', 'visible');
-                                
-                                // Apply appropriate parallax class based on intersection ratio
-                                if (intersectionRatio >= 1) {
-                                    entry.target.classList.add('visible');
-                                } else if (intersectionRatio >= 0.75) {
-                                    entry.target.classList.add('parallax-25');
-                                } else if (intersectionRatio >= 0.5) {
-                                    entry.target.classList.add('parallax-50');
-                                } else if (intersectionRatio >= 0.25) {
-                                    entry.target.classList.add('parallax-75');
+                                // Only trigger if not already animated
+                                if (!entry.target.classList.contains('visible')) {
+                                    // Add a slight delay for smoother effect
+                                    setTimeout(() => {
+                                        entry.target.classList.add('visible');
+                                        console.log('Triggered animation for:', entry.target.textContent);
+                                    }, 100);
                                 }
                             } else {
                                 // Handle other animated elements normally
@@ -2896,50 +2867,6 @@
                 // Observe all animated elements
                 document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .timeline-item, .section-title').forEach(el => {
                     observer.observe(el);
-                });
-
-                // Add scroll event listener for smoother parallax effect
-                let ticking = false;
-                function updateParallax() {
-                    if (!ticking) {
-                        requestAnimationFrame(() => {
-                            const sectionTitles = document.querySelectorAll('.section-title');
-                            const windowHeight = window.innerHeight;
-                            const scrollY = window.scrollY;
-
-                            sectionTitles.forEach(title => {
-                                const rect = title.getBoundingClientRect();
-                                const elementTop = rect.top + scrollY;
-                                const elementHeight = rect.height;
-                                
-                                // Calculate how much of the element is visible
-                                const visibleRatio = Math.max(0, Math.min(1, 
-                                    (windowHeight - rect.top) / (windowHeight + elementHeight)
-                                ));
-                                
-                                // Apply smooth parallax effect
-                                if (visibleRatio > 0 && visibleRatio < 1) {
-                                    const scale = 2.5 - (visibleRatio * 1.5); // Scale from 2.5 to 1
-                                    const translateY = 100 - (visibleRatio * 100); // Translate from 100px to 0
-                                    const opacity = 0.2 + (visibleRatio * 0.8); // Opacity from 0.2 to 1
-                                    const rotateX = 15 - (visibleRatio * 15); // Rotate from 15deg to 0deg
-                                    
-                                    title.style.transform = `scale(${scale}) translateY(${translateY}px) rotateX(${rotateX}deg)`;
-                                    title.style.opacity = opacity;
-                                }
-                            });
-                            
-                            ticking = false;
-                        });
-                        ticking = true;
-                    }
-                }
-
-                // Throttle scroll events for performance
-                let scrollTimeout;
-                window.addEventListener('scroll', () => {
-                    if (scrollTimeout) clearTimeout(scrollTimeout);
-                    scrollTimeout = setTimeout(updateParallax, 16); // ~60fps
                 });
             }
 
