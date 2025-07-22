@@ -604,4 +604,182 @@ body.theme-lavender {
     --color-journey-particle-13n: rgba(69, 39, 160, 1);
     --color-journey-particle-13n-shadow: rgba(69, 39, 160, 0.8);
     --color-journey-particle-13n-shadow-2: rgba(69, 39, 160, 0.5);
-} 
+}
+
+/* --- Writing-Specific Section Styles --- */
+.section-description.text-center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+#excerptsContent, #themesContent {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.9;
+    font-size: 1.1rem;
+}
+
+#excerptsContent h3, #themesContent h3 {
+    font-size: 1.8rem;
+    margin-top: 2em;
+}
+
+#excerptsContent h4, #themesContent h4 {
+    font-size: 1.4rem;
+    margin-top: 1.5em;
+    color: var(--accent-primary);
+}
+
+#excerptsContent blockquote, #themesContent blockquote {
+    border-left: 4px solid var(--accent-primary);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    background: var(--bg-secondary);
+    border-radius: 0 8px 8px 0;
+    position: relative;
+    box-shadow: var(--neu-outset);
+}
+
+#excerptsContent img, #themesContent img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin: 2rem 0;
+    box-shadow: var(--neu-outset);
+}
+
+.title-sparkle {
+    color: var(--accent-primary);
+    margin-left: 10px;
+}
+
+/* --- Theme-Specific Particle Animations --- */
+
+/* Dark Theme: Celestial */
+.theme-dark .moon {
+    position: absolute; top: 15%; right: 15%;
+    width: 80px; height: 80px; border-radius: 50%;
+    background-color: #f4f4f4;
+    box-shadow: 0 0 20px #fff, 0 0 40px #fff, 0 0 60px #e0e0e0;
+    opacity: 0.8;
+}
+.theme-dark .star {
+    position: absolute; background: white; border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+.theme-dark .shooting-star {
+    position: absolute; top: 50%; left: -50%;
+    width: 150px; height: 2px;
+    background: linear-gradient(to right, white, transparent);
+    border-radius: 50%;
+    animation: shoot 5s linear infinite;
+    transform: rotate(-30deg);
+}
+@keyframes twinkle {
+    from { opacity: 0.2; } to { opacity: 1; }
+}
+@keyframes shoot {
+    0% { transform: translateX(0) rotate(-30deg); }
+    100% { transform: translateX(150vw) rotate(-30deg); }
+}
+
+/* Ocean Theme: Waves */
+.theme-ocean .wave {
+    position: absolute; left: -5%; right: -5%; height: 100px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0 50 C 200 0, 300 100, 500 50 S 700 0, 900 50 S 1100 100, 1300 50 S 1500 0, 1700 50 S 1900 100, 2100 50' stroke='white' fill='transparent' stroke-width='3'/%3e%3c/svg%3e");
+    background-size: 50% 100px;
+    animation: wave-flow 10s linear infinite;
+}
+@keyframes wave-flow {
+    from { background-position-x: 0; }
+    to { background-position-x: -1000px; }
+}
+
+/* Sunset Theme: Sun & Sky */
+.theme-sunset .sun {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    width: 100px; height: 100px; background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 40px #FFD700, 0 0 80px #FFA500;
+    z-index: 10;
+}
+.theme-sunset .sky {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, #87CEEB, #FFD700, #FFA500, #FF4500, #8B0000);
+    z-index: 1;
+    transition: background 0.5s linear;
+}
+
+/* Twilight Theme: Buildings & Windows */
+.theme-twilight .building {
+    position: absolute;
+    bottom: 0;
+}
+.theme-twilight .window {
+    position: absolute; width: 5px; height: 8px;
+    background-color: #F1C40F;
+    animation: twinkle 3s infinite alternate;
+}
+
+/* Lavender Theme: Florals */
+.theme-lavender .floating-petal {
+    position: absolute;
+    background: linear-gradient(to bottom right, #dda0dd, rgba(147, 112, 219, 0.4));
+    border-radius: 50% 50% 10% 10%;
+    animation: petalFloat 20s linear infinite;
+    filter: blur(0.5px);
+}
+.theme-lavender .ethereal-glow {
+    position: absolute;
+    background: radial-gradient(circle, rgba(221, 160, 221, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: etherealFloat 25s ease-in-out infinite;
+}
+@keyframes petalFloat {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(-50vh) rotate(180deg) translateX(50px); opacity: 0.8; }
+    100% { transform: translateY(-100vh) rotate(360deg) translateX(-50px); opacity: 0; }
+}
+@keyframes etherealFloat {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.1; }
+    50% { transform: scale(1.2) translate(20px, -20px); opacity: 0.2; }
+    100% { transform: scale(1) translate(0, 0); opacity: 0.1; }
+}
+
+/* --- Parallax Journey Scroll Animations --- */
+.content-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.content-section.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    transition: font-size 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.narrative-block > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: 0.2s;
+}
+
+.content-section.in-view .narrative-block > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for child elements */
+.content-section.in-view .narrative-block > *:nth-child(2) { transition-delay: 0.3s; }
+.content-section.in-view .narrative-block > *:nth-child(3) { transition-delay: 0.4s; }
+.content-section.in-view .narrative-block > *:nth-child(4) { transition-delay: 0.5s; } 

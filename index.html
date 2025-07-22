@@ -3,955 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Neumorphic Portfolio SPA For Ray Swan - rs@RSwan.org</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-   <style>         /* CSS Variables */
-    :root {
-        --bg-color: #e0e5ec;
-        --shadow-light: #ffffff;
-        --shadow-dark: #a3b1c6;
-        --text-color: #31456A;
-        --text-color-light: #6D82A2;
-        --accent-color: #5a67d8;
-        --scroll-bar-color: #c8d0e7;
-        --scroll-thumb-color: #a3b1c6;
-    }
+    <title>R. Swan Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/themes.css">
+</head>
+<body>
+    <header id="top-nav">
+        <div class="logo">R. SWAN</div>
+        <nav class="nav-links">
+            <button class="nav-button" data-modal-target="connectModal" data-tab-target="about">About Me</button>
+            <button class="nav-button" data-modal-target="connectModal" data-tab-target="contact">Connect</button>
+        </nav>
+    </header>
 
-    /* Base Styles */
-    html {
-        scroll-behavior: smooth;
-    }
+    <div id="filter-ui-container">
+        <div class="search-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="search" id="mainSearchInput" placeholder="Search by keyword, tech, or title...">
+        </div>
+        <button id="filter-icon" aria-label="Open filters">
+            <i class="fas fa-sliders-h"></i>
+        </button>
+    </div>
 
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-color-light);
-        margin: 0;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-    
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--scroll-bar-color); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb { background: var(--scroll-thumb-color); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--text-color); }
+    <div id="active-filters-display" class="hidden"></div>
 
-    .view {
-        padding: 2rem;
-        box-sizing: border-box;
-        min-height: 100vh;
-        position: relative;
-    }
+    <aside id="filter-panel">
+        <div class="panel-header">
+            <h3>Filter Projects</h3>
+            <button id="close-filter-panel">&times;</button>
+        </div>
+        <div class="filter-group-container">
+            <!-- Filter groups will be dynamically inserted here by main.js -->
+        </div>
+        <div class="panel-footer">
+            <button id="apply-filters-btn">Apply</button>
+            <button id="clear-filters-btn">Clear All</button>
+        </div>
+    </aside>
 
-    /* --- GALLERY VIEW STYLES --- */
-    #gallery-view .portfolio-container {
-        display: block;
-        min-height: calc(100vh - 4rem);
-        max-width: 1600px;
-        margin: 0 auto;
-        position: relative;
-        padding-top: 8rem; /* Space for fixed nav */
-    }
+    <main class="container">
+        <div id="project-grid-container">
+            <div id="loading-spinner" class="hidden">
+                <div class="spinner"></div>
+                <p>Curating creative works...</p>
+            </div>
+            <div id="projectGrid"></div>
+        </div>
+    </main>
 
-    /* --- UNIFIED TOP NAVIGATION --- */
-    .top-nav {
-        position: fixed;
-        top: 2rem;
-        left: 2rem;
-        right: 2rem;
-        z-index: 1000;
-        background: rgba(224, 229, 236, 0.7);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        border-radius: 15px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
+    <footer class="signature-footer">
+        <div class="footer-content">
+            <p class="footer-signature">R. Swan</p>
+            <p class="footer-quote">"Crafting worlds where story, art, and code converge."</p>
+            <div class="footer-links">
+                 <button class="footer-button" data-modal-target="connectModal" data-tab-target="about">About Me</button>
+                 <button class="footer-button" data-modal-target="connectModal" data-tab-target="contact">Connect With Me</button>
+            </div>
+        </div>
+        <p id="copyright" class="footer-copyright"></p>
+    </footer>
 
-    .top-nav-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.75rem 1.5rem;
-        height: 60px;
-    }
-
-    .search-container {
-        display: flex;
-        align-items: center;
-        background: var(--bg-color);
-        border-radius: 10px;
-        box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
-        padding: 0.25rem;
-    }
-
-    .nav-search-input {
-        border: none;
-        background: transparent;
-        outline: none;
-        padding: 0.5rem 1rem;
-        color: var(--text-color);
-        font-size: 1rem;
-        width: 200px;
-    }
-    
-    .nav-search-btn {
-        background: var(--bg-color);
-        border: none;
-        border-radius: 8px;
-        color: var(--text-color);
-        cursor: pointer;
-        padding: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
-        transition: all 0.2s ease;
-    }
-    
-    .nav-search-btn:hover {
-        box-shadow: 2px 2px 4px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
-        color: var(--accent-color);
-    }
-
-    .nav-right .header-content {
-        cursor: pointer;
-        text-align: right;
-    }
-
-    .nav-right .header-content h1 {
-        font-size: 1.5rem;
-        color: var(--text-color);
-        margin: 0;
-    }
-    
-    .nav-right .header-content p {
-        font-size: 0.9rem;
-        color: var(--accent-color);
-        margin: 0;
-    }
-
-    /* --- FILTER PANEL --- */
-    .filter-panel {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.5s ease;
-        padding: 0 1.5rem;
-    }
-
-    .top-nav.filters-open {
-        box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-    }
-
-    .top-nav.filters-open .filter-panel {
-        max-height: 80vh;
-        padding: 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.5);
-    }
-
-    .filter-panel-content {
-        display: flex;
-        gap: 2rem;
-    }
-    
-    .filter-panel h2 {
-        color: var(--text-color);
-        text-align: left;
-        margin: 0 0 1.5rem 0;
-        font-weight: 600;
-        font-size: 1.5rem;
-        grid-column: 1 / -1;
-    }
-    
-    .facet-container {
-        flex: 1;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .facet-group {
-        margin-bottom: 1rem;
-        border: none;
-        padding: 0;
-        border-radius: 10px;
-        background: var(--bg-color);
-        box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
-        overflow: hidden;
-    }
-
-    .facet-group summary {
-        font-weight: 600;
-        color: var(--text-color);
-        padding: 1rem;
-        cursor: pointer;
-        list-style: none;
-        position: relative;
-        outline: none;
-    }
-    
-    .facet-group summary::-webkit-details-marker { display: none; }
-    .facet-group summary::after {
-        content: '+';
-        position: absolute;
-        right: 1rem;
-        font-size: 1.5rem;
-        transition: transform 0.2s ease;
-    }
-    .facet-group[open] > summary {
-        background: #d1d9e6;
-    }
-    .facet-group[open] > summary::after { transform: rotate(45deg); }
-    .facet-content { padding: 0 1rem 1rem 1rem; }
-    .facet-group ul { list-style: none; padding: 0; margin: 0; }
-    .facet-group li { margin-bottom: 0.75rem; }
-
-    .neumorphic-control {
-        display: flex; align-items: center; cursor: pointer;
-        padding: 4px; border-radius: 8px; transition: all 0.2s ease-in-out;
-    }
-    .neumorphic-control:hover { background-color: #d1d9e6; }
-    .neumorphic-control input { display: none; }
-    .neumorphic-control .checkmark {
-        display: inline-block; width: 20px; height: 20px; background: var(--bg-color);
-        border-radius: 5px; margin-right: 12px;
-        box-shadow: inset 3px 3px 6px var(--shadow-dark), inset -3px -3px 6px var(--shadow-light);
-        position: relative;
-    }
-    .neumorphic-control input:checked + .checkmark { box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light); }
-    .neumorphic-control input:checked + .checkmark::after {
-        content: '✔'; position: absolute; top: 50%; left: 50%;
-        transform: translate(-50%, -50%); color: var(--accent-color);
-        font-size: 14px; font-weight: bold;
-    }
-    .neumorphic-control input[type="radio"] + .checkmark { border-radius: 50%; }
-    .neumorphic-control input[type="radio"]:checked + .checkmark::after {
-        content: ''; width: 10px; height: 10px;
-        background: var(--accent-color); border-radius: 50%;
-    }
-    .facet-count {
-        margin-left: auto; font-size: 0.8rem; background-color: #d1d9e6;
-        padding: 2px 6px; border-radius: 4px; color: var(--text-color-light);
-    }
-
-    .slider-container { padding: 0.5rem 0; }
-    .slider-label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem; }
-    .neumorphic-slider {
-        -webkit-appearance: none; appearance: none; width: 100%; height: 8px;
-        background: var(--bg-color); outline: none; border-radius: 4px;
-        box-shadow: inset 2px 2px 4px var(--shadow-dark), inset -2px -2px 4px var(--shadow-light);
-    }
-    .neumorphic-slider::-webkit-slider-thumb {
-        -webkit-appearance: none; appearance: none; width: 20px; height: 20px;
-        border-radius: 50%; background: var(--accent-color); cursor: pointer;
-        box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
-    }
-    .neumorphic-slider::-moz-range-thumb {
-        width: 20px; height: 20px; border-radius: 50%;
-        background: var(--accent-color); cursor: pointer; border: none;
-        box-shadow: 3px 3px 6px var(--shadow-dark), -3px -3px 6px var(--shadow-light);
-    }
-
-    /* --- PROJECT GALLERY & GRID --- */
-    .project-gallery { 
-        display: flex; 
-        flex-direction: column;
-    }
-    
-    .active-filters { 
-        margin-bottom: 1.5rem;
-        display: flex; 
-        flex-wrap: wrap; 
-        gap: 0.75rem; 
-        padding: 0.5rem; 
-        min-height: 40px; 
-    }
-
-    .filter-pill {
-        display: inline-flex; align-items: center; padding: 0.5rem 1rem;
-        background: var(--bg-color); border-radius: 20px;
-        box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
-        font-size: 0.9rem; color: var(--text-color);
-    }
-    .filter-pill span { font-weight: 500; text-transform: capitalize; }
-    .filter-pill button {
-        background: none; border: none; margin-left: 0.75rem; cursor: pointer;
-        font-size: 1.2rem; color: var(--text-color-light); padding: 0; line-height: 1;
-    }
-    .filter-pill button:hover { color: var(--accent-color); }
-
-    .project-grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 2rem; 
-    }
-
-    /* --- PROJECT CARD REDESIGN --- */
-    .project-card {
-        background: var(--bg-color); border-radius: 15px;
-        box-shadow: 8px 8px 15px var(--shadow-dark), -8px -8px 15px var(--shadow-light);
-        overflow: hidden;
-        cursor: pointer; display: flex; flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .project-card:hover { 
-        transform: translateY(-5px); 
-        box-shadow: 12px 12px 20px var(--shadow-dark), -12px -12px 20px var(--shadow-light);
-    }
-    .project-card-hero {
-        position: relative;
-        width: 100%;
-        height: 200px;
-        overflow: hidden;
-    }
-    .project-card-hero img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-    .card-medium-badge {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        color: #fff;
-        padding: 0.35em 0.9em;
-        border-radius: 16px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        box-shadow: 0 2px 8px rgba(50,50,80,0.1);
-        z-index: 2;
-        text-transform: capitalize;
-    }
-    .card-medium-badge.medium-code { background: #3b82f6; } /* Blue */
-    .card-medium-badge.medium-art { background: #f59e0b; } /* Amber */
-    .card-medium-badge.medium-writing { background: #8b5cf6; } /* Violet */
-
-    .project-card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-    
-    .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 0.75rem;
-    }
-    
-    .project-card h3 { 
-        margin: 0; 
-        color: var(--text-color); 
-        font-size: 1.2rem; 
-        flex: 1;
-    }
-    
-    .card-year {
-        color: var(--text-color-light);
-        font-size: 0.9rem;
-        font-weight: 500;
-        flex-shrink: 0;
-        padding-left: 1rem;
-    }
-    
-    .card-description { 
-        margin: 0 0 1rem 0; 
-        font-size: 0.95rem; 
-        line-height: 1.5; 
-        color: var(--text-color-light);
-        flex-grow: 1;
-    }
-    
-    .card-info-section {
-        padding-top: 1rem;
-        border-top: 1px solid var(--scroll-bar-color);
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .card-role-group, .card-tags-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-    }
-
-    .card-tags-label {
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: var(--text-color-light);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin: 0;
-    }
-
-    .card-role {
-        font-size: 0.9rem;
-        color: var(--text-color);
-        font-weight: 500;
-        margin: 0;
-        line-height: 1.4;
-    }
-    
-    .card-tags { 
-        display: flex; 
-        flex-wrap: wrap; 
-        gap: 0.5rem; 
-    }
-    
-    .card-tag { 
-        background: #d1d9e6; 
-        padding: 0.3rem 0.6rem; 
-        border-radius: 5px; 
-        color: var(--text-color);
-        font-size: 0.8rem;
-        font-weight: 500;
-        text-transform: capitalize;
-    }
-    
-    .card-tag-more {
-        background: transparent;
-        color: var(--text-color-light);
-        font-style: italic;
-    }
-    
-    /* --- CONNECT MODAL --- */
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        z-index: 1001;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(224, 229, 236, 0.85);
-        justify-content: center;
-        align-items: center;
-        backdrop-filter: blur(10px);
-    }
-    
-    .connect-modal-content {
-        background: var(--bg-color);
-        border-radius: 20px;
-        box-shadow: 12px 12px 24px var(--shadow-dark), -12px -12px 24px var(--shadow-light);
-        color: var(--text-color);
-        width: 90%;
-        max-width: 600px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .modal-close-btn {
-        position: absolute;
-        top: 1rem;
-        right: 1.5rem;
-        background: none; border: none;
-        font-size: 2rem; color: var(--text-color-light);
-        cursor: pointer;
-        z-index: 10;
-    }
-    
-    .connect-modal-header {
-        display: flex;
-        background: #d1d9e6;
-        padding: 0.5rem;
-    }
-
-    .connect-tab-btn {
-        flex: 1;
-        padding: 1rem;
-        border: none;
-        background: transparent;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--text-color-light);
-        cursor: pointer;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-    }
-
-    .connect-tab-btn.active {
-        background: var(--bg-color);
-        color: var(--text-color);
-        box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
-    }
-
-    .connect-modal-body {
-        padding: 2.5rem;
-    }
-
-    .connect-tab-panel {
-        display: none;
-        line-height: 1.6;
-    }
-    .connect-tab-panel.active {
-        display: block;
-    }
-    .connect-tab-panel h3 {
-        font-size: 1.8rem;
-        margin: 0 0 1rem 0;
-    }
-    .connect-tab-panel p {
-        margin-bottom: 1.5rem;
-    }
-
-    .contact-links-container {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .contact-link-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem 1.5rem;
-        text-decoration: none;
-        color: var(--text-color);
-        font-weight: 600;
-        border-radius: 10px;
-        background: var(--bg-color);
-        box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
-        transition: all 0.2s ease;
-    }
-    
-    .contact-link-btn:hover {
-        box-shadow: 2px 2px 5px var(--shadow-dark), -2px -2px 5px var(--shadow-light);
-        color: var(--accent-color);
-    }
-
-    /* --- SIGNATURE FOOTER --- */
-    .signature-footer {
-        background: var(--bg-color);
-        padding: 3rem 2rem;
-        text-align: center;
-    }
-    
-    .footer-content {
-        max-width: 800px;
-        margin: 0 auto;
-        border-top: 1px solid var(--scroll-bar-color);
-        padding-top: 3rem;
-    }
-
-    .footer-tagline {
-        font-size: 1.25rem;
-        font-style: italic;
-        color: var(--text-color-light);
-        margin-bottom: 2rem;
-    }
-    
-    .footer-cta-hub {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 3rem;
-    }
-    
-    .footer-cta-btn {
-        padding: 0.75rem 1.5rem;
-        text-decoration: none;
-        color: var(--text-color);
-        font-weight: 600;
-        border-radius: 10px;
-        background: var(--bg-color);
-        box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
-        transition: all 0.2s ease;
-    }
-    
-    .footer-cta-btn:hover {
-        color: var(--accent-color);
-        box-shadow: 2px 2px 5px var(--shadow-dark), -2px -2px 5px var(--shadow-light);
-    }
-    
-    .footer-copyright {
-        font-size: 0.9rem;
-        color: var(--text-color-light);
-    }
-    
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-        .view { padding: 1rem; }
-        .top-nav { top: 1rem; left: 1rem; right: 1rem; }
-        #gallery-view .portfolio-container { padding-top: 6rem; }
-        .top-nav-content { padding: 0.5rem 1rem; height: 50px; }
-        .nav-search-input { width: 120px; }
-        .nav-right .header-content h1 { font-size: 1.2rem; }
-        .project-grid { grid-template-columns: 1fr; }
-        .footer-cta-hub { flex-direction: column; align-items: center; }
-    }
-        </style>
-        </head>
-        <body>
-            <!-- Main View Container -->
-            <div id="gallery-view" class="view">
-        
-                <!-- UNIFIED TOP NAVIGATION -->
-                <nav class="top-nav" id="topNav">
-                    <div class="top-nav-content">
-                        <!-- Search and Filter Toggle -->
-                        <div class="search-container">
-                            <input type="text" id="natural-search-input" class="nav-search-input" placeholder="Search projects...">
-                            <button id="search-toggle-btn" class="nav-search-btn" aria-label="Toggle Filters">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20"y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
-                            </button>
+    <!-- Unified "Connect" Modal -->
+    <div id="connectModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <div class="modal-tabs">
+                <button class="tab-button active" data-tab="about">About Me</button>
+                <button class="tab-button" data-tab="contact">Contact</button>
+            </div>
+            <div class="modal-body">
+                <div id="about" class="tab-content active">
+                    <h4>About R. Swan</h4>
+                    <p>I am a multidisciplinary creator with a passion for storytelling, world-building, and immersive digital experiences. My work spans across writing, art, and code, always with a focus on crafting narratives that resonate and inspire.</p>
+                    <p>This portfolio is a living testament to that journey, a collection of visions, words, and systems that explore the intersection of technology and creativity.</p>
+                </div>
+                <div id="contact" class="tab-content">
+                    <h4>Get in Touch</h4>
+                    <p>I would love to hear from you and add you to my mail list.</p>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
-                        <!-- Logo/Name -->
-                        <div class="nav-right">
-                             <div class="header-content" id="connect-header-btn">
-                                <h1>Ray Swan</h1>
-                                <p>Creative Technologist</p>
-                            </div>
+                        <div class="form-group">
+                            <label for="message">Message (optional)</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
                         </div>
-                    </div>
-        
-                    <!-- FILTER PANEL (replaces sidebar) -->
-                    <div class="filter-panel" id="filterPanel">
-                        <div class="filter-panel-content">
-                            <h2>Filters</h2>
-                            <!-- Facet Filters -->
-                            <div class="facet-container">
-                                <details class="facet-group" open><summary>Medium</summary><div class="facet-content"><ul id="medium-filter-list"></ul></div></details>
-                                <details class="facet-group" open><summary>Genre</summary><div class="facet-content"><ul id="genre-filter-list"></ul></div></details>
-                                <details class="facet-group"><summary>Technology</summary><div class="facet-content"><ul id="tech-filter-list"></ul></div></details>
-                                <details class="facet-group"><summary>Style / Theme</summary><div class="facet-content"><ul id="style-filter-list"></ul></div></details>
-                                <details class="facet-group"><summary>Mood</summary><div class="facet-content"><ul id="mood-filter-list"></ul></div></details>
-                                <details class="facet-group"><summary>Year</summary><div class="facet-content slider-container"><label for="year-filter" class="slider-label"><span>After:</span><span id="year-value">2020</span></label><input type="range" id="year-filter" class="neumorphic-slider" name="year" min="2020" max="2024" value="2020"></div></details>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-        
-                <div class="portfolio-container">
-                    <div class="project-gallery">
-                        <!-- Active filter pills will be rendered here -->
-                        <div id="active-filters-container" class="active-filters"></div>
-                        <!-- Project cards will be rendered here -->
-                        <div id="project-grid-container" class="project-grid"></div>
-                    </div>
+                        <button type="submit" class="form-submit-btn">Send</button>
+                    </form>
                 </div>
             </div>
-        
-            <!-- Case Study / Detail View (Initially Hidden) -->
-            <div id="detail-view" class="view" style="display: none;">
-                <!-- This content is now managed in ParallaxThemes.html -->
-            </div>
-        
-            <!-- NEW UNIFIED CONNECT MODAL -->
-            <div id="connect-modal" class="modal-overlay">
-                <div class="connect-modal-content">
-                    <button class="modal-close-btn" data-modal-id="connect-modal" aria-label="Close">&times;</button>
-                    <div class="connect-modal-header">
-                        <button class="connect-tab-btn active" data-tab="about">About Me</button>
-                        <button class="connect-tab-btn" data-tab="contact">Contact</button>
-                    </div>
-                    <div class="connect-modal-body">
-                        <!-- About Me Panel -->
-                        <div id="about-tab" class="connect-tab-panel active">
-                            <h3>About Me</h3>
-                            <p>I am a Creative Technologist specializing in building bridges between complex systems and human-centered stories. My work lives at the intersection of code, design, and narrative, with a focus on creating intuitive, data-driven experiences that resonate and inspire.</p>
-                            <p>With a background in both software engineering and visual arts, I bring a unique perspective to every project, transforming intricate ideas into elegant, accessible, and engaging digital solutions.</p>
-                        </div>
-                        <!-- Contact Panel -->
-                        <div id="contact-tab" class="connect-tab-panel">
-                            <h3>Get in Touch</h3>
-                            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious team. Feel free to reach out through any of the channels below.</p>
-                            <div class="contact-links-container">
-                                <div class="contact-method">
-                                    <a href="mailto:rs@rswan.org" class="contact-link-btn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                        <span>rs@rswan.org</span>
-                                    </a>
-                                </div>
-                                <div class="contact-method">
-                                    <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="contact-link-btn">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                                        <span>LinkedIn</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- SIGNATURE FOOTER -->
-            <footer class="signature-footer">
-                <div class="footer-content">
-                    <div class="footer-tagline">
-                        <p>"Building bridges between complex systems and human-centered stories."</p>
-                    </div>
-                    <div class="footer-cta-hub">
-                        <a href="#" class="footer-cta-btn" id="footer-connect-btn">Connect</a>
-                        <a href="ParallaxThemes.html" class="footer-cta-btn">View a Project</a>
-                    </div>
-                    <div class="footer-copyright">
-                        <p>&copy; <span id="dynamic-year">2024</span> Ray Swan. All Rights Reserved.</p>
-                    </div>
-                </div>
-            </footer>
-        
-            <!-- JAVASCRIPT LIBRARIES & CUSTOM SCRIPTS -->
-            <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
-            <script src="js/theme.js"></script>
-            <script src="js/project-loader.js"></script>
-            <script>
-                // All JavaScript will go here in Part 3
-                document.addEventListener('DOMContentLoaded', () => {
+        </div>
+    </div>
+    
+    <div id="notification-container"></div>
 
-// --- DATA SOURCES ---
-let projects = [];
-let fuse;
-
-// --- DOM ELEMENT REFERENCES ---
-const projectGrid = document.getElementById('project-grid-container');
-const activeFiltersContainer = document.getElementById('active-filters-container');
-const filterLists = {
-    medium: document.getElementById('medium-filter-list'),
-    genre: document.getElementById('genre-filter-list'),
-    style: document.getElementById('style-filter-list'),
-    mood: document.getElementById('mood-filter-list'),
-    tech: document.getElementById('tech-filter-list')
-};
-const yearSlider = document.getElementById('year-filter');
-const yearValueSpan = document.getElementById('year-value');
-const topNav = document.getElementById('topNav');
-const searchToggleBtn = document.getElementById('search-toggle-btn');
-const mainSearchInput = document.getElementById('natural-search-input');
-const connectHeaderBtn = document.getElementById('connect-header-btn');
-const footerConnectBtn = document.getElementById('footer-connect-btn');
-const connectModal = document.getElementById('connect-modal');
-const closeModalBtns = document.querySelectorAll('.modal-close-btn');
-
-// --- STATE MANAGEMENT ---
-let activeFilters = {
-    medium: 'all',
-    genre: [],
-    style: [],
-    mood: 'all',
-    year: 2020,
-    tech: []
-};
-
-// --- RENDER FUNCTION (REBUILT FOR RELIABILITY) ---
-function renderProjects(projectsToRender) {
-    if (!projectGrid) {
-        console.error("Fatal: projectGrid container not found.");
-        return;
-    }
-    projectGrid.innerHTML = '';
-
-    if (!projectsToRender || projectsToRender.length === 0) {
-        projectGrid.innerHTML = '<p style="text-align: center; color: var(--text-color);">No projects match the selected filters.</p>';
-        return;
-    }
-
-    projectsToRender.forEach(project => {
-        if (!project || typeof project.title !== 'string') {
-            console.warn('Skipping invalid project object:', project);
-            return;
-        }
-        
-        const card = document.createElement('div');
-        card.className = 'project-card';
-        card.dataset.id = project.id;
-
-        const projectSlug = project.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        const heroImageUrl = `images/projects/${projectSlug}/card-hero.jpg`;
-
-        const createTagsHTML = (items, label) => {
-            if (!items || items.length === 0) return '';
-            const visibleItems = items.slice(0, 3);
-            const hiddenCount = items.length - visibleItems.length;
-            return `
-                <div class="card-tags-group">
-                    <h4 class="card-tags-label">${label}</h4>
-                    <div class="card-tags">
-                        ${visibleItems.map(item => `<span class="card-tag">${item.replace(/-/g, ' ')}</span>`).join('')}
-                        ${hiddenCount > 0 ? `<span class="card-tag-more">+${hiddenCount}</span>` : ''}
-                    </div>
-                </div>`;
-        };
-        
-        const roleHTML = project.role ? `<div class="card-role-group"><h4 class="card-tags-label">Role</h4><p class="card-role">${project.role}</p></div>` : '';
-
-        card.innerHTML = `
-            <div class="project-card-hero">
-                <img src="${heroImageUrl}" alt="${project.title}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e0e5ec/31456A?text=Image+Not+Found';">
-                <span class="card-medium-badge medium-${project.medium?.toLowerCase()}">${project.medium}</span>
-            </div>
-            <div class="project-card-content">
-                <div class="card-header">
-                    <h3>${project.title}</h3>
-                    <div class="card-year">${project.year || ''}</div>
-                </div>
-                <p class="card-description">${project.description}</p>
-                <div class="card-info-section">
-                    ${roleHTML}
-                    ${createTagsHTML(project.genre, 'Genre')}
-                    ${createTagsHTML(project.tech, 'Technology')}
-                </div>
-            </div>`;
-
-        projectGrid.appendChild(card);
-    });
-}
-
-// --- The rest of the script ---
-
-function applyFilters() {
-    let projectsToFilter = projects;
-    const searchQuery = mainSearchInput.value.trim();
-    if (searchQuery && fuse) {
-        const searchResults = fuse.search(searchQuery);
-        projectsToFilter = searchResults.map(result => result.item);
-    }
-    const filteredProjects = projectsToFilter.filter(p =>(activeFilters.medium === 'all' || p.medium === activeFilters.medium) &&(activeFilters.genre.length === 0 || activeFilters.genre.every(g => p.genre?.includes(g))) &&(activeFilters.style.length === 0 || activeFilters.style.every(s => p.style?.includes(s))) &&(activeFilters.tech.length === 0 || activeFilters.tech.every(t => p.tech?.includes(t))) &&(activeFilters.mood === 'all' || p.mood === activeFilters.mood) &&(p.year >= activeFilters.year));
-    renderProjects(filteredProjects);
-    renderActiveFilterPills();
-    renderFacets(filteredProjects);
-    updateFilterUI();
-}
-
-function renderFacets(availableProjects) {
-    const createListItems = (type, values, counts) => {
-        const isRadio = type === 'medium' || type === 'mood';
-        return values.map(value => {
-            const count = counts[value] || 0;
-            if (count === 0 && !activeFilters[type].includes(value) && (isRadio && activeFilters[type] !== value)) return '';
-            const checked = isRadio ? activeFilters[type] === value : activeFilters[type].includes(value);
-            return `<li><label class="neumorphic-control"><input type="${isRadio ? 'radio' : 'checkbox'}" name="${type}" value="${value}" ${checked ? 'checked' : ''}><span class="checkmark"></span><span style="text-transform: capitalize;">${value.replace(/-/g, ' ')}</span><span class="facet-count">${count}</span></label></li>`
-        }).join('');
-    };
-    const mediumCounts = projects.reduce((acc, p) => ({ ...acc, [p.medium]: (acc[p.medium] || 0) + 1 }), { all: projects.length });
-    const sortedMediums = ['all', 'code', 'art', 'writing'].sort((a, b) => (mediumCounts[b] || 0) - (mediumCounts[a] || 0));
-    if (filterLists.medium) filterLists.medium.innerHTML = createListItems('medium', sortedMediums, mediumCounts);
-    ['genre', 'style', 'tech'].forEach(type => {
-        if (filterLists[type]) {
-            const counts = availableProjects.reduce((acc, p) => { (p[type] || []).forEach(v => { acc[v] = (acc[v] || 0) + 1; }); return acc; }, {});
-            const allValues = [...new Set(projects.flatMap(p => p[type] || []))].sort((a, b) => (counts[b] || 0) - (counts[a] || 0));
-            filterLists[type].innerHTML = createListItems(type, allValues, counts);
-        }
-    });
-    if (filterLists.mood) {
-        const moodCounts = availableProjects.reduce((acc, p) => ({ ...acc, [p.mood]: (acc[p.mood] || 0) + 1 }), { all: availableProjects.length });
-        const allMoods = ['all', ...[...new Set(projects.map(p => p.mood))]];
-        allMoods.sort((a, b) => (a === 'all' ? -1 : b === 'all' ? 1 : (moodCounts[b] || 0) - (moodCounts[a] || 0)));
-        filterLists.mood.innerHTML = createListItems('mood', allMoods, moodCounts);
-    }
-}
-
-function renderActiveFilterPills() {
-    activeFiltersContainer.innerHTML = '';
-    const createPill = (text, type, value = text) => {
-        const pill = document.createElement('div');
-        pill.className = 'filter-pill';
-        pill.innerHTML = `<span>${text.replace(/-/g, ' ')}</span><button data-filter-type="${type}" data-filter-value="${value}">×</button>`;
-        activeFiltersContainer.appendChild(pill);
-    };
-    Object.entries(activeFilters).forEach(([type, value]) => {
-        if (Array.isArray(value)) value.forEach(item => createPill(item, type));
-        else if (type === 'medium' && value !== 'all') createPill(value, type);
-        else if (type === 'mood' && value !== 'all') createPill(`Mood: ${value}`, type, value);
-        else if (type === 'year' && value > (parseInt(yearSlider.min, 10) || 2020)) createPill(`After ${value}`, type, value);
-    });
-}
-
-function updateFilterUI() {
-    document.querySelectorAll('input[name="medium"], input[name="mood"]').forEach(input => input.checked = (input.value === activeFilters[input.name]));
-    ['genre', 'style', 'tech'].forEach(type => document.querySelectorAll(`input[name="${type}"]`).forEach(input => input.checked = activeFilters[type].includes(input.value)));
-    if(yearSlider) yearSlider.value = activeFilters.year;
-    if(yearValueSpan) yearValueSpan.textContent = activeFilters.year;
-}
-
-function handleFilterChange(e) {
-    const { name, value, checked } = e.target;
-    if (name === 'medium' || name === 'mood') activeFilters[name] = value;
-    else if (name === 'year') activeFilters.year = parseInt(value, 10);
-    else {
-        if (checked) {
-            if (!activeFilters[name].includes(value)) activeFilters[name].push(value);
-        }
-        else activeFilters[name] = activeFilters[name].filter(item => item !== value);
-    }
-    applyFilters();
-}
-
-function handlePillRemove(e) {
-    if (e.target.tagName !== 'BUTTON') return;
-    const { filterType, filterValue } = e.target.dataset;
-    if (Array.isArray(activeFilters[filterType])) activeFilters[filterType] = activeFilters[filterType].filter(item => item !== filterValue);
-    else if (filterType === 'year') activeFilters.year = parseInt(yearSlider.min, 10);
-    else activeFilters[filterType] = 'all';
-    applyFilters();
-}
-
-function handleProjectClick(e) {
-    const card = e.target.closest('.project-card');
-    if (card) {
-        const project = projects.find(p => p.id === parseInt(card.dataset.id, 10));
-        if (project) {
-            sessionStorage.setItem('currentProject', JSON.stringify(project));
-            window.location.href = 'ParallaxThemes.html';
-        }
-    }
-}
-
-function openModal(modal) { if (modal) modal.style.display = 'flex'; }
-function closeModal(modal) { if (modal) modal.style.display = 'none'; }
-
-function setupEventListeners() {
-    const filterPanel = document.getElementById('filterPanel');
-    if (filterPanel) filterPanel.addEventListener('change', handleFilterChange);
-    if (activeFiltersContainer) activeFiltersContainer.addEventListener('click', handlePillRemove);
-    if (projectGrid) projectGrid.addEventListener('click', handleProjectClick);
-    if (searchToggleBtn) searchToggleBtn.addEventListener('click', () => topNav.classList.toggle('filters-open'));
-    if (mainSearchInput) mainSearchInput.addEventListener('input', applyFilters);
-    if (connectHeaderBtn) connectHeaderBtn.addEventListener('click', () => openModal(connectModal));
-    if (footerConnectBtn) footerConnectBtn.addEventListener('click', (e) => { e.preventDefault(); openModal(connectModal); });
-    closeModalBtns.forEach(btn => btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay'))));
-    document.body.addEventListener('click', (e) => { if (e.target.classList.contains('modal-overlay')) closeModal(e.target); });
-    const connectModalContent = document.querySelector('.connect-modal-content');
-    if (connectModalContent) {
-        connectModalContent.addEventListener('click', (e) => {
-            if (e.target.matches('.connect-tab-btn')) {
-                const tab = e.target.dataset.tab;
-                connectModalContent.querySelectorAll('.connect-tab-btn, .connect-tab-panel').forEach(el => el.classList.remove('active'));
-                e.target.classList.add('active');
-                document.getElementById(`${tab}-tab`).classList.add('active');
-            }
-        });
-    }
-    if (yearSlider) {
-        yearSlider.addEventListener('input', (e) => { if(yearValueSpan) yearValueSpan.textContent = e.target.value; });
-        yearSlider.addEventListener('change', handleFilterChange);
-    }
-    const yearSpan = document.getElementById('dynamic-year');
-    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-}
-
-async function initializePage() {
-    try {
-        const projectLoader = new ProjectLoader();
-        projects = await projectLoader.loadAllProjects();
-        if (projects.length === 0) {
-            if (projectGrid) projectGrid.innerHTML = '<p>No projects could be loaded. Please run "npm run manifest" and refresh.</p>';
-            return;
-        }
-        fuse = new Fuse(projects, { includeScore: true, threshold: 0.4, keys: ['title', 'description', 'pitch', 'tech', 'genre', 'role', 'style'] });
-        if (yearSlider) activeFilters.year = parseInt(yearSlider.min, 10);
-        applyFilters();
-        setupEventListeners();
-    } catch (error) {
-        console.error('Fatal error during page initialization:', error);
-        if (projectGrid) projectGrid.innerHTML = '<p>A critical error occurred. Check the console for details.</p>';
-    }
-}
-
-initializePage();
-});
-</script>
-            
-        
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+    <script src="js/project-loader.js?v=2"></script>
+    <script src="js/main.js?v=2"></script>
 </body>
 </html>

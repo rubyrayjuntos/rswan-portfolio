@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section Test</title>
+    <link rel="stylesheet" href="styles/themes.css?v=3">
+    <style>
+        /* Minimal styles to isolate the hero section */
+        :root {
+            --bg-primary: #e0e5ec;
+            --text-primary: #31456A;
+        }
+        body {
+            font-family: sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+        }
+        .hero {
+            display: grid;
+            place-content: center;
+            text-align: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.25);
+            z-index: 1;
+        }
+        #heroParticles {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: transparent;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 4rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div id="heroParticles"></div>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1>Particle Test</h1>
+            <p>If you see this and animated particles, it is working.</p>
+        </div>
+    </header>
+
+    <script src="js/theme.js?v=3" defer></script>
+    <script src="js/parallax.js?v=3" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Hero Test Page Initialized.");
+            const particlesContainer = document.getElementById('heroParticles');
+            const projectMood = 'innovative'; // For testing, corresponds to 'dark' theme
+            const theme = getThemeFromMood(projectMood);
+            
+            document.body.className = theme;
+
+            if (particlesContainer && window.particleAnimations && typeof window.particleAnimations[theme] === 'function') {
+                console.log(`Applying '${theme}' particle animation.`);
+                window.particleAnimations[theme](particlesContainer);
+            } else {
+                console.error("Failed to initialize particle animations. Check that parallax.js is loaded and the theme function exists.");
+            }
+
+            // Simple resize handler for the test page
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    console.log("Resizing... regenerating particles.");
+                    if (window.particleAnimations && typeof window.particleAnimations[theme] === 'function') {
+                        window.particleAnimations[theme](particlesContainer);
+                    }
+                }, 250);
+            });
+        });
+    </script>
+</body>
+</html> 

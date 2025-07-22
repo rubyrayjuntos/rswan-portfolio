@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "npx http-server -p 8080 -c-1",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:e2e": "playwright test",
@@ -22,20 +22,6 @@
     "playwright": "^1.40.0",
     "lighthouse": "^11.4.0",
     "http-server": "^14.1.1"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"],
-    "collectCoverageFrom": [
-      "script.js",
-      "markdown-renderer.js",
-      "!**/node_modules/**",
-      "!**/tests/**"
-    ],
-    "coverageReporters": ["text", "lcov", "html"],
-    "testMatch": [
-      "**/tests/**/*.test.js"
-    ]
   },
   "keywords": [
     "portfolio",

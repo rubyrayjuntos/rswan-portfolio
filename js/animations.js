@@ -43,94 +43,6 @@ function setupScrollAnimations() {
     });
 }
 
-// Simplified timeline scroll animation using IntersectionObserver
-function setupTimelineScrollAnimation() {
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    const journeySection = document.querySelector('#journey');
-    const journeyHeroBg = document.querySelector('.journey-hero-bg');
-    const journeyParticles = document.querySelector('.journey-particles');
-    
-    // Hero parallax effect
-    function updateHeroParallax() {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        const heroHeight = hero.offsetHeight;
-        
-        if (scrolled < heroHeight && window.motionEnabled) {
-            const heroContent = document.querySelector('.hero-content');
-            const heroBg = document.querySelector('.hero-bg');
-            
-            heroContent.style.transform = `translate3d(0, ${scrolled * 0.5}px, 0)`;
-            heroBg.style.transform = `translate3d(0, ${scrolled * 0.3}px, 0)`;
-        }
-    }
-    
-    // Journey background reveal effect
-    function updateJourneyBackground() {
-                    if (!journeySection || !window.motionEnabled) return;
-        
-        const rect = journeySection.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-        
-        // Calculate how much of the journey section is visible
-        const sectionTop = rect.top;
-        const sectionHeight = rect.height;
-        const visibleHeight = Math.min(windowHeight, sectionTop + sectionHeight) - Math.max(0, sectionTop);
-        const visibilityRatio = Math.max(0, Math.min(1, visibleHeight / windowHeight));
-        
-        // Reveal background and particles as section comes into view
-        if (journeyHeroBg && journeyParticles) {
-            journeyHeroBg.style.opacity = visibilityRatio;
-            journeyParticles.style.opacity = visibilityRatio;
-            
-            if (visibilityRatio > 0.1) {
-                journeyHeroBg.classList.add('visible');
-                journeyParticles.classList.add('visible');
-            }
-            
-            // Debug logging
-            console.log('Journey background visibility:', visibilityRatio);
-        } else {
-            console.log('Journey background elements not found:', { journeyHeroBg, journeyParticles });
-        }
-    }
-    
-    // Use IntersectionObserver for timeline items - much more reliable
-    const timelineObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Add a small delay to ensure smooth animation
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, 100);
-            }
-        });
-    }, {
-        threshold: 0.3,
-        rootMargin: '0px 0px -100px 0px'
-    });
-    
-    // Observe all timeline items
-    timelineItems.forEach(item => {
-        timelineObserver.observe(item);
-    });
-    
-    // Add scroll listener for hero parallax and journey background
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                updateHeroParallax();
-                updateJourneyBackground();
-            });
-            ticking = true;
-        }
-    });
-    
-    // Initial call
-    updateJourneyBackground();
-}
-
 // Setup parallax for specification cards
 function setupSpecCardsParallax() {
     const specCards = document.querySelectorAll('.spec-card[data-parallax="true"]');
@@ -194,6 +106,5 @@ function initAnimations() {
 
 // Export functions for use in other modules
 window.setupScrollAnimations = setupScrollAnimations;
-window.setupTimelineScrollAnimation = setupTimelineScrollAnimation;
 window.setupSpecCardsParallax = setupSpecCardsParallax;
 window.initAnimations = initAnimations; 

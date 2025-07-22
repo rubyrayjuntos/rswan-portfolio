@@ -1,111 +1,111 @@
 {
-  "id": 9,
-  "title": "Arcana",
-  "description": "Major arcana archetypes as characters in a story as grand as the universe, exploring the timeless wisdom and cosmic drama of the tarot through narrative.",
-  "imageUrl": "images/projects/arcana/arcana-cover-art.jpg",
-  "medium": "writing",
-  "genre": [
-    "Fantasy",
-    "Archetypal Fiction",
-    "Cosmic Drama",
-    "Philosophical Fiction",
-    "Tarot-Inspired"
-  ],
-  "style": [
-    "Epic",
-    "Archetypal",
-    "Cosmic",
-    "Philosophical",
-    "Mythological"
-  ],
-  "tech": [
-    "Creative Writing",
-    "Archetypal Analysis",
-    "Tarot Study",
-    "World Building",
-    "Character Development"
-  ],
-  "mood": "Mystical",
-  "year": 2024,
-  "role": "Author, World Builder, Archetypal Researcher",
-  "variant": "featured",
-  "status": "in-progress",
-  "links": {
-    "excerpt": "#",
-    "manuscript": "#"
-  },
-  "pitch": "A cosmic drama where the major arcana come to life as characters in a story that spans the universe, exploring timeless wisdom through epic narrative.",
-  "challenge": "Balancing the cosmic scale of the story with intimate character moments, ensuring each arcana character feels both archetypal and uniquely individual while maintaining narrative coherence.",
-  "development": "Extensive research into tarot symbolism and archetypal psychology. Deep world-building that connects cosmic forces with personal transformation.",
-  "outcome": "A grand narrative that brings the wisdom of the tarot to life through compelling characters and cosmic drama.",
-  "excerpts": "Sample excerpts from the story showcasing how each major arcana character embodies their archetypal wisdom while maintaining individual personality and agency.",
-  "themes": "The story explores themes of universal wisdom, personal transformation, the interconnectedness of all things, and the power of archetypal forces in shaping human experience.",
-  "gallery": [
-    {
-      "url": "images/projects/arcana/arcana-cover-art.jpg",
-      "title": "Arcana Cover",
-      "description": "Visual representation of the major arcana as cosmic characters",
-      "dimensions": "1200x800"
-    },
-    {
-      "url": "images/projects/arcana/arcana-character-designs.jpg",
-      "title": "Arcana Characters",
-      "description": "Character designs for the major arcana archetypes",
-      "dimensions": "1200x800"
-    },
-    {
-      "url": "images/projects/arcana/arcana-cosmic-setting.jpg",
-      "title": "Cosmic Setting",
-      "description": "The vast universe where the arcana drama unfolds",
-      "dimensions": "1200x800"
-    }
-  ],
-  "journey": [
-    {
-      "title": "Tarot Research",
-      "description": "Deep study of tarot symbolism, history, and archetypal meanings"
-    },
-    {
-      "title": "Character Development",
-      "description": "Transformed each major arcana into a fully realized character with unique personality and role"
-    },
-    {
-      "title": "World Building",
-      "description": "Created a cosmic setting that reflects the universal nature of the tarot"
-    },
-    {
-      "title": "Narrative Structure",
-      "description": "Crafted a story that balances cosmic drama with intimate character moments"
-    },
-    {
-      "title": "Philosophical Integration",
-      "description": "Wove timeless wisdom and philosophical themes throughout the narrative"
-    }
-  ],
-  "specs": [
-    {
-      "title": "Genre",
-      "description": "Epic fantasy with strong archetypal and philosophical elements"
-    },
-    {
-      "title": "Character System",
-      "description": "22 major arcana characters, each representing universal archetypes and wisdom"
-    },
-    {
-      "title": "World Setting",
-      "description": "Cosmic universe that reflects the universal nature of tarot symbolism"
-    },
-    {
-      "title": "Thematic Elements",
-      "description": "Transformation, wisdom, cosmic forces, personal growth, and universal truths"
-    },
-    {
-      "title": "Narrative Approach",
-      "description": "Epic storytelling that balances cosmic scale with intimate character development"
-    },
-    {
-      "title": "Philosophical Depth",
-      "description": "Integration of timeless wisdom and archetypal psychology throughout the story"
-    }
-  ]
+    "id":  9,
+    "title":  "Arcana",
+    "description":  "Major arcana archetypes as characters in a story as grand as the universe, exploring the timeless wisdom and cosmic drama of the tarot through narrative.",
+    "imageUrl":  "card-hero.jpg",
+    "medium":  "writing",
+    "genre":  [
+                  "Fantasy",
+                  "Archetypal Fiction",
+                  "Cosmic Drama",
+                  "Philosophical Fiction",
+                  "Tarot-Inspired"
+              ],
+    "style":  [
+                  "Epic",
+                  "Archetypal",
+                  "Cosmic",
+                  "Philosophical",
+                  "Mythological"
+              ],
+    "tech":  [
+                 "Creative Writing",
+                 "Archetypal Analysis",
+                 "Tarot Study",
+                 "World Building",
+                 "Character Development"
+             ],
+    "mood":  "Mystical",
+    "year":  2024,
+    "role":  "Author, World Builder, Archetypal Researcher",
+    "variant":  "featured",
+    "status":  "in-progress",
+    "links":  {
+                  "excerpt":  "#",
+                  "manuscript":  "#"
+              },
+    "pitch":  "A cosmic drama where the major arcana come to life as characters in a story that spans the universe, exploring timeless wisdom through epic narrative.",
+    "challenge":  "Balancing the cosmic scale of the story with intimate character moments, ensuring each arcana character feels both archetypal and uniquely individual while maintaining narrative coherence.",
+    "development":  "Extensive research into tarot symbolism and archetypal psychology. Deep world-building that connects cosmic forces with personal transformation.",
+    "outcome":  "A grand narrative that brings the wisdom of the tarot to life through compelling characters and cosmic drama.",
+    "excerpts":  "Sample excerpts from the story showcasing how each major arcana character embodies their archetypal wisdom while maintaining individual personality and agency.",
+    "themes":  "The story explores themes of universal wisdom, personal transformation, the interconnectedness of all things, and the power of archetypal forces in shaping human experience.",
+    "gallery":  [
+                    {
+                        "url":  "arcana-cover-art.jpg",
+                        "title":  "Arcana Cover",
+                        "description":  "Visual representation of the major arcana as cosmic characters",
+                        "dimensions":  "1200x800"
+                    },
+                    {
+                        "url":  "arcana-character-designs.jpg",
+                        "title":  "Arcana Characters",
+                        "description":  "Character designs for the major arcana archetypes",
+                        "dimensions":  "1200x800"
+                    },
+                    {
+                        "url":  "arcana-cosmic-setting.jpg",
+                        "title":  "Cosmic Setting",
+                        "description":  "The vast universe where the arcana drama unfolds",
+                        "dimensions":  "1200x800"
+                    }
+                ],
+    "journey":  [
+                    {
+                        "title":  "Tarot Research",
+                        "description":  "Deep study of tarot symbolism, history, and archetypal meanings"
+                    },
+                    {
+                        "title":  "Character Development",
+                        "description":  "Transformed each major arcana into a fully realized character with unique personality and role"
+                    },
+                    {
+                        "title":  "World Building",
+                        "description":  "Created a cosmic setting that reflects the universal nature of the tarot"
+                    },
+                    {
+                        "title":  "Narrative Structure",
+                        "description":  "Crafted a story that balances cosmic drama with intimate character moments"
+                    },
+                    {
+                        "title":  "Philosophical Integration",
+                        "description":  "Wove timeless wisdom and philosophical themes throughout the narrative"
+                    }
+                ],
+    "specs":  [
+                  {
+                      "title":  "Genre",
+                      "description":  "Epic fantasy with strong archetypal and philosophical elements"
+                  },
+                  {
+                      "title":  "Character System",
+                      "description":  "22 major arcana characters, each representing universal archetypes and wisdom"
+                  },
+                  {
+                      "title":  "World Setting",
+                      "description":  "Cosmic universe that reflects the universal nature of tarot symbolism"
+                  },
+                  {
+                      "title":  "Thematic Elements",
+                      "description":  "Transformation, wisdom, cosmic forces, personal growth, and universal truths"
+                  },
+                  {
+                      "title":  "Narrative Approach",
+                      "description":  "Epic storytelling that balances cosmic scale with intimate character development"
+                  },
+                  {
+                      "title":  "Philosophical Depth",
+                      "description":  "Integration of timeless wisdom and archetypal psychology throughout the story"
+                  }
+              ]
 }

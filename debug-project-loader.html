@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Project Loader</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; }
+        .debug-section { margin: 2rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 5px; }
+        .error { color: red; }
+        .success { color: green; }
+        .info { color: blue; }
+        pre { background: #f5f5f5; padding: 1rem; border-radius: 3px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Project Loader Debug</h1>
+    
+    <div class="debug-section">
+        <h2>URL Parameters</h2>
+        <div id="url-params"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Project Loading Test</h2>
+        <button onclick="testProjectLoad('character-design')">Test Character Design</button>
+        <button onclick="testProjectLoad('archetypes-at-rest')">Test Archetypes at Rest</button>
+        <button onclick="testProjectLoad('nova-writers-conspiracy')">Test Nova Writers</button>
+        <div id="loading-result"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Project Data</h2>
+        <pre id="project-data"></pre>
+    </div>
+
+    <script>
+        // Display URL parameters
+        function displayUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramsDiv = document.getElementById('url-params');
+            
+            if (urlParams.toString()) {
+                paramsDiv.innerHTML = `<div class="info">URL Parameters: ${urlParams.toString()}</div>`;
+                
+                const projectId = urlParams.get('project') || urlParams.get('id');
+                if (projectId) {
+                    paramsDiv.innerHTML += `<div class="success">Project ID found: ${projectId}</div>`;
+                    testProjectLoad(projectId);
+                } else {
+                    paramsDiv.innerHTML += `<div class="error">No project parameter found</div>`;
+                }
+            } else {
+                paramsDiv.innerHTML = `<div class="info">No URL parameters</div>`;
+            }
+        }
+
+        async function testProjectLoad(projectId) {
+            const resultDiv = document.getElementById('loading-result');
+            const dataDiv = document.getElementById('project-data');
+            
+            try {
+                resultDiv.innerHTML = `<div class="info">Loading project: ${projectId}...</div>`;
+                
+                const response = await fetch(`_data/projects/${projectId}.json`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const project = await response.json();
+                
+                // Fix null or missing imageUrl - default to card-hero.jpg
+                if (!project.imageUrl || project.imageUrl === null) {
+                    project.imageUrl = 'card-hero.jpg';
+                    resultDiv.innerHTML += `<br><div class="info">⚠️ Fixed null imageUrl, defaulted to card-hero.jpg</div>`;
+                }
+                
+                // Ensure project ID matches the JSON filename for proper folder structure
+                const originalId = project.id;
+                if (!project.id || typeof project.id === 'number') {
+                    project.id = projectId; // Use the filename as the ID for folder paths
+                    resultDiv.innerHTML += `<br><div class="info">⚠️ Updated project ID from "${originalId}" to "${projectId}" for folder paths</div>`;
+                }
+                
+                resultDiv.innerHTML += `<br><div class="success">✅ Successfully loaded: ${project.title}</div>`;
+                
+                // Test hero image path
+                let heroImageUrl = project.imageUrl;
+                if (!heroImageUrl.startsWith('http') && !heroImageUrl.startsWith('/') && !heroImageUrl.startsWith('images/')) {
+                    heroImageUrl = `images/projects/${project.id}/${heroImageUrl}`;
+                }
+                resultDiv.innerHTML += `<br><div class="info">Hero image URL: ${heroImageUrl}</div>`;
+                
+                // Test hero image loading
+                const heroImg = new Image();
+                heroImg.onload = () => {
+                    resultDiv.innerHTML += `<br><div class="success">✅ Hero image loads successfully</div>`;
+                };
+                heroImg.onerror = () => {
+                    resultDiv.innerHTML += `<br><div class="error">❌ Hero image failed to load</div>`;
+                };
+                heroImg.src = heroImageUrl;
+                
+                dataDiv.textContent = JSON.stringify(project, null, 2);
+                
+                // Test gallery image paths
+                if (project.gallery && project.gallery.length > 0) {
+                    const firstImage = project.gallery[0];
+                    let imageUrl = firstImage.url;
+                    
+                    if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/') && !imageUrl.startsWith('images/')) {
+                        imageUrl = `images/projects/${project.id}/${firstImage.url}`;
+                    }
+                    
+                    resultDiv.innerHTML += `<br><div class="info">First gallery image URL: ${imageUrl}</div>`;
+                    
+                    // Test if image exists
+                    const img = new Image();
+                    img.onload = () => {
+                        resultDiv.innerHTML += `<br><div class="success">✅ First gallery image loads successfully</div>`;
+                    };
+                    img.onerror = () => {
+                        resultDiv.innerHTML += `<br><div class="error">❌ First gallery image failed to load</div>`;
+                    };
+                    img.src = imageUrl;
+                }
+                
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Error loading project: ${error.message}</div>`;
+                dataDiv.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        // Initialize
+        displayUrlParams();
+    </script>
+</body>
+</html> 

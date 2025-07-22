@@ -1,103 +1,103 @@
 {
-  "id": 7,
-  "title": "Weight of a Name",
-  "description": "Prelog backstory of Elias, the lover archetype, exploring the significance of names, identity, and the power of love across time and space.",
-  "imageUrl": "images/projects/weight-of-a-name/weight-of-name-cover-art.jpg",
-  "medium": "writing",
-  "genre": [
-    "Literary Fiction",
-    "Character Study",
-    "Archetypal Story",
-    "Philosophical Fiction",
-    "Love Story"
-  ],
-  "style": [
-    "Poetic",
-    "Introspective",
-    "Philosophical",
-    "Character-Driven",
-    "Atmospheric"
-  ],
-  "tech": [
-    "Creative Writing",
-    "Character Development",
-    "Archetypal Analysis",
-    "Philosophical Themes",
-    "Narrative Structure"
-  ],
-  "mood": "Contemplative",
-  "year": 2024,
-  "role": "Author, Character Developer, Philosophical Researcher",
-  "variant": "tall",
-  "status": "in-progress",
-  "links": {
-    "excerpt": "#",
-    "manuscript": "#"
-  },
-  "pitch": "A deep exploration of the lover archetype through the story of Elias, examining how names carry weight and meaning across generations.",
-  "challenge": "Balancing philosophical depth with emotional resonance, creating a character study that feels both universal and deeply personal while exploring complex themes of identity and love.",
-  "development": "Extensive research into archetypal psychology and the significance of names across cultures. Deep character development exploring Elias's journey and the evolution of the lover archetype.",
-  "outcome": "A profound exploration of identity, love, and the power of names that resonates with readers on both intellectual and emotional levels.",
-  "gallery": [
-    {
-      "url": "images/projects/weight-of-a-name/weight-of-name-cover-art.jpg",
-      "title": "Cover Concept",
-      "description": "Visual representation of the weight and significance of names",
-      "dimensions": "1200x800"
-    },
-    {
-      "url": "images/projects/weight-of-a-name/weight-of-name-elias-character.jpg",
-      "title": "Elias Character Study",
-      "description": "Development sketches and notes for the protagonist",
-      "dimensions": "1200x800"
-    }
-  ],
-  "journey": [
-    {
-      "title": "Archetypal Research",
-      "description": "Studied the lover archetype across mythology, psychology, and literature"
-    },
-    {
-      "title": "Character Genesis",
-      "description": "Developed Elias as a complex embodiment of the lover archetype"
-    },
-    {
-      "title": "Philosophical Framework",
-      "description": "Explored themes of identity, names, and their significance across cultures"
-    },
-    {
-      "title": "Narrative Structure",
-      "description": "Crafted a story that balances philosophical depth with emotional storytelling"
-    },
-    {
-      "title": "Writing Process",
-      "description": "Ongoing development focusing on poetic language and philosophical themes"
-    }
-  ],
-  "specs": [
-    {
-      "title": "Genre",
-      "description": "Literary fiction with strong philosophical and archetypal elements"
-    },
-    {
-      "title": "Narrative Approach",
-      "description": "Character-driven story with philosophical underpinnings and poetic language"
-    },
-    {
-      "title": "Thematic Elements",
-      "description": "Identity, names, love, archetypes, time, memory, and personal transformation"
-    },
-    {
-      "title": "Character Development",
-      "description": "Deep exploration of Elias as both individual and archetypal figure"
-    },
-    {
-      "title": "Writing Style",
-      "description": "Poetic, introspective prose with philosophical depth and emotional resonance"
-    },
-    {
-      "title": "Cultural Context",
-      "description": "Exploration of naming traditions and their significance across different cultures"
-    }
-  ]
+    "id":  7,
+    "title":  "Weight of a Name",
+    "description":  "Prelog backstory of Elias, the lover archetype, exploring the significance of names, identity, and the power of love across time and space.",
+    "imageUrl":  "card-hero.jpg",
+    "medium":  "writing",
+    "genre":  [
+                  "Literary Fiction",
+                  "Character Study",
+                  "Archetypal Story",
+                  "Philosophical Fiction",
+                  "Love Story"
+              ],
+    "style":  [
+                  "Poetic",
+                  "Introspective",
+                  "Philosophical",
+                  "Character-Driven",
+                  "Atmospheric"
+              ],
+    "tech":  [
+                 "Creative Writing",
+                 "Character Development",
+                 "Archetypal Analysis",
+                 "Philosophical Themes",
+                 "Narrative Structure"
+             ],
+    "mood":  "Contemplative",
+    "year":  2024,
+    "role":  "Author, Character Developer, Philosophical Researcher",
+    "variant":  "tall",
+    "status":  "in-progress",
+    "links":  {
+                  "excerpt":  "#",
+                  "manuscript":  "#"
+              },
+    "pitch":  "A deep exploration of the lover archetype through the story of Elias, examining how names carry weight and meaning across generations.",
+    "challenge":  "Balancing philosophical depth with emotional resonance, creating a character study that feels both universal and deeply personal while exploring complex themes of identity and love.",
+    "development":  "Extensive research into archetypal psychology and the significance of names across cultures. Deep character development exploring Elias\u0027s journey and the evolution of the lover archetype.",
+    "outcome":  "A profound exploration of identity, love, and the power of names that resonates with readers on both intellectual and emotional levels.",
+    "gallery":  [
+                    {
+                        "url":  "weight-of-name-cover-artf.jpg",
+                        "title":  "Cover Concept",
+                        "description":  "Visual representation of the weight and significance of names",
+                        "dimensions":  "1200x800"
+                    },
+                    {
+                        "url":  "card-hero1.jpg",
+                        "title":  "Elias Character Study",
+                        "description":  "Development sketches and notes for the protagonist",
+                        "dimensions":  "1200x800"
+                    }
+                ],
+    "journey":  [
+                    {
+                        "title":  "Archetypal Research",
+                        "description":  "Studied the lover archetype across mythology, psychology, and literature"
+                    },
+                    {
+                        "title":  "Character Genesis",
+                        "description":  "Developed Elias as a complex embodiment of the lover archetype"
+                    },
+                    {
+                        "title":  "Philosophical Framework",
+                        "description":  "Explored themes of identity, names, and their significance across cultures"
+                    },
+                    {
+                        "title":  "Narrative Structure",
+                        "description":  "Crafted a story that balances philosophical depth with emotional storytelling"
+                    },
+                    {
+                        "title":  "Writing Process",
+                        "description":  "Ongoing development focusing on poetic language and philosophical themes"
+                    }
+                ],
+    "specs":  [
+                  {
+                      "title":  "Genre",
+                      "description":  "Literary fiction with strong philosophical and archetypal elements"
+                  },
+                  {
+                      "title":  "Narrative Approach",
+                      "description":  "Character-driven story with philosophical underpinnings and poetic language"
+                  },
+                  {
+                      "title":  "Thematic Elements",
+                      "description":  "Identity, names, love, archetypes, time, memory, and personal transformation"
+                  },
+                  {
+                      "title":  "Character Development",
+                      "description":  "Deep exploration of Elias as both individual and archetypal figure"
+                  },
+                  {
+                      "title":  "Writing Style",
+                      "description":  "Poetic, introspective prose with philosophical depth and emotional resonance"
+                  },
+                  {
+                      "title":  "Cultural Context",
+                      "description":  "Exploration of naming traditions and their significance across different cultures"
+                  }
+              ]
 }

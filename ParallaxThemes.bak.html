@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="styles/themes.css">
+    <style>
+        /* Base and Layout */
+        :root {
+            --bg-primary: #e0e5ec;
+            --text-primary: #31456A;
+            --text-secondary: #5b6a8a;
+            --accent-primary: #6D5BBA;
+            --shadow-light: #ffffff;
+            --shadow-dark: #a3b1c6;
+            --neu-inset: inset 6px 6px 12px var(--shadow-dark), inset -6px -6px 12px var(--shadow-light);
+            --font-main: 'Poppins', 'Segoe UI', sans-serif;
+            --font-heading: 'Merriweather', 'Georgia', serif;
+            --transition-speed: 0.5s;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* --- Loading Overlay --- */
+        #loadingOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+        #loadingOverlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 5px solid var(--text-secondary);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* --- Floating Navigation --- */
+        #floating-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .nav-container {
+            position: relative;
+            width: 60px; height: 60px;
+            border-radius: 30px;
+            background: var(--bg-primary);
+            box-shadow: var(--neu-outset);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all var(--transition-speed) ease;
+            overflow: hidden;
+        }
+        .nav-icon {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            animation: pulse 2s infinite;
+            transition: opacity 0.3s;
+        }
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .nav-container:hover {
+            width: 300px;
+            border-radius: 15px;
+        }
+        .nav-container:hover .nav-icon { opacity: 0; }
+        .nav-container:hover .nav-links { opacity: 1; transform: scale(1); }
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .nav-link:hover { color: var(--accent-primary); }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(109, 91, 186, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(109, 91, 186, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(109, 91, 186, 0); }
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            perspective: 1000px;
+        }
+        #heroParticles {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            transform-style: preserve-3d;
+            z-index: 2; /* Ensure particles are above the background image */
+        }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center center;
+            z-index: 1; /* Lowest layer */
+        }
+        /* Add an overlay to help particles stand out */
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.25);
+            z-index: 1;
+        }
+        .ken-burns { animation: kenburns 20s ease-in-out infinite alternate; }
+        @keyframes kenburns {
+            from { transform: scale(1) translate(0, 0); }
+            to { transform: scale(1.1) translate(5%, -5%); }
+        }
+        .hero-content { 
+            z-index: 3; /* Highest layer */
+        }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin: 0;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .hero .subtitle {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            z-index: 3;
+            color: white;
+            text-align: center;
+        }
+        .journey-text { font-size: 1.1rem; }
+        .line-container {
+            height: 60px;
+            position: relative;
+            width: 2px;
+            margin: 10px auto 0;
+        }
+        .line-container .line {
+            width: 2px;
+            background: white;
+            position: absolute;
+            top: 0;
+            animation: expand-line 2s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+        }
+        .line-container .arrow {
+            position: absolute;
+            bottom: 0;
+            left: -4px;
+            width: 10px; height: 10px;
+            border-bottom: 2px solid white;
+            border-right: 2px solid white;
+            transform: rotate(45deg);
+        }
+        @keyframes expand-line {
+            0% { height: 0; top: 0; }
+            50% { height: 100%; top: 0; }
+            100% { height: 0; top: 100%; }
+        }
+
+        /* --- Content Sections --- */
+        .content-section {
+            padding: 80px 5%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            text-shadow: 1px 1px 0 var(--shadow-dark), -1px -1px 0 var(--shadow-light);
+        }
+        .content-block, .narrative-block {
+            background-color: var(--bg-primary);
+            border-radius: 15px;
+            box-shadow: var(--neu-inset);
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .narrative-block.focus-active { isolation: isolate; }
+        .narrative-block.focus-active::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 500;
+        }
+        .narrative-block.focus-active .writing-content {
+            position: relative;
+            z-index: 501;
+            background: var(--bg-primary);
+            padding: 20px;
+            border-radius: 15px;
+        }
+        
+        /* --- Medium Specific: Art --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item { position: relative; cursor: pointer; }
+        .gallery-item img {
+            width: 100%; display: block;
+            border-radius: 15px; box-shadow: var(--neu-outset);
+            transition: transform 0.3s;
+        }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .hotspot {
+            position: absolute;
+            width: 25px; height: 25px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+            animation: hotspot-pulse 2s infinite;
+        }
+        @keyframes hotspot-pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+        }
+        .hotspot-detail-panel {
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            width: max-content;
+            max-width: 300px;
+            font-size: 0.9rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+        }
+        .hotspot:hover .hotspot-detail-panel { opacity: 1; visibility: visible; }
+        .image-viewer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000;
+        }
+        .image-viewer img { max-width: 90%; max-height: 80%; }
+        .viewer-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.2); border: none;
+            color: white; font-size: 2rem; padding: 10px; cursor: pointer;
+        }
+        .viewer-prev { left: 20px; }
+        .viewer-next { right: 20px; }
+        .viewer-close { position: absolute; top: 20px; right: 20px; font-size: 2rem; color: white; cursor: pointer; }
+        .viewer-info { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: white; text-align: center; }
+
+        /* --- Medium Specific: Code --- */
+        .artifact-list { list-style: none; padding: 0; }
+        .artifact-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px;
+            background: var(--bg-primary);
+            box-shadow: var(--neu-outset);
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+        .artifact-item:hover { box-shadow: var(--neu-inset); }
+        .artifact-item button {
+            background: none; border: none; color: var(--accent-primary);
+            font-weight: 600; cursor: pointer;
+        }
+        #artifactModal {
+             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+             background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+             display: none; justify-content: center; align-items: center;
+             z-index: 3000;
+        }
+        #artifactModal.is-visible { display: flex; }
+        #artifactModal .modal-content {
+            background: #282c34;
+            color: #abb2bf;
+            width: 80%; height: 80%;
+            padding: 0;
+            display: flex; flex-direction: column;
+        }
+        #artifactModal .modal-header {
+            padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #3a4049;
+        }
+        #artifactModal .modal-body { overflow: auto; padding: 20px; }
+        #artifactModal pre { margin: 0; }
+        
+        /* --- True 3D Parallax Scene Setup --- */
+        .forest-layer, .twilight-layer {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <nav id="floating-nav">
+        <div class="nav-container">
+            <i class="fas fa-compass nav-icon"></i>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Gallery</a>
+                <a href="#overview" class="nav-link">Overview</a>
+                <a href="#journey" class="nav-link">Journey</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div id="heroParticles" class="particles-container"></div>
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 id="projectTitle"></h1>
+            <p id="projectSubtitle" class="subtitle"></p>
+        </div>
+        <div class="scroll-indicator">
+            <div class="journey-text">Begin the Journey</div>
+            <div class="line-container">
+                <div class="line"></div>
+                <div class="arrow"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="overview" class="content-section">
+            <h2 class="section-title" id="overviewTitle"></h2>
+            <div id="overviewContent" class="content-block"></div>
+        </section>
+
+        <section id="journey" class="content-section">
+             <h2 class="section-title" id="journeyTitle">The Journey</h2>
+             <div id="journeyContent"></div>
+        </section>
+
+        <!-- Writing-Specific Sections (hidden by default) -->
+        <section id="excerpts" class="content-section" style="display: none;">
+            <h2 class="section-title">Excerpts<span class="title-sparkle">✨</span></h2>
+            <p class="section-description text-center">Sample passages and character revelations from the story.</p>
+            <div id="excerptsContent" class="narrative-block"></div>
+        </section>
+
+        <section id="themes" class="content-section" style="display: none;">
+            <h2 class="section-title">Themes & Analysis<span class="title-sparkle">✨</span></h2>
+            <p class="section-description text-center">A deep dive into the philosophical and narrative themes of the work.</p>
+            <div id="themesContent" class="narrative-block"></div>
+        </section>
+        <!-- End Writing-Specific Sections -->
+    </main>
+
+    <div id="artifactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="artifactTitle"></h3>
+                <button id="closeArtifactModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <pre><code id="artifactCode" class="language-markdown"></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/theme.js?v=2"></script>
+    <script src="js/parallax.js?v=2"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            const project = JSON.parse(sessionStorage.getItem('currentProject'));
+            const loadingOverlay = document.getElementById('loadingOverlay');
+
+            if (!project) {
+                alert("No project data found. Returning to gallery.");
+                window.location.href = 'index.html';
+                return;
+            }
+
+            renderDetailPage(project, loadingOverlay);
+        }, 0);
+
+        function renderDetailPage(project, loadingOverlay) {
+            const theme = getThemeFromMood(project.mood);
+            document.body.className = theme;
+            
+            document.getElementById('projectTitle').textContent = project.title || 'Project Title';
+            document.getElementById('projectSubtitle').textContent = project.pitch || 'An amazing project.';
+
+            const heroBg = document.querySelector('.hero-bg');
+            heroBg.style.backgroundImage = ''; // Clear existing image first
+            heroBg.classList.remove('ken-burns');
+
+            if (project.medium && project.medium.toLowerCase() === 'art' && project.imageUrl) {
+                heroBg.style.backgroundImage = `url('images/projects/${project.slug}/${project.imageUrl}')`;
+                heroBg.classList.add('ken-burns');
+            }
+
+            document.getElementById('overviewTitle').textContent = `Project Overview: ${project.title || ''}`;
+            const overviewContent = document.getElementById('overviewContent');
+            overviewContent.innerHTML = `
+                ${project.challenge ? `<h3>Challenge</h3><p>${project.challenge}</p>` : ''}
+                ${project.development ? `<h3>Development</h3><p>${project.development}</p>` : ''}
+                ${project.outcome ? `<h3>Outcome</h3><p>${project.outcome}</p>` : ''}
+                ${project.process || ''}
+            `;
+
+            const journeyContent = document.getElementById('journeyContent');
+            journeyContent.innerHTML = '';
+            
+            switch(project.medium.toLowerCase()) {
+                case 'art':
+                    renderArtJourney(project, journeyContent);
+                    break;
+                case 'writing':
+                    renderWritingJourney(project, journeyContent);
+                    break;
+                case 'code':
+                    renderCodeJourney(project, journeyContent);
+                    break;
+            }
+
+            const particlesContainer = document.getElementById('heroParticles');
+            if(window.particleAnimations && typeof window.particleAnimations[theme] === 'function') {
+                window.particleAnimations[theme](particlesContainer);
+            } else if (window.particleAnimations) {
+                window.particleAnimations.original(particlesContainer);
+            }
+
+            loadingOverlay.classList.add('hidden');
+        }
+
+        function renderArtJourney(project, container) {
+            document.getElementById('journeyTitle').textContent = project.variant === 'series' ? 'Gallery & Process' : 'Visual Development';
+            
+            // Intelligent check for storyboard-style projects
+            const isStoryboard = project.gallery && project.journey && project.gallery.length === project.journey.length;
+
+            if (isStoryboard) {
+                // For storyboard projects, we hide the main journey section and integrate journey notes into the gallery
+                document.getElementById('journey').style.display = 'none';
+            }
+
+            if (project.gallery && project.gallery.length > 0) {
+                const galleryGrid = document.createElement('div');
+                galleryGrid.className = 'gallery-grid';
+                
+                project.gallery.forEach((item, index) => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = `images/projects/${project.slug}/${item.url}`;
+                    img.alt = item.title;
+                    galleryItem.appendChild(img);
+
+                    // Add hotspots if they exist
+                    if (item.hotspots) {
+                        item.hotspots.forEach(spot => {
+                            const hotspot = document.createElement('div');
+                            hotspot.className = 'hotspot';
+                            hotspot.style.left = spot.x;
+                            hotspot.style.top = spot.y;
+                            const detailPanel = document.createElement('div');
+                            detailPanel.className = 'hotspot-detail-panel';
+                            detailPanel.innerHTML = `<h4>${spot.title}</h4><p>${spot.description}</p>`;
+                            hotspot.appendChild(detailPanel);
+                            galleryItem.appendChild(hotspot);
+                        });
+                    } else {
+                        // If no hotspots, the whole image is clickable
+                         galleryItem.style.cursor = 'pointer';
+                         galleryItem.addEventListener('click', () => openImageViewer(project, index, isStoryboard));
+                    }
+                    
+                    galleryGrid.appendChild(galleryItem);
+                });
+                container.appendChild(galleryGrid);
+            }
+        }
+        
+        function openImageViewer(project, startIndex, isStoryboard) {
+            const viewer = document.createElement('div');
+            viewer.className = 'image-viewer';
+            viewer.innerHTML = `
+                <button class="viewer-close">&times;</button>
+                <button class="viewer-nav viewer-prev">&lt;</button>
+                <img id="viewerImg" src="" alt="">
+                <div class="viewer-info">
+                    <h3 id="viewerTitle"></h3>
+                    <p id="viewerDesc"></p>
+                </div>
+                <button class="viewer-nav viewer-next">&gt;</button>
+            `;
+            document.body.appendChild(viewer);
+            
+            let currentIndex = startIndex;
+
+            function updateImage() {
+                const item = project.gallery[currentIndex];
+                viewer.querySelector('#viewerImg').src = `images/projects/${project.slug}/${item.url}`;
+                viewer.querySelector('#viewerTitle').textContent = item.title;
+                
+                const descEl = viewer.querySelector('#viewerDesc');
+                if (isStoryboard && project.journey && project.journey[currentIndex]) {
+                     const journeyItem = project.journey[currentIndex];
+                     descEl.innerHTML = `<strong>${journeyItem.sceneTitle}:</strong> ${journeyItem.directorNotes}`;
+                } else {
+                    descEl.textContent = item.description || '';
+                }
+            }
+            
+            viewer.querySelector('.viewer-close').addEventListener('click', () => viewer.remove());
+            viewer.querySelector('.viewer-prev').addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + project.gallery.length) % project.gallery.length;
+                updateImage();
+            });
+            viewer.querySelector('.viewer-next').addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % project.gallery.length;
+                updateImage();
+            });
+
+            updateImage();
+        }
+
+        function renderWritingJourney(project, container) {
+            document.getElementById('journeyTitle').textContent = 'Excerpts & Artifacts';
+            if (project.journey && project.journey.length > 0) {
+                project.journey.forEach(item => {
+                    if (item && item.title && item.content) {
+                        const block = document.createElement('div');
+                        block.className = 'narrative-block';
+                        block.innerHTML = `
+                            <h3>${item.title}</h3>
+                            <div class="writing-content">${item.content}</div>
+                        `;
+                        container.appendChild(block);
+                    }
+                });
+            }
+
+            // --- NEW: Show and populate writing-specific sections ---
+            const excerptsSection = document.getElementById('excerpts');
+            const themesSection = document.getElementById('themes');
+            const excerptsContent = document.getElementById('excerptsContent');
+            const themesContent = document.getElementById('themesContent');
+
+            if (project.excerpts && excerptsSection && excerptsContent) {
+                excerptsSection.style.display = 'block';
+                excerptsContent.innerHTML = project.excerpts;
+            }
+
+            const themesData = project.themesAnalysis || project.themes;
+            if (themesData && themesSection && themesContent) {
+                themesSection.style.display = 'block';
+                themesContent.innerHTML = themesData;
+            }
+            // --- END NEW ---
+
+            setupWritingFocus();
+            populateArtifacts(project, container);
+        }
+
+        function setupWritingFocus() {
+            const blocks = document.querySelectorAll('.narrative-block');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    entry.target.classList.toggle('focus-active', entry.isIntersecting);
+                });
+            }, { threshold: 0.6 });
+
+            blocks.forEach(block => observer.observe(block));
+        }
+
+        function renderCodeJourney(project, container) {
+            document.getElementById('journeyTitle').textContent = 'Technical Journey';
+             if (project.journey && project.journey.length > 0) {
+                project.journey.forEach(item => {
+                    const block = document.createElement('div');
+                    block.className = 'narrative-block';
+                    block.innerHTML = `
+                        <h3>${item.title}</h3>
+                        <div>${item.content}</div>
+                    `;
+                    container.appendChild(block);
+                });
+            }
+            populateArtifacts(project, container);
+        }
+
+        function populateArtifacts(project, container) {
+            if (project.artifacts && project.artifacts.length > 0) {
+                const artifactSection = document.createElement('div');
+                artifactSection.innerHTML = `<br><h4>Project Artifacts</h4>`;
+                const list = document.createElement('ul');
+                list.className = 'artifact-list';
+                project.artifacts.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'artifact-item';
+                    listItem.innerHTML = `
+                        <span>${item.name}</span>
+                        <div>
+                            <button class="view-artifact-btn" data-url="${item.url}" data-title="${item.name}">View</button>
+                            <a href="${item.url}" download class="download-artifact-btn">Download</a>
+                        </div>
+                    `;
+                    list.appendChild(listItem);
+                });
+                artifactSection.appendChild(list);
+                container.appendChild(artifactSection);
+
+                artifactSection.addEventListener('click', e => {
+                    if (e.target.classList.contains('view-artifact-btn')) {
+                        openArtifactMarkdownModal(e.target.dataset.url, e.target.dataset.title);
+                    }
+                });
+            }
+        }
+        
+        async function openArtifactMarkdownModal(url, title) {
+            const modal = document.getElementById('artifactModal');
+            const titleEl = document.getElementById('artifactTitle');
+            const codeEl = document.getElementById('artifactCode');
+            
+            titleEl.textContent = 'Loading...';
+            codeEl.textContent = '';
+            modal.classList.add('is-visible');
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`Network response was not ok. Status: ${response.status}`);
+                const markdown = await response.text();
+                
+                titleEl.textContent = title;
+                codeEl.innerHTML = marked.parse(markdown);
+                hljs.highlightAllUnder(codeEl);
+
+            } catch (error) {
+                titleEl.textContent = 'Error';
+                codeEl.textContent = `Could not load artifact from ${url}. Error: ${error.message}`;
+            }
+        }
+        
+        document.getElementById('closeArtifactModal').addEventListener('click', () => {
+             document.getElementById('artifactModal').classList.remove('is-visible');
+        });
+
+        const heroElement = document.querySelector('.hero');
+        const particlesContainer = document.getElementById('heroParticles');
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const heroHeight = heroElement.offsetHeight;
+                    
+                    if (scrolled <= heroHeight && particlesContainer) {
+                        const moveY = scrolled * 0.4;
+                        const rotateX = (scrolled / heroHeight) * -15;
+                        particlesContainer.style.transform = `translateY(${moveY}px) rotateX(${rotateX}deg)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // --- NEW: Parallax Journey Scroll Animations ---
+        function setupScrollAnimations() {
+            const sections = document.querySelectorAll('.content-section');
+            const sectionTitles = document.querySelectorAll('.section-title');
+
+            // 1. Intersection Observer for fade-in/slide-in effects
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, { rootMargin: '0px', threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // 2. Scroll listener for title shrinking effect
+            window.addEventListener('scroll', () => {
+                sectionTitles.forEach(title => {
+                    const rect = title.getBoundingClientRect();
+                    const viewportHeight = window.innerHeight;
+                    
+                    // Calculate how far the title is from the center of the screen
+                    const distanceFromCenter = Math.abs(rect.top - viewportHeight / 3);
+                    const scaleFactor = Math.max(0, 1 - (distanceFromCenter / (viewportHeight / 2)));
+
+                    // Clamp font size between min and max values
+                    const baseSize = 2.5; // in rem, matches .section-title
+                    const maxSize = 4.5; // Max size when centered
+                    const newSize = baseSize + (maxSize - baseSize) * scaleFactor;
+                    
+                    title.style.fontSize = `${newSize}rem`;
+                    title.style.opacity = 0.5 + 0.5 * scaleFactor;
+                });
+            }, { passive: true });
+        }
+        
+        setupScrollAnimations();
+        // --- END NEW ---
+    });
+    </script>
+</body>
+</html>

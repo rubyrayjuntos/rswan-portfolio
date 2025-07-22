@@ -462,65 +462,31 @@
                 z-index: 10;
             }
     
-            /* Enhanced section title parallax with better visual effects */
             .section-title {
-                font-size: clamp(4rem, 12vw, 8rem); /* Start much larger for dramatic effect */
+                font-size: clamp(3rem, 8vw, 6rem); /* Start much larger */
                 margin-bottom: 3rem;
                 text-align: center;
                 position: relative;
                 color: #2c3e50;
                 font-weight: 700;
-                transform: scale(2.5) translateY(100px) rotateX(15deg); /* Start very large, offset, and slightly rotated */
-                opacity: 0.2; /* Start very faded */
-                transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                transform: scale(1.5); /* Start scaled up */
+                opacity: 0.3; /* Start faded */
+                transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 will-change: transform, opacity, font-size;
                 z-index: 10;
-                /* Add perspective for 3D effect */
-                perspective: 1000px;
-                transform-style: preserve-3d;
-                /* Add text shadow for depth */
-                text-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-                /* Add backdrop blur for modern effect */
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
             }
 
             /* Journey section title with light color for dark background */
             #journey .section-title {
                 color: white;
-                text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
             }
 
             .section-title.visible {
-                transform: scale(1) translateY(0px) rotateX(0deg); /* Scale down to normal size and straighten */
+                transform: scale(1);
                 opacity: 1;
                 font-size: clamp(2rem, 4vw, 3rem);
-                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             }
-
-            /* Add intermediate states for smooth parallax */
-            .section-title.parallax-75 {
-                transform: scale(1.8) translateY(75px) rotateX(8deg);
-                opacity: 0.4;
-                font-size: clamp(3rem, 6vw, 4.5rem);
-                text-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            }
-
-            .section-title.parallax-50 {
-                transform: scale(1.5) translateY(50px) rotateX(5deg);
-                opacity: 0.6;
-                font-size: clamp(2.5rem, 5vw, 3.5rem);
-                text-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
-            }
-
-            .section-title.parallax-25 {
-                transform: scale(1.2) translateY(25px) rotateX(2deg);
-                opacity: 0.8;
-                font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-                text-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-            }
-
-            /* Add a subtle glow effect that intensifies as the title comes into view */
+    
             .section-title::after {
                 content: '';
                 position: absolute;
@@ -533,12 +499,6 @@
                 border-radius: 2px;
                 opacity: 0.8;
                 transition: all 0.4s ease;
-                box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-            }
-
-            .section-title.visible::after {
-                width: 120px;
-                box-shadow: 0 0 30px rgba(102, 126, 234, 0.8);
             }
 
             .section-title::before {
@@ -1595,278 +1555,6 @@
             .no-parallax .hero {
                 background: linear-gradient(135deg, #051772 0%, #06000c 100%);
             }
-
-            /* Gallery Modal Styles */
-            .gallery-modal-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.95);
-                z-index: 10000;
-                display: none;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .gallery-modal-content {
-                position: relative;
-                width: 95%;
-                height: 95%;
-                background: rgba(0, 0, 0, 0.8);
-                border-radius: 20px;
-                display: flex;
-                flex-direction: column;
-                overflow: hidden;
-            }
-
-            .gallery-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 1.5rem 2rem;
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-            }
-
-            .gallery-title {
-                color: white;
-                font-size: 1.5rem;
-                margin: 0;
-            }
-
-            .gallery-close-btn {
-                background: none;
-                border: none;
-                color: white;
-                font-size: 2rem;
-                cursor: pointer;
-                padding: 0.5rem;
-                border-radius: 50%;
-                transition: background 0.3s ease;
-            }
-
-            .gallery-close-btn:hover {
-                background: rgba(255, 255, 255, 0.2);
-            }
-
-            .gallery-modal-img-container {
-                flex: 1;
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
-            }
-
-            .gallery-modal-fullscreen-image {
-                max-width: 100%;
-                max-height: 100%;
-                object-fit: contain;
-                transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
-            }
-
-            .gallery-modal-fullscreen-image.fade-out {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            .gallery-modal-fullscreen-image.fade-in {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            .gallery-controls {
-                display: flex;
-                justify-content: center;
-                gap: 1rem;
-                padding: 1rem 2rem;
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(10px);
-            }
-
-            .gallery-nav-btn {
-                background: rgba(255, 255, 255, 0.2);
-                border: none;
-                color: white;
-                padding: 0.8rem 1.5rem;
-                border-radius: 25px;
-                cursor: pointer;
-                font-weight: 500;
-                transition: all 0.3s ease;
-                backdrop-filter: blur(10px);
-            }
-
-            .gallery-nav-btn:hover {
-                background: rgba(255, 255, 255, 0.3);
-                transform: translateY(-2px);
-            }
-
-            .gallery-info {
-                text-align: center;
-                color: rgba(255, 255, 255, 0.8);
-                padding: 0.5rem;
-                font-size: 0.9rem;
-            }
-
-            /* Hotspot Styles */
-            .hotspot-btn {
-                position: absolute;
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                background: rgba(255, 140, 0, 0.8);
-                border: 2px solid rgba(255, 255, 255, 0.9);
-                color: white;
-                font-weight: bold;
-                font-size: 14px;
-                cursor: pointer;
-                transform: translate(-50%, -50%);
-                transition: all 0.3s ease;
-                animation: hotspotPulse 2s infinite;
-                z-index: 100;
-            }
-
-            @keyframes hotspotPulse {
-                0% {
-                    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.7);
-                }
-                70% {
-                    box-shadow: 0 0 0 15px rgba(255, 140, 0, 0);
-                }
-                100% {
-                    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
-                }
-            }
-
-            .hotspot-btn:hover {
-                transform: translate(-50%, -50%) scale(1.2);
-                animation-play-state: paused;
-                background: rgba(255, 140, 0, 1);
-            }
-
-            .hotspot-detail-panel {
-                position: absolute;
-                bottom: 2rem;
-                left: 50%;
-                transform: translateX(-50%) translateY(20px);
-                background: rgba(0, 0, 0, 0.9);
-                backdrop-filter: blur(15px);
-                color: white;
-                padding: 2rem;
-                border-radius: 15px;
-                width: 90%;
-                max-width: 500px;
-                opacity: 0;
-                transition: all 0.4s ease;
-                pointer-events: none;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .hotspot-detail-panel.visible {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            .close-panel-btn {
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-                background: none;
-                border: none;
-                color: rgba(255, 255, 255, 0.7);
-                font-size: 1.5rem;
-                cursor: pointer;
-                transition: color 0.2s ease;
-            }
-
-            .close-panel-btn:hover {
-                color: white;
-            }
-
-            #hotspot-title {
-                color: #ff8c00;
-                margin: 0 0 1rem 0;
-                font-size: 1.3rem;
-                font-weight: 600;
-            }
-
-            #hotspot-description {
-                margin: 0;
-                line-height: 1.6;
-                color: rgba(255, 255, 255, 0.9);
-            }
-
-            /* Enhanced Gallery Item Styles with Ken Burns Effect */
-            .gallery-item {
-                position: relative;
-                overflow: hidden;
-                border-radius: 15px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                cursor: pointer;
-                background: #f8f9fa;
-            }
-
-            .gallery-item:hover {
-                transform: translateY(-10px) scale(1.02);
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-            }
-
-            .gallery-item img {
-                width: 100%;
-                height: 250px;
-                object-fit: cover;
-                transition: transform 0.8s ease-in-out;
-            }
-
-            .gallery-item:hover img {
-                transform: scale(1.1);
-            }
-
-            .gallery-overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
-                color: white;
-                padding: 1.5rem;
-                display: flex;
-                align-items: flex-end;
-                opacity: 0;
-                transition: opacity 0.4s ease;
-            }
-
-            .gallery-item:hover .gallery-overlay {
-                opacity: 1;
-            }
-
-            .gallery-overlay-content {
-                transform: translateY(20px);
-                transition: transform 0.4s ease;
-            }
-
-            .gallery-item:hover .gallery-overlay-content {
-                transform: translateY(0);
-            }
-
-            .gallery-overlay-content h3 {
-                margin: 0 0 0.5rem 0;
-                font-size: 1.2rem;
-                font-weight: 600;
-            }
-
-            .gallery-overlay-content p {
-                margin: 0;
-                font-size: 0.9rem;
-                opacity: 0.9;
-                line-height: 1.4;
-            }
         </style>
     </head>
     <body>
@@ -1965,1025 +1653,32 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Art Project Sections -->
-            <section class="content-section fade-in" id="process" aria-label="Creative Process" style="display: none;">
-                <div class="container">
-                    <h2 class="section-title">Creative Process<span class="title-sparkle">🎨</span></h2>
-                    <div class="process-content" id="processContent">
-                        <!-- Content will be populated by JavaScript -->
-                    </div>
-                </div>
-            </section>
-
-            <section class="content-section fade-in" id="inspiration" aria-label="Inspiration & Influences" style="display: none;">
-                <div class="container">
-                    <h2 class="section-title">Inspiration & Influences<span class="title-sparkle">💡</span></h2>
-                    <div class="inspiration-content" id="inspirationContent">
-                        <!-- Content will be populated by JavaScript -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Code Project Sections -->
-            <section class="content-section fade-in" id="artifacts" aria-label="Project Artifacts" style="display: none;">
-                <div class="container">
-                    <h2 class="section-title">Project Artifacts<span class="title-sparkle">💾</span></h2>
-                    <div class="artifacts-grid" id="artifactsGrid">
-                        <!-- Artifacts will be populated by JavaScript -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Writing Project Sections -->
-            <section class="content-section fade-in" id="excerpts" aria-label="Excerpts" style="display: none;">
-                <div class="container">
-                    <h2 class="section-title">Excerpts<span class="title-sparkle">📖</span></h2>
-                    <div class="excerpts-content" id="excerptsContent">
-                        <!-- Content will be populated by JavaScript -->
-                    </div>
-                </div>
-            </section>
-
-            <section class="content-section fade-in" id="themes" aria-label="Themes & Analysis" style="display: none;">
-                <div class="container">
-                    <h2 class="section-title">Themes & Analysis<span class="title-sparkle">🧠</span></h2>
-                    <div class="themes-content" id="themesContent">
-                        <!-- Content will be populated by JavaScript -->
-                    </div>
-                </div>
-            </section>
         </main>
     
-        <!-- Image Gallery Modal -->
-        <div id="gallery-modal" class="gallery-modal-overlay" style="display: none;">
-            <div class="gallery-modal-content">
-                <div class="gallery-header">
-                    <h3 class="gallery-title" id="gallery-modal-title">Art Gallery</h3>
-                    <button class="gallery-close-btn" onclick="closeGalleryModal()">&times;</button>
-                </div>
-                <div class="gallery-modal-grid" id="gallery-modal-grid" style="display: none;">
-                    <!-- Gallery items will be dynamically populated -->
-                </div>
-                <div class="gallery-modal-img-container" id="gallery-modal-img-container" style="display: none;">
-                    <img id="gallery-main-img" class="gallery-modal-fullscreen-image" src="" alt="" />
-                </div>
-                <div class="gallery-controls" id="gallery-controls">
-                    <button class="gallery-nav-btn" id="gallery-prev-btn" onclick="previousGalleryImage()">← Previous</button>
-                    <button class="gallery-nav-btn" id="gallery-next-btn" onclick="nextGalleryImage()">Next →</button>
-                </div>
-                <div class="gallery-info" id="gallery-info">
-                    <!-- Gallery info will be dynamically populated -->
-                </div>
-                <div class="hotspot-detail-panel" id="hotspot-detail-panel">
-                    <button class="close-panel-btn" onclick="closeHotspotPanel()">&times;</button>
-                    <h4 id="hotspot-title">Hotspot Title</h4>
-                    <p id="hotspot-description">Hotspot description will appear here.</p>
-                </div>
-            </div>
-        </div>
-
         <!-- Structured Data for SEO -->
-        <script type="application/ld+json" id="structuredData">
+        <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "CreativeWork",
-            "name": "Loading...",
-            "description": "Loading project details...",
+            "name": "Nova: Writer's Conspiracy",
+            "description": "Collaboration between human and AI, balancing structure and soul in creative agency - your cosmic atelier. A writing workshop for a new tomorrow",
             "author": {
                 "@type": "Person",
                 "name": "Ray Swan"
-            }
+            },
+            "genre": "Creative Technology",
+            "keywords": "AI writing, creative collaboration, storytelling, parallax design"
         }
         </script>
 
-        <!-- Enhanced JavaScript with Dynamic Project Loading -->
         <script>
-            // Global variables for project management
-            let currentProject = null;
-            let projects = [];
-            let currentGallery = [];
-            let currentGalleryIndex = 0;
-            let itemsPerPage = 12;
-
-            // DOM elements for gallery modal
-            let galleryModal = null;
-            let galleryModalGrid = null;
-            let galleryModalImgContainer = null;
-            let galleryMainImg = null;
-            let galleryHotspotPanel = null;
-
-            // Motion control functionality
-            let motionEnabled = true;
-
-            function toggleMotion() {
-                motionEnabled = !motionEnabled;
-                document.body.classList.toggle('motion-disabled', !motionEnabled);
-                
-                const button = document.querySelector('.motion-toggle');
-                button.innerHTML = motionEnabled ? 
-                    '🎬 Stop Parallax' : 
-                    '⏸️ Start Parallax';
-            }
-
-            // Check system preference on load
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                toggleMotion();
-            }
-
-            // Dynamic Project Loading System
-            async function loadProjectData() {
-                try {
-                    // Get project ID from URL parameter
-                    const urlParams = new URLSearchParams(window.location.search);
-                    let projectId = urlParams.get('project') || urlParams.get('id');
-                    
-                    // Fallback: Check sessionStorage for backward compatibility
-                    if (!projectId) {
-                        const sessionProject = sessionStorage.getItem('currentProject');
-                        if (sessionProject) {
-                            try {
-                                const project = JSON.parse(sessionProject);
-                                projectId = project.id;
-                                console.log('Using project from sessionStorage:', projectId);
-                            } catch (e) {
-                                console.error('Error parsing sessionStorage project:', e);
-                            }
-                        }
-                    }
-                    
-                    if (!projectId) {
-                        console.error('No project ID specified in URL or sessionStorage');
-                        return null;
-                    }
-
-                    console.log('Loading project:', projectId);
-
-                    // Try to load the specific project file
-                    const response = await fetch(`_data/projects/${projectId}.json`);
-                    if (!response.ok) {
-                        throw new Error(`Failed to load project: ${response.status}`);
-                    }
-
-                    const project = await response.json();
-                    
-                    // Fix null or missing imageUrl - default to card-hero.jpg
-                    if (!project.imageUrl || project.imageUrl === null) {
-                        project.imageUrl = 'card-hero.jpg';
-                    }
-                    
-                    // Ensure project ID matches the JSON filename for proper folder structure
-                    if (!project.id || typeof project.id === 'number') {
-                        project.id = projectId; // Use the filename as the ID for folder paths
-                    }
-                    
-                    console.log('Project loaded successfully:', project);
-                    return project;
-                } catch (error) {
-                    console.error('Error loading project:', error);
-                    // Return fallback project data
-                    return getFallbackProject();
-                }
-            }
-
-            function getFallbackProject() {
-                return {
-                    id: 'no-project',
-                    title: 'No Project Specified',
-                    description: 'Please select a project to view its details.',
-                    medium: 'code',
-                    gallery: [],
-                    journey: [],
-                    specs: []
-                };
-            }
-
-            // Project content population functions
-            function updateProjectContent(project) {
-                if (!project) return;
-
-                console.log('Updating project content for:', project.title);
-                console.log('Project medium:', project.medium);
-
-                // Special handling for no project specified
-                if (project.id === 'no-project') {
-                    showProjectSelectionPage();
-                    return;
-                }
-
-                // Update page metadata
-                updatePageMetadata(project);
-
-                // Update hero section
-                updateHeroSection(project);
-
-                // Update navigation based on project type
-                updateNavigation(project);
-
-                // Update overview section
-                updateOverviewSection(project);
-
-                // Show/hide sections based on project medium
-                showRelevantSections(project);
-
-                // Populate sections
-                populateGallery(project);
-                populateJourney(project);
-                populateSpecs(project);
-                populateLinks(project);
-
-                // Initialize dynamic features
-                initializeDynamicFeatures(project);
-            }
-
-            function updatePageMetadata(project) {
-                document.title = `${project.title} - Project Details`;
-                
-                const metaDescription = document.querySelector('meta[name="description"]');
-                if (metaDescription) {
-                    metaDescription.content = project.description || project.pitch || project.title;
-                }
-
-                // Update structured data
-                const structuredData = {
-                    "@context": "https://schema.org",
-                    "@type": "CreativeWork",
-                    "name": project.title,
-                    "description": project.description || project.pitch,
-                    "author": {
-                        "@type": "Person",
-                        "name": "Ray Swan"
-                    },
-                    "genre": project.medium,
-                    "dateCreated": project.year
-                };
-
-                const structuredDataElement = document.getElementById('structuredData');
-                if (structuredDataElement) {
-                    structuredDataElement.textContent = JSON.stringify(structuredData, null, 2);
-                }
-            }
-
-            function updateHeroSection(project) {
-                // Update hero content
-                const projectTypeBadge = document.getElementById('projectTypeBadge');
-                const projectTitle = document.getElementById('projectTitle');
-                const projectSubtitle = document.getElementById('projectSubtitle');
-
-                if (projectTypeBadge) {
-                    const mediumMap = {
-                        'art': 'Vision Project',
-                        'writing': 'Words Project', 
-                        'code': 'Systems Project'
-                    };
-                    projectTypeBadge.textContent = mediumMap[project.medium] || `${project.medium} Project`;
-                }
-
-                if (projectTitle) {
-                    projectTitle.textContent = project.title;
-                }
-
-                if (projectSubtitle) {
-                    projectSubtitle.textContent = project.pitch || project.description || project.subtitle || '';
-                }
-
-                // Set hero background image if available
-                const heroSection = document.querySelector('.hero');
-                if (heroSection && project.imageUrl) {
-                    let heroImageUrl = project.imageUrl;
-                    
-                    // Handle relative paths - construct full path using project ID
-                    if (!heroImageUrl.startsWith('http') && !heroImageUrl.startsWith('/') && !heroImageUrl.startsWith('images/')) {
-                        heroImageUrl = `images/projects/${project.id}/${heroImageUrl}`;
-                    }
-                    
-                    // Apply as background image with overlay
-                    heroSection.style.backgroundImage = `linear-gradient(135deg, rgba(5, 23, 114, 0.8) 0%, rgba(6, 0, 12, 0.8) 100%), url('${heroImageUrl}')`;
-                    heroSection.style.backgroundSize = 'cover';
-                    heroSection.style.backgroundPosition = 'center';
-                } else if (heroSection) {
-                    // Default hero background if no image
-                    heroSection.style.backgroundImage = 'linear-gradient(135deg, #051772 0%, #06000c 100%)';
-                }
-            }
-
-            function updateNavigation(project) {
-                const navLinks = document.querySelector('.nav-links');
-                if (!navLinks) return;
-
-                // Remove existing medium-specific links
-                navLinks.querySelectorAll('.medium-specific-nav').forEach(el => el.remove());
-
-                let specificLinks = [];
-                switch (project.medium?.toLowerCase()) {
-                    case 'code':
-                        if (project.artifacts && project.artifacts.length > 0) {
-                            specificLinks.push({ href: '#artifacts', text: '💾 Artifacts' });
-                        }
-                        break;
-                    case 'art':
-                        specificLinks.push({ href: '#process', text: '🎨 Process' });
-                        specificLinks.push({ href: '#inspiration', text: '💡 Inspiration' });
-                        break;
-                    case 'writing':
-                        if (project.excerpts) {
-                            specificLinks.push({ href: '#excerpts', text: '📖 Excerpts' });
-                        }
-                        if (project.themes || project.themesAnalysis) {
-                            specificLinks.push({ href: '#themes', text: '🧠 Themes' });
-                        }
-                        break;
-                }
-
-                const linksNavItem = navLinks.querySelector('a[href="#links"]')?.parentElement;
-                if (linksNavItem) {
-                    specificLinks.forEach(linkInfo => {
-                        const li = document.createElement('li');
-                        li.className = 'medium-specific-nav';
-                        li.innerHTML = `<a href="${linkInfo.href}">${linkInfo.text}</a>`;
-                        navLinks.insertBefore(li, linksNavItem);
-                    });
-                }
-            }
-
-            function updateOverviewSection(project) {
-                const projectDescription = document.getElementById('projectDescription');
-                if (projectDescription) {
-                    projectDescription.textContent = project.description || project.pitch || '';
-                }
-
-                // Update tags
-                const projectTags = document.getElementById('projectTags');
-                if (projectTags) {
-                    projectTags.innerHTML = '';
-                    const tags = project.tech || project.genre || project.style || [];
-                    tags.forEach(tag => {
-                        const tagElement = document.createElement('span');
-                        tagElement.className = 'tag';
-                        tagElement.textContent = tag;
-                        projectTags.appendChild(tagElement);
-                    });
-                }
-            }
-
-            function showRelevantSections(project) {
-                // Hide all medium-specific sections first
-                const sections = {
-                    artifacts: document.getElementById('artifacts'),
-                    process: document.getElementById('process'),
-                    inspiration: document.getElementById('inspiration'),
-                    excerpts: document.getElementById('excerpts'),
-                    themes: document.getElementById('themes')
-                };
-
-                Object.values(sections).forEach(section => {
-                    if (section) section.style.display = 'none';
-                });
-
-                // Show relevant sections based on medium
-                switch (project.medium?.toLowerCase()) {
-                    case 'code':
-                        if (sections.artifacts && project.artifacts) {
-                            sections.artifacts.style.display = 'block';
-                            populateArtifacts(project);
-                        }
-                        break;
-                    case 'art':
-                        if (sections.process) {
-                            sections.process.style.display = 'block';
-                            const processContent = document.getElementById('processContent');
-                            if (processContent) {
-                                processContent.innerHTML = project.process || '<p>Details on the creative process for this project are coming soon.</p>';
-                            }
-                        }
-                        if (sections.inspiration) {
-                            sections.inspiration.style.display = 'block';
-                            const inspirationContent = document.getElementById('inspirationContent');
-                            if (inspirationContent) {
-                                inspirationContent.innerHTML = project.inspiration || '<p>Information about inspirations and influences for this project is coming soon.</p>';
-                            }
-                        }
-                        break;
-                    case 'writing':
-                        if (sections.excerpts && project.excerpts) {
-                            sections.excerpts.style.display = 'block';
-                            const excerptsContent = document.getElementById('excerptsContent');
-                            if (excerptsContent) {
-                                excerptsContent.innerHTML = project.excerpts;
-                            }
-                        }
-                        if (sections.themes && (project.themes || project.themesAnalysis)) {
-                            sections.themes.style.display = 'block';
-                            const themesContent = document.getElementById('themesContent');
-                            if (themesContent) {
-                                themesContent.innerHTML = project.themesAnalysis || project.themes || '';
-                            }
-                        }
-                        break;
-                }
-            }
-
-            // Gallery functionality with hotspots support
-            function populateGallery(project) {
-                const galleryGrid = document.getElementById('galleryGrid');
-                if (!galleryGrid) return;
-
-                console.log('Populating gallery for:', project.title);
-                galleryGrid.innerHTML = '';
-
-                const gallery = project.gallery || [];
-                if (gallery.length === 0) {
-                    galleryGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No gallery images available for this project.</p>';
-                    return;
-                }
-
-                gallery.forEach((item, index) => {
-                    const galleryItem = document.createElement('div');
-                    galleryItem.className = 'gallery-item';
-                    
-                    // Construct full image path - project folders are based on JSON filename
-                    let imageUrl = item.url;
-                    if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/') && !imageUrl.startsWith('images/')) {
-                        // Use project ID to construct folder path (project ID should match JSON filename)
-                        imageUrl = `images/projects/${project.id}/${item.url}`;
-                    }
-                    
-                    galleryItem.innerHTML = `
-                        <img src="${imageUrl}" alt="${item.title || 'Gallery image'}" loading="lazy">
-                        <div class="gallery-overlay">
-                            <div class="gallery-overlay-content">
-                                <h3>${item.title || 'Image'}</h3>
-                                <p>${item.description || ''}</p>
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Add click listener to open modal
-                    galleryItem.addEventListener('click', () => {
-                        openGalleryModal(project, index);
-                    });
-
-                    galleryGrid.appendChild(galleryItem);
-                });
-
-                // Setup gallery parallax after population
-                setTimeout(setupGalleryParallax, 100);
-            }
-
-            // Gallery Modal Functions
-            function openGalleryModal(project, startIndex = 0) {
-                console.log('Opening gallery modal for project:', project.title, 'starting at index', startIndex);
-                
-                if (!project || !project.gallery || project.gallery.length === 0) {
-                    alert("No gallery images available for this project.");
-                    return;
-                }
-
-                currentGallery = project.gallery;
-                currentProject = project;
-                
-                // Initialize modal elements
-                galleryModal = document.getElementById('gallery-modal');
-                galleryModalGrid = document.getElementById('gallery-modal-grid');
-                galleryModalImgContainer = document.getElementById('gallery-modal-img-container');
-                galleryMainImg = document.getElementById('gallery-main-img');
-                galleryHotspotPanel = document.getElementById('hotspot-detail-panel');
-
-                const galleryModalTitle = document.getElementById('gallery-modal-title');
-                if (galleryModalTitle) galleryModalTitle.textContent = `${project.title} Gallery`;
-
-                // Clear previous content
-                if (galleryModalGrid) galleryModalGrid.innerHTML = '';
-                if (galleryHotspotPanel) galleryHotspotPanel.classList.remove('visible');
-
-                // Determine if project is 'art' to use fullscreen/hotspot mode
-                const isArtProject = project.medium?.toLowerCase() === 'art';
-
-                if (isArtProject) {
-                    // Art project: Show single full-screen image with navigation and hotspots
-                    if (galleryModalGrid) galleryModalGrid.style.display = 'none';
-                    if (galleryModalImgContainer) galleryModalImgContainer.style.display = 'flex';
-                    
-                    currentGalleryIndex = startIndex;
-                    renderArtGalleryImage(currentGalleryIndex);
-                } else {
-                    // Other projects: Show grid view
-                    if (galleryModalGrid) galleryModalGrid.style.display = 'grid';
-                    if (galleryModalImgContainer) galleryModalImgContainer.style.display = 'none';
-                    
-                    currentGalleryIndex = Math.floor(startIndex / itemsPerPage);
-                    renderGalleryPage();
-                }
-
-                // Show modal
-                if (galleryModal) {
-                    galleryModal.style.display = 'flex';
-                }
-            }
-
-            function renderArtGalleryImage(index) {
-                if (!currentGallery || index < 0 || index >= currentGallery.length) return;
-
-                const item = currentGallery[index];
-                
-                if (galleryMainImg) {
-                    // Add fade-out class for smooth transition
-                    galleryMainImg.classList.add('fade-out');
-                    
-                    setTimeout(() => {
-                        // Construct full image path if needed
-                        let imageUrl = item.url;
-                        if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/') && !imageUrl.startsWith('images/')) {
-                            imageUrl = `images/projects/${currentProject.id}/${item.url}`;
-                        }
-                        
-                        // Update image
-                        galleryMainImg.src = imageUrl;
-                        galleryMainImg.alt = item.title || 'Gallery image';
-
-                        // Clear previous hotspots
-                        if (galleryModalImgContainer) {
-                            galleryModalImgContainer.querySelectorAll('.hotspot-btn').forEach(btn => btn.remove());
-                        }
-
-                        // Add new hotspots if they exist
-                        if (item.hotspots && item.hotspots.length > 0 && galleryModalImgContainer) {
-                            item.hotspots.forEach(hotspot => {
-                                const hotspotBtn = document.createElement('button');
-                                hotspotBtn.className = 'hotspot-btn';
-                                
-                                // Handle both percentage strings ("25%") and numeric values (25)
-                                const xValue = typeof hotspot.x === 'string' ? hotspot.x : `${hotspot.x}%`;
-                                const yValue = typeof hotspot.y === 'string' ? hotspot.y : `${hotspot.y}%`;
-                                
-                                hotspotBtn.style.left = xValue;
-                                hotspotBtn.style.top = yValue;
-                                hotspotBtn.textContent = hotspot.label || '+';
-
-                                hotspotBtn.addEventListener('click', () => {
-                                    showHotspotDetails(hotspot);
-                                });
-
-                                galleryModalImgContainer.appendChild(hotspotBtn);
-                            });
-                        }
-
-                        // Remove fade-out and add fade-in
-                        galleryMainImg.classList.remove('fade-out');
-                        galleryMainImg.classList.add('fade-in');
-
-                        setTimeout(() => {
-                            galleryMainImg.classList.remove('fade-in');
-                        }, 400);
-
-                    }, 200);
-                }
-
-                // Update info
-                const galleryInfo = document.getElementById('gallery-info');
-                if (galleryInfo) {
-                    galleryInfo.textContent = `Image ${index + 1} of ${currentGallery.length} • ${item.title || 'Untitled'}`;
-                }
-            }
-
-            function showHotspotDetails(hotspot) {
-                if (!galleryHotspotPanel) return;
-
-                const title = document.getElementById('hotspot-title');
-                const description = document.getElementById('hotspot-description');
-
-                if (title) title.textContent = hotspot.title || 'Details';
-                if (description) description.textContent = hotspot.description || '';
-
-                galleryHotspotPanel.classList.add('visible');
-            }
-
-            function closeHotspotPanel() {
-                if (galleryHotspotPanel) {
-                    galleryHotspotPanel.classList.remove('visible');
-                }
-            }
-
-            function closeGalleryModal() {
-                if (galleryModal) {
-                    galleryModal.style.display = 'none';
-                }
-                if (galleryHotspotPanel) {
-                    galleryHotspotPanel.classList.remove('visible');
-                }
-            }
-
-            function previousGalleryImage() {
-                if (currentProject?.medium?.toLowerCase() === 'art') {
-                    currentGalleryIndex = Math.max(0, currentGalleryIndex - 1);
-                    renderArtGalleryImage(currentGalleryIndex);
-                }
-            }
-
-            function nextGalleryImage() {
-                if (currentProject?.medium?.toLowerCase() === 'art') {
-                    currentGalleryIndex = Math.min(currentGallery.length - 1, currentGalleryIndex + 1);
-                    renderArtGalleryImage(currentGalleryIndex);
-                }
-            }
-
-            // Setup parallax effects for gallery
-            function setupGalleryParallax() {
-                if (!motionEnabled) return;
-
-                const galleryItems = document.querySelectorAll('.gallery-item');
-                if (galleryItems.length === 0) return;
-
-                const handleScroll = () => {
-                    galleryItems.forEach((item, index) => {
-                        const rect = item.getBoundingClientRect();
-                        const windowHeight = window.innerHeight;
-                        
-                        if (rect.bottom > 0 && rect.top < windowHeight) {
-                            const progress = 1 - (rect.top + rect.height / 2) / windowHeight;
-                            const intensity = Math.sin(progress * Math.PI);
-                            const translateY = -intensity * 20 * (1 + (index % 3) * 0.1);
-                            
-                            item.style.transform = `translateY(${translateY}px)`;
-                        }
-                    });
-                };
-
-                let ticking = false;
-                window.addEventListener('scroll', () => {
-                    if (!ticking) {
-                        requestAnimationFrame(handleScroll);
-                        ticking = true;
-                    }
-                }, { passive: true });
-            }
-
-            // Initialize the dynamic project system
-            async function initializeDynamicProject() {
-                console.log('Initializing dynamic project system...');
-                
-                try {
-                    // Load project data
-                    currentProject = await loadProjectData();
-                    
-                    if (currentProject) {
-                        // Update all content based on project data
-                        updateProjectContent(currentProject);
-                        
-                        // Initialize features based on support
-                        if (supportsParallax() && motionEnabled) {
-                            createParticles();
-                            setupScrollAnimations();
-                        }
-                        
-                        setupImageErrorHandling();
-                    }
-                } catch (error) {
-                    console.error('Failed to initialize project:', error);
-                }
-                
-                // Hide loading overlay
-                setTimeout(() => {
-                    const loadingOverlay = document.getElementById('loadingOverlay');
-                    if (loadingOverlay) {
-                        loadingOverlay.classList.add('hidden');
-                    }
-                }, 1000);
-            }
-
-            // Initialize when DOM is loaded
-            document.addEventListener('DOMContentLoaded', initializeDynamicProject);
-
-            // Journey Timeline Population
-            function populateJourney(project) {
-                const timelineContainer = document.getElementById('timelineContainer');
-                if (!timelineContainer) return;
-
-                console.log('Populating journey for:', project.title);
-                timelineContainer.innerHTML = '';
-
-                const journey = project.journey || [];
-                if (journey.length === 0) {
-                    timelineContainer.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No journey information available for this project.</p>';
-                    return;
-                }
-
-                journey.forEach((item, index) => {
-                    const timelineItem = document.createElement('div');
-                    timelineItem.className = 'timeline-item';
-                    timelineItem.innerHTML = `
-                        <div class="timeline-content">
-                            <h3>${item.title}</h3>
-                            <p>${item.description}</p>
-                        </div>
-                    `;
-                    timelineContainer.appendChild(timelineItem);
-                    
-                    // Add staggered delay for sequential appearance
-                    timelineItem.style.transitionDelay = `${index * 0.2}s`;
-                });
-
-                // Setup timeline scroll animation
-                setupTimelineScrollAnimation();
-            }
-
-            // Specs Population
-            function populateSpecs(project) {
-                const specsGrid = document.getElementById('specsGrid');
-                if (!specsGrid) return;
-
-                console.log('Populating specs for:', project.title);
-                specsGrid.innerHTML = '';
-
-                const specs = project.specs || [];
-                if (specs.length === 0) {
-                    specsGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No specifications available for this project.</p>';
-                    return;
-                }
-
-                specs.forEach((spec, index) => {
-                    const specCard = document.createElement('div');
-                    specCard.className = 'spec-card';
-                    
-                    // Handle markdown content if available
-                    let content = spec.description;
-                    if (spec.markdown) {
-                        content = spec.markdown;
-                    }
-                    
-                    specCard.innerHTML = `
-                        <div class="floating-icon">⚡</div>
-                        <div class="bg-pattern"></div>
-                        <div class="particle-effect"></div>
-                        <h3>${spec.title}</h3>
-                        <div class="spec-content">
-                            <div class="markdown-content">${content}</div>
-                        </div>
-                    `;
-                    specsGrid.appendChild(specCard);
-                });
-            }
-
-            // Artifacts Population for Code Projects
-            function populateArtifacts(project) {
-                const artifactsGrid = document.getElementById('artifactsGrid');
-                if (!artifactsGrid) return;
-
-                console.log('Populating artifacts for:', project.title);
-                artifactsGrid.innerHTML = '';
-
-                const artifacts = project.artifacts || [];
-                if (artifacts.length === 0) {
-                    artifactsGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No project artifacts available for this project.</p>';
-                    return;
-                }
-
-                artifacts.forEach(artifact => {
-                    const artifactCard = document.createElement('a');
-                    artifactCard.className = 'artifact-card';
-                    artifactCard.href = artifact.url || '#';
-                    artifactCard.target = artifact.url?.startsWith('http') ? '_blank' : '_self';
-                    
-                    artifactCard.innerHTML = `
-                        <span class="icon">${artifact.icon || '📄'}</span>
-                        <h3>${artifact.name || artifact.title}</h3>
-                        <p>${artifact.description}</p>
-                        ${artifact.type ? `<span class="artifact-type">${artifact.type}</span>` : ''}
-                    `;
-                    artifactsGrid.appendChild(artifactCard);
-                });
-            }
-
-            // Links Population
-            function populateLinks(project) {
-                const linksSection = document.getElementById('linksSection');
-                if (!linksSection) return;
-
-                console.log('Populating links for:', project.title);
-                linksSection.innerHTML = '';
-
-                // Create links from project.links object or default links
-                const links = [];
-                
-                if (project.links) {
-                    Object.entries(project.links).forEach(([key, url]) => {
-                        const linkMap = {
-                            'github': { icon: '📁', title: 'GitHub Repository', description: 'View source code' },
-                            'live': { icon: '🌐', title: 'Live Demo', description: 'View the live website' },
-                            'demo': { icon: '🌐', title: 'Live Demo', description: 'View the live website' },
-                            'gallery': { icon: '🖼️', title: 'Full Gallery', description: 'View complete gallery' },
-                            'shop': { icon: '🛒', title: 'Shop', description: 'Purchase prints or products' },
-                            'docs': { icon: '📖', title: 'Documentation', description: 'Read detailed documentation' },
-                            'specs': { icon: '📋', title: 'Specifications', description: 'Technical specifications' }
-                        };
-                        
-                        const linkInfo = linkMap[key] || { icon: '🔗', title: key.charAt(0).toUpperCase() + key.slice(1), description: `View ${key}` };
-                        links.push({
-                            ...linkInfo,
-                            url: url
-                        });
-                    });
-                }
-
-                // Add default "Back to Portfolio" link
-                links.push({
-                    icon: '🏠',
-                    title: 'Back to Portfolio',
-                    description: 'Return to main portfolio',
-                    url: 'index.html'
-                });
-
-                links.forEach(link => {
-                    const linkCard = document.createElement('a');
-                    linkCard.className = 'link-card';
-                    linkCard.href = link.url;
-                    linkCard.innerHTML = `
-                        <span class="icon">${link.icon}</span>
-                        <h3>${link.title}</h3>
-                        <p>${link.description}</p>
-                    `;
-                    linksSection.appendChild(linkCard);
-                });
-            }
-
-            // Initialize dynamic features after project load
-            function initializeDynamicFeatures(project) {
-                // Setup scroll animations
-                setupScrollAnimations();
-                
-                // Setup parallax effects if supported
-                if (supportsParallax() && motionEnabled) {
-                    setupGalleryParallax();
-                }
-                
-                // Setup image error handling
-                setupImageErrorHandling();
-                
-                console.log('Dynamic features initialized for:', project.title);
-            }
-
-            // Create particle effects
-            function createParticles() {
-                const particlesContainer = document.getElementById('heroParticles');
-                if (!particlesContainer) return;
-                
-                // Clear existing particles
-                particlesContainer.innerHTML = '';
-                
-                const particleCount = 60;
-                
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    
-                    // Random positioning
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.top = Math.random() * 100 + '%';
-                    
-                    // Random sizes for variety
-                    const size = Math.random() * 4 + 3; // 3-7px
-                    particle.style.width = size + 'px';
-                    particle.style.height = size + 'px';
-                    
-                    // Random animation delays and durations
-                    particle.style.animationDelay = Math.random() * 20 + 's';
-                    particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
-                    
-                    // Random opacity for depth
-                    particle.style.opacity = Math.random() * 0.6 + 0.3;
-                    
-                    particlesContainer.appendChild(particle);
-                }
-                
-                console.log('Created', particleCount, 'particles');
-            }
-
-            // Setup scroll animations with enhanced parallax for section titles
-            function setupScrollAnimations() {
-                const observerOptions = {
-                    threshold: [0, 0.25, 0.5, 0.75, 1],
-                    rootMargin: '0px 0px -50px 0px'
-                };
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            // Handle section titles with parallax effect
-                            if (entry.target.classList.contains('section-title')) {
-                                const intersectionRatio = entry.intersectionRatio;
-                                
-                                // Remove all parallax classes first
-                                entry.target.classList.remove('parallax-25', 'parallax-50', 'parallax-75', 'visible');
-                                
-                                // Apply appropriate parallax class based on intersection ratio
-                                if (intersectionRatio >= 1) {
-                                    entry.target.classList.add('visible');
-                                } else if (intersectionRatio >= 0.75) {
-                                    entry.target.classList.add('parallax-25');
-                                } else if (intersectionRatio >= 0.5) {
-                                    entry.target.classList.add('parallax-50');
-                                } else if (intersectionRatio >= 0.25) {
-                                    entry.target.classList.add('parallax-75');
-                                }
-                            } else {
-                                // Handle other animated elements normally
-                                entry.target.classList.add('visible');
-                            }
-                        }
-                    });
-                }, observerOptions);
-
-                // Observe all animated elements
-                document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .timeline-item, .section-title').forEach(el => {
-                    observer.observe(el);
-                });
-
-                // Add scroll event listener for smoother parallax effect
-                let ticking = false;
-                function updateParallax() {
-                    if (!ticking) {
-                        requestAnimationFrame(() => {
-                            const sectionTitles = document.querySelectorAll('.section-title');
-                            const windowHeight = window.innerHeight;
-                            const scrollY = window.scrollY;
-
-                            sectionTitles.forEach(title => {
-                                const rect = title.getBoundingClientRect();
-                                const elementTop = rect.top + scrollY;
-                                const elementHeight = rect.height;
-                                
-                                // Calculate how much of the element is visible
-                                const visibleRatio = Math.max(0, Math.min(1, 
-                                    (windowHeight - rect.top) / (windowHeight + elementHeight)
-                                ));
-                                
-                                // Apply smooth parallax effect
-                                if (visibleRatio > 0 && visibleRatio < 1) {
-                                    const scale = 2.5 - (visibleRatio * 1.5); // Scale from 2.5 to 1
-                                    const translateY = 100 - (visibleRatio * 100); // Translate from 100px to 0
-                                    const opacity = 0.2 + (visibleRatio * 0.8); // Opacity from 0.2 to 1
-                                    const rotateX = 15 - (visibleRatio * 15); // Rotate from 15deg to 0deg
-                                    
-                                    title.style.transform = `scale(${scale}) translateY(${translateY}px) rotateX(${rotateX}deg)`;
-                                    title.style.opacity = opacity;
-                                }
-                            });
-                            
-                            ticking = false;
-                        });
-                        ticking = true;
-                    }
-                }
-
-                // Throttle scroll events for performance
-                let scrollTimeout;
-                window.addEventListener('scroll', () => {
-                    if (scrollTimeout) clearTimeout(scrollTimeout);
-                    scrollTimeout = setTimeout(updateParallax, 16); // ~60fps
-                });
-            }
-
-            // Setup timeline scroll animation
-            function setupTimelineScrollAnimation() {
-                const timelineItems = document.querySelectorAll('.timeline-item');
-                
-                const timelineObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            setTimeout(() => {
-                                entry.target.classList.add('visible');
-                            }, 100);
-                        }
-                    });
-                }, {
-                    threshold: 0.3,
-                    rootMargin: '0px 0px -100px 0px'
-                });
-
-                timelineItems.forEach(item => {
-                    timelineObserver.observe(item);
-                });
-            }
-
-            // Image error handling
-            function setupImageErrorHandling() {
-                document.querySelectorAll('img').forEach(img => {
-                    img.addEventListener('error', () => {
-                        img.style.display = 'none';
-                        if (img.parentElement) {
-                            img.parentElement.classList.add('image-error');
-                        }
-                    });
-                });
-            }
-
-            // Feature detection functions
+            // Feature detection for progressive enhancement
             function supportsParallax() {
                 return 'CSS' in window && 'supports' in CSS && 
                        CSS.supports('transform', 'translate3d(0, 0, 0)');
             }
 
-            // Performance monitoring (keeping from original)
+            // Performance monitoring
             let frameCount = 0;
             let lastTime = performance.now();
             let performanceMode = false;
@@ -3013,10 +1708,613 @@
             function enablePerformanceMode() {
                 performanceMode = true;
                 document.body.classList.add('performance-mode');
+                // Disable complex animations
                 const particles = document.querySelectorAll('.particle');
                 particles.forEach(particle => particle.style.display = 'none');
             }
 
+            // Motion control functionality
+            let motionEnabled = true;
+
+            function toggleMotion() {
+                motionEnabled = !motionEnabled;
+                document.body.classList.toggle('motion-disabled', !motionEnabled);
+                
+                const button = document.querySelector('.motion-toggle');
+                button.innerHTML = motionEnabled ? 
+                    '🎬 Stop Parallax' : 
+                    '⏸️ Start Parallax';
+            }
+
+            // Check system preference on load
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                toggleMotion();
+            }
+
+            // Project data structure
+            const projectData = {
+                code: {
+                    type: "Code Project",
+                    title: "Nova: Writer's Conspiracy",
+                    subtitle: "Collaboration between human and AI, balancing structure and soul in creative agency - your cosmic atelier.",
+                    description: "Agentic helpers aid writers in creating novels. It's a cosmic atelier where storytellers conspire with AI to birth entire universes, balancing structure and soul in creative agency.",
+                    tags: ["React", "JavaScript", "CSS3", "Responsive Design", "Parallax", "Animation"],
+                    gallery: [
+                        {
+                            src: "/images/dashboard.jpg",
+                            alt: "Homepage Dashboard",
+                            title: "Homepage Dashboard",
+                            description: "The dashboard keeps writers on track with their writing goals and progress."
+                        },
+                        {
+                            src: "images/manuscript-view.jpg",
+                            alt: "Manuscript View",
+                            title: "Manuscript View",
+                            description: "The manuscript view is where writers draft their novel, and their ai writing companions help in realtime.",
+                        },
+                        {
+                            src: "images/manuscript-view.jpg",
+                            alt: "Character Design",
+                            title: "Interactive Elements",
+                            description: "Engaging animations and micro-interactions that enhance user experience"
+                        }
+                    ],
+                    journey: [
+                        {
+                            title: "Research & Planning",
+                            description: "I have been using AI to help me with my writing since I started writing. This has evolved over time: from a single helper to a team of helpers: project manager, editor, researcher, illustrator. but that was before I became aware of MAS"
+                        },
+                        {
+                            title: "Design Phase",
+                            description: "Created wireframes and prototypes, focusing on user flow and visual hierarchy. Developed the color palette and typography system."
+                        },
+                        {
+                            title: "Development",
+                            description: "Built the core functionality using modern JavaScript frameworks. Implemented responsive design and cross-browser compatibility."
+                        },
+                        {
+                            title: "Testing & Launch",
+                            description: "Conducted thorough testing across devices and browsers. Optimized performance and accessibility before deployment."
+                        }
+                    ],
+                    specs: [
+                        {
+                            title: "🎭 The 6 agents",
+                            description: "You decide the level of help the agents provide.<ul><li><h4>🌌The Architect**</h4>  *The God of the universe*—Give the concept and let the agents work their magic.</li><li><h4>🎬 **The Director**</h4> *The story's driver of vision - setting the concept and making sure the writing is going in the direction you envision.</li><li><h4>🤝 **The Collaborator**</h4> *Fellow visionaries*—Your and the agents work as co-pilots, splitting the work as you decide.</li><li><h4>💫 **The Assistant**</h4> *Muse-like support*—You do all the writing and the agents provide support.</li></ul>",
+                        },
+                        {
+                            title: "🧠📚 The Researcher",
+                            description: "<ul><li><h4>The Researcher:</h4> you can have a dedicated researcher who serves as your fact checker, your background source, it keeps you informed. </li><li><h4> 🌍🔥 The World Builder</h4> *Geography, culture, politics*—Creates entire worlds with rich lore and history.</li><li><h4>💋💔 The Character Architect</h4> *Backstories that bleed*—Develops characters with depth, motivation, and soul.</li><li><h4>⛓️✨ The Plot Alchemist</h4> *Structure and surprises*—Crafts compelling plots with twists that feel inevitable.</li><li><h4>✂️🕯️ The Editor</h4> *Cuts like a lover's truth*—Reviews and refines with surgical precision and poetic grace.</li><li><h4>🎨🌙 The Illustrator</h4> *Visuals from words, almost sinful*—Creates visual content that brings stories to life.</li></ul>",
+                        },
+                        
+                        {
+                            title: "🧠 Neural Graveyard",
+                            description: "hums with memory and context. <h4>✨ Real-time Collaboration</H4> feels like Google Docs meets Studio Ghibli. <h4>💫 Version Control</H4> like old lovers' letters—regret nothing, restore anything"
+                        },{title: "🕯️ Live Memory Threads",
+                            description: "<h4>Agents that remembertrack emotional arcs, whispered lies - never lose track of a character arc and how it affects the current scene."
+                        }
+                    ],
+                    links: [
+                        {
+                            title: "Live Demo",
+                            description: "View the live website",
+                            url: "https://claude.ai/public/artifacts/c7038827-ea90-4e4c-9551-f98ef4d4c2e6",
+                            icon: "🌐"
+                        },
+                        {
+                            title: "GitHub Repository",
+                            description: "View source code",
+                            url: "https://github.com/rubyrayjuntos/AstroNova",
+                            icon: "📁"
+                        },
+                        {
+                            title: "specifications",
+                            description: "Read detailed analysis",
+                            url: "#",
+                            icon: "📖"
+                        }
+                    ]
+                },
+                art: {
+                    type: "Art Project",
+                    title: "Digital Abstract Series",
+                    subtitle: "Exploring the intersection of technology and human emotion through digital art",
+                    description: "This series explores the relationship between digital technology and human emotion, using abstract forms and vibrant colors to convey the complexity of our digital age. Each piece represents a different aspect of the human experience in the modern world.",
+                    tags: ["Digital Art", "Abstract", "Photoshop", "Illustrator", "Contemporary", "Emotion"],
+                    gallery: [
+                        {
+                            src: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=600&fit=crop",
+                            alt: "Digital Abstract 1",
+                            title: "Connection",
+                            description: "Exploring human connection in the digital age through flowing forms and warm colors"
+                        },
+                        {
+                            src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop",
+                            alt: "Digital Abstract 2",
+                            title: "Isolation",
+                            description: "The feeling of isolation despite constant connectivity, represented through stark contrasts"
+                        },
+                        {
+                            src: "https://images.unsplash.com/photo-1549490349-8643362f943a?w=400&h=700&fit=crop",
+                            alt: "Digital Abstract 3",
+                            title: "Transformation",
+                            description: "The constant evolution of self in digital spaces, shown through morphing geometric forms"
+                        },
+                        {
+                            src: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=400&h=450&fit=crop",
+                            alt: "Digital Abstract 4",
+                            title: "Overflow",
+                            description: "Information overload in modern life, depicted through layered textures and intense colors"
+                        }
+                    ],
+                    journey: [
+                        {
+                            title: "Concept Development",
+                            description: "Initial exploration of themes around digital life and human emotion. Sketched ideas and developed visual language."
+                        },
+                        {
+                            title: "Digital Experimentation",
+                            description: "Experimented with different digital tools and techniques. Created initial compositions and color studies."
+                        },
+                        {
+                            title: "Series Creation",
+                            description: "Developed individual pieces while maintaining cohesion across the series. Refined techniques and visual consistency."
+                        },
+                        {
+                            title: "Exhibition Preparation",
+                            description: "Prepared works for digital and physical exhibition. Created artist statements and documentation."
+                        }
+                    ],
+                    specs: [
+                        {
+                            title: "Medium & Tools",
+                            description: "Created using Adobe Photoshop and Illustrator. Digital paintings on canvas sized 3000x4000 pixels at 300 DPI."
+                        },
+                        {
+                            title: "Artistic Technique",
+                            description: "Combination of digital painting, photo manipulation, and vector graphics. Custom brushes and textures."
+                        },
+                        {
+                            title: "Color Palette",
+                            description: "Vibrant, contrasting colors representing the emotional spectrum. Primary focus on blues, oranges, and purples."
+                        },
+                        {
+                            title: "Composition",
+                            description: "Abstract geometric forms with organic flowing elements. Balance between structure and spontaneity."
+                        }
+                    ],
+                    links: [
+                        {
+                            title: "Full Gallery",
+                            description: "View complete series",
+                            url: "#",
+                            icon: "🖼️"
+                        },
+                        {
+                            title: "Artist Statement",
+                            description: "Read about the inspiration",
+                            url: "#",
+                            icon: "📝"
+                        },
+                        {
+                            title: "Exhibition Info",
+                            description: "Current and past exhibitions",
+                            url: "#",
+                            icon: "🏛️"
+                        }
+                    ]
+                },
+                writing: {
+                    type: "Writing Project",
+                    title: "Echoes of Tomorrow",
+                    subtitle: "A science fiction novella exploring humanity's relationship with artificial intelligence",
+                    description: "This novella explores the complex relationship between humans and artificial intelligence in a near-future world. Through interconnected stories, it examines themes of consciousness, identity, and what it means to be human in an age of advanced technology.",
+                    tags: ["Science Fiction", "Novella", "AI", "Philosophy", "Future", "Technology"],
+                    gallery: [
+                        {
+                            src: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=400&fit=crop",
+                            alt: "Writing Process",
+                            title: "Writing Process",
+                            description: "The creative journey from initial concept to finished manuscript"
+                        },
+                        {
+                            src: "https://images.unsplash.com/photo-1516414447565-b14be0adf13e?w=600&h=400&fit=crop",
+                            alt: "Research Materials",
+                            title: "Research & Development",
+                            description: "Extensive research into AI development and philosophical implications"
+                        },
+                        {
+                            src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+                            alt: "Character Development",
+                            title: "Character Development",
+                            description: "Creating complex characters that bridge human and artificial consciousness"
+                        }
+                    ],
+                    journey: [
+                        {
+                            title: "Concept & Research",
+                            description: "Initial idea sparked by current AI developments. Researched consciousness studies, philosophy of mind, and technological singularity theories."
+                        },
+                        {
+                            title: "Story Structure",
+                            description: "Developed interconnected narrative structure. Created detailed character profiles and world-building documents."
+                        },
+                        {
+                            title: "First Draft",
+                            description: "Wrote initial 40,000-word draft over six months. Focused on getting the core story down before refinement."
+                        },
+                        {
+                            title: "Editing & Revision",
+                            description: "Multiple rounds of editing for structure, character development, and prose. Beta reader feedback incorporated."
+                        }
+                    ],
+                    specs: [
+                        {
+                            title: "Genre & Style",
+                            description: "Science fiction novella with philosophical undertones. Literary science fiction approach with focus on character development."
+                        },
+                        {
+                            title: "Length & Structure",
+                            description: "42,000 words across 8 interconnected chapters. Non-linear narrative structure with multiple perspectives."
+                        },
+                        {
+                            title: "Themes",
+                            description: "Consciousness, identity, human-AI relationships, technological ethics, and the nature of existence."
+                        },
+                        {
+                            title: "Target Audience",
+                            description: "Adult readers interested in thoughtful science fiction, philosophy, and contemporary technology issues."
+                        }
+                    ],
+                    links: [
+                        {
+                            title: "Read Excerpt",
+                            description: "First chapter preview",
+                            url: "#",
+                            icon: "📚"
+                        },
+                        {
+                            title: "Character Profiles",
+                            description: "Meet the characters",
+                            url: "#",
+                            icon: "👥"
+                        },
+                        {
+                            title: "Author Notes",
+                            description: "Behind the scenes",
+                            url: "#",
+                            icon: "✍️"
+                        }
+                    ]
+                }
+            };
+    
+            // Current project type
+            let currentProject = 'code';
+    
+            // Initialize the page with progressive enhancement
+            function init() {
+                // Start performance monitoring
+                monitorPerformance();
+                
+                // Initialize features based on support
+                if (supportsParallax() && motionEnabled) {
+                    createParticles();
+                    setupScrollAnimations();
+                } else {
+                    console.log('Parallax not supported or disabled - using fallback');
+                    document.body.classList.add('no-parallax');
+                }
+                
+                updateProjectContent();
+                setupImageErrorHandling();
+                
+                // Ensure particles are created after a short delay
+                setTimeout(() => {
+                    const particlesContainer = document.getElementById('heroParticles');
+                    if (particlesContainer && particlesContainer.children.length === 0) {
+                        console.log('Recreating particles...');
+                        createParticles();
+                    }
+                }, 500);
+                
+                // Hide loading overlay
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').classList.add('hidden');
+                }, 1000);
+            }
+
+            // Image error handling
+            function setupImageErrorHandling() {
+                document.querySelectorAll('img').forEach(img => {
+                    img.addEventListener('error', () => {
+                        img.style.display = 'none';
+                        img.parentElement.classList.add('image-error');
+                    });
+                });
+            }
+    
+            // Create floating particles with enhanced visibility
+            function createParticles() {
+                const particlesContainer = document.getElementById('heroParticles');
+                if (!particlesContainer) return;
+                
+                const particleCount = 80; // Increased count
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    // Random positioning
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    
+                    // Random sizes for variety
+                    const size = Math.random() * 4 + 4; // 4-8px
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    
+                    // Random animation delays and durations
+                    particle.style.animationDelay = Math.random() * 20 + 's';
+                    particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                    
+                    // Random opacity for depth
+                    particle.style.opacity = Math.random() * 0.5 + 0.3;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            // Create journey particles
+            function createJourneyParticles(container) {
+                if (!container) return;
+                
+                const particleCount = 100; // More particles for better visibility
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'journey-particle';
+                    
+                    // Random positioning
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    
+                    // Random sizes for variety
+                    const size = Math.random() * 4 + 4; // 4-8px
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    
+                    // Random animation delays and durations
+                    particle.style.animationDelay = Math.random() * 15 + 's';
+                    particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                    
+                    // Higher opacity for better visibility
+                    particle.style.opacity = Math.random() * 0.6 + 0.4;
+                    
+                    container.appendChild(particle);
+                }
+            }
+    
+            // Setup scroll animations with enhanced section title effects
+            function setupScrollAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+    
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, observerOptions);
+    
+                document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .timeline-item').forEach(el => {
+                    observer.observe(el);
+                });
+
+                // Special observer for section titles
+                const titleObserverOptions = {
+                    threshold: 0.3,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+
+                const titleObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Add staggered delay for each title
+                            const index = Array.from(document.querySelectorAll('.section-title')).indexOf(entry.target);
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, index * 200);
+                        }
+                    });
+                }, titleObserverOptions);
+
+                document.querySelectorAll('.section-title').forEach(el => {
+                    titleObserver.observe(el);
+                });
+            }
+    
+            // Floating nav is always visible, no toggle needed
+    
+            // Switch project type
+            function switchProjectType(type) {
+                currentProject = type;
+                updateProjectContent();
+                
+                // Update switcher buttons
+                document.querySelectorAll('.switcher-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector(`[onclick="switchProjectType('${type}')"]`).classList.add('active');
+            }
+    
+            // Update project content
+            function updateProjectContent() {
+                const project = projectData[currentProject];
+                
+                // Update hero section
+                document.getElementById('projectTypeBadge').textContent = project.type;
+                document.getElementById('projectTitle').textContent = project.title;
+                document.getElementById('projectSubtitle').textContent = project.subtitle;
+                document.getElementById('projectDescription').textContent = project.description;
+                
+                // Update tags
+                const tagsContainer = document.getElementById('projectTags');
+                tagsContainer.innerHTML = '';
+                project.tags.forEach(tag => {
+                    const tagElement = document.createElement('span');
+                    tagElement.className = 'tag';
+                    tagElement.textContent = tag;
+                    tagsContainer.appendChild(tagElement);
+                });
+                
+                // Update gallery
+                updateGallery(project.gallery);
+                
+                // Update journey
+                updateJourney(project.journey);
+                
+                // Update specs
+                updateSpecs(project.specs);
+                
+                // Update links
+                updateLinks(project.links);
+            }
+    
+            // Update gallery section
+            function updateGallery(galleryItems) {
+                const galleryGrid = document.getElementById('galleryGrid');
+                galleryGrid.innerHTML = '';
+                
+                // Use different layout for art projects
+                if (currentProject === 'art') {
+                    galleryGrid.className = 'art-gallery';
+                } else {
+                    galleryGrid.className = 'gallery-grid';
+                }
+                
+                galleryItems.forEach(item => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.innerHTML = `
+                        <img src="${item.src}" alt="${item.alt}" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                            </div>
+                        </div>
+                    `;
+                    galleryGrid.appendChild(galleryItem);
+                });
+            }
+    
+            // Update journey section
+            function updateJourney(journeyItems) {
+                const timelineContainer = document.getElementById('timelineContainer');
+                timelineContainer.innerHTML = '';
+                
+                // Add hero background to journey section
+                const journeyHeroBg = document.createElement('div');
+                journeyHeroBg.className = 'journey-hero-bg';
+                timelineContainer.appendChild(journeyHeroBg);
+                
+                // Add journey particles container
+                const journeyParticles = document.createElement('div');
+                journeyParticles.className = 'journey-particles';
+                timelineContainer.appendChild(journeyParticles);
+                
+                // Create journey particles
+                createJourneyParticles(journeyParticles);
+                
+                console.log('Journey background elements created:', { journeyHeroBg, journeyParticles });
+                
+                // Add flowing arrows to timeline
+                const flowArrow1 = document.createElement('div');
+                flowArrow1.className = 'flow-arrow-1';
+                flowArrow1.innerHTML = '▼';
+                timelineContainer.appendChild(flowArrow1);
+                
+                const flowArrow2 = document.createElement('div');
+                flowArrow2.className = 'flow-arrow-2';
+                flowArrow2.innerHTML = '▼';
+                timelineContainer.appendChild(flowArrow2);
+                
+                const flowArrow3 = document.createElement('div');
+                flowArrow3.className = 'flow-arrow-3';
+                flowArrow3.innerHTML = '▼';
+                timelineContainer.appendChild(flowArrow3);
+                
+                journeyItems.forEach((item, index) => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = 'timeline-item';
+                    timelineItem.innerHTML = `
+                        <div class="timeline-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                        </div>
+                    `;
+                    timelineContainer.appendChild(timelineItem);
+                    
+                    // Add staggered delay for sequential appearance
+                    timelineItem.style.transitionDelay = `${index * 0.2}s`;
+                });
+                
+                // Setup simplified timeline scroll animation
+                setupTimelineScrollAnimation();
+            }
+    
+            // Update specs section with enhanced styling and parallax
+            function updateSpecs(specItems) {
+                const specsGrid = document.getElementById('specsGrid');
+                specsGrid.innerHTML = '';
+                
+                specItems.forEach((spec, index) => {
+                    const specCard = document.createElement('div');
+                    specCard.className = 'spec-card';
+                    specCard.setAttribute('data-parallax', 'true');
+                    specCard.setAttribute('data-speed', (0.1 + index * 0.05).toString());
+                    
+                    // Extract icon from title if present
+                    const iconMatch = spec.title.match(/^([🎭🧠📚🌍🔥💋💔⛓️✨✂️🕯️🎨🌙]+)/);
+                    const icon = iconMatch ? iconMatch[1] : '⚡';
+                    const cleanTitle = spec.title.replace(/^[🎭🧠📚🌍🔥💋💔⛓️✨✂️🕯️🎨🌙]+/, '').trim();
+                    
+                    specCard.innerHTML = `
+                        <div class="floating-icon">${icon}</div>
+                        <div class="bg-pattern"></div>
+                        <div class="particle-effect"></div>
+                        <h3>${cleanTitle}</h3>
+                        <div class="spec-content">${spec.description}</div>
+                    `;
+                    specsGrid.appendChild(specCard);
+                });
+                
+                // Setup parallax for spec cards
+                setupSpecCardsParallax();
+            }
+    
+            // Update links section
+            function updateLinks(linkItems) {
+                const linksSection = document.getElementById('linksSection');
+                linksSection.innerHTML = '';
+                
+                linkItems.forEach(link => {
+                    const linkCard = document.createElement('a');
+                    linkCard.className = 'link-card';
+                    linkCard.href = link.url;
+                    linkCard.innerHTML = `
+                        <span class="icon">${link.icon}</span>
+                        <h3>${link.title}</h3>
+                        <p>${link.description}</p>
+                    `;
+                    linksSection.appendChild(linkCard);
+                });
+            }
+    
             // Smooth scrolling for navigation links
             document.addEventListener('click', (e) => {
                 if (e.target.matches('a[href^="#"]')) {
@@ -3030,31 +2328,136 @@
                     }
                 }
             });
-
-            // Keyboard support for modal
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeGalleryModal();
-                    closeHotspotPanel();
-                }
-                if (galleryModal && galleryModal.style.display === 'flex') {
-                    if (e.key === 'ArrowLeft') {
-                        previousGalleryImage();
-                    } else if (e.key === 'ArrowRight') {
-                        nextGalleryImage();
+    
+            // Simplified timeline scroll animation using IntersectionObserver
+            function setupTimelineScrollAnimation() {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                const journeySection = document.querySelector('#journey');
+                const journeyHeroBg = document.querySelector('.journey-hero-bg');
+                const journeyParticles = document.querySelector('.journey-particles');
+                
+                // Hero parallax effect
+                function updateHeroParallax() {
+                    const scrolled = window.pageYOffset;
+                    const hero = document.querySelector('.hero');
+                    const heroHeight = hero.offsetHeight;
+                    
+                    if (scrolled < heroHeight && motionEnabled) {
+                        const heroContent = document.querySelector('.hero-content');
+                        const heroBg = document.querySelector('.hero-bg');
+                        
+                        heroContent.style.transform = `translate3d(0, ${scrolled * 0.5}px, 0)`;
+                        heroBg.style.transform = `translate3d(0, ${scrolled * 0.3}px, 0)`;
                     }
                 }
-            });
-
-            // Close modal on overlay click
-            document.addEventListener('click', (e) => {
-                if (e.target.id === 'gallery-modal') {
-                    closeGalleryModal();
+                
+                // Journey background reveal effect
+                function updateJourneyBackground() {
+                    if (!journeySection || !motionEnabled) return;
+                    
+                    const rect = journeySection.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    
+                    // Calculate how much of the journey section is visible
+                    const sectionTop = rect.top;
+                    const sectionHeight = rect.height;
+                    const visibleHeight = Math.min(windowHeight, sectionTop + sectionHeight) - Math.max(0, sectionTop);
+                    const visibilityRatio = Math.max(0, Math.min(1, visibleHeight / windowHeight));
+                    
+                    // Reveal background and particles as section comes into view
+                    if (journeyHeroBg && journeyParticles) {
+                        journeyHeroBg.style.opacity = visibilityRatio;
+                        journeyParticles.style.opacity = visibilityRatio;
+                        
+                        if (visibilityRatio > 0.1) {
+                            journeyHeroBg.classList.add('visible');
+                            journeyParticles.classList.add('visible');
+                        }
+                        
+                        // Debug logging
+                        console.log('Journey background visibility:', visibilityRatio);
+                    } else {
+                        console.log('Journey background elements not found:', { journeyHeroBg, journeyParticles });
+                    }
                 }
-            });
+                
+                // Use IntersectionObserver for timeline items - much more reliable
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Add a small delay to ensure smooth animation
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, 100);
+                        }
+                    });
+                }, {
+                    threshold: 0.3,
+                    rootMargin: '0px 0px -100px 0px'
+                });
+                
+                // Observe all timeline items
+                timelineItems.forEach(item => {
+                    timelineObserver.observe(item);
+                });
+                
+                // Add scroll listener for hero parallax and journey background
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        requestAnimationFrame(() => {
+                            updateHeroParallax();
+                            updateJourneyBackground();
+                        });
+                        ticking = true;
+                    }
+                });
+                
+                // Initial call
+                updateJourneyBackground();
+            }
+    
+            // Setup parallax for specification cards
+            function setupSpecCardsParallax() {
+                const specCards = document.querySelectorAll('.spec-card[data-parallax="true"]');
+                
+                function updateSpecCardsParallax() {
+                    if (!motionEnabled) return;
+                    
+                    specCards.forEach(card => {
+                        const rect = card.getBoundingClientRect();
+                        const windowHeight = window.innerHeight;
+                        const cardCenter = rect.top + rect.height / 2;
+                        const distanceFromCenter = cardCenter - windowHeight / 2;
+                        const speed = parseFloat(card.dataset.speed) || 0.1;
+                        
+                        // Only apply parallax when card is in viewport
+                        if (rect.bottom > 0 && rect.top < windowHeight) {
+                            const translateY = distanceFromCenter * speed;
+                            const scale = 1 + Math.abs(distanceFromCenter) * 0.0001;
+                            const opacity = Math.max(0.3, 1 - Math.abs(distanceFromCenter) * 0.001);
+                            
+                            card.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`;
+                            card.style.opacity = opacity;
+                        }
+                    });
+                }
+                
+                // Add scroll listener for spec cards parallax
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        requestAnimationFrame(updateSpecCardsParallax);
+                        ticking = true;
+                    }
+                });
+                
+                // Initial call
+                updateSpecCardsParallax();
+            }
 
-            // Keep the existing motion and parallax functions from the original file
-            // (The rest of the existing JavaScript functions remain the same)
+            // Initialize when DOM is loaded
+            document.addEventListener('DOMContentLoaded', init);
         </script>
     </body>
     </html>
