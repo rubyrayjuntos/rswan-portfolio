@@ -2888,6 +2888,11 @@
             }
 
             function showRelevantSections(project) {
+                console.log('showRelevantSections called with project:', project);
+                console.log('Project medium:', project.medium);
+                console.log('Project process:', project.process);
+                console.log('Project inspiration:', project.inspiration);
+                
                 // Hide all medium-specific sections first
                 const sections = {
                     artifacts: document.getElementById('artifacts'),
@@ -2897,6 +2902,15 @@
                     themes: document.getElementById('themes'),
                     journey: document.getElementById('journey')
                 };
+                
+                console.log('Sections found:', {
+                    artifacts: !!sections.artifacts,
+                    process: !!sections.process,
+                    inspiration: !!sections.inspiration,
+                    excerpts: !!sections.excerpts,
+                    themes: !!sections.themes,
+                    journey: !!sections.journey
+                });
 
                 // Hide all sections initially
                 Object.entries(sections).forEach(([key, section]) => {
@@ -2921,10 +2935,13 @@
                         // Don't show journey section for art projects (Ken Burns effects not implemented)
                         if (sections.process) {
                             sections.process.style.display = 'block';
+                            console.log('Process section displayed, project.process:', project.process);
                             const processContent = document.getElementById('processContent');
                             if (processContent) {
+                                console.log('Found existing processContent container');
                                 renderValidatedHTML(processContent, project.process || '<p>Details on the creative process for this project are coming soon.</p>');
                             } else {
+                                console.log('Creating new processContent container');
                                 // Create process content container if it doesn't exist
                                 const processSection = document.getElementById('process');
                                 if (processSection) {
@@ -2933,15 +2950,22 @@
                                     newProcessContent.className = 'section-content';
                                     processSection.appendChild(newProcessContent);
                                     renderValidatedHTML(newProcessContent, project.process || '<p>Details on the creative process for this project are coming soon.</p>');
+                                } else {
+                                    console.error('Process section not found!');
                                 }
                             }
+                        } else {
+                            console.error('Process section not available in sections object');
                         }
                         if (sections.inspiration) {
                             sections.inspiration.style.display = 'block';
+                            console.log('Inspiration section displayed, project.inspiration:', project.inspiration);
                             const inspirationContent = document.getElementById('inspirationContent');
                             if (inspirationContent) {
-                                renderValidatedHTML(inspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project is coming soon.</p>');
+                                console.log('Found existing inspirationContent container');
+                                renderValidatedHTML(inspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project are coming soon.</p>');
                             } else {
+                                console.log('Creating new inspirationContent container');
                                 // Create inspiration content container if it doesn't exist
                                 const inspirationSection = document.getElementById('inspiration');
                                 if (inspirationSection) {
@@ -2949,9 +2973,13 @@
                                     newInspirationContent.id = 'inspirationContent';
                                     newInspirationContent.className = 'section-content';
                                     inspirationSection.appendChild(newInspirationContent);
-                                    renderValidatedHTML(newInspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project is coming soon.</p>');
+                                    renderValidatedHTML(newInspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project are coming soon.</p>');
+                                } else {
+                                    console.error('Inspiration section not found!');
                                 }
                             }
+                        } else {
+                            console.error('Inspiration section not available in sections object');
                         }
                         break;
                     case 'writing':
