@@ -2924,6 +2924,16 @@
                             const processContent = document.getElementById('processContent');
                             if (processContent) {
                                 renderValidatedHTML(processContent, project.process || '<p>Details on the creative process for this project are coming soon.</p>');
+                            } else {
+                                // Create process content container if it doesn't exist
+                                const processSection = document.getElementById('process');
+                                if (processSection) {
+                                    const newProcessContent = document.createElement('div');
+                                    newProcessContent.id = 'processContent';
+                                    newProcessContent.className = 'section-content';
+                                    processSection.appendChild(newProcessContent);
+                                    renderValidatedHTML(newProcessContent, project.process || '<p>Details on the creative process for this project are coming soon.</p>');
+                                }
                             }
                         }
                         if (sections.inspiration) {
@@ -2931,6 +2941,16 @@
                             const inspirationContent = document.getElementById('inspirationContent');
                             if (inspirationContent) {
                                 renderValidatedHTML(inspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project is coming soon.</p>');
+                            } else {
+                                // Create inspiration content container if it doesn't exist
+                                const inspirationSection = document.getElementById('inspiration');
+                                if (inspirationSection) {
+                                    const newInspirationContent = document.createElement('div');
+                                    newInspirationContent.id = 'inspirationContent';
+                                    newInspirationContent.className = 'section-content';
+                                    inspirationSection.appendChild(newInspirationContent);
+                                    renderValidatedHTML(newInspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project is coming soon.</p>');
+                                }
                             }
                         }
                         break;
@@ -3336,45 +3356,43 @@
                     timelineContainer.appendChild(loadingIndicator);
                 }
 
-                // Simulate loading delay for better UX (remove this in production if not needed)
-                setTimeout(() => {
-                    const journey = project.journey || [];
-                    
-                    // Hide loading indicator
-                    if (loadingIndicator) {
-                        loadingIndicator.style.display = 'none';
-                    }
-                    
-                    if (journey.length === 0) {
-                        timelineContainer.innerHTML = `
-                            <div style="text-align: center; color: white; padding: 4rem 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
-                                <h3 style="margin-bottom: 1rem; color: #ff8c00; font-size: 1.5rem;">Development Journey</h3>
-                                <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.9;">No journey information available for this project yet. Check back soon for updates on the development process!</p>
-                            </div>
-                        `;
-                        return;
-                    }
+                // Load journey content immediately for better performance
+                const journey = project.journey || [];
+                
+                // Hide loading indicator
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+                
+                if (journey.length === 0) {
+                    timelineContainer.innerHTML = `
+                        <div style="text-align: center; color: white; padding: 4rem 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                            <h3 style="margin-bottom: 1rem; color: #ff8c00; font-size: 1.5rem;">Development Journey</h3>
+                            <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.9;">No journey information available for this project yet. Check back soon for updates on the development process!</p>
+                        </div>
+                    `;
+                    return;
+                }
 
-                    journey.forEach((item, index) => {
-                        const timelineItem = document.createElement('div');
-                        timelineItem.className = 'timeline-item';
-                        timelineItem.innerHTML = `
-                            <div class="timeline-content">
-                                <h3>${item.title}</h3>
-                                <p>${item.description}</p>
-                            </div>
-                        `;
-                        timelineContainer.appendChild(timelineItem);
-                        
-                        // Add staggered delay for sequential appearance
-                        timelineItem.style.transitionDelay = `${index * 0.2}s`;
-                    });
-
-                    // Setup timeline scroll animation
-                    setupTimelineScrollAnimation();
+                journey.forEach((item, index) => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = 'timeline-item';
+                    timelineItem.innerHTML = `
+                        <div class="timeline-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                        </div>
+                    `;
+                    timelineContainer.appendChild(timelineItem);
                     
-                    console.log('Journey content loaded successfully');
-                }, 500); // 500ms delay for better UX
+                    // Add staggered delay for sequential appearance
+                    timelineItem.style.transitionDelay = `${index * 0.1}s`; // Reduced delay for faster appearance
+                });
+
+                // Setup timeline scroll animation
+                setupTimelineScrollAnimation();
+                
+                console.log('Journey content loaded successfully');
             }
 
             // Specs Population
@@ -3399,14 +3417,13 @@
                     specsGrid.appendChild(loadingIndicator);
                 }
 
-                // Simulate loading delay for better UX
-                setTimeout(() => {
-                    const specs = project.specs || [];
-                    
-                    // Hide loading indicator
-                    if (loadingIndicator) {
-                        loadingIndicator.style.display = 'none';
-                    }
+                // Load specs content immediately for better performance
+                const specs = project.specs || [];
+                
+                // Hide loading indicator
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
                     
                     if (specs.length === 0) {
                         specsGrid.innerHTML = `
@@ -3441,7 +3458,6 @@
                     });
                     
                     console.log('Specs content loaded successfully');
-                }, 300); // 300ms delay for better UX
             }
 
             // Artifacts Population for Code Projects
@@ -3466,14 +3482,13 @@
                     artifactsGrid.appendChild(loadingIndicator);
                 }
 
-                // Simulate loading delay for better UX
-                setTimeout(() => {
-                    const artifacts = project.artifacts || [];
-                    
-                    // Hide loading indicator
-                    if (loadingIndicator) {
-                        loadingIndicator.style.display = 'none';
-                    }
+                // Load artifacts content immediately for better performance
+                const artifacts = project.artifacts || [];
+                
+                // Hide loading indicator
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
                     
                     if (artifacts.length === 0) {
                         artifactsGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No project artifacts available for this project.</p>';
@@ -3520,7 +3535,6 @@
                     });
                     
                     console.log('Artifacts content loaded successfully');
-                }, 300); // 300ms delay for better UX
             }
 
             // Function to open markdown files in modal
@@ -3814,21 +3828,19 @@
             // Setup scroll animations with triggered section title animation
             function setupScrollAnimations() {
                 const observerOptions = {
-                    threshold: 0.3, // Trigger when 30% of the element is visible
-                    rootMargin: '0px 0px -100px 0px'
+                    threshold: 0.1, // Trigger when just 10% of the element is visible for earlier animation
+                    rootMargin: '0px 0px -50px 0px' // Reduced margin for earlier triggering
                 };
 
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            // For section titles, add the 'visible' class to trigger the animation
+                            // For section titles, add the 'visible' class to trigger the animation immediately
                             if (entry.target.classList.contains('section-title')) {
                                 // Only trigger if not already animated
                                 if (!entry.target.classList.contains('visible')) {
-                                    // Add a slight delay for smoother effect
-                                    setTimeout(() => {
-                                        entry.target.classList.add('visible');
-                                    }, 100);
+                                    // Immediate animation for better responsiveness
+                                    entry.target.classList.add('visible');
                                 }
                             } else {
                                 // Handle other animated elements normally
@@ -3851,14 +3863,13 @@
                 const timelineObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            setTimeout(() => {
-                                entry.target.classList.add('visible');
-                            }, 100);
+                            // Immediate animation for better responsiveness
+                            entry.target.classList.add('visible');
                         }
                     });
                 }, {
-                    threshold: 0.3,
-                    rootMargin: '0px 0px -100px 0px'
+                    threshold: 0.1, // Earlier triggering
+                    rootMargin: '0px 0px -50px 0px' // Reduced margin
                 });
 
                 timelineItems.forEach(item => {
