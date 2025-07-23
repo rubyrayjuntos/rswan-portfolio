@@ -12,7 +12,10 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Nova: Writer's Conspiracy">
         <meta name="twitter:description" content="Collaboration between human and AI in creative agency">
+        <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/themes.css">
+        <link rel="stylesheet" href="styles/components.css">
+        <link rel="stylesheet" href="styles/markdown-styles.css">
         <style>
             * {
                 margin: 0;
@@ -2358,6 +2361,11 @@
                     <h2 class="section-title">Gallery<span class="title-sparkle">✨</span></h2>
                     <div class="gallery-container">
                         <div class="gallery-grid" id="galleryGrid">
+                            <!-- Loading indicator -->
+                            <div id="galleryLoadingIndicator" class="section-loading-indicator">
+                                <div class="loading-spinner"></div>
+                                <p>Loading gallery...</p>
+                            </div>
                             <!-- Gallery items will be populated by JavaScript -->
                         </div>
                     </div>
@@ -2369,6 +2377,11 @@
                 <div class="container">
                     <h2 class="section-title">Development Journey<span class="title-sparkle">✨</span></h2>
                     <div class="timeline" id="timelineContainer">
+                        <!-- Loading indicator -->
+                        <div id="journeyLoadingIndicator" class="journey-loading-indicator">
+                            <div class="loading-spinner"></div>
+                            <p>Loading development journey...</p>
+                        </div>
                         <!-- Timeline items will be populated by JavaScript -->
                     </div>
                 </div>
@@ -2379,6 +2392,11 @@
                 <div class="container">
                     <h2 class="section-title">Unique Value Propositions<span class="title-sparkle">✨</span></h2>
                     <div class="spec-grid" id="specsGrid">
+                        <!-- Loading indicator -->
+                        <div id="specsLoadingIndicator" class="section-loading-indicator">
+                            <div class="loading-spinner"></div>
+                            <p>Loading specifications...</p>
+                        </div>
                         <!-- Spec cards will be populated by JavaScript -->
                     </div>
                 </div>
@@ -2418,6 +2436,11 @@
                 <div class="container">
                     <h2 class="section-title">Project Artifacts<span class="title-sparkle">💾</span></h2>
                     <div class="artifacts-grid" id="artifactsGrid">
+                        <!-- Loading indicator -->
+                        <div id="artifactsLoadingIndicator" class="section-loading-indicator">
+                            <div class="loading-spinner"></div>
+                            <p>Loading artifacts...</p>
+                        </div>
                         <!-- Artifacts will be populated by JavaScript -->
                     </div>
                 </div>
@@ -2480,6 +2503,26 @@
                     <button class="close-panel-btn" onclick="closeHotspotPanel()">&times;</button>
                     <h4 id="hotspot-title">Hotspot Title</h4>
                     <p id="hotspot-description">Hotspot description will appear here.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Markdown Modal for Artifacts -->
+        <div id="markdown-modal" class="markdown-modal-overlay" style="display: none;">
+            <div class="markdown-modal-content">
+                <div class="markdown-modal-header">
+                    <h3 class="markdown-modal-title" id="markdown-modal-title">Document</h3>
+                                    <div class="markdown-modal-controls">
+                    <!-- Print and Download buttons temporarily disabled - see README.md for future plans -->
+                    <button class="markdown-btn" disabled title="Print document (coming soon)">🖨️</button>
+                    <button class="markdown-btn" disabled title="Download document (coming soon)">💾</button>
+                    <button class="markdown-modal-close" onclick="closeMarkdownModal()">&times;</button>
+                </div>
+                </div>
+                <div class="markdown-modal-body">
+                    <div class="markdown-content" id="markdown-modal-content">
+                        <!-- Markdown content will be rendered here -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -2915,16 +2958,38 @@
             // Gallery functionality with hotspots support
             function populateGallery(project) {
                 const galleryGrid = document.getElementById('galleryGrid');
+                const loadingIndicator = document.getElementById('galleryLoadingIndicator');
+                
                 if (!galleryGrid) return;
 
+                // Show loading indicator initially
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'flex';
+                }
+
                 console.log('Populating gallery for:', project.title);
+                
+                // Clear existing content
                 galleryGrid.innerHTML = '';
 
-                const gallery = project.gallery || [];
-                if (gallery.length === 0) {
-                    galleryGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No gallery images available for this project.</p>';
-                    return;
+                // Add loading indicator back
+                if (loadingIndicator) {
+                    galleryGrid.appendChild(loadingIndicator);
                 }
+
+                // Simulate loading delay for better UX
+                setTimeout(() => {
+                    const gallery = project.gallery || [];
+                    
+                    // Hide loading indicator
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                    
+                    if (gallery.length === 0) {
+                        galleryGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No gallery images available for this project.</p>';
+                        return;
+                    }
 
                 gallery.forEach((item, index) => {
                     const galleryItem = document.createElement('div');
@@ -2958,7 +3023,10 @@
 
                 // Setup gallery parallax after population
                 setTimeout(setupGalleryParallax, 100);
-            }
+                
+                console.log('Gallery content loaded successfully');
+            }, 400); // 400ms delay for better UX
+        }
 
             // Gallery Modal Functions
             function openGalleryModal(project, startIndex = 0) {
@@ -3219,6 +3287,18 @@
                 console.log('DOM loaded, initializing particle system...');
                 initializeDynamicProject();
                 
+                // Initialize markdown renderer
+                console.log('📚 Initializing markdown renderer...');
+                if (typeof initializeMarkdownRenderer === 'function') {
+                    initializeMarkdownRenderer().then(() => {
+                        console.log('✅ Markdown renderer initialized');
+                    }).catch(error => {
+                        console.warn('⚠️ Markdown renderer initialization failed:', error);
+                    });
+                } else {
+                    console.warn('⚠️ Markdown renderer function not found');
+                }
+                
                 // Force particle creation after a short delay to ensure everything is ready
                 setTimeout(() => {
                     if (supportsParallax() && motionEnabled) {
@@ -3231,110 +3311,345 @@
             // Journey Timeline Population
             function populateJourney(project) {
                 const timelineContainer = document.getElementById('timelineContainer');
+                const loadingIndicator = document.getElementById('journeyLoadingIndicator');
+                
                 if (!timelineContainer) return;
 
-                timelineContainer.innerHTML = '';
-
-                const journey = project.journey || [];
-                if (journey.length === 0) {
-                    timelineContainer.innerHTML = `
-                        <div style="text-align: center; color: white; padding: 4rem 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
-                            <h3 style="margin-bottom: 1rem; color: #ff8c00; font-size: 1.5rem;">Development Journey</h3>
-                            <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.9;">No journey information available for this project yet. Check back soon for updates on the development process!</p>
-                        </div>
-                    `;
-                    return;
+                // Show loading indicator initially
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'flex';
                 }
 
-                journey.forEach((item, index) => {
-                    const timelineItem = document.createElement('div');
-                    timelineItem.className = 'timeline-item';
-                    timelineItem.innerHTML = `
-                        <div class="timeline-content">
-                            <h3>${item.title}</h3>
-                            <p>${item.description}</p>
-                        </div>
-                    `;
-                    timelineContainer.appendChild(timelineItem);
-                    
-                    // Add staggered delay for sequential appearance
-                    timelineItem.style.transitionDelay = `${index * 0.2}s`;
-                });
+                // Clear existing content
+                timelineContainer.innerHTML = '';
 
-                // Setup timeline scroll animation
-                setupTimelineScrollAnimation();
+                // Add loading indicator back
+                if (loadingIndicator) {
+                    timelineContainer.appendChild(loadingIndicator);
+                }
+
+                // Simulate loading delay for better UX (remove this in production if not needed)
+                setTimeout(() => {
+                    const journey = project.journey || [];
+                    
+                    // Hide loading indicator
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                    
+                    if (journey.length === 0) {
+                        timelineContainer.innerHTML = `
+                            <div style="text-align: center; color: white; padding: 4rem 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                                <h3 style="margin-bottom: 1rem; color: #ff8c00; font-size: 1.5rem;">Development Journey</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.9;">No journey information available for this project yet. Check back soon for updates on the development process!</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    journey.forEach((item, index) => {
+                        const timelineItem = document.createElement('div');
+                        timelineItem.className = 'timeline-item';
+                        timelineItem.innerHTML = `
+                            <div class="timeline-content">
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                            </div>
+                        `;
+                        timelineContainer.appendChild(timelineItem);
+                        
+                        // Add staggered delay for sequential appearance
+                        timelineItem.style.transitionDelay = `${index * 0.2}s`;
+                    });
+
+                    // Setup timeline scroll animation
+                    setupTimelineScrollAnimation();
+                    
+                    console.log('Journey content loaded successfully');
+                }, 500); // 500ms delay for better UX
             }
 
             // Specs Population
             function populateSpecs(project) {
                 const specsGrid = document.getElementById('specsGrid');
+                const loadingIndicator = document.getElementById('specsLoadingIndicator');
+                
                 if (!specsGrid) return;
 
-                console.log('Populating specs for:', project.title);
-                specsGrid.innerHTML = '';
-
-                const specs = project.specs || [];
-                if (specs.length === 0) {
-                    specsGrid.innerHTML = `
-                        <div style="text-align: center; color: white; padding: 4rem 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
-                            <h3 style="margin-bottom: 1rem; color: #ff8c00; font-size: 1.5rem;">Unique Value Propositions</h3>
-                            <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.9;">No specifications available for this project yet. Check back soon for technical details and unique features!</p>
-                        </div>
-                    `;
-                    return;
+                // Show loading indicator initially
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'flex';
                 }
 
-                specs.forEach((spec, index) => {
-                    const specCard = document.createElement('div');
-                    specCard.className = 'spec-card';
+                console.log('Populating specs for:', project.title);
+                
+                // Clear existing content
+                specsGrid.innerHTML = '';
+
+                // Add loading indicator back
+                if (loadingIndicator) {
+                    specsGrid.appendChild(loadingIndicator);
+                }
+
+                // Simulate loading delay for better UX
+                setTimeout(() => {
+                    const specs = project.specs || [];
                     
-                    // Handle markdown content if available
-                    let content = spec.description;
-                    if (spec.markdown) {
-                        content = spec.markdown;
+                    // Hide loading indicator
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
                     }
                     
-                    specCard.innerHTML = `
-                        <div class="floating-icon">⚡</div>
-                        <div class="bg-pattern"></div>
-                        <div class="particle-effect"></div>
-                        <h3>${spec.title}</h3>
-                        <div class="spec-content">
-                            <div class="markdown-content">${content}</div>
-                        </div>
-                    `;
-                    specsGrid.appendChild(specCard);
-                });
+                    if (specs.length === 0) {
+                        specsGrid.innerHTML = `
+                            <div style="text-align: center; color: white; padding: 4rem 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                                <h3 style="margin-bottom: 1rem; color: #ff8c00; font-size: 1.5rem;">Unique Value Propositions</h3>
+                                <p style="font-size: 1.1rem; line-height: 1.6; opacity: 0.9;">No specifications available for this project yet. Check back soon for technical details and unique features!</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    specs.forEach((spec, index) => {
+                        const specCard = document.createElement('div');
+                        specCard.className = 'spec-card';
+                        
+                        // Handle markdown content if available
+                        let content = spec.description;
+                        if (spec.markdown) {
+                            content = spec.markdown;
+                        }
+                        
+                        specCard.innerHTML = `
+                            <div class="floating-icon">⚡</div>
+                            <div class="bg-pattern"></div>
+                            <div class="particle-effect"></div>
+                            <h3>${spec.title}</h3>
+                            <div class="spec-content">
+                                <div class="markdown-content">${content}</div>
+                            </div>
+                        `;
+                        specsGrid.appendChild(specCard);
+                    });
+                    
+                    console.log('Specs content loaded successfully');
+                }, 300); // 300ms delay for better UX
             }
 
             // Artifacts Population for Code Projects
             function populateArtifacts(project) {
                 const artifactsGrid = document.getElementById('artifactsGrid');
+                const loadingIndicator = document.getElementById('artifactsLoadingIndicator');
+                
                 if (!artifactsGrid) return;
 
-                console.log('Populating artifacts for:', project.title);
-                artifactsGrid.innerHTML = '';
-
-                const artifacts = project.artifacts || [];
-                if (artifacts.length === 0) {
-                    artifactsGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No project artifacts available for this project.</p>';
-                    return;
+                // Show loading indicator initially
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'flex';
                 }
 
-                artifacts.forEach(artifact => {
-                    const artifactCard = document.createElement('a');
-                    artifactCard.className = 'artifact-card';
-                    artifactCard.href = artifact.url || '#';
-                    artifactCard.target = artifact.url?.startsWith('http') ? '_blank' : '_self';
+                console.log('Populating artifacts for:', project.title);
+                
+                // Clear existing content
+                artifactsGrid.innerHTML = '';
+
+                // Add loading indicator back
+                if (loadingIndicator) {
+                    artifactsGrid.appendChild(loadingIndicator);
+                }
+
+                // Simulate loading delay for better UX
+                setTimeout(() => {
+                    const artifacts = project.artifacts || [];
                     
-                    artifactCard.innerHTML = `
-                        <span class="icon">${artifact.icon || '📄'}</span>
-                        <h3>${artifact.name || artifact.title}</h3>
-                        <p>${artifact.description}</p>
-                        ${artifact.type ? `<span class="artifact-type">${artifact.type}</span>` : ''}
-                    `;
-                    artifactsGrid.appendChild(artifactCard);
-                });
+                    // Hide loading indicator
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                    
+                    if (artifacts.length === 0) {
+                        artifactsGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No project artifacts available for this project.</p>';
+                        return;
+                    }
+
+                    artifacts.forEach(artifact => {
+                        const artifactCard = document.createElement('div');
+                        artifactCard.className = 'artifact-card';
+                        
+                        // Determine if this is a markdown file
+                        const isMarkdown = artifact.url && (artifact.url.endsWith('.md') || artifact.url.includes('.md'));
+                        const isExternal = artifact.url && artifact.url.startsWith('http');
+                        
+                        if (isMarkdown) {
+                            // For markdown files, create a button that opens the modal
+                            artifactCard.addEventListener('click', () => {
+                                openArtifactMarkdownModal(artifact.url, artifact.name || artifact.title);
+                            });
+                            artifactCard.style.cursor = 'pointer';
+                        } else if (isExternal) {
+                            // For external links, create a link that opens in new tab
+                            artifactCard.addEventListener('click', () => {
+                                window.open(artifact.url, '_blank');
+                            });
+                            artifactCard.style.cursor = 'pointer';
+                        } else if (artifact.url && artifact.url !== '#') {
+                            // For local files, create a download link
+                            artifactCard.addEventListener('click', () => {
+                                downloadArtifact(artifact.url, artifact.name || artifact.title);
+                            });
+                            artifactCard.style.cursor = 'pointer';
+                        }
+                        
+                        artifactCard.innerHTML = `
+                            <span class="artifact-icon">${artifact.icon || '📄'}</span>
+                            <h4>${artifact.name || artifact.title}</h4>
+                            <p>${artifact.description}</p>
+                            ${isMarkdown ? '<span class="artifact-link-icon">📖</span>' : ''}
+                            ${isExternal ? '<span class="artifact-link-icon">🔗</span>' : ''}
+                            ${!isMarkdown && !isExternal && artifact.url && artifact.url !== '#' ? '<span class="artifact-link-icon">💾</span>' : ''}
+                        `;
+                        artifactsGrid.appendChild(artifactCard);
+                    });
+                    
+                    console.log('Artifacts content loaded successfully');
+                }, 300); // 300ms delay for better UX
+            }
+
+            // Function to open markdown files in modal
+            async function openArtifactMarkdownModal(url, title) {
+                try {
+                    console.log('Opening markdown modal for:', url, title);
+                    
+                    // Show loading state
+                    const modal = document.getElementById('markdown-modal');
+                    const modalTitle = document.getElementById('markdown-modal-title');
+                    const modalContent = document.getElementById('markdown-modal-content');
+                    
+                    if (!modal || !modalTitle || !modalContent) {
+                        console.error('Modal elements not found:', { modal: !!modal, modalTitle: !!modalTitle, modalContent: !!modalContent });
+                        return;
+                    }
+                    
+                    modalTitle.textContent = title;
+                    modalContent.innerHTML = '<div class="markdown-loading">Loading document...</div>';
+                    modal.style.display = 'flex';
+                    
+                    console.log('Modal displayed, fetching content from:', url);
+                    
+                    // Fetch the markdown content
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const markdownContent = await response.text();
+                    console.log('Markdown content loaded, length:', markdownContent.length);
+                    
+                    // Render the markdown content
+                    if (typeof renderMarkdown === 'function') {
+                        console.log('renderMarkdown function found, rendering...');
+                        const htmlContent = renderMarkdown(markdownContent);
+                        console.log('Markdown rendered to HTML, length:', htmlContent.length);
+                        modalContent.innerHTML = htmlContent;
+                        
+                        // Apply syntax highlighting if Prism is available
+                        if (typeof Prism !== 'undefined') {
+                            console.log('Prism found, applying syntax highlighting...');
+                            Prism.highlightAllUnder(modalContent);
+                        } else {
+                            console.log('Prism not available for syntax highlighting');
+                        }
+                    } else {
+                        console.warn('renderMarkdown function not found, using fallback');
+                        // Fallback: display as plain text
+                        modalContent.innerHTML = `<pre>${markdownContent}</pre>`;
+                    }
+                    
+                    console.log('Modal content updated successfully');
+                    
+                } catch (error) {
+                    console.error('Error loading markdown file:', error);
+                    const modalContent = document.getElementById('markdown-modal-content');
+                    if (modalContent) {
+                        modalContent.innerHTML = `
+                            <div class="markdown-error">
+                                <h3>Error Loading Document</h3>
+                                <p>Could not load the document from: ${url}</p>
+                                <details>
+                                    <summary>Error Details</summary>
+                                    <pre>${error.message}</pre>
+                                </details>
+                            </div>
+                        `;
+                    }
+                }
+            }
+
+            // Function to download artifacts
+            function downloadArtifact(url, filename) {
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename || 'artifact';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            // Function to close markdown modal
+            function closeMarkdownModal() {
+                const modal = document.getElementById('markdown-modal');
+                const modalContent = document.getElementById('markdown-modal-content');
+                
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+                
+                if (modalContent) {
+                    // Clear the content to free up memory
+                    modalContent.innerHTML = '';
+                }
+                
+                console.log('Markdown modal closed and cleaned up');
+            }
+
+            // Function to print markdown content
+            function printMarkdownContent() {
+                const modalContent = document.getElementById('markdown-modal-content');
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <html>
+                        <head>
+                            <title>Print Document</title>
+                            <link rel="stylesheet" href="styles/markdown-styles.css">
+                            <style>
+                                body { font-family: Arial, sans-serif; margin: 20px; }
+                                .markdown-content { max-width: none; }
+                            </style>
+                        </head>
+                        <body>
+                            ${modalContent.innerHTML}
+                        </body>
+                    </html>
+                `);
+                printWindow.document.close();
+                printWindow.print();
+            }
+
+            // Function to download markdown content
+            function downloadMarkdownContent() {
+                const modalTitle = document.getElementById('markdown-modal-title');
+                const modalContent = document.getElementById('markdown-modal-content');
+                const filename = `${modalTitle.textContent.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.html`;
+                
+                const blob = new Blob([modalContent.innerHTML], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
             }
 
             // Links Population
@@ -3626,6 +3941,19 @@
                 if (e.target.id === 'gallery-modal') {
                     closeGalleryModal();
                 }
+                if (e.target.id === 'markdown-modal') {
+                    closeMarkdownModal();
+                }
+            });
+
+            // Add keyboard support for modals
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeMarkdownModal();
+                    if (galleryModal && galleryModal.style.display === 'flex') {
+                        galleryModal.style.display = 'none';
+                    }
+                }
             });
 
             // Keep the existing motion and parallax functions from the original file
@@ -3797,6 +4125,9 @@
                 container.innerHTML = sanitized;
             }
         </script>
+
+        <!-- Markdown Renderer Script -->
+        <script src="js/markdown-renderer.js"></script>
     </body>
     </html>
     ```
