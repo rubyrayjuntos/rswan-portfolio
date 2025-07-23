@@ -2770,7 +2770,9 @@
                 updateOverviewSection(project);
 
                 // Show/hide sections based on project medium
+                console.log('About to call showRelevantSections for project:', project.title);
                 showRelevantSections(project);
+                console.log('showRelevantSections completed');
 
                 // Populate sections
                 populateGallery(project);
@@ -2914,6 +2916,7 @@
             }
 
             function showRelevantSections(project) {
+                console.log('showRelevantSections function called');
                 // Hide all medium-specific sections first
                 const sections = {
                     artifacts: document.getElementById('artifacts'),
@@ -2923,6 +2926,15 @@
                     themes: document.getElementById('themes'),
                     journey: document.getElementById('journey')
                 };
+                
+                console.log('Sections found:', {
+                    artifacts: !!sections.artifacts,
+                    process: !!sections.process,
+                    inspiration: !!sections.inspiration,
+                    excerpts: !!sections.excerpts,
+                    themes: !!sections.themes,
+                    journey: !!sections.journey
+                });
 
                 // Hide all sections initially
                 Object.entries(sections).forEach(([key, section]) => {
@@ -2932,6 +2944,7 @@
                 });
 
                 // Show relevant sections based on medium
+                console.log('Project medium for section display:', project.medium);
                 switch (project.medium?.toLowerCase()) {
                     case 'code':
                         // Show journey section for code projects
@@ -2944,6 +2957,7 @@
                         }
                         break;
                     case 'art':
+                        console.log('Processing art project sections');
                         // Don't show journey section for art projects (Ken Burns effects not implemented)
                         if (sections.process) {
                             sections.process.style.display = 'block';
