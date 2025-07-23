@@ -2030,6 +2030,32 @@
                 color: var(--text-primary);
             }
 
+            /* Process and Inspiration content styling */
+            .process-content, .inspiration-content {
+                position: relative;
+                z-index: 1;
+                padding: 2rem;
+                color: var(--text-primary);
+                line-height: 1.7;
+            }
+
+            .process-content h3, .inspiration-content h3 {
+                color: var(--accent-primary);
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+            }
+
+            .process-content h4, .inspiration-content h4 {
+                color: var(--accent-secondary);
+                margin: 1.5rem 0 0.5rem 0;
+                font-size: 1.2rem;
+            }
+
+            .process-content p, .inspiration-content p {
+                margin-bottom: 1rem;
+                color: var(--text-primary);
+            }
+
             /* Bottom Padding Section for Scroll Space */
             .bottom-padding-section {
                 min-height: 50vh;
@@ -2974,7 +3000,7 @@
                                 if (processSection) {
                                     const newProcessContent = document.createElement('div');
                                     newProcessContent.id = 'processContent';
-                                    newProcessContent.className = 'section-content';
+                                    newProcessContent.className = 'process-content';
                                     processSection.appendChild(newProcessContent);
                                     renderValidatedHTML(newProcessContent, project.process || '<p>Details on the creative process for this project are coming soon.</p>');
                                     console.log('New process content rendered, innerHTML length:', newProcessContent.innerHTML.length);
@@ -3000,7 +3026,7 @@
                                 if (inspirationSection) {
                                     const newInspirationContent = document.createElement('div');
                                     newInspirationContent.id = 'inspirationContent';
-                                    newInspirationContent.className = 'section-content';
+                                    newInspirationContent.className = 'inspiration-content';
                                     inspirationSection.appendChild(newInspirationContent);
                                     renderValidatedHTML(newInspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project are coming soon.</p>');
                                     console.log('New inspiration content rendered, innerHTML length:', newInspirationContent.innerHTML.length);
