@@ -2384,6 +2384,8 @@
                         </div>
                         <!-- Timeline items will be populated by JavaScript -->
                     </div>
+                    <!-- Journey particles container for cosmic background effects -->
+                    <div class="journey-particles" aria-hidden="true"></div>
                 </div>
             </section>
     
@@ -3301,9 +3303,15 @@
                 
                 // Force particle creation after a short delay to ensure everything is ready
                 setTimeout(() => {
+                    console.log('Checking particle creation conditions:', {
+                        supportsParallax: supportsParallax(),
+                        motionEnabled: motionEnabled
+                    });
                     if (supportsParallax() && motionEnabled) {
                         console.log('Forcing particle creation...');
                         createParticles();
+                    } else {
+                        console.log('Particle creation skipped - parallax:', supportsParallax(), 'motion:', motionEnabled);
                     }
                 }, 500);
             });
@@ -3763,7 +3771,10 @@
             // Create journey-specific particles
             function createJourneyParticles() {
                 const journeyContainer = document.querySelector('.journey-particles');
-                if (!journeyContainer) return;
+                if (!journeyContainer) {
+                    console.warn('Journey particles container not found');
+                    return;
+                }
                 
                 // Clear existing journey particles
                 journeyContainer.innerHTML = '';
