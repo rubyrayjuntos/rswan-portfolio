@@ -958,6 +958,7 @@
     color: white;
     text-align: center;
     margin: 2rem auto;
+    width: 100%;
     max-width: 600px;
 }
 
@@ -991,6 +992,7 @@
     color: var(--text-primary);
     text-align: center;
     margin: 2rem auto;
+    width: 100%;
     max-width: 500px;
 }
 
