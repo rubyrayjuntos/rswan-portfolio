@@ -33,33 +33,15 @@
                   "github":  "https://github.com/rayswan/brand-identity-workflow",
                   "demo":  "https://brand-workflow-demo.streamlit.app"
               },
-    "pitch":  "An advanced multi-agent system that automates complete brand identity creation and marketing strategy development using AI orchestration.",
+    "pitch":  "The Advanced Multi-Agent System (MAS) is a sophisticated AI-powered workflow designed for comprehensive brand identity management and marketing strategy development. Built on the CrewAI framework, this system implements a hierarchical agent architecture that orchestrates specialized AI agents to deliver structured, production-ready brand assets and marketing strategies.",
     "challenge":  "Creating a sophisticated workflow that can generate production-ready brand assets and marketing strategies through intelligent agent coordination while maintaining structured, validated outputs.",
     "development":  "Built with CrewAI framework implementing hierarchical agent architecture, Pydantic models for data validation, and multiple deployment options from simple HTML interface to advanced multi-agent system.",
-    "outcome":  "A comprehensive brand identity automation system that delivers structured, production-ready brand assets and marketing strategies with both simple and advanced implementation options.",
+    "outcome":  "A comprehensive brand identity automation system that delivers structured, production-ready brand assets and marketing strategies with both simple and advanced implementation options.AI agent types: brand identity, worker agent (logo concept designer), worker agent (color palette specialist), worker agent (visual style guide creator), manager agent (marketing campaign coordinator), worker agent (social media content strategist), worker agent (email marketing strategist), worker agent (social media video producer)",
     "gallery":  [
                     {
-                        "url":  "dashboard.jpg",
-                        "title":  "Multi-Agent System Architecture",
-                        "description":  "Hierarchical agent coordination for brand identity creation",
-                        "dimensions":  "1200x800"
-                    },
-                    {
-                        "url":  "character-brainstorming.jpg",
-                        "title":  "Simple HTML Interface",
-                        "description":  "Zero-setup brand identity generator with OpenAI integration",
-                        "dimensions":  "1200x800"
-                    },
-                    {
-                        "url":  "graphic-novel-card-hero.JPG",
+                        "url":  "card-hero.JPG",
                         "title":  "Generated Brand Assets",
                         "description":  "Complete brand identity package including logos, colors, and style guides",
-                        "dimensions":  "1200x800"
-                    },
-                    {
-                        "url":  "manuscript-view.jpg",
-                        "title":  "Marketing Strategy Output",
-                        "description":  "Comprehensive marketing strategies across multiple channels",
                         "dimensions":  "1200x800"
                     }
                 ],
@@ -91,21 +73,20 @@
                 ],
     "specs":  [
                   {
-                      "title":  "Architecture",
-                      "description":  "Hierarchical multi-agent system with manager agents coordinating specialized worker agents for brand identity and marketing tasks",
-                      "markdown":  "# System Architecture\n\n## Overview\nThe Brand Identity Management Workflow uses a **hierarchical multi-agent system** where manager agents coordinate specialized worker agents.\n\n## Agent Hierarchy\n\n### Manager Agents\n- **Brand Identity Coordinator**: Orchestrates the entire brand creation process\n- **Marketing Strategy Coordinator**: Manages marketing campaign development\n\n### Worker Agents\n- **Logo Designer**: Creates logo concepts and variations\n- **Color Specialist**: Develops color palettes and schemes\n- **Style Guide Creator**: Generates comprehensive style guides\n- **Social Media Strategist**: Plans social media campaigns\n- **Email Marketer**: Designs email marketing sequences\n- **Video Producer**: Creates video content strategies\n\n## Data Flow\n```mermaid\ngraph TD\n    A[User Input] --\u003e B[Brand Coordinator]\n    B --\u003e C[Logo Designer]\n    B --\u003e D[Color Specialist]\n    B --\u003e E[Style Guide Creator]\n    B --\u003e F[Marketing Coordinator]\n    F --\u003e G[Social Media Strategist]\n    F --\u003e H[Email Marketer]\n    F --\u003e I[Video Producer]\n```\n\n## Benefits\n- **Scalable**: Easy to add new agent types\n- **Modular**: Each agent has a specific responsibility\n- **Reliable**: Structured data validation at each step"
+                      "title":  "Hierarchical Management",
+                      "description":  "Manager agents coordinate worker agents for specialized tasks, efficient task distribution and execution, clear responsibility separation."
                   },
                   {
-                      "title":  "Technology Stack",
-                      "description":  "Python 3.8+, CrewAI framework, OpenAI API integration, Pydantic for data validation, Streamlit for GUI, and pure HTML/CSS/JS for simple interface"
+                      "title":  "Structured Data Flow",
+                      "description":  "Pydantic models ensure consistent, validated outputs, type safety and data integrity enforcement, consistent data structure across all agents."
                   },
                   {
-                      "title":  "Agent Types",
-                      "description":  "8 specialized agents: 4 for brand identity (coordinator, logo designer, color specialist, style guide creator) and 4 for marketing (coordinator, social media strategist, email marketer, video producer)"
+                      "title":  "Modular Design",
+                      "description":  "Separate concerns between brand identity and marketing workflows,modular agent and tool design "
                   },
                   {
-                      "title":  "Output Models",
-                      "description":  "Structured Pydantic models for LogoConcept, ColorPalette, StyleGuide, SocialMediaStrategy, EmailMarketingStrategy, and VideoContentStrategy"
+                      "title":  "Extensible Framework",
+                      "description":  "Easy addition of new agents, tools, and output types. Easy addition of new capabilities, scalable workflow management."
                   },
                   {
                       "title":  "Deployment Options",
@@ -167,16 +148,16 @@
                       }
                   ],
     "features":  [
-                     "Hierarchical Multi-Agent Orchestration",
-                     "Structured Data Validation with Pydantic",
-                     "Complete Brand Identity Generation",
-                     "Multi-Channel Marketing Strategy Development",
-                     "Zero-Setup HTML Interface",
-                     "Advanced CrewAI-Based System",
-                     "Real-time API Integration",
-                     "Comprehensive Documentation",
-                     "Multiple Deployment Options",
-                     "Cost-Effective AI Generation"
+                     "Brand Logo Concept: name, description, rationale, style, use cases, variations.",
+                     "Brand Color Palette: primary (name, hex, rgb, cmyk, usage, psychology), secondary, accent, neutral, rationale, accessibiltiy notes, additional colors",
+                     "Brand Style Guide: brand overview, guidelines, color guidelines, typography (Primary and Secondary fonts, font weights and sizes, usage guidelines), imagery style (Photography style, illustration style, icon style, examples), digital guidelines",
+                     "Brand Identity: brand voice, target audience, industry",
+                     "Brand Social Media Posts with captions, hastags, visual concepts, call to action, optimal posting time, and engagement tips",
+                     "Email Campaing Model: campaign type, subject line, preheader, body content, coall to action, cta link, personalization fields, automation triggers.",
+                     "Email Marketing Strategy: campaigns, design guidelines, personalization strategies, automation workflows, performance metrics",
+                     "Video script and content: conecpt, duration, aspect ratio, script, production notes, call to action, videos, content themes, production guidelines, platform specific requirements",
+                     "Brand Brief: industry, target audience, brand values, style preference, desire mood, brand voice, mission, vision, competitors, unique selling proposition, marketing goals, budget considerations, timeline",
+                     "Workflow Result: brand briefs, brand identity, marketing, metadata"
                  ],
     "achievements":  [
                          "Reduced brand identity creation time from weeks to minutes",

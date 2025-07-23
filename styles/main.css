@@ -263,13 +263,17 @@ h1, h2, h3, h4, h5, h6 {
 .modal-content {
     background: var(--bg-primary);
     border-radius: var(--border-radius-lg);
+    border: 2px solid rgba(128, 128, 128, 0.6);
     box-shadow: var(--neu-outset);
     padding: 40px;
     width: 90%;
     max-width: 650px;
+    max-height: 90vh;
     position: relative;
     transform: scale(0.95);
     transition: transform var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-overlay.is-visible .modal-content {
@@ -286,6 +290,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-secondary);
     cursor: pointer;
     transition: color var(--transition-speed) ease;
+    z-index: 10;
 }
 
 .modal-close-btn:hover {
@@ -297,6 +302,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 20px;
     border-bottom: 2px solid var(--bg-secondary);
     margin-bottom: 30px;
+    flex-shrink: 0;
 }
 
 .tab-button {
@@ -316,6 +322,30 @@ h1, h2, h3, h4, h5, h6 {
 .tab-button.active {
     color: var(--accent-primary);
     border-bottom-color: var(--accent-primary);
+}
+
+.modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
 }
 
 .modal-body .tab-content {

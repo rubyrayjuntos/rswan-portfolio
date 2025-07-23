@@ -134,5 +134,55 @@
                       "title":  "User Experience",
                       "description":  "Clean, modern UI with calming dark-grays and vibrant blue accents, emphasizing typography and readability for focused creative work"
                   }
-              ]
+              ],
+    "artifacts":  [
+                      {
+                          "name":  "System Architecture",
+                          "description":  "Comprehensive multi-agent system architecture showing agent interactions and data flow",
+                          "url":  "_data/projects/nova-writers-conspiracy/architecture.md",
+                          "icon":  "🏗️"
+                      },
+                      {
+                          "name":  "API Documentation",
+                          "description":  "Complete FastAPI endpoint documentation with request/response schemas",
+                          "url":  "https://nova-writers-conspiracy.demo.rs@RSwan.org/api/docs",
+                          "icon":  "🔌"
+                      },
+                      {
+                          "name":  "GitHub Repository",
+                          "description":  "Primary source code repository with full implementation",
+                          "url":  "https://github.com/rubyrayjuntos/nova-writers-conspiracy",
+                          "icon":  "⭐"
+                      },
+                      {
+                          "name":  "Agent Workflow Diagrams",
+                          "description":  "Visual breakdown of how different AI agents interact to generate content",
+                          "url":  "_data/projects/nova-writers-conspiracy/agent-workflows.md",
+                          "icon":  "🗺️"
+                      },
+                      {
+                          "name":  "Memory Service Documentation",
+                          "description":  "Detailed documentation of the marker-indexed context handling system",
+                          "url":  "_data/projects/nova-writers-conspiracy/memory-service.md",
+                          "icon":  "🧠"
+                      },
+                      {
+                          "name":  "Deployment Guide",
+                          "description":  "Step-by-step instructions for deploying the multi-agent system",
+                          "url":  "_data/projects/nova-writers-conspiracy/deployment.md",
+                          "icon":  "🚀"
+                      },
+                      {
+                          "name":  "Technical Specifications",
+                          "description":  "Detailed technical specifications and implementation details",
+                          "url":  "_data/projects/nova-writers-conspiracy/technical-specs.md",
+                          "icon":  "📋"
+                      },
+                      {
+                          "name":  "User Guide",
+                          "description":  "Comprehensive user guide for the collaboration dashboard and agent interactions",
+                          "url":  "_data/projects/nova-writers-conspiracy/user-guide.md",
+                          "icon":  "📖"
+                      }
+                  ]
 }

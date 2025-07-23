@@ -106,5 +106,55 @@
                       "title":  "Performance",
                       "description":  "Smooth 60fps gameplay optimized for mobile hardware"
                   }
-              ]
+              ],
+    "artifacts":  [
+                      {
+                          "name":  "Game Design Document",
+                          "description":  "Complete game design specification including mechanics, controls, and gameplay flow",
+                          "url":  "_data/projects/asteroids/game-design.md",
+                          "icon":  "🎮"
+                      },
+                      {
+                          "name":  "Technical Architecture",
+                          "description":  "Detailed technical architecture showing game engine structure and optimization",
+                          "url":  "_data/projects/asteroids/technical-architecture.md",
+                          "icon":  "🏗️"
+                      },
+                      {
+                          "name":  "GitHub Repository",
+                          "description":  "Source code repository with full game implementation",
+                          "url":  "#",
+                          "icon":  "⭐"
+                      },
+                      {
+                          "name":  "Performance Benchmarks",
+                          "description":  "Mobile performance testing results and optimization strategies",
+                          "url":  "_data/projects/asteroids/performance-benchmarks.md",
+                          "icon":  "⚡"
+                      },
+                      {
+                          "name":  "Touch Control Design",
+                          "description":  "Detailed documentation of touch control adaptation from keyboard/mouse input",
+                          "url":  "_data/projects/asteroids/touch-controls.md",
+                          "icon":  "👆"
+                      },
+                      {
+                          "name":  "Cross-Platform Testing",
+                          "description":  "Comprehensive testing results across different mobile devices and browsers",
+                          "url":  "_data/projects/asteroids/cross-platform-testing.md",
+                          "icon":  "📱"
+                      },
+                      {
+                          "name":  "User Testing Results",
+                          "description":  "User feedback and testing results that informed control refinements",
+                          "url":  "_data/projects/asteroids/user-testing.md",
+                          "icon":  "👥"
+                      },
+                      {
+                          "name":  "Deployment Guide",
+                          "description":  "Step-by-step instructions for deploying the game to mobile platforms",
+                          "url":  "_data/projects/asteroids/deployment.md",
+                          "icon":  "🚀"
+                      }
+                  ]
 }

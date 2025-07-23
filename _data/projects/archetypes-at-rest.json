@@ -1,7 +1,8 @@
 {
     "id":  17,
     "title":  "Archetypes at Rest: The Tarot in Ordinary Time",
-    "description":  "A series that reframes timeless tarot archetypes by placing them in mundane, contemporary scenes, suggesting we encounter the divine not on distant metaphysical planes but in our own quiet moments.",
+    "description":  "<p style='margin-bottom: 1rem; color: #333;'>What happens when archetypes are stripped of their 'mystical' costumes and shown as just humans at the bus stop, in a diner, or doing laundry? Are they still divine? Are we?</p>",
+
     "imageUrl":  "card-hero.jpg",
     "medium":  "art",
     "genre":  [
@@ -35,12 +36,12 @@
     "challenge":  "The core challenge was to transpose these sacred, powerful archetypes into mundane settings without losing their mythic resonance, creating a delicate balance between the divine and the everyday.",
     "development":  "Each piece began with extensive research into the chosen archetypes, followed by location scouting in everyday places. The goal was to find the perfect visual tension—the laundromat for Temperance, the diner for the Hierophant—that would spark a new conversation about these ancient symbols.",
     "outcome":  "The result is a collection of images that invite viewers to find the tarot’s wisdom in themselves, not as distant ideals but as everyday truths. Each piece asks: Which card are you playing today?",
-    "process":  "\u003ch3\u003eThe Sacred in the Banal\u003c/h3\u003e\u003cp\u003eThe creative process for \u003cem\u003eArchetypes at Rest\u003c/em\u003e was one of translation. It involved taking the grand, symbolic language of the tarot and finding its quiet echo in the modern world. Each composition is intentionally framed like a classical painting to elevate the scene, while the warm, glowing light suggests a universal divinity that persists even in the most ordinary moments.\u003c/p\u003e",
-    "inspiration":  "\u003ch3\u003eFinding the Mythic in the Mundane\u003c/h3\u003e\u003cp\u003eThis series was inspired by the idea that our lives are already full of myth and meaning—if only we stop to see them. It explores the tension and irony of placing timeless figures in contemporary contexts: the Hierophant\u0027s authority in a fast-food booth, the Lovers\u0027 sacred choice at a noisy bar. The goal is to make these archetypes more accessible, more human, and to encourage viewers to recognize these powerful forces within their own lives.\u003c/p\u003e",
+    "process": "<h3>The Sacred in the Banal</h3><p>The creative process for <em>Archetypes at Rest</em> was one of translation. It involved taking the grand, symbolic language of the tarot and finding its quiet echo in the modern world. Each composition is intentionally framed like a classical painting to elevate the scene, while the warm, glowing light suggests a universal divinity that persists even in the most ordinary moments.</p>",
+    "inspiration": "<h3>Finding the Mythic in the Mundane</h3><p>This series was inspired by the idea that our lives are already full of myth and meaning—if only we stop to see them. It explores the tension and irony of placing timeless figures in contemporary contexts: the Hierophant's authority in a fast-food booth, the Lovers' sacred choice at a noisy bar. The goal is to make these archetypes more accessible, more human, and to encourage viewers to recognize these powerful forces within their own lives.</p>",
     "gallery":  [
                     {
                         "url":  "lovers_devil.jpg",
-                        "title":  "The Lovers \u0026 The Devil",
+                        "title":  "The Lovers & The Devil",
                         "description":  "We begin at a rooftop bar. Golden light pools over two lovers leaning close, hands clasped in a silent vow. And yet — just there — the Devil smiles over his drink, a shadow at the edge of their joy. Notice the warm, seductive glow, but don’t miss the tension.",
                         "hotspots":  [
                                          {
@@ -59,14 +60,14 @@
                     },
                     {
                         "url":  "empress_death.jpg",
-                        "title":  "The Empress \u0026 Death",
+                        "title":  "The Empress & Death",
                         "description":  "Next we step into a greenhouse — lush and teeming with life. The Empress waters a blossom, her belly full of promise. And yet here too is Death, kneeling calmly among the soil. Their presence together doesn’t contradict, but completes.",
                         "hotspots":  [
                                          {
                                              "x":  45,
                                              "y":  30,
                                              "title":  "Fertile Creation",
-                                             "description":  "The Empress\u0027s pregnancy symbolizes creation, growth, and the persistence of life."
+                                             "description":  "The Empress's pregnancy symbolizes creation, growth, and the persistence of life."
                                          },
                                          {
                                              "x":  70,
@@ -78,7 +79,7 @@
                     },
                     {
                         "url":  "temperance_angel.jpg",
-                        "title":  "Temperance \u0026 The Angel",
+                        "title":  "Temperance & The Angel",
                         "description":  "Now we enter a laundromat at dusk. See the muted neon and rows of washers, yet here stand two angels performing their quiet ritual of balance. One pours water between pitchers, the other cradles a glowing cloth.",
                         "hotspots":  [
                                          {
@@ -97,14 +98,14 @@
                     },
                     {
                         "url":  "fool_priestess.jpg",
-                        "title":  "The Fool \u0026 The High Priestess",
+                        "title":  "The Fool & The High Priestess",
                         "description":  "Onward to a subway station — tiled, quiet, and yet alive. The Fool dances, his little dog following along. Across the platform, the High Priestess sits, serene, scroll in hand, among scattered pomegranate seeds.",
                         "hotspots":  [
                                          {
                                              "x":  40,
                                              "y":  60,
                                              "title":  "Innocent Joy",
-                                             "description":  "The Fool\u0027s carefree stride represents naive joy and spontaneous energy, unburdened by knowledge."
+                                             "description":  "The Fool's carefree stride represents naive joy and spontaneous energy, unburdened by knowledge."
                                          },
                                          {
                                              "x":  70,
@@ -117,7 +118,7 @@
                     {
                         "url":  "hierophant.jpg",
                         "title":  "The Hierophant",
-                        "description":  "Here we pause at a roadside diner. The Hierophant sits alone, a burger in hand, the sun setting beyond. Keys are etched into the diner\u0027s window, glowing faintly in the sunset.",
+                        "description":  "Here we pause at a roadside diner. The Hierophant sits alone, a burger in hand, the sun setting beyond. Keys are etched into the diner's window, glowing faintly in the sunset.",
                         "hotspots":  [
                                          {
                                              "x":  50,
@@ -135,7 +136,7 @@
                     },
                     {
                         "url":  "emperor_empress.jpg",
-                        "title":  "The Emperor \u0026 The Empress",
+                        "title":  "The Emperor & The Empress",
                         "description":  "In a modest living room, the Emperor reclines, orb in hand, while the Empress—wearing a polka-dot dress and crown—sweeps the floor. Power is as much care as command.",
                         "hotspots":  [
                                          {
@@ -148,13 +149,19 @@
                                              "x":  75,
                                              "y":  50,
                                              "title":  "Power in Repose",
-                                             "description":  "The ram, a symbol of the Emperor\u0027s power, sleeps peacefully at his feet, docile yet ever-present."
+                                             "description":  "The ram, a symbol of the Emperor's power, sleeps peacefully at his feet, docile yet ever-present."
+                                         },
+                                         {
+                                             "x":  50,
+                                             "y":  85,
+                                             "title":  "Domain of the Empress",
+                                             "description":  "Traditional tarot card depictions show the empress on a throne and behind her are fields of wheat, a river flowing through the landscape, and mountains. These symbolize the earth and abundance, tying the empress to crops and productivity. Here her domain is relegated to an image on a carpet, but still she tends her domain."
                                          }
                                      ]
                     },
                     {
                         "url":  "sun_moon.jpg",
-                        "title":  "The Sun \u0026 The Moon",
+                        "title":  "The Sun & The Moon",
                         "description":  "Finally, we arrive at a gas station under a moonlit sky. The Moon greets her dog as the Sun strides back laughing. These opposites are not in conflict but in harmony.",
                         "hotspots":  [
                                          {
@@ -178,7 +185,7 @@
                         "description":  "Fade-in, slight zoom-in on bar, golden halos shimmer"
                     },
                     {
-                        "title":  "Cycles of Life \u0026 Death",
+                        "title":  "Cycles of Life & Death",
                         "description":  "Pan up through greenhouse vines, fade to dusty soil"
                     },
                     {
@@ -186,15 +193,15 @@
                         "description":  "Parallax: laundry machines rotate subtly, neon flickers"
                     },
                     {
-                        "title":  "Innocence \u0026 Knowledge",
-                        "description":  "Scroll reveals each pillar (Boaz \u0026 Jachin), Fool dances past"
+                        "title":  "Innocence & Knowledge",
+                        "description":  "Scroll reveals each pillar (Boaz & Jachin), Fool dances past"
                     },
                     {
                         "title":  "Tradition in Decline?",
                         "description":  "Slow dolly toward diner booth, sun flares through window"
                     },
                     {
-                        "title":  "Domestic Power \u0026 Care",
+                        "title":  "Domestic Power & Care",
                         "description":  "Tilt-down from crown to broom in hand"
                     },
                     {

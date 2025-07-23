@@ -1732,37 +1732,84 @@
             /* Hotspot Styles */
             .hotspot-btn {
                 position: absolute;
-                width: 30px;
-                height: 30px;
+                width: 32px;
+                height: 32px;
                 border-radius: 50%;
-                background: rgba(255, 140, 0, 0.8);
-                border: 2px solid rgba(255, 255, 255, 0.9);
+                background: rgba(255, 140, 0, 0.9);
+                border: 3px solid rgba(255, 255, 255, 0.95);
                 color: white;
                 font-weight: bold;
-                font-size: 14px;
+                font-size: 16px;
                 cursor: pointer;
                 transform: translate(-50%, -50%);
                 transition: all 0.3s ease;
                 animation: hotspotPulse 2s infinite;
                 z-index: 100;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             }
 
             @keyframes hotspotPulse {
                 0% {
-                    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.7);
+                    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.3);
                 }
                 70% {
-                    box-shadow: 0 0 0 15px rgba(255, 140, 0, 0);
+                    box-shadow: 0 0 0 15px rgba(255, 140, 0, 0), 0 4px 12px rgba(0, 0, 0, 0.3);
                 }
                 100% {
-                    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0);
+                    box-shadow: 0 0 0 0 rgba(255, 140, 0, 0), 0 4px 12px rgba(0, 0, 0, 0.3);
                 }
             }
 
             .hotspot-btn:hover {
-                transform: translate(-50%, -50%) scale(1.2);
+                transform: translate(-50%, -50%) scale(1.3);
                 animation-play-state: paused;
                 background: rgba(255, 140, 0, 1);
+                border-color: rgba(255, 255, 255, 1);
+                box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+            }
+
+            .hotspot-btn:active {
+                transform: translate(-50%, -50%) scale(0.95);
+            }
+
+            /* Hotspot Count Indicator */
+            .hotspot-count {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                background: rgba(255, 140, 0, 0.9);
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                z-index: 101;
+                backdrop-filter: blur(10px);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Hotspot Tooltip */
+            .hotspot-tooltip {
+                position: absolute;
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+                font-size: 0.85rem;
+                white-space: nowrap;
+                opacity: 0;
+                transform: translateY(10px);
+                transition: all 0.3s ease;
+                pointer-events: none;
+                z-index: 102;
+                backdrop-filter: blur(5px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .hotspot-btn:hover .hotspot-tooltip {
+                opacity: 1;
+                transform: translateY(0);
             }
 
             .hotspot-detail-panel {
@@ -1770,18 +1817,18 @@
                 bottom: 2rem;
                 left: 50%;
                 transform: translateX(-50%) translateY(20px);
-                background: rgba(0, 0, 0, 0.9);
-                backdrop-filter: blur(15px);
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
                 color: white;
-                padding: 2rem;
-                border-radius: 15px;
+                padding: 2.5rem;
+                border-radius: 20px;
                 width: 90%;
-                max-width: 500px;
+                max-width: 550px;
                 opacity: 0;
-                transition: all 0.4s ease;
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 pointer-events: none;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+                border: 1px solid rgba(255, 255, 255, 0.15);
             }
 
             .hotspot-detail-panel.visible {
@@ -1792,31 +1839,41 @@
 
             .close-panel-btn {
                 position: absolute;
-                top: 1rem;
-                right: 1rem;
-                background: none;
-                border: none;
-                color: rgba(255, 255, 255, 0.7);
+                top: 1.5rem;
+                right: 1.5rem;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                color: rgba(255, 255, 255, 0.8);
                 font-size: 1.5rem;
                 cursor: pointer;
-                transition: color 0.2s ease;
+                transition: all 0.2s ease;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .close-panel-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
                 color: white;
+                transform: scale(1.1);
             }
 
             #hotspot-title {
                 color: #ff8c00;
-                margin: 0 0 1rem 0;
-                font-size: 1.3rem;
+                margin: 0 0 1.5rem 0;
+                font-size: 1.4rem;
                 font-weight: 600;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             }
 
             #hotspot-description {
                 margin: 0;
-                line-height: 1.6;
-                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.7;
+                color: rgba(255, 255, 255, 0.95);
+                font-size: 1rem;
             }
 
             /* Enhanced Gallery Item Styles with Ken Burns Effect */
@@ -2521,7 +2578,6 @@
                         project.id = projectId; // Use the filename as the ID for folder paths
                     }
                     
-                    console.log('Project loaded successfully:', project);
                     return project;
                 } catch (error) {
                     console.error('Error loading project:', error);
@@ -2768,8 +2824,8 @@
             function updateOverviewSection(project) {
                 const projectDescription = document.getElementById('projectDescription');
                 if (projectDescription) {
-                    // Use innerHTML to support HTML formatting in descriptions
-                    projectDescription.innerHTML = project.description || project.pitch || '';
+                    // Use validated HTML rendering for security
+                    renderValidatedHTML(projectDescription, project.description || project.pitch || '');
                 }
 
                 // Update tags
@@ -2793,50 +2849,63 @@
                     process: document.getElementById('process'),
                     inspiration: document.getElementById('inspiration'),
                     excerpts: document.getElementById('excerpts'),
-                    themes: document.getElementById('themes')
+                    themes: document.getElementById('themes'),
+                    journey: document.getElementById('journey')
                 };
 
-                Object.values(sections).forEach(section => {
-                    if (section) section.style.display = 'none';
+                // Hide all sections initially
+                Object.entries(sections).forEach(([key, section]) => {
+                    if (section) {
+                        section.style.display = 'none';
+                    }
                 });
 
                 // Show relevant sections based on medium
                 switch (project.medium?.toLowerCase()) {
                     case 'code':
+                        // Show journey section for code projects
+                        if (sections.journey) {
+                            sections.journey.style.display = 'block';
+                        }
                         if (sections.artifacts && project.artifacts) {
                             sections.artifacts.style.display = 'block';
                             populateArtifacts(project);
                         }
                         break;
                     case 'art':
+                        // Don't show journey section for art projects (Ken Burns effects not implemented)
                         if (sections.process) {
                             sections.process.style.display = 'block';
                             const processContent = document.getElementById('processContent');
                             if (processContent) {
-                                processContent.innerHTML = project.process || '<p>Details on the creative process for this project are coming soon.</p>';
+                                renderValidatedHTML(processContent, project.process || '<p>Details on the creative process for this project are coming soon.</p>');
                             }
                         }
                         if (sections.inspiration) {
                             sections.inspiration.style.display = 'block';
                             const inspirationContent = document.getElementById('inspirationContent');
                             if (inspirationContent) {
-                                inspirationContent.innerHTML = project.inspiration || '<p>Information about inspirations and influences for this project is coming soon.</p>';
+                                renderValidatedHTML(inspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project is coming soon.</p>');
                             }
                         }
                         break;
                     case 'writing':
+                        // Show journey section for writing projects
+                        if (sections.journey) {
+                            sections.journey.style.display = 'block';
+                        }
                         if (sections.excerpts && project.excerpts) {
                             sections.excerpts.style.display = 'block';
                             const excerptsContent = document.getElementById('excerptsContent');
                             if (excerptsContent) {
-                                excerptsContent.innerHTML = project.excerpts;
+                                renderValidatedHTML(excerptsContent, project.excerpts);
                             }
                         }
                         if (sections.themes && (project.themes || project.themesAnalysis)) {
                             sections.themes.style.display = 'block';
                             const themesContent = document.getElementById('themesContent');
                             if (themesContent) {
-                                themesContent.innerHTML = project.themesAnalysis || project.themes || '';
+                                renderValidatedHTML(themesContent, project.themesAnalysis || project.themes || '');
                             }
                         }
                         break;
@@ -2969,7 +3038,13 @@
 
                         // Add new hotspots if they exist
                         if (item.hotspots && item.hotspots.length > 0 && galleryModalImgContainer) {
-                            item.hotspots.forEach(hotspot => {
+                            // Add hotspot count indicator
+                            const hotspotCount = document.createElement('div');
+                            hotspotCount.className = 'hotspot-count';
+                            hotspotCount.textContent = `${item.hotspots.length} interactive points`;
+                            galleryModalImgContainer.appendChild(hotspotCount);
+
+                            item.hotspots.forEach((hotspot, index) => {
                                 const hotspotBtn = document.createElement('button');
                                 hotspotBtn.className = 'hotspot-btn';
                                 
@@ -2979,14 +3054,34 @@
                                 
                                 hotspotBtn.style.left = xValue;
                                 hotspotBtn.style.top = yValue;
-                                hotspotBtn.textContent = hotspot.label || '+';
+                                hotspotBtn.textContent = (index + 1).toString();
 
+                                // Add tooltip
+                                const tooltip = document.createElement('div');
+                                tooltip.className = 'hotspot-tooltip';
+                                tooltip.textContent = hotspot.title || 'Click for details';
+                                tooltip.style.left = '50%';
+                                tooltip.style.top = '-40px';
+                                tooltip.style.transform = 'translateX(-50%)';
+                                hotspotBtn.appendChild(tooltip);
+
+                                // Add click animation and details
                                 hotspotBtn.addEventListener('click', () => {
+                                    // Add click animation
+                                    hotspotBtn.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                                    setTimeout(() => {
+                                        hotspotBtn.style.transform = 'translate(-50%, -50%) scale(1)';
+                                    }, 150);
+                                    
                                     showHotspotDetails(hotspot);
                                 });
 
                                 galleryModalImgContainer.appendChild(hotspotBtn);
                             });
+                        } else {
+                            // Remove hotspot count if no hotspots
+                            const existingCount = galleryModalImgContainer.querySelector('.hotspot-count');
+                            if (existingCount) existingCount.remove();
                         }
 
                         // Remove fade-out and add fade-in
@@ -3120,19 +3215,27 @@
             }
 
             // Initialize when DOM is loaded
-            document.addEventListener('DOMContentLoaded', initializeDynamicProject);
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('DOM loaded, initializing particle system...');
+                initializeDynamicProject();
+                
+                // Force particle creation after a short delay to ensure everything is ready
+                setTimeout(() => {
+                    if (supportsParallax() && motionEnabled) {
+                        console.log('Forcing particle creation...');
+                        createParticles();
+                    }
+                }, 500);
+            });
 
             // Journey Timeline Population
             function populateJourney(project) {
                 const timelineContainer = document.getElementById('timelineContainer');
                 if (!timelineContainer) return;
 
-                console.log('Populating journey for:', project.title);
-                console.log('Journey data:', project.journey);
                 timelineContainer.innerHTML = '';
 
                 const journey = project.journey || [];
-                console.log('Journey array length:', journey.length);
                 if (journey.length === 0) {
                     timelineContainer.innerHTML = `
                         <div style="text-align: center; color: white; padding: 4rem 2rem; background: rgba(255, 255, 255, 0.1); border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
@@ -3299,12 +3402,15 @@
             // Create particle effects
             function createParticles() {
                 const particlesContainer = document.getElementById('heroParticles');
-                if (!particlesContainer) return;
+                if (!particlesContainer) {
+                    console.warn('Hero particles container not found');
+                    return;
+                }
                 
                 // Clear existing particles
                 particlesContainer.innerHTML = '';
                 
-                const particleCount = 120;
+                const particleCount = 80; // Reduced for better performance
                 
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');
@@ -3315,21 +3421,68 @@
                     particle.style.top = Math.random() * 100 + '%';
                     
                     // Random sizes for variety
-                    const size = Math.random() * 4 + 3; // 3-7px
+                    const size = Math.random() * 4 + 2; // 2-6px
                     particle.style.width = size + 'px';
                     particle.style.height = size + 'px';
                     
                     // Faster animation with more variety
-                    particle.style.animationDelay = Math.random() * 15 + 's';
-                    particle.style.animationDuration = (Math.random() * 7 + 8) + 's';
+                    particle.style.animationDelay = Math.random() * 10 + 's';
+                    particle.style.animationDuration = (Math.random() * 5 + 8) + 's';
                     
                     // Random opacity for depth
-                    particle.style.opacity = Math.random() * 0.6 + 0.3;
+                    particle.style.opacity = Math.random() * 0.8 + 0.2;
+                    
+                    // Ensure particles are visible with fallback colors
+                    particle.style.backgroundColor = `hsl(${Math.random() * 60 + 30}, 70%, 60%)`;
+                    particle.style.boxShadow = `0 0 ${size * 2}px hsl(${Math.random() * 60 + 30}, 70%, 60%)`;
                     
                     particlesContainer.appendChild(particle);
                 }
                 
-                console.log('Created', particleCount, 'particles');
+                console.log('Created', particleCount, 'particles in hero area');
+                
+                // Also create journey particles if we're in a project detail view
+                createJourneyParticles();
+            }
+            
+            // Create journey-specific particles
+            function createJourneyParticles() {
+                const journeyContainer = document.querySelector('.journey-particles');
+                if (!journeyContainer) return;
+                
+                // Clear existing journey particles
+                journeyContainer.innerHTML = '';
+                
+                const journeyParticleCount = 40;
+                
+                for (let i = 0; i < journeyParticleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'journey-particle';
+                    
+                    // Random positioning
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    
+                    // Random sizes
+                    const size = Math.random() * 3 + 1; // 1-4px
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    
+                    // Animation timing
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                    
+                    // Opacity
+                    particle.style.opacity = Math.random() * 0.6 + 0.1;
+                    
+                    // Fallback colors for journey particles
+                    particle.style.backgroundColor = `hsl(${Math.random() * 40 + 200}, 60%, 70%)`;
+                    particle.style.boxShadow = `0 0 ${size * 1.5}px hsl(${Math.random() * 40 + 200}, 60%, 70%)`;
+                    
+                    journeyContainer.appendChild(particle);
+                }
+                
+                console.log('Created', journeyParticleCount, 'journey particles');
             }
 
             // Setup scroll animations with triggered section title animation
@@ -3349,7 +3502,6 @@
                                     // Add a slight delay for smoother effect
                                     setTimeout(() => {
                                         entry.target.classList.add('visible');
-                                        console.log('Triggered animation for:', entry.target.textContent);
                                     }, 100);
                                 }
                             } else {
@@ -3497,13 +3649,6 @@
                 if (themeSelect) {
                     themeSelect.value = themeName;
                 }
-                
-                // Recreate particles with new theme colors
-                if (typeof createParticles === 'function') {
-                    createParticles();
-                }
-                
-                console.log('Theme set to:', themeName);
             }
 
             // Initialize theme on page load
@@ -3531,6 +3676,126 @@
                 // Wait a bit for project data to load
                 setTimeout(initializeTheme, 100);
             });
+
+            // HTML Content Validation and Sanitization
+            function sanitizeHTML(html) {
+                if (!html) return '';
+                
+                // Create a temporary div to parse HTML
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                
+                // Define allowed tags and attributes
+                const allowedTags = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'strong', 'em', 'u', 'blockquote', 'ul', 'ol', 'li', 'span', 'div', 'img'];
+                const allowedAttributes = ['class', 'style', 'src', 'alt', 'title', 'width', 'height'];
+                
+                // Recursively sanitize nodes
+                function sanitizeNode(node) {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        return node.cloneNode();
+                    }
+                    
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        const tagName = node.tagName.toLowerCase();
+                        
+                        // Remove disallowed tags
+                        if (!allowedTags.includes(tagName)) {
+                            return document.createTextNode(node.textContent);
+                        }
+                        
+                        // Create new element with same tag
+                        const newElement = document.createElement(tagName);
+                        
+                        // Copy allowed attributes
+                        for (let attr of node.attributes) {
+                            if (allowedAttributes.includes(attr.name.toLowerCase())) {
+                                // Basic style validation for style attributes
+                                if (attr.name.toLowerCase() === 'style') {
+                                    const sanitizedStyle = sanitizeStyle(attr.value);
+                                    if (sanitizedStyle) {
+                                        newElement.setAttribute(attr.name, sanitizedStyle);
+                                    }
+                                } else {
+                                    newElement.setAttribute(attr.name, attr.value);
+                                }
+                            }
+                        }
+                        
+                        // Recursively sanitize child nodes
+                        for (let child of node.childNodes) {
+                            const sanitizedChild = sanitizeNode(child);
+                            if (sanitizedChild) {
+                                newElement.appendChild(sanitizedChild);
+                            }
+                        }
+                        
+                        return newElement;
+                    }
+                    
+                    return null;
+                }
+                
+                // Sanitize style attributes
+                function sanitizeStyle(styleString) {
+                    if (!styleString) return '';
+                    
+                    // Remove potentially dangerous CSS properties
+                    const dangerousProps = ['javascript:', 'expression(', 'url('];
+                    const sanitized = dangerousProps.reduce((str, prop) => {
+                        // Escape special regex characters in the property string
+                        const escapedProp = prop.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                        return str.replace(new RegExp(escapedProp, 'gi'), '');
+                    }, styleString);
+                    
+                    // Only allow safe CSS properties
+                    const allowedProps = [
+                        'color', 'background-color', 'font-size', 'font-weight', 'font-style',
+                        'text-align', 'margin', 'padding', 'border', 'border-radius',
+                        'line-height', 'text-decoration', 'display', 'position',
+                        'top', 'left', 'right', 'bottom', 'width', 'height',
+                        'opacity', 'transform', 'transition', 'animation'
+                    ];
+                    
+                    const styleObj = {};
+                    const stylePairs = sanitized.split(';');
+                    
+                    for (let pair of stylePairs) {
+                        const [property, value] = pair.split(':').map(s => s.trim());
+                        if (property && value && allowedProps.includes(property.toLowerCase())) {
+                            styleObj[property] = value;
+                        }
+                    }
+                    
+                    return Object.entries(styleObj)
+                        .map(([prop, val]) => `${prop}: ${val}`)
+                        .join('; ');
+                }
+                
+                // Sanitize the content
+                const sanitizedContent = [];
+                for (let child of tempDiv.childNodes) {
+                    const sanitized = sanitizeNode(child);
+                    if (sanitized) {
+                        sanitizedContent.push(sanitized);
+                    }
+                }
+                
+                // Return sanitized HTML
+                return sanitizedContent.map(node => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        return node.textContent;
+                    }
+                    return node.outerHTML;
+                }).join('');
+            }
+
+            // Enhanced content rendering with validation
+            function renderValidatedHTML(container, htmlContent) {
+                if (!container) return;
+                
+                const sanitized = sanitizeHTML(htmlContent);
+                container.innerHTML = sanitized;
+            }
         </script>
     </body>
     </html>
