@@ -2037,20 +2037,6 @@
                 padding: 2rem;
                 color: var(--text-primary);
                 line-height: 1.7;
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                background: rgba(255, 255, 255, 0.1) !important;
-                border: 2px solid red !important;
-            }
-
-            /* Force process and inspiration sections to be visible */
-            #process, #inspiration {
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                background: rgba(0, 255, 0, 0.1) !important;
-                border: 2px solid blue !important;
             }
 
             .process-content h3, .inspiration-content h3 {
@@ -2967,14 +2953,7 @@
                     journey: document.getElementById('journey')
                 };
                 
-                console.log('Sections found:', {
-                    artifacts: !!sections.artifacts,
-                    process: !!sections.process,
-                    inspiration: !!sections.inspiration,
-                    excerpts: !!sections.excerpts,
-                    themes: !!sections.themes,
-                    journey: !!sections.journey
-                });
+                console.log('Sections found:', Object.keys(sections).filter(key => sections[key]));
 
                 // Hide all sections initially
                 Object.entries(sections).forEach(([key, section]) => {
@@ -3001,20 +2980,12 @@
                         // Don't show journey section for art projects (Ken Burns effects not implemented)
                         if (sections.process) {
                             sections.process.style.display = 'block';
-                            sections.process.style.visibility = 'visible';
-                            sections.process.style.opacity = '1';
                             console.log('Process section display set to block');
                             const processContent = document.getElementById('processContent');
                             if (processContent) {
                                 console.log('Found existing processContent, rendering content');
-                                processContent.style.display = 'block';
-                                processContent.style.visibility = 'visible';
-                                processContent.style.opacity = '1';
                                 renderValidatedHTML(processContent, project.process || '<p>Details on the creative process for this project are coming soon.</p>');
                                 console.log('Process content rendered, innerHTML length:', processContent.innerHTML.length);
-                                console.log('Process content computed display:', window.getComputedStyle(processContent).display);
-                                console.log('Process content computed visibility:', window.getComputedStyle(processContent).visibility);
-                                console.log('Process content computed opacity:', window.getComputedStyle(processContent).opacity);
                             } else {
                                 console.log('Creating new processContent container');
                                 // Create process content container if it doesn't exist
@@ -3035,20 +3006,12 @@
                         }
                         if (sections.inspiration) {
                             sections.inspiration.style.display = 'block';
-                            sections.inspiration.style.visibility = 'visible';
-                            sections.inspiration.style.opacity = '1';
                             console.log('Inspiration section display set to block');
                             const inspirationContent = document.getElementById('inspirationContent');
                             if (inspirationContent) {
                                 console.log('Found existing inspirationContent, rendering content');
-                                inspirationContent.style.display = 'block';
-                                inspirationContent.style.visibility = 'visible';
-                                inspirationContent.style.opacity = '1';
                                 renderValidatedHTML(inspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project are coming soon.</p>');
                                 console.log('Inspiration content rendered, innerHTML length:', inspirationContent.innerHTML.length);
-                                console.log('Inspiration content computed display:', window.getComputedStyle(inspirationContent).display);
-                                console.log('Inspiration content computed visibility:', window.getComputedStyle(inspirationContent).visibility);
-                                console.log('Inspiration content computed opacity:', window.getComputedStyle(inspirationContent).opacity);
                             } else {
                                 console.log('Creating new inspirationContent container');
                                 // Create inspiration content container if it doesn't exist
