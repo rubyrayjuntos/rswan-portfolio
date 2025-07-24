@@ -2644,6 +2644,13 @@
                                 const project = JSON.parse(sessionProject);
                                 projectId = project.id;
                                 console.log('Using project from sessionStorage:', projectId);
+                                
+                                // If we have a complete project from sessionStorage, return it directly
+                                // but ensure it has the slug field set
+                                if (project.title && project.gallery) {
+                                    project.slug = projectId; // Set slug for image path construction
+                                    return project;
+                                }
                             } catch (e) {
                                 console.error('Error parsing sessionStorage project:', e);
                             }
@@ -2669,6 +2676,10 @@
                     if (!project.imageUrl || project.imageUrl === null) {
                         project.imageUrl = 'card-hero.jpg';
                     }
+                    
+                    // Set the slug field to the JSON filename (without .json extension)
+                    // This is used for constructing image paths
+                    project.slug = projectId;
                     
                     // Ensure project ID matches the JSON filename for proper folder structure
                     if (!project.id || typeof project.id === 'number') {
@@ -2866,9 +2877,11 @@
                 if (heroSection && project.imageUrl) {
                     let heroImageUrl = project.imageUrl;
                     
-                    // Handle relative paths - construct full path using project ID
+                    // Handle relative paths - construct full path using project slug (filename)
                     if (!heroImageUrl.startsWith('http') && !heroImageUrl.startsWith('/') && !heroImageUrl.startsWith('images/')) {
-                        heroImageUrl = `images/projects/${project.id}/${heroImageUrl}`;
+                        // Use project slug (filename) instead of project ID for folder naming
+                        const projectSlug = project.slug || project.title?.toLowerCase().replace(/[^a-z0-9]/g, '-') || 'unknown';
+                        heroImageUrl = `images/projects/${projectSlug}/${heroImageUrl}`;
                     }
                     
                     // Apply as background image with overlay
@@ -2888,29 +2901,50 @@
                 // Remove existing medium-specific links
                 navLinks.querySelectorAll('.medium-specific-nav').forEach(el => el.remove());
 
+                // Helper function to check if a field has meaningful content
+                const hasContent = (field) => {
+                    return field && field !== '' && field !== null && field !== undefined;
+                };
+
                 let specificLinks = [];
                 switch (project.medium?.toLowerCase()) {
                     case 'code':
-                        if (project.artifacts && project.artifacts.length > 0) {
+                        if (hasContent(project.artifacts)) {
                             specificLinks.push({ href: '#artifacts', text: '💾 Artifacts' });
                         }
                         break;
                     case 'art':
-                        specificLinks.push({ href: '#process', text: '🎨 Process' });
-                        specificLinks.push({ href: '#inspiration', text: '💡 Inspiration' });
+                        if (hasContent(project.process)) {
+                            specificLinks.push({ href: '#process', text: '🎨 Process' });
+                        }
+                        if (hasContent(project.inspiration)) {
+                            specificLinks.push({ href: '#inspiration', text: '💡 Inspiration' });
+                        }
                         break;
                     case 'writing':
-                        if (project.excerpts) {
+                        if (hasContent(project.excerpts)) {
                             specificLinks.push({ href: '#excerpts', text: '📖 Excerpts' });
                         }
-                        if (project.themes || project.themesAnalysis) {
+                        if (hasContent(project.themes || project.themesAnalysis)) {
                             specificLinks.push({ href: '#themes', text: '🧠 Themes' });
                         }
                         break;
                 }
 
+                // Handle links navigation item visibility
                 const linksNavItem = navLinks.querySelector('a[href="#links"]')?.parentElement;
                 if (linksNavItem) {
+                    // Check if project has any valid links
+                    const hasValidLinks = hasContent(project.links) && 
+                        Object.values(project.links).some(url => hasContent(url));
+                    
+                    if (hasValidLinks) {
+                        linksNavItem.style.display = 'block';
+                    } else {
+                        linksNavItem.style.display = 'none';
+                    }
+
+                    // Add medium-specific links before the links item
                     specificLinks.forEach(linkInfo => {
                         const li = document.createElement('li');
                         li.className = 'medium-specific-nav';
@@ -2950,7 +2984,8 @@
                     inspiration: document.getElementById('inspiration'),
                     excerpts: document.getElementById('excerpts'),
                     themes: document.getElementById('themes'),
-                    journey: document.getElementById('journey')
+                    journey: document.getElementById('journey'),
+                    links: document.getElementById('links')
                 };
                 
                 console.log('Sections found:', Object.keys(sections).filter(key => sections[key]));
@@ -2962,6 +2997,11 @@
                     }
                 });
 
+                // Helper function to check if a field has meaningful content
+                const hasContent = (field) => {
+                    return field && field !== '' && field !== null && field !== undefined;
+                };
+
                 // Show relevant sections based on medium
                 console.log('Project medium for section display:', project.medium);
                 switch (project.medium?.toLowerCase()) {
@@ -2970,7 +3010,7 @@
                         if (sections.journey) {
                             sections.journey.style.display = 'block';
                         }
-                        if (sections.artifacts && project.artifacts) {
+                        if (sections.artifacts && hasContent(project.artifacts)) {
                             sections.artifacts.style.display = 'block';
                             populateArtifacts(project);
                         }
@@ -2978,13 +3018,15 @@
                     case 'art':
                         console.log('Processing art project sections');
                         // Don't show journey section for art projects (Ken Burns effects not implemented)
-                        if (sections.process) {
+                        
+                        // Only show process section if it has content
+                        if (sections.process && hasContent(project.process)) {
                             sections.process.style.display = 'block';
                             console.log('Process section display set to block');
                             const processContent = document.getElementById('processContent');
                             if (processContent) {
                                 console.log('Found existing processContent, rendering content');
-                                renderValidatedHTML(processContent, project.process || '<p>Details on the creative process for this project are coming soon.</p>');
+                                renderValidatedHTML(processContent, project.process);
                                 console.log('Process content rendered, innerHTML length:', processContent.innerHTML.length);
                             } else {
                                 console.log('Creating new processContent container');
@@ -2995,22 +3037,24 @@
                                     newProcessContent.id = 'processContent';
                                     newProcessContent.className = 'process-content';
                                     processSection.appendChild(newProcessContent);
-                                    renderValidatedHTML(newProcessContent, project.process || '<p>Details on the creative process for this project are coming soon.</p>');
+                                    renderValidatedHTML(newProcessContent, project.process);
                                     console.log('New process content rendered, innerHTML length:', newProcessContent.innerHTML.length);
                                 } else {
                                     console.error('Process section not found!');
                                 }
                             }
                         } else {
-                            console.error('Process section not available in sections object');
+                            console.log('Process section not shown - no content available');
                         }
-                        if (sections.inspiration) {
+                        
+                        // Only show inspiration section if it has content
+                        if (sections.inspiration && hasContent(project.inspiration)) {
                             sections.inspiration.style.display = 'block';
                             console.log('Inspiration section display set to block');
                             const inspirationContent = document.getElementById('inspirationContent');
                             if (inspirationContent) {
                                 console.log('Found existing inspirationContent, rendering content');
-                                renderValidatedHTML(inspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project are coming soon.</p>');
+                                renderValidatedHTML(inspirationContent, project.inspiration);
                                 console.log('Inspiration content rendered, innerHTML length:', inspirationContent.innerHTML.length);
                             } else {
                                 console.log('Creating new inspirationContent container');
@@ -3021,14 +3065,14 @@
                                     newInspirationContent.id = 'inspirationContent';
                                     newInspirationContent.className = 'inspiration-content';
                                     inspirationSection.appendChild(newInspirationContent);
-                                    renderValidatedHTML(newInspirationContent, project.inspiration || '<p>Information about inspirations and influences for this project are coming soon.</p>');
+                                    renderValidatedHTML(newInspirationContent, project.inspiration);
                                     console.log('New inspiration content rendered, innerHTML length:', newInspirationContent.innerHTML.length);
                                 } else {
                                     console.error('Inspiration section not found!');
                                 }
                             }
                         } else {
-                            console.error('Inspiration section not available in sections object');
+                            console.log('Inspiration section not shown - no content available');
                         }
                         break;
                     case 'writing':
@@ -3036,18 +3080,18 @@
                         if (sections.journey) {
                             sections.journey.style.display = 'block';
                         }
-                        if (sections.excerpts && project.excerpts) {
+                        if (sections.excerpts && hasContent(project.excerpts)) {
                             sections.excerpts.style.display = 'block';
                             const excerptsContent = document.getElementById('excerptsContent');
                             if (excerptsContent) {
                                 renderValidatedHTML(excerptsContent, project.excerpts);
                             }
                         }
-                        if (sections.themes && (project.themes || project.themesAnalysis)) {
+                        if (sections.themes && hasContent(project.themes || project.themesAnalysis)) {
                             sections.themes.style.display = 'block';
                             const themesContent = document.getElementById('themesContent');
                             if (themesContent) {
-                                renderValidatedHTML(themesContent, project.themesAnalysis || project.themes || '');
+                                renderValidatedHTML(themesContent, project.themesAnalysis || project.themes);
                             }
                         }
                         break;
@@ -3067,6 +3111,8 @@
                 }
 
                 console.log('Populating gallery for:', project.title);
+                console.log('Project slug:', project.slug);
+                console.log('Gallery items:', project.gallery?.length || 0);
                 
                 // Clear existing content
                 galleryGrid.innerHTML = '';
@@ -3098,7 +3144,9 @@
                     let imageUrl = item.url;
                     if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/') && !imageUrl.startsWith('images/')) {
                         // Use project ID to construct folder path (project ID should match JSON filename)
-                        imageUrl = `images/projects/${project.id}/${item.url}`;
+                        // Use project slug (filename) instead of project ID for folder naming
+                        const projectSlug = project.slug || project.title?.toLowerCase().replace(/[^a-z0-9]/g, '-') || 'unknown';
+                        imageUrl = `images/projects/${projectSlug}/${item.url}`;
                     }
                     
                     galleryItem.innerHTML = `
@@ -3191,7 +3239,9 @@
                         // Construct full image path if needed
                         let imageUrl = item.url;
                         if (!imageUrl.startsWith('http') && !imageUrl.startsWith('/') && !imageUrl.startsWith('images/')) {
-                            imageUrl = `images/projects/${currentProject.id}/${item.url}`;
+                            // Use project slug (filename) instead of project ID for folder naming
+                        const projectSlug = currentProject.slug || currentProject.title?.toLowerCase().replace(/[^a-z0-9]/g, '-') || 'unknown';
+                        imageUrl = `images/projects/${projectSlug}/${item.url}`;
                         }
                         
                         // Update image
@@ -3754,32 +3804,55 @@
             // Links Population
             function populateLinks(project) {
                 const linksSection = document.getElementById('linksSection');
+                const linksContainer = document.getElementById('links');
                 if (!linksSection) return;
 
                 console.log('Populating links for:', project.title);
                 linksSection.innerHTML = '';
 
+                // Helper function to check if a field has meaningful content
+                const hasContent = (field) => {
+                    return field && field !== '' && field !== null && field !== undefined;
+                };
+
                 // Create links from project.links object or default links
                 const links = [];
                 
-                if (project.links) {
+                if (hasContent(project.links)) {
                     Object.entries(project.links).forEach(([key, url]) => {
-                        const linkMap = {
-                            'github': { icon: '📁', title: 'GitHub Repository', description: 'View source code' },
-                            'live': { icon: '🌐', title: 'Live Demo', description: 'View the live website' },
-                            'demo': { icon: '🌐', title: 'Live Demo', description: 'View the live website' },
-                            'gallery': { icon: '🖼️', title: 'Full Gallery', description: 'View complete gallery' },
-                            'shop': { icon: '🛒', title: 'Shop', description: 'Purchase prints or products' },
-                            'docs': { icon: '📖', title: 'Documentation', description: 'Read detailed documentation' },
-                            'specs': { icon: '📋', title: 'Specifications', description: 'Technical specifications' }
-                        };
-                        
-                        const linkInfo = linkMap[key] || { icon: '🔗', title: key.charAt(0).toUpperCase() + key.slice(1), description: `View ${key}` };
-                        links.push({
-                            ...linkInfo,
-                            url: url
-                        });
+                        // Only add links that have valid URLs
+                        if (hasContent(url)) {
+                            const linkMap = {
+                                'github': { icon: '📁', title: 'GitHub Repository', description: 'View source code' },
+                                'live': { icon: '🌐', title: 'Live Demo', description: 'View the live website' },
+                                'demo': { icon: '🌐', title: 'Live Demo', description: 'View the live website' },
+                                'gallery': { icon: '🖼️', title: 'Full Gallery', description: 'View complete gallery' },
+                                'shop': { icon: '🛒', title: 'Shop', description: 'Purchase prints or products' },
+                                'docs': { icon: '📖', title: 'Documentation', description: 'Read detailed documentation' },
+                                'specs': { icon: '📋', title: 'Specifications', description: 'Technical specifications' }
+                            };
+                            
+                            const linkInfo = linkMap[key] || { icon: '🔗', title: key.charAt(0).toUpperCase() + key.slice(1), description: `View ${key}` };
+                            links.push({
+                                ...linkInfo,
+                                url: url
+                            });
+                        }
                     });
+                }
+
+                // If no links, hide the entire links section
+                if (links.length === 0) {
+                    if (linksContainer) {
+                        linksContainer.style.display = 'none';
+                    }
+                    console.log('No links available - hiding links section');
+                    return;
+                } else {
+                    // Show the links section if we have links
+                    if (linksContainer) {
+                        linksContainer.style.display = 'block';
+                    }
                 }
 
                 // Removed "Back to Portfolio" link - now in floating navigation
