@@ -11,38 +11,26 @@
 </head>
 <body>
     <header id="top-nav">
-        <div class="nav-left">
-            <div class="logo">R. SWAN</div>
-            <div class="medium-filters">
-                <button class="medium-btn active" data-medium="art">ART</button>
-                <button class="medium-btn active" data-medium="code">CODE</button>
-                <button class="medium-btn active" data-medium="writing">WRITING</button>
-            </div>
-        </div>
-        
-        <div class="nav-center">
-            <div class="search-wrapper">
-                <i class="fas fa-search"></i>
-                <input type="search" id="mainSearchInput" placeholder="Search by keyword, tech, or title...">
-            </div>
-            <button id="filter-icon" aria-label="Open filters">
-                <i class="fas fa-sliders-h"></i>
-            </button>
-        </div>
-        
+        <div class="logo">R. SWAN</div>
         <nav class="nav-links">
             <button class="nav-button" data-modal-target="connectModal" data-tab-target="about">About Me</button>
             <button class="nav-button" data-modal-target="connectModal" data-tab-target="contact">Connect</button>
         </nav>
-        
-        <!-- Mobile hamburger menu -->
-        <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
-            <i class="fas fa-bars"></i>
-        </button>
     </header>
 
-    <!-- Dropdown filter panel -->
-    <div id="filter-panel" class="filter-dropdown">
+    <div id="filter-ui-container">
+        <div class="search-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="search" id="mainSearchInput" placeholder="Search by keyword, tech, or title...">
+        </div>
+        <button id="filter-icon" aria-label="Open filters">
+            <i class="fas fa-sliders-h"></i>
+        </button>
+    </div>
+
+    <div id="active-filters-display" class="hidden"></div>
+
+    <aside id="filter-panel">
         <div class="panel-header">
             <h3>Filter Projects</h3>
             <button id="close-filter-panel">&times;</button>
@@ -54,32 +42,7 @@
             <button id="apply-filters-btn">Apply</button>
             <button id="clear-filters-btn">Clear All</button>
         </div>
-    </div>
-
-    <!-- Mobile menu overlay -->
-    <div id="mobile-menu" class="mobile-menu-overlay">
-        <div class="mobile-menu-content">
-            <div class="mobile-medium-filters">
-                <button class="medium-btn active" data-medium="art">ART</button>
-                <button class="medium-btn active" data-medium="code">CODE</button>
-                <button class="medium-btn active" data-medium="writing">WRITING</button>
-            </div>
-            <div class="mobile-search">
-                <i class="fas fa-search"></i>
-                <input type="search" id="mobileSearchInput" placeholder="Search projects...">
-            </div>
-            <button class="mobile-filter-btn">
-                <i class="fas fa-sliders-h"></i>
-                Filters
-            </button>
-            <div class="mobile-nav-links">
-                <button class="nav-button" data-modal-target="connectModal" data-tab-target="about">About Me</button>
-                <button class="nav-button" data-modal-target="connectModal" data-tab-target="contact">Connect</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="active-filters-display" class="hidden"></div>
+    </aside>
 
     <main class="container">
         <div class="portfolio-container">

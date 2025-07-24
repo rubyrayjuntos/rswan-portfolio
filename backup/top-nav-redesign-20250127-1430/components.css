@@ -1867,30 +1867,24 @@
 }
 
 
-/* --- Filter Panel (Dropdown) --- */
+/* --- Filter Panel --- */
 #filter-panel {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--bg-primary);
-    border-radius: var(--border-radius-md);
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 100%;
+    max-width: 380px;
+    height: 100%;
+    background-color: var(--bg-primary);
     box-shadow: var(--neu-outset);
-    padding: 20px;
-    min-width: 300px;
-    max-width: 500px;
-    z-index: 998;
-    opacity: 0;
-    visibility: hidden;
-    transition: all var(--transition-speed) ease;
-    margin-top: 10px;
-    max-height: 70vh;
-    overflow-y: auto;
+    z-index: 1001;
+    transition: right var(--transition-speed) ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 
 #filter-panel.is-open {
-    opacity: 1;
-    visibility: visible;
+    right: 0;
 }
 
 .panel-header {

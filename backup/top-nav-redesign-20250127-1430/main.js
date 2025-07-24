@@ -1,18 +1,5 @@
 // Main JavaScript - Core initialization and project data
 
-// Utility function for debouncing
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
 // Feature detection for progressive enhancement
 function supportsParallax() {
     return 'CSS' in window && 'supports' in CSS && 
@@ -234,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Elements ---
     const projectGrid = document.getElementById('projectGrid');
     const mainSearchInput = document.getElementById('mainSearchInput');
-    const mobileSearchInput = document.getElementById('mobileSearchInput');
     const filterIcon = document.getElementById('filter-icon');
     const filterPanel = document.getElementById('filter-panel');
     const closeFilterPanelBtn = document.getElementById('close-filter-panel');
@@ -244,21 +230,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeFiltersDisplay = document.getElementById('active-filters-display');
     const loadingSpinner = document.getElementById('loading-spinner');
     const topNav = document.getElementById('top-nav');
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileFilterBtn = document.querySelector('.mobile-filter-btn');
-    const mediumButtons = document.querySelectorAll('.medium-btn');
-    const mobileMediumButtons = document.querySelectorAll('.mobile-menu .medium-btn');
 
     // --- State ---
     let activeFilters = {
-        medium: ['art', 'code', 'writing'], // All mediums active by default
+        medium: [],
         genre: [],
         tech: [],
         style: []
     };
-    
-    let activeMediums = new Set(['art', 'code', 'writing']); // Track active medium buttons
 
     // --- Notification System ---
     function showNotification(message, type = 'error', duration = 5000) {
@@ -301,8 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             initializeSearch(allProjects);
             populateFilterPanel(allProjects);
-            setupMediumFilters();
-            setupMobileMenu();
             renderProjects(allProjects);
             setupModals();
             setupFooter();
@@ -343,99 +320,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         };
         fuse = new Fuse(projectsData, options);
-        
-        // Search input event listeners
-        mainSearchInput.addEventListener('input', debounce(() => {
-            applyFiltersAndSearch();
-        }, 300));
-        
-        if (mobileSearchInput) {
-            mobileSearchInput.addEventListener('input', debounce(() => {
-                applyFiltersAndSearch();
-            }, 300));
-        }
-    }
-    
-    // --- Medium Filter Setup ---
-    function setupMediumFilters() {
-        // Desktop medium buttons
-        mediumButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const medium = button.dataset.medium;
-                toggleMediumFilter(medium, button);
-            });
-        });
-        
-        // Mobile medium buttons
-        mobileMediumButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const medium = button.dataset.medium;
-                toggleMediumFilter(medium, button);
-            });
-        });
-    }
-    
-    function toggleMediumFilter(medium, clickedButton) {
-        if (activeMediums.has(medium)) {
-            activeMediums.delete(medium);
-            clickedButton.classList.remove('active');
-        } else {
-            activeMediums.add(medium);
-            clickedButton.classList.add('active');
-        }
-        
-        // Update the corresponding button in the other view
-        const otherButton = clickedButton.closest('.mobile-menu') 
-            ? document.querySelector(`.medium-filters .medium-btn[data-medium="${medium}"]`)
-            : document.querySelector(`.mobile-menu .medium-btn[data-medium="${medium}"]`);
-        
-        if (otherButton) {
-            if (activeMediums.has(medium)) {
-                otherButton.classList.add('active');
-            } else {
-                otherButton.classList.remove('active');
-            }
-        }
-        
-        // Update active filters
-        activeFilters.medium = Array.from(activeMediums);
-        
-        // Apply filters
-        applyFiltersAndSearch();
-    }
-    
-    // --- Mobile Menu Setup ---
-    function setupMobileMenu() {
-        if (mobileMenuBtn) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('is-open');
-            });
-        }
-        
-        if (mobileFilterBtn) {
-            mobileFilterBtn.addEventListener('click', () => {
-                filterPanel.classList.toggle('is-open');
-            });
-        }
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (mobileMenu.classList.contains('is-open') && 
-                !mobileMenu.contains(e.target) && 
-                !mobileMenuBtn.contains(e.target)) {
-                mobileMenu.classList.remove('is-open');
-            }
-        });
-        
-        // Close filter panel when clicking outside
-        document.addEventListener('click', (e) => {
-            if (filterPanel.classList.contains('is-open') && 
-                !filterPanel.contains(e.target) && 
-                !filterIcon.contains(e.target) &&
-                !mobileFilterBtn.contains(e.target)) {
-                filterPanel.classList.remove('is-open');
-            }
-        });
     }
     
     // --- Project Card Rendering ---
@@ -536,12 +420,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Filtering Logic ---
     function populateFilterPanel(projects) {
         const filters = {
+            medium: { label: 'Medium', values: new Set() },
             genre: { label: 'Genre', values: new Set() },
             tech: { label: 'Technology', values: new Set() },
             style: { label: 'Style', values: new Set() }
         };
 
         projects.forEach(p => {
+            if (p.medium) filters.medium.values.add(p.medium);
             ['genre', 'tech', 'style'].forEach(key => {
                 if (p[key] && Array.isArray(p[key])) {
                     p[key].forEach(val => filters[key].values.add(val));
@@ -576,25 +462,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let projectsToFilter = allProjects;
 
         // 1. Apply search query first
-        const searchQuery = mainSearchInput.value.trim() || (mobileSearchInput ? mobileSearchInput.value.trim() : '');
+        const searchQuery = mainSearchInput.value.trim();
         if (searchQuery && fuse) {
             const searchResults = fuse.search(searchQuery);
             projectsToFilter = searchResults.map(result => result.item);
         }
 
-        // 2. Apply medium filter (from buttons)
-        if (activeFilters.medium.length > 0) {
+        // 2. Then, apply checkbox filters
+        const hasActiveFilters = Object.values(activeFilters).some(arr => arr.length > 0);
+        if (hasActiveFilters) {
             projectsToFilter = projectsToFilter.filter(p => {
-                return p.medium && activeFilters.medium.includes(p.medium);
-            });
-        }
-
-        // 3. Apply other checkbox filters
-        const hasOtherActiveFilters = ['genre', 'tech', 'style'].some(key => activeFilters[key].length > 0);
-        if (hasOtherActiveFilters) {
-            projectsToFilter = projectsToFilter.filter(p => {
-                return ['genre', 'tech', 'style'].every(key => {
-                    const values = activeFilters[key];
+                return Object.entries(activeFilters).every(([key, values]) => {
                     if (values.length === 0) return true;
                     if (!p[key]) return false;
 
@@ -612,9 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateActiveFiltersFromCheckboxes() {
-        // Preserve medium filters from buttons
-        const currentMediumFilters = activeFilters.medium;
-        activeFilters = { medium: currentMediumFilters, genre: [], tech: [], style: [] };
+        activeFilters = { medium: [], genre: [], tech: [], style: [] };
         const checked = filterGroupContainer.querySelectorAll('input:checked');
         checked.forEach(box => {
             activeFilters[box.name].push(box.value);
@@ -643,21 +519,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function clearAllFilters() {
-        // Clear checkbox filters
         filterGroupContainer.querySelectorAll('input:checked').forEach(box => box.checked = false);
-        
-        // Reset medium filters to all active
-        activeMediums = new Set(['art', 'code', 'writing']);
-        activeFilters.medium = Array.from(activeMediums);
-        
-        // Update button states
-        document.querySelectorAll('.medium-btn').forEach(btn => {
-            btn.classList.add('active');
-        });
-        
         updateActiveFiltersFromCheckboxes();
         applyFiltersAndSearch();
     }
+    
+    // --- Event Listeners ---
+    filterIcon.addEventListener('click', () => filterPanel.classList.add('is-open'));
+    closeFilterPanelBtn.addEventListener('click', () => filterPanel.classList.remove('is-open'));
+    applyFiltersBtn.addEventListener('click', () => {
+        updateActiveFiltersFromCheckboxes();
+        applyFiltersAndSearch();
+    });
+    clearFiltersBtn.addEventListener('click', clearAllFilters);
+    mainSearchInput.addEventListener('input', applyFiltersAndSearch);
 
     filterGroupContainer.addEventListener('click', e => {
         if (e.target.classList.contains('filter-group-header')) {
@@ -674,32 +549,6 @@ document.addEventListener('DOMContentLoaded', () => {
             applyFiltersAndSearch();
         }
     });
-
-    // --- Filter Panel Event Handlers ---
-    if (filterIcon) {
-        filterIcon.addEventListener('click', () => {
-            filterPanel.classList.toggle('is-open');
-        });
-    }
-
-    if (closeFilterPanelBtn) {
-        closeFilterPanelBtn.addEventListener('click', () => {
-            filterPanel.classList.remove('is-open');
-        });
-    }
-
-    if (applyFiltersBtn) {
-        applyFiltersBtn.addEventListener('click', () => {
-            updateActiveFiltersFromCheckboxes();
-            applyFiltersAndSearch();
-        });
-    }
-
-    if (clearFiltersBtn) {
-        clearFiltersBtn.addEventListener('click', () => {
-            clearAllFilters();
-        });
-    }
 
     // --- Modals ---
     function setupModals() {
