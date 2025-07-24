@@ -1,0 +1,138 @@
+{
+    "id":  4,
+    "title":  "Nova: Writers Conspiracy",
+    "description":  "Agentic helpers aid writers in creating novels. It\u0027s a cosmic atelier where storytellers conspire with AI to birth entire universes, balancing structure and soul in creative agency.",
+    "imageUrl":  "card-hero.jpg",
+    "medium":  "code",
+    "genre":  [
+                  "Full Stack Web",
+                  "Fiction Writing",
+                  "Writing Aid",
+                  "Productivity",
+                  "Tools",
+                  "Agentic Workflow",
+                  "Multi-Agent System",
+                  "Creative Platform"
+              ],
+    "style":  [
+                  "Clean",
+                  "Modern",
+                  "Focused UI",
+                  "Typography-Driven",
+                  "Calming Dark-Grays",
+                  "Vibrant Blues"
+              ],
+    "tech":  [
+                 "React 18",
+                 "TypeScript",
+                 "Tailwind CSS",
+                 "React Query",
+                 "Socket.io",
+                 "React Router",
+                 "FastAPI",
+                 "Python 3.11+",
+                 "SQLAlchemy",
+                 "Alembic",
+                 "Pydantic",
+                 "JWT",
+                 "CrewAI",
+                 "OpenAI GPT-4",
+                 "Pinecone",
+                 "SerperDev",
+                 "PostgreSQL",
+                 "Redis",
+                 "Celery",
+                 "Docker"
+             ],
+    "mood":  "bold",
+    "year":  2024,
+    "role":  "Lead Developer, AI Prompt Engineer",
+    "variant":  "featured",
+    "status":  "development",
+    "links":  {
+                  "github":  "https://github.com/rubyrayjuntos/nova-writers-conspiracy",
+                  "demo":  "https://nova-writers-conspiracy.demo.rs@RSwan.org"
+              },
+    "pitch":  "A cosmic atelier where storytellers conspire with AI to birth entire universes, balancing structure and soul in creative agency.",
+    "challenge":  "The main challenge was designing and implementing a complex multi-agent system that balances automated generation with deep user control and a seamless collaborative experience. This involved orchestrating various specialized AI agents (Researcher, World Builder, Character Architect, Plot Alchemist, Writer, Editor, Illustrator) and managing their memory, context, and workflows to consistently produce high-quality, coherent narrative content while allowing for real-time user feedback and revisions.",
+    "development":  "The project followed a structured development process, starting with detailed functional and technical specifications and a system design document. Key architectural components like the MemoryService.ts for marker-indexed context handling and an abstract AgentBase.ts class were scaffolded early on. The development relies on a robust tech stack including React for the frontend, FastAPI for the backend API, and CrewAI for multi-agent orchestration, with asynchronous task queues (Celery/Redis) to manage long-running AI processes.",
+    "outcome":  "The project successfully established a foundational multi-agent system architecture for collaborative novel writing, with core components for agent management, memory indexing, and user interaction interfaces like the collaboration dashboard and agent chat. It provides a robust framework for generating structured narrative data (world, characters, plot) and manuscript content, offering a path for continuous iterative development and personalized writing assistance.",
+    "gallery":  [
+                    {
+                        "url":  "nova-logo-main.jpg",
+                        "title":  "Nova Logo",
+                        "description":  "The cosmic atelier logo blending classical literary elements with cosmic/scientific aesthetics",
+                        "dimensions":  "1200x800"
+                    },
+                    {
+                        "url":  "nova-architecture-system.jpg",
+                        "title":  "System Architecture Diagram",
+                        "description":  "Multi-agent system architecture showing the orchestration of specialized AI agents",
+                        "dimensions":  "1200x800"
+                    },
+                    {
+                        "url":  "nova-dashboard-interface.jpg",
+                        "title":  "Collaboration Dashboard",
+                        "description":  "Interactive dashboard for real-time collaboration between writers and AI agents",
+                        "dimensions":  "1200x800"
+                    },
+                    {
+                        "url":  "nova-chat-interface.jpg",
+                        "title":  "Agent Chat Interface",
+                        "description":  "Direct interaction with specialized AI agents for narrative development",
+                        "dimensions":  "1200x800"
+                    }
+                ],
+    "journey":  [
+                    {
+                        "title":  "Concept Development",
+                        "description":  "Conceived the vision of a cosmic atelier where human creativity and AI collaboration birth entire universes"
+                    },
+                    {
+                        "title":  "System Architecture Design",
+                        "description":  "Designed complex multi-agent system with specialized agents for different aspects of novel creation"
+                    },
+                    {
+                        "title":  "Technical Foundation",
+                        "description":  "Built core components including MemoryService.ts for context handling and AgentBase.ts for agent management"
+                    },
+                    {
+                        "title":  "Frontend Development",
+                        "description":  "Created React-based interface with TypeScript, Tailwind CSS, and real-time collaboration features"
+                    },
+                    {
+                        "title":  "Backend Implementation",
+                        "description":  "Developed FastAPI backend with CrewAI orchestration, PostgreSQL database, and Redis caching"
+                    },
+                    {
+                        "title":  "AI Integration",
+                        "description":  "Integrated OpenAI GPT-4, Pinecone vector database, and SerperDev for comprehensive AI capabilities"
+                    }
+                ],
+    "specs":  [
+                  {
+                      "title":  "Frontend Architecture",
+                      "description":  "React 18 with TypeScript, Tailwind CSS, React Query for state management, Socket.io for real-time features, and React Router for navigation"
+                  },
+                  {
+                      "title":  "Backend Technology",
+                      "description":  "FastAPI (Python 3.11+), SQLAlchemy ORM, Alembic for database migrations, Pydantic for data validation, and JWT for authentication"
+                  },
+                  {
+                      "title":  "AI \u0026 Multi-Agent System",
+                      "description":  "CrewAI for multi-agent orchestration, OpenAI GPT-4 as primary LLM, Pinecone vector database, and SerperDev for web search capabilities"
+                  },
+                  {
+                      "title":  "Infrastructure",
+                      "description":  "PostgreSQL for structured data, Redis for caching and task queues, Celery for background tasks, and Docker for containerization"
+                  },
+                  {
+                      "title":  "Agent Specialization",
+                      "description":  "7 specialized agents: Researcher, World Builder, Character Architect, Plot Alchemist, Writer, Editor, and Illustrator"
+                  },
+                  {
+                      "title":  "User Experience",
+                      "description":  "Clean, modern UI with calming dark-grays and vibrant blue accents, emphasizing typography and readability for focused creative work"
+                  }
+              ]
+}

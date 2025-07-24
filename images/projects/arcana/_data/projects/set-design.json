@@ -1,0 +1,161 @@
+{
+    "id":  14,
+    "title":  "Set Design",
+    "description":  "Telling stories through the places the characters inhabit, exploring how environments shape narrative and character development through visual storytelling.",
+    "imageUrl": "card-hero.jpg",
+    "medium":  "art",
+    "genre":  [
+                  "Set Design",
+                  "Environmental Art",
+                  "Storytelling",
+                  "Concept Art",
+                  "Narrative Design"
+              ],
+    "style":  [
+                  "Atmospheric",
+                  "Narrative-Driven",
+                  "Environmental",
+                  "Detailed",
+                  "Storytelling"
+              ],
+    "tech":  [
+                 "Digital Illustration",
+                 "Set Design",
+                 "Environmental Art",
+                 "Concept Art",
+                 "Narrative Design"
+             ],
+    "mood":  "Atmospheric",
+    "year":  2024,
+    "role":  "Set Designer, Environmental Artist, Narrative Designer",
+    "variant":  "wide",
+    "status":  "ongoing",
+    "links":  {
+                  "portfolio":  "#",
+                  "process":  "#"
+              },
+    "pitch":  "Environmental storytelling through set design, where every location tells a story and shapes the characters who inhabit it.",
+    "challenge":  "Creating environments that not only look compelling but also serve the narrative, revealing character traits and advancing the story through visual design.",
+    "development":  "Developed a systematic approach to environmental storytelling, where each set element contributes to character development and narrative progression.",
+    "outcome":  "A comprehensive set design methodology that enhances storytelling through environmental design and atmospheric detail.",
+    "process":  "\u003ch3\u003eA Tale of Two Worlds\u003c/h3\u003e\u003cp\u003eThe creative process was a journey in itself, balancing two key elements: the intimate, character-driven spaces and the grand, narrative-defining environments.\u003c/p\u003e\u003ch4\u003e1. Character-Centric Design\u003c/h4\u003e\u003cp\u003eWe started by asking, \u0027What does this character\u0027s home say about them?\u0027 This led to detailed studies of personal props, color palettes, and architectural styles that reflected their inner world.\u003c/p\u003e\u003ch4\u003e2. Narrative-Driven Environments\u003c/h4\u003e\u003cp\u003eNext, we designed key locations that would advance the plot. A seemingly innocent market stall, for example, was designed with hidden compartments and sightlines that would be crucial for a later scene.\u003c/p\u003e",
+    "inspiration":  "\u003ch3\u003eThe Soul of a Place\u003c/h3\u003e\u003cp\u003eInspiration for this project came from the idea that environments are characters in their own right. We drew from the moody, atmospheric cinematography of film noir, the intricate world-building of epic fantasy novels, and the subtle environmental storytelling in games like \u0027What Remains of Edith Finch\u0027.\u003c/p\u003e\u003cp\u003eThe goal was to create spaces that felt lived-in and layered with history, where every object and architectural choice tells a story about the people who inhabit them.\u003c/p\u003e",
+    "gallery":  [
+                    {
+                        "url":  "set-design-cover-art.jpg",
+                        "title":  "Set Design Overview",
+                        "description":  "Overview of the set design process and methodology",
+                        "hotspots": [
+                            {
+                                "x": 50, "y": 30,
+                                "title": "Process Overview",
+                                "description": "The comprehensive methodology for creating environments that serve both narrative and character development."
+                            },
+                            {
+                                "x": 80, "y": 70,
+                                "title": "Visual Elements",
+                                "description": "Key visual components that contribute to storytelling through environmental design."
+                            }
+                        ]
+                    },
+                    {
+                        "url":  "the-star-gazing.jpg",
+                        "title":  "Character Spaces",
+                        "description":  "How different characters' environments reflect their personalities",
+                        "hotspots": [
+                            {
+                                "x": 30, "y": 40,
+                                "title": "Personal Space",
+                                "description": "The intimate details that reveal character traits and personal history."
+                            },
+                            {
+                                "x": 70, "y": 60,
+                                "title": "Environmental Storytelling",
+                                "description": "How architectural choices and props tell stories about the characters who inhabit them."
+                            }
+                        ]
+                    },
+                    {
+                        "url":  "the-star-teamwork.jpg",
+                        "title":  "Narrative Environments",
+                        "description":  "Environments that advance the story and reveal plot elements",
+                        "hotspots": [
+                            {
+                                "x": 40, "y": 50,
+                                "title": "Plot Integration",
+                                "description": "Environmental elements that directly advance the narrative and reveal story secrets."
+                            },
+                            {
+                                "x": 75, "y": 35,
+                                "title": "Hidden Details",
+                                "description": "Subtle design elements that foreshadow events or reveal character motivations."
+                            }
+                        ]
+                    },
+                    {
+                        "url":  "set-design-atmospheric-details.jpg",
+                        "title":  "Atmospheric Details",
+                        "description":  "Small details that create mood and atmosphere",
+                        "hotspots": [
+                            {
+                                "x": 25, "y": 45,
+                                "title": "Mood Creation",
+                                "description": "Lighting, color, and texture choices that establish the emotional tone of a scene."
+                            },
+                            {
+                                "x": 65, "y": 75,
+                                "title": "Environmental Depth",
+                                "description": "Layered details that create a sense of history and lived-in authenticity."
+                            }
+                        ]
+                    }
+                ],
+    "journey":  [
+                    {
+                        "title":  "Methodology Development",
+                        "description":  "Created a systematic approach to environmental storytelling"
+                    },
+                    {
+                        "title":  "Character Environment Mapping",
+                        "description":  "Developed techniques for designing spaces that reflect character traits"
+                    },
+                    {
+                        "title":  "Narrative Integration",
+                        "description":  "Explored how environments can advance plot and reveal story elements"
+                    },
+                    {
+                        "title":  "Atmospheric Design",
+                        "description":  "Created techniques for building mood and atmosphere through design"
+                    },
+                    {
+                        "title":  "Process Documentation",
+                        "description":  "Documented the set design process for educational purposes"
+                    }
+                ],
+    "specs":  [
+                  {
+                      "title":  "Design Methodology",
+                      "description":  "Systematic approach to creating environments that serve narrative and character"
+                  },
+                  {
+                      "title":  "Character Integration",
+                      "description":  "Techniques for designing spaces that reflect and enhance character development"
+                  },
+                  {
+                      "title":  "Narrative Function",
+                      "description":  "Methods for using environments to advance plot and reveal story elements"
+                  },
+                  {
+                      "title":  "Atmospheric Design",
+                      "description":  "Principles for creating mood and atmosphere through environmental details"
+                  },
+                  {
+                      "title":  "Visual Storytelling",
+                      "description":  "Techniques for telling stories through visual design and environmental cues"
+                  },
+                  {
+                      "title":  "Cross-Media Application",
+                      "description":  "Methodology adaptable to various media including illustration, animation, and games"
+                  }
+              ]
+}

@@ -420,6 +420,27 @@ function renderProjects(projectsToRender) {
     });
 }
 
+// Function to truncate description to specified number of lines
+function truncateDescription(description, maxLines = 4) {
+    if (!description) return '';
+    
+    // Remove HTML tags for line counting
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = description;
+    const plainText = tempDiv.textContent || tempDiv.innerText || '';
+    
+    // Split into lines and limit to maxLines
+    const lines = plainText.split('\n').filter(line => line.trim());
+    if (lines.length <= maxLines) return description;
+    
+    // Take first maxLines and add ellipsis
+    const truncatedLines = lines.slice(0, maxLines);
+    const truncatedText = truncatedLines.join('\n') + '...';
+    
+    // Create a simple HTML version with line breaks
+    return truncatedText.replace(/\n/g, '<br>');
+}
+
 function createProjectCard(project) {
     const card = document.createElement('div');
     card.className = `project-card ${project.variant || ''}`;
@@ -455,7 +476,7 @@ function createProjectCard(project) {
                 <h3>${project.title}</h3>
                 ${yearDisplay}
             </div>
-            <p class="card-description">${project.description}</p>
+            <p class="card-description">${truncateDescription(project.description, 4)}</p>
             ${roleDisplay}
             <div class="card-tags">
                 <span class="card-tag card-medium">${project.medium}</span>

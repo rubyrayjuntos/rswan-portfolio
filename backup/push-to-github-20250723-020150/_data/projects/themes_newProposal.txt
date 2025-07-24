@@ -1,0 +1,1304 @@
+
+1. Update HTML (index.html)
+We'll add a new control-group for the music toggle. We'll also need <audio> tags for each theme's soundscape. These will be hidden and controlled by JavaScript.
+
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themed Hero with Animated Particles</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hero-container theme-magic" id="heroContainer">
+        <div class="controls-container">
+            <div class="theme-selector">
+                <select id="themeSelect">
+                    <option value="magic">Magic</option>
+                    <option value="dark">Dark</option>
+                    <option value="forest">Forest</option>
+                    <option value="sunset">Sunset</option>
+                    <option value="twilight">Twilight</option>
+                    <option value="lavender">Lavender</option>
+                    <option value="ocean">Ocean</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="particleSize">Size:</label>
+                <select id="particleSize">
+                    <option value="small">Small</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="particleSpeed">Speed:</label>
+                <select id="particleSpeed">
+                    <option value="slow">Slow</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="fast">Fast</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="particleCount">Density:</label>
+                <select id="particleCount">
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="particleShape">Shape:</label>
+                <select id="particleShape">
+                    <option value="circle">Circle</option>
+                    <option value="square">Square</option>
+                    <option value="triangle">Triangle</option>
+                    <option value="star">Star</option>
+                </select>
+            </div>
+
+            <div class="control-group music-control">
+                <label for="musicToggle">Music:</label>
+                <label class="switch">
+                    <input type="checkbox" id="musicToggle">
+                    <span class="slider round"></span>
+                </label>
+                <input type="range" id="musicVolume" min="0" max="1" step="0.01" value="0.5" class="volume-slider">
+            </div>
+        </div>
+
+        <canvas class="particle-canvas" id="particleCanvas"></canvas>
+
+        <div class="moon" id="moon"></div>
+        <div class="sun" id="sun"></div>
+
+        <div class="skyline" id="skyline">
+            </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title" id="heroTitle">Welcome to Magic</h1>
+            <p class="hero-description" id="heroDescription">Experience the wonder and enchantment of sparkling magical particles dancing through the air</p>
+        </div>
+    </div>
+
+    <audio id="magicAudio" src="audio/magic.mp3" loop preload="auto"></audio>
+    <audio id="darkAudio" src="audio/dark.mp3" loop preload="auto"></audio>
+    <audio id="forestAudio" src="audio/forest.mp3" loop preload="auto"></audio>
+    <audio id="sunsetAudio" src="audio/sunset.mp3" loop preload="auto"></audio>
+    <audio id="twilightAudio" src="audio/twilight.mp3" loop preload="auto"></audio>
+    <audio id="lavenderAudio" src="audio/lavender.mp3" loop preload="auto"></audio>
+    <audio id="oceanAudio" src="audio/ocean.mp3" loop preload="auto"></audio>
+
+
+    <script src="script.js" defer></script>
+</body>
+</html>
+Important: I'll need to create an audio folder in my project root and place .mp3 files for each theme (e.g., magic.mp3, dark.mp3, etc.). If you don't have specific soundscapes, you can use placeholder silent MP3s or small, royalty-free ambient tracks for testing.
+
+2. Update CSS (style.css)
+We'll add some basic styling for the toggle switch and the volume slider.
+
+CSS
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+.hero-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: background-color 1s ease-in-out, background-image 1s ease-in-out;
+}
+
+/* Theme-specific backgrounds */
+.theme-magic {
+    background: linear-gradient(to bottom right, #8e44ad, #3498db);
+}
+
+.theme-dark {
+    background: linear-gradient(to bottom, #000000, #2c3e50);
+}
+
+.theme-forest {
+    background: linear-gradient(to bottom, #2ecc71, #27ae60);
+}
+
+.theme-sunset {
+    background: linear-gradient(to top, #ff7e5f, #feb47b);
+}
+
+.theme-twilight {
+    background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
+}
+
+.theme-lavender {
+    background: linear-gradient(to bottom, #e0bbe4, #957dad);
+}
+
+.theme-ocean {
+    background: linear-gradient(to bottom, #00c6ff, #0072ff);
+}
+
+.particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero-description {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Controls */
+.controls-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.9em;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.controls-container select,
+.controls-container input[type="range"] {
+    padding: 5px;
+    border-radius: 4px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+}
+
+.controls-container select option {
+    background-color: #333; /* Darker background for options */
+    color: white;
+}
+
+/* Toggle Switch Styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(14px);
+    -ms-transform: translateX(14px);
+    transform: translateX(14px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 20px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Volume Slider */
+.volume-slider {
+    -webkit-appearance: none;
+    width: 80px; /* Adjust width as needed */
+    height: 4px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 2px;
+}
+
+.volume-slider:hover {
+    opacity: 1;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #2196F3;
+    cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #2196F3;
+    cursor: pointer;
+}
+
+/* Moon and Sun */
+.moon, .sun {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    z-index: 0; /* Behind particles */
+    transition: opacity 1s ease-in-out;
+}
+
+.moon {
+    top: 10%;
+    left: 10%;
+    background-color: #f1c40f; /* Yellowish for dark theme */
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+}
+
+.sun {
+    top: 15%; /* Initial position */
+    right: 15%;
+    background: radial-gradient(circle at 30% 30%, #ffeb3b, #ff9800);
+    box-shadow: 0 0 30px rgba(255, 165, 0, 0.8);
+}
+
+/* Skyline for Twilight theme */
+.skyline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; /* Max height for buildings */
+    z-index: 0; /* Behind particles */
+    display: flex;
+    align-items: flex-end; /* Align buildings to the bottom */
+    transition: opacity 1s ease-in-out;
+}
+
+.building {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    bottom: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.building .window {
+    position: absolute;
+    width: 3px;
+    height: 6px;
+    background-color: #ffeb3b; /* Lit window color */
+    opacity: 0;
+    animation: flicker 1s infinite alternate; /* Flicker effect */
+}
+
+@keyframes flicker {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+3. Update JavaScript (script.js)
+We'll add a SoundManager class to handle audio playback. This will be responsible for loading, playing, pausing, and switching between theme-specific audio tracks.
+
+Here's a breakdown of the changes in script.js:
+
+New SoundManager Class:
+
+Constructor: Gets references to all audio elements and the toggle/volume controls.
+
+loadAudio: Preloads audio files (though preload="auto" in HTML helps).
+
+playThemeAudio: Stops current audio, plays the audio for the new theme.
+
+pauseCurrentAudio: Pauses the currently playing audio.
+
+setVolume: Adjusts the volume of the current audio.
+
+Event listeners for the toggle and volume slider.
+
+ThemeManager:
+
+Will interact with the SoundManager to play/pause audio when themes change.
+
+Initialization: Ensure SoundManager is initialized after ParticleSystem and ThemeManager.
+
+JavaScript
+
+// script.js
+class ParticleSystem {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.particles = [];
+        this.theme = 'magic'; // Initial theme
+        this.particleSizeSetting = 'medium'; // Default size
+        this.particleSpeedSetting = 'normal'; // Default speed
+        this.particleCountSetting = 'medium'; // Default count
+        this.particleShapeSetting = 'circle'; // Default shape
+        this.animationId = null;
+
+        // Mouse interaction properties
+        this.mouseX = 0;
+        this.mouseY = 0;
+        this.isMouseInteracting = false;
+        this.clickBurstParticles = []; // For click effects
+
+        this.particleSizeMap = {
+            small: { min: 2, max: 6 },
+            medium: { min: 4, max: 10 },
+            large: { min: 6, max: 14 }
+        };
+
+        this.particleSpeedMap = {
+            slow: { min: 0.5, max: 1.5 },
+            normal: { min: 1, max: 3 },
+            fast: { min: 2, max: 5 }
+        };
+
+        this.particleCountMap = {
+            low: 20,
+            medium: 50,
+            high: 80
+        };
+
+        this.resize();
+        window.addEventListener('resize', () => {
+            this.resize();
+            this.init(); // Reinitialize particles on resize to adjust count/position
+        });
+
+        // Mouse event listeners
+        this.canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
+        this.canvas.addEventListener('mousedown', this.handleMouseDown.bind(this));
+        this.canvas.addEventListener('mouseup', this.handleMouseUp.bind(this));
+        this.canvas.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: false });
+        this.canvas.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: false });
+        this.canvas.addEventListener('touchend', this.handleTouchEnd.bind(this));
+
+
+        this.init();
+    }
+
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+
+    init() {
+        // Clear existing particles if re-initializing
+        this.particles = [];
+        // Get particle count based on current setting
+        const particleCount = this.particleCountMap[this.particleCountSetting];
+
+        for (let i = 0; i < particleCount; i++) {
+            this.particles.push(this.createParticle());
+        }
+
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+        }
+        this.animate();
+    }
+
+    // Mouse and touch event handlers
+    handleMouseMove(event) {
+        this.mouseX = event.clientX;
+        this.mouseY = event.clientY;
+    }
+
+    handleMouseDown(event) {
+        this.isMouseInteracting = true;
+        this.mouseX = event.clientX;
+        this.mouseY = event.clientY;
+        this.createClickBurst(this.mouseX, this.mouseY); // Create burst on click
+    }
+
+    handleMouseUp() {
+        this.isMouseInteracting = false;
+    }
+
+    handleTouchStart(event) {
+        event.preventDefault(); // Prevent scrolling
+        this.isMouseInteracting = true;
+        const touch = event.touches[0];
+        this.mouseX = touch.clientX;
+        this.mouseY = touch.clientY;
+        this.createClickBurst(this.mouseX, this.mouseY);
+    }
+
+    handleTouchMove(event) {
+        event.preventDefault(); // Prevent scrolling
+        const touch = event.touches[0];
+        this.mouseX = touch.clientX;
+        this.mouseY = touch.clientY;
+    }
+
+    handleTouchEnd() {
+        this.isMouseInteracting = false;
+    }
+
+    createClickBurst(x, y) {
+        const burstCount = 10; // Number of particles in a burst
+        const sizeRange = this.particleSizeMap[this.particleSizeSetting];
+        const speedRange = this.particleSpeedMap[this.particleSpeedSetting];
+
+        for (let i = 0; i < burstCount; i++) {
+            const particle = {
+                x: x,
+                y: y,
+                size: Math.random() * (sizeRange.max / 2) + sizeRange.min / 2, // Smaller burst particles
+                speedX: (Math.random() - 0.5) * speedRange.max * 2, // Faster initial burst
+                speedY: (Math.random() - 0.5) * speedRange.max * 2,
+                color: this.getThemeColor(),
+                opacity: 1,
+                rotation: 0,
+                rotationSpeed: (Math.random() - 0.5) * 0.2,
+                life: 1,
+                maxLife: 60, // Fade out over 60 frames
+                customShape: this.particleShapeSetting // Burst particles use current selected shape
+            };
+            this.clickBurstParticles.push(particle);
+        }
+    }
+
+
+    createParticle() {
+        const sizeRange = this.particleSizeMap[this.particleSizeSetting];
+        const speedRange = this.particleSpeedMap[this.particleSpeedSetting];
+
+        const particle = {
+            x: Math.random() * this.canvas.width,
+            y: this.canvas.height + 20, // Start below screen for most themes
+            size: Math.random() * (sizeRange.max - sizeRange.min) + sizeRange.min,
+            speedX: (Math.random() - 0.5) * (speedRange.max / 2), // Adjust speedX based on speed setting
+            speedY: Math.random() * (speedRange.max - speedRange.min) + speedRange.min,
+            color: this.getThemeColor(),
+            opacity: Math.random() * 0.8 + 0.2,
+            rotation: 0,
+            rotationSpeed: (Math.random() - 0.5) * 0.1,
+            life: 1, // Normalized life from 0 to 1
+            maxLife: 1, // For effects that fade out
+            customShape: this.particleShapeSetting // Store the current shape setting for this particle
+        };
+
+        switch (this.theme) {
+            case 'sunset':
+                particle.y = Math.random() * this.canvas.height; // Start anywhere for sunset
+                particle.speedY = (Math.random() - 0.5) * speedRange.max; // Can move up or down
+                break;
+            case 'ocean':
+                particle.waveOffset = Math.random() * Math.PI * 2;
+                particle.waveAmplitude = Math.random() * 20 + 10;
+                particle.type = Math.random() > 0.4 ? 'bubble' : 'fish'; // More bubbles than fish
+                if (particle.type === 'fish') {
+                    particle.x = Math.random() < 0.5 ? -50 : this.canvas.width + 50; // Enter from left or right
+                    particle.y = Math.random() * this.canvas.height;
+                    particle.speedX = (Math.random() * (speedRange.max * 0.5) + (speedRange.min * 0.5)) * (particle.x < 0 ? 1 : -1); // Speed and direction
+                    particle.speedY = (Math.random() - 0.5) * (speedRange.max * 0.5);
+                    particle.flipX = particle.speedX < 0; // Flip sprite based on direction
+                    particle.swimOffset = Math.random() * Math.PI * 2;
+                    particle.size = Math.random() * (sizeRange.max * 1.5) + (sizeRange.min * 1.5); // Fish are bigger
+                    particle.color = ['#ff7675', '#fdcb6e', '#e17055', '#fd79a8', '#6c5ce7', '#a29bfe'][Math.floor(Math.random() * 6)];
+                } else {
+                    particle.color = ['#00cec9', '#55a3ff', '#74b9ff', '#0984e3', '#00b894', '#81ecec'][Math.floor(Math.random() * 6)];
+                }
+                // Override customShape for ocean theme to maintain specific types
+                particle.customShape = particle.type;
+                break;
+            default:
+                // Default particle settings
+                break;
+        }
+
+        return particle;
+    }
+
+    getThemeColor() {
+        const colors = {
+            magic: ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24', '#f0932b', '#eb4d4b', '#6c5ce7', '#fd79a8'],
+            dark: ['#ffffff', '#f1c40f', '#3498db', '#9b59b6', '#e74c3c'],
+            forest: ['#27ae60', '#2ecc71', '#16a085', '#f39c12', '#8b4513', '#654321'],
+            sunset: ['#ff7675', '#fd79a8', '#fdcb6e', '#e17055', '#f39c12', '#e84393'],
+            twilight: ['#ffeb3b', '#ffc107', '#ff9800', '#f44336'],
+            lavender: ['#dda0dd', '#da70d6', '#ba55d3', '#9370db', '#ff69b4', '#ffc0cb'],
+            ocean: ['#00cec9', '#55a3ff', '#74b9ff', '#0984e3', '#00b894', '#81ecec'], // General ocean colors for bubbles
+        };
+        // Fish colors are set directly in createParticle for better variety/control
+        const themeColors = colors[this.theme] || colors.magic;
+        return themeColors[Math.floor(Math.random() * themeColors.length)];
+    }
+
+    drawParticle(particle) {
+        this.ctx.save();
+        this.ctx.globalAlpha = particle.opacity * particle.life; // Incorporate life into opacity
+        this.ctx.translate(particle.x, particle.y);
+        this.ctx.rotate(particle.rotation);
+
+        // Prioritize theme-specific drawing for certain themes
+        if (this.theme === 'forest') {
+            if (Math.random() > 0.7) { // 30% chance for bird
+                this.drawBird(particle);
+            } else {
+                this.drawLeaf(particle);
+            }
+        } else if (this.theme === 'ocean') {
+            if (particle.type === 'fish') {
+                this.drawFish(particle);
+            } else {
+                this.drawBubble(particle);
+            }
+        } else if (this.theme === 'lavender') {
+            this.drawFlower(particle);
+        } else {
+            // Use custom shape for other themes
+            switch (particle.customShape) {
+                case 'circle':
+                    this.drawCircle(particle);
+                    break;
+                case 'square':
+                    this.drawSquare(particle);
+                    break;
+                case 'triangle':
+                    this.drawTriangle(particle);
+                    break;
+                case 'star':
+                    this.drawStar(particle);
+                    break;
+                default:
+                    this.drawCircle(particle); // Fallback
+            }
+        }
+        this.ctx.restore();
+    }
+
+    // Generic drawing functions for shapes
+    drawCircle(particle) {
+        const gradient = this.ctx.createRadialGradient(0, 0, 0, 0, 0, particle.size);
+        gradient.addColorStop(0, particle.color);
+        gradient.addColorStop(1, particle.color + '00');
+        this.ctx.fillStyle = gradient;
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, particle.size, 0, Math.PI * 2);
+        this.ctx.fill();
+    }
+
+    drawSquare(particle) {
+        this.ctx.fillStyle = particle.color;
+        this.ctx.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size);
+        this.ctx.strokeStyle = particle.color; // Add a subtle border
+        this.ctx.lineWidth = 0.5;
+        this.ctx.strokeRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size);
+    }
+
+    drawTriangle(particle) {
+        this.ctx.fillStyle = particle.color;
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, -particle.size); // Top point
+        this.ctx.lineTo(particle.size * 0.866, particle.size * 0.5); // Right point (approx equilateral)
+        this.ctx.lineTo(-particle.size * 0.866, particle.size * 0.5); // Left point
+        this.ctx.closePath();
+        this.ctx.fill();
+        this.ctx.strokeStyle = particle.color;
+        this.ctx.lineWidth = 0.5;
+        this.ctx.stroke();
+    }
+
+    // Existing spark function is now a specific drawing type
+    drawSpark(particle) {
+        const gradient = this.ctx.createRadialGradient(0, 0, 0, 0, 0, particle.size);
+        gradient.addColorStop(0, particle.color);
+        gradient.addColorStop(1, particle.color + '00');
+
+        this.ctx.fillStyle = gradient;
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, particle.size, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        // Add sparkle effect
+        this.ctx.strokeStyle = particle.color;
+        this.ctx.lineWidth = 1;
+        this.ctx.beginPath();
+        this.ctx.moveTo(-particle.size, 0);
+        this.ctx.lineTo(particle.size, 0);
+        this.ctx.moveTo(0, -particle.size);
+        this.ctx.lineTo(0, particle.size);
+        this.ctx.stroke();
+    }
+
+    drawLeaf(particle) {
+        this.ctx.fillStyle = particle.color;
+        this.ctx.beginPath();
+        // Base leaf shape
+        this.ctx.ellipse(0, 0, particle.size, particle.size * 0.6, 0, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        // Stem/vein
+        this.ctx.strokeStyle = 'rgba(0,0,0,0.3)'; // Darker vein
+        this.ctx.lineWidth = 1;
+        this.ctx.beginPath();
+        this.ctx.moveTo(0, -particle.size * 0.6);
+        this.ctx.lineTo(0, particle.size * 0.6);
+        this.ctx.stroke();
+    }
+
+    drawBird(particle) {
+        this.ctx.strokeStyle = particle.color;
+        this.ctx.lineWidth = 2;
+        this.ctx.beginPath();
+        // Two arcs to form the bird shape
+        this.ctx.moveTo(-particle.size, 0);
+        this.ctx.quadraticCurveTo(0, -particle.size * 0.8, particle.size, 0);
+        this.ctx.moveTo(-particle.size, 0);
+        this.ctx.quadraticCurveTo(0, particle.size * 0.8, particle.size, 0);
+        this.ctx.stroke();
+    }
+
+    drawStar(particle) {
+        const spikes = 5;
+        const outerRadius = particle.size;
+        const innerRadius = particle.size * 0.4;
+
+        this.ctx.fillStyle = particle.color;
+        this.ctx.beginPath();
+
+        for (let i = 0; i < spikes * 2; i++) {
+            const radius = i % 2 === 0 ? outerRadius : innerRadius;
+            const angle = (i * Math.PI) / spikes - Math.PI / 2; // Start point facing up
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+
+            if (i === 0) {
+                this.ctx.moveTo(x, y);
+            } else {
+                this.ctx.lineTo(x, y);
+            }
+        }
+
+        this.ctx.closePath();
+        this.ctx.fill();
+    }
+
+    drawBubble(particle) {
+        // Main bubble
+        const gradient = this.ctx.createRadialGradient(-particle.size * 0.3, -particle.size * 0.3, 0, 0, 0, particle.size);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.8)');
+        gradient.addColorStop(0.7, particle.color + '40');
+        gradient.addColorStop(1, particle.color + '10');
+
+        this.ctx.fillStyle = gradient;
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, particle.size, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        // Bubble highlight
+        this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        this.ctx.beginPath();
+        this.ctx.arc(-particle.size * 0.3, -particle.size * 0.3, particle.size * 0.3, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        // Bubble outline
+        this.ctx.strokeStyle = particle.color + '60';
+        this.ctx.lineWidth = 1;
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, particle.size, 0, Math.PI * 2);
+        this.ctx.stroke();
+    }
+
+    drawFish(particle) {
+        const fishLength = particle.size * 1.5;
+        const fishHeight = particle.size;
+
+        this.ctx.save();
+        if (particle.flipX) { // Apply flip if necessary
+            this.ctx.scale(-1, 1);
+        }
+
+        // Fish body
+        this.ctx.fillStyle = particle.color;
+        this.ctx.beginPath();
+        this.ctx.ellipse(0, 0, fishLength, fishHeight * 0.6, 0, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        // Fish tail
+        this.ctx.fillStyle = particle.color;
+        this.ctx.beginPath();
+        this.ctx.moveTo(-fishLength, 0);
+        this.ctx.lineTo(-fishLength * 1.5, -fishHeight * 0.5);
+        this.ctx.lineTo(-fishLength * 1.3, 0); // Slight V-cut
+        this.ctx.lineTo(-fishLength * 1.5, fishHeight * 0.5);
+        this.ctx.closePath();
+        this.ctx.fill();
+
+        // Fish fin (top)
+        this.ctx.beginPath();
+        this.ctx.moveTo(fishLength * 0.2, -fishHeight * 0.3);
+        this.ctx.lineTo(fishLength * 0.7, -fishHeight * 0.8);
+        this.ctx.lineTo(fishLength * 0.5, -fishHeight * 0.2);
+        this.ctx.closePath();
+        this.ctx.fill();
+
+        // Fish eye
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.beginPath();
+        this.ctx.arc(fishLength * 0.3, -fishHeight * 0.1, fishHeight * 0.15, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        this.ctx.fillStyle = '#000000';
+        this.ctx.beginPath();
+        this.ctx.arc(fishLength * 0.35, -fishHeight * 0.1, fishHeight * 0.08, 0, Math.PI * 2);
+        this.ctx.fill();
+
+        this.ctx.restore();
+    }
+
+    drawFlower(particle) {
+        const petals = 6;
+        const petalSize = particle.size * 0.7;
+
+        this.ctx.fillStyle = particle.color;
+
+        for (let i = 0; i < petals; i++) {
+            const angle = (i * Math.PI * 2) / petals;
+            const petalX = Math.cos(angle) * petalSize * 0.5;
+            const petalY = Math.sin(angle) * petalSize * 0.5;
+
+            this.ctx.beginPath();
+            this.ctx.ellipse(petalX, petalY, petalSize * 0.3, petalSize * 0.6, angle, 0, Math.PI * 2);
+            this.ctx.fill();
+        }
+
+        // Center
+        this.ctx.fillStyle = '#f9ca24';
+        this.ctx.beginPath();
+        this.ctx.arc(0, 0, particle.size * 0.3, 0, Math.PI * 2);
+        this.ctx.fill();
+    }
+
+    updateParticle(particle) {
+        const speedMultiplier = this.particleSpeedMap[this.particleSpeedSetting].max / 3; // Normalize against 'normal' speed max (3)
+        const repulsionForce = 0.05 * speedMultiplier; // How strongly particles repel from mouse
+        const attractionForce = 0.01 * speedMultiplier; // How strongly particles attract to mouse
+
+        // Mouse interaction logic
+        if (this.isMouseInteracting) {
+            const dx = particle.x - this.mouseX;
+            const dy = particle.y - this.mouseY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 150) { // Particles within 150px of mouse
+                const forceDirectionX = dx / distance;
+                const forceDirectionY = dy / distance;
+                // Repel particles strongly
+                particle.x += forceDirectionX * repulsionForce * (150 - distance) / 10;
+                particle.y += forceDirectionY * repulsionForce * (150 - distance) / 10;
+            } else if (distance > 200) { // Particles far from mouse subtly attract back
+                const forceDirectionX = (this.mouseX - particle.x) / distance;
+                const forceDirectionY = (this.mouseY - particle.y) / distance;
+                particle.x += forceDirectionX * attractionForce;
+                particle.y += forceDirectionY * attractionForce;
+            }
+        }
+
+        switch (this.theme) {
+            case 'magic':
+            case 'twilight':
+                particle.y -= particle.speedY * speedMultiplier;
+                particle.x += particle.speedX * speedMultiplier;
+                break;
+            case 'forest':
+                particle.y -= particle.speedY * 0.5 * speedMultiplier;
+                particle.x += particle.speedX * speedMultiplier;
+                particle.rotation += particle.rotationSpeed;
+                break;
+            case 'dark':
+                particle.y -= particle.speedY * 0.3 * speedMultiplier;
+                particle.x += particle.speedX * 0.5 * speedMultiplier;
+                particle.rotation += particle.rotationSpeed * 0.5;
+                break;
+            case 'sunset':
+                particle.x += particle.speedX * speedMultiplier;
+                particle.y += particle.speedY * speedMultiplier; // Can move up or down based on speedY
+                break;
+            case 'ocean':
+                if (particle.type === 'fish') {
+                    particle.x += particle.speedX * speedMultiplier;
+                    particle.y += particle.speedY * speedMultiplier + Math.sin(particle.swimOffset) * 0.5; // Gentle up/down swim
+                    particle.swimOffset += 0.05; // Adjust speed of swim oscillation
+
+                    // Periodically change direction slightly
+                    if (Math.random() < 0.005) {
+                        particle.speedY += (Math.random() - 0.5) * 0.8 * speedMultiplier;
+                        particle.speedY = Math.max(-1.5, Math.min(1.5, particle.speedY));
+                    }
+                } else { // Bubble motion
+                    particle.y -= particle.speedY * 0.7 * speedMultiplier;
+                    particle.x += Math.sin(particle.y * 0.01 + particle.waveOffset) * particle.waveAmplitude * 0.02;
+                }
+                break;
+            case 'lavender':
+                particle.y -= particle.speedY * 0.8 * speedMultiplier;
+                particle.x += particle.speedX * speedMultiplier;
+                particle.rotation += particle.rotationSpeed;
+                break;
+        }
+
+        // Reset particles if they go off-screen
+        let shouldReset = false;
+        if (this.theme === 'sunset') {
+            if (particle.y > this.canvas.height + 50 || particle.x < -50 || particle.x > this.canvas.width + 50) {
+                shouldReset = true;
+            }
+        } else if (this.theme === 'ocean' && particle.type === 'fish') {
+            if (particle.speedX > 0 && particle.x > this.canvas.width + 50) shouldReset = true;
+            if (particle.speedX < 0 && particle.x < -50) shouldReset = true;
+        } else {
+            if (particle.y < -50 || particle.x < -50 || particle.x > this.canvas.width + 50) {
+                shouldReset = true;
+            }
+        }
+
+        if (shouldReset) {
+            this.resetParticle(particle);
+        }
+    }
+
+    // Update and draw click burst particles
+    updateClickBurstParticles() {
+        for (let i = this.clickBurstParticles.length - 1; i >= 0; i--) {
+            const particle = this.clickBurstParticles[i];
+            particle.x += particle.speedX;
+            particle.y += particle.speedY;
+            particle.life -= 1 / particle.maxLife; // Decrease life over time
+
+            if (particle.life <= 0) {
+                this.clickBurstParticles.splice(i, 1); // Remove dead particles
+            }
+        }
+    }
+
+    resetParticle(particle) {
+        // Reset properties to create a new particle effect from scratch
+        Object.assign(particle, this.createParticle());
+        // For sunset and ocean, ensure they reappear within their respective patterns
+        if (this.theme === 'sunset') {
+            particle.x = Math.random() * this.canvas.width;
+            particle.y = -20; // Reappear from top
+        } else if (this.theme === 'ocean' && particle.type === 'fish') {
+            particle.x = Math.random() < 0.5 ? -50 : this.canvas.width + 50; // Re-enter from either side
+            particle.y = Math.random() * this.canvas.height;
+            const speedRange = this.particleSpeedMap[this.particleSpeedSetting];
+            particle.speedX = (Math.random() * (speedRange.max * 0.5) + (speedRange.min * 0.5)) * (particle.x < 0 ? 1 : -1);
+            particle.flipX = particle.speedX < 0;
+        } else {
+            particle.x = Math.random() * this.canvas.width;
+            particle.y = this.canvas.height + 20; // Reappear from bottom
+        }
+        particle.color = this.getThemeColor(); // Ensure new color is theme-appropriate
+    }
+
+    // New method to set particle shape
+    setParticleShape(shape) {
+        this.particleShapeSetting = shape;
+        this.init(); // Reinitialize particles with new shapes
+    }
+
+    // Existing methods to set particle properties
+    setParticleSize(size) {
+        this.particleSizeSetting = size;
+        this.init(); // Reinitialize particles with new sizes
+    }
+
+    setParticleSpeed(speed) {
+        this.particleSpeedSetting = speed;
+        // No need to re-init, updateParticle will apply speed change
+    }
+
+    setParticleCount(count) {
+        this.particleCountSetting = count;
+        this.init(); // Reinitialize particles with new count
+    }
+
+    setTheme(newTheme) {
+        this.theme = newTheme;
+        this.init(); // Reinitialize particles for the new theme
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.particles.forEach(particle => {
+            this.updateParticle(particle);
+            this.drawParticle(particle);
+        });
+
+        // Animate and draw click burst particles
+        this.updateClickBurstParticles();
+        this.clickBurstParticles.forEach(particle => {
+            this.drawParticle(particle); // Reuse existing drawParticle for burst
+        });
+
+        this.animationId = requestAnimationFrame(() => this.animate());
+    }
+}
+
+class SoundManager {
+    constructor() {
+        this.audioElements = {
+            magic: document.getElementById('magicAudio'),
+            dark: document.getElementById('darkAudio'),
+            forest: document.getElementById('forestAudio'),
+            sunset: document.getElementById('sunsetAudio'),
+            twilight: document.getElementById('twilightAudio'),
+            lavender: document.getElementById('lavenderAudio'),
+            ocean: document.getElementById('oceanAudio')
+        };
+        this.currentAudio = null;
+        this.isMusicEnabled = false;
+
+        this.musicToggle = document.getElementById('musicToggle');
+        this.musicVolume = document.getElementById('musicVolume');
+
+        this.musicToggle.addEventListener('change', this.toggleMusic.bind(this));
+        this.musicVolume.addEventListener('input', this.setVolume.bind(this));
+
+        // Set initial volume for all audio elements
+        for (const key in this.audioElements) {
+            if (this.audioElements.hasOwnProperty(key)) {
+                this.audioElements[key].volume = parseFloat(this.musicVolume.value);
+            }
+        }
+    }
+
+    toggleMusic() {
+        this.isMusicEnabled = this.musicToggle.checked;
+        if (this.isMusicEnabled) {
+            // If music is enabled, play the audio for the current theme
+            // The ThemeManager will call playThemeAudio when theme changes.
+            // For initial load, we need to manually play the current theme.
+            if (window.themeManager && window.themeManager.currentTheme) {
+                this.playThemeAudio(window.themeManager.currentTheme);
+            }
+        } else {
+            this.pauseCurrentAudio();
+        }
+    }
+
+    playThemeAudio(theme) {
+        // Pause any currently playing audio
+        if (this.currentAudio) {
+            this.currentAudio.pause();
+            this.currentAudio.currentTime = 0; // Reset playback position
+        }
+
+        // Play the new theme's audio if music is enabled
+        if (this.isMusicEnabled && this.audioElements[theme]) {
+            this.currentAudio = this.audioElements[theme];
+            this.currentAudio.play().catch(error => {
+                console.warn("Audio playback prevented:", error);
+                // This often happens if the user hasn't interacted with the page yet.
+                // You might want to show a message to the user to click somewhere to enable audio.
+            });
+        }
+    }
+
+    pauseCurrentAudio() {
+        if (this.currentAudio) {
+            this.currentAudio.pause();
+        }
+    }
+
+    setVolume() {
+        const volume = parseFloat(this.musicVolume.value);
+        for (const key in this.audioElements) {
+            if (this.audioElements.hasOwnProperty(key)) {
+                this.audioElements[key].volume = volume;
+            }
+        }
+    }
+}
+
+
+class ThemeManager {
+    constructor() {
+        this.currentTheme = 'magic';
+        this.heroContainer = document.getElementById('heroContainer');
+        this.heroTitle = document.getElementById('heroTitle');
+        this.heroDescription = document.getElementById('heroDescription');
+
+        // Get dropdown elements
+        this.themeSelect = document.getElementById('themeSelect');
+        this.particleSizeSelect = document.getElementById('particleSize');
+        this.particleSpeedSelect = document.getElementById('particleSpeed');
+        this.particleCountSelect = document.getElementById('particleCount');
+        this.particleShapeSelect = document.getElementById('particleShape');
+
+        this.moon = document.getElementById('moon');
+        this.sun = document.getElementById('sun');
+        this.skyline = document.getElementById('skyline');
+        this.sunsetAnimationId = null; // To store requestAnimationFrame ID for sunset
+
+        this.themeData = {
+            magic: {
+                title: 'Welcome to Magic',
+                description: 'Experience the wonder and enchantment of sparkling magical particles dancing through the air'
+            },
+            dark: {
+                title: 'Enter the Cosmos',
+                description: 'Journey through the celestial darkness where stars twinkle and the moon lights your path'
+            },
+            forest: {
+                title: 'Into the Wild',
+                description: 'Discover the natural beauty of the forest where leaves flutter and birds soar freely'
+            },
+            sunset: {
+                title: 'Golden Hour',
+                description: 'Witness the breathtaking beauty as the sun paints the sky in warm, vibrant colors'
+            },
+            twilight: {
+                title: 'City Lights',
+                description: 'Experience the urban energy as the city comes alive with twinkling lights at twilight'
+            },
+            lavender: {
+                title: 'Floral Dreams',
+                description: 'Immerse yourself in a garden of blooming flowers with gentle lavender hues'
+            },
+            ocean: {
+                title: 'Ocean Breeze',
+                description: 'Feel the tropical paradise with crystal blue waters and gentle Caribbean waves'
+            }
+        };
+
+        this.generateSkyline();
+
+        // Add event listeners for dropdowns
+        this.themeSelect.addEventListener('change', (e) => this.changeTheme(e.target.value));
+        this.particleSizeSelect.addEventListener('change', (e) => window.particleSystem.setParticleSize(e.target.value));
+        this.particleSpeedSelect.addEventListener('change', (e) => window.particleSystem.setParticleSpeed(e.target.value));
+        this.particleCountSelect.addEventListener('change', (e) => window.particleSystem.setParticleCount(e.target.value));
+        this.particleShapeSelect.addEventListener('change', (e) => window.particleSystem.setParticleShape(e.target.value));
+
+        // Set initial values for the dropdowns in ParticleSystem
+        // Initial theme is handled by DOMContentLoaded listener.
+    }
+
+    generateSkyline() {
+        const buildingCount = 12;
+        const minBuildingWidth = 40;
+        const maxBuildingWidth = 80;
+        const minBuildingHeight = 50;
+        const maxBuildingHeight = 150;
+        const windowSpacing = 15;
+        const windowSize = 3;
+
+        for (let i = 0; i < buildingCount; i++) {
+            const building = document.createElement('div');
+            building.className = 'building';
+
+            const width = Math.random() * (maxBuildingWidth - minBuildingWidth) + minBuildingWidth;
+            const height = Math.random() * (maxBuildingHeight - minBuildingHeight) + minBuildingHeight;
+            // Distribute buildings evenly across the width, with some randomness
+            const left = (i / buildingCount) * 100 + (Math.random() * 5 - 2.5); // Add slight random offset
+
+            building.style.width = `${width}px`;
+            building.style.height = `${height}px`;
+            building.style.left = `${left}%`;
+
+            // Add windows
+            const windowsPerFloor = Math.floor(width / (windowSpacing + windowSize));
+            const floors = Math.floor(height / (windowSpacing + windowSize));
+
+            for (let floor = 0; floor < floors; floor++) {
+                for (let win = 0; win < windowsPerFloor; win++) {
+                    if (Math.random() > 0.3) { // Not all windows are lit
+                        const windowDiv = document.createElement('div');
+                        windowDiv.className = 'window';
+                        windowDiv.style.left = `${win * (windowSpacing + windowSize) + (width - (windowsPerFloor * (windowSpacing + windowSize))) / 2}px`; // Center windows
+                        windowDiv.style.top = `${floor * (windowSpacing + windowSize) + 5}px`; // Offset from top of building
+                        windowDiv.style.animationDelay = `${Math.random() * 2}s`;
+                        building.appendChild(windowDiv);
+                    }
+                }
+            }
+            this.skyline.appendChild(building);
+        }
+    }
+
+    changeTheme(newTheme) {
+        this.currentTheme = newTheme;
+
+        // Update container class
+        this.heroContainer.className = `hero-container`;
+        this.heroContainer.classList.add(`theme-${newTheme}`);
+
+        // Update content
+        const themeInfo = this.themeData[newTheme];
+        this.heroTitle.textContent = themeInfo.title;
+        this.heroDescription.textContent = themeInfo.description;
+
+        // Hide all special elements first
+        this.moon.style.opacity = '0';
+        this.sun.style.opacity = '0';
+        this.skyline.style.opacity = '0';
+
+        // Stop any ongoing sunset animation
+        if (this.sunsetAnimationId) {
+            cancelAnimationFrame(this.sunsetAnimationId);
+            this.sunsetAnimationId = null;
+        }
+
+        // Show relevant elements
+        if (newTheme === 'dark') {
+            this.moon.style.opacity = '1';
+        } else if (newTheme === 'sunset') {
+            this.sun.style.opacity = '1';
+            this.animateSunset();
+        } else if (newTheme === 'twilight') {
+            this.skyline.style.opacity = '1';
+        }
+
+        // Update particle system
+        if (window.particleSystem) {
+            window.particleSystem.setTheme(newTheme);
+        }
+
+        // New: Update sound manager
+        if (window.soundManager) {
+            window.soundManager.playThemeAudio(newTheme);
+        }
+    }
+
+    animateSunset() {
+        let position = 15; // Starting top percentage for the sun
+        const animate = () => {
+            this.sun.style.top = `${position}%`;
+            position += 0.05; // Slower movement for smoother animation
+            if (position > 80) { // Reset position if it goes too far down
+                position = 15;
+            }
+            this.sunsetAnimationId = requestAnimationFrame(animate);
+        };
+        this.sunsetAnimationId = requestAnimationFrame(animate);
+    }
+}
+
+// Initialize the system
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('particleCanvas');
+    window.particleSystem = new ParticleSystem(canvas);
+    window.themeManager = new ThemeManager();
+    window.soundManager = new SoundManager(); // New: Initialize SoundManager
+
+    // Set initial values for the dropdowns in ParticleSystem
+    // Ensure these are called AFTER both ParticleSystem and ThemeManager are initialized
+    window.particleSystem.setParticleSize(window.themeManager.particleSizeSelect.value);
+    window.particleSystem.setParticleSpeed(window.themeManager.particleSpeedSelect.value);
+    window.particleSystem.setParticleCount(window.themeManager.particleCountSelect.value);
+    window.particleSystem.setParticleShape(window.themeManager.particleShapeSelect.value);
+    // Initial music state will be handled by SoundManager's constructor and toggleMusic
+});
+Explanation of Changes for Background Music/Soundscape:
+Audio Elements in HTML: We've added <audio> tags for each theme, pointing to their respective MP3 files. loop ensures they play continuously, and preload="auto" helps the browser load them in advance.
+
+CSS for Controls: Added styles for the toggle switch and volume slider to make them visually appealing.
+
+SoundManager Class:
+
+Constructor: Retrieves all the audio elements by their IDs and the music toggle/volume slider. It also sets up event listeners for these controls.
+
+audioElements Object: Stores a reference to each audio element, keyed by theme name.
+
+currentAudio: Keeps track of the currently playing audio element.
+
+isMusicEnabled: A boolean to track the state of the music toggle.
+
+toggleMusic(): Called when the music toggle changes. It updates isMusicEnabled and either plays the current theme's audio or pauses it.
+
+playThemeAudio(theme): This is the core logic for switching music. It pauses any currently playing audio, resets its playback position, and then (if isMusicEnabled is true) plays the audio corresponding to the new theme. It includes a catch block for play() promises, as browsers often prevent autoplay until a user interacts with the page.
+
+pauseCurrentAudio(): Simply pauses the current audio.
+
+setVolume(): Adjusts the volume of all audio elements based on the volume slider's value. This ensures a consistent volume across themes.
+
+ThemeManager Integration: In the changeTheme method of ThemeManager, we now call window.soundManager.playThemeAudio(newTheme) to ensure the correct soundscape plays when the theme is changed.
+
+Initialization: window.soundManager = new SoundManager(); is added to the DOMContentLoaded listener to initialize the SoundManager after the other components.
+
+With these changes, the hero section now has interactive particles, customizable shapes, and a thematic soundscape!
+

@@ -1,0 +1,238 @@
+{
+    "id":  17,
+    "title":  "Archetypes at Rest: The Tarot in Ordinary Time",
+    "description":  "<p style='margin-bottom: 1rem; color: #333;'>What happens when archetypes are stripped of their 'mystical' costumes and shown as just humans at the bus stop, in a diner, or doing laundry? Are they still divine? Are we?</p>",
+
+    "imageUrl":  "card-hero.jpg",
+    "medium":  "art",
+    "genre":  [
+                  "Conceptual Art",
+                  "Digital Painting",
+                  "Tarot",
+                  "Symbolism"
+              ],
+    "style":  [
+                  "Contemporary",
+                  "Figurative",
+                  "Narrative",
+                  "Symbolic"
+              ],
+    "tech":  [
+                 "Digital Illustration",
+                 "Composition",
+                 "Color Theory",
+                 "Visual Storytelling"
+             ],
+    "mood":  "ethereal",
+    "year":  2024,
+    "role":  "Artist",
+    "variant":  "series",
+    "status":  "completed",
+    "links":  {
+                  "gallery":  "#",
+                  "shop":  "#"
+              },
+    "pitch":  "What happens when archetypes are stripped of their mystical costumes and shown as just humans at the bus stop, in a diner, or doing laundry? Are they still divine? Are we?",
+    "challenge":  "The core challenge was to transpose these sacred, powerful archetypes into mundane settings without losing their mythic resonance, creating a delicate balance between the divine and the everyday.",
+    "development":  "Each piece began with extensive research into the chosen archetypes, followed by location scouting in everyday places. The goal was to find the perfect visual tension—the laundromat for Temperance, the diner for the Hierophant—that would spark a new conversation about these ancient symbols.",
+    "outcome":  "The result is a collection of images that invite viewers to find the tarot’s wisdom in themselves, not as distant ideals but as everyday truths. Each piece asks: Which card are you playing today?",
+    "process": "<h3>The Sacred in the Banal</h3><p>The creative process for <em>Archetypes at Rest</em> was one of translation. It involved taking the grand, symbolic language of the tarot and finding its quiet echo in the modern world. Each composition is intentionally framed like a classical painting to elevate the scene, while the warm, glowing light suggests a universal divinity that persists even in the most ordinary moments.</p>",
+    "inspiration": "<h3>Finding the Mythic in the Mundane</h3><p>This series was inspired by the idea that our lives are already full of myth and meaning—if only we stop to see them. It explores the tension and irony of placing timeless figures in contemporary contexts: the Hierophant's authority in a fast-food booth, the Lovers' sacred choice at a noisy bar. The goal is to make these archetypes more accessible, more human, and to encourage viewers to recognize these powerful forces within their own lives.</p>",
+    "gallery":  [
+                    {
+                        "url":  "lovers_devil.jpg",
+                        "title":  "The Lovers & The Devil",
+                        "description":  "We begin at a rooftop bar. Golden light pools over two lovers leaning close, hands clasped in a silent vow. And yet — just there — the Devil smiles over his drink, a shadow at the edge of their joy. Notice the warm, seductive glow, but don’t miss the tension.",
+                        "hotspots":  [
+                                         {
+                                             "x":  50,
+                                             "y":  40,
+                                             "title":  "A Sacred Vow",
+                                             "description":  "Their hands clasp in a perfect heart, a symbol of their pure, intimate connection."
+                                         },
+                                         {
+                                             "x":  85,
+                                             "y":  60,
+                                             "title":  "A Quiet Temptation",
+                                             "description":  "The Devil’s drink catches the light, a subtle and alluring temptation waiting to be acknowledged."
+                                         }
+                                     ]
+                    },
+                    {
+                        "url":  "empress_death.jpg",
+                        "title":  "The Empress & Death",
+                        "description":  "Next we step into a greenhouse — lush and teeming with life. The Empress waters a blossom, her belly full of promise. And yet here too is Death, kneeling calmly among the soil. Their presence together doesn’t contradict, but completes.",
+                        "hotspots":  [
+                                         {
+                                             "x":  45,
+                                             "y":  30,
+                                             "title":  "Fertile Creation",
+                                             "description":  "The Empress's pregnancy symbolizes creation, growth, and the persistence of life."
+                                         },
+                                         {
+                                             "x":  70,
+                                             "y":  50,
+                                             "title":  "A Gentle Partner",
+                                             "description":  "Death is not a threat, but a quiet partner in the cycle, tending the soil from which new life will spring."
+                                         }
+                                     ]
+                    },
+                    {
+                        "url":  "temperance_angel.jpg",
+                        "title":  "Temperance & The Angel",
+                        "description":  "Now we enter a laundromat at dusk. See the muted neon and rows of washers, yet here stand two angels performing their quiet ritual of balance. One pours water between pitchers, the other cradles a glowing cloth.",
+                        "hotspots":  [
+                                         {
+                                             "x":  30,
+                                             "y":  40,
+                                             "title":  "Perfect Harmony",
+                                             "description":  "Water flows perfectly between the two pitchers, a symbol of finding equilibrium and harmony in a mundane task."
+                                         },
+                                         {
+                                             "x":  60,
+                                             "y":  80,
+                                             "title":  "Open Balance",
+                                             "description":  "The neon sign above hums with a quiet instruction, elevating the domestic chore to a sacred act of care."
+                                         }
+                                     ]
+                    },
+                    {
+                        "url":  "fool_priestess.jpg",
+                        "title":  "The Fool & The High Priestess",
+                        "description":  "Onward to a subway station — tiled, quiet, and yet alive. The Fool dances, his little dog following along. Across the platform, the High Priestess sits, serene, scroll in hand, among scattered pomegranate seeds.",
+                        "hotspots":  [
+                                         {
+                                             "x":  40,
+                                             "y":  60,
+                                             "title":  "Innocent Joy",
+                                             "description":  "The Fool's carefree stride represents naive joy and spontaneous energy, unburdened by knowledge."
+                                         },
+                                         {
+                                             "x":  70,
+                                             "y":  40,
+                                             "title":  "Quiet Knowledge",
+                                             "description":  "Pomegranates, symbols of inner wisdom, spill at her feet, representing knowledge kept silent and protected."
+                                         }
+                                     ]
+                    },
+                    {
+                        "url":  "hierophant.jpg",
+                        "title":  "The Hierophant",
+                        "description":  "Here we pause at a roadside diner. The Hierophant sits alone, a burger in hand, the sun setting beyond. Keys are etched into the diner's window, glowing faintly in the sunset.",
+                        "hotspots":  [
+                                         {
+                                             "x":  50,
+                                             "y":  30,
+                                             "title":  "Authority at Rest",
+                                             "description":  "His burger, a mundane meal, suggests that even ancient authority must participate in the everyday world."
+                                         },
+                                         {
+                                             "x":  80,
+                                             "y":  20,
+                                             "title":  "Lingering Symbols",
+                                             "description":  "The keys of the Hierophant, etched into the diner window, suggest that tradition endures, even in the most secular places."
+                                         }
+                                     ]
+                    },
+                    {
+                        "url":  "emperor_empress.jpg",
+                        "title":  "The Emperor & The Empress",
+                        "description":  "In a modest living room, the Emperor reclines, orb in hand, while the Empress—wearing a polka-dot dress and crown—sweeps the floor. Power is as much care as command.",
+                        "hotspots":  [
+                                         {
+                                             "x":  20,
+                                             "y":  70,
+                                             "title":  "Domestic Power",
+                                             "description":  "The broom meets the crown, suggesting that care and rule are intertwined. Domesticity is reframed as its own kind of throne room."
+                                         },
+                                         {
+                                             "x":  75,
+                                             "y":  50,
+                                             "title":  "Power in Repose",
+                                             "description":  "The ram, a symbol of the Emperor's power, sleeps peacefully at his feet, docile yet ever-present."
+                                         },
+                                         {
+                                             "x":  50,
+                                             "y":  85,
+                                             "title":  "Domain of the Empress",
+                                             "description":  "Traditional tarot card depictions show the empress on a throne and behind her are fields of wheat, a river flowing through the landscape, and mountains. These symbolize the earth and abundance, tying the empress to crops and productivity. Here her domain is relegated to an image on a carpet, but still she tends her domain."
+                                         }
+                                     ]
+                    },
+                    {
+                        "url":  "sun_moon.jpg",
+                        "title":  "The Sun & The Moon",
+                        "description":  "Finally, we arrive at a gas station under a moonlit sky. The Moon greets her dog as the Sun strides back laughing. These opposites are not in conflict but in harmony.",
+                        "hotspots":  [
+                                         {
+                                             "x":  40,
+                                             "y":  60,
+                                             "title":  "Quiet Intimacy",
+                                             "description":  "The Moon gently strokes the dog, representing a quiet, intuitive tenderness that thrives in darkness."
+                                         },
+                                         {
+                                             "x":  60,
+                                             "y":  30,
+                                             "title":  "Radiant Joy",
+                                             "description":  "The Sun’s bright, easy smile carries warmth and vitality, a beacon of joy even in the shadow of the night."
+                                         }
+                                     ]
+                    }
+                ],
+    "journey":  [
+                    {
+                        "title":  "Temptation vs. Love",
+                        "description":  "Fade-in, slight zoom-in on bar, golden halos shimmer"
+                    },
+                    {
+                        "title":  "Cycles of Life & Death",
+                        "description":  "Pan up through greenhouse vines, fade to dusty soil"
+                    },
+                    {
+                        "title":  "Balance in the Mundane",
+                        "description":  "Parallax: laundry machines rotate subtly, neon flickers"
+                    },
+                    {
+                        "title":  "Innocence & Knowledge",
+                        "description":  "Scroll reveals each pillar (Boaz & Jachin), Fool dances past"
+                    },
+                    {
+                        "title":  "Tradition in Decline?",
+                        "description":  "Slow dolly toward diner booth, sun flares through window"
+                    },
+                    {
+                        "title":  "Domestic Power & Care",
+                        "description":  "Tilt-down from crown to broom in hand"
+                    },
+                    {
+                        "title":  "Harmony of Opposites",
+                        "description":  "Crossfade: gas station lights shift from sunlit to moonlit"
+                    }
+                ],
+    "specs":  [
+                  {
+                      "title":  "Mythic Framing",
+                      "description":  "The centrality of the figures and their interaction is often framed like a Renaissance painting, elevating everyday settings to something mythic."
+                  },
+                  {
+                      "title":  "Conceptual Tension",
+                      "description":  "The pairings thrive on juxtaposition and irony, recasting traditional conflicts into contemporary choices."
+                  },
+                  {
+                      "title":  "Contemporary Symbolism",
+                      "description":  "Timeless archetypes are grounded in today’s world, allowing viewers to find the sacred in the mundane."
+                  },
+                  {
+                      "title":  "Narrative Lighting",
+                      "description":  "A warm, glowing palette persists even in dark or ironic scenes, suggesting the universality of archetypes."
+                  },
+                  {
+                      "title":  "Interactive Details",
+                      "description":  "Small props and details serve as interactive clues, inviting viewers to read the image and uncover its meaning."
+                  },
+                  {
+                      "title":  "Introspective Prompts",
+                      "description":  "The series encourages personal reflection, asking viewers to consider where these archetypes appear in their own lives."
+                  }
+              ]
+}

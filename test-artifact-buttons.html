@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artifact Buttons Test</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/markdown-styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Artifact Buttons Test</h1>
+        <p>This test verifies that artifact buttons continue to work after opening and closing the modal.</p>
+        
+        <div id="artifactsGrid" class="artifacts-grid">
+            <!-- Artifacts will be populated here -->
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <button onclick="testArtifactButtons()">Test Artifact Buttons</button>
+            <button onclick="clearArtifacts()">Clear Artifacts</button>
+        </div>
+    </div>
+
+    <!-- Markdown Modal -->
+    <div id="markdown-modal" class="markdown-modal-overlay" style="display: none;">
+        <div class="markdown-modal-content">
+            <div class="markdown-modal-header">
+                <h3 class="markdown-modal-title" id="markdown-modal-title">Document</h3>
+                <div class="markdown-modal-controls">
+                    <!-- Print and Download buttons temporarily disabled - see README.md for future plans -->
+                    <button class="markdown-btn" disabled title="Print document (coming soon)">🖨️</button>
+                    <button class="markdown-btn" disabled title="Download document (coming soon)">💾</button>
+                    <button class="markdown-modal-close" onclick="closeMarkdownModal()">&times;</button>
+                </div>
+            </div>
+            <div class="markdown-modal-body">
+                <div class="markdown-content" id="markdown-modal-content">
+                    <!-- Markdown content will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/markdown-renderer.js"></script>
+    <script>
+        // Test artifacts data
+        const testArtifacts = [
+            {
+                name: "Game Design Document",
+                description: "Complete game design specification including mechanics, controls, and gameplay flow",
+                url: "_data/projects/asteroids/game-design.md",
+                icon: "🎮"
+            },
+            {
+                name: "Technical Architecture",
+                description: "Detailed technical architecture showing game engine structure and optimization",
+                url: "_data/projects/asteroids/technical-architecture.md",
+                icon: "🏗️"
+            },
+            {
+                name: "GitHub Repository",
+                description: "Source code repository with full game implementation",
+                url: "https://github.com/example/asteroids",
+                icon: "⭐"
+            }
+        ];
+
+        function testArtifactButtons() {
+            populateArtifacts({ title: "Test Project", artifacts: testArtifacts });
+        }
+
+        function clearArtifacts() {
+            const artifactsGrid = document.getElementById('artifactsGrid');
+            artifactsGrid.innerHTML = '';
+        }
+
+        // Artifacts Population for Code Projects
+        function populateArtifacts(project) {
+            const artifactsGrid = document.getElementById('artifactsGrid');
+            if (!artifactsGrid) return;
+
+            console.log('Populating artifacts for:', project.title);
+            artifactsGrid.innerHTML = '';
+
+            const artifacts = project.artifacts || [];
+            if (artifacts.length === 0) {
+                artifactsGrid.innerHTML = '<p class="text-center" style="color: var(--text-color-light);">No project artifacts available for this project.</p>';
+                return;
+            }
+
+            artifacts.forEach(artifact => {
+                const artifactCard = document.createElement('div');
+                artifactCard.className = 'artifact-card';
+                
+                // Determine if this is a markdown file
+                const isMarkdown = artifact.url && (artifact.url.endsWith('.md') || artifact.url.includes('.md'));
+                const isExternal = artifact.url && artifact.url.startsWith('http');
+                
+                if (isMarkdown) {
+                    // For markdown files, create a button that opens the modal
+                    artifactCard.addEventListener('click', () => {
+                        console.log('Artifact button clicked:', artifact.name);
+                        openArtifactMarkdownModal(artifact.url, artifact.name || artifact.title);
+                    });
+                    artifactCard.style.cursor = 'pointer';
+                } else if (isExternal) {
+                    // For external links, create a link that opens in new tab
+                    artifactCard.addEventListener('click', () => {
+                        console.log('External link clicked:', artifact.url);
+                        window.open(artifact.url, '_blank');
+                    });
+                    artifactCard.style.cursor = 'pointer';
+                } else if (artifact.url && artifact.url !== '#') {
+                    // For local files, create a download link
+                    artifactCard.addEventListener('click', () => {
+                        console.log('Download link clicked:', artifact.url);
+                        downloadArtifact(artifact.url, artifact.name || artifact.title);
+                    });
+                    artifactCard.style.cursor = 'pointer';
+                }
+                
+                artifactCard.innerHTML = `
+                    <span class="artifact-icon">${artifact.icon || '📄'}</span>
+                    <h4>${artifact.name || artifact.title}</h4>
+                    <p>${artifact.description}</p>
+                    ${isMarkdown ? '<span class="artifact-link-icon">📖</span>' : ''}
+                    ${isExternal ? '<span class="artifact-link-icon">🔗</span>' : ''}
+                    ${!isMarkdown && !isExternal && artifact.url && artifact.url !== '#' ? '<span class="artifact-link-icon">💾</span>' : ''}
+                `;
+                artifactsGrid.appendChild(artifactCard);
+            });
+        }
+
+        // Function to open markdown files in modal
+        async function openArtifactMarkdownModal(url, title) {
+            try {
+                console.log('Opening markdown modal for:', url, title);
+                
+                // Show loading state
+                const modal = document.getElementById('markdown-modal');
+                const modalTitle = document.getElementById('markdown-modal-title');
+                const modalContent = document.getElementById('markdown-modal-content');
+                
+                if (!modal || !modalTitle || !modalContent) {
+                    console.error('Modal elements not found:', { modal: !!modal, modalTitle: !!modalTitle, modalContent: !!modalContent });
+                    return;
+                }
+                
+                modalTitle.textContent = title;
+                modalContent.innerHTML = '<div class="markdown-loading">Loading document...</div>';
+                modal.style.display = 'flex';
+                
+                console.log('Modal displayed, fetching content from:', url);
+                
+                // Fetch the markdown content
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const markdownContent = await response.text();
+                console.log('Markdown content loaded, length:', markdownContent.length);
+                
+                // Render the markdown content
+                if (typeof renderMarkdown === 'function') {
+                    console.log('renderMarkdown function found, rendering...');
+                    const htmlContent = renderMarkdown(markdownContent);
+                    console.log('Markdown rendered to HTML, length:', htmlContent.length);
+                    modalContent.innerHTML = htmlContent;
+                    
+                    // Apply syntax highlighting if Prism is available
+                    if (typeof Prism !== 'undefined') {
+                        console.log('Prism found, applying syntax highlighting...');
+                        Prism.highlightAllUnder(modalContent);
+                    } else {
+                        console.log('Prism not available for syntax highlighting');
+                    }
+                } else {
+                    console.warn('renderMarkdown function not found, using fallback');
+                    // Fallback: display as plain text
+                    modalContent.innerHTML = `<pre>${markdownContent}</pre>`;
+                }
+                
+                console.log('Modal content updated successfully');
+                
+            } catch (error) {
+                console.error('Error loading markdown file:', error);
+                const modalContent = document.getElementById('markdown-modal-content');
+                if (modalContent) {
+                    modalContent.innerHTML = `
+                        <div class="markdown-error">
+                            <h3>Error Loading Document</h3>
+                            <p>Could not load the document from: ${url}</p>
+                            <details>
+                                <summary>Error Details</summary>
+                                <pre>${error.message}</pre>
+                            </details>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Function to download artifacts
+        function downloadArtifact(url, filename) {
+            console.log('Downloading artifact:', url, filename);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename || 'artifact';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Function to close markdown modal
+        function closeMarkdownModal() {
+            const modal = document.getElementById('markdown-modal');
+            const modalContent = document.getElementById('markdown-modal-content');
+            
+            if (modal) {
+                modal.style.display = 'none';
+            }
+            
+            if (modalContent) {
+                // Clear the content to free up memory
+                modalContent.innerHTML = '';
+            }
+            
+            console.log('Markdown modal closed and cleaned up');
+        }
+
+        // Close modal on overlay click
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'markdown-modal') {
+                closeMarkdownModal();
+            }
+        });
+
+        // Add keyboard support for modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMarkdownModal();
+            }
+        });
+
+        // Auto-populate artifacts on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            testArtifactButtons();
+        });
+    </script>
+</body>
+</html> 

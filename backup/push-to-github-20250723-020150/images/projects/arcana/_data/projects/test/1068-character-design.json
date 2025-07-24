@@ -1,0 +1,93 @@
+{
+  "id": 1068,
+  "title": "Character Design",
+  "description": "Process use case for designing characters that have depth, exploring the methodology and techniques for creating compelling, multi-dimensional characters.",
+  "medium": "art",
+  "genre": [
+    "Character Design",
+    "Process Documentation",
+    "Art Education",
+    "Concept Art",
+    "Visual Development"
+  ],
+  "style": [
+    "Concept Art",
+    "Character Development",
+    "Process Documentation",
+    "Expressive Design",
+    "Visual Storytelling"
+  ],
+  "tech": [
+    "Unknown technology (1062)",
+    "Unknown technology (1063)",
+    "Unknown technology (1064)",
+    "Unknown technology (1065)",
+    "Unknown technology (1066)",
+    "Unknown technology (1067)"
+  ],
+  "mood": "Creative",
+  "year": 2024,
+  "role": "Character Designer, Process Developer, Art Educator",
+  "variant": "wide",
+  "status": "ongoing",
+  "links": {
+    "process": "#",
+    "portfolio": "#"
+  },
+  "pitch": "A comprehensive exploration of character design methodology, demonstrating how to create characters with genuine depth and emotional resonance.",
+  "challenge": "Developing a systematic approach to character design that ensures depth and complexity while maintaining visual appeal and clear communication of character traits.",
+  "development": "Created a structured methodology for character development, including personality mapping, visual design principles, and iterative refinement processes.",
+  "outcome": "A comprehensive character design system that produces compelling, multi-dimensional characters suitable for various media and storytelling contexts.",
+  "gallery": [
+    {
+      "url": "images/projects/character-design/character-design-process-overview.jpg",
+      "title": "Design Process Overview",
+      "description": "Visual documentation of the character design methodology",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/projects/character-design/character-design-sketches.jpg",
+      "title": "Character Sketches",
+      "description": "Initial sketches and exploration of character concepts",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/projects/character-design/character-design-development.jpg",
+      "title": "Character Development",
+      "description": "Progression from concept to final character design",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/projects/character-design/character-design-expressions.jpg",
+      "title": "Expression Studies",
+      "description": "Exploration of character emotions and expressions",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Methodology Development",
+      "description": "Created a systematic approach to character design that ensures depth and complexity"
+    },
+    {
+      "title": "Personality Mapping",
+      "description": "Developed techniques for translating character traits into visual design elements"
+    },
+    {
+      "title": "Visual Design Principles",
+      "description": "Established principles for creating visually appealing and communicative character designs"
+    },
+    {
+      "title": "Process Documentation",
+      "description": "Documented the character design process for educational and reference purposes"
+    },
+    {
+      "title": "Iterative Refinement",
+      "description": "Created systems for refining and improving character designs through feedback and iteration"
+    },
+    {
+      "title": "Application Testing",
+      "description": "Tested the methodology across different character types and storytelling contexts"
+    }
+  ]
+}

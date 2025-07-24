@@ -65,10 +65,6 @@
                     {
                         "title":  "Advanced Multi-Agent System",
                         "description":  "Developed full CrewAI-based system with hierarchical delegation and comprehensive workflow orchestration"
-                    },
-                    {
-                        "title":  "Documentation \u0026 Examples",
-                        "description":  "Created comprehensive documentation, usage examples, and configuration templates for easy adoption"
                     }
                 ],
     "specs":  [

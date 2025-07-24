@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Indicators Test</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/themes.css">
+    <style>
+        body {
+            padding: 20px;
+            background: var(--bg-primary);
+        }
+        .test-section {
+            margin: 40px 0;
+            padding: 20px;
+            border: 2px solid var(--accent-primary);
+            border-radius: 15px;
+        }
+        .test-title {
+            color: var(--accent-primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .test-button {
+            background: var(--bg-primary);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            box-shadow: var(--neu-outset);
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .test-button:hover {
+            box-shadow: var(--neu-inset);
+            color: var(--accent-primary);
+        }
+    </style>
+</head>
+<body>
+    <h1>Loading Indicators Test</h1>
+    <p>This page tests the loading indicators for different sections.</p>
+
+    <!-- Journey Section Test -->
+    <div class="test-section">
+        <h2 class="test-title">Journey Section Loading Test</h2>
+        <div class="timeline" id="journeyTestContainer">
+            <!-- Loading indicator -->
+            <div id="journeyTestLoadingIndicator" class="journey-loading-indicator">
+                <div class="loading-spinner"></div>
+                <p>Loading development journey...</p>
+            </div>
+        </div>
+        <button class="test-button" onclick="testJourneyLoading()">Test Journey Loading</button>
+        <button class="test-button" onclick="clearJourneyTest()">Clear Journey</button>
+    </div>
+
+    <!-- Specs Section Test -->
+    <div class="test-section">
+        <h2 class="test-title">Specs Section Loading Test</h2>
+        <div class="spec-grid" id="specsTestGrid">
+            <!-- Loading indicator -->
+            <div id="specsTestLoadingIndicator" class="section-loading-indicator">
+                <div class="loading-spinner"></div>
+                <p>Loading specifications...</p>
+            </div>
+        </div>
+        <button class="test-button" onclick="testSpecsLoading()">Test Specs Loading</button>
+        <button class="test-button" onclick="clearSpecsTest()">Clear Specs</button>
+    </div>
+
+    <!-- Artifacts Section Test -->
+    <div class="test-section">
+        <h2 class="test-title">Artifacts Section Loading Test</h2>
+        <div class="artifacts-grid" id="artifactsTestGrid">
+            <!-- Loading indicator -->
+            <div id="artifactsTestLoadingIndicator" class="section-loading-indicator">
+                <div class="loading-spinner"></div>
+                <p>Loading artifacts...</p>
+            </div>
+        </div>
+        <button class="test-button" onclick="testArtifactsLoading()">Test Artifacts Loading</button>
+        <button class="test-button" onclick="clearArtifactsTest()">Clear Artifacts</button>
+    </div>
+
+    <!-- Gallery Section Test -->
+    <div class="test-section">
+        <h2 class="test-title">Gallery Section Loading Test</h2>
+        <div class="gallery-grid" id="galleryTestGrid">
+            <!-- Loading indicator -->
+            <div id="galleryTestLoadingIndicator" class="section-loading-indicator">
+                <div class="loading-spinner"></div>
+                <p>Loading gallery...</p>
+            </div>
+        </div>
+        <button class="test-button" onclick="testGalleryLoading()">Test Gallery Loading</button>
+        <button class="test-button" onclick="clearGalleryTest()">Clear Gallery</button>
+    </div>
+
+    <script>
+        // Test Journey Loading
+        function testJourneyLoading() {
+            const container = document.getElementById('journeyTestContainer');
+            const loadingIndicator = document.getElementById('journeyTestLoadingIndicator');
+            
+            // Show loading indicator
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'flex';
+            }
+
+            // Clear existing content
+            container.innerHTML = '';
+
+            // Add loading indicator back
+            if (loadingIndicator) {
+                container.appendChild(loadingIndicator);
+            }
+
+            // Simulate loading delay
+            setTimeout(() => {
+                // Hide loading indicator
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+                
+                // Add sample content
+                container.innerHTML = `
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Test Journey Item 1</h3>
+                            <p>This is a test journey item to verify the loading indicator works correctly.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Test Journey Item 2</h3>
+                            <p>Another test item to show the loading indicator functionality.</p>
+                        </div>
+                    </div>
+                `;
+                
+                console.log('Journey test content loaded successfully');
+            }, 2000); // 2 second delay to clearly see the loading indicator
+        }
+
+        // Test Specs Loading
+        function testSpecsLoading() {
+            const grid = document.getElementById('specsTestGrid');
+            const loadingIndicator = document.getElementById('specsTestLoadingIndicator');
+            
+            // Show loading indicator
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'flex';
+            }
+
+            // Clear existing content
+            grid.innerHTML = '';
+
+            // Add loading indicator back
+            if (loadingIndicator) {
+                grid.appendChild(loadingIndicator);
+            }
+
+            // Simulate loading delay
+            setTimeout(() => {
+                // Hide loading indicator
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+                
+                // Add sample content
+                grid.innerHTML = `
+                    <div class="spec-card">
+                        <div class="floating-icon">⚡</div>
+                        <div class="bg-pattern"></div>
+                        <div class="particle-effect"></div>
+                        <h3>Test Specification</h3>
+                        <div class="spec-content">
+                            <div class="markdown-content">This is a test specification to verify the loading indicator works correctly.</div>
+                        </div>
+                    </div>
+                `;
+                
+                console.log('Specs test content loaded successfully');
+            }, 1500); // 1.5 second delay
+        }
+
+        // Test Artifacts Loading
+        function testArtifactsLoading() {
+            const grid = document.getElementById('artifactsTestGrid');
+            const loadingIndicator = document.getElementById('artifactsTestLoadingIndicator');
+            
+            // Show loading indicator
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'flex';
+            }
+
+            // Clear existing content
+            grid.innerHTML = '';
+
+            // Add loading indicator back
+            if (loadingIndicator) {
+                grid.appendChild(loadingIndicator);
+            }
+
+            // Simulate loading delay
+            setTimeout(() => {
+                // Hide loading indicator
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+                
+                // Add sample content
+                grid.innerHTML = `
+                    <div class="artifact-card">
+                        <span class="artifact-icon">📄</span>
+                        <h4>Test Artifact</h4>
+                        <p>This is a test artifact to verify the loading indicator works correctly.</p>
+                        <span class="artifact-link-icon">📖</span>
+                    </div>
+                `;
+                
+                console.log('Artifacts test content loaded successfully');
+            }, 1000); // 1 second delay
+        }
+
+        // Clear functions
+        function clearJourneyTest() {
+            const container = document.getElementById('journeyTestContainer');
+            const loadingIndicator = document.getElementById('journeyTestLoadingIndicator');
+            container.innerHTML = '';
+            if (loadingIndicator) {
+                container.appendChild(loadingIndicator);
+            }
+        }
+
+        function clearSpecsTest() {
+            const grid = document.getElementById('specsTestGrid');
+            const loadingIndicator = document.getElementById('specsTestLoadingIndicator');
+            grid.innerHTML = '';
+            if (loadingIndicator) {
+                grid.appendChild(loadingIndicator);
+            }
+        }
+
+        function clearArtifactsTest() {
+            const grid = document.getElementById('artifactsTestGrid');
+            const loadingIndicator = document.getElementById('artifactsTestLoadingIndicator');
+            grid.innerHTML = '';
+            if (loadingIndicator) {
+                grid.appendChild(loadingIndicator);
+            }
+        }
+
+        // Test Gallery Loading
+        function testGalleryLoading() {
+            const grid = document.getElementById('galleryTestGrid');
+            const loadingIndicator = document.getElementById('galleryTestLoadingIndicator');
+            
+            // Show loading indicator
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'flex';
+            }
+
+            // Clear existing content
+            grid.innerHTML = '';
+
+            // Add loading indicator back
+            if (loadingIndicator) {
+                grid.appendChild(loadingIndicator);
+            }
+
+            // Simulate loading delay
+            setTimeout(() => {
+                // Hide loading indicator
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+                
+                // Add sample content
+                grid.innerHTML = `
+                    <div class="gallery-item">
+                        <img src="images/projects/asteroids/card-hero.jpg" alt="Test Gallery Image" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h3>Test Gallery Image</h3>
+                                <p>This is a test gallery image to verify the loading indicator works correctly.</p>
+                            </div>
+                        </div>
+                        <div class="click-badge">Click Me</div>
+                    </div>
+                `;
+                
+                console.log('Gallery test content loaded successfully');
+            }, 1200); // 1.2 second delay
+        }
+
+        function clearGalleryTest() {
+            const grid = document.getElementById('galleryTestGrid');
+            const loadingIndicator = document.getElementById('galleryTestLoadingIndicator');
+            grid.innerHTML = '';
+            if (loadingIndicator) {
+                grid.appendChild(loadingIndicator);
+            }
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,78 @@
+{
+  "id": 2,
+  "title": "Echoes of Lumina",
+  "description": "A mystical digital art piece exploring the relationship between light and shadow in urban environments.",
+  "imageUrl": "images/projects/echoes-of-lumina-cover-art.jpg",
+  "medium": "art",
+  "genre": [
+    "Digital Art"
+  ],
+  "style": [
+    "Vintage",
+    "Organic"
+  ],
+  "tech": [
+    "Photoshop",
+    "Illustrator"
+  ],
+  "mood": "Mystical",
+  "year": 2024,
+  "role": "Creative Director",
+  "variant": "wide",
+  "status": "completed",
+  "links": {
+    "behance": "https://behance.net/gallery/echoes-lumina"
+  },
+  "pitch": "A digital exploration of urban mysticism through light and shadow manipulation.",
+  "challenge": "Capturing the ethereal quality of urban light while maintaining technical precision in digital art.",
+  "development": "Created using Photoshop and Illustrator, with extensive photo manipulation and digital painting techniques.",
+  "outcome": "Exhibited in 3 digital art galleries, featured in 2 design publications, and sold as limited edition prints.",
+  "gallery": [
+    {
+      "id": 3,
+      "url": "images/projects/echoes-of-lumina/main-piece.jpg",
+      "title": "Main Composition",
+      "description": "Primary artwork showing light and shadow interplay",
+      "dimensions": "3000x2000",
+      "sort_order": 0,
+      "hotspots": [
+        {
+          "id": 1,
+          "x": 25.5,
+          "y": 30.2,
+          "label": "A",
+          "title": "Light Source",
+          "description": "Primary light source creating dramatic shadows"
+        },
+        {
+          "id": 2,
+          "x": 75.8,
+          "y": 65.4,
+          "label": "B",
+          "title": "Shadow Detail",
+          "description": "Intricate shadow patterns revealing hidden forms"
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "id": 4,
+      "title": "Research Phase",
+      "description": "Urban photography and light study",
+      "sort_order": 0
+    },
+    {
+      "id": 5,
+      "title": "Digital Creation",
+      "description": "Photo manipulation and digital painting",
+      "sort_order": 1
+    },
+    {
+      "id": 6,
+      "title": "Refinement",
+      "description": "Color correction and detail enhancement",
+      "sort_order": 2
+    }
+  ]
+}

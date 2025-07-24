@@ -6,6 +6,8 @@ const PROJECTS_DIR = '_data/projects';
 const IMAGES_DIR = 'images/projects';
 const OUTPUT_FILE = 'content-audit-report.md';
 
+
+
 // Helper functions
 function checkFileExists(filePath) {
     try {
@@ -15,10 +17,7 @@ function checkFileExists(filePath) {
     }
 }
 
-function checkImageExists(imagePath) {
-    const fullPath = path.join(IMAGES_DIR, imagePath);
-    return checkFileExists(fullPath);
-}
+
 
 function validateUrl(url) {
     if (!url || url === '#' || url === '') return { valid: false, reason: 'Empty or placeholder' };
@@ -42,7 +41,8 @@ function analyzeProject(jsonPath) {
         missingContent: [],
         brokenLinks: [],
         missingImages: [],
-        actionItems: []
+        actionItems: [],
+        projectData: projectData // Store the full project data for report generation
     };
 
     // Check basic content sections
@@ -82,10 +82,14 @@ function analyzeProject(jsonPath) {
         }
     }
 
-    // Check images
+    // Check images - Card hero images are typically present as card-hero.jpg
     if (projectData.imageUrl) {
-        const imagePath = `${projectId}/${projectData.imageUrl}`;
-        if (!checkImageExists(imagePath)) {
+        // Use the project filename (slug) for the folder path, not the project ID
+        const projectSlug = projectName; // projectName is the filename without .json
+        const imagePath = `${projectSlug}/${projectData.imageUrl}`;
+        const fullPath = path.join(IMAGES_DIR, imagePath);
+        console.log(`Checking card hero: ${fullPath} (exists: ${checkFileExists(fullPath)})`);
+        if (!checkFileExists(fullPath)) {
             analysis.missingImages.push(`Card hero: ${imagePath}`);
             analysis.issues.push(`Missing card hero image: ${imagePath}`);
         }
@@ -96,10 +100,12 @@ function analyzeProject(jsonPath) {
 
     // Check gallery images
     if (projectData.gallery && Array.isArray(projectData.gallery)) {
+        const projectSlug = projectName; // Define projectSlug for gallery checking
         projectData.gallery.forEach((item, index) => {
             if (item.url) {
-                const imagePath = `${projectId}/${item.url}`;
-                if (!checkImageExists(imagePath)) {
+                const imagePath = `${projectSlug}/${item.url}`;
+                const fullPath = path.join(IMAGES_DIR, imagePath);
+                if (!checkFileExists(fullPath)) {
                     analysis.missingImages.push(`Gallery ${index + 1}: ${imagePath}`);
                     analysis.issues.push(`Missing gallery image: ${imagePath}`);
                 }
@@ -236,10 +242,15 @@ This report provides a comprehensive audit of all project JSON files in the port
 `;
         }
 
+        // Count gallery images
+        const totalGalleryImages = analysis.projectData.gallery ? analysis.projectData.gallery.length : 0;
+        const missingGalleryImages = analysis.missingImages.filter(img => img.includes('Gallery')).length;
+        const presentGalleryImages = totalGalleryImages - missingGalleryImages;
+        
         report += `
 ### Images:
 - **Card Hero**: ${analysis.missingImages.some(img => img.includes('Card hero')) ? '❌ Missing' : '✅ Present'}
-- **Gallery Images**: ${analysis.missingImages.filter(img => img.includes('Gallery')).length} ❌ Missing
+- **Gallery Images**: ${presentGalleryImages > 0 ? `${presentGalleryImages} ✅ Present` : '0 ❌ Missing'}
 ${analysis.missingImages.filter(img => img.includes('Gallery')).map(img => `  - ${img}`).join('\n')}
 
 ### Links:
@@ -277,37 +288,41 @@ ${analysis.actionItems.length > 0 ? analysis.actionItems.map(item => `- ${item}`
 
 // Main execution
 function main() {
-    console.log('Starting content audit...');
-    
-    // Get all JSON files
-    const jsonFiles = fs.readdirSync(PROJECTS_DIR)
-        .filter(file => file.endsWith('.json') && file !== 'manifest.json');
-    
-    console.log(`Found ${jsonFiles.length} project files to audit`);
-    
-    // Analyze each project
-    const analyses = [];
-    jsonFiles.forEach(file => {
-        const jsonPath = path.join(PROJECTS_DIR, file);
-        try {
-            const analysis = analyzeProject(jsonPath);
-            analyses.push(analysis);
-            console.log(`✓ Analyzed ${analysis.name} (${analysis.status})`);
-        } catch (error) {
-            console.error(`✗ Error analyzing ${file}:`, error.message);
-        }
-    });
-    
-    // Generate report
-    const report = generateReport(analyses);
-    fs.writeFileSync(OUTPUT_FILE, report);
-    
-    console.log(`\nAudit complete! Report saved to ${OUTPUT_FILE}`);
-    console.log(`\nSummary:`);
-    console.log(`- Total projects: ${analyses.length}`);
-    console.log(`- Complete: ${analyses.filter(a => a.status === 'Complete').length}`);
-    console.log(`- Needs review: ${analyses.filter(a => a.status === 'Needs Review').length}`);
-    console.log(`- Incomplete: ${analyses.filter(a => a.status === 'Incomplete').length}`);
+    try {
+        console.log('Starting content audit...');
+        
+        // Get all JSON files
+        const jsonFiles = fs.readdirSync(PROJECTS_DIR)
+            .filter(file => file.endsWith('.json') && file !== 'manifest.json');
+        
+        console.log(`Found ${jsonFiles.length} project files to audit`);
+        
+        // Analyze each project
+        const analyses = [];
+        jsonFiles.forEach(file => {
+            const jsonPath = path.join(PROJECTS_DIR, file);
+            try {
+                const analysis = analyzeProject(jsonPath);
+                analyses.push(analysis);
+                console.log(`✓ Analyzed ${analysis.name} (${analysis.status})`);
+            } catch (error) {
+                console.error(`✗ Error analyzing ${file}:`, error.message);
+            }
+        });
+        
+        // Generate report
+        const report = generateReport(analyses);
+        fs.writeFileSync(OUTPUT_FILE, report);
+        
+        console.log(`\nAudit complete! Report saved to ${OUTPUT_FILE}`);
+        console.log(`\nSummary:`);
+        console.log(`- Total projects: ${analyses.length}`);
+        console.log(`- Complete: ${analyses.filter(a => a.status === 'Complete').length}`);
+        console.log(`- Needs review: ${analyses.filter(a => a.status === 'Needs Review').length}`);
+        console.log(`- Incomplete: ${analyses.filter(a => a.status === 'Incomplete').length}`);
+    } catch (error) {
+        console.error('Error in main function:', error);
+    }
 }
 
 main(); 

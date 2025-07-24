@@ -1,0 +1,105 @@
+{
+  "id": 5,
+  "title": "Henri & Ruben",
+  "description": "A love story between an American and a Chileno, exploring cultural differences, personal growth, and the universal language of love.",
+  "imageUrl": "images/projects/henri-ruben/henri-ruben-cover-art.jpg",
+  "medium": "writing",
+  "genre": [
+    "Romance",
+    "Cross-Cultural",
+    "Contemporary Fiction",
+    "Character-Driven",
+    "Literary Fiction"
+  ],
+  "style": [
+    "Intimate",
+    "Emotional",
+    "Cultural Exploration",
+    "Character Development",
+    "Realistic Dialogue"
+  ],
+  "tech": [
+    "Creative Writing",
+    "Character Development",
+    "Dialogue",
+    "Cultural Research",
+    "Story Structure"
+  ],
+  "mood": "Romantic",
+  "year": 2024,
+  "role": "Author, Character Developer, Cultural Researcher",
+  "variant": "wide",
+  "status": "in-progress",
+  "links": {
+    "excerpt": "#",
+    "manuscript": "#"
+  },
+  "pitch": "A poignant love story that bridges cultures and continents, exploring how two people from different worlds find common ground in their shared humanity.",
+  "challenge": "Balancing authentic cultural representation with universal emotional truths, ensuring both characters feel fully realized and their relationship development feels natural and compelling.",
+  "development": "Extensive research into Chilean culture, language, and customs. Deep character development for both protagonists, exploring their individual backgrounds, motivations, and growth arcs.",
+  "outcome": "A compelling narrative that celebrates cultural diversity while exploring the universal themes of love, identity, and personal transformation.",
+  "excerpts": "Sample excerpts from the novel showcasing the cross-cultural dialogue and character development.",
+  "themes": "The story explores themes of cultural exchange, personal identity, the universal nature of love, and the challenges of bridging different worlds and traditions.",
+  "gallery": [
+    {
+      "url": "images/projects/henri-ruben/henri-ruben-cover-art.jpg",
+      "title": "Cover Concept",
+      "description": "Visual representation of the cross-cultural love story",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/projects/henri-ruben/henri-ruben-character-sketches.jpg",
+      "title": "Character Sketches",
+      "description": "Development sketches of Henri and Ruben",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Concept Development",
+      "description": "Conceived the idea of a cross-cultural romance that explores identity and belonging"
+    },
+    {
+      "title": "Cultural Research",
+      "description": "Extensive research into Chilean culture, language, customs, and contemporary life"
+    },
+    {
+      "title": "Character Development",
+      "description": "Deep exploration of both protagonists' backgrounds, motivations, and personal growth"
+    },
+    {
+      "title": "Story Structure",
+      "description": "Crafted narrative arc that balances cultural exploration with emotional development"
+    },
+    {
+      "title": "Writing Process",
+      "description": "Ongoing development of the manuscript with focus on authentic dialogue and cultural representation"
+    }
+  ],
+  "specs": [
+    {
+      "title": "Genre",
+      "description": "Contemporary romance with strong literary fiction elements and cross-cultural themes"
+    },
+    {
+      "title": "Narrative Structure",
+      "description": "Dual perspective narrative alternating between Henri and Ruben's viewpoints"
+    },
+    {
+      "title": "Cultural Elements",
+      "description": "Authentic representation of both American and Chilean cultures, languages, and customs"
+    },
+    {
+      "title": "Character Development",
+      "description": "Deep exploration of identity, cultural belonging, and personal transformation"
+    },
+    {
+      "title": "Themes",
+      "description": "Love, cultural exchange, personal growth, identity, family, and belonging"
+    },
+    {
+      "title": "Writing Style",
+      "description": "Intimate, emotionally resonant prose with realistic dialogue and cultural authenticity"
+    }
+  ]
+}

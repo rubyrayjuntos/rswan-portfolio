@@ -32,8 +32,8 @@
     "variant":  "wide",
     "status":  "development",
     "links":  {
-                  "github":  "#",
-                  "play":  "#"
+                  "github":  "https://github.com/rubyrayjuntos/AstroNova",
+                  "play":  "https://rubyrayjuntos.github.io/AstroNova/"
               },
     "pitch":  "A modern take on the classic Asteroids arcade game, optimized for mobile devices while preserving the timeless gameplay that made the original so beloved.",
     "challenge":  "Adapting the classic keyboard/mouse controls to touch interfaces while maintaining the precise, responsive feel of the original game.",
@@ -51,6 +51,30 @@
                         "title":  "Mobile Interface",
                         "description":  "Touch-optimized controls and mobile interface design",
                         "dimensions":  "1200x800"
+                    },
+                    {
+                        "url":  "asteroids-explosion.png",
+                        "title":  "Asteroids Exploding",
+                        "description":  "Get satisfaction destroying asteroids that get in the way of your laser",
+                        "dimensions":  "800x600"
+                    },
+                    {
+                        "url":  "asteroids-gameplay.png",
+                        "title":  "Gameplay",
+                        "description":  "Gameplay engineered to feel like the original",
+                        "dimensions":  "800x600"
+                    },
+                    {
+                        "url":  "asteroids-game-over.png",
+                        "title":  "Game Over",
+                        "description":  "We're sorry, but you lost :(",
+                        "dimensions":  "800x600"
+                    },
+                    {
+                        "url":  "asteroids-high-score.png",
+                        "title":  "High Score",
+                        "description":  "Scoring system like the original - HIGH SCORE!",
+                        "dimensions":  "800x600"
                     },
                     {
                         "url":  "asteroids-enhanced-graphics.jpg",
@@ -123,19 +147,19 @@
                       {
                           "name":  "GitHub Repository",
                           "description":  "Source code repository with full game implementation",
-                          "url":  "#",
+                          "url":  "https://github.com/rubyrayjuntos/AstroNova",
                           "icon":  "⭐"
                       },
                       {
                           "name":  "Performance Benchmarks",
                           "description":  "Mobile performance testing results and optimization strategies",
-                          "url":  "_data/projects/asteroids/performance-benchmarks.md",
+                          "url":  "_data/projects/asteroids/performance-benchmark-report.md",
                           "icon":  "⚡"
                       },
                       {
                           "name":  "Touch Control Design",
                           "description":  "Detailed documentation of touch control adaptation from keyboard/mouse input",
-                          "url":  "_data/projects/asteroids/touch-controls.md",
+                          "url":  "_data/projects/asteroids/touch-control-design.md",
                           "icon":  "👆"
                       },
                       {
@@ -151,9 +175,9 @@
                           "icon":  "👥"
                       },
                       {
-                          "name":  "Deployment Guide",
+                          "name":  "README and Deployment Guide",
                           "description":  "Step-by-step instructions for deploying the game to mobile platforms",
-                          "url":  "_data/projects/asteroids/deployment.md",
+                          "url":  "_data/projects/asteroids/README.md",
                           "icon":  "🚀"
                       }
                   ]
