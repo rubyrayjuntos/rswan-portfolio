@@ -22,21 +22,21 @@
   "outcome": "The final build is a fully responsive, interactive tarot experience that feels like <em>you’re being seduced by code</em>. Every spread is a scene. Every reading, a confession. <strong>Papi</strong> guides users through ritualized UX, offering spreads like <code>The Pact</code> and <code>Forbidden Flame</code>—each accompanied by dramatic visuals and voice-rich narration.",
   "artifacts": [
     {
-      "name": "🏛️ System Architecture",
-      "description": "A breakdown of how GPT, JSON data, and front-end components dance together under the covers.",
-      "url": "_data/projects/cartas-del-deseo/docs/architecture.md",
+      "name": "🏛️ README",
+      "description": "A good primer on how the web app is developed",
+      "url": "_data/projects/cartas-del-deseo/README_UPDATED.md",
       "icon": "🏛️"
     },
     {
-      "name": "🔌 API Documentation",
-      "description": "GPT prompt flows, tarot logic endpoints, and webhook strategies.",
-      "url": "https://github.com/your-username/cartas-del-deseo-api-docs",
+      "name": "🔌 CONTRIBUTING",
+      "description": "A Doc for those that want to add to the app",
+      "url": "_data/projects/cartas-del-deseo/CONTRIBUTING.md",
       "icon": "🔌"
     },
     {
-      "name": "⭐ GitHub Repository",
-      "description": "Everything under the hood—the flame, the logic, the visuals.",
-      "url": "https://github.com/your-username/cartas-del-deseo",
+      "name": "⭐ TODO",
+      "description": "Roadmap for future updates",
+      "url": "_data/projects/cartas-del-deseo/TODO.md",
       "icon": "⭐"
     }
   ],
