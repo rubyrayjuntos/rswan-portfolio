@@ -32,8 +32,7 @@
     "variant":  "wide",
     "status":  "development",
     "links":  {
-                  "github":  "https://github.com/rubyrayjuntos/AstroNova",
-                  "play":  "https://rubyrayjuntos.github.io/AstroNova/"
+                  "github":  "https://github.com/rubyrayjuntos/AstroNova"
               },
     "pitch":  "A modern take on the classic Asteroids arcade game, optimized for mobile devices while preserving the timeless gameplay that made the original so beloved.",
     "challenge":  "Adapting the classic keyboard/mouse controls to touch interfaces while maintaining the precise, responsive feel of the original game.",

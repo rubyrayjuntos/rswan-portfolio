@@ -50,9 +50,7 @@
     "variant": "featured",
     "status": "live",
     "links": {
-        "github": "https://github.com/rayswan/rswan-portfolio",
-        "live": "https://rswan.org",
-        "demo": "https://rswan.org"
+        "github": "https://github.com/rubyrayjuntos/rswan-portfolio"
     },
     "pitch": "A sophisticated, data-driven portfolio system that transforms static showcases into immersive, narrative-driven experiences tailored to different creative mediums.",
     "challenge": "Creating a flexible, maintainable portfolio system that could handle diverse project types (art, writing, code) while providing unique, medium-appropriate user experiences without relying on frameworks or build tools.",

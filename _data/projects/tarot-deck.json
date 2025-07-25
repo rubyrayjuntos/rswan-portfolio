@@ -1,161 +1,176 @@
 {
-    "id":  10,
-    "title":  "Tarot Deck",
-    "description":  "Reimagining the tarot cards through different lenses, creating a unique interpretation that honors tradition while bringing fresh perspective to the archetypal imagery.",
-    "imageUrl":  "card-hero.jpg",
-    "medium":  "art",
-    "genre":  [
-                  "Tarot Art",
-                  "Illustration",
-                  "Archetypal Art",
-                  "Symbolic Art",
-                  "Traditional Reinterpretation"
-              ],
-    "style":  [
-                  "Symbolic",
-                  "Archetypal",
-                  "Traditional",
-                  "Contemporary",
-                  "Expressive"
-              ],
-    "tech":  [
-                 "Digital Illustration",
-                 "Traditional Art",
-                 "Symbolic Design",
-                 "Color Theory",
-                 "Composition"
-             ],
-    "mood":  "Mystical",
-    "year":  2024,
-    "role":  "Artist, Tarot Designer, Symbolic Researcher",
-    "variant":  "wide",
-    "status":  "in-progress",
-    "links":  {
-                  "preview":  "#",
-                  "portfolio":  "#"
-              },
-    "pitch":  "A fresh interpretation of the tarot that honors traditional symbolism while bringing contemporary perspective to the timeless archetypes.",
-    "challenge":  "Balancing respect for traditional tarot symbolism with personal artistic vision, ensuring each card maintains its archetypal power while offering new insights.",
-    "development":  "Extensive research into tarot history, symbolism, and various artistic traditions. Deep study of each card\u0027s meaning and visual evolution across different decks.",
-    "outcome":  "A unique tarot deck that bridges tradition and innovation, offering both seasoned readers and newcomers fresh perspectives on the archetypal journey.",
-    "process":  "<h3>The Tarot Creation Process</h3><p>The creation of this tarot deck involved a deep dive into both traditional symbolism and contemporary artistic expression. Each card was carefully crafted to honor the archetypal meanings while bringing fresh visual perspectives.</p><h4>1. Research & Study</h4><p>We began with extensive research into tarot history, symbolism, and various artistic traditions, ensuring we understood the deep meanings behind each card.</p><h4>2. Artistic Vision</h4><p>Next, we developed a unique artistic style that could honor traditional meanings while offering contemporary insights and fresh visual interpretations.</p><h4>3. Symbolic Integration</h4><p>Each card was designed with carefully chosen symbolic elements that enhance rather than replace traditional imagery, creating layers of meaning for readers to discover.</p>",
-    "inspiration":  "<h3>Bridging Tradition and Innovation</h3><p>Inspired by the rich history of tarot symbolism and the desire to make these ancient archetypes accessible to contemporary audiences. We drew from classical art traditions, modern illustration techniques, and the universal human experience to create a deck that speaks to both seasoned readers and newcomers.</p><p>The goal was to honor the wisdom of traditional tarot while bringing fresh perspectives that reflect our modern understanding of psychology, symbolism, and the human journey.</p>",
-    "gallery":  [
-                    {
-                        "url":  "card-hero2.jpg",
-                        "title":  "Deck Cover",
-                        "description":  "The complete tarot deck packaging and presentation",
-                        "hotspots": [
-                            {
-                                "x": 50, "y": 30,
-                                "title": "Deck Presentation",
-                                "description": "The elegant packaging design that introduces the deck's artistic vision and approach."
-                            },
-                            {
-                                "x": 80, "y": 70,
-                                "title": "Artistic Style",
-                                "description": "The distinctive visual style that bridges traditional symbolism with contemporary artistry."
-                            }
-                        ]
-                    },
-                    {
-                        "url":  "tarot-deck-major-arcana-sample.jpg",
-                        "title":  "Major Arcana Sample",
-                        "description":  "Sample cards from the major arcana showing the artistic style",
-                        "hotspots": [
-                            {
-                                "x": 40, "y": 50,
-                                "title": "Archetypal Power",
-                                "description": "Each major arcana card maintains its archetypal power while offering fresh visual interpretations."
-                            },
-                            {
-                                "x": 70, "y": 40,
-                                "title": "Symbolic Depth",
-                                "description": "Layered symbolic elements that invite deeper reading and interpretation."
-                            }
-                        ]
-                    },
-                    {
-                        "url":  "tarot-deck-minor-arcana-sample.jpg",
-                        "title":  "Minor Arcana Sample",
-                        "description":  "Sample cards from the minor arcana suits",
-                        "hotspots": [
-                            {
-                                "x": 30, "y": 60,
-                                "title": "Suit Themes",
-                                "description": "Each suit maintains its elemental associations while bringing contemporary relevance."
-                            },
-                            {
-                                "x": 65, "y": 35,
-                                "title": "Visual Consistency",
-                                "description": "Consistent artistic style across all 56 minor arcana cards."
-                            }
-                        ]
-                    },
-                    {
-                        "url":  "tarot-deck-symbolic-elements.jpg",
-                        "title":  "Symbolic Elements",
-                        "description":  "Detailed exploration of symbolic elements and their meanings",
-                        "hotspots": [
-                            {
-                                "x": 45, "y": 45,
-                                "title": "Symbolic Language",
-                                "description": "The carefully chosen symbols that enhance traditional meanings and add contemporary relevance."
-                            },
-                            {
-                                "x": 75, "y": 55,
-                                "title": "Meaningful Details",
-                                "description": "Small details that carry significant meaning and invite deeper exploration."
-                            }
-                        ]
-                    }
-                ],
-    "journey":  [
-                    {
-                        "title":  "Tarot Research",
-                        "description":  "Deep study of tarot history, symbolism, and artistic traditions"
-                    },
-                    {
-                        "title":  "Concept Development",
-                        "description":  "Developed unique artistic vision while honoring traditional meanings"
-                    },
-                    {
-                        "title":  "Symbolic Design",
-                        "description":  "Created symbolic elements that enhance rather than replace traditional imagery"
-                    },
-                    {
-                        "title":  "Artistic Process",
-                        "description":  "Developed consistent artistic style across all 78 cards"
-                    },
-                    {
-                        "title":  "Quality Assurance",
-                        "description":  "Ensured each card maintains archetypal power and readability"
-                    }
-                ],
-    "specs":  [
-                  {
-                      "title":  "Deck Structure",
-                      "description":  "Complete 78-card deck including all major and minor arcana"
-                  },
-                  {
-                      "title":  "Artistic Style",
-                      "description":  "Contemporary interpretation that honors traditional symbolism"
-                  },
-                  {
-                      "title":  "Symbolic Elements",
-                      "description":  "Carefully chosen symbols that enhance traditional meanings"
-                  },
-                  {
-                      "title":  "Color Palette",
-                      "description":  "Thoughtful color choices that support each card\u0027s meaning and mood"
-                  },
-                  {
-                      "title":  "Composition",
-                      "description":  "Dynamic compositions that guide the eye and support interpretation"
-                  },
-                  {
-                      "title":  "Accessibility",
-                      "description":  "Design that serves both experienced readers and newcomers to tarot"
-                  }
-              ]
+  "id": 10,
+  "title": "The Pageant Tarot",
+  "description": "A dramatic reinterpretation of the tarot where archetypes take the stage. Each card captures a performance—a frozen moment of divine theatre that honors tradition while teasing new emotional truths.",
+  "imageUrl": "card-hero.jpg",
+  "medium": "art",
+  "genre": ["Tarot Art", "Symbolic Performance", "Archetypal Theatre"],
+  "style": ["Theatrical", "Symbolic", "Expressive", "Contemporary Mysticism"],
+  "tech": ["Digital Painting", "Staged Symbolism", "Tarot Research", "Narrative Composition"],
+  "mood": "Ritual, Dramatic, Archetypal",
+  "year": 2024,
+  "role": "Artist, Tarot Designer, Symbolic Director",
+  "variant": "gallery",
+  "status": "in-progress",
+  "links": {
+    "preview": "#",
+    "portfolio": "#"
+  },
+  "pitch": "What if each tarot card was not a character—but an actor caught mid-performance? The Pageant Tarot invites you to witness the archetypes, not as frozen icons, but as living, breathing roles on the grand stage of the soul.",
+  "challenge": "Capturing both the symbolic gravity and performative tension of the archetypes in a single still frame—where story, intention, and myth must all co-exist.",
+  "development": "Each image began with study—of traditional tarot meaning, of gesture and theatricality, of costume and silhouette. From there, I sculpted tableaux that vibrate with story, letting each archetype act through light, gaze, and posture.",
+  "outcome": "The Pageant Tarot becomes both a deck and a gallery—a performance in 78 acts, inviting viewers to interpret not just meaning, but motion, tension, and character. A tarot for the visual poet, the reader, and the audience within.",
+  "gallery": [
+    {
+      "url": "images/projects/tarot-deck/the-lovers.jpg",
+      "title": "The Lovers",
+      "description": "Two become one—but not by merging. This is a choice, a tension, a sacred kiss under hot lights.",
+      "hotspots": [
+        {
+          "x": 52,
+          "y": 36,
+          "title": "Dual Gaze",
+          "description": "Both figures look not at each other but forward—toward fate, suggesting unity as shared direction, not surrender."
+        },
+        {
+          "x": 78,
+          "y": 62,
+          "title": "Mirrored Hands",
+          "description": "Their fingers do not intertwine—they echo. Love as parallel, not possession."
+        }
+      ]
+    },
+    {
+      "url": "images/projects/tarot-deck/the-fool.jpg",
+      "title": "The Fool",
+      "description": "A moment before flight. Not ignorance—innocence. Not risk—ritual.",
+      "hotspots": [
+        {
+          "x": 45,
+          "y": 70,
+          "title": "Raised Heel",
+          "description": "The gesture of a dancer’s leap, frozen. Suggests potential, motion, and sacred play."
+        }
+      ]
+    },
+    {
+      "url": "images/projects/tarot-deck/the-hermit.jpg",
+      "title": "The Hermit",
+      "description": "Alone but not lost. A guide withdrawing, carrying the flame inward.",
+      "hotspots": [
+        {
+          "x": 35,
+          "y": 50,
+          "title": "Lantern Glow",
+          "description": "Held low, the light casts upward—revealing the seeker as both source and subject."
+        }
+      ]
+    },
+    {
+      "url": "images/projects/tarot-deck/the-chariot.jpg",
+      "title": "The Chariot",
+      "description": "Tension in symmetry. Not speed, but sacred control of opposition.",
+      "hotspots": [
+        {
+          "x": 50,
+          "y": 60,
+          "title": "Arm Tension",
+          "description": "Each side of the body pushes and pulls—a performance of balance, not brute force."
+        }
+      ]
+    },
+    {
+      "url": "images/projects/tarot-deck/the-emperor-commands.jpg",
+      "title": "The Emperor",
+      "description": "Stillness as command. Authority rendered in posture, not voice.",
+      "hotspots": [
+        {
+          "x": 60,
+          "y": 45,
+          "title": "Upright Spine",
+          "description": "Power that does not move. The ruler remains, and thus rules."
+        }
+      ]
+    },
+    {
+      "url": "images/projects/tarot-deck/the-hanged-man.jpg",
+      "title": "The Hanged Man",
+      "description": "Suspension as insight. The body twisted—but the gaze, serene.",
+      "hotspots": [
+        {
+          "x": 50,
+          "y": 30,
+          "title": "Inverted Calm",
+          "description": "Though upside down, the figure shows no strain—suggesting surrender as strength."
+        }
+      ]
+    },
+    {
+      "url": "images/projects/tarot-deck/the-hierophant.jpg",
+      "title": "The Hierophant",
+      "description": "Ritual and hierarchy. A performance of tradition, cloaked in robes of order.",
+      "hotspots": [
+        {
+          "x": 70,
+          "y": 40,
+          "title": "Raised Hand",
+          "description": "The classic blessing mudra—gesture becomes liturgy."
+        }
+      ]
+    },
+    {
+      "url": "images/projects/tarot-deck/high-priestess.jpg",
+      "title": "The High Priestess",
+      "description": "Stillness, mystery, moonlight on velvet. She knows—but says nothing.",
+      "hotspots": [
+        {
+          "x": 65,
+          "y": 55,
+          "title": "Veiled Curtain",
+          "description": "The threshold behind her glows—a portal, not yet passed."
+        }
+      ]
+    },
+    {
+      "url": "images/projects/tarot-deck/strength.jpg",
+      "title": "Strength",
+      "description": "Not domination—devotion. The lion does not struggle. Neither does she.",
+      "hotspots": [
+        {
+          "x": 55,
+          "y": 45,
+          "title": "Touch Without Force",
+          "description": "Her hand does not grip—it blesses. Strength as calm authority."
+        }
+      ]
+    }
+  ],
+  "journey": [
+    {
+      "title": "Stage as Symbol",
+      "description": "Each card imagined as a sacred stage—the archetype mid-performance."
+    },
+    {
+      "title": "Gesture as Meaning",
+      "description": "Studied hand positions, posture, and symmetry as symbolic language."
+    },
+    {
+      "title": "Light as Revelation",
+      "description": "Lighting was treated not as aesthetics, but as metaphysical metaphor."
+    }
+  ],
+  "specs": [
+    {
+      "title": "Archetype as Performance",
+      "description": "Each card captures the energy of the archetype as an actor in mid-role."
+    },
+    {
+      "title": "Symbol-Driven Composition",
+      "description": "Gestures, props, lighting—all chosen to embody the card’s core tension."
+    },
+    {
+      "title": "Staged Stillness",
+      "description": "Each image is a dramatic pause—a breath between becoming and being."
+    }
+  ]
 }

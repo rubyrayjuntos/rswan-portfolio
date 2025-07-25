@@ -29,9 +29,7 @@
     "variant":  "system",
     "status":  "live",
     "links":  {
-                  "live":  "https://github.com/rayswan/brand-identity-workflow",
-                  "github":  "https://github.com/rayswan/brand-identity-workflow",
-                  "demo":  "https://brand-workflow-demo.streamlit.app"
+                  "github":  "https://github.com/rubyrayjuntos/brand_identity_workflow"
               },
     "pitch":  "The Advanced Multi-Agent System (MAS) is a sophisticated AI-powered workflow designed for comprehensive brand identity management and marketing strategy development. Built on the CrewAI framework, this system implements a hierarchical agent architecture that orchestrates specialized AI agents to deliver structured, production-ready brand assets and marketing strategies.",
     "challenge":  "Creating a sophisticated workflow that can generate production-ready brand assets and marketing strategies through intelligent agent coordination while maintaining structured, validated outputs.",

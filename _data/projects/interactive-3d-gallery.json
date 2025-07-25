@@ -29,10 +29,9 @@
     "role":  "Lead Developer, Architect, UI/UX Designer",
     "variant":  "featured",
     "status":  "in-development",
-    "links":  {
-                  "github":  "https://github.com/rubyrayjuntos/interactive-3d-gallery",
-                  "live_demo":  "#"
-              },
+          "links":  {
+                   "github":  "https://github.com/rubyrayjuntos/gallery-sphere"
+               },
     "pitch":  "A cutting-edge 3D interactive gallery where users can explore a physics-driven sphere, position images with precision, and seamlessly transition between immersive 3D exploration and detailed 2D viewing.",
     "challenge":  "The core challenge was solving the inherent conflict between a physics engine (Cannon.js) wanting to control an object\u0027s state, and a declarative animation library (Tween.js/react-spring) also wanting to control it, which led to unpredictable visual bugs like an image expanding and then immediately snapping back.",
     "development":  "The project was built on React Three Fiber for its declarative 3D capabilities. The breakthrough was a shift to a hybrid 2D/3D model, where a \u0027click-to-transfer\u0027 paradigm was developed, which hands off a selected image from the 3D physics sphere to a dedicated 2D viewport, intelligently pausing physics to ensure smooth, predictable animations.",

@@ -13,8 +13,7 @@
   "variant": "interactive application",
   "status": "Launched 💋",
   "links": {
-    "github": "https://github.com/rubyrayjuntos/VITEars",
-    "live": "https://your-project-link.com"
+    "github": "https://github.com/rubyrayjuntos/ViteaTSRE"
   },
   "pitch": "**A seductive, AI-powered tarot experience with a modular dark-mode UI and a soul.**",
   "challenge": "Orchestrating dynamic <strong>AI storytelling</strong> and reusable front-end components within a flexible, JSON-driven structure—without sacrificing poetry or performance.",
