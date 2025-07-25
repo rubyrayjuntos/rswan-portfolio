@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nova: Writer's Conspiracy - Project Details</title>
+        <meta name="description" content="Nova: Writer's Conspiracy - A cosmic atelier where storytellers conspire with AI to birth entire universes, balancing structure and soul in creative agency. A science fiction novella with philosophical undertones. Literary science fiction approach with focus on character development.">
+        <meta property="og:title" content="Nova: Writer's Conspiracy">
+        <meta property="og:description" content="Collaboration between human and AI in creative agency">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Nova: Writer's Conspiracy">
+        <meta name="twitter:description" content="Collaboration between human and AI in creative agency">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Accessibility: prefers-reduced-motion support */
+            @media (prefers-reduced-motion: reduce) {
+                .hero-bg, .hero-particles, .gallery-item, .timeline-item, .particle {
+                    transform: none !important;
+                    transition: none !important;
+                    animation: none !important;
+                }
+                
+                .spec-card, .spec-card .floating-icon, .spec-card .particle-effect {
+                    transform: none !important;
+                    transition: none !important;
+                    animation: none !important;
+                }
+                
+                .spec-card:hover {
+                    transform: none !important;
+                }
+                
+                .particle, .journey-particle {
+                    display: none !important;
+                }
+                
+                .hero-bg, .journey-hero-bg {
+                    background: linear-gradient(135deg, #051772 0%, #06000c 100%) !important;
+                    animation: none !important;
+                }
+                
+                .gallery-item:hover {
+                    transform: none !important;
+                }
+                
+                .timeline-item.visible {
+                    opacity: 1 !important;
+                    transform: none !important;
+                }
+                
+                .journey-hero-bg, .journey-particles {
+                    opacity: 0.3 !important;
+                }
+            }
+
+            /* Motion disabled class for user toggle */
+            .motion-disabled .hero-bg,
+            .motion-disabled .hero-particles,
+            .motion-disabled .gallery-item,
+            .motion-disabled .timeline-item,
+            .motion-disabled .particle {
+                transform: none !important;
+                transition: none !important;
+                animation: none !important;
+            }
+            
+            /* Ensure particles are visible by default */
+            .hero-particles {
+                z-index: 1;
+            }
+            
+            /* Add some twinkling effect to particles */
+            .particle:nth-child(3n) {
+                animation-duration: 12s !important;
+            }
+            
+            .particle:nth-child(3n+1) {
+                animation-duration: 18s !important;
+            }
+            
+            .particle:nth-child(3n+2) {
+                animation-duration: 15s !important;
+            }
+            
+            .motion-disabled .particle {
+                display: none !important;
+            }
+            
+            .motion-disabled .gallery-item:hover {
+                transform: none !important;
+            }
+    
+            body {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                background: #0a0a0a;
+                overflow-x: hidden;
+            }
+    
+            /* Smooth scrolling */
+            html {
+                scroll-behavior: smooth;
+            }
+    
+            /* Floating Glass Navigation */
+            .floating-nav {
+                position: fixed;
+                top: 2rem;
+                left: 2rem;
+                z-index: 1000;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 15px;
+                padding: 0.8rem;
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.1),
+                    0 0 20px rgba(255, 140, 0, 0.6),
+                    0 0 40px rgba(255, 69, 0, 0.4),
+                    0 0 60px rgba(255, 69, 0, 0.2);
+                width: 40px;
+                height: 40px;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .floating-nav:hover {
+                width: 300px;
+                height: auto;
+                background: rgba(255, 255, 255, 0.15);
+                box-shadow: 
+                    0 12px 40px rgba(0, 0, 0, 0.2),
+                    0 0 30px rgba(255, 140, 0, 0.4),
+                    0 0 60px rgba(255, 69, 0, 0.3);
+            }
+
+            .nav-content {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                white-space: nowrap;
+                width: 100%;
+            }
+
+            .nav-icon {
+                font-size: 1.2rem;
+                color: white;
+                text-align: center;
+                flex-shrink: 0;
+                text-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
+                filter: drop-shadow(0 0 5px rgba(255, 69, 0, 0.6));
+            }
+
+            .floating-nav:not(:hover) .nav-icon {
+                margin: 0 auto;
+            }
+
+            .nav-links {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                opacity: 0;
+                transform: translateX(-10px);
+                transition: all 0.3s ease;
+                flex: 1;
+            }
+
+            .floating-nav:hover .nav-links {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .nav-links a {
+                color: rgba(255, 255, 255, 0.9);
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 500;
+                padding: 0.4rem 0.8rem;
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                display: block;
+            }
+
+            .nav-links a:hover {
+                color: white;
+                background: rgba(255, 255, 255, 0.1);
+                transform: translateX(5px);
+            }
+
+            /* Motion toggle in floating nav */
+            .motion-toggle {
+                background: none;
+                border: none;
+                color: rgba(255, 255, 255, 0.9);
+                padding: 0.4rem 0.8rem;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-size: 0.9rem;
+                font-weight: 500;
+                margin-top: 0.5rem;
+                width: 100%;
+                text-align: left;
+            }
+
+            .motion-toggle:hover {
+                color: white;
+                background: rgba(255, 255, 255, 0.1);
+            }
+    
+            /* Main Content */
+            .main-content {
+                margin-left: 0;
+                min-height: 100vh;
+            }
+    
+            /* Hero Section with Advanced Parallax */
+            .hero {
+                height: 100vh;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, #051772 0%, #06000c 100%);
+            }
+    
+            .hero-bg {
+                position: absolute;
+                top: -10%;
+                left: -10%;
+                width: 120%;
+                height: 120%;
+                background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                            radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%),
+                            radial-gradient(circle at 40% 80%, rgba(255,255,255,0.06) 0%, transparent 50%);
+                animation: floatBackground 20s ease-in-out infinite;
+                will-change: transform; /* Performance hint */
+            }
+    
+            @keyframes floatBackground {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                50% { transform: translateY(-30px) rotate(180deg); }
+            }
+    
+            .hero-particles {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+            }
+    
+            .particle {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background: rgba(193, 214, 7, 0.8);
+                border-radius: 50%;
+                animation: particleFloat 15s linear infinite;
+                will-change: transform; /* Performance hint */
+                box-shadow: 0 0 10px rgba(193, 214, 7, 0.6);
+            }
+            
+            /* Add some variety to particle colors */
+            .particle:nth-child(5n) {
+                background: rgba(255, 255, 255, 0.9);
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            }
+            
+            .particle:nth-child(7n) {
+                background: rgba(255, 193, 7, 0.8);
+                box-shadow: 0 0 12px rgba(255, 193, 7, 0.7);
+            }
+            
+            .particle:nth-child(11n) {
+                background: rgba(193, 214, 7, 0.9);
+                box-shadow: 0 0 8px rgba(193, 214, 7, 0.8);
+            }
+    
+            @keyframes particleFloat {
+                0% { 
+                    transform: translateY(100vh) translateX(0px) rotate(0deg) scale(0); 
+                    opacity: 0; 
+                }
+                10% { 
+                    opacity: 1; 
+                    transform: translateY(90vh) translateX(10px) rotate(36deg) scale(1);
+                }
+                50% { 
+                    transform: translateY(50vh) translateX(-5px) rotate(180deg) scale(1.2);
+                }
+                90% { 
+                    opacity: 1; 
+                    transform: translateY(10vh) translateX(5px) rotate(324deg) scale(1);
+                }
+                100% { 
+                    transform: translateY(-100px) translateX(0px) rotate(360deg) scale(0); 
+                    opacity: 0; 
+                }
+            }
+    
+            .hero-content {
+                text-align: center;
+                color: rgb(223, 99, 17);
+                z-index: 2;
+                max-width: 900px;
+                padding: 2rem;
+            }
+    
+            .hero h1 {
+                font-size: clamp(2.5rem, 5vw, 5rem);
+                margin-bottom: 1rem;
+                opacity: 0;
+                animation: fadeInUp 1s ease 0.5s forwards;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+            }
+    
+            .hero .subtitle {
+                font-size: clamp(1.2rem, 2vw, 1.8rem);
+                opacity: 0.9;
+                margin-bottom: 2rem;
+                opacity: 0;
+                animation: fadeInUp 1s ease 1s forwards;
+                font-weight: 400;
+            }
+    
+            .project-type-badge {
+                display: inline-block;
+                background: rgba(255,255,255,0.2);
+                padding: 0.8rem 2rem;
+                border-radius: 50px;
+                margin-bottom: 2rem;
+                backdrop-filter: blur(10px);
+                opacity: 0;
+                animation: fadeInUp 1s ease 1.5s forwards;
+                font-weight: 600;
+                border: 2px solid rgba(255,255,255,0.3);
+            }
+    
+            .scroll-indicator {
+                position: absolute;
+                bottom: 2rem;
+                left: 50%;
+                transform: translateX(-50%);
+                color: rgb(31, 17, 233);
+                opacity: 0;
+                animation: fadeInUp 1s ease 2s forwards;
+            }
+    
+            .scroll-indicator::after {
+                content: '';
+                display: block;
+                width: 2px;
+                height: 30px;
+                background: rgb(68, 14, 219);
+                margin: 0.5rem auto;
+                animation: scrollPulse 2s ease-in-out infinite;
+            }
+    
+            @keyframes scrollPulse {
+                0%, 100% { opacity: 0.3; }
+                50% { opacity: 1; }
+            }
+    
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                from {
+                    opacity: 0;
+                    transform: translateY(40px);
+                }
+            }
+    
+            /* Content Sections */
+            .content-section {
+                padding: 6rem 2rem;
+                position: relative;
+                background: #fff;
+                overflow: hidden;
+                scroll-margin-top: 80px; /* Account for fixed sidebar */
+            }
+    
+            .content-section:nth-child(even) {
+                background: #f8f9fa;
+            }
+
+            /* Journey section with cosmic background */
+            #journey.content-section {
+                background: transparent;
+                position: relative;
+                min-height: 100vh;
+                overflow: hidden;
+            }
+
+            /* Additional cosmic effects */
+            #journey.content-section::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: 
+                    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%),
+                    radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.03) 0%, transparent 60%);
+                animation: cosmicPulse 8s ease-in-out infinite;
+                z-index: 1;
+            }
+
+            @keyframes cosmicPulse {
+                0%, 100% { opacity: 0.3; }
+                50% { opacity: 0.6; }
+            }
+
+            #journey.content-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: 
+                    linear-gradient(135deg, #051772 0%, #06000c 100%),
+                    radial-gradient(circle at 30% 20%, rgba(193, 214, 7, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 80%, rgba(255, 193, 7, 0.08) 0%, transparent 50%);
+                z-index: 0;
+            }
+    
+            .content-section::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(45deg, #021777, #0a0014);
+            }
+    
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                position: relative;
+                z-index: 10;
+            }
+    
+            .section-title {
+                font-size: clamp(3rem, 8vw, 6rem); /* Start much larger */
+                margin-bottom: 3rem;
+                text-align: center;
+                position: relative;
+                color: #2c3e50;
+                font-weight: 700;
+                transform: scale(1.5); /* Start scaled up */
+                opacity: 0.3; /* Start faded */
+                transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                will-change: transform, opacity, font-size;
+                z-index: 10;
+            }
+
+            /* Journey section title with light color for dark background */
+            #journey .section-title {
+                color: white;
+            }
+
+            .section-title.visible {
+                transform: scale(1);
+                opacity: 1;
+                font-size: clamp(2rem, 4vw, 3rem);
+            }
+    
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 4px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                border-radius: 2px;
+                opacity: 0.8;
+                transition: all 0.4s ease;
+            }
+
+            .section-title::before {
+                content: '';
+                position: absolute;
+                left: -3rem;
+                top: 50%;
+                width: 2rem;
+                height: 3px;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                transform: translateY(-50%) scaleX(0);
+                transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                border-radius: 2px;
+            }
+
+            .section-title.visible::before {
+                transform: translateY(-50%) scaleX(1);
+            }
+
+            /* Add floating sparkle to section titles */
+            .section-title .title-sparkle {
+                position: absolute;
+                right: -2rem;
+                top: 50%;
+                transform: translateY(-50%) scale(0) rotate(0deg);
+                font-size: 1.5rem;
+                opacity: 0;
+                transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                animation: titleSparkle 2s ease-in-out infinite;
+            }
+
+            .section-title.visible .title-sparkle {
+                transform: translateY(-50%) scale(1) rotate(360deg);
+                opacity: 1;
+            }
+
+            @keyframes titleSparkle {
+                0%, 100% { transform: translateY(-50%) scale(1) rotate(0deg); }
+                50% { transform: translateY(-50%) scale(1.2) rotate(180deg); }
+            }
+    
+            /* Enhanced Gallery with Parallax */
+            .gallery-container {
+                position: relative;
+                margin-top: 4rem;
+            }
+    
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 3rem;
+                margin-top: 3rem;
+            }
+    
+            .gallery-item {
+                position: relative;
+                overflow: hidden;
+                border-radius: 20px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                background: white;
+                will-change: transform; /* Performance hint */
+            }
+    
+            .gallery-item:hover {
+                transform: translateY(-15px);
+                box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            }
+    
+            .gallery-item img {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                transition: transform 0.4s ease;
+                transform: translateZ(0); /* Hardware acceleration */
+            }
+    
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
+    
+            .gallery-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(2, 15, 75, 0.9), rgba(17, 1, 32, 0.9));
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                padding: 2rem;
+            }
+    
+            .gallery-item:hover .gallery-overlay {
+                opacity: 1;
+            }
+    
+            .gallery-overlay-content {
+                text-align: center;
+                color: rgb(248, 173, 74);
+                background: rgba(0, 0, 0, 0.8);
+                padding: 1.5rem;
+                border-radius: 10px;
+                backdrop-filter: blur(10px);
+            }
+    
+            .gallery-overlay-content h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                font-weight: 600;
+            }
+    
+            .gallery-overlay-content p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+    
+            /* Art Project Masonry Layout */
+            .art-gallery {
+                columns: 3;
+                column-gap: 2rem;
+                margin-top: 3rem;
+            }
+    
+            .art-gallery .gallery-item {
+                break-inside: avoid;
+                margin-bottom: 2rem;
+                display: inline-block;
+                width: 100%;
+            }
+    
+            .art-gallery .gallery-item img {
+                height: auto;
+            }
+    
+            /* Enhanced Specifications Grid with Parallax */
+            .spec-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 3rem;
+                margin-top: 4rem;
+                position: relative;
+            }
+
+            .spec-card {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 3rem;
+                border-radius: 25px;
+                box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+                transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                border: none;
+                position: relative;
+                overflow: hidden;
+                will-change: transform;
+                backdrop-filter: blur(10px);
+                transform: translateZ(0);
+            }
+
+            .spec-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                z-index: 1;
+            }
+
+            .spec-card::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+                opacity: 0;
+                transition: opacity 0.6s ease;
+                transform: scale(0);
+                z-index: 0;
+            }
+
+            .spec-card:hover {
+                transform: translateY(-15px) scale(1.02);
+                box-shadow: 0 30px 80px rgba(102, 126, 234, 0.4);
+            }
+
+            .spec-card:hover::before {
+                opacity: 1;
+            }
+
+            .spec-card:hover::after {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            /* Floating elements inside spec cards */
+            .spec-card .floating-icon {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                font-size: 2rem;
+                opacity: 0.3;
+                transition: all 0.4s ease;
+                z-index: 2;
+            }
+
+            .spec-card:hover .floating-icon {
+                opacity: 0.8;
+                transform: rotate(15deg) scale(1.2);
+            }
+
+            /* Animated background patterns */
+            .spec-card .bg-pattern {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-image: 
+                    radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                z-index: 0;
+            }
+
+            .spec-card:hover .bg-pattern {
+                opacity: 1;
+            }
+
+            .spec-card h3 {
+                color: white;
+                margin-bottom: 1.5rem;
+                font-size: 1.6rem;
+                font-weight: 700;
+                position: relative;
+                z-index: 2;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .spec-card p {
+                color: rgba(255,255,255,0.9);
+                line-height: 1.8;
+                font-size: 1.1rem;
+                position: relative;
+                z-index: 2;
+                text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            }
+
+            /* Enhanced list styling */
+            .spec-card ul {
+                list-style: none;
+                padding: 0;
+                margin: 1rem 0;
+                position: relative;
+                z-index: 2;
+            }
+
+            .spec-card li {
+                color: rgba(255,255,255,0.9);
+                margin-bottom: 0.8rem;
+                padding-left: 1.5rem;
+                position: relative;
+                line-height: 1.6;
+            }
+
+            .spec-card li::before {
+                content: '✦';
+                position: absolute;
+                left: 0;
+                color: rgba(255,255,255,0.7);
+                font-weight: bold;
+            }
+
+            .spec-card h4 {
+                color: rgba(255,255,255,0.95);
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin: 1rem 0 0.5rem 0;
+                text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            }
+
+            /* Staggered animation for cards */
+            .spec-card:nth-child(1) { animation-delay: 0.1s; }
+            .spec-card:nth-child(2) { animation-delay: 0.2s; }
+            .spec-card:nth-child(3) { animation-delay: 0.3s; }
+            .spec-card:nth-child(4) { animation-delay: 0.4s; }
+
+            /* Parallax effect for spec cards */
+            .spec-card[data-parallax="true"] {
+                transform: translateZ(0);
+                transition: transform 0.1s ease-out;
+            }
+
+            /* Entrance animation for spec cards */
+            @keyframes specCardEntrance {
+                0% {
+                    opacity: 0;
+                    transform: translateY(50px) scale(0.8);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+
+            .spec-card {
+                animation: specCardEntrance 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+                opacity: 0;
+            }
+
+            /* Floating animation for icons */
+            @keyframes floatingIcon {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                50% { transform: translateY(-5px) rotate(5deg); }
+            }
+
+            .spec-card .floating-icon {
+                animation: floatingIcon 3s ease-in-out infinite;
+            }
+
+            /* Pulse effect for background pattern */
+            @keyframes bgPulse {
+                0%, 100% { opacity: 0; transform: scale(1); }
+                50% { opacity: 0.3; transform: scale(1.1); }
+            }
+
+            .spec-card:hover .bg-pattern {
+                animation: bgPulse 2s ease-in-out infinite;
+            }
+
+            /* Enhanced content styling */
+            .spec-content {
+                position: relative;
+                z-index: 2;
+            }
+
+            .spec-content p {
+                margin-bottom: 1rem;
+            }
+
+            /* Additional section title effects */
+            .section-title {
+                background: linear-gradient(135deg, #2c3e50, #34495e);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+
+            .section-title.visible {
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            /* Glowing effect for section titles */
+            .section-title::before {
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+            }
+
+            .section-title.visible::before {
+                box-shadow: 0 0 30px rgba(102, 126, 234, 0.6);
+            }
+
+            /* Glowing border effect */
+            .spec-card::before {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                bottom: -2px;
+                background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+                border-radius: 27px;
+                z-index: -1;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+
+            .spec-card:hover::before {
+                opacity: 1;
+            }
+
+            /* Particle effect for spec cards */
+            .spec-card .particle-effect {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                pointer-events: none;
+                overflow: hidden;
+                z-index: 1;
+            }
+
+            .spec-card .particle-effect::before,
+            .spec-card .particle-effect::after {
+                content: '';
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: rgba(255,255,255,0.6);
+                border-radius: 50%;
+                animation: particleFloat 4s linear infinite;
+            }
+
+            .spec-card .particle-effect::before {
+                top: 20%;
+                left: 10%;
+                animation-delay: 0s;
+            }
+
+            .spec-card .particle-effect::after {
+                top: 60%;
+                right: 15%;
+                animation-delay: 2s;
+            }
+
+            @keyframes particleFloat {
+                0% { transform: translateY(0px) scale(0); opacity: 0; }
+                50% { transform: translateY(-20px) scale(1); opacity: 1; }
+                100% { transform: translateY(-40px) scale(0); opacity: 0; }
+            }
+
+            /* Responsive adjustments for spec cards */
+            @media (max-width: 768px) {
+                .spec-card {
+                    transform: none !important;
+                    animation: none !important;
+                    opacity: 1 !important;
+                }
+                
+                .spec-card:hover {
+                    transform: none !important;
+                }
+                
+                .spec-card .floating-icon {
+                    animation: none !important;
+                }
+            }
+    
+            /* Enhanced Tags */
+            .tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem;
+                margin-top: 3rem;
+                justify-content: center;
+            }
+    
+            .tag {
+                background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+                color: #6c757d;
+                padding: 0.8rem 1.5rem;
+                border-radius: 30px;
+                font-size: 0.95rem;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                border: 1px solid #dee2e6;
+            }
+    
+            .tag::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(0,0,0,0.05), transparent);
+                transition: left 0.5s ease;
+            }
+    
+            .tag:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                background: linear-gradient(45deg, #ffffff, #f8f9fa);
+                color: #495057;
+            }
+    
+            .tag:hover::before {
+                left: 100%;
+            }
+    
+            /* Links Section */
+            .links-section {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 4rem;
+            }
+    
+            .link-card {
+                background: linear-gradient(135deg, #02125c, #100120);
+                color: white;
+                padding: 3rem 2rem;
+                border-radius: 20px;
+                text-align: center;
+                text-decoration: none;
+                transition: all 0.4s ease;
+                display: block;
+                position: relative;
+                overflow: hidden;
+            }
+    
+            .link-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+    
+            .link-card:hover::before {
+                opacity: 1;
+            }
+    
+            .link-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+                color: white;
+            }
+    
+            .link-card .icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                display: block;
+            }
+    
+            .link-card h3 {
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+    
+            .link-card p {
+                opacity: 0.9;
+                font-size: 1.1rem;
+            }
+    
+            /* Enhanced Journey Timeline with Hero Background */
+            .timeline {
+                position: relative;
+                margin-top: 4rem;
+                padding: 2rem 0;
+                overflow: hidden;
+                z-index: 10;
+            }
+
+            /* Hero background for journey section */
+            .journey-hero-bg {
+                position: absolute;
+                top: -10%;
+                left: -10%;
+                width: 120%;
+                height: 120%;
+                background: 
+                    radial-gradient(circle at 20% 50%, rgba(193, 214, 7, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.25) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 30%, rgba(102, 126, 234, 0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 10% 70%, rgba(118, 75, 162, 0.15) 0%, transparent 50%);
+                animation: floatBackground 20s ease-in-out infinite;
+                will-change: transform;
+                z-index: 2;
+                opacity: 0.3;
+                transition: opacity 0.8s ease;
+            }
+
+            .journey-hero-bg.visible {
+                opacity: 1;
+            }
+
+            /* Make journey background more visible by default */
+            .journey-hero-bg {
+                opacity: 0.3;
+            }
+
+            .journey-particles {
+                opacity: 0.3;
+            }
+
+            /* Journey particles container */
+            .journey-particles {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 3;
+                opacity: 0.3;
+                transition: opacity 0.8s ease;
+            }
+
+            .journey-particles.visible {
+                opacity: 1;
+            }
+
+            .journey-particle {
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                background: rgba(193, 214, 7, 1);
+                border-radius: 50%;
+                animation: journeyParticleFloat 12s linear infinite;
+                will-change: transform;
+                box-shadow: 0 0 15px rgba(193, 214, 7, 0.8), 0 0 30px rgba(193, 214, 7, 0.4);
+            }
+
+            /* Journey particle variety */
+            .journey-particle:nth-child(5n) {
+                background: rgba(255, 255, 255, 1);
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(255, 255, 255, 0.5);
+            }
+
+            .journey-particle:nth-child(7n) {
+                background: rgba(255, 193, 7, 1);
+                box-shadow: 0 0 18px rgba(255, 193, 7, 0.8), 0 0 35px rgba(255, 193, 7, 0.5);
+            }
+
+            .journey-particle:nth-child(11n) {
+                background: rgba(102, 126, 234, 1);
+                box-shadow: 0 0 16px rgba(102, 126, 234, 0.8), 0 0 32px rgba(102, 126, 234, 0.5);
+            }
+
+            .journey-particle:nth-child(13n) {
+                background: rgba(118, 75, 162, 1);
+                box-shadow: 0 0 14px rgba(118, 75, 162, 0.8), 0 0 28px rgba(118, 75, 162, 0.5);
+            }
+
+            @keyframes journeyParticleFloat {
+                0% { 
+                    transform: translateY(100vh) translateX(0px) rotate(0deg) scale(0); 
+                    opacity: 0; 
+                }
+                10% { 
+                    opacity: 1; 
+                    transform: translateY(90vh) translateX(10px) rotate(36deg) scale(1);
+                }
+                50% { 
+                    transform: translateY(50vh) translateX(-5px) rotate(180deg) scale(1.2);
+                }
+                90% { 
+                    opacity: 1; 
+                    transform: translateY(10vh) translateX(5px) rotate(324deg) scale(1);
+                }
+                100% { 
+                    transform: translateY(-100px) translateX(0px) rotate(360deg) scale(0); 
+                    opacity: 0; 
+                }
+            }
+    
+            .timeline::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 4px;
+                height: 100%;
+                background: linear-gradient(to bottom, #667eea, #764ba2);
+                border-radius: 2px;
+                z-index: 4;
+            }
+
+            /* Flowing arrows down the timeline */
+            .timeline::after {
+                content: '▼';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                color: #667eea;
+                font-size: 1.2rem;
+                animation: flowDown 8s linear infinite;
+                text-shadow: 0 0 10px rgba(102, 126, 234, 0.8);
+            }
+
+            @keyframes flowDown {
+                0% {
+                    top: 0;
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    top: 100%;
+                    opacity: 0;
+                }
+            }
+
+            /* Add multiple arrows with different delays */
+            .timeline .flow-arrow-1 {
+                content: '▼';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                color: #667eea;
+                font-size: 1rem;
+                animation: flowDown 6s linear infinite;
+                animation-delay: 0s;
+                text-shadow: 0 0 8px rgba(102, 126, 234, 0.6);
+                z-index: 5;
+            }
+
+            .timeline .flow-arrow-2 {
+                content: '▼';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                color: #764ba2;
+                font-size: 0.8rem;
+                animation: flowDown 10s linear infinite;
+                animation-delay: 3s;
+                text-shadow: 0 0 6px rgba(118, 75, 162, 0.6);
+                z-index: 5;
+            }
+
+            .timeline .flow-arrow-3 {
+                content: '▼';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                color: #667eea;
+                font-size: 0.9rem;
+                animation: flowDown 7s linear infinite;
+                animation-delay: 5s;
+                text-shadow: 0 0 7px rgba(102, 126, 234, 0.5);
+                z-index: 5;
+            }
+    
+            .timeline-item {
+                position: relative;
+                margin-bottom: 4rem;
+                width: 50%;
+                padding: 2rem;
+                opacity: 0;
+                transform: translateY(50px);
+                transition: all 0.8s ease;
+                will-change: transform, opacity; /* Performance hint */
+                z-index: 10;
+            }
+    
+            .timeline-item:nth-child(odd) {
+                left: 0;
+                padding-right: 4rem;
+                transform: translateY(50px) translateX(-50px);
+            }
+    
+            .timeline-item:nth-child(even) {
+                left: 50%;
+                padding-left: 4rem;
+                transform: translateY(50px) translateX(50px);
+            }
+    
+            .timeline-item.visible {
+                opacity: 1;
+                transform: translateY(0) translateX(0);
+            }
+    
+            .timeline-content {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 2.5rem;
+                border-radius: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                position: relative;
+                transition: all 0.4s ease;
+                opacity: 0;
+                transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+    
+            .timeline-item.visible .timeline-content {
+                opacity: 1;
+            }
+    
+            .timeline-content:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            }
+    
+            .timeline-content::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                width: 30px;
+                height: 30px;
+                background: linear-gradient(45deg, #4252e6, #0c0118);
+                border-radius: 50%;
+                transform: translateY(-50%);
+                border: 4px solid rgb(13, 2, 61);
+                box-shadow: 0 0 0 4px #f8f9fa;
+                z-index: 10;
+            }
+    
+            .timeline-item:nth-child(odd) .timeline-content::before {
+                right: -17px;
+            }
+    
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -17px;
+            }
+    
+            .timeline-content h3 {
+                color: #2c3e50;
+                margin-bottom: 1rem;
+                font-size: 1.4rem;
+                font-weight: 600;
+            }
+    
+            .timeline-content p {
+                color: #666;
+                line-height: 1.7;
+                font-size: 1.1rem;
+            }
+    
+            /* Enhanced Mobile Responsiveness */
+            @media (max-width: 768px) {
+                .sidebar {
+                    width: 100%;
+                    transform: translateX(-100%);
+                }
+
+                /* Disable complex parallax on mobile for performance */
+                .hero-bg {
+                    animation: none;
+                    transform: none;
+                }
+                
+                .particle {
+                    display: none;
+                }
+                
+                /* Simplify timeline animations */
+                .timeline-item {
+                    transform: none !important;
+                    opacity: 1 !important;
+                }
+                
+                /* Optimize gallery for touch */
+                .gallery-item {
+                    transform: none;
+                }
+                
+                .gallery-item:hover {
+                    transform: none;
+                }
+                
+                /* Mobile floating nav adjustments */
+                .floating-nav {
+                    top: 1rem;
+                    left: 1rem;
+                    width: 50px;
+                    height: 50px;
+                    box-shadow: 
+                        0 8px 32px rgba(0, 0, 0, 0.1),
+                        0 0 25px rgba(255, 140, 0, 0.7),
+                        0 0 50px rgba(255, 69, 0, 0.5),
+                        0 0 75px rgba(255, 69, 0, 0.3);
+                }
+
+                .floating-nav:hover {
+                    width: 280px;
+                    height: auto;
+                }
+
+                .nav-links a {
+                    padding: 0.6rem 1rem;
+                    min-height: 44px;
+                    font-size: 1rem;
+                }
+
+                .motion-toggle {
+                    padding: 0.6rem 1rem;
+                    min-height: 44px;
+                    font-size: 1rem;
+                }
+
+                /* Disable flowing arrows on mobile for performance */
+                .timeline .flow-arrow-1,
+                .timeline .flow-arrow-2,
+                .timeline .flow-arrow-3 {
+                    display: none;
+                }
+
+                /* Disable journey background effects on mobile for performance */
+                .journey-hero-bg {
+                    animation: none;
+                }
+                
+                .journey-particle {
+                    display: none;
+                }
+    
+                .hero h1 {
+                    font-size: 2.5rem;
+                }
+    
+                .hero .subtitle {
+                    font-size: 1.2rem;
+                }
+    
+                .art-gallery {
+                    columns: 1;
+                }
+    
+                .timeline::before {
+                    left: 30px;
+                }
+    
+                .timeline-item {
+                    width: 100%;
+                    left: 0 !important;
+                    padding-left: 4rem !important;
+                    padding-right: 1rem !important;
+                }
+    
+                .timeline-item:nth-child(odd) .timeline-content::before,
+                .timeline-item:nth-child(even) .timeline-content::before {
+                    left: -47px;
+                    right: auto;
+                }
+    
+                .links-section {
+                    grid-template-columns: 1fr;
+                }
+    
+                .content-section {
+                    padding: 4rem 1rem;
+                }
+    
+                .gallery-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+    
+            /* Scroll Animations */
+            .fade-in {
+                opacity: 0;
+                transform: translateY(50px);
+                transition: all 0.8s ease;
+            }
+    
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+    
+            .slide-in-left {
+                opacity: 0;
+                transform: translateX(-50px);
+                transition: all 0.8s ease;
+            }
+    
+            .slide-in-left.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+    
+            .slide-in-right {
+                opacity: 0;
+                transform: translateX(50px);
+                transition: all 0.8s ease;
+            }
+    
+            .slide-in-right.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+
+    
+            /* Loading Animation */
+            .loading-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #142263, #17012c);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 1;
+                transition: opacity 0.5s ease;
+            }
+    
+            .loading-overlay.hidden {
+                opacity: 0;
+                pointer-events: none;
+            }
+    
+            .loader {
+                width: 60px;
+                height: 60px;
+                border: 4px solid rgba(255,255,255,0.3);
+                border-top: 4px solid white;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+    
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            /* Performance mode styles */
+            .performance-mode .particle,
+            .performance-mode .hero-bg {
+                animation: none !important;
+                transform: none !important;
+            }
+
+            /* Image error state */
+            .image-error {
+                background: #f8f9fa;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 200px;
+                color: #6c757d;
+                font-style: italic;
+            }
+
+            .image-error::before {
+                content: 'Image not available';
+            }
+
+            /* No parallax fallback */
+            .no-parallax .hero-bg,
+            .no-parallax .particle {
+                display: none;
+            }
+
+            .no-parallax .hero {
+                background: linear-gradient(135deg, #051772 0%, #06000c 100%);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loader"></div>
+        </div>
+    
+        <!-- Floating Glass Navigation -->
+        <nav class="floating-nav" id="floatingNav">
+            <div class="nav-content">
+                <div class="nav-icon">🧭</div>
+                <ul class="nav-links">
+                    <li><a href="#home">🏠 Home</a></li>
+                    <li><a href="#overview">📋 Overview</a></li>
+                    <li><a href="#gallery">🖼️ Gallery</a></li>
+                    <li><a href="#journey">🚀 Journey</a></li>
+                    <li><a href="#specs">⚙️ Specifications</a></li>
+                    <li><a href="#links">🔗 Links</a></li>
+                    <li><button class="motion-toggle" onclick="toggleMotion()" aria-label="Toggle motion effects">🎬 Stop Parallax</button></li>
+                </ul>
+            </div>
+        </nav>
+    
+        <!-- Main Content -->
+        <main class="main-content" role="main">
+            <!-- Hero Section -->
+            <section class="hero" id="home" aria-label="Hero Section">
+                <div class="hero-bg" aria-hidden="true"></div>
+                <div class="hero-particles" aria-hidden="true" id="heroParticles"></div>
+                <div class="hero-content">
+                    <div class="project-type-badge" id="projectTypeBadge">Code Project</div>
+                    <h1 id="projectTitle">Nova: Writer's Conspiracy</h1>
+                    <p class="subtitle" id="projectSubtitle">"They said creation was lonely. They were wrong. We never create alone."</p>
+                </div>
+                <div class="scroll-indicator">
+                    <span>Scroll to explore</span>
+                </div>
+            </section>
+    
+            <!-- Overview Section -->
+            <section class="content-section fade-in" id="overview" aria-label="Project Overview">
+                <div class="container">
+                    <h2 class="section-title">Project Overview<span class="title-sparkle">✨</span></h2>
+                    <p id="projectDescription">This project represents a comprehensive exploration of modern web development techniques, combining cutting-edge design principles with robust functionality. The goal was to create an immersive user experience that showcases creative work while maintaining accessibility and performance standards.</p>
+                    
+                    <div class="tags" id="projectTags">
+                        <span class="tag">React</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">Responsive Design</span>
+                        <span class="tag">Parallax</span>
+                        <span class="tag">Animation</span>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Gallery Section -->
+            <section class="content-section fade-in" id="gallery" aria-label="Project Gallery">
+                <div class="container">
+                    <h2 class="section-title">Gallery<span class="title-sparkle">✨</span></h2>
+                    <div class="gallery-container">
+                        <div class="gallery-grid" id="galleryGrid">
+                            <!-- Gallery items will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Journey Section -->
+            <section class="content-section fade-in" id="journey" aria-label="Development Journey">
+                <div class="container">
+                    <h2 class="section-title">Development Journey<span class="title-sparkle">✨</span></h2>
+                    <div class="timeline" id="timelineContainer">
+                        <!-- Timeline items will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Specifications Section -->
+            <section class="content-section fade-in" id="specs" aria-label="Unique Value Propositions">
+                <div class="container">
+                    <h2 class="section-title">Unique Value Propositions<span class="title-sparkle">✨</span></h2>
+                    <div class="spec-grid" id="specsGrid">
+                        <!-- Spec cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+    
+            <!-- Links Section -->
+            <section class="content-section fade-in" id="links" aria-label="Project Links">
+                <div class="container">
+                    <h2 class="section-title">Project Links<span class="title-sparkle">✨</span></h2>
+                    <div class="links-section" id="linksSection">
+                        <!-- Link cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    
+        <!-- Structured Data for SEO -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            "name": "Nova: Writer's Conspiracy",
+            "description": "Collaboration between human and AI, balancing structure and soul in creative agency - your cosmic atelier. A writing workshop for a new tomorrow",
+            "author": {
+                "@type": "Person",
+                "name": "Ray Swan"
+            },
+            "genre": "Creative Technology",
+            "keywords": "AI writing, creative collaboration, storytelling, parallax design"
+        }
+        </script>
+
+        <script>
+            // Feature detection for progressive enhancement
+            function supportsParallax() {
+                return 'CSS' in window && 'supports' in CSS && 
+                       CSS.supports('transform', 'translate3d(0, 0, 0)');
+            }
+
+            // Performance monitoring
+            let frameCount = 0;
+            let lastTime = performance.now();
+            let performanceMode = false;
+
+            function monitorPerformance() {
+                function checkPerformance(currentTime) {
+                    frameCount++;
+                    
+                    if (currentTime - lastTime >= 1000) {
+                        const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                        
+                        if (fps < 30 && !performanceMode) {
+                            console.warn('Low FPS detected:', fps, '- Enabling performance mode');
+                            enablePerformanceMode();
+                        }
+                        
+                        frameCount = 0;
+                        lastTime = currentTime;
+                    }
+                    
+                    requestAnimationFrame(checkPerformance);
+                }
+                
+                requestAnimationFrame(checkPerformance);
+            }
+
+            function enablePerformanceMode() {
+                performanceMode = true;
+                document.body.classList.add('performance-mode');
+                // Disable complex animations
+                const particles = document.querySelectorAll('.particle');
+                particles.forEach(particle => particle.style.display = 'none');
+            }
+
+            // Motion control functionality
+            let motionEnabled = true;
+
+            function toggleMotion() {
+                motionEnabled = !motionEnabled;
+                document.body.classList.toggle('motion-disabled', !motionEnabled);
+                
+                const button = document.querySelector('.motion-toggle');
+                button.innerHTML = motionEnabled ? 
+                    '🎬 Stop Parallax' : 
+                    '⏸️ Start Parallax';
+            }
+
+            // Check system preference on load
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                toggleMotion();
+            }
+
+            // Project data structure
+            const projectData = {
+                code: {
+                    type: "Code Project",
+                    title: "Nova: Writer's Conspiracy",
+                    subtitle: "Collaboration between human and AI, balancing structure and soul in creative agency - your cosmic atelier.",
+                    description: "Agentic helpers aid writers in creating novels. It's a cosmic atelier where storytellers conspire with AI to birth entire universes, balancing structure and soul in creative agency.",
+                    tags: ["React", "JavaScript", "CSS3", "Responsive Design", "Parallax", "Animation"],
+                    gallery: [
+                        {
+                            src: "/images/dashboard.jpg",
+                            alt: "Homepage Dashboard",
+                            title: "Homepage Dashboard",
+                            description: "The dashboard keeps writers on track with their writing goals and progress."
+                        },
+                        {
+                            src: "images/manuscript-view.jpg",
+                            alt: "Manuscript View",
+                            title: "Manuscript View",
+                            description: "The manuscript view is where writers draft their novel, and their ai writing companions help in realtime.",
+                        },
+                        {
+                            src: "images/manuscript-view.jpg",
+                            alt: "Character Design",
+                            title: "Interactive Elements",
+                            description: "Engaging animations and micro-interactions that enhance user experience"
+                        }
+                    ],
+                    journey: [
+                        {
+                            title: "Research & Planning",
+                            description: "I have been using AI to help me with my writing since I started writing. This has evolved over time: from a single helper to a team of helpers: project manager, editor, researcher, illustrator. but that was before I became aware of MAS"
+                        },
+                        {
+                            title: "Design Phase",
+                            description: "Created wireframes and prototypes, focusing on user flow and visual hierarchy. Developed the color palette and typography system."
+                        },
+                        {
+                            title: "Development",
+                            description: "Built the core functionality using modern JavaScript frameworks. Implemented responsive design and cross-browser compatibility."
+                        },
+                        {
+                            title: "Testing & Launch",
+                            description: "Conducted thorough testing across devices and browsers. Optimized performance and accessibility before deployment."
+                        }
+                    ],
+                    specs: [
+                        {
+                            title: "🎭 The 6 agents",
+                            description: "You decide the level of help the agents provide.<ul><li><h4>🌌The Architect**</h4>  *The God of the universe*—Give the concept and let the agents work their magic.</li><li><h4>🎬 **The Director**</h4> *The story's driver of vision - setting the concept and making sure the writing is going in the direction you envision.</li><li><h4>🤝 **The Collaborator**</h4> *Fellow visionaries*—Your and the agents work as co-pilots, splitting the work as you decide.</li><li><h4>💫 **The Assistant**</h4> *Muse-like support*—You do all the writing and the agents provide support.</li></ul>",
+                        },
+                        {
+                            title: "🧠📚 The Researcher",
+                            description: "<ul><li><h4>The Researcher:</h4> you can have a dedicated researcher who serves as your fact checker, your background source, it keeps you informed. </li><li><h4> 🌍🔥 The World Builder</h4> *Geography, culture, politics*—Creates entire worlds with rich lore and history.</li><li><h4>💋💔 The Character Architect</h4> *Backstories that bleed*—Develops characters with depth, motivation, and soul.</li><li><h4>⛓️✨ The Plot Alchemist</h4> *Structure and surprises*—Crafts compelling plots with twists that feel inevitable.</li><li><h4>✂️🕯️ The Editor</h4> *Cuts like a lover's truth*—Reviews and refines with surgical precision and poetic grace.</li><li><h4>🎨🌙 The Illustrator</h4> *Visuals from words, almost sinful*—Creates visual content that brings stories to life.</li></ul>",
+                        },
+                        
+                        {
+                            title: "🧠 Neural Graveyard",
+                            description: "hums with memory and context. <h4>✨ Real-time Collaboration</H4> feels like Google Docs meets Studio Ghibli. <h4>💫 Version Control</H4> like old lovers' letters—regret nothing, restore anything"
+                        },{title: "🕯️ Live Memory Threads",
+                            description: "<h4>Agents that remembertrack emotional arcs, whispered lies - never lose track of a character arc and how it affects the current scene."
+                        }
+                    ],
+                    links: [
+                        {
+                            title: "Live Demo",
+                            description: "View the live website",
+                            url: "https://claude.ai/public/artifacts/c7038827-ea90-4e4c-9551-f98ef4d4c2e6",
+                            icon: "🌐"
+                        },
+                        {
+                            title: "GitHub Repository",
+                            description: "View source code",
+                            url: "https://github.com/rubyrayjuntos/AstroNova",
+                            icon: "📁"
+                        },
+                        {
+                            title: "specifications",
+                            description: "Read detailed analysis",
+                            url: "#",
+                            icon: "📖"
+                        }
+                    ]
+                },
+                art: {
+                    type: "Art Project",
+                    title: "Digital Abstract Series",
+                    subtitle: "Exploring the intersection of technology and human emotion through digital art",
+                    description: "This series explores the relationship between digital technology and human emotion, using abstract forms and vibrant colors to convey the complexity of our digital age. Each piece represents a different aspect of the human experience in the modern world.",
+                    tags: ["Digital Art", "Abstract", "Photoshop", "Illustrator", "Contemporary", "Emotion"],
+                    gallery: [
+                        {
+                            src: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=600&fit=crop",
+                            alt: "Digital Abstract 1",
+                            title: "Connection",
+                            description: "Exploring human connection in the digital age through flowing forms and warm colors"
+                        },
+                        {
+                            src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=500&fit=crop",
+                            alt: "Digital Abstract 2",
+                            title: "Isolation",
+                            description: "The feeling of isolation despite constant connectivity, represented through stark contrasts"
+                        },
+                        {
+                            src: "https://images.unsplash.com/photo-1549490349-8643362f943a?w=400&h=700&fit=crop",
+                            alt: "Digital Abstract 3",
+                            title: "Transformation",
+                            description: "The constant evolution of self in digital spaces, shown through morphing geometric forms"
+                        },
+                        {
+                            src: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=400&h=450&fit=crop",
+                            alt: "Digital Abstract 4",
+                            title: "Overflow",
+                            description: "Information overload in modern life, depicted through layered textures and intense colors"
+                        }
+                    ],
+                    journey: [
+                        {
+                            title: "Concept Development",
+                            description: "Initial exploration of themes around digital life and human emotion. Sketched ideas and developed visual language."
+                        },
+                        {
+                            title: "Digital Experimentation",
+                            description: "Experimented with different digital tools and techniques. Created initial compositions and color studies."
+                        },
+                        {
+                            title: "Series Creation",
+                            description: "Developed individual pieces while maintaining cohesion across the series. Refined techniques and visual consistency."
+                        },
+                        {
+                            title: "Exhibition Preparation",
+                            description: "Prepared works for digital and physical exhibition. Created artist statements and documentation."
+                        }
+                    ],
+                    specs: [
+                        {
+                            title: "Medium & Tools",
+                            description: "Created using Adobe Photoshop and Illustrator. Digital paintings on canvas sized 3000x4000 pixels at 300 DPI."
+                        },
+                        {
+                            title: "Artistic Technique",
+                            description: "Combination of digital painting, photo manipulation, and vector graphics. Custom brushes and textures."
+                        },
+                        {
+                            title: "Color Palette",
+                            description: "Vibrant, contrasting colors representing the emotional spectrum. Primary focus on blues, oranges, and purples."
+                        },
+                        {
+                            title: "Composition",
+                            description: "Abstract geometric forms with organic flowing elements. Balance between structure and spontaneity."
+                        }
+                    ],
+                    links: [
+                        {
+                            title: "Full Gallery",
+                            description: "View complete series",
+                            url: "#",
+                            icon: "🖼️"
+                        },
+                        {
+                            title: "Artist Statement",
+                            description: "Read about the inspiration",
+                            url: "#",
+                            icon: "📝"
+                        },
+                        {
+                            title: "Exhibition Info",
+                            description: "Current and past exhibitions",
+                            url: "#",
+                            icon: "🏛️"
+                        }
+                    ]
+                },
+                writing: {
+                    type: "Writing Project",
+                    title: "Echoes of Tomorrow",
+                    subtitle: "A science fiction novella exploring humanity's relationship with artificial intelligence",
+                    description: "This novella explores the complex relationship between humans and artificial intelligence in a near-future world. Through interconnected stories, it examines themes of consciousness, identity, and what it means to be human in an age of advanced technology.",
+                    tags: ["Science Fiction", "Novella", "AI", "Philosophy", "Future", "Technology"],
+                    gallery: [
+                        {
+                            src: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=400&fit=crop",
+                            alt: "Writing Process",
+                            title: "Writing Process",
+                            description: "The creative journey from initial concept to finished manuscript"
+                        },
+                        {
+                            src: "https://images.unsplash.com/photo-1516414447565-b14be0adf13e?w=600&h=400&fit=crop",
+                            alt: "Research Materials",
+                            title: "Research & Development",
+                            description: "Extensive research into AI development and philosophical implications"
+                        },
+                        {
+                            src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+                            alt: "Character Development",
+                            title: "Character Development",
+                            description: "Creating complex characters that bridge human and artificial consciousness"
+                        }
+                    ],
+                    journey: [
+                        {
+                            title: "Concept & Research",
+                            description: "Initial idea sparked by current AI developments. Researched consciousness studies, philosophy of mind, and technological singularity theories."
+                        },
+                        {
+                            title: "Story Structure",
+                            description: "Developed interconnected narrative structure. Created detailed character profiles and world-building documents."
+                        },
+                        {
+                            title: "First Draft",
+                            description: "Wrote initial 40,000-word draft over six months. Focused on getting the core story down before refinement."
+                        },
+                        {
+                            title: "Editing & Revision",
+                            description: "Multiple rounds of editing for structure, character development, and prose. Beta reader feedback incorporated."
+                        }
+                    ],
+                    specs: [
+                        {
+                            title: "Genre & Style",
+                            description: "Science fiction novella with philosophical undertones. Literary science fiction approach with focus on character development."
+                        },
+                        {
+                            title: "Length & Structure",
+                            description: "42,000 words across 8 interconnected chapters. Non-linear narrative structure with multiple perspectives."
+                        },
+                        {
+                            title: "Themes",
+                            description: "Consciousness, identity, human-AI relationships, technological ethics, and the nature of existence."
+                        },
+                        {
+                            title: "Target Audience",
+                            description: "Adult readers interested in thoughtful science fiction, philosophy, and contemporary technology issues."
+                        }
+                    ],
+                    links: [
+                        {
+                            title: "Read Excerpt",
+                            description: "First chapter preview",
+                            url: "#",
+                            icon: "📚"
+                        },
+                        {
+                            title: "Character Profiles",
+                            description: "Meet the characters",
+                            url: "#",
+                            icon: "👥"
+                        },
+                        {
+                            title: "Author Notes",
+                            description: "Behind the scenes",
+                            url: "#",
+                            icon: "✍️"
+                        }
+                    ]
+                }
+            };
+    
+            // Current project type
+            let currentProject = 'code';
+    
+            // Initialize the page with progressive enhancement
+            function init() {
+                // Start performance monitoring
+                monitorPerformance();
+                
+                // Initialize features based on support
+                if (supportsParallax() && motionEnabled) {
+                    createParticles();
+                    setupScrollAnimations();
+                } else {
+                    console.log('Parallax not supported or disabled - using fallback');
+                    document.body.classList.add('no-parallax');
+                }
+                
+                updateProjectContent();
+                setupImageErrorHandling();
+                
+                // Ensure particles are created after a short delay
+                setTimeout(() => {
+                    const particlesContainer = document.getElementById('heroParticles');
+                    if (particlesContainer && particlesContainer.children.length === 0) {
+                        console.log('Recreating particles...');
+                        createParticles();
+                    }
+                }, 500);
+                
+                // Hide loading overlay
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').classList.add('hidden');
+                }, 1000);
+            }
+
+            // Image error handling
+            function setupImageErrorHandling() {
+                document.querySelectorAll('img').forEach(img => {
+                    img.addEventListener('error', () => {
+                        img.style.display = 'none';
+                        img.parentElement.classList.add('image-error');
+                    });
+                });
+            }
+    
+            // Create floating particles with enhanced visibility
+            function createParticles() {
+                const particlesContainer = document.getElementById('heroParticles');
+                if (!particlesContainer) return;
+                
+                const particleCount = 80; // Increased count
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    // Random positioning
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    
+                    // Random sizes for variety
+                    const size = Math.random() * 4 + 4; // 4-8px
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    
+                    // Random animation delays and durations
+                    particle.style.animationDelay = Math.random() * 20 + 's';
+                    particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                    
+                    // Random opacity for depth
+                    particle.style.opacity = Math.random() * 0.5 + 0.3;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+
+            // Create journey particles
+            function createJourneyParticles(container) {
+                if (!container) return;
+                
+                const particleCount = 100; // More particles for better visibility
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'journey-particle';
+                    
+                    // Random positioning
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.top = Math.random() * 100 + '%';
+                    
+                    // Random sizes for variety
+                    const size = Math.random() * 4 + 4; // 4-8px
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+                    
+                    // Random animation delays and durations
+                    particle.style.animationDelay = Math.random() * 15 + 's';
+                    particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                    
+                    // Higher opacity for better visibility
+                    particle.style.opacity = Math.random() * 0.6 + 0.4;
+                    
+                    container.appendChild(particle);
+                }
+            }
+    
+            // Setup scroll animations with enhanced section title effects
+            function setupScrollAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+    
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, observerOptions);
+    
+                document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .timeline-item').forEach(el => {
+                    observer.observe(el);
+                });
+
+                // Special observer for section titles
+                const titleObserverOptions = {
+                    threshold: 0.3,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+
+                const titleObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Add staggered delay for each title
+                            const index = Array.from(document.querySelectorAll('.section-title')).indexOf(entry.target);
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, index * 200);
+                        }
+                    });
+                }, titleObserverOptions);
+
+                document.querySelectorAll('.section-title').forEach(el => {
+                    titleObserver.observe(el);
+                });
+            }
+    
+            // Floating nav is always visible, no toggle needed
+    
+            // Switch project type
+            function switchProjectType(type) {
+                currentProject = type;
+                updateProjectContent();
+                
+                // Update switcher buttons
+                document.querySelectorAll('.switcher-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector(`[onclick="switchProjectType('${type}')"]`).classList.add('active');
+            }
+    
+            // Update project content
+            function updateProjectContent() {
+                const project = projectData[currentProject];
+                
+                // Update hero section
+                document.getElementById('projectTypeBadge').textContent = project.type;
+                document.getElementById('projectTitle').textContent = project.title;
+                document.getElementById('projectSubtitle').textContent = project.subtitle;
+                document.getElementById('projectDescription').textContent = project.description;
+                
+                // Update tags
+                const tagsContainer = document.getElementById('projectTags');
+                tagsContainer.innerHTML = '';
+                project.tags.forEach(tag => {
+                    const tagElement = document.createElement('span');
+                    tagElement.className = 'tag';
+                    tagElement.textContent = tag;
+                    tagsContainer.appendChild(tagElement);
+                });
+                
+                // Update gallery
+                updateGallery(project.gallery);
+                
+                // Update journey
+                updateJourney(project.journey);
+                
+                // Update specs
+                updateSpecs(project.specs);
+                
+                // Update links
+                updateLinks(project.links);
+            }
+    
+            // Update gallery section
+            function updateGallery(galleryItems) {
+                const galleryGrid = document.getElementById('galleryGrid');
+                galleryGrid.innerHTML = '';
+                
+                // Use different layout for art projects
+                if (currentProject === 'art') {
+                    galleryGrid.className = 'art-gallery';
+                } else {
+                    galleryGrid.className = 'gallery-grid';
+                }
+                
+                galleryItems.forEach(item => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.innerHTML = `
+                        <img src="${item.src}" alt="${item.alt}" loading="lazy">
+                        <div class="gallery-overlay">
+                            <div class="gallery-overlay-content">
+                                <h3>${item.title}</h3>
+                                <p>${item.description}</p>
+                            </div>
+                        </div>
+                    `;
+                    galleryGrid.appendChild(galleryItem);
+                });
+            }
+    
+            // Update journey section
+            function updateJourney(journeyItems) {
+                const timelineContainer = document.getElementById('timelineContainer');
+                timelineContainer.innerHTML = '';
+                
+                // Add hero background to journey section
+                const journeyHeroBg = document.createElement('div');
+                journeyHeroBg.className = 'journey-hero-bg';
+                timelineContainer.appendChild(journeyHeroBg);
+                
+                // Add journey particles container
+                const journeyParticles = document.createElement('div');
+                journeyParticles.className = 'journey-particles';
+                timelineContainer.appendChild(journeyParticles);
+                
+                // Create journey particles
+                createJourneyParticles(journeyParticles);
+                
+                console.log('Journey background elements created:', { journeyHeroBg, journeyParticles });
+                
+                // Add flowing arrows to timeline
+                const flowArrow1 = document.createElement('div');
+                flowArrow1.className = 'flow-arrow-1';
+                flowArrow1.innerHTML = '▼';
+                timelineContainer.appendChild(flowArrow1);
+                
+                const flowArrow2 = document.createElement('div');
+                flowArrow2.className = 'flow-arrow-2';
+                flowArrow2.innerHTML = '▼';
+                timelineContainer.appendChild(flowArrow2);
+                
+                const flowArrow3 = document.createElement('div');
+                flowArrow3.className = 'flow-arrow-3';
+                flowArrow3.innerHTML = '▼';
+                timelineContainer.appendChild(flowArrow3);
+                
+                journeyItems.forEach((item, index) => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = 'timeline-item';
+                    timelineItem.innerHTML = `
+                        <div class="timeline-content">
+                            <h3>${item.title}</h3>
+                            <p>${item.description}</p>
+                        </div>
+                    `;
+                    timelineContainer.appendChild(timelineItem);
+                    
+                    // Add staggered delay for sequential appearance
+                    timelineItem.style.transitionDelay = `${index * 0.2}s`;
+                });
+                
+                // Setup simplified timeline scroll animation
+                setupTimelineScrollAnimation();
+            }
+    
+            // Update specs section with enhanced styling and parallax
+            function updateSpecs(specItems) {
+                const specsGrid = document.getElementById('specsGrid');
+                specsGrid.innerHTML = '';
+                
+                specItems.forEach((spec, index) => {
+                    const specCard = document.createElement('div');
+                    specCard.className = 'spec-card';
+                    specCard.setAttribute('data-parallax', 'true');
+                    specCard.setAttribute('data-speed', (0.1 + index * 0.05).toString());
+                    
+                    // Extract icon from title if present
+                    const iconMatch = spec.title.match(/^([🎭🧠📚🌍🔥💋💔⛓️✨✂️🕯️🎨🌙]+)/);
+                    const icon = iconMatch ? iconMatch[1] : '⚡';
+                    const cleanTitle = spec.title.replace(/^[🎭🧠📚🌍🔥💋💔⛓️✨✂️🕯️🎨🌙]+/, '').trim();
+                    
+                    specCard.innerHTML = `
+                        <div class="floating-icon">${icon}</div>
+                        <div class="bg-pattern"></div>
+                        <div class="particle-effect"></div>
+                        <h3>${cleanTitle}</h3>
+                        <div class="spec-content">${spec.description}</div>
+                    `;
+                    specsGrid.appendChild(specCard);
+                });
+                
+                // Setup parallax for spec cards
+                setupSpecCardsParallax();
+            }
+    
+            // Update links section
+            function updateLinks(linkItems) {
+                const linksSection = document.getElementById('linksSection');
+                linksSection.innerHTML = '';
+                
+                linkItems.forEach(link => {
+                    const linkCard = document.createElement('a');
+                    linkCard.className = 'link-card';
+                    linkCard.href = link.url;
+                    linkCard.innerHTML = `
+                        <span class="icon">${link.icon}</span>
+                        <h3>${link.title}</h3>
+                        <p>${link.description}</p>
+                    `;
+                    linksSection.appendChild(linkCard);
+                });
+            }
+    
+            // Smooth scrolling for navigation links
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('a[href^="#"]')) {
+                    e.preventDefault();
+                    const target = document.querySelector(e.target.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+    
+            // Simplified timeline scroll animation using IntersectionObserver
+            function setupTimelineScrollAnimation() {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                const journeySection = document.querySelector('#journey');
+                const journeyHeroBg = document.querySelector('.journey-hero-bg');
+                const journeyParticles = document.querySelector('.journey-particles');
+                
+                // Hero parallax effect
+                function updateHeroParallax() {
+                    const scrolled = window.pageYOffset;
+                    const hero = document.querySelector('.hero');
+                    const heroHeight = hero.offsetHeight;
+                    
+                    if (scrolled < heroHeight && motionEnabled) {
+                        const heroContent = document.querySelector('.hero-content');
+                        const heroBg = document.querySelector('.hero-bg');
+                        
+                        heroContent.style.transform = `translate3d(0, ${scrolled * 0.5}px, 0)`;
+                        heroBg.style.transform = `translate3d(0, ${scrolled * 0.3}px, 0)`;
+                    }
+                }
+                
+                // Journey background reveal effect
+                function updateJourneyBackground() {
+                    if (!journeySection || !motionEnabled) return;
+                    
+                    const rect = journeySection.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    
+                    // Calculate how much of the journey section is visible
+                    const sectionTop = rect.top;
+                    const sectionHeight = rect.height;
+                    const visibleHeight = Math.min(windowHeight, sectionTop + sectionHeight) - Math.max(0, sectionTop);
+                    const visibilityRatio = Math.max(0, Math.min(1, visibleHeight / windowHeight));
+                    
+                    // Reveal background and particles as section comes into view
+                    if (journeyHeroBg && journeyParticles) {
+                        journeyHeroBg.style.opacity = visibilityRatio;
+                        journeyParticles.style.opacity = visibilityRatio;
+                        
+                        if (visibilityRatio > 0.1) {
+                            journeyHeroBg.classList.add('visible');
+                            journeyParticles.classList.add('visible');
+                        }
+                        
+                        // Debug logging
+                        console.log('Journey background visibility:', visibilityRatio);
+                    } else {
+                        console.log('Journey background elements not found:', { journeyHeroBg, journeyParticles });
+                    }
+                }
+                
+                // Use IntersectionObserver for timeline items - much more reliable
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Add a small delay to ensure smooth animation
+                            setTimeout(() => {
+                                entry.target.classList.add('visible');
+                            }, 100);
+                        }
+                    });
+                }, {
+                    threshold: 0.3,
+                    rootMargin: '0px 0px -100px 0px'
+                });
+                
+                // Observe all timeline items
+                timelineItems.forEach(item => {
+                    timelineObserver.observe(item);
+                });
+                
+                // Add scroll listener for hero parallax and journey background
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        requestAnimationFrame(() => {
+                            updateHeroParallax();
+                            updateJourneyBackground();
+                        });
+                        ticking = true;
+                    }
+                });
+                
+                // Initial call
+                updateJourneyBackground();
+            }
+    
+            // Setup parallax for specification cards
+            function setupSpecCardsParallax() {
+                const specCards = document.querySelectorAll('.spec-card[data-parallax="true"]');
+                
+                function updateSpecCardsParallax() {
+                    if (!motionEnabled) return;
+                    
+                    specCards.forEach(card => {
+                        const rect = card.getBoundingClientRect();
+                        const windowHeight = window.innerHeight;
+                        const cardCenter = rect.top + rect.height / 2;
+                        const distanceFromCenter = cardCenter - windowHeight / 2;
+                        const speed = parseFloat(card.dataset.speed) || 0.1;
+                        
+                        // Only apply parallax when card is in viewport
+                        if (rect.bottom > 0 && rect.top < windowHeight) {
+                            const translateY = distanceFromCenter * speed;
+                            const scale = 1 + Math.abs(distanceFromCenter) * 0.0001;
+                            const opacity = Math.max(0.3, 1 - Math.abs(distanceFromCenter) * 0.001);
+                            
+                            card.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`;
+                            card.style.opacity = opacity;
+                        }
+                    });
+                }
+                
+                // Add scroll listener for spec cards parallax
+                let ticking = false;
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        requestAnimationFrame(updateSpecCardsParallax);
+                        ticking = true;
+                    }
+                });
+                
+                // Initial call
+                updateSpecCardsParallax();
+            }
+
+            // Initialize when DOM is loaded
+            document.addEventListener('DOMContentLoaded', init);
+        </script>
+    </body>
+    </html>
+    ```

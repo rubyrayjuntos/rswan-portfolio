@@ -1,0 +1,785 @@
+/* Theme-specific CSS variables and overrides */
+
+body.theme-dark {
+    /* --- ChiaroscuroCSS Core Variables for Dark Theme --- */
+    --cc-bg-primary: #1e1e1e; /* Deeper, more consistent dark background */
+    --cc-shadow-light: #2a2a2a; /* Light shadow for dark neumorphism */
+    --cc-shadow-dark: #0f0f0f; /* Dark shadow for dark neumorphism */
+    --cc-text-primary: #e0e0e0; /* Primary text for dark theme */
+    --cc-text-secondary: #aaaaaa; /* Secondary text for dark theme */
+    --cc-accent-primary: #00bcd4; /* Cyan accent for dark theme */
+
+    /* --- Mapping Existing Variables to Chiaroscuro's Core, or setting directly --- */
+    --bg-color: var(--cc-bg-primary); /* Main body background */
+    --shadow-light: var(--cc-shadow-light); /* Main light neumorphic shadow */
+    --shadow-dark: var(--cc-shadow-dark); /* Main dark neumorphic shadow */
+    --text-color: var(--cc-text-primary); /* Main dark text (for light elements on this theme) */
+    --text-color-light: var(--cc-text-secondary); /* Main light text (for dark elements on this theme) */
+    --accent-color: var(--cc-accent-primary); /* Main accent color */
+
+    /* Remaining theme-specific variables, ensuring consistency */
+    --color-primary-dark: #0a0a0a;
+    --color-primary-light: #1a1a1a;
+    --color-secondary-dark: #2a2a2a;
+    --color-secondary-light: #3a3a3a;
+    --color-text-hero: var(--cc-accent-primary); /* Use CC accent */
+    --color-text-dark: var(--cc-text-primary);
+    --color-text-muted: var(--cc-text-secondary);
+    --color-text-grey: #bbbbbb;
+    --color-text-darker-grey: #cccccc;
+    --color-background-body: var(--cc-bg-primary);
+    --color-background-section-light: #1a1a1a;
+    --color-background-section-even: #2a2a2a;
+    --color-nav-bg: rgba(0, 0, 0, 0.3);
+    --color-nav-border: rgba(255, 255, 255, 0.1);
+    --color-nav-hover-bg: rgba(0, 0, 0, 0.4);
+    --color-accent-orange-bright: rgba(0, 188, 212, 0.6); /* Cyan glow */
+    --color-accent-orange-dark: rgba(0, 150, 136, 0.4); /* Teal glow */
+    --color-accent-orange-darker: rgba(0, 96, 100, 0.2); /* Darker teal glow */
+    --color-accent-orange-nav-hover: rgba(0, 188, 212, 0.4);
+    --color-accent-orange-nav-hover-dark: rgba(0, 150, 136, 0.3);
+    --color-accent-orange-nav-icon: rgba(0, 188, 212, 0.8);
+    --color-accent-orange-drop-shadow: rgba(0, 150, 136, 0.6);
+    --color-accent-blue-scroll: #03a9f4; /* Light Blue */
+    --color-accent-blue-scroll-dark: #2196f3; /* Blue */
+    --color-section-border: linear-gradient(45deg, #03a9f4, #2196f3);
+    --color-section-title: var(--cc-text-primary);
+    --color-section-title-active: linear-gradient(135deg, #03a9f4, #2196f3);
+    --color-section-title-line: linear-gradient(45deg, #03a9f4, #2196f3);
+    --color-gallery-overlay-bg: linear-gradient(45deg, rgba(0, 188, 212, 0.7), rgba(0, 150, 136, 0.7));
+    --color-gallery-overlay-text: var(--cc-text-primary);
+    --color-gallery-overlay-content-bg: rgba(0, 0, 0, 0.7);
+    --color-spec-card-bg: linear-gradient(135deg, #212121 0%, #3a3a3a 100%);
+    --color-spec-card-shadow: rgba(0,0,0,0.4);
+    --color-spec-card-shadow-hover: rgba(0,0,0,0.6);
+    --color-spec-card-border-glow: linear-gradient(45deg, #00bcd4, #009688, #00bcd4);
+    --color-spec-card-particle: rgba(0,188,212,0.6);
+    --color-tag-bg: linear-gradient(45deg, #2a2a2a, #1a1a1a);
+    --color-tag-text: var(--cc-text-secondary);
+    --color-tag-border: rgba(255,255,255,0.1);
+    --color-tag-hover-bg: linear-gradient(45deg, #3a3a3a, #2a2a2a);
+    --color-tag-hover-text: var(--cc-text-primary);
+    --color-link-card-bg: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    --color-link-card-text: var(--cc-text-primary);
+    --color-link-card-overlay: linear-gradient(45deg, rgba(255,255,255,0.05), transparent);
+    --color-link-card-shadow: rgba(0,0,0,0.3);
+    --color-timeline-line: linear-gradient(to bottom, #03a9f4, #2196f3);
+    --color-timeline-arrow: #03a9f4;
+    --color-timeline-arrow-shadow: rgba(3, 169, 244, 0.8);
+    --color-timeline-arrow-2: #2196f3;
+    --color-timeline-arrow-2-shadow: rgba(33, 150, 243, 0.6);
+    --color-timeline-content-bg: rgba(30, 30, 30, 0.95);
+    --color-timeline-content-border: rgba(255, 255, 255, 0.1);
+    --color-timeline-content-shadow: rgba(0,0,0,0.4);
+    --color-timeline-content-shadow-hover: rgba(0,0,0,0.6);
+    --color-timeline-dot-bg: linear-gradient(45deg, #03a9f4, #2196f3);
+    --color-timeline-dot-border: #01579b;
+    --color-timeline-dot-shadow: #222222;
+    --color-hero-bg-radial-1: rgba(0, 188, 212, 0.1);
+    --color-hero-bg-radial-2: rgba(0, 150, 136, 0.08);
+    --color-hero-bg-radial-3: rgba(0, 96, 100, 0.06);
+    --color-particle-main: rgba(0, 188, 212, 0.8);
+    --color-particle-shadow: rgba(0, 188, 212, 0.6);
+    --color-particle-5n: rgba(255, 255, 255, 0.9);
+    --color-particle-5n-shadow: rgba(255, 255, 255, 0.8);
+    --color-particle-7n: rgba(0, 150, 136, 0.8);
+    --color-particle-7n-shadow: rgba(0, 150, 136, 0.7);
+    --color-particle-11n: rgba(0, 96, 100, 0.9);
+    --color-particle-11n-shadow: rgba(0, 96, 100, 0.8);
+    --color-journey-bg-radial-1: rgba(0, 188, 212, 0.3);
+    --color-journey-bg-radial-2: rgba(0, 150, 136, 0.25);
+    --color-journey-bg-radial-3: rgba(255, 255, 255, 0.2);
+    --color-journey-bg-radial-4: rgba(3, 169, 244, 0.2);
+    --color-journey-bg-radial-5: rgba(33, 150, 243, 0.15);
+    --color-journey-cosmic-1: rgba(255, 255, 255, 0.05);
+    --color-journey-cosmic-2: rgba(3, 169, 244, 0.03);
+    --color-journey-title: var(--cc-text-primary);
+    --color-journey-particle-main: rgba(0, 188, 212, 1);
+    --color-journey-particle-shadow: rgba(0, 188, 212, 0.8);
+    --color-journey-particle-shadow-2: rgba(0, 188, 212, 0.4);
+    --color-journey-particle-5n: rgba(255, 255, 255, 1);
+    --color-journey-particle-5n-shadow: rgba(255, 255, 255, 0.9);
+    --color-journey-particle-5n-shadow-2: rgba(255, 255, 255, 0.5);
+    --color-journey-particle-7n: rgba(0, 150, 136, 1);
+    --color-journey-particle-7n-shadow: rgba(0, 150, 136, 0.8);
+    --color-journey-particle-7n-shadow-2: rgba(0, 150, 136, 0.5);
+    --color-journey-particle-11n: rgba(3, 169, 244, 1);
+    --color-journey-particle-11n-shadow: rgba(3, 169, 244, 0.8);
+    --color-journey-particle-11n-shadow-2: rgba(3, 169, 244, 0.5);
+    --color-journey-particle-13n: rgba(33, 150, 243, 1);
+    --color-journey-particle-13n-shadow: rgba(33, 150, 243, 0.8);
+    --color-journey-particle-13n-shadow-2: rgba(33, 150, 243, 0.5);
+}
+
+body.theme-ocean {
+    /* --- ChiaroscuroCSS Core Variables for Ocean Theme --- */
+    --cc-bg-primary: #0B2027; /* Deep ocean background */
+    --cc-shadow-light: #204B57; /* Light shadow for ocean neumorphism */
+    --cc-shadow-dark: #041619; /* Dark shadow for ocean neumorphism */
+    --cc-text-primary: #E3F2FD; /* Primary text for ocean theme */
+    --cc-text-secondary: #90CAF9; /* Secondary text for ocean theme */
+    --cc-accent-primary: #4FC3F7; /* Light blue accent for ocean theme */
+
+    /* --- Mapping Existing Variables to Chiaroscuro's Core --- */
+    --bg-color: var(--cc-bg-primary);
+    --shadow-light: var(--cc-shadow-light);
+    --shadow-dark: var(--cc-shadow-dark);
+    --text-color: var(--cc-text-primary);
+    --text-color-light: var(--cc-text-secondary);
+    --accent-color: var(--cc-accent-primary);
+
+    --color-primary-dark: #003366;
+    --color-primary-light: #000a1a;
+    --color-secondary-dark: #004488;
+    --color-secondary-light: #0055aa;
+    --color-text-hero: #4fc3f7; /* Light Blue */
+    --color-text-light: rgba(255, 255, 255, 0.95);
+    --color-text-dark: #e3f2fd;
+    --color-text-muted: #90caf9;
+    --color-text-grey: #a7d9f7;
+    --color-text-darker-grey: #c0e6fd;
+    --color-background-body: #011627;
+    --color-background-section-light: #042a42;
+    --color-background-section-even: #063c5a;
+    --color-nav-bg: rgba(76, 175, 240, 0.2);
+    --color-nav-border: rgba(76, 175, 240, 0.3);
+    --color-nav-hover-bg: rgba(76, 175, 240, 0.25);
+    --color-accent-orange-bright: rgba(76, 175, 240, 0.6);
+    --color-accent-orange-dark: rgba(33, 150, 243, 0.4);
+    --color-accent-orange-darker: rgba(21, 101, 192, 0.2);
+    --color-accent-orange-nav-hover: rgba(76, 175, 240, 0.4);
+    --color-accent-orange-nav-hover-dark: rgba(33, 150, 243, 0.3);
+    --color-accent-orange-nav-icon: rgba(76, 175, 240, 0.8);
+    --color-accent-orange-drop-shadow: rgba(33, 150, 243, 0.6);
+    --color-accent-blue-scroll: #0d47a1;
+    --color-accent-blue-scroll-dark: #1976d2;
+    --color-section-border: linear-gradient(45deg, #0d47a1, #1976d2);
+    --color-section-title: #e3f2fd;
+    --color-section-title-active: linear-gradient(135deg, #4fc3f7, #2196f3);
+    --color-section-title-line: linear-gradient(45deg, #4fc3f7, #2196f3);
+    --color-gallery-overlay-bg: linear-gradient(45deg, rgba(0, 70, 128, 0.9), rgba(0, 40, 80, 0.9));
+    --color-gallery-overlay-text: #e3f2fd;
+    --color-gallery-overlay-content-bg: rgba(0, 0, 0, 0.7);
+    --color-spec-card-bg: linear-gradient(135deg, #2196f3 0%, #42a5f5 100%);
+    --color-spec-card-shadow: rgba(33, 150, 243, 0.2);
+    --color-spec-card-shadow-hover: rgba(33, 150, 243, 0.4);
+    --color-spec-card-border-glow: linear-gradient(45deg, #2196f3, #42a5f5, #2196f3);
+    --color-timeline-line: linear-gradient(to bottom, #2196f3, #42a5f5);
+    --color-timeline-arrow: #2196f3;
+    --color-timeline-arrow-shadow: rgba(33, 150, 243, 0.8);
+    --color-timeline-arrow-2: #42a5f5;
+    --color-timeline-arrow-2-shadow: rgba(66, 165, 245, 0.6);
+    --color-timeline-content-bg: rgba(5, 42, 66, 0.95);
+    --color-timeline-content-border: rgba(76, 175, 240, 0.1);
+    --color-timeline-dot-bg: linear-gradient(45deg, #0d47a1, #1976d2);
+    --color-timeline-dot-border: #01579b;
+    --color-timeline-dot-shadow: #0a0a0a;
+    --color-hero-bg-radial-1: rgba(76, 175, 240, 0.1);
+    --color-hero-bg-radial-2: rgba(33, 150, 243, 0.08);
+    --color-hero-bg-radial-3: rgba(21, 101, 192, 0.06);
+    --color-particle-main: rgba(76, 175, 240, 0.8);
+    --color-particle-shadow: rgba(76, 175, 240, 0.6);
+    --color-particle-5n: rgba(255, 255, 255, 0.9);
+    --color-particle-5n-shadow: rgba(255, 255, 255, 0.8);
+    --color-particle-7n: rgba(33, 150, 243, 0.8);
+    --color-particle-7n-shadow: rgba(33, 150, 243, 0.7);
+    --color-particle-11n: rgba(21, 101, 192, 0.9);
+    --color-particle-11n-shadow: rgba(21, 101, 192, 0.8);
+    --color-journey-bg-radial-1: rgba(76, 175, 240, 0.3);
+    --color-journey-bg-radial-2: rgba(33, 150, 243, 0.25);
+    --color-journey-bg-radial-3: rgba(255, 255, 255, 0.2);
+    --color-journey-bg-radial-4: rgba(21, 101, 192, 0.2);
+    --color-journey-bg-radial-5: rgba(13, 71, 161, 0.15);
+    --color-journey-cosmic-1: rgba(255, 255, 255, 0.05);
+    --color-journey-cosmic-2: rgba(76, 175, 240, 0.03);
+    --color-journey-title: #e3f2fd;
+    --color-journey-particle-main: rgba(76, 175, 240, 1);
+    --color-journey-particle-shadow: rgba(76, 175, 240, 0.8);
+    --color-journey-particle-shadow-2: rgba(76, 175, 240, 0.4);
+    --color-journey-particle-5n: rgba(255, 255, 255, 1);
+    --color-journey-particle-5n-shadow: rgba(255, 255, 255, 0.9);
+    --color-journey-particle-5n-shadow-2: rgba(255, 255, 255, 0.5);
+    --color-journey-particle-7n: rgba(33, 150, 243, 1);
+    --color-journey-particle-7n-shadow: rgba(33, 150, 243, 0.8);
+    --color-journey-particle-7n-shadow-2: rgba(33, 150, 243, 0.5);
+    --color-journey-particle-11n: rgba(21, 101, 192, 1);
+    --color-journey-particle-11n-shadow: rgba(21, 101, 192, 0.8);
+    --color-journey-particle-11n-shadow-2: rgba(21, 101, 192, 0.5);
+    --color-journey-particle-13n: rgba(13, 71, 161, 1);
+    --color-journey-particle-13n-shadow: rgba(13, 71, 161, 0.8);
+    --color-journey-particle-13n-shadow-2: rgba(13, 71, 161, 0.5);
+}
+
+body.theme-forest {
+    /* --- ChiaroscuroCSS Core Variables for Forest Theme --- */
+    --cc-bg-primary: #2E5B1A; /* Deep forest background */
+    --cc-shadow-light: #4A7029; /* Light shadow for forest neumorphism */
+    --cc-shadow-dark: #1A3F0F; /* Dark shadow for forest neumorphism */
+    --cc-text-primary: #E8F5E8; /* Primary text for forest theme */
+    --cc-text-secondary: #A5D6A7; /* Secondary text for forest theme */
+    --cc-accent-primary: #CDDC39; /* Lime green accent for forest theme */
+
+    /* --- Mapping Existing Variables to Chiaroscuro's Core --- */
+    --bg-color: var(--cc-bg-primary);
+    --shadow-light: var(--cc-shadow-light);
+    --shadow-dark: var(--cc-shadow-dark);
+    --text-color: var(--cc-text-primary);
+    --text-color-light: var(--cc-text-secondary);
+    --accent-color: var(--cc-accent-primary);
+
+    --color-primary-dark: #1b5e20;
+    --color-primary-light: #2e7d32;
+    --color-secondary-dark: #388e3c;
+    --color-secondary-light: #4caf50;
+    --color-text-hero: #cddc39; /* Lime Green */
+    --color-text-light: rgba(255, 255, 255, 0.9);
+    --color-text-dark: #333;
+    --color-text-muted: #666;
+    --color-text-grey: #6c757d;
+    --color-text-darker-grey: #495057;
+    --color-background-body: #212121;
+    --color-background-section-light: #f1f8e9;
+    --color-background-section-even: #e8f5e9;
+    --color-nav-bg: rgba(76, 175, 80, 0.2);
+    --color-nav-border: rgba(76, 175, 80, 0.3);
+    --color-nav-hover-bg: rgba(76, 175, 80, 0.25);
+    --color-accent-orange-bright: rgba(139, 195, 74, 0.6); /* Light Green */
+    --color-accent-orange-dark: rgba(104, 159, 56, 0.4); /* Dark Green */
+    --color-accent-orange-darker: rgba(76, 175, 80, 0.2);
+    --color-accent-orange-nav-hover: rgba(139, 195, 74, 0.4);
+    --color-accent-orange-nav-hover-dark: rgba(104, 159, 56, 0.3);
+    --color-accent-orange-nav-icon: rgba(139, 195, 74, 0.8);
+    --color-accent-orange-drop-shadow: rgba(104, 159, 56, 0.6);
+    --color-accent-blue-scroll: #388e3c;
+    --color-accent-blue-scroll-dark: #43a047;
+    --color-section-border: linear-gradient(45deg, #388e3c, #43a047);
+    --color-section-title: #2c3e50;
+    --color-section-title-active: linear-gradient(135deg, #8bc34a, #689f38);
+    --color-section-title-line: linear-gradient(45deg, #8bc34a, #689f38);
+    --color-gallery-overlay-bg: linear-gradient(45deg, rgba(27, 94, 32, 0.9), rgba(46, 125, 50, 0.9));
+    --color-gallery-overlay-text: #e8f5e9;
+    --color-gallery-overlay-content-bg: rgba(0, 0, 0, 0.7);
+    --color-spec-card-bg: linear-gradient(135deg, #689f38 0%, #8bc34a 100%);
+    --color-spec-card-shadow: rgba(104, 159, 56, 0.2);
+    --color-spec-card-shadow-hover: rgba(104, 159, 56, 0.4);
+    --color-spec-card-border-glow: linear-gradient(45deg, #689f38, #8bc34a, #689f38);
+    --color-timeline-line: linear-gradient(to bottom, #689f38, #8bc34a);
+    --color-timeline-arrow: #689f38;
+    --color-timeline-arrow-shadow: rgba(104, 159, 56, 0.8);
+    --color-timeline-arrow-2: #8bc34a;
+    --color-timeline-arrow-2-shadow: rgba(139, 195, 74, 0.6);
+    --color-timeline-content-bg: rgba(241, 248, 233, 0.95);
+    --color-timeline-content-border: rgba(76, 175, 80, 0.2);
+    --color-timeline-dot-bg: linear-gradient(45deg, #388e3c, #43a047);
+    --color-timeline-dot-border: #1b5e20;
+    --color-timeline-dot-shadow: #f8f9fa;
+    --color-hero-bg-radial-1: rgba(139, 195, 74, 0.1);
+    --color-hero-bg-radial-2: rgba(104, 159, 56, 0.08);
+    --color-hero-bg-radial-3: rgba(76, 175, 80, 0.06);
+    --color-particle-main: rgba(139, 195, 74, 0.8);
+    --color-particle-shadow: rgba(139, 195, 74, 0.6);
+    --color-particle-5n: rgba(255, 255, 255, 0.9);
+    --color-particle-5n-shadow: rgba(255, 255, 255, 0.8);
+    --color-particle-7n: rgba(104, 159, 56, 0.8);
+    --color-particle-7n-shadow: rgba(104, 159, 56, 0.7);
+    --color-particle-11n: rgba(76, 175, 80, 0.9);
+    --color-particle-11n-shadow: rgba(76, 175, 80, 0.8);
+    --color-journey-bg-radial-1: rgba(139, 195, 74, 0.3);
+    --color-journey-bg-radial-2: rgba(104, 159, 56, 0.25);
+    --color-journey-bg-radial-3: rgba(255, 255, 255, 0.2);
+    --color-journey-bg-radial-4: rgba(76, 175, 80, 0.2);
+    --color-journey-bg-radial-5: rgba(46, 125, 50, 0.15);
+    --color-journey-cosmic-1: rgba(255, 255, 255, 0.05);
+    --color-journey-cosmic-2: rgba(139, 195, 74, 0.03);
+    --color-journey-title: #f1f8e9;
+    --color-journey-particle-main: rgba(139, 195, 74, 1);
+    --color-journey-particle-shadow: rgba(139, 195, 74, 0.8);
+    --color-journey-particle-shadow-2: rgba(139, 195, 74, 0.4);
+    --color-journey-particle-5n: rgba(255, 255, 255, 1);
+    --color-journey-particle-5n-shadow: rgba(255, 255, 255, 0.9);
+    --color-journey-particle-5n-shadow-2: rgba(255, 255, 255, 0.5);
+    --color-journey-particle-7n: rgba(104, 159, 56, 1);
+    --color-journey-particle-7n-shadow: rgba(104, 159, 56, 0.8);
+    --color-journey-particle-7n-shadow-2: rgba(104, 159, 56, 0.5);
+    --color-journey-particle-11n: rgba(76, 175, 80, 1);
+    --color-journey-particle-11n-shadow: rgba(76, 175, 80, 0.8);
+    --color-journey-particle-11n-shadow-2: rgba(76, 175, 80, 0.5);
+    --color-journey-particle-13n: rgba(46, 125, 50, 1);
+    --color-journey-particle-13n-shadow: rgba(46, 125, 50, 0.8);
+    --color-journey-particle-13n-shadow-2: rgba(46, 125, 50, 0.5);
+}
+
+body.theme-sunset {
+    /* --- ChiaroscuroCSS Core Variables for Sunset Theme --- */
+    --cc-bg-primary: #3E1A0A; /* Deep sunset background */
+    --cc-shadow-light: #7A3426; /* Light shadow for sunset neumorphism */
+    --cc-shadow-dark: #2A1105; /* Dark shadow for sunset neumorphism */
+    --cc-text-primary: #FFF3E0; /* Primary text for sunset theme */
+    --cc-text-secondary: #FFCC80; /* Secondary text for sunset theme */
+    --cc-accent-primary: #FF9800; /* Orange accent for sunset theme */
+
+    /* --- Mapping Existing Variables to Chiaroscuro's Core --- */
+    --bg-color: var(--cc-bg-primary);
+    --shadow-light: var(--cc-shadow-light);
+    --shadow-dark: var(--cc-shadow-dark);
+    --text-color: var(--cc-text-primary);
+    --text-color-light: var(--cc-text-secondary);
+    --accent-color: var(--cc-accent-primary);
+
+    --color-primary-dark: #ff5722;
+    --color-primary-light: #ff7043;
+    --color-secondary-dark: #bf360c;
+    --color-secondary-light: #e64a19;
+    --color-text-hero: #ffab40; /* Amber accent */
+    --color-text-light: rgba(255, 255, 255, 0.9);
+    --color-text-dark: #3e2723;
+    --color-text-muted: #5d4037;
+    --color-text-grey: #6d4c41;
+    --color-text-darker-grey: #8d6e63;
+    --color-background-body: #212121;
+    --color-background-section-light: #ffe0b2;
+    --color-background-section-even: #fff3e0;
+    --color-nav-bg: rgba(255, 87, 34, 0.2);
+    --color-nav-border: rgba(255, 87, 34, 0.3);
+    --color-nav-hover-bg: rgba(255, 87, 34, 0.25);
+    --color-accent-orange-bright: rgba(255, 160, 0, 0.6); /* Orange glow */
+    --color-accent-orange-dark: rgba(255, 112, 67, 0.4); /* Deep Orange glow */
+    --color-accent-orange-darker: rgba(255, 87, 34, 0.2);
+    --color-accent-orange-nav-hover: rgba(255, 160, 0, 0.4);
+    --color-accent-orange-nav-hover-dark: rgba(255, 112, 67, 0.3);
+    --color-accent-orange-nav-icon: rgba(255, 160, 0, 0.8);
+    --color-accent-orange-drop-shadow: rgba(255, 112, 67, 0.6);
+    --color-accent-blue-scroll: #ff5722;
+    --color-accent-blue-scroll-dark: #f4511e;
+    --color-section-border: linear-gradient(45deg, #ff5722, #f4511e);
+    --color-section-title: #3e2723;
+    --color-section-title-active: linear-gradient(135deg, #ffab40, #fb8c00);
+    --color-section-title-line: linear-gradient(45deg, #ffab40, #fb8c00);
+    --color-gallery-overlay-bg: linear-gradient(45deg, rgba(255, 87, 34, 0.9), rgba(191, 54, 12, 0.9));
+    --color-gallery-overlay-text: #fff3e0;
+    --color-gallery-overlay-content-bg: rgba(0, 0, 0, 0.7);
+    --color-spec-card-bg: linear-gradient(135deg, #fb8c00 0%, #ffb74d 100%);
+    --color-spec-card-shadow: rgba(251, 140, 0, 0.2);
+    --color-spec-card-shadow-hover: rgba(251, 140, 0, 0.4);
+    --color-spec-card-border-glow: linear-gradient(45deg, #fb8c00, #ffb74d, #fb8c00);
+    --color-timeline-line: linear-gradient(to bottom, #fb8c00, #ffb74d);
+    --color-timeline-arrow: #fb8c00;
+    --color-timeline-arrow-shadow: rgba(251, 140, 0, 0.8);
+    --color-timeline-arrow-2: #ffb74d;
+    --color-timeline-arrow-2-shadow: rgba(255, 183, 77, 0.6);
+    --color-timeline-content-bg: rgba(255, 224, 178, 0.95);
+    --color-timeline-content-border: rgba(255, 87, 34, 0.2);
+    --color-timeline-dot-bg: linear-gradient(45deg, #ff5722, #f4511e);
+    --color-timeline-dot-border: #bf360c;
+    --color-timeline-dot-shadow: #ffe0b2;
+    --color-hero-bg-radial-1: rgba(255, 160, 0, 0.1);
+    --color-hero-bg-radial-2: rgba(255, 112, 67, 0.08);
+    --color-hero-bg-radial-3: rgba(255, 87, 34, 0.06);
+    --color-particle-main: rgba(255, 160, 0, 0.8);
+    --color-particle-shadow: rgba(255, 160, 0, 0.6);
+    --color-particle-5n: rgba(255, 255, 255, 0.9);
+    --color-particle-5n-shadow: rgba(255, 255, 255, 0.8);
+    --color-particle-7n: rgba(255, 112, 67, 0.8);
+    --color-particle-7n-shadow: rgba(255, 112, 67, 0.7);
+    --color-particle-11n: rgba(255, 87, 34, 0.9);
+    --color-particle-11n-shadow: rgba(255, 87, 34, 0.8);
+    --color-journey-bg-radial-1: rgba(255, 160, 0, 0.3);
+    --color-journey-bg-radial-2: rgba(255, 112, 67, 0.25);
+    --color-journey-bg-radial-3: rgba(255, 255, 255, 0.2);
+    --color-journey-bg-radial-4: rgba(255, 87, 34, 0.2);
+    --color-journey-bg-radial-5: rgba(191, 54, 12, 0.15);
+    --color-journey-cosmic-1: rgba(255, 255, 255, 0.05);
+    --color-journey-cosmic-2: rgba(255, 160, 0, 0.03);
+    --color-journey-title: #ffe0b2;
+    --color-journey-particle-main: rgba(255, 160, 0, 1);
+    --color-journey-particle-shadow: rgba(255, 160, 0, 0.8);
+    --color-journey-particle-shadow-2: rgba(255, 160, 0, 0.4);
+    --color-journey-particle-5n: rgba(255, 255, 255, 1);
+    --color-journey-particle-5n-shadow: rgba(255, 255, 255, 0.9);
+    --color-journey-particle-5n-shadow-2: rgba(255, 255, 255, 0.5);
+    --color-journey-particle-7n: rgba(255, 112, 67, 1);
+    --color-journey-particle-7n-shadow: rgba(255, 112, 67, 0.8);
+    --color-journey-particle-7n-shadow-2: rgba(255, 112, 67, 0.5);
+    --color-journey-particle-11n: rgba(255, 87, 34, 1);
+    --color-journey-particle-11n-shadow: rgba(255, 87, 34, 0.8);
+    --color-journey-particle-11n-shadow-2: rgba(255, 87, 34, 0.5);
+    --color-journey-particle-13n: rgba(191, 54, 12, 1);
+    --color-journey-particle-13n-shadow: rgba(191, 54, 12, 0.8);
+    --color-journey-particle-13n-shadow-2: rgba(191, 54, 12, 0.5);
+}
+
+body.theme-twilight {
+    /* --- ChiaroscuroCSS Core Variables for Twilight Theme --- */
+    --cc-bg-primary: #2C3E50; /* Twilight gray background */
+    --cc-shadow-light: #5D6D7E; /* Light shadow for twilight neumorphism */
+    --cc-shadow-dark: #1A252F; /* Dark shadow for twilight neumorphism */
+    --cc-text-primary: #ECF0F1; /* Primary text for twilight theme */
+    --cc-text-secondary: #BDC3C7; /* Secondary text for twilight theme */
+    --cc-accent-primary: #9B59B6; /* Purple accent for twilight theme */
+
+    /* --- Mapping Existing Variables to Chiaroscuro's Core --- */
+    --bg-color: var(--cc-bg-primary);
+    --shadow-light: var(--cc-shadow-light);
+    --shadow-dark: var(--cc-shadow-dark);
+    --text-color: var(--cc-text-primary);
+    --text-color-light: var(--cc-text-secondary);
+    --accent-color: var(--cc-accent-primary);
+
+    --color-primary-dark: #2c3e50;
+    --color-primary-light: #34495e;
+    --color-secondary-dark: #7f8c8d;
+    --color-secondary-light: #95a5a6;
+    --color-text-hero: #ecf0f1; /* Light grey */
+    --color-text-light: #ecf0f1;
+    --color-text-dark: #2c3e50;
+    --color-text-muted: #7f8c8d;
+    --color-text-grey: #95a5a6;
+    --color-text-darker-grey: #bdc3c7;
+    --color-background-body: #212529;
+    --color-background-section-light: #34495e;
+    --color-background-section-even: #2c3e50;
+    --color-nav-bg: rgba(255, 255, 255, 0.1);
+    --color-nav-border: rgba(255, 255, 255, 0.2);
+    --color-nav-hover-bg: rgba(255, 255, 255, 0.15);
+    --color-accent-orange-bright: rgba(236, 240, 241, 0.6); /* Light grey glow */
+    --color-accent-orange-dark: rgba(189, 195, 199, 0.4); /* Grey glow */
+    --color-accent-orange-darker: rgba(149, 165, 166, 0.2); /* Darker grey glow */
+    --color-accent-orange-nav-hover: rgba(236, 240, 241, 0.4);
+    --color-accent-orange-nav-hover-dark: rgba(189, 195, 199, 0.3);
+    --color-accent-orange-nav-icon: rgba(236, 240, 241, 0.8);
+    --color-accent-orange-drop-shadow: rgba(189, 195, 199, 0.6);
+    --color-accent-blue-scroll: #607d8b;
+    --color-accent-blue-scroll-dark: #78909c;
+    --color-section-border: linear-gradient(45deg, #607d8b, #78909c);
+    --color-section-title: #ecf0f1;
+    --color-section-title-active: linear-gradient(135deg, #bdc3c7, #95a5a6);
+    --color-section-title-line: linear-gradient(45deg, #bdc3c7, #95a5a6);
+    --color-gallery-overlay-bg: linear-gradient(45deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.9));
+    --color-gallery-overlay-text: #ecf0f1;
+    --color-gallery-overlay-content-bg: rgba(0, 0, 0, 0.7);
+    --color-spec-card-bg: linear-gradient(135deg, #95a5a6 0%, #bdc3c7 100%);
+    --color-spec-card-shadow: rgba(149, 165, 166, 0.2);
+    --color-spec-card-shadow-hover: rgba(149, 165, 166, 0.4);
+    --color-spec-card-border-glow: linear-gradient(45deg, #95a5a6, #bdc3c7, #95a5a6);
+    --color-timeline-line: linear-gradient(to bottom, #95a5a6, #bdc3c7);
+    --color-timeline-arrow: #95a5a6;
+    --color-timeline-arrow-shadow: rgba(149, 165, 166, 0.8);
+    --color-timeline-arrow-2: #bdc3c7;
+    --color-timeline-arrow-2-shadow: rgba(189, 195, 199, 0.6);
+    --color-timeline-content-bg: rgba(52, 73, 94, 0.95);
+    --color-timeline-content-border: rgba(255, 255, 255, 0.1);
+    --color-timeline-dot-bg: linear-gradient(45deg, #607d8b, #78909c);
+    --color-timeline-dot-border: #2c3e50;
+    --color-timeline-dot-shadow: #34495e;
+    --color-hero-bg-radial-1: rgba(236, 240, 241, 0.1);
+    --color-hero-bg-radial-2: rgba(189, 195, 199, 0.08);
+    --color-hero-bg-radial-3: rgba(149, 165, 166, 0.06);
+    --color-particle-main: rgba(236, 240, 241, 0.8);
+    --color-particle-shadow: rgba(236, 240, 241, 0.6);
+    --color-particle-5n: rgba(255, 255, 255, 0.9);
+    --color-particle-5n-shadow: rgba(255, 255, 255, 0.8);
+    --color-particle-7n: rgba(189, 195, 199, 0.8);
+    --color-particle-7n-shadow: rgba(189, 195, 199, 0.7);
+    --color-particle-11n: rgba(149, 165, 166, 0.9);
+    --color-particle-11n-shadow: rgba(149, 165, 166, 0.8);
+    --color-journey-bg-radial-1: rgba(236, 240, 241, 0.3);
+    --color-journey-bg-radial-2: rgba(189, 195, 199, 0.25);
+    --color-journey-bg-radial-3: rgba(255, 255, 255, 0.2);
+    --color-journey-bg-radial-4: rgba(149, 165, 166, 0.2);
+    --color-journey-bg-radial-5: rgba(127, 140, 141, 0.15);
+    --color-journey-cosmic-1: rgba(255, 255, 255, 0.05);
+    --color-journey-cosmic-2: rgba(236, 240, 241, 0.03);
+    --color-journey-title: #ecf0f1;
+    --color-journey-particle-main: rgba(236, 240, 241, 1);
+    --color-journey-particle-shadow: rgba(236, 240, 241, 0.8);
+    --color-journey-particle-shadow-2: rgba(236, 240, 241, 0.4);
+    --color-journey-particle-5n: rgba(255, 255, 255, 1);
+    --color-journey-particle-5n-shadow: rgba(255, 255, 255, 0.9);
+    --color-journey-particle-5n-shadow-2: rgba(255, 255, 255, 0.5);
+    --color-journey-particle-7n: rgba(189, 195, 199, 1);
+    --color-journey-particle-7n-shadow: rgba(189, 195, 199, 0.8);
+    --color-journey-particle-7n-shadow-2: rgba(189, 195, 199, 0.5);
+    --color-journey-particle-11n: rgba(149, 165, 166, 1);
+    --color-journey-particle-11n-shadow: rgba(149, 165, 166, 0.8);
+    --color-journey-particle-11n-shadow-2: rgba(149, 165, 166, 0.5);
+    --color-journey-particle-13n: rgba(127, 140, 141, 1);
+    --color-journey-particle-13n-shadow: rgba(127, 140, 141, 0.8);
+    --color-journey-particle-13n-shadow-2: rgba(127, 140, 141, 0.5);
+}
+
+body.theme-lavender {
+    /* --- ChiaroscuroCSS Core Variables for Lavender Theme --- */
+    --cc-bg-primary: #E8E1F5; /* Soft lavender background */
+    --cc-shadow-light: #F4F1F8; /* Light shadow for lavender neumorphism */
+    --cc-shadow-dark: #D1C4E9; /* Dark shadow for lavender neumorphism */
+    --cc-text-primary: #4A148C; /* Primary text for lavender theme */
+    --cc-text-secondary: #7B1FA2; /* Secondary text for lavender theme */
+    --cc-accent-primary: #9C27B0; /* Purple accent for lavender theme */
+
+    /* --- Mapping Existing Variables to Chiaroscuro's Core --- */
+    --bg-color: var(--cc-bg-primary);
+    --shadow-light: var(--cc-shadow-light);
+    --shadow-dark: var(--cc-shadow-dark);
+    --text-color: var(--cc-text-primary);
+    --text-color-light: var(--cc-text-secondary);
+    --accent-color: var(--cc-accent-primary);
+
+    --color-primary-dark: #512da8;
+    --color-primary-light: #673ab7;
+    --color-secondary-dark: #7e57c2;
+    --color-secondary-light: #9575cd;
+    --color-text-hero: #e1bee7; /* Light Purple */
+    --color-text-light: rgba(255, 255, 255, 0.9);
+    --color-text-dark: #4a148c;
+    --color-text-muted: #6a1b9a;
+    --color-text-grey: #8e24aa;
+    --color-text-darker-grey: #ab47bc;
+    --color-background-body: #1a0033;
+    --color-background-section-light: #ede7f6;
+    --color-background-section-even: #f3e5f5;
+    --color-nav-bg: rgba(103, 58, 183, 0.2);
+    --color-nav-border: rgba(103, 58, 183, 0.3);
+    --color-nav-hover-bg: rgba(103, 58, 183, 0.25);
+    --color-accent-orange-bright: rgba(156, 39, 176, 0.6); /* Purple glow */
+    --color-accent-orange-dark: rgba(123, 31, 162, 0.4); /* Dark Purple glow */
+    --color-accent-orange-darker: rgba(74, 20, 140, 0.2);
+    --color-accent-orange-nav-hover: rgba(156, 39, 176, 0.4);
+    --color-accent-orange-nav-hover-dark: rgba(123, 31, 162, 0.3);
+    --color-accent-orange-nav-icon: rgba(156, 39, 176, 0.8);
+    --color-accent-orange-drop-shadow: rgba(123, 31, 162, 0.6);
+    --color-accent-blue-scroll: #673ab7;
+    --color-accent-blue-scroll-dark: #5e35b1;
+    --color-section-border: linear-gradient(45deg, #673ab7, #5e35b1);
+    --color-section-title: #4a148c;
+    --color-section-title-active: linear-gradient(135deg, #ce93d8, #ab47bc);
+    --color-section-title-line: linear-gradient(45deg, #ce93d8, #ab47bc);
+    --color-gallery-overlay-bg: linear-gradient(45deg, rgba(81, 45, 168, 0.9), rgba(103, 58, 183, 0.9));
+    --color-gallery-overlay-text: #e1bee7;
+    --color-gallery-overlay-content-bg: rgba(0, 0, 0, 0.7);
+    --color-spec-card-bg: linear-gradient(135deg, #ab47bc 0%, #ce93d8 100%);
+    --color-spec-card-shadow: rgba(171, 71, 188, 0.2);
+    --color-spec-card-shadow-hover: rgba(171, 71, 188, 0.4);
+    --color-spec-card-border-glow: linear-gradient(45deg, #ab47bc, #ce93d8, #ab47bc);
+    --color-timeline-line: linear-gradient(to bottom, #ab47bc, #ce93d8);
+    --color-timeline-arrow: #ab47bc;
+    --color-timeline-arrow-shadow: rgba(171, 71, 188, 0.8);
+    --color-timeline-arrow-2: #ce93d8;
+    --color-timeline-arrow-2-shadow: rgba(206, 147, 216, 0.6);
+    --color-timeline-content-bg: rgba(237, 231, 246, 0.95);
+    --color-timeline-content-border: rgba(103, 58, 183, 0.2);
+    --color-timeline-dot-bg: linear-gradient(45deg, #673ab7, #5e35b1);
+    --color-timeline-dot-border: #4a148c;
+    --color-timeline-dot-shadow: #ede7f6;
+    --color-hero-bg-radial-1: rgba(156, 39, 176, 0.1);
+    --color-hero-bg-radial-2: rgba(123, 31, 162, 0.08);
+    --color-hero-bg-radial-3: rgba(74, 20, 140, 0.06);
+    --color-particle-main: rgba(156, 39, 176, 0.8);
+    --color-particle-shadow: rgba(156, 39, 176, 0.6);
+    --color-particle-5n: rgba(255, 255, 255, 0.9);
+    --color-particle-5n-shadow: rgba(255, 255, 255, 0.8);
+    --color-particle-7n: rgba(123, 31, 162, 0.8);
+    --color-particle-7n-shadow: rgba(123, 31, 162, 0.7);
+    --color-particle-11n: rgba(74, 20, 140, 0.9);
+    --color-particle-11n-shadow: rgba(74, 20, 140, 0.8);
+    --color-journey-bg-radial-1: rgba(156, 39, 176, 0.3);
+    --color-journey-bg-radial-2: rgba(123, 31, 162, 0.25);
+    --color-journey-bg-radial-3: rgba(255, 255, 255, 0.2);
+    --color-journey-bg-radial-4: rgba(74, 20, 140, 0.2);
+    --color-journey-bg-radial-5: rgba(69, 39, 160, 0.15);
+    --color-journey-cosmic-1: rgba(255, 255, 255, 0.05);
+    --color-journey-cosmic-2: rgba(156, 39, 176, 0.03);
+    --color-journey-title: #e1bee7;
+    --color-journey-particle-main: rgba(156, 39, 176, 1);
+    --color-journey-particle-shadow: rgba(156, 39, 176, 0.8);
+    --color-journey-particle-shadow-2: rgba(156, 39, 176, 0.4);
+    --color-journey-particle-5n: rgba(255, 255, 255, 1);
+    --color-journey-particle-5n-shadow: rgba(255, 255, 255, 0.9);
+    --color-journey-particle-5n-shadow-2: rgba(255, 255, 255, 0.5);
+    --color-journey-particle-7n: rgba(123, 31, 162, 1);
+    --color-journey-particle-7n-shadow: rgba(123, 31, 162, 0.8);
+    --color-journey-particle-7n-shadow-2: rgba(123, 31, 162, 0.5);
+    --color-journey-particle-11n: rgba(74, 20, 140, 1);
+    --color-journey-particle-11n-shadow: rgba(74, 20, 140, 0.8);
+    --color-journey-particle-11n-shadow-2: rgba(74, 20, 140, 0.5);
+    --color-journey-particle-13n: rgba(69, 39, 160, 1);
+    --color-journey-particle-13n-shadow: rgba(69, 39, 160, 0.8);
+    --color-journey-particle-13n-shadow-2: rgba(69, 39, 160, 0.5);
+}
+
+/* --- Writing-Specific Section Styles --- */
+.section-description.text-center {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+#excerptsContent, #themesContent {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.9;
+    font-size: 1.1rem;
+}
+
+#excerptsContent h3, #themesContent h3 {
+    font-size: 1.8rem;
+    margin-top: 2em;
+}
+
+#excerptsContent h4, #themesContent h4 {
+    font-size: 1.4rem;
+    margin-top: 1.5em;
+    color: var(--accent-primary);
+}
+
+#excerptsContent blockquote, #themesContent blockquote {
+    border-left: 4px solid var(--accent-primary);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    background: var(--bg-secondary);
+    border-radius: 0 8px 8px 0;
+    position: relative;
+    box-shadow: var(--neu-outset);
+}
+
+#excerptsContent img, #themesContent img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin: 2rem 0;
+    box-shadow: var(--neu-outset);
+}
+
+.title-sparkle {
+    color: var(--accent-primary);
+    margin-left: 10px;
+}
+
+/* --- Theme-Specific Particle Animations --- */
+
+/* Dark Theme: Celestial */
+.theme-dark .moon {
+    position: absolute; top: 15%; right: 15%;
+    width: 80px; height: 80px; border-radius: 50%;
+    background-color: #f4f4f4;
+    box-shadow: 0 0 20px #fff, 0 0 40px #fff, 0 0 60px #e0e0e0;
+    opacity: 0.8;
+}
+.theme-dark .star {
+    position: absolute; background: white; border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+}
+.theme-dark .shooting-star {
+    position: absolute; top: 50%; left: -50%;
+    width: 150px; height: 2px;
+    background: linear-gradient(to right, white, transparent);
+    border-radius: 50%;
+    animation: shoot 5s linear infinite;
+    transform: rotate(-30deg);
+}
+@keyframes twinkle {
+    from { opacity: 0.2; } to { opacity: 1; }
+}
+@keyframes shoot {
+    0% { transform: translateX(0) rotate(-30deg); }
+    100% { transform: translateX(150vw) rotate(-30deg); }
+}
+
+/* Ocean Theme: Waves */
+.theme-ocean .wave {
+    position: absolute; left: -5%; right: -5%; height: 100px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M0 50 C 200 0, 300 100, 500 50 S 700 0, 900 50 S 1100 100, 1300 50 S 1500 0, 1700 50 S 1900 100, 2100 50' stroke='white' fill='transparent' stroke-width='3'/%3e%3c/svg%3e");
+    background-size: 50% 100px;
+    animation: wave-flow 10s linear infinite;
+}
+@keyframes wave-flow {
+    from { background-position-x: 0; }
+    to { background-position-x: -1000px; }
+}
+
+/* Sunset Theme: Sun & Sky */
+.theme-sunset .sun {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    width: 100px; height: 100px; background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 40px #FFD700, 0 0 80px #FFA500;
+    z-index: 10;
+}
+.theme-sunset .sky {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom, #87CEEB, #FFD700, #FFA500, #FF4500, #8B0000);
+    z-index: 1;
+    transition: background 0.5s linear;
+}
+
+/* Twilight Theme: Buildings & Windows */
+.theme-twilight .building {
+    position: absolute;
+    bottom: 0;
+}
+.theme-twilight .window {
+    position: absolute; width: 5px; height: 8px;
+    background-color: #F1C40F;
+    animation: twinkle 3s infinite alternate;
+}
+
+/* Lavender Theme: Florals */
+.theme-lavender .floating-petal {
+    position: absolute;
+    background: linear-gradient(to bottom right, #dda0dd, rgba(147, 112, 219, 0.4));
+    border-radius: 50% 50% 10% 10%;
+    animation: petalFloat 20s linear infinite;
+    filter: blur(0.5px);
+}
+.theme-lavender .ethereal-glow {
+    position: absolute;
+    background: radial-gradient(circle, rgba(221, 160, 221, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: etherealFloat 25s ease-in-out infinite;
+}
+@keyframes petalFloat {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(-50vh) rotate(180deg) translateX(50px); opacity: 0.8; }
+    100% { transform: translateY(-100vh) rotate(360deg) translateX(-50px); opacity: 0; }
+}
+@keyframes etherealFloat {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.1; }
+    50% { transform: scale(1.2) translate(20px, -20px); opacity: 0.2; }
+    100% { transform: scale(1) translate(0, 0); opacity: 0.1; }
+}
+
+/* --- Parallax Journey Scroll Animations --- */
+.content-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.content-section.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    transition: font-size 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.narrative-block > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: 0.2s;
+}
+
+.content-section.in-view .narrative-block > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for child elements */
+.content-section.in-view .narrative-block > *:nth-child(2) { transition-delay: 0.3s; }
+.content-section.in-view .narrative-block > *:nth-child(3) { transition-delay: 0.4s; }
+.content-section.in-view .narrative-block > *:nth-child(4) { transition-delay: 0.5s; } 

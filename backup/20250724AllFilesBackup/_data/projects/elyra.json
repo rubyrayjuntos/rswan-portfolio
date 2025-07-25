@@ -1,0 +1,115 @@
+{
+    "id":  13,
+    "title":  "Elyra",
+    "description":  "Following Elyra as she gains power and enlightenment on a journey that mirrors the fool\u0027s path, exploring themes of transformation, wisdom, and spiritual growth.",
+    "imageUrl":  "card-hero.jpg",
+    "medium":  "writing",
+    "genre":  [
+                  "Fantasy",
+                  "Spiritual Fiction",
+                  "Coming-of-Age",
+                  "Hero\u0027s Journey",
+                  "Philosophical Fiction"
+              ],
+    "style":  [
+                  "Epic",
+                  "Spiritual",
+                  "Transformative",
+                  "Philosophical",
+                  "Character-Driven"
+              ],
+    "tech":  [
+                 "Creative Writing",
+                 "Character Development",
+                 "World Building",
+                 "Spiritual Research",
+                 "Narrative Structure"
+             ],
+    "mood":  "Enlightening",
+    "year":  2024,
+    "role":  "Author, World Builder, Spiritual Researcher",
+    "variant":  "featured",
+    "status":  "in-progress",
+    "links":  {
+                  "excerpt":  "#",
+                  "manuscript":  "#"
+              },
+    "pitch":  "A spiritual journey that mirrors the fool\u0027s path, following Elyra\u0027s transformation from innocence to wisdom through a series of profound encounters and revelations.",
+    "challenge":  "Balancing spiritual themes with compelling storytelling, ensuring the philosophical elements enhance rather than overshadow the narrative and character development.",
+    "development":  "Extensive research into spiritual traditions, the fool\u0027s journey, and transformative narratives. Deep character development exploring Elyra\u0027s growth and the wisdom she gains.",
+    "outcome":  "A profound narrative that explores spiritual growth and transformation while maintaining strong storytelling and character development.",
+    "excerpts":  [
+        {
+            "title":  "Elyra",
+            "description":  "<p>A spiritual journey that mirrors the fool's path, following Elyra's transformation from innocence to wisdom through a series of profound encounters and revelations.The wind at the Seer's Precipice was a living thing. It did not push or pull; it eddied and flowed, whispering secrets in a language just beyond hearing. For Lyra, it was one voice in a grand chorus—the song of Lumina, clearer and more resonant here than anywhere else in her life. It was a melody of boundless potential, but it offered no specific instructions, no map for her first step. Her conscious mind, still shackled by the caution of her people, screamed that to step forward was to be devoured by the Gloom. Yet, the song promised something else entirely. It promised flight.</p><p>Her Lumin-hare, perched nervously by her feet, suddenly went still. Its ruby eyes, which had been scanning the abyss, locked onto a point far below and to the east. It thumped a hind leg against the mossy stone once, a sharp, definitive signal.</p><p>Following its gaze, Lyra saw it. At first, it was just a flicker of organized light against the vast, swirling mists. Then, it resolved into a shape, rising from the lower currents. It was a trade caravan. A series of long, open-topped skiffs, carved from the dark, resilient wood of the Ironwood trees, were roped together in a line. They were pulled not by beasts, but by a massive, contained crystal housed on the lead skiff, its captive energy pulsing with a rhythmic, turquoise light that pushed back the mists. The caravan moved with a purpose Lyra's people had lost, tracing a path along an invisible current, a highway in the sky.</p><p>This was it. Not a bridge she had to build, but a river she could join. Serendipity.</p><p>The caravan was moving fast, a fleeting opportunity. There was no time for doubt, this was no moment for the old fears to take root. With a final glance back at the rigid spires of her home, she scooped her Lumin-hare into her arms.</p><p>Time to fly, she whispered.</p><p>She didn't hesitate. She ran the few paces to the edge and leaped out into the open sky. </p><p>For a heart-stopping second, there was only the fall. The wind shrieked past her ears, whipping her cloak around her. The Gloom seemed to rise up to meet her, a formless, hungry void. But her eyes were locked on her target: the last skiff in the caravan, piled high with canvas-wrapped bales of what looked like dried Sun-Petal Lilies.</p><p>Her training as an Echo-Weaver, her innate connection to the world's song, took over. She felt the current the caravan was riding, a subtle updraft just beneath her. Without thinking, she angled her body, using her cloak like a rudder, shifting her weight not against the wind, but with it. It was less a fall and more of a guided plummet.</p><p>She hit the bales with a muffled whoomph, sinking deep into the fragrant, spongy cargo. The impact knocked the wind from her, but she was alive. She was aboard. Peeking through a gap in the canvas, she saw the Seer's Precipice already receding into the twilight, a memory shrinking behind her. The immediate terror of the leap was gone, replaced by the thrumming energy of the lead crystal and a new, pressing tension: she was a stowaway, adrift on a current of strangers, hurtling towards a destination she could only hope was part of the song.</p><p>For a long while, she didn't move, her heart hammering against her ribs. The Lumin-hare trembled in her arms, its nose twitching, taking in the scent of a thousand places she had never been. The skiff rocked gently, a counterpoint to the deep, resonant hum of the drive crystal that vibrated through the hull. It was this hum that eventually betrayed her. A young man with a thick leather jerkin and a suspicious frown walked the length of the tow-ropes, checking their tension. As he stepped onto her skiff, the Lumin-hare let out a soft, fearful squeak.</p><p>The man, Roric, froze. His eyes narrowed, scanning the cargo. 'Who's there?'  he called out, his voice low and hard. He placed a hand on the hilt of a long knife at his belt.</p>"
+}
+    ],
+    "gallery":  [
+                    {
+                        "url":  "card-hero.jpg",
+                        "title":  "Elyra Cover",
+                        "description":  "Visual representation of Elyra\u0027s spiritual journey",
+                        "dimensions":  "1200x800"
+                    },
+                    {
+                        "url":  "elyra-fool-path.jpg",
+                        "title":  "The Fool\u0027s Path",
+                        "description":  "Visual mapping of Elyra\u0027s journey through the fool\u0027s path",
+                        "dimensions":  "1200x800"
+                    },
+                    {
+                        "url":  "elyra-key-encounters.jpg",
+                        "title":  "Key Encounters",
+                        "description":  "Illustrations of pivotal moments in Elyra\u0027s transformation",
+                        "dimensions":  "1200x800"
+                    }
+                ],
+    "journey":  [
+                    {
+                        "title":  "Spiritual Research",
+                        "description":  "Studied the fool\u0027s journey, spiritual traditions, and transformative narratives"
+                    },
+                    {
+                        "title":  "Character Genesis",
+                        "description":  "Developed Elyra as a character who embodies the innocent seeker"
+                    },
+                    {
+                        "title":  "World Building",
+                        "description":  "Created a world that reflects spiritual themes and transformation"
+                    },
+                    {
+                        "title":  "Narrative Structure",
+                        "description":  "Crafted a story that mirrors the fool\u0027s path while maintaining narrative coherence"
+                    },
+                    {
+                        "title":  "Philosophical Integration",
+                        "description":  "Wove spiritual wisdom and philosophical themes throughout the story"
+                    }
+                ],
+    "specs":  [
+                  {
+                      "title":  "Genre",
+                      "description":  "Spiritual fantasy with strong philosophical and transformative elements"
+                  },
+                  {
+                      "title":  "Narrative Structure",
+                      "description":  "Follows the fool's journey pattern with unique twists and developments"
+                  },
+                  {
+                      "title":  "Character Development",
+                      "description":  "Deep exploration of Elyra's transformation from innocence to wisdom"
+                  },
+                  {
+                      "title":  "Thematic Elements",
+                      "description":  "Spiritual growth, transformation, wisdom, enlightenment, and the hero's journey"
+                  },
+                  {
+                      "title":  "World Setting",
+                      "description":  "Fantasy world that reflects spiritual themes and transformation"
+                  },
+                  {
+                      "title":  "Writing Style",
+                      "description":  "Epic, spiritual prose that balances philosophical depth with engaging storytelling"
+                  }
+              ]
+}

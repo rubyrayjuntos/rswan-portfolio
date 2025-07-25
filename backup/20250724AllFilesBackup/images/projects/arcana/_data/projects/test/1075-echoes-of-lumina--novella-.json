@@ -1,0 +1,83 @@
+{
+  "id": 1075,
+  "title": "Echoes of Lumina (Novella)",
+  "description": "A science fantasy novella exploring the intersection of quantum consciousness, ancestral memory, and free will in a city born of starlight and whispers",
+  "medium": "writing",
+  "genre": [
+    "Science Fantasy",
+    "Literary Fiction",
+    "Speculative"
+  ],
+  "style": [
+    "Lyrical",
+    "Philosophical",
+    "Atmospheric"
+  ],
+  "tech": [
+    "Unknown technology (1015)",
+    "Unknown technology (1018)",
+    "Unknown technology (1019)"
+  ],
+  "mood": "mystical",
+  "year": 2024,
+  "role": "Author & World Designer",
+  "variant": "featured",
+  "status": "completed",
+  "links": {
+    "read": "https://medium.com/@author/echoes-of-lumina",
+    "audiobook": "https://audible.com/echoes-of-lumina",
+    "discussion": "https://goodreads.com/book/echoes-of-lumina"
+  },
+  "pitch": "A haunting exploration of consciousness and destiny in a city where memories crystallize into reality and every choice echoes across quantum dimensions",
+  "challenge": "Weaving complex philosophical themes about free will and predetermined fate into an emotionally resonant narrative that remains accessible and compelling",
+  "development": "Written over 18 months, combining intensive world-building with character psychology, drawing from quantum physics, consciousness studies, and ancestral wisdom traditions",
+  "outcome": "A thought-provoking novella that questions the nature of choice and identity while delivering a deeply moving story about connection and transformation",
+  "gallery": [
+    {
+      "url": "images/writing/lumina-cover-art.jpg",
+      "title": "Cover Design",
+      "description": "Original cover art featuring the crystalline spires of Lumina against the quantum aurora",
+      "dimensions": "1200x1800"
+    },
+    {
+      "url": "images/writing/lumina-city-concept.jpg",
+      "title": "Lumina City Concept",
+      "description": "Detailed concept art showing the architecture and energy flows of the mystical city",
+      "dimensions": "1600x900"
+    },
+    {
+      "url": "images/writing/memory-wells-illustration.jpg",
+      "title": "Memory Wells",
+      "description": "Artistic interpretation of the luminescent memory repositories that hold ancestral wisdom",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/writing/character-studies.jpg",
+      "title": "Character Design Studies",
+      "description": "Visual development of Maya Chen and other key characters from the novella",
+      "dimensions": "1400x1000"
+    }
+  ],
+  "journey": [
+    {
+      "phase": "Concept & Research",
+      "description": "Initial inspiration from quantum consciousness studies and exploration of free will vs. determinism themes"
+    },
+    {
+      "phase": "World Building",
+      "description": "Development of Lumina's unique properties, memory wells, and the relationship between consciousness and reality"
+    },
+    {
+      "phase": "Character Development",
+      "description": "Creating Maya Chen's arc and supporting characters, establishing their connections to ancestral memory"
+    },
+    {
+      "phase": "First Draft",
+      "description": "Writing the complete narrative while balancing philosophical depth with emotional accessibility"
+    },
+    {
+      "phase": "Revision & Refinement",
+      "description": "Multiple editing rounds focusing on lyrical prose, thematic consistency, and character authenticity"
+    }
+  ]
+}

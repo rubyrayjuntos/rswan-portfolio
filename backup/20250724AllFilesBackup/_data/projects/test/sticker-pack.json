@@ -1,0 +1,115 @@
+{
+  "id": 16,
+  "title": "Sticker Pack",
+  "description": "Designing tarot and astrology sticker packs demands different skills that grand story illustration, focusing on simplicity, recognizability, and digital optimization.",
+  "imageUrl": "images/projects/sticker-pack/sticker-pack-cover-art.jpg",
+  "medium": "art",
+  "genre": [
+    "Digital Art",
+    "Sticker Design",
+    "Tarot Art",
+    "Astrology Art",
+    "Commercial Art"
+  ],
+  "style": [
+    "Simple",
+    "Recognizable",
+    "Digital-Optimized",
+    "Clean",
+    "Versatile"
+  ],
+  "tech": [
+    "Digital Illustration",
+    "Vector Art",
+    "Sticker Design",
+    "Digital Optimization",
+    "Commercial Art"
+  ],
+  "mood": "Playful",
+  "year": 2024,
+  "role": "Digital Artist, Sticker Designer, Commercial Artist",
+  "variant": "wide",
+  "status": "ongoing",
+  "links": {
+    "shop": "#",
+    "portfolio": "#"
+  },
+  "pitch": "Clean, recognizable sticker designs that bring tarot and astrology into everyday digital communication with style and simplicity.",
+  "challenge": "Creating designs that are both simple enough for small-scale digital use and rich enough to convey the depth of tarot and astrology symbolism.",
+  "development": "Developed a design system that balances simplicity with symbolic richness, optimized for digital platforms and small-scale applications.",
+  "outcome": "A collection of versatile sticker designs that make tarot and astrology accessible and stylish for digital communication.",
+  "gallery": [
+    {
+      "url": "images/projects/sticker-pack/sticker-pack-overview.jpg",
+      "title": "Sticker Pack Overview",
+      "description": "Complete collection of tarot and astrology stickers",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/projects/sticker-pack/sticker-pack-tarot-stickers.jpg",
+      "title": "Tarot Stickers",
+      "description": "Major arcana designs simplified for sticker format",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/projects/sticker-pack/sticker-pack-astrology-stickers.jpg",
+      "title": "Astrology Stickers",
+      "description": "Zodiac signs and astrological symbols",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "images/projects/sticker-pack/sticker-pack-digital-applications.jpg",
+      "title": "Digital Applications",
+      "description": "Stickers in use on various digital platforms",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Design Research",
+      "description": "Studied successful sticker designs and digital art trends"
+    },
+    {
+      "title": "Symbol Simplification",
+      "description": "Developed techniques for simplifying complex tarot and astrology symbols"
+    },
+    {
+      "title": "Digital Optimization",
+      "description": "Created designs optimized for small-scale digital use"
+    },
+    {
+      "title": "Style Development",
+      "description": "Established consistent visual style across all sticker designs"
+    },
+    {
+      "title": "Collection Curation",
+      "description": "Curated cohesive collections for different themes and uses"
+    }
+  ],
+  "specs": [
+    {
+      "title": "Design System",
+      "description": "Consistent visual style optimized for digital sticker use"
+    },
+    {
+      "title": "Symbol Simplification",
+      "description": "Techniques for reducing complex symbols to simple, recognizable forms"
+    },
+    {
+      "title": "Digital Optimization",
+      "description": "Designs optimized for small-scale digital applications"
+    },
+    {
+      "title": "Color Palette",
+      "description": "Carefully chosen colors that work well in digital environments"
+    },
+    {
+      "title": "Scalability",
+      "description": "Vector-based designs that maintain quality at various sizes"
+    },
+    {
+      "title": "Commercial Application",
+      "description": "Designs suitable for commercial use across digital platforms"
+    }
+  ]
+}
