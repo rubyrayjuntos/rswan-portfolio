@@ -39,22 +39,22 @@
         <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
             <i class="fas fa-bars"></i>
         </button>
-        
-        <!-- Dropdown filter panel - positioned within header for proper layering -->
-        <div id="filter-panel" class="filter-dropdown">
-            <div class="panel-header">
-                <h3>Filter Projects</h3>
-                <button id="close-filter-panel">&times;</button>
-            </div>
-            <div class="filter-group-container">
-                <!-- Filter groups will be dynamically inserted here by main.js -->
-            </div>
-            <div class="panel-footer">
-                <button id="apply-filters-btn">Apply</button>
-                <button id="clear-filters-btn">Clear All</button>
-            </div>
-        </div>
     </header>
+
+    <!-- Dropdown filter panel -->
+    <div id="filter-panel" class="filter-dropdown">
+        <div class="panel-header">
+            <h3>Filter Projects</h3>
+            <button id="close-filter-panel">&times;</button>
+        </div>
+        <div class="filter-group-container">
+            <!-- Filter groups will be dynamically inserted here by main.js -->
+        </div>
+        <div class="panel-footer">
+            <button id="apply-filters-btn">Apply</button>
+            <button id="clear-filters-btn">Clear All</button>
+        </div>
+    </div>
 
     <!-- Mobile menu overlay -->
     <div id="mobile-menu" class="mobile-menu-overlay">

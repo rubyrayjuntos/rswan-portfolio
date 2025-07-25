@@ -1871,26 +1871,28 @@
 #filter-panel {
     position: absolute;
     top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
     background: var(--bg-primary);
-    border-radius: var(--border-radius-md);
+    border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
     box-shadow: var(--neu-outset);
     padding: 20px;
-    min-width: 300px;
-    max-width: 500px;
     z-index: 998;
     opacity: 0;
     visibility: hidden;
+    transform: translateY(-10px);
     transition: all var(--transition-speed) ease;
-    margin-top: 10px;
+    margin: 0 5%;
     max-height: 70vh;
     overflow-y: auto;
+    border: 1px solid var(--bg-secondary);
+    border-top: none;
 }
 
 #filter-panel.is-open {
     opacity: 1;
     visibility: visible;
+    transform: translateY(0);
 }
 
 .panel-header {
