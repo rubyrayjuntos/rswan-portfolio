@@ -11,7 +11,7 @@ async function initializeMarkdownRenderer() {
         script.src = 'https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js';
         script.onload = () => {
             marked = window.marked;
-            configureMarked();
+            configureMarked(marked.basePath);
         };
         document.head.appendChild(script);
         
@@ -35,7 +35,7 @@ async function initializeMarkdownRenderer() {
 }
 
 // Configure marked.js options
-function configureMarked() {
+function configureMarked(basePath) {
     if (!marked) return;
     
     // Set more robust options to handle edge cases
@@ -120,6 +120,7 @@ function configureMarked() {
     };
     
     marked.use({ renderer, options: { basePath: this.basePath } });
+
 }
 
 // Main markdown rendering function
@@ -137,7 +138,7 @@ function renderMarkdown(markdownContent, basePath = '') {
         const sanitizedContent = sanitizeMarkdownContent(markdownContent);
         
         // Make the basePath available to the renderer
-    marked.basePath = basePath;
+    //marked.basePath = basePath;
         
         // Apply syntax highlighting if Prism is available
         if (window.Prism) {
