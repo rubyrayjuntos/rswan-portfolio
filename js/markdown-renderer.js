@@ -124,22 +124,25 @@ function configureMarked(basePath) {
 }
 
 // Main markdown rendering function
+// Main markdown rendering function
 function renderMarkdown(markdownContent, basePath = '') {
     // Make function globally available
     window.renderMarkdown = renderMarkdown;
-    
+
     if (!marked) {
         console.warn('Marked.js not loaded, falling back to plain text');
         return `<pre>${markdownContent}</pre>`;
     }
-    
+
     try {
         // Pre-process markdown content to fix common issues
         const sanitizedContent = sanitizeMarkdownContent(markdownContent);
-        
-        // Make the basePath available to the renderer
-    //marked.basePath = basePath;
-        
+
+        // Make the basePath available to the renderer options
+        // Pass the basePath to the renderer options when parsing
+        const html = marked.parse(sanitizedContent, { basePath: basePath }); // <--- Add this line
+
+
         // Apply syntax highlighting if Prism is available
         if (window.Prism) {
             // We'll apply highlighting after the content is inserted into the DOM
@@ -150,9 +153,9 @@ function renderMarkdown(markdownContent, basePath = '') {
                 }
             }, 100);
         }
-        
+
         return html;
-        
+
     } catch (error) {
         console.error('Error rendering markdown:', error);
         return `<div class="markdown-error">
@@ -166,6 +169,7 @@ function renderMarkdown(markdownContent, basePath = '') {
         </div>`;
     }
 }
+
 
 // Load additional Prism.js languages
 function loadPrismLanguages() {

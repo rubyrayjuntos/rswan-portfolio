@@ -6,35 +6,7 @@ Nova is a sophisticated multi-agent system designed to assist writers in creatin
 
 ## System Architecture Diagram
 ![alt text](system-architecture-diagram.png)
-(mermaid)
-graph TD
-    A[User Interface - React] --> B[FastAPI Backend]
-    B --> C[CrewAI Orchestration]
-    C --> D[Project Manager Agent]
-    D --> E[Researcher Agent]
-    D --> F[World Builder Agent]
-    D --> G[Character Architect Agent]
-    D --> H[Plot Alchemist Agent]
-    D --> I[Writer Agent]
-    D --> J[Editor Agent]
-    D --> K[Illustrator Agent]
-    
-    E --> L[Memory Service - Pinecone]
-    F --> L
-    G --> L
-    H --> L
-    I --> L
-    J --> L
-    K --> L
-    
-    B --> M[PostgreSQL Database]
-    B --> N[Redis Cache]
-    B --> O[Celery Task Queue]
-    
-    P[OpenAI GPT-4] --> C
-    Q[SerperDev Search] --> E
-    R[DALL-E] --> K
-```
+
 
 ## Core Components
 

@@ -1,4 +1,4 @@
-429111# 🚀 Nova: Writers Conspiracy - Deployment Guide
+# 🚀 Nova: Writers Conspiracy - Deployment Guide
 
 ## Overview
 

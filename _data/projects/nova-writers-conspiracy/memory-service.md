@@ -16,19 +16,8 @@ Agents can work in isolated "shards" of memory, allowing for specialized workflo
 All memory entries are versioned, enabling agents to track changes and maintain audit trails of creative decisions.
 
 ## Architecture Diagram
+![alt text](memory-service-architecture-diagram.svg)
 
-```mermaid
-graph TD
-    A[Agent Output] --> B[Marker Extraction]
-    B --> C[Pinecone Indexing]
-    C --> D[Metadata Storage]
-    D --> E[Version Control]
-    E --> F[Memory Query]
-    F --> G[Context Retrieval]
-    G --> H[Agent Processing]
-    H --> I[New Output]
-    I --> A
-```
 
 ## Marker System
 

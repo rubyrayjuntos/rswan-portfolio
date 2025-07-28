@@ -5,56 +5,14 @@
 This document details the intricate workflows of Nova's specialized AI agents, showing how they collaborate to create compelling narratives. Each agent has specific responsibilities and interacts with others through the Memory Service to maintain context and consistency.
 
 ## Agent Interaction Overview
+![System Architecture Diagram](agent-interaction-overview.svg)
 
-```mermaid
-graph TD
-    A[User Input] --> B[Project Manager]
-    B --> C{Assign Tasks}
-    
-    C --> D[Researcher Agent]
-    C --> E[World Builder Agent]
-    C --> F[Character Architect Agent]
-    C --> G[Plot Alchemist Agent]
-    C --> H[Writer Agent]
-    C --> I[Editor Agent]
-    C --> J[Illustrator Agent]
-    
-    D --> K[Memory Service]
-    E --> K
-    F --> K
-    G --> K
-    H --> K
-    I --> K
-    J --> K
-    
-    K --> L[User Review]
-    L --> M{Approved?}
-    M -->|Yes| N[Continue]
-    M -->|No| O[Revision Request]
-    O --> P[Agent Reassignment]
-    P --> C
-```
 
 ## Detailed Agent Workflows
 
 ### 1. Project Manager Agent Workflow
+![alt text](project-manager-agent-workflow.svg)
 
-```mermaid
-graph TD
-    A[User Creates Project] --> B[PM: Analyze Requirements]
-    B --> C[PM: Deconstruct Concept]
-    C --> D[PM: Create Project Plan]
-    D --> E[PM: Assign Research Tasks]
-    E --> F[PM: Monitor Progress]
-    F --> G{All Tasks Complete?}
-    G -->|No| F
-    G -->|Yes| H[PM: Coordinate Review]
-    H --> I[User Feedback]
-    I --> J{User Satisfied?}
-    J -->|No| K[PM: Reassign Tasks]
-    J -->|Yes| L[PM: Mark Complete]
-    K --> F
-```
 
 **Key Responsibilities:**
 - **Project Planning**: Break down user requirements into actionable tasks
@@ -64,19 +22,8 @@ graph TD
 - **User Communication**: Act as primary interface between user and agents
 
 ### 2. Researcher Agent Workflow
+![alt text](researcher-agent-workflow.svg)
 
-```mermaid
-graph TD
-    A[Receive Research Task] --> B[Analyze Research Requirements]
-    B --> C[Formulate Search Queries]
-    C --> D[Execute Web Searches]
-    D --> E[Evaluate Source Quality]
-    E --> F[Extract Relevant Information]
-    F --> G[Cross-reference Data]
-    G --> H[Compile Research Summary]
-    H --> I[Store in Memory Service]
-    I --> J[Notify Project Manager]
-```
 
 **Research Focus Areas:**
 - **Historical Context**: Period-specific details and accuracy
@@ -86,20 +33,8 @@ graph TD
 - **Genre Conventions**: Literary tropes and expectations
 
 ### 3. World Builder Agent Workflow
+![alt text](worldbuilder-agent-flow.svg)
 
-```mermaid
-graph TD
-    A[Receive World Building Task] --> B[Analyze Research Data]
-    B --> C[Create Geographic Framework]
-    C --> D[Develop Cultural Systems]
-    D --> E[Establish Historical Timeline]
-    E --> F[Define Magic/Technology Rules]
-    F --> G[Create Political Structures]
-    G --> H[Develop Economic Systems]
-    H --> I[Generate World Bible]
-    I --> J[Store in Memory Service]
-    J --> K[Notify Project Manager]
-```
 
 **World Building Components:**
 - **Physical Geography**: Maps, climate, terrain, resources
@@ -110,19 +45,8 @@ graph TD
 - **Economic Systems**: Trade, currency, resources, class structures
 
 ### 4. Character Architect Agent Workflow
+![alt text](character-architect-agent-workflow.svg)
 
-```mermaid
-graph TD
-    A[Receive Character Task] --> B[Analyze Plot Requirements]
-    B --> C[Review World Context]
-    C --> D[Create Character Profiles]
-    D --> E[Develop Backstories]
-    E --> F[Establish Relationships]
-    F --> G[Define Character Arcs]
-    G --> H[Create Character Sheets]
-    H --> I[Store in Memory Service]
-    I --> J[Notify Project Manager]
-```
 
 **Character Development Elements:**
 - **Physical Description**: Appearance, mannerisms, distinguishing features
@@ -133,19 +57,8 @@ graph TD
 - **Relationships**: Connections with other characters
 
 ### 5. Plot Alchemist Agent Workflow
+![alt text](plot-alchemist-agent-workflow.svg)
 
-```mermaid
-graph TD
-    A[Receive Plotting Task] --> B[Analyze Characters & World]
-    B --> C[Identify Central Conflict]
-    C --> D[Create Story Structure]
-    D --> E[Develop Plot Points]
-    E --> F[Design Scene Breakdown]
-    F --> G[Establish Pacing]
-    G --> H[Create Plot Outline]
-    H --> I[Store in Memory Service]
-    I --> J[Notify Project Manager]
-```
 
 **Plot Development Elements:**
 - **Story Structure**: Three-act structure, hero's journey, etc.
@@ -156,20 +69,8 @@ graph TD
 - **Subplot Integration**: Secondary storylines and themes
 
 ### 6. Writer Agent Workflow
+![alt text](writer-agent-workflow.svg)
 
-```mermaid
-graph TD
-    A[Receive Writing Task] --> B[Retrieve Context from Memory]
-    B --> C[Analyze Plot Requirements]
-    C --> D[Select Writing Style]
-    D --> E[Generate Scene Content]
-    E --> F[Incorporate Character Voices]
-    F --> G[Add Descriptive Elements]
-    G --> H[Create Dialogue]
-    H --> I[Maintain Consistency]
-    I --> J[Store Draft in Memory]
-    J --> K[Notify Project Manager]
-```
 
 **Writing Process Elements:**
 - **Style Consistency**: Maintaining voice and tone throughout
@@ -180,20 +81,8 @@ graph TD
 - **Pacing Control**: Rhythm of action and reflection
 
 ### 7. Editor Agent Workflow
+![alt text](agent-editor-workflow.svg)
 
-```mermaid
-graph TD
-    A[Receive Editing Task] --> B[Retrieve Draft from Memory]
-    B --> C[Analyze Content Quality]
-    C --> D[Check Grammar & Style]
-    D --> E[Verify Consistency]
-    E --> F[Improve Clarity]
-    F --> G[Enhance Flow]
-    G --> H[Optimize Pacing]
-    H --> I[Final Polish]
-    I --> J[Store Edited Version]
-    J --> K[Notify Project Manager]
-```
 
 **Editing Focus Areas:**
 - **Grammar and Mechanics**: Spelling, punctuation, sentence structure
@@ -204,21 +93,8 @@ graph TD
 - **World Consistency**: Adherence to established rules and details
 
 ### 8. Illustrator Agent Workflow
+![alt text](illustrator-agent-workflow.svg)
 
-```mermaid
-graph TD
-    A[Receive Illustration Task] --> B[Analyze Visual Requirements]
-    B --> C[Retrieve Character/World Data]
-    C --> D[Generate Image Prompts]
-    D --> E[Create DALL-E Requests]
-    E --> F[Generate Images]
-    F --> G[Evaluate Quality]
-    G --> H{Quality Acceptable?}
-    H -->|No| I[Refine Prompts]
-    H -->|Yes| J[Store Images]
-    I --> E
-    J --> K[Notify Project Manager]
-```
 
 **Illustration Types:**
 - **Character Portraits**: Individual character depictions
@@ -230,19 +106,8 @@ graph TD
 ## Memory Service Integration
 
 ### Context Sharing Workflow
+![alt text](context-sharing-workflow.svg)
 
-```mermaid
-graph TD
-    A[Agent Output] --> B[Extract Markers]
-    B --> C[Index in Pinecone]
-    C --> D[Store Metadata]
-    D --> E[Version Control]
-    E --> F[Agent Query]
-    F --> G[Retrieve Relevant Context]
-    G --> H[Agent Processing]
-    H --> I[New Output]
-    I --> A
-```
 
 **Marker Types:**
 - `#location` - Geographic and setting information
@@ -253,78 +118,26 @@ graph TD
 - `$world` - World-building details
 
 ## Quality Assurance Workflow
+![alt text](quality-asssurance-workflow.svg)
 
-```mermaid
-graph TD
-    A[Agent Output] --> B[Quality Check]
-    B --> C{Meets Standards?}
-    C -->|Yes| D[Approve]
-    C -->|No| E[Identify Issues]
-    E --> F[Request Revision]
-    F --> G[Agent Revision]
-    G --> B
-    D --> H[User Review]
-    H --> I{User Approval?}
-    I -->|Yes| J[Finalize]
-    I -->|No| K[User Feedback]
-    K --> F
-```
 
 ## Collaborative Decision Making
 
 ### Agent Consensus Workflow
+![alt text](agent-consensus-workflow.svg)
 
-```mermaid
-graph TD
-    A[Complex Decision Required] --> B[PM: Identify Stakeholders]
-    B --> C[PM: Gather Agent Input]
-    C --> D[Agent 1: Provide Perspective]
-    C --> E[Agent 2: Provide Perspective]
-    C --> F[Agent 3: Provide Perspective]
-    D --> G[PM: Analyze Options]
-    E --> G
-    F --> G
-    G --> H[PM: Make Decision]
-    H --> I[PM: Communicate to Agents]
-    I --> J[Agents: Update Work]
-```
 
 ## Error Handling and Recovery
 
 ### Agent Failure Recovery
+![alt text](agent-failure-recover.svg)
 
-```mermaid
-graph TD
-    A[Agent Task Failure] --> B[Error Detection]
-    B --> C[Log Error Details]
-    C --> D[PM: Assess Impact]
-    D --> E{Recoverable?}
-    E -->|Yes| F[Retry Task]
-    E -->|No| G[Reassign to Backup Agent]
-    F --> H{Success?}
-    H -->|Yes| I[Continue Workflow]
-    H -->|No| G
-    G --> I
-    E -->|Critical| J[Notify User]
-    J --> K[Manual Intervention]
-```
 
 ## Performance Optimization
 
 ### Parallel Processing Workflow
+![alt text](parallel-processing-workflow.svg)
 
-```mermaid
-graph TD
-    A[Project Start] --> B[PM: Analyze Dependencies]
-    B --> C[Independent Tasks]
-    C --> D[Research + World Building]
-    C --> E[Character Development]
-    D --> F[Plot Development]
-    E --> F
-    F --> G[Writing Phase]
-    G --> H[Editing Phase]
-    H --> I[Illustration Phase]
-```
 
 **Optimization Strategies:**
 - **Parallel Processing**: Independent tasks run simultaneously

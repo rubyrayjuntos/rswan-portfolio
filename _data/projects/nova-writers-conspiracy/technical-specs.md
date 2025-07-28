@@ -7,49 +7,8 @@ This document provides comprehensive technical specifications for the Nova Write
 ## System Architecture
 
 ### High-Level Architecture
+![alt text](high-level-architecture.svg)
 
-```mermaid
-graph TB
-    subgraph "Frontend Layer"
-        A[React App] --> B[TypeScript]
-        B --> C[Tailwind CSS]
-        C --> D[React Query]
-        D --> E[Socket.io Client]
-    end
-    
-    subgraph "API Gateway"
-        F[FastAPI] --> G[JWT Auth]
-        G --> H[Rate Limiting]
-        H --> I[CORS]
-    end
-    
-    subgraph "Business Logic"
-        J[CrewAI Orchestration] --> K[Agent Management]
-        K --> L[Memory Service]
-        L --> M[Task Queue]
-    end
-    
-    subgraph "Data Layer"
-        N[PostgreSQL] --> O[SQLAlchemy]
-        P[Redis] --> Q[Celery]
-        R[Pinecone] --> S[Vector Search]
-    end
-    
-    subgraph "External Services"
-        T[OpenAI GPT-4] --> U[Content Generation]
-        V[SerperDev] --> W[Web Search]
-        X[DALL-E] --> Y[Image Generation]
-    end
-    
-    A --> F
-    F --> J
-    J --> N
-    J --> P
-    J --> R
-    J --> T
-    J --> V
-    J --> X
-```
 
 ## Frontend Technical Specifications
 
