@@ -3693,11 +3693,15 @@
                     
                     const markdownContent = await response.text();
                     console.log('Markdown content loaded, length:', markdownContent.length);
+                    // Extract the base path from the markdown file URL
+                    const basePathMatch = url.match(/(.*)\/[^/]+\.md$/);
+                    const markdownBasePath = basePathMatch ? basePathMatch[1] + '/' : '';
+                    console.log('Markdown file base path:', markdownBasePath);
                     
                     // Render the markdown content
                     if (typeof renderMarkdown === 'function') {
                         console.log('renderMarkdown function found, rendering...');
-                        const htmlContent = renderMarkdown(markdownContent);
+                        const htmlContent = renderMarkdown(markdownContent, markdownBasePath);
                         console.log('Markdown rendered to HTML, length:', htmlContent.length);
                         modalContent.innerHTML = htmlContent;
                         
@@ -3711,7 +3715,7 @@
                     } else {
                         console.warn('renderMarkdown function not found, using fallback');
                         // Fallback: display as plain text
-                        modalContent.innerHTML = `<pre>${markdownContent}</pre>`;
+                        modalContent.innerHTML = `<pre>${renderMarkdown(markdownContent, markdownBasePath)}</pre>`;
                     }
                     
                     console.log('Modal content updated successfully');

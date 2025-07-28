@@ -95,49 +95,49 @@
                       {
                           "name":  "README.md",
                           "description":  "Comprehensive overview of the multi-agent system architecture and data flows",
-                          "url":  "_data/projects/README.md",
+                          "url":  "README.md",
                           "icon":  "🏗️"
                       },
                       {
                           "name":  "API Specification",
                           "description":  "Detailed FastAPI endpoint documentation for backend integration",
-                          "url":  "docs/brand-workflow-api-spec.pdf",
+                          "url":  "brand-workflow-api-spec.pdf",
                           "icon":  "🔗"
                       },
                       {
                           "name":  "Agent Workflow Diagrams",
                           "description":  "Visual breakdown of how different AI agents interact to generate content",
-                          "url":  "docs/agent-workflow-diagrams.pdf",
+                          "url":  "agent-workflow-diagrams.pdf",
                           "icon":  "🗺️"
                       },
                       {
                           "name":  "Pydantic Data Models",
                           "description":  "Complete data model definitions for structured outputs",
-                          "url":  "docs/pydantic-models.py",
+                          "url":  "pydantic-models.py",
                           "icon":  "📊"
                       },
                       {
                           "name":  "Deployment Guide",
                           "description":  "Step-by-step instructions for deploying the system",
-                          "url":  "docs/deployment-guide.md",
+                          "url":  "deployment-guide.md",
                           "icon":  "🚀"
                       },
                       {
                           "name":  "Technical Specifications",
                           "description":  "Detailed technical specifications and implementation details",
-                          "url":  "docs/technical-specs.md",
+                          "url":  "technical-specs.md",
                           "icon":  "📋"
                       },
                       {
                           "name":  "Functional Requirements",
                           "description":  "Complete functional requirements and user stories",
-                          "url":  "docs/functional-requirements.md",
+                          "url":  "functional-requirements.md",
                           "icon":  "📝"
                       },
                       {
                           "name":  "Usage Examples",
                           "description":  "Practical examples and code snippets for implementation",
-                          "url":  "docs/usage-examples.zip",
+                          "url":  "usage-examples.zip",
                           "icon":  "💡"
                       }
                   ],

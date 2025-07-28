@@ -59,15 +59,21 @@
     "outcome":  "The project successfully established a foundational multi-agent system architecture for collaborative novel writing, with core components for agent management, memory indexing, and user interaction interfaces like the collaboration dashboard and agent chat. It provides a robust framework for generating structured narrative data (world, characters, plot) and manuscript content, offering a path for continuous iterative development and personalized writing assistance.",
     "gallery":  [
                     {
-                        "url":  "nova-logo-main.jpg",
+                        "url":  "NovaWritersGuild.png",
                         "title":  "Nova Logo",
                         "description":  "The cosmic atelier logo blending classical literary elements with cosmic/scientific aesthetics",
                         "dimensions":  "1200x800"
                     },
                     {
-                        "url":  "nova-architecture-system.jpg",
+                        "url":  "nova-architecture-diagram.png",
                         "title":  "System Architecture Diagram",
-                        "description":  "Multi-agent system architecture showing the orchestration of specialized AI agents",
+                        "description":  "Multi-agent system architecture showing the technologies woven together to make this system come alive!",
+                        "dimensions":  "1200x800"
+                    },
+                    {
+                        "url":  "nova-workflow.png",
+                        "title":  "System Workflow Diagram",
+                        "description":  "Multi-agent system workflow showing the orchestration of specialized AI agents",
                         "dimensions":  "1200x800"
                     },
                     {
@@ -119,7 +125,7 @@
                       "description":  "FastAPI (Python 3.11+), SQLAlchemy ORM, Alembic for database migrations, Pydantic for data validation, and JWT for authentication"
                   },
                   {
-                      "title":  "AI \u0026 Multi-Agent System",
+                      "title":  "AI - Multi-Agent System",
                       "description":  "CrewAI for multi-agent orchestration, OpenAI GPT-4 as primary LLM, Pinecone vector database, and SerperDev for web search capabilities"
                   },
                   {
@@ -137,52 +143,39 @@
               ],
     "artifacts":  [
                       {
-                          "name":  "System Architecture",
-                          "description":  "Comprehensive multi-agent system architecture showing agent interactions and data flow",
+                          "name":  "System Architecture (architecture.md)",
+                          "description":  "<ul style='list-style-type: none;'><HR><LI>Comprehensive system architecture with mermaid diagrams</LI><HR><LI>Detailed component breakdown (Frontend, Backend, AI Agents, Data Layer)</LI><HR><LI>Security, scalability, and deployment considerations</LI><HR><LI>Integration points with external services</LI><HR></UL>",
                           "url":  "_data/projects/nova-writers-conspiracy/architecture.md",
                           "icon":  "🏗️"
                       },
-                      {
-                          "name":  "API Documentation",
-                          "description":  "Complete FastAPI endpoint documentation with request/response schemas",
-                          "url":  "https://nova-writers-conspiracy.demo.rs@RSwan.org/api/docs",
-                          "icon":  "🔌"
-                      },
-                      {
-                          "name":  "GitHub Repository",
-                          "description":  "Primary source code repository with full implementation",
-                          "url":  "https://github.com/rubyrayjuntos/nova-writers-conspiracy",
-                          "icon":  "⭐"
-                      },
-                      {
-                          "name":  "Agent Workflow Diagrams",
-                          "description":  "Visual breakdown of how different AI agents interact to generate content",
-                          "url":  "_data/projects/nova-writers-conspiracy/agent-workflows.md",
-                          "icon":  "🗺️"
-                      },
-                      {
-                          "name":  "Memory Service Documentation",
-                          "description":  "Detailed documentation of the marker-indexed context handling system",
-                          "url":  "_data/projects/nova-writers-conspiracy/memory-service.md",
-                          "icon":  "🧠"
-                      },
-                      {
-                          "name":  "Deployment Guide",
-                          "description":  "Step-by-step instructions for deploying the multi-agent system",
-                          "url":  "_data/projects/nova-writers-conspiracy/deployment.md",
-                          "icon":  "🚀"
-                      },
-                      {
-                          "name":  "Technical Specifications",
-                          "description":  "Detailed technical specifications and implementation details",
-                          "url":  "_data/projects/nova-writers-conspiracy/technical-specs.md",
-                          "icon":  "📋"
-                      },
-                      {
-                          "name":  "User Guide",
-                          "description":  "Comprehensive user guide for the collaboration dashboard and agent interactions",
-                          "url":  "_data/projects/nova-writers-conspiracy/user-guide.md",
-                          "icon":  "📖"
-                      }
+                    {
+                        "name":  "Agent Workflow Diagrams (agent-workflows.md)",
+                        "description":  "<ul style='list-style-type: none;'><HR><LI>Visual workflow diagrams for all 8 AI agents</LI><HR><LI>Detailed process flows with mermaid charts</LI><HR><LI>Memory service integration patterns</LI><HR><LI>Quality assurance and error handling workflows</LI><HR></UL>",
+                        "url":  "_data/projects/nova-writers-conspiracy/agent-workflows.md",
+                        "icon":  "🗺️"
+},
+                    {
+                        "name":  "Memory Service Documentation (memory-service.md)",
+                        "description":  "<ul style='list-style-type: none;'><HR><LI>Marker-indexed context handling system</LI><HR><LI>Complete implementation details with code examples</LI><HR><LI>Agent integration patterns and usage examples</LI><HR><LI>Performance optimization and monitoring strategies</LI><HR></UL>",
+                        "url":  "_data/projects/nova-writers-conspiracy/memory-service.md",
+                        "icon":  "🧠"
+},
+                    {
+                        "name":  "Deployment Guide (deployment.md)",
+                        "description":  "<ul style='list-style-type: none;'><HR><LI>Step-by-step deployment instructions</LI><HR><LI>Docker, cloud, and Kubernetes configurations</LI><HR><LI>Environment setup and configuration</LI><HR><LI>Monitoring, security, and backup strategies</LI><HR></UL>",
+                        "url":  "_data/projects/nova-writers-conspiracy/deployment.md",
+                        "icon":  "📋"
+},
+                    {
+                        "name":  "Technical Specifications (technical-specs.md)",
+                        "description":  "<ul style='list-style-type: none;'><HR><LI>Complete API specifications and database schemas</LI><HR><LI>Frontend and backend implementation details</LI><HR><LI>Performance requirements and testing specifications</LI><HR><LI>Security and authentication implementations</LI><HR></UL>",
+                        "url":  "_data/projects/nova-writers-conspiracy/technical-specs.md",
+                        "icon":  "📋"
+},
+                    {
+                        "name":  "User Guide (user-guide.md)",
+                        "description":  "<ul style='list-style-type: none;'><HR><LI>Comprehensive user interface guide</LI><HR><LI>Step-by-step instructions for all features</LI><HR><LI>Best practices and troubleshooting</LI><HR><LI>Collaboration workflows and tips</LI><HR></UL>",
+                        "url":  "_data/projects/nova-writers-conspiracy/user-guide.md",
+                        "icon":  "📖"}
                   ]
 }

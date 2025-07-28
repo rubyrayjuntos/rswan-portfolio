@@ -1831,7 +1831,7 @@
 
 /* --- Active Filters Display --- */
 #active-filters-display {
-    padding: 10px 5%;
+    padding: 0 5%;
     background-color: var(--bg-secondary);
     display: flex;
     flex-wrap: wrap;

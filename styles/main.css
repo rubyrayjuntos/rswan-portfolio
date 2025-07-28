@@ -58,6 +58,11 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px 0;
 }
 
+/* Remove padding from main.container */
+main.container {
+    padding-top: 0; 
+}
+
 /* Portfolio container for better layout control */
 .portfolio-container {
     display: grid;
@@ -65,15 +70,18 @@ h1, h2, h3, h4, h5, h6 {
     gap: 2.5rem;
     max-width: 1600px;
     margin: 0 auto;
-    padding: 2rem;
+    /* Adjust padding - remove top padding */
+    padding: 0 2rem 2rem 2rem; /* Removed top padding */
     box-sizing: border-box;
+    /* Remove top margin from portfolio-container */
+    margin-top: 0;
 }
 
 /* Responsive adjustments for portfolio container */
 @media (max-width: 1024px) {
     .portfolio-container {
         grid-template-columns: 1fr;
-        padding: 1rem;
+        padding: 0 1rem 1rem 1rem; /* Removed top padding */
     }
 }
 
@@ -412,6 +420,11 @@ h1, h2, h3, h4, h5, h6 {
     .medium-filters {
         display: none;
     }
+
+    /* Adjust padding for smaller screens */
+    .portfolio-container {
+        padding: 0 1rem 1rem 1rem; /* Removed top padding */
+    }
 }
 
 @media (max-width: 480px) {
@@ -449,12 +462,19 @@ h1, h2, h3, h4, h5, h6 {
     #filter-panel.is-open {
         transform: translate(-50%, -50%) !important;
     }
+
+     /* Adjust padding for smallest screens */
+     .portfolio-container {
+        padding: 0 1rem 1rem 1rem; /* Removed top padding */
+    }
 }
 
 /* --- Main Content & Grid --- */
 #project-grid-container {
     position: relative;
     padding: 40px 0;
+     /* Remove top margin from project-grid-container */
+    margin-top: 0;
 }
 
 #projectGrid {

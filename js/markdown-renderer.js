@@ -78,7 +78,17 @@ function configureMarked() {
             const imgClass = 'markdown-image';
             const titleAttr = title ? ` title="${title}"` : '';
             const safeHref = href ? href.replace(/[<>]/g, '') : '';
-            return `<img src="${safeHref}" alt="${text || ''}" class="${imgClass}"${titleAttr} loading="lazy">`;
+
+            let finalHref = safeHref;
+
+            // Check if the href is a relative path and if a basePath is provided
+            if (safeHref && !safeHref.startsWith('http') && !safeHref.startsWith('/') && !safeHref.startsWith('data:') && this.options.basePath) {
+                // Prepend the basePath to the relative href
+                finalHref = this.options.basePath + safeHref;
+                console.log('Resolved relative image path:', safeHref, 'to', finalHref);
+            }
+
+            return `<img src="${finalHref}" alt="${text || ''}" class="${imgClass}"${titleAttr} loading="lazy">`;
         } catch (error) {
             console.warn('Image rendering failed:', error);
             return `<span class="markdown-image-error">[Image: ${text || 'Error loading image'}]</span>`;
@@ -109,11 +119,11 @@ function configureMarked() {
         }
     };
     
-    marked.use({ renderer });
+    marked.use({ renderer, options: { basePath: this.basePath } });
 }
 
 // Main markdown rendering function
-function renderMarkdown(markdownContent) {
+function renderMarkdown(markdownContent, basePath = '') {
     // Make function globally available
     window.renderMarkdown = renderMarkdown;
     
@@ -126,8 +136,8 @@ function renderMarkdown(markdownContent) {
         // Pre-process markdown content to fix common issues
         const sanitizedContent = sanitizeMarkdownContent(markdownContent);
         
-        // Parse and render markdown
-        const html = marked.parse(sanitizedContent);
+        // Make the basePath available to the renderer
+    marked.basePath = basePath;
         
         // Apply syntax highlighting if Prism is available
         if (window.Prism) {
