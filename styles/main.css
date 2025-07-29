@@ -97,6 +97,7 @@ main.container {
     align-items: center;
     transition: all var(--transition-speed) ease;
     gap: 20px;
+    box-shadow: var(--neu-outset); /* Added drop shadow */
 }
 
 #top-nav.scrolled {
@@ -120,7 +121,7 @@ main.container {
 }
 
 .medium-filters {
-    display: flex;
+    display: none; /* Removed medium filters from top nav */
     gap: 10px;
 }
 
@@ -169,6 +170,7 @@ main.container {
     flex: 1;
     max-width: 500px;
     margin: 0 20px;
+    position: relative; /* Needed for absolute positioning of filter panel */
 }
 
 .search-wrapper {
@@ -255,7 +257,7 @@ main.container {
 
 /* Mobile menu button */
 .mobile-menu-btn {
-    display: none;
+    display: none; /* Hide the mobile menu button */
     background: var(--bg-primary);
     border: none;
     border-radius: var(--border-radius-md);
@@ -275,9 +277,84 @@ main.container {
     color: var(--accent-primary);
 }
 
-/* Filter dropdown styles are defined in components.css */
+/* Filter dropdown styles - Adjusted for new positioning and appearance */
+#filter-panel {
+    position: absolute; /* Position relative to .nav-center */
+    top: calc(100% + 10px); /* Position below the search bar */
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--neu-outset);
+    padding: 15px; /* Reduced padding */
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease, visibility 0s var(--transition-speed);
+}
 
-/* Mobile menu overlay */
+#filter-panel.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+}
+
+#filter-panel .filter-group {
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+#filter-panel .filter-group:last-child {
+    margin-bottom: 15px; /* Keep some space before buttons */
+}
+
+#filter-panel label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 5px; /* Reduced margin */
+}
+
+#filter-panel select,
+#filter-panel input[type="checkbox"] {
+    margin-right: 8px; /* Adjusted spacing */
+}
+
+#filter-panel .filter-buttons {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px;
+}
+
+#filter-panel .apply-filter-btn,
+#filter-panel .clear-filters-btn {
+    background: var(--bg-primary);
+    border: none;
+    border-radius: var(--border-radius-md);
+    padding: 8px 15px; /* Adjusted padding */
+    font-family: var(--font-main);
+    font-size: 0.9rem; /* Adjusted font size */
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--neu-outset);
+    transition: all var(--transition-speed) ease;
+}
+
+#filter-panel .apply-filter-btn {
+    color: var(--accent-primary);
+}
+
+#filter-panel .clear-filters-btn {
+    color: var(--text-secondary);
+}
+
+#filter-panel .apply-filter-btn:hover,
+#filter-panel .clear-filters-btn:hover {
+    box-shadow: var(--neu-inset);
+}
+
+/* Mobile menu overlay - Keep for potential future use or larger screens */
 .mobile-menu-overlay {
     position: fixed;
     top: 0;
@@ -375,26 +452,48 @@ main.container {
     gap: 10px;
 }
 
-/* Responsive design */
+/* Responsive design - Simplified for horizontal nav */
 @media (max-width: 1024px) {
     .nav-center {
         max-width: 400px;
         margin: 0 15px;
     }
     
-    .medium-filters {
-        gap: 8px;
+    /* Allow horizontal nav to shrink */
+    #top-nav {
+        flex-wrap: wrap; /* Allow items to wrap if needed */
+        justify-content: center; /* Center content when wrapped */
+    }
+
+    .nav-left,
+    .nav-center,
+    .nav-links {
+        flex-basis: auto; /* Allow flex items to size based on content */
+        min-width: 0; /* Allow shrinking below content size */
+    }
+
+    .nav-center {
+        flex-grow: 1; /* Allow search to take available space */
     }
     
-    .medium-btn {
-        padding: 6px 12px;
-        font-size: 0.8rem;
+    .medium-filters {
+        display: none; /* Keep hidden */
+    }
+
+    .mobile-menu-btn {
+        display: none; /* Keep hidden */
+    }
+
+     /* Adjust padding for smaller screens */
+     .portfolio-container {
+        padding: 0 1rem 1rem 1rem; /* Removed top padding */
     }
 }
 
 @media (max-width: 768px) {
     #top-nav {
         padding: 15px 5%;
+        justify-content: space-between; /* Revert to space-between for smaller screens */
     }
     
     .nav-left {
@@ -406,25 +505,31 @@ main.container {
     }
     
     .nav-center {
-        display: none;
+        flex-basis: 100%; /* Search takes full width below logo */
+        order: 3; /* Place below logo and nav links */
+        margin-top: 15px; /* Add space above search bar */
     }
     
     .nav-links {
-        display: none;
+        order: 2; /* Place between logo and search */
     }
     
     .mobile-menu-btn {
-        display: flex;
+        display: none; /* Keep hidden */
     }
     
     .medium-filters {
-        display: none;
+        display: none; /* Keep hidden */
     }
 
     /* Adjust padding for smaller screens */
     .portfolio-container {
         padding: 0 1rem 1rem 1rem; /* Removed top padding */
     }
+
+     #filter-panel {
+        top: calc(100% + 25px); /* Adjust position below search bar */
+     }
 }
 
 @media (max-width: 480px) {
@@ -436,31 +541,26 @@ main.container {
         font-size: 1.3rem;
     }
     
-    .mobile-menu-content {
-        width: 280px;
-    }
-    
     /* Mobile filter dropdown positioning */
     #filter-panel {
-        position: fixed !important;
-        top: 50% !important;
-        left: 50% !important;
-        right: auto !important;
-        width: 90% !important;
-        max-width: 400px !important;
-        max-height: 80vh !important;
-        overflow-y: auto;
+        position: absolute !important; /* Revert to absolute positioning relative to .nav-center */
+        top: calc(100% + 10px) !important; /* Position below the search bar */
+        left: 0 !important;
+        right: 0 !important;
+        width: auto !important; /* Allow width to be determined by parent */
+        max-width: none !important; /* Remove max width */
+        max-height: none !important; /* Remove max height */
+        overflow-y: visible; /* Allow content to push height */
         margin: 0 !important;
         border-radius: var(--border-radius-md) !important;
-        border: 1px solid var(--bg-secondary) !important;
-    }
-    
-    #filter-panel:not(.is-open) {
-        transform: translate(-50%, -60%) !important;
+        border: none !important; /* Remove border */
+        box-shadow: var(--neu-outset);
+        transform: translateY(-10px);
+        transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease, visibility 0s var(--transition-speed);
     }
     
     #filter-panel.is-open {
-        transform: translate(-50%, -50%) !important;
+        transform: translateY(0);
     }
 
      /* Adjust padding for smallest screens */

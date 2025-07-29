@@ -1,7 +1,7 @@
 {
-    "id":  12,
+    "id":  2,
     "title":  "Asteroids",
-    "description":  "Classic arcade game modernized for mobile, bringing the timeless gameplay of Asteroids to contemporary mobile devices with enhanced graphics and touch controls.",
+    "description":  "<p>Classic arcade game modernized for mobile, bringing the timeless gameplay of Asteroids to contemporary mobile devices with enhanced graphics and touch controls.</p>",
     "imageUrl":  "card-hero.jpg",
     "medium":  "code",
     "genre":  [
@@ -27,12 +27,11 @@
                  "Responsive Design"
              ],
     "mood":  "energetic",
-    "year":  2024,
+    "year":  2025,
     "role":  "Game Developer, Mobile Developer, UI/UX Designer",
     "variant":  "wide",
-    "status":  "development",
+    "status":  "live",
     "links":  {
-                  "github":  "https://github.com/rubyrayjuntos/AstroNova"
               },
     "pitch":  "A modern take on the classic Asteroids arcade game, optimized for mobile devices while preserving the timeless gameplay that made the original so beloved.",
     "challenge":  "Adapting the classic keyboard/mouse controls to touch interfaces while maintaining the precise, responsive feel of the original game.",
@@ -85,11 +84,11 @@
     "journey":  [
                     {
                         "title":  "Game Analysis",
-                        "description":  "Studied the original Asteroids gameplay mechanics and design principles"
+                        "description":  "Studied the original Asteroids gameplay mechanics and design principles and created a comprehensive technical/functional specification to make development rapid"
                     },
                     {
                         "title":  "Mobile Adaptation",
-                        "description":  "Designed touch controls that preserve the original game feel"
+                        "description":  "Designed touch controls that preserve the original game feel while adapting for mobile players."
                     },
                     {
                         "title":  "Technical Implementation",
@@ -97,33 +96,25 @@
                     },
                     {
                         "title":  "Performance Optimization",
-                        "description":  "Optimized for smooth gameplay on mobile devices"
+                        "description":  "Optimized for smooth gameplay on mobile devices, and thoroughly tested performance from dev start to release."
                     },
                     {
                         "title":  "User Testing",
-                        "description":  "Refined controls and gameplay based on user feedback"
+                        "description":  "Refined controls and gameplay based on user feedback - because in the end, it is the players that matter."
                     }
                 ],
     "specs":  [
                   {
                       "title":  "Game Engine",
-                      "description":  "Custom game engine built with HTML5 Canvas and JavaScript"
+                      "description":  "Custom game engine built with HTML5 Canvas and JavaScript. No library dependancies to worry about."
                   },
                   {
                       "title":  "Mobile Optimization",
-                      "description":  "Optimized for touch controls and mobile performance"
+                      "description":  "Optimized for touch controls and mobile-first design principles."
                   },
                   {
                       "title":  "Graphics",
-                      "description":  "Enhanced graphics while maintaining retro aesthetic"
-                  },
-                  {
-                      "title":  "Controls",
-                      "description":  "Intuitive touch controls adapted from classic keyboard/mouse input"
-                  },
-                  {
-                      "title":  "Cross-Platform",
-                      "description":  "Works on all modern mobile browsers and devices"
+                      "description":  "Enhanced graphics while maintaining core retro aesthetic - it was already perfect, I just adapted it for web and mobile."
                   },
                   {
                       "title":  "Performance",
@@ -131,23 +122,29 @@
                   }
               ],
     "artifacts":  [
-                      {
-                          "name":  "Game Design Document",
-                          "description":  "Complete game design specification including mechanics, controls, and gameplay flow",
-                          "url":  "_data/projects/asteroids/game-design.md",
-                          "icon":  "🎮"
-                      },
+        {
+            "name":  "GitHub Repository",
+            "description":  "Source code repository with full game implementation",
+            "url":  "https://github.com/rubyrayjuntos/AstroNova",
+            "icon":  "⭐"
+        },
+        {
+            "name":  "Game Design Document: Technical and Functional Spec",
+            "description":  "Complete game design specification including mechanics, controls, and gameplay flow. All the thought went into this document so that development took a week.",
+            "url":  "_data/projects/asteroids/asteroids-specs.md",
+            "icon":  "🎮"
+        },
+        {
+            "name":  "High Level Game Design Document",
+            "description":  "High level game design specification including mechanics, controls, and gameplay flow",
+            "url":  "_data/projects/asteroids/game-design.md",
+            "icon":  "🎮"
+        },
                       {
                           "name":  "Technical Architecture",
                           "description":  "Detailed technical architecture showing game engine structure and optimization",
                           "url":  "_data/projects/asteroids/technical-architecture.md",
                           "icon":  "🏗️"
-                      },
-                      {
-                          "name":  "GitHub Repository",
-                          "description":  "Source code repository with full game implementation",
-                          "url":  "https://github.com/rubyrayjuntos/AstroNova",
-                          "icon":  "⭐"
                       },
                       {
                           "name":  "Performance Benchmarks",
@@ -160,12 +157,6 @@
                           "description":  "Detailed documentation of touch control adaptation from keyboard/mouse input",
                           "url":  "_data/projects/asteroids/touch-control-design.md",
                           "icon":  "👆"
-                      },
-                      {
-                          "name":  "Cross-Platform Testing",
-                          "description":  "Comprehensive testing results across different mobile devices and browsers",
-                          "url":  "_data/projects/asteroids/cross-platform-testing.md",
-                          "icon":  "📱"
                       },
                       {
                           "name":  "User Testing Results",

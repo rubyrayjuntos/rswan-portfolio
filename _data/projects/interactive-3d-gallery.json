@@ -1,5 +1,5 @@
 {
-    "id":  18,
+    "id": 5,
     "title":  "Interactive 3D Gallery Sphere",
     "description":  "Experience images in a revolutionary hybrid 2D/3D environment. This project uses React Three Fiber and a Cannon.js physics engine to create an intuitive and engaging alternative to traditional 2D galleries, allowing for unique interactions like Z-axis prioritization and physics-driven exploration.",
     "imageUrl": "card-hero.jpg",

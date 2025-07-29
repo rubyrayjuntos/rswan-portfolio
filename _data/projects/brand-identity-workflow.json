@@ -1,6 +1,6 @@
 {
-    "id":  1050,
-    "title":  "Brand Identity Management Workflow",
+    "id":  3,
+    "title":  "Brand Identity Workflow",
     "description":  "A comprehensive AI-powered system for automating brand identity creation and marketing campaign development using multi-agent orchestration.",
     "imageUrl":  "card-hero.jpg",
     "medium":  "code",
@@ -36,12 +36,18 @@
     "development":  "Built with CrewAI framework implementing hierarchical agent architecture, Pydantic models for data validation, and multiple deployment options from simple HTML interface to advanced multi-agent system.",
     "outcome":  "A comprehensive brand identity automation system that delivers structured, production-ready brand assets and marketing strategies with both simple and advanced implementation options.AI agent types: brand identity, worker agent (logo concept designer), worker agent (color palette specialist), worker agent (visual style guide creator), manager agent (marketing campaign coordinator), worker agent (social media content strategist), worker agent (email marketing strategist), worker agent (social media video producer)",
     "gallery":  [
-                    {
-                        "url":  "card-hero.JPG",
-                        "title":  "Generated Brand Assets",
-                        "description":  "Complete brand identity package including logos, colors, and style guides",
-                        "dimensions":  "1200x800"
-                    }
+        {
+            "url":  "card-hero.jpg",
+            "title":  "Brand Identity Workflow",
+            "description":  "You have a marketing team ready to help with a button click",
+            "dimensions":  "1200x800"
+        },
+        {
+            "url":  "brand-identity-workflow-simple-gui.jpg",
+            "title":  "Generated Brand Assets",
+            "description":  "With a few guiding directions you can kick off your branding discussions.",
+            "dimensions":  "1200x800"
+        }
                 ],
     "journey":  [
                     {
@@ -93,45 +99,45 @@
               ],
     "artifacts":  [
                       {
-                          "name":  "<H2>🏗️README.md</H2>",
+                          "name":  "README.md",
                           "description":  "Comprehensive overview of the multi-agent system architecture and data flows",
-                          "url":  "README.md",
+                          "url":  "_data/projects/brand-identity-workflow/README.md",
                           "icon":  "🏗️"
                       },
                       {
-                        "name":  "<H2>🔥System architecture documentation</H2>",
+                        "name":  "System architecture documentation",
                         "description":  "The Brand Identity Management System implements a sophisticated **hierarchical multi-agent architecture** using the CrewAI framework. This design enables coordinated execution of complex brand identity and marketing tasks through specialized AI agents working in concert.",
-                        "url":  "architecture.md",
+                        "url":  "_data/projects/brand-identity-workflow/architecture.md",
                         "icon":  "🔥"
                     },
                     {
-                        "name":  "<H2>🪄Multi-agent system specification</H2>",
+                        "name":  "Multi-agent system specification",
                         "description":  "The Brand Identity Management System implements a sophisticated **Multi-Agent System (MAS)** using the CrewAI framework. This system coordinates 8 specialized AI agents to deliver complete brand identity and marketing strategy solutions.",
-                        "url":  "mas-specification.md",
+                        "url":  "_data/projects/brand-identity-workflow/documents/mas-specification.md",
                         "icon":  "🪄"
                     },
                     {
-                        "name":  "<H2>💌API integration and data validation</H2>",
+                        "name": "API integration and data validation",
                         "description":  "The Brand Identity Management System integrates with multiple AI APIs and implements comprehensive data validation patterns to ensure structured, reliable outputs. This document details the integration architecture and validation strategies.",
-                        "url":  "api-integration.md",
+                        "url":  "_data/projects/brand-identity-workflow/documents/api-integration.md",
                         "icon":  "💌"
                     },
                     {
-                        "name":  "<H2>🔮Demo system documentation</H2>",
+                        "name":  "Demo system documentation",
                         "description":  "The Brand Identity Management System includes multiple demo options designed to showcase the system's capabilities at different levels of complexity and technical depth. These demos serve both immediate user validation and comprehensive portfolio presentation needs.",
-                        "url":  "demo-system.md",
+                        "url":  "_data/projects/brand-identity-workflow/documents/demo-system.md",
                         "icon":  "🔮"
                     },
                     {
-                        "name":  "<H2>✨Technical Specification</H2>",
+                        "name":  "Technical Specification",
                         "description":  "The **Brand Identity Management Workflow** is a sophisticated AI-powered system designed for comprehensive brand identity creation and marketing strategy development. Built on the CrewAI framework, this system implements a hierarchical agent architecture that orchestrates specialized AI agents to deliver structured, production-ready brand assets and marketing strategies.",
-                        "url":  "technical-specs.md",
+                        "url":  "_data/projects/brand-identity-workflow/technical-specs.md",
                         "icon":  "✨"
                     },
                     {
-                        "name":  "<H2>🚀Functional and Technical Specification</H2>",
+                        "name":  "Functional and Technical Specification",
                         "description":  "This document outlines the development of an AI agent workflow designed to automate and assist with brand identity management and community engagement. The system will handle core brand elements like logo and color palette decisions, visual style guide creation, and marketing activities such as social media and email campaign management. It will provide both functional and technical specifications, detailing what the system will do from a user's perspective and how it will be built from an engineering perspective, respectively, with brand templates as key outputs. The solution envisions multiple interconnected AI agents, leveraging large language models and integrating with various APIs to achieve a modular and scalable system.",
-                        "url":  "Brand Identity Agentic Workflow System_ Technical and Functional Specifications.md",
+                        "url":  "_data/projects/brand-identity-workflow/documents/technical-functional-specs.md",
                         "icon":  "🚀"
                     }
                   ],
