@@ -3204,21 +3204,22 @@
                 // Determine if project is 'art' to use fullscreen/hotspot mode
                 const isArtProject = project.medium?.toLowerCase() === 'art';
 
-                if (isArtProject) {
+                // modifying to show all projects
+                //if (isArtProject) {
                     // Art project: Show single full-screen image with navigation and hotspots
                     if (galleryModalGrid) galleryModalGrid.style.display = 'none';
                     if (galleryModalImgContainer) galleryModalImgContainer.style.display = 'flex';
                     
                     currentGalleryIndex = startIndex;
                     renderArtGalleryImage(currentGalleryIndex);
-                } else {
+                //} else {
                     // Other projects: Show grid view
-                    if (galleryModalGrid) galleryModalGrid.style.display = 'grid';
-                    if (galleryModalImgContainer) galleryModalImgContainer.style.display = 'none';
+                //    if (galleryModalGrid) galleryModalGrid.style.display = 'grid';
+                //    if (galleryModalImgContainer) galleryModalImgContainer.style.display = 'none';
                     
-                    currentGalleryIndex = Math.floor(startIndex / itemsPerPage);
-                    renderGalleryPage();
-                }
+                //    currentGalleryIndex = Math.floor(startIndex / itemsPerPage);
+                //    renderGalleryPage();
+                //}
 
                 // Show modal
                 if (galleryModal) {
@@ -3347,17 +3348,17 @@
             }
 
             function previousGalleryImage() {
-                if (currentProject?.medium?.toLowerCase() === 'art') {
+                //if (currentProject?.medium?.toLowerCase() === 'art') {
                     currentGalleryIndex = Math.max(0, currentGalleryIndex - 1);
                     renderArtGalleryImage(currentGalleryIndex);
-                }
+                //}
             }
 
             function nextGalleryImage() {
-                if (currentProject?.medium?.toLowerCase() === 'art') {
+                //if (currentProject?.medium?.toLowerCase() === 'art') {
                     currentGalleryIndex = Math.min(currentGallery.length - 1, currentGalleryIndex + 1);
                     renderArtGalleryImage(currentGalleryIndex);
-                }
+                //}
             }
 
             // Setup parallax effects for gallery

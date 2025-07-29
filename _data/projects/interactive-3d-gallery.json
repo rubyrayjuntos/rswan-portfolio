@@ -40,20 +40,8 @@
                       {
                           "name":  "Comprehensive README on GitHub",
                           "description":  "The project\u0027s README file, including architecture, setup, a detailed feature list, and future roadmap.",
-                          "url":  "https://github.com/rubyrayjuntos/interactive-3d-gallery",
+                          "url":  "_data/projects/interactive-3d-gallery/README.md",
                           "icon":  "⭐"
-                      },
-                      {
-                          "name":  "Live Demo",
-                          "description":  "Experience the interactive gallery live in your browser.",
-                          "url":  "#",
-                          "icon":  "🚀"
-                      },
-                      {
-                          "name":  "The Narrative Behind the Build",
-                          "description":  "A detailed article explaining the journey, challenges, and breakthroughs of the project.",
-                          "url":  "#",
-                          "icon":  "✍️"
                       }
                   ],
     "gallery":  [
@@ -66,6 +54,16 @@
                         "url":  "gallery-sphere-zoom2D.jpg",
                         "title":  "Detailed Image View",
                         "description":  "The dedicated 2D view allows for a closer, more detailed examination of the artwork."
+                    },
+                    {
+                        "url":  "3D-image-closeup.png",
+                        "title":  "Working with the Image",
+                        "description":  "Users can zoom into details of the image on the 3D sphere, with high detail."
+                    },
+                    {
+                        "url":  "z-index-positioning.png",
+                        "title":  "Using z-index",
+                        "description":  "How far away the image is from the sphere (z-index) can be used as a visual categorization or ranking tool."
                     }
                 ],
     "journey":  [
