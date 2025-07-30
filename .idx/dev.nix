@@ -6,35 +6,39 @@
 
   # Use https://search.nixos.org/packages to find packages
   packages = [
-    # pkgs.go
-    # pkgs.python311
-    # pkgs.python311Packages.pip
-    # pkgs.nodejs_20
-    # pkgs.nodePackages.nodemon
+    # Since you use npm, ensure nodejs is available
+    pkgs.nodejs_20 # Specify Node.js version 20 (or another version if needed)
+    pkgs.nodePackages.npm # Explicitly add npm if not included with nodejs
   ];
 
   # Sets environment variables in the workspace
   env = {};
+
   idx = {
-    # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
+    # ... other configurations ...
     extensions = [
-      # "vscodevim.vim"
+      "dbaeumer.vscode-eslint"
+      "esbenp.prettier-vscode"
+      "shd101wyy.markdown-preview-enhanced"
+      "ritwickdey.liveserver"
+      "eamodio.gitlens"
+      # Add other extension IDs here
     ];
 
     # Enable previews
     previews = {
       enable = true;
       previews = {
-        # web = {
-        #   # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
-        #   # and show it in IDX's web preview panel
-        #   command = ["npm" "run" "dev"];
-        #   manager = "web";
-        #   env = {
-        #     # Environment variables to set for your server
-        #     PORT = "$PORT";
-        #   };
-        # };
+        web = {
+          # Command to run your server.
+          # Ensure your package.json has a "serve" script that starts the server.
+          command = ["npm" "run" "serve"];
+          manager = "web";
+          env = {
+            # Set the PORT environment variable for your server
+            PORT = "$PORT";
+          };
+        };
       };
     };
 
@@ -42,14 +46,16 @@
     workspace = {
       # Runs when a workspace is first created
       onCreate = {
-        # Example: install JS dependencies from NPM
-        # npm-install = "npm install";
+        # Install JS dependencies from NPM
+        npm-install = "npm install";
       };
       # Runs when the workspace is (re)started
       onStart = {
-        # Example: start a background task to watch and re-build backend code
-        # watch-backend = "npm run watch-backend";
+        # Run the manifest script to generate manifest.json
+        generate-manifest = "npm run manifest";
+        # Run the content audit script
+        run-audit = "npm run audit";
       };
     };
-  };
-}
+  }; # The idx block ends here
+} # The main attribute set ends here
