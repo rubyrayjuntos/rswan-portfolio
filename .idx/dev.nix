@@ -23,6 +23,11 @@
       "ritwickdey.liveserver"
       "eamodio.gitlens"
       # Add other extension IDs here
+      "Anthropic.claude-code"
+      "mgmcdermott.vscode-language-babel"
+      "ms-vscode.js-debug"
+      "robole.javascript-snippets"
+      "saoudrizwan.claude-dev"
     ];
 
     # Enable previews

@@ -2581,6 +2581,27 @@
             </div>
         </div>
 
+<!-- Asteroids Game Modal -->
+<div id="asteroids-game-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="asteroids-modal-title">🎮 Asteroids Game</h3>
+            <button class="modal-close-btn" onclick="closeAsteroidsGameModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+             <div id="asteroids-game-container">
+                <!-- This div could be where the game canvas is created -->
+             </div>
+            <div class="asteroids-modal-footer" style="text-align: center; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-top: 15px;">
+                <div class="asteroids-controls-info" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <strong>Controls:</strong>
+                    <span class="desktop-controls">Arrow Keys / WASD + Space</span>
+                    <span class="mobile-controls">Touch Controls</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- Structured Data for SEO -->
         <script type="application/ld+json" id="structuredData">
         {
@@ -3807,6 +3828,7 @@
             }
 
             // Links Population
+            // Links Population
             function populateLinks(project) {
                 const linksSection = document.getElementById('linksSection');
                 const linksContainer = document.getElementById('links');
@@ -3874,7 +3896,6 @@
                     linksSection.appendChild(linkCard);
                 });
             }
-
             // Initialize dynamic features after project load
             function initializeDynamicFeatures(project) {
                 // Setup scroll animations
@@ -4311,6 +4332,7 @@
 
         <!-- Markdown Renderer Script -->
         <script src="js/markdown-renderer.js"></script>
+
     </body>
     </html>
     ```
