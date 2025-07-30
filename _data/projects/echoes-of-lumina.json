@@ -59,23 +59,22 @@
                 ],
     "journey":  [
                     {
-                        "phase":  "Concept \u0026 Research",
-                        "description":  "Initial inspiration from quantum consciousness studies and exploration of free will vs. determinism themes"
+                        "title":  "Concept : Initial inspiration from quantum consciousness studies and exploration of free will vs. determinism themes"
                     },
                     {
-                        "phase":  "World Building",
-                        "description":  "Development of Lumina\u0027s unique properties, memory wells, and the relationship between consciousness and reality"
+                        "title":  "World Building",
+                        "description":  "Development of Lumina's unique properties, memory wells, and the relationship between consciousness and reality"
                     },
                     {
-                        "phase":  "Character Development",
-                        "description":  "Creating Maya Chen\u0027s arc and supporting characters, establishing their connections to ancestral memory"
+                        "title":  "Character Development",
+                        "description":  "Creating Maya Chen's arc and supporting characters, establishing their connections to ancestral memory"
                     },
                     {
-                        "phase":  "First Draft",
+                        "title":  "First Draft",
                         "description":  "Writing the complete narrative while balancing philosophical depth with emotional accessibility"
                     },
                     {
-                        "phase":  "Revision \u0026 Refinement",
+                        "title":  "Revision : Refinement",
                         "description":  "Multiple editing rounds focusing on lyrical prose, thematic consistency, and character authenticity"
                     }
                 ],

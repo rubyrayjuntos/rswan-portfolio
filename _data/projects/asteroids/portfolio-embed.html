@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Asteroids Game Embed</title>
+    <style>
+        /* Portfolio Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .portfolio-header h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-header p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .project-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: #000;
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            max-width: 95vw;
+            max-height: 95vh;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .close-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s ease;
+        }
+
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .game-container {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .portfolio-container {
+                padding: 20px;
+            }
+
+            .portfolio-header h1 {
+                font-size: 2rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 10px;
+                padding: 15px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="portfolio-container">
+        <div class="portfolio-header">
+            <h1>🎮 RayCS Portfolio</h1>
+            <p>Full-Stack Developer & Game Developer</p>
+        </div>
+
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>🚀 Asteroids Game</h3>
+                <p>A modern remake of the classic Asteroids arcade game built with HTML5 Canvas, featuring touch controls, performance optimization, and professional benchmarking.</p>
+                <button class="play-button" onclick="openGameModal()">
+                    🎮 Play Game
+                </button>
+            </div>
+
+            <div class="project-card">
+                <h3>📊 Performance Engineered</h3>
+                <p>Comprehensive performance benchmarking suite with automated testing, detailed reports, and optimization strategies for portfolio demonstration.</p>
+                <button class="play-button" onclick="showPerformanceInfo()">
+                    📈 View Benchmarks
+                </button>
+            </div>
+
+            <div class="project-card">
+                <h3>📱 Mobile Optimized</h3>
+                <p>Progressive Web App with touch controls, responsive design, and cross-platform compatibility for modern mobile devices.</p>
+                <button class="play-button" onclick="showMobileInfo()">
+                    📱 Mobile Features
+                </button>
+            </div>
+        </div>
+
+        <div class="portfolio-footer">
+            <h2>Technical Highlights</h2>
+            <ul>
+                <li>✅ HTML5 Canvas Game Engine</li>
+                <li>✅ Touch Control System</li>
+                <li>✅ Performance Benchmarking</li>
+                <li>✅ Progressive Web App</li>
+                <li>✅ Responsive Design</li>
+                <li>✅ Professional Documentation</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Game Modal -->
+    <div class="modal-overlay" id="gameModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">🎮 Asteroids Game</div>
+                <button class="close-button" onclick="closeGameModal()">×</button>
+            </div>
+            <div class="game-container">
+                <iframe id="gameFrame" src="index.html" width="800" height="600" frameborder="0" style="border-radius: 10px;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        function openGameModal() {
+            const modal = document.getElementById('gameModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Focus the iframe for better UX
+            setTimeout(() => {
+                const iframe = document.getElementById('gameFrame');
+                iframe.focus();
+            }, 100);
+        }
+
+        function closeGameModal() {
+            const modal = document.getElementById('gameModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('gameModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGameModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeGameModal();
+            }
+        });
+
+        // Info functions
+        function showPerformanceInfo() {
+            alert('Performance Benchmarking Features:\n\n' +
+                  '• Automated FPS Testing\n' +
+                  '• Memory Usage Analysis\n' +
+                  '• Rendering Performance\n' +
+                  '• Collision Detection Tests\n' +
+                  '• Mobile Performance Metrics\n' +
+                  '• Stress Testing Suite\n\n' +
+                  'Run: npm run benchmark');
+        }
+
+        function showMobileInfo() {
+            alert('Mobile Features:\n\n' +
+                  '• Touch Control System\n' +
+                  '• Responsive Design\n' +
+                  '• Progressive Web App\n' +
+                  '• Add to Home Screen\n' +
+                  '• Offline Capability\n' +
+                  '• Cross-Platform Support');
+        }
+
+        // Add loading animation to buttons
+        document.querySelectorAll('.play-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<span class="loading"></span> Loading...';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html> 

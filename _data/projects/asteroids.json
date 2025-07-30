@@ -31,7 +31,7 @@
     "role":  "Game Developer, Mobile Developer, UI/UX Designer",
     "variant":  "wide",
     "status":  "live",
-    "links":  {
+    "links":  {"play": "https://rubyrayjuntos.github.io/AstroNova/"
               },
     "pitch":  "A modern take on the classic Asteroids arcade game, optimized for mobile devices while preserving the timeless gameplay that made the original so beloved.",
     "challenge":  "Adapting the classic keyboard/mouse controls to touch interfaces while maintaining the precise, responsive feel of the original game.",

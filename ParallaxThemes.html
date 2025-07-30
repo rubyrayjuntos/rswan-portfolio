@@ -2581,6 +2581,27 @@
             </div>
         </div>
 
+<!-- Asteroids Game Modal -->
+<div id="asteroids-game-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="asteroids-modal-title">🎮 Asteroids Game</h3>
+            <button class="modal-close-btn" onclick="closeAsteroidsGameModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+             <div id="asteroids-game-container">
+                <!-- This div could be where the game canvas is created -->
+             </div>
+            <div class="asteroids-modal-footer" style="text-align: center; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-top: 15px;">
+                <div class="asteroids-controls-info" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <strong>Controls:</strong>
+                    <span class="desktop-controls">Arrow Keys / WASD + Space</span>
+                    <span class="mobile-controls">Touch Controls</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- Structured Data for SEO -->
         <script type="application/ld+json" id="structuredData">
         {
@@ -3808,73 +3829,100 @@
 
             // Links Population
             function populateLinks(project) {
-                const linksSection = document.getElementById('linksSection');
-                const linksContainer = document.getElementById('links');
-                if (!linksSection) return;
+    const linksSection = document.getElementById('linksSection');
+    const linksContainer = document.getElementById('links');
+    if (!linksSection) return;
 
-                console.log('Populating links for:', project.title);
-                linksSection.innerHTML = '';
+    console.log('Populating links for:', project.title);
+    linksSection.innerHTML = '';
 
-                // Helper function to check if a field has meaningful content
-                const hasContent = (field) => {
-                    return field && field !== '' && field !== null && field !== undefined;
-                };
+    // Helper function to check if a field has meaningful content
+    const hasContent = (field) => {
+        return field && field !== '' && field !== null && field !== undefined;
+    };
 
-                // Create links from project.links object or default links
-                const links = [];
+    // Create links from project.links object or default links
+    const links = [];
+
+    if (hasContent(project.links)) {
+        Object.entries(project.links).forEach(([key, url]) => {
+            // Only add links that have valid URLs
+            if (hasContent(url)) {
                 
-                if (hasContent(project.links)) {
-                    Object.entries(project.links).forEach(([key, url]) => {
-                        // Only add links that have valid URLs
-                        if (hasContent(url)) {
-                            const linkMap = {
-                                'github': { icon: '📁', title: 'GitHub Repository', description: 'View source code' },
-                                'live': { icon: '🌐', title: 'Live Demo', description: 'View the live website' },
-                                'demo': { icon: '🌐', title: 'Live Demo', description: 'View the live website' },
-                                'gallery': { icon: '🖼️', title: 'Full Gallery', description: 'View complete gallery' },
-                                'shop': { icon: '🛒', title: 'Shop', description: 'Purchase prints or products' },
-                                'docs': { icon: '📖', title: 'Documentation', description: 'Read detailed documentation' },
-                                'specs': { icon: '📋', title: 'Specifications', description: 'Technical specifications' }
-                            };
-                            
-                            const linkInfo = linkMap[key] || { icon: '🔗', title: key.charAt(0).toUpperCase() + key.slice(1), description: `View ${key}` };
-                            links.push({
-                                ...linkInfo,
-                                url: url
-                            });
-                        }
+                    const linkMap = {
+                        'github': { icon: '📁', title: 'GitHub Repository', description: 'View source code' },
+                        'live': { icon: '🌐', title: 'Live Demo', description: 'View the live website' },
+                        'demo': { icon: '🌐', title: 'Live Demo', description: 'View the live website' },
+                        'gallery': { icon: '🖼️', title: 'Full Gallery', description: 'View complete gallery' },
+                        'shop': { icon: '🛒', title: 'Shop', description: 'Purchase prints or products' },
+                        'docs': { icon: '📖', title: 'Documentation', description: 'Read detailed documentation' },
+                        'specs': { icon: '📋', title: 'Specifications', description: 'Technical specifications' },
+                        // Add other link types as needed
+                    };
+
+                    const linkInfo = linkMap[key] || { icon: '🔗', title: key.charAt(0).toUpperCase() + key.slice(1), description: `View ${key}` };
+                    links.push({
+                        ...linkInfo,
+                        url: url,
+                        key: key // Include key for potential future use
                     });
                 }
+            });
+        }
 
-                // If no links, hide the entire links section
-                if (links.length === 0) {
-                    if (linksContainer) {
-                        linksContainer.style.display = 'none';
-                    }
-                    console.log('No links available - hiding links section');
-                    return;
-                } else {
-                    // Show the links section if we have links
-                    if (linksContainer) {
-                        linksContainer.style.display = 'block';
-                    }
+    // If no links, hide the entire links section
+    if (links.length === 0) {
+        if (linksContainer) {
+            linksContainer.style.display = 'none';
+        }
+        console.log('No links available - hiding links section');
+        return;
+    } else {
+        // Show the links section if we have links
+        if (linksContainer) {
+            linksContainer.style.display = 'block';
+        }
+    }
+
+    links.forEach(link => {
+        if (link.type === 'game-modal') {
+            // Create a button that calls AsteroidsGame.open()
+            const gameButton = document.createElement('button');
+            gameButton.className = 'link-card'; // Reuse link-card styling if desired
+            gameButton.innerHTML = `
+                <span class="icon">${link.icon}</span>
+                <h3>${link.title}</h3>
+                <p>${link.description}</p>
+            `;
+            gameButton.addEventListener('click', () => {
+                // Initialize the game modal with the correct path if not already initialized
+                if (!window.AsteroidsGame.isInitialized) {
+                     // Assuming your game's index.html is at the URL specified in the JSON
+                     window.AsteroidsGame.init(link.url); 
                 }
+                window.AsteroidsGame.open();
+            });
+            linksSection.appendChild(gameButton);
 
-                // Removed "Back to Portfolio" link - now in floating navigation
-
-                links.forEach(link => {
-                    const linkCard = document.createElement('a');
-                    linkCard.className = 'link-card';
-                    linkCard.href = link.url;
-                    linkCard.innerHTML = `
-                        <span class="icon">${link.icon}</span>
-                        <h3>${link.title}</h3>
-                        <p>${link.description}</p>
-                    `;
-                    linksSection.appendChild(linkCard);
-                });
+        } else {
+            // Existing logic for standard links
+            const linkCard = document.createElement('a');
+            linkCard.className = 'link-card';
+            linkCard.href = link.url;
+            // Open external links in a new tab
+            if (link.url.startsWith('http') || link.url.startsWith('//')) {
+                 linkCard.target = '_blank';
+                 linkCard.rel = 'noopener noreferrer'; // Security best practice
             }
-
+            linkCard.innerHTML = `
+                <span class="icon">${link.icon}</span>
+                <h3>${link.title}</h3>
+                <p>${link.description}</p>
+            `;
+            linksSection.appendChild(linkCard);
+        }
+    });
+}
             // Initialize dynamic features after project load
             function initializeDynamicFeatures(project) {
                 // Setup scroll animations
@@ -4311,6 +4359,7 @@
 
         <!-- Markdown Renderer Script -->
         <script src="js/markdown-renderer.js"></script>
+
     </body>
     </html>
     ```

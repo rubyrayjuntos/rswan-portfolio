@@ -72,7 +72,7 @@
   {
     "name": "Code Review: ParallaxThemes.html",
     "description": "Detailed code review and analysis of the project detail page.",
-    "url": "_data/projects/portfolio-system/code-review-parallaxthemes.md",
+    "url": "_data/projects/portfolio-system/code_review_parallaxthemes.md",
     "icon": "🔍"
   },
   {
@@ -114,13 +114,13 @@
   {
     "name": "Parallax Design Article",
     "description": "LinkedIn article discussing the principles, applications, challenges, and implementation of parallax design.",
-    "url": "_data/projects/portfolio-system/Parallax Design_Principles and Implementation.md",
+    "url": "_data/projects/portfolio-system/parallax-design-principals-and-implementation.md",
     "icon": "📚"
   },
    {
     "name": "Parallax Image Gallery Guide",
     "description": "Comprehensive catalog and implementation guide for various parallax image gallery techniques.",
-    "url": "_data/projects/portfolio-system/Parallax Image Gallery Code Recipes.md",
+    "url": "_data/projects/portfolio-system/parallax-image-gallery-code-recipes.md",
     "icon": "📸"
   },
    {
