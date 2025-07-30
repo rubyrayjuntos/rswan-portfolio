@@ -35,6 +35,9 @@
     "challenge":  "Adapting the classic keyboard/mouse controls to touch interfaces while maintaining the precise, responsive feel of the original game.",
     "development":  "Recreated the core gameplay mechanics using modern web technologies, optimized for mobile performance and touch controls.",
     "outcome":  "A faithful recreation of the classic Asteroids experience that works seamlessly on mobile devices.",
+    "links":  {
+                  "PLAY":  "https://rubyrayjuntos.github.io/AstroNova/"
+              },
     "gallery":  [
                     {
                         "url":  "asteroids-gameplay-screenshot.jpg",
