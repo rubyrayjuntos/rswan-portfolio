@@ -11,8 +11,7 @@
     pkgs.nodePackages.npm # Explicitly add npm if not included with nodejs
   ];
 
-  # Sets environment variables in the workspace
-  env = {};
+                                                                                                                  
 
   idx = {
     # ... other configurations ...

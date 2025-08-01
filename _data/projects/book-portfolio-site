@@ -1,0 +1,844 @@
+
+i would like a div (can be ported into any page as a modal) that is a book page turner. imagine we are looking down on a book and can see two pages at once. there is a left and right arrow button in the bottom right and bottom left. clicking right advances to the next page, but first there is an animation of one page flipping over and becoming the next two pages of the book, and this repeats until the end of the book. readers can go backwards and forwards. i would like this in javascript, so i am not sure how this would work if we used a font (vs image) on the page and how does the page flip happen or look - can fonts be mapped to planes that are warped? the idea is having the experience of reading a book. if possible an optional hero at the top of a page. we can use a json for the data
+
+Edit
+I'll create a realistic book page turner with 3D page flip animations using CSS transforms and JavaScript. This will support both text content and optional hero images, all driven by JSON data.
+
+
+3D Book Page Turner
+Interactive artifact 
+I've created a realistic 3D book page turner that captures the experience of reading a physical book! Here are the key features:
+
+✨ Features
+📖 Realistic Book Experience:
+
+True page spread view showing two pages at once (like an open book)
+3D CSS transforms create realistic page-flipping animations
+Book spine shadow effect for depth
+Textured paper background with subtle gradients
+🎬 Smooth Animations:
+
+Pages flip with a realistic 3D rotation effect
+Smooth transitions using cubic-bezier easing
+Pages properly layer during animation (z-index management)
+Forward and backward page flipping
+📱 Navigation:
+
+Left/right arrow buttons at bottom corners
+Keyboard support (arrow keys)
+Buttons disable at start/end of book
+Visual feedback on hover
+📝 Content Support:
+
+JSON-driven content system
+Optional hero images at page tops
+Flexible text content
+Page numbering
+Chapter titles
+🔧 How to Use
+Simply replace the bookData object with your own content:
+
+javascript
+const bookData = {
+    title: "Your Book Title",
+    pages: [
+        {
+            title: "Chapter Title",
+            hero: "optional-image-url.jpg",
+            content: "Your page content here..."
+        },
+        // More pages...
+    ]
+};
+🎨 Technical Implementation
+The page flip effect uses CSS 3D transforms rather than trying to warp fonts to planes. This approach:
+
+Maintains text readability throughout the animation
+Provides smooth, hardware-accelerated animations
+Works with any content (text, images, HTML)
+Creates a realistic page-turning effect
+The pages are real HTML elements with actual fonts, so text remains crisp and selectable. The 3D rotation creates the illusion of a physical page flip while keeping the content perfectly readable.
+
+Would you like me to modify any aspect of the design or add additional features like bookmarks, search, or different animation styles?
+
+
+
+
+Can you preload 4 pages when the book opens so that when the user turns the page there are two passages in view. Currently when you turn the page the next two passages don't load until page turn and this durning turn they see the back of the book until page turn is complete when the current two load. It should be when a user enters the reading passages 1-4 are loaded, user turns page and see pages 3 and 4 while 5 and 6 loads
+
+Edit
+You're absolutely right! The current implementation shows blank pages during the flip animation. I'll modify it to preload pages and ensure there's always content visible during transitions by properly layering the page spreads.
+
+
+3D Book Page Turner
+Interactive artifact ∙ Version 2 
+
+3D Book Page Turner
+Interactive artifact ∙ Version 3 
+
+3D Book Page Turner
+Interactive artifact ∙ Version 4 
+Perfect! I've implemented the smart preloading system you requested. Here's how it now works:
+
+🚀 New Preloading Behavior
+📖 Initial Load:
+
+When the book opens, pages 1-4 are immediately loaded (spreads 0 and 1)
+User sees pages 1-2 and pages 3-4 are ready in the background
+📄 Page Turning:
+
+When user turns from pages 1-2 to 3-4:
+Pages 3-4 are instantly visible (already loaded)
+Pages 5-6 start loading in the background
+When user turns from pages 3-4 to 5-6:
+Pages 5-6 are instantly visible (already loaded)
+Pages 7-8 start loading in the background
+⚡ Key Improvements:
+
+No Blank Pages During Animation: The next spread is always pre-loaded and positioned behind the current spread, so content is visible throughout the flip animation
+Smart Loading Strategy:
+Always keeps 2 spreads (4 pages) ahead loaded
+Uses a loadedSpreads Set to track what's already loaded
+Only loads content when needed (lazy loading for performance)
+Seamless Transitions:
+Proper z-index management ensures smooth layering
+Next spread is positioned and ready before animation starts
+No waiting for content to load during page turns
+Memory Efficient:
+Only loads what's needed plus 1 spread ahead
+Doesn't load the entire book upfront
+Could be extended to unload distant spreads if needed
+Now when you turn pages, you'll see a smooth transition with content always visible, and the next pages are intelligently preloaded for instant access. The user experience is much more like a physical book where you can see the content immediately when the page flips!
+
+
+
+
+This is nice, i like it! Can you configure the Json so a user can enter a page size to render in pixels and if no page size is in the Json it defaults to the current page size
+
+Edit
+
+3D Book Page Turner
+Interactive artifact ∙ Version 5 
+
+3D Book Page Turner
+Interactive artifact ∙ Version 6 
+
+3D Book Page Turner
+Interactive artifact ∙ Version 7 
+Perfect! I've added configurable page sizing to the JSON structure. Here's how it works:
+
+📐 New Page Size Configuration
+JSON Structure:
+
+javascript
+const bookData = {
+    title: "Your Book Title",
+    pageSize: {
+        width: 900,    // Book width in pixels
+        height: 650    // Book height in pixels
+    },
+    pages: [
+        // Your pages here...
+    ]
+};
+🎯 Key Features:
+
+Optional Configuration: If no pageSize is specified in the JSON, it defaults to 800x600 pixels (the current size)
+Dynamic Sizing: The book container automatically adjusts to accommodate the specified dimensions
+Smart Scaling: The 3D perspective adjusts proportionally based on the book size for optimal visual effect
+Responsive Design: Added viewport constraints to ensure the book doesn't exceed screen size
+max-width: calc(100vw - 40px)
+max-height: calc(100vh - 40px)
+Added overflow: auto to allow scrolling for very large books
+📱 Usage Examples:
+
+javascript
+// Small book (mobile-friendly)
+pageSize: { width: 600, height: 400 }
+
+// Large book (desktop reading)
+pageSize: { width: 1200, height: 800 }
+
+// Square format
+pageSize: { width: 700, height: 700 }
+
+// No pageSize specified - uses default 800x600
+The system automatically calculates the container size (adding padding space) and adjusts the 3D perspective for the best visual experience at any size. The current sample book is set to 900x650 to demonstrate the larger format!
+
+
+
+
+If i want it to be a graphic novel can i set hero graphic size = page size?
+
+Edit
+Absolutely! You can make it a graphic novel format where the hero image fills the entire page. Let me show you how to configure this:
+
+
+3D Book Page Turner
+Interactive artifact ∙ Version 8 
+
+3D Book Page Turner
+Interactive artifact ∙ Version 9 
+
+3D Book Page Turner
+Interactive artifact ∙ Version 10 
+Perfect! I've added full graphic novel support. Here's how to configure it:
+
+🎨 Graphic Novel Configuration
+JSON Setup:
+
+javascript
+const bookData = {
+    title: "Your Graphic Novel",
+    pageSize: {
+        width: 900,
+        height: 650
+    },
+    heroFullPage: true,  // 🎯 Set this to true for graphic novel mode
+    pages: [
+        {
+            title: "Chapter Title",
+            hero: "your-comic-panel.jpg",  // This will fill the entire page
+            content: "Optional text overlay"
+        }
+    ]
+};
+✨ Two Display Modes
+📖 Regular Mode (heroFullPage: false or omitted):
+
+Hero image is 200px tall at top of page
+Title and content below the image
+Traditional book layout
+🎨 Graphic Novel Mode (heroFullPage: true):
+
+Hero image fills the entire page (matching your page size)
+Title and text appear as overlay boxes with semi-transparent backgrounds
+Perfect for comic panels, illustrations, or graphic novel pages
+Text has backdrop blur effect for better readability
+🎯 Pro Tips for Graphic Novels
+Image Sizing: Make sure your hero images are sized to match your page dimensions:
+
+javascript
+pageSize: { width: 900, height: 650 }
+// Use images sized 900x650 or with aspect ratio that works with object-fit: cover
+hero: "comic-panel-900x650.jpg"
+Text-Only Pages: You can still have pages without hero images - they'll use the regular layout automatically.
+
+Mixed Content: You can mix full-page graphic pages with regular text pages in the same book by setting heroFullPage: true globally.
+
+The current example shows regular mode, but change heroFullPage: true to see the graphic novel format! The text will overlay beautifully on the full-page images with a translucent background for perfect readability.
+
+
+
+
+When turning to previous pages the page turn should happen in reverse: left page to right page
+
+Edit
+You're absolutely right! When going backwards, the left page should flip over to reveal the previous spread. Let me fix the animation direction:
+
+
+3D Book Page Turner
+Interactive artifact ∙ Version 11 
+
+3D Book Page Turner
+Interactive artifact ∙ Version 12 
+
+3D Book Page Turner
+Interactive artifact ∙ Version 13 
+Perfect! I've fixed the page turn direction for going backwards. Here's what changed:
+
+🔄 Correct Page Turn Animation
+➡️ Forward (Next Page):
+
+Right page flips from right to left (rotateY -180deg)
+Transform origin: left center (page hinges on left side)
+Reveals the next spread underneath
+⬅️ Backward (Previous Page):
+
+Left page flips from left to right (rotateY +180deg)
+Transform origin: right center (page hinges on right side)
+Reveals the previous spread underneath
+✨ Key Improvements
+Realistic Animation Direction: Now matches how you'd actually turn pages in a physical book
+Going forward: grab right page, flip left
+Going backward: grab left page, flip right
+Proper Transform Origins:
+Left pages hinge on their right edge
+Right pages hinge on their left edge
+Smooth Transitions: The animation timing and z-index management ensures smooth, realistic page turns in both directions
+Now when you click the left arrow to go back, you'll see the left page of the current spread flip over to reveal the previous two pages, just like turning pages backwards in a real book! The animation feels much more natural and intuitive.
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Book Page Turner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #8B4513, #D2B48C);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: auto; /* Allow scrolling if book is larger than viewport */
+        }
+
+        .book-container {
+            position: relative;
+            /* Default size - will be overridden by JavaScript if pageSize is specified */
+            width: 800px;
+            height: 600px;
+            perspective: 1200px;
+            background: #8B4513;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            padding: 20px;
+            /* Ensure container doesn't exceed viewport */
+            max-width: calc(100vw - 40px);
+            max-height: calc(100vh - 40px);
+        }
+
+        .book {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .page-spread {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transform-style: preserve-3d;
+        }
+
+        .page {
+            width: 50%;
+            height: 100%;
+            background: #FFFEF7;
+            border: 1px solid #E8E8E8;
+            padding: 30px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .page-left {
+            border-right: 2px solid #DDD;
+            background: linear-gradient(to right, #FFFEF7 0%, #F5F5F0 100%);
+            transform-origin: right center; /* Set transform origin for left page flips */
+        }
+
+        .page-right {
+            border-left: 2px solid #DDD;
+            background: linear-gradient(to left, #FFFEF7 0%, #F5F5F0 100%);
+            transform-origin: left center;
+        }
+
+        .page-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Full page hero for graphic novel style */
+        .hero-image.full-page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            border-radius: 0;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        /* Overlay content on full-page hero */
+        .page-content.overlay {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.9);
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 80%;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Hide regular content styling when using full-page hero */
+        .page-content.overlay .page-title {
+            color: #2C1810;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .page-content.overlay .page-text {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2C1810;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #8B4513;
+            padding-bottom: 10px;
+        }
+
+        .page-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .page-left .page-number {
+            left: 30px;
+        }
+
+        .page-right .page-number {
+            right: 30px;
+        }
+
+        /* Page flip animation */
+        .flipping {
+            transform: rotateY(-180deg);
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 10;
+        }
+
+        .flipping-back {
+            transform: rotateY(0deg);
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 10;
+        }
+
+        /* Left page flip animation for going backwards */
+        .flipping-left {
+            transform: rotateY(180deg);
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 10;
+        }
+
+        .flipping-left-back {
+            transform: rotateY(0deg);
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 10;
+        }
+
+        /* Navigation buttons */
+        .nav-button {
+            position: absolute;
+            bottom: 20px;
+            width: 50px;
+            height: 50px;
+            background: #8B4513;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+
+        .nav-button:hover {
+            background: #A0522D;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        .nav-button:disabled {
+            background: #CCC;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        /* Hidden pages for animation */
+        .page-spread.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .page-spread.active {
+            opacity: 1;
+            z-index: 5;
+        }
+
+        /* Spine shadow effect */
+        .book::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(0,0,0,0.2), transparent);
+            transform: translateX(-50%);
+            z-index: 15;
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="book" id="book">
+            <!-- Pages will be dynamically generated here -->
+        </div>
+        
+        <button class="nav-button prev-btn" id="prevBtn">‹</button>
+        <button class="nav-button next-btn" id="nextBtn">›</button>
+    </div>
+
+    <script>
+        // Sample book data - replace with your own JSON
+        const bookData = {
+            title: "The Digital Adventure",
+            pageSize: {
+                width: 900,
+                height: 650
+            },
+            // Set heroFullPage: true to make hero images fill the entire page (graphic novel style)
+            heroFullPage: false,
+            pages: [
+                {
+                    title: "Chapter 1: The Beginning",
+                    hero: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=900&h=650&fit=crop",
+                    content: "In a world where technology and nature intertwined, there lived a young programmer named Alex. Every morning, Alex would wake up to the sound of birds chirping outside the window, mixed with the gentle hum of servers running in the home office. This was the beginning of an extraordinary journey that would change everything.\n\nThe story starts on a misty Tuesday morning when Alex discovered something unusual in the code. Lines of text seemed to shimmer and dance on the screen, forming patterns that looked almost... alive."
+                },
+                {
+                    title: "The Discovery",
+                    content: "As Alex leaned closer to the monitor, the patterns became clearer. They weren't random glitches or corrupted data—they were messages. Messages from somewhere beyond the digital realm, reaching out through the very fabric of the internet itself.\n\n'This can't be real,' Alex whispered, but the evidence was right there on the screen. The code was trying to communicate, and it had chosen Alex as its messenger.\n\nWith trembling fingers, Alex began to type a response, not knowing that this simple action would open a doorway to adventures beyond imagination."
+                },
+                {
+                    title: "Chapter 2: The Portal",
+                    hero: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=200&fit=crop",
+                    content: "The moment Alex pressed Enter, the room filled with a brilliant blue light. The computer screen expanded, growing larger and larger until it seemed to encompass the entire wall. Then, impossibly, it began to extend outward, creating a shimmering portal of pure digital energy.\n\nAlex could see through to the other side—a vast landscape of floating code fragments, data streams flowing like rivers, and structures built from pure information. It was beautiful and terrifying at the same time."
+                },
+                {
+                    title: "Stepping Through",
+                    content: "Without fully understanding why, Alex reached out toward the portal. The surface felt warm and slightly electric, like touching a television screen, but softer somehow. As Alex's hand passed through, it began to glow with the same blue energy.\n\n'There's no going back now,' Alex thought, taking a deep breath and stepping forward into the digital realm.\n\nThe sensation was indescribable—like falling and flying at the same time, while being gently carried by currents of pure information. This was just the beginning of the greatest adventure of Alex's life."
+                },
+                {
+                    title: "Chapter 3: The Digital Realm",
+                    hero: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=200&fit=crop",
+                    content: "On the other side of the portal, Alex found a world unlike anything imaginable. Towering structures made of crystallized data reached toward a sky filled with flowing streams of code. The ground beneath Alex's feet felt solid but seemed to be made of compressed pixels that shifted and changed with each step.\n\nIn the distance, Alex could see other figures moving through this digital landscape—some appeared human, while others looked like geometric patterns given form and consciousness."
+                },
+                {
+                    title: "The Guardians",
+                    content: "As Alex explored this new world, a group of beings approached. They called themselves the Guardians of the Code, ancient programs that had gained sentience over the decades of computing history.\n\n'We have been waiting for you, Alex,' their leader said, its voice sounding like a harmony of electronic tones. 'The digital realm is in danger, and only someone from your world can help us save it.'\n\nAlex learned that a virus unlike any other was spreading through the networks, not just corrupting data, but actually erasing the very concept of information itself."
+                },
+                {
+                    title: "The Mission",
+                    content: "The Guardians explained that this wasn't just about saving the digital world—if the virus succeeded, it would eventually break through to the physical realm, erasing memories, knowledge, and ultimately consciousness itself from existence.\n\n'But how can I help?' Alex asked. 'I'm just a programmer.'\n\n'That's exactly why you can help,' the Guardian replied. 'You understand both worlds. You can write code that bridges the gap between digital and physical reality.'\n\nAnd so began Alex's quest to save not just one world, but all of existence as we know it."
+                },
+                {
+                    title: "To Be Continued...",
+                    hero: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop",
+                    content: "This is just the beginning of Alex's incredible journey through the digital realm. The adventure continues with challenges that will test not only programming skills, but also courage, creativity, and the power of human connection.\n\nIn the next volume, you'll discover how Alex learns to code in the language of pure thought, battles digital demons made of corrupted data, and ultimately faces the source of the great virus in a confrontation that will determine the fate of both worlds.\n\nThank you for reading this opening chapter of 'The Digital Adventure.' The story continues..."
+                }
+            ]
+        };
+
+        class BookPageTurner {
+            constructor(bookData) {
+                this.bookData = bookData;
+                this.currentSpread = 0; // Each spread shows 2 pages
+                this.totalSpreads = Math.ceil(bookData.pages.length / 2);
+                this.isAnimating = false;
+                this.loadedSpreads = new Set(); // Track which spreads are loaded
+
+                // Default page size
+                this.defaultPageSize = { width: 800, height: 600 };
+                this.pageSize = bookData.pageSize || this.defaultPageSize;
+
+                this.bookElement = document.getElementById('book');
+                this.bookContainer = document.querySelector('.book-container');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+
+                this.init();
+            }
+
+            init() {
+                this.applyPageSize();
+                this.createAllSpreads();
+                this.preloadInitialPages();
+                this.setupEventListeners();
+                this.updateNavigationButtons();
+            }
+
+            applyPageSize() {
+                // Calculate container size (add padding and border space)
+                const containerWidth = this.pageSize.width + 40; // 20px padding on each side
+                const containerHeight = this.pageSize.height + 40; // 20px padding top/bottom
+
+                // Apply sizes to the container and book
+                this.bookContainer.style.width = `${containerWidth}px`;
+                this.bookContainer.style.height = `${containerHeight}px`;
+                
+                // Update the book size
+                this.bookElement.style.width = `${this.pageSize.width}px`;
+                this.bookElement.style.height = `${this.pageSize.height}px`;
+
+                // Also update the perspective based on size for better 3D effect
+                const perspective = Math.max(this.pageSize.width, this.pageSize.height) * 1.5;
+                this.bookContainer.style.perspective = `${perspective}px`;
+            }
+
+            createAllSpreads() {
+                // Create all page spreads but don't populate content yet
+                for (let spreadIndex = 0; spreadIndex < this.totalSpreads; spreadIndex++) {
+                    const spread = document.createElement('div');
+                    spread.className = `page-spread ${spreadIndex === 0 ? 'active' : 'hidden'}`;
+                    spread.style.zIndex = this.totalSpreads - spreadIndex;
+                    spread.dataset.spreadIndex = spreadIndex;
+
+                    // Create empty structure for now
+                    const leftPage = document.createElement('div');
+                    leftPage.className = 'page page-left';
+                    const rightPage = document.createElement('div');
+                    rightPage.className = 'page page-right';
+                    
+                    spread.appendChild(leftPage);
+                    spread.appendChild(rightPage);
+                    this.bookElement.appendChild(spread);
+                }
+            }
+
+            preloadInitialPages() {
+                // Preload first 4 pages (spreads 0 and 1)
+                this.loadSpread(0);
+                if (this.totalSpreads > 1) {
+                    this.loadSpread(1);
+                }
+            }
+
+            loadSpread(spreadIndex) {
+                if (this.loadedSpreads.has(spreadIndex) || spreadIndex >= this.totalSpreads) {
+                    return;
+                }
+
+                const spread = this.bookElement.children[spreadIndex];
+                const leftPage = spread.querySelector('.page-left');
+                const rightPage = spread.querySelector('.page-right');
+
+                const leftPageIndex = spreadIndex * 2;
+                const rightPageIndex = leftPageIndex + 1;
+
+                // Load left page
+                this.populatePage(leftPage, leftPageIndex, 'left');
+
+                // Load right page
+                if (rightPageIndex < this.bookData.pages.length) {
+                    this.populatePage(rightPage, rightPageIndex, 'right');
+                }
+
+                this.loadedSpreads.add(spreadIndex);
+            }
+
+            populatePage(pageElement, pageIndex, side) {
+                if (pageIndex >= this.bookData.pages.length) return;
+
+                const pageData = this.bookData.pages[pageIndex];
+                const isFullPageHero = this.bookData.heroFullPage && pageData.hero;
+                
+                // Clear existing content
+                pageElement.innerHTML = '';
+
+                const content = document.createElement('div');
+                content.className = isFullPageHero ? 'page-content overlay' : 'page-content';
+
+                if (pageData.hero) {
+                    const heroImg = document.createElement('img');
+                    heroImg.src = pageData.hero;
+                    heroImg.className = isFullPageHero ? 'hero-image full-page' : 'hero-image';
+                    heroImg.alt = pageData.title || 'Page image';
+                    
+                    if (isFullPageHero) {
+                        // For full-page hero, add image directly to page element
+                        pageElement.appendChild(heroImg);
+                    } else {
+                        // For regular hero, add to content container
+                        content.appendChild(heroImg);
+                    }
+                }
+
+                if (pageData.title) {
+                    const title = document.createElement('div');
+                    title.className = 'page-title';
+                    title.textContent = pageData.title;
+                    content.appendChild(title);
+                }
+
+                if (pageData.content) {
+                    const text = document.createElement('div');
+                    text.className = 'page-text';
+                    text.textContent = pageData.content;
+                    content.appendChild(text);
+                }
+
+                const pageNumber = document.createElement('div');
+                pageNumber.className = 'page-number';
+                pageNumber.textContent = pageIndex + 1;
+                
+                pageElement.appendChild(content);
+                pageElement.appendChild(pageNumber);
+            }
+
+            createPage(pageIndex, side) {
+                // This method is no longer used as we handle page creation in populatePage
+                // Keeping for potential future use
+                return null;
+            }
+
+            setupEventListeners() {
+                this.prevBtn.addEventListener('click', () => this.previousPage());
+                this.nextBtn.addEventListener('click', () => this.nextPage());
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.previousPage();
+                    if (e.key === 'ArrowRight') this.nextPage();
+                });
+            }
+
+            nextPage() {
+                if (this.isAnimating || this.currentSpread >= this.totalSpreads - 1) return;
+
+                this.isAnimating = true;
+
+                // Preload next spread if needed (always stay 2 spreads ahead)
+                const nextSpreadToLoad = this.currentSpread + 2;
+                if (nextSpreadToLoad < this.totalSpreads) {
+                    this.loadSpread(nextSpreadToLoad);
+                }
+
+                const currentSpreadElement = this.bookElement.children[this.currentSpread];
+                const nextSpreadElement = this.bookElement.children[this.currentSpread + 1];
+                const rightPage = currentSpreadElement.querySelector('.page-right');
+
+                // Ensure next spread is loaded before showing it
+                this.loadSpread(this.currentSpread + 1);
+
+                // Prepare next spread to be visible but behind current
+                nextSpreadElement.classList.remove('hidden');
+                nextSpreadElement.style.zIndex = this.totalSpreads - this.currentSpread - 1;
+                currentSpreadElement.style.zIndex = this.totalSpreads - this.currentSpread;
+
+                // Animate the right page flipping
+                rightPage.classList.add('flipping');
+
+                setTimeout(() => {
+                    // After flip animation, make next spread active
+                    currentSpreadElement.classList.remove('active');
+                    currentSpreadElement.classList.add('hidden');
+                    nextSpreadElement.classList.add('active');
+                    
+                    this.currentSpread++;
+                    this.updateNavigationButtons();
+                    
+                    setTimeout(() => {
+                        rightPage.classList.remove('flipping');
+                        this.isAnimating = false;
+                    }, 100);
+                }, 800);
+            }
+
+            previousPage() {
+                if (this.isAnimating || this.currentSpread <= 0) return;
+
+                this.isAnimating = true;
+
+                const currentSpreadElement = this.bookElement.children[this.currentSpread];
+                const prevSpreadElement = this.bookElement.children[this.currentSpread - 1];
+                const currentLeftPage = currentSpreadElement.querySelector('.page-left');
+
+                // Ensure previous spread is loaded
+                this.loadSpread(this.currentSpread - 1);
+
+                // Prepare spreads for animation
+                prevSpreadElement.classList.remove('hidden');
+                prevSpreadElement.style.zIndex = this.totalSpreads - this.currentSpread + 1;
+                currentSpreadElement.style.zIndex = this.totalSpreads - this.currentSpread;
+
+                // Animate the LEFT page flipping backwards (right to left)
+                currentLeftPage.classList.add('flipping-left');
+
+                setTimeout(() => {
+                    // After flip animation, switch spreads
+                    currentSpreadElement.classList.remove('active');
+                    currentSpreadElement.classList.add('hidden');
+                    prevSpreadElement.classList.add('active');
+                    
+                    this.currentSpread--;
+                    this.updateNavigationButtons();
+                    
+                    setTimeout(() => {
+                        currentLeftPage.classList.remove('flipping-left');
+                        this.isAnimating = false;
+                    }, 100);
+                }, 800);
+            }
+
+            updateNavigationButtons() {
+                this.prevBtn.disabled = this.currentSpread === 0;
+                this.nextBtn.disabled = this.currentSpread === this.totalSpreads - 1;
+            }
+        }
+
+        // Initialize the book when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new BookPageTurner(bookData);
+        });
+    </script>
+</body>
+</html>
+Claude
