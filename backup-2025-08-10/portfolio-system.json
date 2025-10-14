@@ -1,0 +1,284 @@
+{
+    "id": 7,
+    "title": "Data-Driven Portfolio & Storytelling Engine",
+    "description": "A sophisticated, single-page application designed to deliver rich, narrative-driven case studies. Built with pure HTML, CSS, and JavaScript, it uses a data-driven architecture to dynamically showcase diverse creative and technical work through three distinct storytelling experiences.",
+    "imageUrl": "card-hero.jpg",
+    "medium": "code",
+    "genre": [
+        "Web Application",
+        "Portfolio System",
+        "Content Management",
+        "Storytelling Platform",
+        "Single Page Application",
+        "Data-Driven Architecture",
+        "Interactive Gallery",
+        "Creative Showcase"
+    ],
+    "style": [
+        "Modern",
+        "Responsive",
+        "Component-Based",
+        "Performance-Optimized",
+        "Accessible",
+        "Cross-Platform",
+        "Vanilla JavaScript",
+        "Progressive Enhancement"
+    ],
+    "tech": [
+        "HTML5",
+        "CSS3",
+        "Vanilla JavaScript",
+        "Node.js",
+        "Fuse.js",
+        "JSON",
+        "Markdown",
+        "Git",
+        "HTTP Server",
+        "Responsive Design",
+        "CSS Grid",
+        "CSS Flexbox",
+        "Local Storage",
+        "Session Storage",
+        "DOM Manipulation",
+        "Event Handling",
+        "Async/Await",
+        "ES6+ Features"
+    ],
+    "mood": "technical",
+    "year": 2024,
+    "role": "Full Stack Developer, System Architect, UX Designer",
+    "variant": "featured",
+    "status": "live",
+    "links": {
+        "github": "https://github.com/rubyrayjuntos/rswan-portfolio"
+    },
+    "pitch": "A sophisticated, data-driven portfolio system that transforms static showcases into immersive, narrative-driven experiences tailored to different creative mediums.",
+    "challenge": "Creating a flexible, maintainable portfolio system that could handle diverse project types (art, writing, code) while providing unique, medium-appropriate user experiences without relying on frameworks or build tools.",
+    "development": "Built with a content-first workflow using Markdown templates, automated project discovery, and a modular CSS architecture. Implemented three distinct storytelling modes with specialized features for each medium type, ensuring optimal user experience across all project categories.",
+    "outcome": "A robust, scalable portfolio system that automatically adapts to different project types, provides rich interactive experiences, and maintains excellent performance through vanilla JavaScript and optimized architecture.",
+    "artifacts": [
+  {
+    "name": "Content Audit Dashboard README",
+    "description": "Comprehensive documentation for the content audit dashboard web interface.",
+    "url": "_data/projects/coding/portfolio-system/AUDIT_DASHBOARD_README.md",
+    "icon": "📋"
+  },
+  {
+    "name": "Automated Deployment Setup",
+    "description": "Documentation for the one-click automated deployment system using File System API or Python server.",
+    "url": "_data/projects/coding/portfolio-system/AUTOMATED_DEPLOYMENT_SETUP.md",
+    "icon": "🚀"
+  },
+  {
+    "name": "Code Review: ParallaxThemes.html",
+    "description": "Detailed code review and analysis of the project detail page.",
+    "url": "_data/projects/coding/portfolio-system/code_review_parallaxthemes.md",
+    "icon": "🔍"
+  },
+  {
+    "name": "Portfolio Content Audit Report",
+    "description": "Detailed audit report identifying missing content, broken links, and issues across all projects.",
+    "url": "_data/projects/coding/portfolio-system/content-audit-report.md",
+    "icon": "📊"
+  },
+  {
+    "name": "Portfolio Content Audit - Critical Summary",
+    "description": "Executive summary of the content audit highlighting critical findings and priority action items.",
+    "url": "_data/projects/coding/portfolio-system/content-audit-summary.md",
+    "icon": "❗"
+  },
+  {
+    "name": "Final Phase Complete Report",
+    "description": "Summary report detailing the successful completion of the final project phase, testing, and optimizations.",
+    "url": "_data/projects/coding/portfolio-system/final_phase_completion_summary.md",
+    "icon": "🎉"
+  },
+   {
+    "name": "Final Phase Compatibility & Accessibility",
+    "description": "Report on cross-browser compatibility and WCAG 2.1 AA accessibility testing results.",
+    "url": "_data/projects/coding/portfolio-system/final_phase_testing_report.md",
+    "icon": "♿"
+  },
+   {
+    "name": "Hero Animation Upgrade Plan",
+    "description": "Implementation strategy and details for enhancing hero section animations.",
+    "url": "_data/projects/coding/portfolio-system/hero-animation-upgrade.md",
+    "icon": "✨"
+  },
+  {
+    "name": "Easy Image Management Guide",
+    "description": "Guide on using the Image Manager and command line tools for managing project images.",
+    "url": "_data/projects/coding/portfolio-system/IMAGE_SETUP.md",
+    "icon": "🖼️"
+  },
+  {
+    "name": "Parallax Design Article",
+    "description": "LinkedIn article discussing the principles, applications, challenges, and implementation of parallax design.",
+    "url": "_data/projects/coding/portfolio-system/parallax-design-principals-and-implementation.md",
+    "icon": "📚"
+  },
+   {
+    "name": "Parallax Image Gallery Guide",
+    "description": "Comprehensive catalog and implementation guide for various parallax image gallery techniques.",
+    "url": "_data/projects/coding/portfolio-system/parallax-image-gallery-code-recipes.md",
+    "icon": "📸"
+  },
+   {
+    "name": "PPMS & Portfolio Site Analysis",
+    "description": "Report analyzing the architecture, data synchronization, and workflow issues between PPMS and the portfolio site.",
+    "url": "_data/projects/coding/portfolio-system/PPMS_PORTFOLIO_ANALYSIS_REPORT.md",
+    "icon": "🔍"
+  },
+  {
+    "name": "Data-Driven Portfolio Overview",
+    "description": "Comprehensive overview of the portfolio system's architecture, features, and content workflow.",
+    "url": "_data/projects/coding/portfolio-system/README.md",
+    "icon": "📖"
+  },
+  {
+    "name": "Template Usage Guidelines",
+    "description": "Comprehensive guidelines and validation rules for using the project templates.",
+    "url": "_data/projects/coding/portfolio-system/template-usage-guidelines.md",
+    "icon": "📋"
+  }
+],
+    "gallery": [
+        {
+            "url": "portfolio-main-gallery.jpg",
+            "title": "Main Portfolio Gallery",
+            "description": "The main portfolio page showcasing the advanced filtering system and project cards with fuzzy search functionality",
+            "dimensions": "1200x800"
+        },
+        {
+            "url": "art-project-journey.jpg",
+            "title": "Art Project Journey",
+            "description": "Immersive art project experience with interactive hotspots, cinematic galleries, and parallax animations",
+            "dimensions": "1200x800"
+        },
+        {
+            "url": "code-project-journey-artifact-grid.jpg",
+            "title": "Code Project Artifacts Grid",
+            "description": "Technical deep-dive interface for code projects with comprehensive artifact documentation and specifications",
+            "dimensions": "1200x800"
+        },        {
+            "url": "code-project-journey-artifact-detail.jpg",
+            "title": "Code Project Artifacts Document View",
+            "description": "Access comprehensive artifact documentation and specifications using the custom markdown renderer/viewer.",
+            "dimensions": "1200x800"
+        },
+        {
+            "url": "writing-project-journey.jpg",
+            "title": "Writing Project Excerpts",
+            "description": "Focused reading experience for writing projects with enhanced typography and thematic analysis",
+            "dimensions": "1200x800"
+        },
+        {
+            "url": "project-filtering.jpg",
+            "title": "Advanced Filtering System",
+            "description": "Multi-faceted filtering panel with dynamic facet counts and real-time project filtering",
+            "dimensions": "1200x800"
+        },
+        {
+            "url": "responsive-design.jpg",
+            "title": "Responsive Design",
+            "description": "Mobile-optimized interface showing the portfolio's responsive design across different screen sizes",
+            "dimensions": "1200x800"
+        }
+    ],
+    "journey": [
+        {
+            "title": "System Architecture Design",
+            "description": "Designed the core data-driven architecture with three distinct storytelling modes for different project types"
+        },
+        {
+            "title": "Content-First Workflow",
+            "description": "Developed the Markdown template system and content-first workflow for seamless project creation"
+        },
+        {
+            "title": "Advanced Filtering Implementation",
+            "description": "Built the multi-faceted filtering system with Fuse.js integration for lightning-fast fuzzy search"
+        },
+        {
+            "title": "Interactive Gallery Development",
+            "description": "Created immersive art galleries with hotspots, parallax effects, and cinematic transitions"
+        },
+        {
+            "title": "Technical Documentation System",
+            "description": "Implemented comprehensive artifact system for code projects with automated documentation"
+        },
+        {
+            "title": "Performance Optimization",
+            "description": "Optimized for maximum performance with vanilla JavaScript, efficient DOM manipulation, and minimal dependencies"
+        },
+        {
+            "title": "Security Implementation",
+            "description": "Added HTML content validation and security measures to protect against XSS attacks"
+        },
+        {
+            "title": "Template System Enhancement",
+            "description": "Enhanced styling, improved UX, and created comprehensive documentation for template usage"
+        }
+    ],
+    "specs": [
+        {
+            "title": "Data-Driven Architecture",
+            "description": "Pure JSON-based content management with automated project discovery and dynamic content loading"
+        },
+        {
+            "title": "Three-Storytelling Modes",
+            "description": "Specialized interfaces for art (cinematic galleries), writing (focused reading), and code (technical deep-dive) projects"
+        },
+        {
+            "title": "Advanced Search & Filtering",
+            "description": "Fuse.js-powered fuzzy search with multi-faceted filtering by medium, genre, technology, style, mood, and year"
+        },
+        {
+            "title": "Interactive Hotspots",
+            "description": "Guided tour system for art projects with clickable hotspots providing detailed annotations on high-resolution images"
+        },
+        {
+            "title": "Content-First Workflow",
+            "description": "Markdown template system enabling rich content creation with automated JSON generation and validation"
+        },
+        {
+            "title": "Performance Optimized",
+            "description": "Vanilla JavaScript implementation with no frameworks, optimized DOM manipulation, and minimal dependencies"
+        },
+        {
+            "title": "Security & Validation",
+            "description": "Comprehensive HTML content validation and sanitization to prevent XSS attacks while preserving formatting"
+        },
+        {
+            "title": "Responsive Design",
+            "description": "Mobile-first responsive design with CSS Grid, Flexbox, and progressive enhancement for all devices"
+        }
+    ],
+    "features": [
+        "Automated Project Discovery",
+        "Dynamic Content Loading",
+        "Fuzzy Search with Fuse.js",
+        "Multi-faceted Filtering",
+        "Interactive Hotspots",
+        "Parallax Animations",
+        "Cinematic Galleries",
+        "HTML Content Validation",
+        "Responsive Design",
+        "Session Storage Navigation",
+        "Component-Based CSS",
+        "Markdown Template System",
+        "Automated Manifest Generation",
+        "Cross-Platform Compatibility",
+        "Accessibility Features",
+        "Performance Optimization"
+    ],
+    "achievements": [
+        "Created a scalable portfolio system handling diverse project types",
+        "Implemented three distinct storytelling modes for optimal user experience",
+        "Built advanced filtering and search functionality with fuzzy matching",
+        "Developed comprehensive content workflow with Markdown templates",
+        "Achieved excellent performance with vanilla JavaScript architecture",
+        "Implemented robust security measures for user-generated content",
+        "Created extensive documentation and usage guidelines",
+        "Established automated project discovery and management system"
+    ]
+} 

@@ -1831,11 +1831,12 @@
 
 /* --- Active Filters Display --- */
 #active-filters-display {
-    padding: 0 5%;
+    padding: 15px 5%;
     background-color: var(--bg-secondary);
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    align-items: center;
 }
 
 #active-filters-display.hidden {
@@ -1851,7 +1852,8 @@
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    transition: all 0.2s ease;
 }
 
 .filter-pill button {
@@ -1861,10 +1863,38 @@
     color: var(--text-secondary);
     cursor: pointer;
     line-height: 1;
+    padding: 2px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .filter-pill button:hover {
     color: var(--accent-red);
+    background-color: var(--bg-secondary);
 }
+
+.filter-pill.clear-all {
+    background-color: var(--accent-red-light);
+    color: var(--accent-red);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter-pill.clear-all:hover {
+    box-shadow: var(--neu-inset);
+}
+
+/* --- Grid Update Animation --- */
+.project-grid {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.project-grid.grid-updating {
+    opacity: 0.5;
+}
+
 
 
 /* --- Filter Panel (Dropdown) --- */

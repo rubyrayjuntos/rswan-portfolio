@@ -1,175 +1,164 @@
 {
-    "id":  2,
-    "title":  "Asteroids",
-    "description":  "<p>Classic arcade game modernized for mobile, bringing the timeless gameplay of Asteroids to contemporary mobile devices with enhanced graphics and touch controls.</p>",
-    "imageUrl":  "card-hero.jpg",
-    "medium":  "code",
-    "genre":  [
-                  "Mobile Game",
-                  "Arcade",
-                  "Retro",
-                  "Action",
-                  "Space Shooter"
-              ],
-    "style":  [
-                  "Retro",
-                  "Modern",
-                  "Mobile-Optimized",
-                  "Responsive",
-                  "Touch-Friendly"
-              ],
-    "tech":  [
-                 "JavaScript",
-                 "HTML5 Canvas",
-                 "Mobile Development",
-                 "Game Development",
-                 "Touch Controls",
-                 "Responsive Design"
-             ],
-    "mood":  "energetic",
-    "year":  2025,
-    "role":  "Game Developer, Mobile Developer, UI/UX Designer",
-    "variant":  "wide",
-    "status":  "live",
-    "pitch":  "A modern take on the classic Asteroids arcade game, optimized for mobile devices while preserving the timeless gameplay that made the original so beloved.",
-    "challenge":  "Adapting the classic keyboard/mouse controls to touch interfaces while maintaining the precise, responsive feel of the original game.",
-    "development":  "Recreated the core gameplay mechanics using modern web technologies, optimized for mobile performance and touch controls.",
-    "outcome":  "A faithful recreation of the classic Asteroids experience that works seamlessly on mobile devices.",
-    "links":  {
-                  "PLAY":  "https://rubyrayjuntos.github.io/AstroNova/"
-              },
-    "gallery":  [
-                    {
-                        "url":  "asteroids-gameplay-screenshot.jpg",
-                        "title":  "Gameplay Screenshot",
-                        "description":  "In-game screenshot showing the modernized Asteroids gameplay",
-                        "dimensions":  "1200x800"
-                    },
-                    {
-                        "url":  "asteroids-mobile-interface.jpg",
-                        "title":  "Mobile Interface",
-                        "description":  "Touch-optimized controls and mobile interface design",
-                        "dimensions":  "1200x800"
-                    },
-                    {
-                        "url":  "asteroids-explosion.png",
-                        "title":  "Asteroids Exploding",
-                        "description":  "Get satisfaction destroying asteroids that get in the way of your laser",
-                        "dimensions":  "800x600"
-                    },
-                    {
-                        "url":  "asteroids-gameplay.png",
-                        "title":  "Gameplay",
-                        "description":  "Gameplay engineered to feel like the original",
-                        "dimensions":  "800x600"
-                    },
-                    {
-                        "url":  "asteroids-game-over.png",
-                        "title":  "Game Over",
-                        "description":  "We're sorry, but you lost :(",
-                        "dimensions":  "800x600"
-                    },
-                    {
-                        "url":  "asteroids-high-score.png",
-                        "title":  "High Score",
-                        "description":  "Scoring system like the original - HIGH SCORE!",
-                        "dimensions":  "800x600"
-                    },
-                    {
-                        "url":  "asteroids-enhanced-graphics.jpg",
-                        "title":  "Enhanced Graphics",
-                        "description":  "Modern graphics and visual effects while maintaining retro aesthetic",
-                        "dimensions":  "1200x800"
-                    }
-                ],
-    "journey":  [
-                    {
-                        "title":  "Game Analysis",
-                        "description":  "Studied the original Asteroids gameplay mechanics and design principles and created a comprehensive technical/functional specification to make development rapid"
-                    },
-                    {
-                        "title":  "Mobile Adaptation",
-                        "description":  "Designed touch controls that preserve the original game feel while adapting for mobile players."
-                    },
-                    {
-                        "title":  "Technical Implementation",
-                        "description":  "Built the game using HTML5 Canvas and JavaScript for cross-platform compatibility"
-                    },
-                    {
-                        "title":  "Performance Optimization",
-                        "description":  "Optimized for smooth gameplay on mobile devices, and thoroughly tested performance from dev start to release."
-                    },
-                    {
-                        "title":  "User Testing",
-                        "description":  "Refined controls and gameplay based on user feedback - because in the end, it is the players that matter."
-                    }
-                ],
-    "specs":  [
-                  {
-                      "title":  "Game Engine",
-                      "description":  "Custom game engine built with HTML5 Canvas and JavaScript. No library dependancies to worry about."
-                  },
-                  {
-                      "title":  "Mobile Optimization",
-                      "description":  "Optimized for touch controls and mobile-first design principles."
-                  },
-                  {
-                      "title":  "Graphics",
-                      "description":  "Enhanced graphics while maintaining core retro aesthetic - it was already perfect, I just adapted it for web and mobile."
-                  },
-                  {
-                      "title":  "Performance",
-                      "description":  "Smooth 60fps gameplay optimized for mobile hardware"
-                  }
-              ],
-    "artifacts":  [
-        {
-            "name":  "GitHub Repository",
-            "description":  "Source code repository with full game implementation",
-            "url":  "https://github.com/rubyrayjuntos/AstroNova",
-            "icon":  "⭐"
-        },
-        {
-            "name":  "Game Design Document: Technical and Functional Spec",
-            "description":  "Complete game design specification including mechanics, controls, and gameplay flow. All the thought went into this document so that development took a week.",
-            "url":  "_data/projects/asteroids/asteroids-specs.md",
-            "icon":  "🎮"
-        },
-        {
-            "name":  "High Level Game Design Document",
-            "description":  "High level game design specification including mechanics, controls, and gameplay flow",
-            "url":  "_data/projects/asteroids/game-design.md",
-            "icon":  "🎮"
-        },
-                      {
-                          "name":  "Technical Architecture",
-                          "description":  "Detailed technical architecture showing game engine structure and optimization",
-                          "url":  "_data/projects/asteroids/technical-architecture.md",
-                          "icon":  "🏗️"
-                      },
-                      {
-                          "name":  "Performance Benchmarks",
-                          "description":  "Mobile performance testing results and optimization strategies",
-                          "url":  "_data/projects/asteroids/performance-benchmark-report.md",
-                          "icon":  "⚡"
-                      },
-                      {
-                          "name":  "Touch Control Design",
-                          "description":  "Detailed documentation of touch control adaptation from keyboard/mouse input",
-                          "url":  "_data/projects/asteroids/touch-control-design.md",
-                          "icon":  "👆"
-                      },
-                      {
-                          "name":  "User Testing Results",
-                          "description":  "User feedback and testing results that informed control refinements",
-                          "url":  "_data/projects/asteroids/user-testing.md",
-                          "icon":  "👥"
-                      },
-                      {
-                          "name":  "README and Deployment Guide",
-                          "description":  "Step-by-step instructions for deploying the game to mobile platforms",
-                          "url":  "_data/projects/asteroids/README.md",
-                          "icon":  "🚀"
-                      }
-                  ]
+  "id": 2,
+  "title": "Asteroids",
+  "description": "Classic arcade game modernized for mobile, bringing the timeless gameplay of Asteroids to contemporary mobile devices with enhanced graphics and touch controls.",
+  "imageUrl": "card-hero.jpg",
+  "medium": "code",
+  "genre": [
+    "Game"
+  ],
+  "style": [
+    "Modern",
+    "Responsive"
+  ],
+  "tech": [
+    "JavaScript",
+    "HTML5"
+  ],
+  "mood": "energetic",
+  "year": 2025,
+  "role": "Game Developer, Mobile Developer, UI/UX Designer",
+  "variant": "wide",
+  "status": "live",
+  "pitch": "A modern take on the classic Asteroids arcade game, optimized for mobile devices while preserving the timeless gameplay that made the original so beloved.",
+  "challenge": "Adapting the classic keyboard/mouse controls to touch interfaces while maintaining the precise, responsive feel of the original game.",
+  "development": "Recreated the core gameplay mechanics using modern web technologies, optimized for mobile performance and touch controls.",
+  "outcome": "A faithful recreation of the classic Asteroids experience that works seamlessly on mobile devices.",
+  "links": {
+    "PLAY": "https://rubyrayjuntos.github.io/AstroNova/"
+  },
+  "gallery": [
+    {
+      "url": "asteroids-gameplay-screenshot.jpg",
+      "title": "Gameplay Screenshot",
+      "description": "In-game screenshot showing the modernized Asteroids gameplay",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "asteroids-mobile-interface.jpg",
+      "title": "Mobile Interface",
+      "description": "Touch-optimized controls and mobile interface design",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "asteroids-explosion.png",
+      "title": "Asteroids Exploding",
+      "description": "Get satisfaction destroying asteroids that get in the way of your laser",
+      "dimensions": "800x600"
+    },
+    {
+      "url": "asteroids-gameplay.png",
+      "title": "Gameplay",
+      "description": "Gameplay engineered to feel like the original",
+      "dimensions": "800x600"
+    },
+    {
+      "url": "asteroids-game-over.png",
+      "title": "Game Over",
+      "description": "We're sorry, but you lost :(",
+      "dimensions": "800x600"
+    },
+    {
+      "url": "asteroids-high-score.png",
+      "title": "High Score",
+      "description": "Scoring system like the original - HIGH SCORE!",
+      "dimensions": "800x600"
+    },
+    {
+      "url": "asteroids-enhanced-graphics.jpg",
+      "title": "Enhanced Graphics",
+      "description": "Modern graphics and visual effects while maintaining retro aesthetic",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Game Analysis",
+      "description": "Studied the original Asteroids gameplay mechanics and design principles and created a comprehensive technical/functional specification to make development rapid"
+    },
+    {
+      "title": "Mobile Adaptation",
+      "description": "Designed touch controls that preserve the original game feel while adapting for mobile players."
+    },
+    {
+      "title": "Technical Implementation",
+      "description": "Built the game using HTML5 Canvas and JavaScript for cross-platform compatibility"
+    },
+    {
+      "title": "Performance Optimization",
+      "description": "Optimized for smooth gameplay on mobile devices, and thoroughly tested performance from dev start to release."
+    },
+    {
+      "title": "User Testing",
+      "description": "Refined controls and gameplay based on user feedback - because in the end, it is the players that matter."
+    }
+  ],
+  "specs": [
+    {
+      "title": "Game Engine",
+      "description": "Custom game engine built with HTML5 Canvas and JavaScript. No library dependancies to worry about."
+    },
+    {
+      "title": "Mobile Optimization",
+      "description": "Optimized for touch controls and mobile-first design principles."
+    },
+    {
+      "title": "Graphics",
+      "description": "Enhanced graphics while maintaining core retro aesthetic - it was already perfect, I just adapted it for web and mobile."
+    },
+    {
+      "title": "Performance",
+      "description": "Smooth 60fps gameplay optimized for mobile hardware"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "GitHub Repository",
+      "description": "Source code repository with full game implementation",
+      "url": "https://github.com/rubyrayjuntos/AstroNova",
+      "icon": "⭐"
+    },
+    {
+      "name": "Game Design Document: Technical and Functional Spec",
+      "description": "Complete game design specification including mechanics, controls, and gameplay flow. All the thought went into this document so that development took a week.",
+      "url": "_data/projects/asteroids/asteroids-specs.md",
+      "icon": "🎮"
+    },
+    {
+      "name": "High Level Game Design Document",
+      "description": "High level game design specification including mechanics, controls, and gameplay flow",
+      "url": "_data/projects/asteroids/game-design.md",
+      "icon": "🎮"
+    },
+    {
+      "name": "Technical Architecture",
+      "description": "Detailed technical architecture showing game engine structure and optimization",
+      "url": "_data/projects/asteroids/technical-architecture.md",
+      "icon": "🏗️"
+    },
+    {
+      "name": "Performance Benchmarks",
+      "description": "Mobile performance testing results and optimization strategies",
+      "url": "_data/projects/asteroids/performance-benchmark-report.md",
+      "icon": "⚡"
+    },
+    {
+      "name": "Touch Control Design",
+      "description": "Detailed documentation of touch control adaptation from keyboard/mouse input",
+      "url": "_data/projects/asteroids/touch-control-design.md",
+      "icon": "👆"
+    },
+    {
+      "name": "User Testing Results",
+      "description": "User feedback and testing results that informed control refinements",
+      "url": "_data/projects/asteroids/user-testing.md",
+      "icon": "👥"
+    },
+    {
+      "name": "README and Deployment Guide",
+      "description": "Step-by-step instructions for deploying the game to mobile platforms",
+      "url": "_data/projects/asteroids/README.md",
+      "icon": "🚀"
+    }
+  ]
 }

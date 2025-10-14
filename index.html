@@ -10,11 +10,24 @@
     <link rel="stylesheet" href="styles/themes.css">
 </head>
 <body>
-    <header id="top-nav">
+             <!-- Sidebar Filter Panel -->
+    <aside id="filter-sidebar" class="filter-sidebar">
+        <div class="panel-header">
+            <h3>Filter & Refine</h3>
+            <button id="close-filter-btn" class="close-btn" aria-label="Close filters">&times;</button>
+        </div>
+        <div class="panel-content">
+            <div class="filter-group-container"></div>
+        </div>
+    </aside>
 
-        
+    <!-- Sidebar Backdrop -->
+    <div id="sidebar-backdrop" class="sidebar-backdrop"></div> 
+
+    <!-- Header -->
+    <header id="top-nav">
+        <div class="logo">Ray Swan</div>
         <div class="nav-center">
-            <div class="logo">Ray Swan</div>
             <div class="search-wrapper">
                 <i class="fas fa-search"></i>
                 <input type="search" id="mainSearchInput" placeholder="Search by keyword, tech, or title...">
@@ -22,95 +35,56 @@
             <button id="filter-icon" aria-label="Open filters">
                 <i class="fas fa-sliders-h"></i>
             </button>
-            <button id="filter-icon"  data-modal-target="connectModal" data-tab-target="about">About</button>
+            <button id="about-btn" data-modal-target="connectModal" data-tab-target="about">About</button>
         </div>
-
-
-        
         <!-- Mobile hamburger menu -->
         <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
             <i class="fas fa-bars"></i>
         </button>
-        
-        <!-- Dropdown filter panel - positioned within header for proper layering -->
-        <div id="filter-panel" class="filter-dropdown">
-            <div class="panel-header">
-                <h3>Filter Projects</h3>
-                <button id="close-filter-panel">&times;</button>
-            </div>
-            <div class="filter-group-container">
-                <!-- Filter groups will be dynamically inserted here by main.js -->
-            </div>
-            <div class="panel-footer">
-                <button id="apply-filters-btn">Apply</button>
-                <button id="clear-filters-btn">Clear All</button>
-            </div>
-        </div>
     </header>
 
     <!-- Mobile menu overlay -->
-    <div id="mobile-menu" class="mobile-menu-overlay">
-        <div class="mobile-menu-content">
-
-            <div class="mobile-search">
-                <i class="fas fa-search"></i>
-                <input type="search" id="mobileSearchInput" placeholder="Search projects...">
-            </div>
-            <button class="mobile-filter-btn">
-                <i class="fas fa-sliders-h"></i>
-                Filters
-            </button>
-            <button class="nav-button" data-modal-target="connectModal" data-tab-target="about">About Me</button>
-            <div class="mobile-nav-links">
-                
-                
-            </div>
-        </div>
-    </div>
+    <div id="mobile-menu" class="mobile-menu-overlay"></div>
 
     <div id="active-filters-display" class="hidden"></div>
 
-    <main class="container">
-        <div class="portfolio-container">
-            <div id="project-grid-container">
-                <div id="loading-spinner" class="hidden">
-                    <div class="spinner"></div>
-                    <p>Curating creative works...</p>
-                </div>
-                <div id="projectGrid"></div>
-            </div>
-        </div>
-    </main>
+<main id="main-content">
+                        <div class="hidden"><div class="view-switcher">
+    <button id="switcher-projects-btn" class="switcher-projects-btn active">Projects</button>
+    <button id="switcher-docs-btn" class="switcher-docs-btn">Documents</button>
+</div></div>
+    <div class="container">
 
-    <footer class="signature-footer">
-        <div class="footer-content">
-            <p class="footer-signature">R. Swan</p>
-            <p class="footer-quote">"Crafting worlds where story, art, and code converge."</p>
-            <div class="footer-links">
-                 <button class="footer-button" data-modal-target="connectModal" data-tab-target="about">About Me</button>
-                 <button class="footer-button" data-modal-target="connectModal" data-tab-target="contact">Connect With Me</button>
-                 <button class="footer-button" data-modal-target="connectModal" data-tab-target="resume">Resume</button>
-            </div>
+        <div class="portfolio-container">
+            <!-- View Switcher, Project Grid, etc. -->
+             <!-- View Switcher -->
+
+            <!-- Project Grid -->
+            <div id="projectGrid" class="project-grid"></div>
+            <!-- Loading Spinner -->
+            <div id="loading-spinner" class="hidden">Loading...</div>
         </div>
-        <p id="copyright" class="footer-copyright"></p>
-    </footer>
+    </div>
+</main>
+    <footer class="signature-footer"></footer>
+
 
     <!-- Unified "Connect" Modal -->
     <div id="connectModal" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close-btn">&times;</button>
             <div class="modal-tabs">
-                <button class="tab-button active" data-tab="about">About Me</button>
-                <button class="tab-button" data-tab="contact">Contact</button>
-                <button class="tab-button" data-tab="resume">Resume</button>
+                <button class="tab-button active" data-tab-target="about">About Me</button>
+                <button class="tab-button" data-tab-target="contact">Contact</button>
+                <button class="tab-button" data-tab-target="resume">Resume</button>
             </div>
             <div class="modal-body">
-                <div id="about" class="tab-content active">
+                <div class="tab-content active" data-tab="about">
                     <h4>About R. Swan</h4>
                     <p>I am a multidisciplinary creator with a passion for storytelling, world-building, and immersive digital experiences. My work spans across writing, art, and code, always with a focus on crafting narratives that resonate and inspire.</p>
                     <p>This portfolio is a living testament to that journey, a collection of visions, words, and systems that explore the intersection of technology and creativity.</p>
                 </div>
-                <div id="contact" class="tab-content">
+                <div class="tab-content" data-tab="contact">
                     <h4>Get in Touch</h4>
                     <p>I would love to hear from you and add you to my mail list.</p>
                     <form id="contactForm">
@@ -125,7 +99,7 @@
                         <button type="submit" class="form-submit-btn">Send</button>
                     </form>
                 </div>
-                <div id="resume" class="tab-content">
+                <div class="tab-content" data-tab="resume">
                     <div class="resume-header">
                         <h2>Ray Swan</h2>
                         <h3>Product Manager | Generative AI Solutions | Creative Technologist</h3>
@@ -245,11 +219,25 @@
             </div>
         </div>
     </div>
-    
     <div id="notification-container"></div>
-
+<footer class="signature-footer neumorphic-footer">
+    <div class="footer-content">
+        <div class="footer-copyright">
+            &copy; 2025 Ray Swan
+        </div>
+        <div class="footer-socials">
+            <a href="https://github.com/rubyrayjuntos" aria-label="GitHub" class="footer-social-link" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="http://www.linkedin.com/in/ray-swan-b973525" aria-label="LinkedIn" class="footer-social-link" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+           
+            </a>
+        </div>
+    </div>
+</footer>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
-    <script src="js/project-loader.js?v=2"></script>
-    <script src="js/main.js?v=2"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>

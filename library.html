@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Library</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/filters-and-grid.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav>
+            <!-- Add navigation links as needed -->
+        </nav>
+        <div class="header-controls">
+            <input type="search" id="search-input" placeholder="Search documents...">
+            <button id="filter-trigger-btn" class="neumorphic-btn" aria-label="Open Filters">Filters</button>
+        </div>
+    </header>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <aside id="filter-sidebar" class="filter-sidebar">
+        <div class="sidebar-header">
+            <h2>Filter & Refine</h2>
+            <button id="sidebar-close-btn" class="close-btn" aria-label="Close Filters">&times;</button>
+        </div>
+        <div class="sidebar-content">
+            <div class="filter-group">
+                <label for="category-filter">Category</label>
+                <select id="category-filter" class="neumorphic-select">
+                    <option value="">All Categories</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <h3>Tags</h3>
+                <div id="tags-filter-container" class="tags-container"></div>
+            </div>
+        </div>
+    </aside>
+    <main>
+        <h1>Document Library</h1>
+        <div class="grid-controls">
+            <div id="applied-filters-container" class="applied-filters"></div>
+            <div class="sort-container">
+                <label for="sort-select">Sort by:</label>
+                <select id="sort-select" class="neumorphic-select">
+                    <option value="category-asc">Category (A-Z)</option>
+                    <option value="date-desc">Date (Newest)</option>
+                    <option value="date-asc">Date (Oldest)</option>
+                    <option value="title-asc">Title (A-Z)</option>
+                    <option value="title-desc">Title (Z-A)</option>
+                </select>
+            </div>
+        </div>
+        <div id="document-grid" class="card-grid"></div>
+        <div class="pagination-container">
+            <button id="load-more-btn" class="neumorphic-btn" style="display: none;">Load More</button>
+        </div>
+    </main>
+    <script src="js/lib/fuse.min.js"></script>
+    <script src="js/data-loader.js"></script>
+    <script src="js/ui-controller.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

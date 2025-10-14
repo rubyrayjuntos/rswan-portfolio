@@ -4,9 +4,16 @@
   "description": "A dramatic reinterpretation of the tarot where archetypes take the stage. Each card captures a performance—a frozen moment of divine theatre that honors tradition while teasing new emotional truths.",
   "imageUrl": "card-hero.jpg",
   "medium": "art",
-  "genre": ["Tarot Art", "Symbolic Performance", "Archetypal Theatre"],
-  "style": ["Theatrical", "Symbolic", "Expressive", "Contemporary Mysticism"],
-  "tech": ["Digital Painting", "Staged Symbolism", "Tarot Research", "Narrative Composition"],
+  "genre": [
+    "Tarot",
+    "Fantasy"
+  ],
+  "style": [
+    "Theatrical",
+    "Symbolic",
+    "Expressive"
+  ],
+  "tech": [],
   "mood": "Ritual, Dramatic, Archetypal",
   "year": 2024,
   "role": "Artist, Tarot Designer, Symbolic Director",

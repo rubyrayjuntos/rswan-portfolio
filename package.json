@@ -4,7 +4,7 @@
   "description": "A dynamic and multi-faceted web portfolio.",
   "main": "index.js",
   "scripts": {
-    "serve": "npx http-server -p 8080 -c-1",
+    "serve": "npx http-server . -p 8080 -c-1",
     "audit": "node scripts/audit-server.js",
     "test": "jest",
     "test:watch": "jest --watch",

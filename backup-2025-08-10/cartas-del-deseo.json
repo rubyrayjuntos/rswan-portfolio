@@ -1,0 +1,114 @@
+{
+  "id": 4,
+  "title": "Cartas del Deseo",
+  "description": "A <em>sensual fusion</em> of <strong>AI mysticism</strong> and <code>component-driven UI</code>, this project transforms tarot into a telenovela. Users receive real-time readings from <strong>Papi Chispa</strong>—a velvet-voiced, Spanglish oracle rendered in dramatic Cartas del Deseo visuals.",
+  "imageUrl": "card-hero.jpg",
+  "medium": "code",
+  "genre": ["AI", "Narrative Tech", "Spiritual UX"],
+  "style": ["Dark Mode", "Latinx", "Emotive"],
+  "tech": ["HTML5", "CSS3", "JavaScript", "OpenAI GPT", "Lazy Léon UI", "JSON"],
+  "mood": "Dramatic, Intimate, Lyrical",
+  "year": 2025,
+  "role": "Architect • Front-End Developer • AI Whisperer",
+  "variant": "interactive application",
+  "status": "Launched 💋",
+  "links": {
+    "github": "https://github.com/rubyrayjuntos/ViteaTSRE"
+  },
+  "pitch": "**A seductive, AI-powered tarot experience with a modular dark-mode UI and a soul.**",
+  "challenge": "Orchestrating dynamic <strong>AI storytelling</strong> and reusable front-end components within a flexible, JSON-driven structure—without sacrificing poetry or performance.",
+  "development": "The system was designed using a <em>content-first</em> approach. A decoupled architecture allowed tarot content and persona voice to live in JSON, while the <strong>Lazy Léon UI system</strong> handled theming, animation, and interactive flow. Integration with <code>GPT-4</code> brought emotional narrative and voice consistency to the experience.",
+  "outcome": "The final build is a fully responsive, interactive tarot experience that feels like <em>you’re being seduced by code</em>. Every spread is a scene. Every reading, a confession. <strong>Papi</strong> guides users through ritualized UX, offering spreads like <code>The Pact</code> and <code>Forbidden Flame</code>—each accompanied by dramatic visuals and voice-rich narration.",
+  "artifacts": [
+    {
+      "name": "🏛️ README",
+      "description": "A good primer on how the web app is developed",
+      "url": "_data/projects/coding/cartas-del-deseo/README_UPDATED.md",
+      "icon": "🏛️"
+    },
+    {
+      "name": "🔌 CONTRIBUTING",
+      "description": "A Doc for those that want to add to the app",
+      "url": "_data/projects/coding/cartas-del-deseo/CONTRIBUTING.md",
+      "icon": "🔌"
+    },
+    {
+      "name": "⭐ TODO",
+      "description": "Roadmap for future updates",
+      "url": "_data/projects/coding/cartas-del-deseo/TODO.md",
+      "icon": "⭐"
+    }
+  ],
+  "gallery": [
+    {
+      "url": "welcome.webp",
+      "title": "🔥 Entrance to Papi Chispa's Velvet Lound",
+      "description": "The interface is simple and spontaneous. Ask your question and choose your spread."
+    },
+    {
+      "url": "first-card-reading.webp",
+      "title": "💡 First Card is revealed",
+      "description": "Each card draw is unique - the readings and the cards are generated one-of-a-kind experiences."
+    },
+    {
+      "url": "second-card-reading.webp",
+      "title": "💡 The second card is flipped",
+      "description": "The Papi Chispa character is consistent and highly insightful."
+    },
+    {
+      "url": "final-card-reading.webp",
+      "title": "💡 The final card is flipped.",
+      "description": "Users can chat with Papi Chispa with every card draw. Every reading is a show."
+    },
+    {
+      "url": "Lips.webp",
+      "title": "💡 Telenovela Lips",
+      "description": "Lips, lipstick stains, broken mirrors, the iconography has a latinx flair with telenovela drama."
+    },
+    {
+      "url": "first-card-reading.webp",
+      "title": "💡 Cartas del Deseo style is consistent.",
+      "description": "The unique style is crafted by Papi Chispa himself."
+    }
+  ],
+  "journey": [
+    {
+      "title": "📜 Phase 1: The Monolithic repo for the SPA",
+      "description": "Started with a raw single-page build to <strong>validate tarot logic</strong> and test GPT behavior. No visuals, just raw flame."
+    },
+    {
+      "title": "🔓 Phase 2: The Great Decoupling",
+      "description": "Decoupled data from layout. <code>Spreads, dialogue, and card lore</code> now served by Rest API in JSON files, making the system endlessly expandable."
+    },
+    {
+      "title": "💋 Phase 3: The Voice of Papi",
+      "description": "Infused GPT with persona memory. Crafted a tone of <em>desire, ritual, and Spanglish intimacy</em>."
+    },
+    {
+      "title": "🌒 Phase 4: Cartas in Style",
+      "description": "Wrapped the experience in <strong>Cartas del Deseo style</strong>—designed by Papi himself. elegant, moody, and oh so clickable."
+    },
+    {
+      "title": "🕯️ Phase 5: Ritual UX",
+      "description": "Designed interactive flow with <strong>gesture-driven card reveals</strong>, spread diagrams, and seductive continuation prompts."
+    }
+  ],
+  "specs": [
+    {
+      "title": "🧠 Data-Driven Architecture",
+      "description": "All tarot logic, card metadata, and voice scripts live in <code>external JSON</code>—making it easy to expand or remix spreads without touching code."
+    },
+    {
+      "title": "🧩 Modular & Reusable Components",
+      "description": "Styled with a <em>tokenized, component-first UI system</em>. Every button, modal, and card layout is reusable across future mystical tools."
+    },
+    {
+      "title": "🎙️ Real-Time AI Persona",
+      "description": "GPT-4 is wired into the soul of Papi—every reading is <strong>generated live</strong> with memory, tone, and emotional fidelity."
+    },
+    {
+      "title": "🌌 Fully Themed Experience",
+      "description": "Custom theming through CSS variables and responsive design tokens ensure the experience feels like a <em>neo-mystic app</em> from a parallel dimension."
+    }
+  ]
+}

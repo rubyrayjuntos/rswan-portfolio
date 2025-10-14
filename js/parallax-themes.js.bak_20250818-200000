@@ -1,0 +1,285 @@
+// ParallaxThemes.html specific JavaScript
+
+function initializeSections() {
+    const sections = [
+        { id: 'process', title: 'Creative Process' },
+        { id: 'inspiration', title: 'Inspiration & Influences' },
+        { id: 'artifacts', title: 'Project Artifacts' },
+        { id: 'excerpts', title: 'Excerpts' },
+        { id: 'themes', title: 'Themes & Analysis' }
+    ];
+
+    // Create sections if they don't exist
+    sections.forEach(section => {
+        if (!document.getElementById(section.id)) {
+            const sectionElem = document.createElement('section');
+            sectionElem.id = section.id;
+            sectionElem.className = 'content-section fade-in';
+            sectionElem.setAttribute('aria-label', section.title);
+            document.querySelector('.main-content').appendChild(sectionElem);
+        }
+    });
+
+    // Create section navigation if it doesn't exist
+    if (!document.querySelector('.section-nav')) {
+        const nav = document.createElement('nav');
+        nav.className = 'section-nav';
+        
+        sections.forEach(section => {
+            const button = document.createElement('button');
+            button.className = 'section-nav-btn';
+            button.textContent = section.title;
+            button.onclick = () => {
+                // Hide all sections
+                sections.forEach(s => {
+                    document.getElementById(s.id).style.display = 'none';
+                });
+                // Show selected section
+                document.getElementById(section.id).style.display = 'block';
+                // Update active state
+                document.querySelectorAll('.section-nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+            };
+            nav.appendChild(button);
+        });
+
+        document.querySelector('.main-content').insertBefore(nav, document.querySelector('.content-section'));
+    }
+
+    // Show first section by default
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.style.display = 'none';
+    });
+    document.getElementById('process').style.display = 'block';
+    document.querySelector('.section-nav-btn').classList.add('active');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize sections
+    initializeSections();
+    
+    // Initialize particles
+    initializeParticles();
+    
+    // Initialize scroll animations
+    initializeScrollAnimations();
+    
+    // Initialize motion toggle
+    initializeMotionToggle();
+    
+    // Handle gallery interactions
+    initializeGallery();
+});
+
+function initializeParticles() {
+    const heroParticles = document.querySelector('.hero-particles');
+    if (!heroParticles) return;
+
+    // Create particles
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 10 + 's';
+        heroParticles.appendChild(particle);
+    }
+
+    // Journey particles
+    const journeyParticles = document.querySelector('.journey-particles');
+    if (journeyParticles) {
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'journey-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            journeyParticles.appendChild(particle);
+        }
+    }
+}
+
+function initializeScrollAnimations() {
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    // Observe elements that need animation
+    document.querySelectorAll('.section-title, .timeline-item, .process-content, .inspiration-content')
+        .forEach(el => observer.observe(el));
+}
+
+function initializeMotionToggle() {
+    // Create the floating nav if it doesn't exist
+    let floatingNav = document.querySelector('.floating-nav');
+    if (!floatingNav) {
+        floatingNav = document.createElement('nav');
+        floatingNav.className = 'floating-nav';
+        
+        const navContent = document.createElement('div');
+        navContent.className = 'nav-content';
+        
+        const navIcon = document.createElement('i');
+        navIcon.className = 'nav-icon fas fa-bars';
+        
+        const navLinks = document.createElement('ul');
+        navLinks.className = 'nav-links';
+        
+        const motionToggle = document.createElement('button');
+        motionToggle.className = 'motion-toggle';
+        motionToggle.textContent = 'Disable Motion';
+        
+        navLinks.appendChild(motionToggle);
+        navContent.appendChild(navIcon);
+        navContent.appendChild(navLinks);
+        floatingNav.appendChild(navContent);
+        
+        document.body.appendChild(floatingNav);
+        
+        // Add event listener
+        motionToggle.addEventListener('click', () => {
+            document.body.classList.toggle('motion-disabled');
+            const isDisabled = document.body.classList.contains('motion-disabled');
+            motionToggle.textContent = isDisabled ? 'Enable Motion' : 'Disable Motion';
+            
+            // Save preference
+            localStorage.setItem('motionPreference', isDisabled ? 'disabled' : 'enabled');
+        });
+
+        // Check saved preference
+        const savedPreference = localStorage.getItem('motionPreference');
+        if (savedPreference === 'disabled') {
+            document.body.classList.add('motion-disabled');
+            motionToggle.textContent = 'Enable Motion';
+        }
+    }
+}
+
+function initializeGallery() {
+    // Create modal elements
+    const modal = document.createElement('div');
+    modal.id = 'gallery-modal';
+    modal.className = 'gallery-modal-overlay';
+
+    const modalContent = document.createElement('div');
+    modalContent.className = 'gallery-modal-content';
+
+    const modalHeader = document.createElement('div');
+    modalHeader.className = 'gallery-header';
+
+    const modalTitle = document.createElement('h3');
+    modalTitle.className = 'gallery-title';
+    modalTitle.textContent = 'Gallery';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'gallery-close-btn';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.onclick = () => modal.style.display = 'none';
+
+    const imgContainer = document.createElement('div');
+    imgContainer.className = 'gallery-modal-img-container';
+    imgContainer.id = 'gallery-modal-img-container';
+
+    const fullscreenImg = document.createElement('img');
+    fullscreenImg.className = 'gallery-modal-fullscreen-image';
+    imgContainer.appendChild(fullscreenImg);
+
+    const controls = document.createElement('div');
+    controls.className = 'gallery-controls';
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'gallery-nav-btn prev';
+    prevBtn.textContent = 'Previous';
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'gallery-nav-btn next';
+    nextBtn.textContent = 'Next';
+
+    controls.appendChild(prevBtn);
+    controls.appendChild(nextBtn);
+
+    modalHeader.appendChild(modalTitle);
+    modalHeader.appendChild(closeBtn);
+    modalContent.appendChild(modalHeader);
+    modalContent.appendChild(imgContainer);
+    modalContent.appendChild(controls);
+    modal.appendChild(modalContent);
+
+    document.body.appendChild(modal);
+
+    let currentImageIndex = 0;
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const images = Array.from(galleryItems).map(item => ({
+        src: item.querySelector('img').src,
+        title: item.querySelector('.gallery-overlay h3')?.textContent || '',
+        description: item.querySelector('.gallery-overlay p')?.textContent || ''
+    }));
+
+    function showImage(index) {
+        if (index >= 0 && index < images.length) {
+            currentImageIndex = index;
+            fullscreenImg.src = images[index].src;
+            modalTitle.textContent = images[index].title;
+            modal.style.display = 'flex';
+        }
+    }
+
+    prevBtn.addEventListener('click', () => {
+        showImage((currentImageIndex - 1 + images.length) % images.length);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        showImage((currentImageIndex + 1) % images.length);
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Handle keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (modal.style.display === 'flex') {
+            if (e.key === 'ArrowLeft') {
+                showImage((currentImageIndex - 1 + images.length) % images.length);
+            } else if (e.key === 'ArrowRight') {
+                showImage((currentImageIndex + 1) % images.length);
+            } else if (e.key === 'Escape') {
+                modal.style.display = 'none';
+            }
+        }
+    });
+
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            showImage(index);
+        });
+    });
+}
+
+// Parallax effect for spec cards
+document.querySelectorAll('.spec-card[data-parallax="true"]').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xPercent = (x / rect.width - 0.5) * 20;
+        const yPercent = (y / rect.height - 0.5) * 20;
+        
+        card.style.transform = `perspective(1000px) rotateX(${yPercent}deg) rotateY(${xPercent}deg)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'none';
+    });
+});

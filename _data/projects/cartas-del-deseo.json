@@ -4,9 +4,16 @@
   "description": "A <em>sensual fusion</em> of <strong>AI mysticism</strong> and <code>component-driven UI</code>, this project transforms tarot into a telenovela. Users receive real-time readings from <strong>Papi Chispa</strong>—a velvet-voiced, Spanglish oracle rendered in dramatic Cartas del Deseo visuals.",
   "imageUrl": "card-hero.jpg",
   "medium": "code",
-  "genre": ["AI", "Narrative Tech", "Spiritual UX"],
-  "style": ["Dark Mode", "Latinx", "Emotive"],
-  "tech": ["HTML5", "CSS3", "JavaScript", "OpenAI GPT", "Lazy Léon UI", "JSON"],
+  "genre": [
+    "Interactive/Web"
+  ],
+  "style": [],
+  "tech": [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "OpenAI API"
+  ],
   "mood": "Dramatic, Intimate, Lyrical",
   "year": 2025,
   "role": "Architect • Front-End Developer • AI Whisperer",

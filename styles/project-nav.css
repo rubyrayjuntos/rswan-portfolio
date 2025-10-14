@@ -1,0 +1,252 @@
+/* ======================================================================= */
+/* == PROJECT PAGE TOP NAVIGATION (ISOLATED)                            == */
+/* ======================================================================= */
+
+#project-top-nav {
+    background: rgba(10, 25, 47, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.8rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background 0.3s ease;
+    color: #e2e8f0;
+}
+
+#project-top-nav .project-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+#project-top-nav .logo {
+    color: white;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+#project-top-nav .project-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#project-top-nav .nav-back-link {
+    color: #e2e8f0;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 1.2rem;
+}
+
+#project-top-nav .nav-back-link:hover {
+    color: #ff8c00;
+}
+
+#project-top-nav .project-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#project-top-nav .project-nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Dropdown Styles */
+#project-top-nav .nav-dropdown {
+    position: relative;
+}
+
+#project-top-nav .nav-dropdown-toggle {
+    background: none;
+    border: none;
+    color: #e2e8f0;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+#project-top-nav .nav-dropdown-toggle:hover,
+#project-top-nav .nav-dropdown-toggle[aria-expanded="true"] {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+#project-top-nav .nav-dropdown-toggle .fa-cog {
+    font-size: 1.2rem;
+}
+
+#project-top-nav .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: rgba(25, 40, 65, 0.9);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: 220px;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+#project-top-nav .nav-dropdown-toggle[aria-expanded="true"] + .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#project-top-nav .nav-dropdown-item {
+    display: block;
+    color: #e2e8f0;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+#project-top-nav .nav-dropdown-item:hover {
+    background: rgba(255, 140, 0, 0.2);
+    color: #ff8c00;
+}
+
+/* Settings Dropdown Content */
+#project-top-nav .dropdown-setting-item {
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #e2e8f0;
+    font-size: 0.9rem;
+}
+
+/* Toggle Switch CSS */
+#project-top-nav .switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+#project-top-nav .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+#project-top-nav .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #4a5568;
+    transition: .4s;
+    border-radius: 24px;
+}
+#project-top-nav .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+#project-top-nav input:checked + .slider {
+    background-color: #ff8c00;
+}
+#project-top-nav input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Mobile Navigation */
+#project-top-nav .project-mobile-menu-btn {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.project-mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 25, 47, 0.95);
+    backdrop-filter: blur(15px);
+    z-index: 1002;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-mobile-menu-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.project-mobile-menu-overlay .mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: 600;
+}
+
+.project-mobile-menu-overlay .project-mobile-menu-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.project-mobile-menu-overlay .mobile-nav-links {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive Breakpoint */
+@media (max-width: 768px) {
+    #project-top-nav .project-nav-desktop {
+        display: none;
+    }
+    #project-top-nav .project-mobile-menu-btn {
+        display: block;
+    }
+    #project-top-nav {
+        padding: 0.8rem 1.5rem;
+    }
+}
