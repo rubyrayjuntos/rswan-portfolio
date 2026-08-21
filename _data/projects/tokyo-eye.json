@@ -1,10 +1,10 @@
 {
   "id": 22,
   "title": "Tokyo Eye",
-  "tagline": "SCIENTIFIC AI / ML ARCHITECTURE",
-  "valueStatement": "Scientific AI platform for drug discovery and structural inference using hyperbolic geometry and protein-ligand modeling.",
-  "architectureHighlight": "Expert routing, multi-model inference, and agentic workflows with provenance and structural guardrails.",
-  "description": "A governed scientific-AI discovery environment for structural inference and ligand–protein work: hyperbolic geometry, atom-level models, and a scientist control plane that keeps AI inside the current data, structure, and workflow — not a disconnected chatbot.",
+  "tagline": "HYPERBOLIC SCIENTIFIC PLATFORM",
+  "valueStatement": "Poincaré GNN and MoE structural inference on a FastAPI / pgvector control plane, with Terraform data infra and MLflow gates.",
+  "architectureHighlight": "20-tool LLM coordinator, JWT sessions, provenance_run writes, and property-gate CI — agents stay inside the open structure.",
+  "description": "A governed scientific-AI platform for structural inference and ligand–protein work. Core science is PyTorch hyperbolic GNNs (geoopt), SE(3) via e3nn, MoE routing, and evidential uncertainty, plus GUDHI/RDKit/OpenMM. That sits on FastAPI (JWT, 20-tool coordinator, Bedrock→Anthropic→Mock), PostgreSQL 16 / pgvector with a single-write-path dimensional model and provenance_run lineage, Terraform Aurora+S3, and MLflow/Optuna with property-gate CI. The Poincaré visualizer uses XState machines for viewport, discovery phase, and hypothesis lifecycle — not a disconnected chatbot.",
   "imageUrl": "card-hero.png",
   "medium": "code",
   "genre": [
@@ -16,12 +16,12 @@
     "Modern"
   ],
   "tech": [
-    "PyTorch",
-    "HGNN",
-    "Scientific AI",
-    "Agents",
-    "ML Governance",
-    "Python"
+    "Hyperbolic GNN",
+    "e3nn",
+    "MoE",
+    "FastAPI",
+    "pgvector",
+    "Terraform"
   ],
   "domain": "science",
   "mood": "technical",
@@ -29,10 +29,10 @@
   "role": "Architect, Engineer & Technical Product Lead",
   "variant": "featured",
   "status": "in-progress",
-  "pitch": "Scientific AI platform for drug discovery and structural inference using hyperbolic geometry and protein-ligand modeling.",
-  "challenge": "Scientific assistants fail when they sit next to the work instead of in it — inventing plausible chemistry, ignoring the open structure, and leaving no provenance. Tokyo Eye had to bind agents to the current graph, selected residues, and preregistered metric gates, and recover when the first GNN underperformed.",
-  "development": "Architected a hyperbolic GNN path, then pivoted in one day to an atom-level Transformer / Mixture-of-Experts replacement that produced Pearson 0.407 on the same-day evaluation. Wrapped training in MLflow with immutable gates, ablations, and failed-run preservation. Scientist-facing flows use XState guardrails, Hypothesis tests, deterministic structural-biology checks, and RCSB semantic search. Two static HTML demos: Discovery Story (narrative walkthrough) and Discovery Cockpit (control plane).",
-  "outcome": "A discovery environment where models, geometry, and literature sit on one control plane; unproven capability stays separated from completed evidence. Story demo is linked from this page; Cockpit is the scientist UI. Source lives in tokyo-eye-agenticpoincare and tokyo-eye---eidetix-bio.",
+  "pitch": "Poincaré GNN and MoE structural inference on a FastAPI / pgvector control plane, with Terraform data infra and MLflow gates.",
+  "challenge": "Scientific assistants fail when they sit next to the work instead of in it — inventing plausible chemistry, ignoring the open structure, and leaving no provenance. Tokyo Eye had to bind agents to the current graph, selected residues, and preregistered metric gates, and keep geometry, data, and session state on one governed write path.",
+  "development": "Built the platform in tokyo-eye-agenticpoincare. Science extra: PyTorch/PyG, geoopt Poincaré, e3nn SE(3), GUDHI TDA, MoE routing, evidential heads, RDKit, OpenMM, PDB/dehydron ingestion. Agent: FastAPI, JWT, rate-limited sessions, WebSocket viewport directives, 20-tool coordinator, Bedrock → Anthropic → Mock, hypothesis + literature tools. Data: pgvector hyperbolic similarity, 30-schema migrations local↔Aurora, dimensional model, single-write-path normalizer, provenance_run. Infra: Terraform Aurora+S3, MLflow+Optuna, property-gate CI (corpus/smoke/curv). Visualizer: three XState machines (viewport, discovery phase, hypothesis lifecycle) — an earlier card audit that said XState was spec-only was wrong; eidetix-bio is a separate Three.js dehydron viewer. G12D is a separate OpenMM KRAS app. MLflow smoke proves schema emission; multi-stage lineage is still pending in-repo.",
+  "outcome": "Private source of truth is tokyo-eye-agenticpoincare. Public research showcase is hgnn-protein-ligand. This static portfolio hosts Discovery Story and Discovery Cockpit as HTML walkthroughs — not the FastAPI/XState visualizer. Findings docs include abandoned claims as well as surviving physics; unproven capability stays labeled unproven.",
   "links": {
     "demo": "demos/tokyo-eye/discovery-story.html",
     "cockpit": "demos/tokyo-eye/discovery-cockpit.html"
@@ -58,53 +58,59 @@
     },
     {
       "title": "Hyperbolic geometry as the spatial prior",
-      "description": "Used Poincaré / hyperbolic embeddings so hierarchical molecular relationships stay continuous instead of flattening into a Euclidean bag of atoms."
+      "description": "Poincaré / geoopt embeddings so hierarchical residue, fragment, and pocket structure stay continuous instead of flattening into a Euclidean bag of atoms."
     },
     {
-      "title": "GNN miss, same-day Transformer pivot",
-      "description": "When the PyTorch GNN underperformed, replaced it with an atom-level Transformer / MoE, trained and evaluated in one day (Pearson 0.407)."
+      "title": "Versioned science, not a frozen miss",
+      "description": "DTIE v3–v6 live in tree. Production inference is the V5 GNN path; training continues on v6 with MLflow governance. MoE and e3nn are in the science extra, not a slide overlay."
     },
     {
-      "title": "Evidence gates, not vibes",
-      "description": "MLflow with preregistered estimates, immutable metric gates, ablations, and preservation of failed experiments so a pretty number cannot quietly replace a registered one."
+      "title": "One write path, then the agent",
+      "description": "All data writes go through the normalizer. provenance_run is recorded before results. The 20-tool coordinator cannot skip that contract."
     },
     {
-      "title": "Control plane and story",
-      "description": "Discovery Cockpit for live scientific control; Discovery Story as the narrative walkthrough of how a finding is supposed to feel when the system is honest."
+      "title": "Session machine vs portfolio HTML",
+      "description": "XState owns the React Poincaré dashboard in the platform repo. Discovery Story and Cockpit on this site are static walkthroughs of how a finding is supposed to feel when the system is honest."
     }
   ],
   "specs": [
     {
       "title": "Context-bound scientific agents",
-      "description": "LLM workflows are constrained by XState, the open structure, and the current visual selection. The model cannot answer as if the protein were not on screen."
+      "description": "FastAPI coordinator with JWT, rate limits, and a WebSocket viewport. XState in the visualizer plus the open structure constrain what the LLM may say."
     },
     {
-      "title": "Hyperbolic GNN → atom-level Transformer",
-      "description": "Geometry-first structural inference; when the GNN failed the gate, the architecture changed in a day instead of explaining the miss away."
+      "title": "Hyperbolic GNN + MoE science",
+      "description": "PyTorch, geoopt Poincaré, e3nn SE(3), GUDHI persistence, MoE routing, evidential (epistemic + aleatoric) heads, RDKit/OpenMM, PDB/dehydron ingestion. Agent container stays lightweight — no PyTorch on the API image."
     },
     {
-      "title": "MLflow as governance, not a dashboard",
-      "description": "Preregistered metrics, immutable gates, ablations, provenance, and failed runs kept on purpose so champion/challenger is real."
+      "title": "Governed data plane",
+      "description": "PostgreSQL 16 / pgvector hyperbolic similarity, 30-schema migrations local↔Aurora, dimensional model, single-write-path normalizer, provenance_run lineage, Terraform Aurora + S3."
     },
     {
-      "title": "Deterministic biology checks",
-      "description": "Python Hypothesis tests plus structural-biology validators sit in front of generative output. Plausible text is not a result."
+      "title": "MLflow as a contract",
+      "description": "MLflow + Optuna. Mandatory training schema in mlflow_governance.py. Smoke proves field emission. Multi-stage parent/child lineage is documented as not yet proved. Property-gate CI: corpus / smoke / curv."
     },
     {
-      "title": "RCSB in the loop",
-      "description": "Semantic search against RCSB so literature and deposited structures are retrieval, not recollection from the model’s training cutoff."
+      "title": "Property gates and honest findings",
+      "description": "gates.yml property tests (corpus / smoke / curvature). Findings markdown records abandoned claims (λ₂ as cancer discriminator) alongside surviving dehydron physics."
     }
   ],
   "artifacts": [
     {
       "name": "GitHub — Agentic Poincaré",
-      "description": "Dedicated repository for the hyperbolic / agentic geometry engine",
+      "description": "Private platform: FastAPI agent, DTIE science, pgvector, Terraform, XState visualizer",
       "url": "https://github.com/rubyrayjuntos/tokyo-eye-agenticpoincare",
       "icon": "⭐"
     },
     {
+      "name": "GitHub — HGNN protein-ligand",
+      "description": "Public research showcase: hyperbolic GNN with MoE for binding inference",
+      "url": "https://github.com/rubyrayjuntos/hgnn-protein-ligand",
+      "icon": "⭐"
+    },
+    {
       "name": "GitHub — Eidetix Bio",
-      "description": "Tokyo Eye product repository (Eidetix Bio Research)",
+      "description": "Private Three.js / React dehydron visualizer (Vite). Not the FastAPI platform.",
       "url": "https://github.com/rubyrayjuntos/tokyo-eye---eidetix-bio",
       "icon": "⭐"
     },
@@ -116,19 +122,19 @@
     },
     {
       "name": "Scientific architecture",
-      "description": "Control plane, geometry engine, model runtime, and evidence store",
+      "description": "Platform layers: agent, science, data, visualizer, infra",
       "url": "_data/projects/tokyo-eye/architecture.md",
       "icon": "🏗️"
     },
     {
       "name": "Models and gates",
-      "description": "GNN pivot, Transformer/MoE, Pearson 0.407, MLflow contract",
+      "description": "DTIE versions, MLflow schema, property gates, abandoned vs surviving claims",
       "url": "_data/projects/tokyo-eye/models-and-gates.md",
       "icon": "⚡"
     },
     {
       "name": "Scientist UX",
-      "description": "Why Story vs Cockpit, and how agents stay inside the open experiment",
+      "description": "XState dashboard vs Story/Cockpit HTML, and how agents stay inside the open experiment",
       "url": "_data/projects/tokyo-eye/scientist-ux.md",
       "icon": "🎮"
     }

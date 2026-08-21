@@ -1,22 +1,22 @@
-# Kitchen Kontrol — AI capabilities
+# Kitchen Kontrol — voice and AI boundaries
 
-AI is in the product loop, not a sidebar novelty. Each capability is attached to a frontline task that already exists without a model.
+AI is not the lead of this case study. What exists in GitHub is narrower than the product-vision board in the gallery.
 
-## In the interactive demo
+## In source
 
-- **Compliance assistant widget** — USDA / TFER questions and out-of-range remediation. The Vite app can call Gemini when `GEMINI_API_KEY` is present (AI Studio / Render). Without a key, the rest of the ops demo still runs.
-- **Interactive demo hub** — planogram, recipes, inventory, meals, HACCP, multi-device sync: the behaviors the models are supposed to accelerate.
-- **AI roadmap section** — voice and vision as the next layer on those same screens.
+- **MilkTrace-Voice** — browser `SpeechRecognition` plus a keyword/number parser for school, milk type, and quantity. Spoken confirmations use `speechSynthesis`. The file is named `useGeminiLive.ts`. It does not call Gemini Live. `@google/genai` is imported only to type PCM blobs.
+- **MyKitchen** — `generateContent` against Gemini 2.5 Flash for out-of-range corrective actions and translation. The API key in source is an empty string, so the call cannot succeed until a key is supplied.
+- **Downloads Vite demo (not on GitHub)** — compliance chat is a keyword/TFER FAQ. `@google/genai` is in `package.json` and unused. `BroadcastChannel` sync is here, not in the GitHub ops platform.
 
-## Production mapping (called out on the AI-features gallery card)
+## Not in source
 
-1. **Voice-activated logging** — “log walk-in fridge at 38 degrees” with wet or full hands.
-2. **AI compliance assistant** — chat that cites food-safety rules and suggests corrective action.
-3. **Predictive inventory** — milk and supply forecast from history, weather, and school calendar.
-4. **Intelligent alerts** — overdue logs, drift, SMS/push.
-5. **Adaptive training** — modules from error patterns in the log history.
-6. **Visual compliance checks** — photo of the serving line vs the digital planogram.
+- Amazon Transcribe / Lex voice logging
+- Bedrock compliance assistant
+- SageMaker / Forecast demand bands
+- Rekognition planogram vision
+- NVIDIA Guardrails or any hosted safety product
+- Untransferred Azure work from cafeteria servers
 
-## Design rule
+## Design rule that still holds
 
-The model operates in **current workflow state** (open log, selected pan, last temperature). It does not replace the evidence store. Failed or out-of-range events stay in the log.
+If a model is added later, it operates on **current workflow state** (open log, last temperature, selected school). It does not replace the evidence store. Failed or out-of-range events stay in the log.

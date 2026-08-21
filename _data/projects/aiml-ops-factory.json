@@ -1,10 +1,10 @@
 {
   "id": 24,
   "title": "AI/ML Ops Factory",
-  "tagline": "ENTERPRISE MLOPS PLATFORM",
-  "valueStatement": "Generates governed ML project repositories with automated infrastructure, CI/CD, model promotion, and evidence.",
-  "architectureHighlight": "Separates platform, identity, and project lifecycles with Terraform, policy enforcement, and provenance from day one.",
-  "description": "An Azure-first factory that generates governed ML project repositories: Terraform infrastructure, a shared local-to-cloud lifecycle, conditional registration, and evidence that stays honest about what has actually been run.",
+  "tagline": "AZURE ML PROJECT FACTORY",
+  "valueStatement": "Terraform-generated Azure ML project repos from a product manifest, with OIDC CI and a live taxi reference that actually trained and served.",
+  "architectureHighlight": "Manifest → validate → plan → generate → doctor. Terraform is R1. Databricks train + model-serving inference is the telecom churn prototype, not generated output.",
+  "description": "An Azure-first factory that generates governed ML project repositories from abstracted config: Terraform infrastructure, a shared local-to-cloud lifecycle, conditional registration, and evidence that stays honest about what has actually been run. Microsoft MLOps v2 is a separate live taxi instance, not the generator’s output.",
   "imageUrl": "card-hero.png",
   "medium": "code",
   "genre": [
@@ -16,11 +16,11 @@
     "Technical"
   ],
   "tech": [
-    "MLOps",
-    "Azure ML",
     "Terraform",
-    "Databricks",
-    "GitHub Actions"
+    "Azure ML",
+    "OIDC",
+    "GitHub Actions",
+    "Generator"
   ],
   "domain": "mlops",
   "mood": "technical",
@@ -28,69 +28,93 @@
   "role": "Architect, Engineer & Technical Product Lead",
   "variant": "featured",
   "status": "in-progress",
-  "pitch": "Generates governed ML project repositories with automated infrastructure, CI/CD, model promotion, and evidence.",
-  "challenge": "Enterprise MLOps usually collapses into a notebook, a portal click, or a generator that pretends Databricks, Foundry, and Azure ML are one lifecycle. The factory had to generate self-contained project repos without importing a taxi demo as the platform, and without claiming live Azure proof from local tests.",
-  "development": "Re-engineered the Azure MLOps v2 accelerator idea into AIML-SCAFFOLD: manifest in, deterministic generate, doctor the result. Proven reference is azure-mlops (taxi fare, Dev and Prod infra, registered model, working batch endpoints). Shared lifecycle is prepare → train → evaluate → conditionally register → explicit-version batch serve. Terraform is the R1 Azure IaC. Foundry, Databricks retrieval, and agent runtime stay on the roadmap until they have their own evidence.",
-  "outcome": "A generator plus a live reference: AIML-SCAFFOLD produces the project; azure-mlops is the taxi instance that actually trained, registered, and served. This portfolio hosts the architecture write-up, not a fake factory UI. Sources: AIML-SCAFFOLD and azure-mlops.",
+  "pitch": "Terraform-generated Azure ML project repos from a product manifest, with OIDC CI and a live taxi reference that actually trained and served.",
+  "challenge": "Enterprise MLOps usually collapses into a notebook, a portal click, or a generator that pretends Databricks, Foundry, and Azure ML are one lifecycle. The factory had to generate self-contained project repos without importing a taxi demo or a churn prototype as the platform, and without claiming live Azure proof from local tests.",
+  "development": "Started as a Databricks medallion + telecom-churn product (azuredev-3d78, private): bronze/silver/gold, MLflow train/register (sklearn on gold_feature_snapshots from the IBM Telco corpus), FastAPI /churn-score that calls a Databricks model-serving endpoint, Foundry explanation client. Then stood up Microsoft’s MLOps v2 accelerator as a live taxi instance (azure-mlops) and added scheduled KS drift → retrain. Re-engineered a separate generator, AIML-SCAFFOLD: manifest in, deterministic generate, doctor. Public generated project is azure-aiml-ops. R1 does not generate Databricks, Foundry, online serving, or auto-retrain. Foundry GenAI ops remains in process on the churn prototype.",
+  "outcome": "Three evidenced slices: AIML-SCAFFOLD generates Terraform Azure ML repos; azure-aiml-ops is a generated Dev tree; azure-mlops is the taxi instance that trained, registered, and batch-served in Dev and Prod. Separately, azuredev-3d78 is the Databricks telecom-churn path (train on gold features, infer via model serving + FastAPI). This portfolio hosts the write-up, not a fake factory UI.",
   "gallery": [
     {
       "url": "card-hero.png",
       "title": "Factory control plane",
-      "description": "Intake through monitoring on one wall: pipeline health, registry, drift alerts, and the 3D factory the generator is supposed to instantiate — not a screenshot of a portal",
+      "description": "Intake through monitoring as a product metaphor. The generator instantiates Terraform + lifecycle repos, not this hologram UI.",
       "dimensions": "1200x800"
     }
   ],
   "journey": [
     {
-      "title": "Do not turn the taxi into the platform",
-      "description": "Kept AIML-SCAFFOLD as contracts, generator, templates, and policy. azure-mlops remains the proven Azure ML reference. Generated repos are product-specific."
+      "title": "Churn prototype first, not the factory",
+      "description": "azuredev-3d78 runs IBM Telco churn through Databricks bronze/silver/gold, trains sklearn (logistic / random forest) in MLflow from gold_feature_snapshots, registers the candidate, and scores through FastAPI → Databricks /serving-endpoints/.../invocations. Smoke test hits gold tables then serving. No project generator. Retraining notebook computes drift; not claimed as a scheduled job."
     },
     {
-      "title": "Same code locally and in Azure ML",
-      "description": "Dev defaults to local execution of prepare / train / evaluate / promotion / score. Azure compute is an explicit opt-in with a one-node Dev ceiling — local proof does not claim cloud lineage."
+      "title": "Run the Microsoft accelerator for real",
+      "description": "azure-mlops is a live MLOps v2 taxi project. Dev and Prod resource groups, registered taxi-model, working batch endpoints. Template bugs (OIDC id-token, conda setuptools, SKU) were fixed so the next sparse_checkout inherits them. Online endpoint was not deployed."
     },
     {
-      "title": "Terraform as the R1 deploy path",
-      "description": "Preserved the proven Terraform Azure ML route (keyless storage, Key Vault, Log Analytics, scale-to-zero, Entra/OIDC). Bicep stays reference, not a silent rewrite of working apply."
+      "title": "Opinionated monitor and retrain on the taxi path",
+      "description": "Added check_drift.py plus a Monday cron workflow: DRIFT_DETECTED dispatches training. That path is on azure-mlops. AIML-SCAFFOLD’s own ledger still marks drift/retrain experimental and excluded from R1 generate."
     },
     {
-      "title": "Identity and evidence as the product",
-      "description": "Factory identities cannot be inherited by generated workloads. Every mutation goes through saved-plan digest review. Unproven Foundry/agent work is labeled unproven."
+      "title": "A generator that is not the taxi",
+      "description": "AIML-SCAFFOLD is independent of the churn prototype and is not how azure-mlops was created. Manifest → validate → plan → generate → doctor. Terraform only for R1. Generated example: azure-aiml-ops."
+    },
+    {
+      "title": "Foundry stays in process",
+      "description": "Scaffold holds Foundry YAML contracts. azuredev holds a Foundry chat client with explicit foundry_llm vs deterministic_fallback. Neither is R1 generated output."
     }
   ],
   "specs": [
     {
       "title": "Deterministic project generator",
-      "description": "Manifest → validate → plan → generate → doctor. Source-manifest, resolved-plan, and generation-receipt are the provenance, not a wiki page written after the fact."
+      "description": "aiml-scaffold validate / plan / generate / doctor. source-manifest.yaml, resolved-plan.json, generation-receipt.json. CLI does not deploy Azure resources."
+    },
+    {
+      "title": "Terraform as the R1 setup path",
+      "description": "Generated Azure ML workspace, identity-based storage, Key Vault/Log Analytics as configured, GitHub OIDC. Digest-bound plan artifacts; apply is a separate manual dispatch. Bicep must not target a Terraform-owned R1 environment."
     },
     {
       "title": "Local-first, cloud-honest lifecycle",
-      "description": "The same Python modules run locally and as a four-stage Azure ML pipeline. Local green does not register as Azure ML execution, lineage, or endpoint health."
+      "description": "Same Python modules for prepare → train → evaluate → conditionally register → explicit-version batch score. Local green does not count as Azure ML execution, lineage, or endpoint health. Azure compute is an explicit one-node Dev opt-in."
     },
     {
-      "title": "Conditional register and explicit versions",
-      "description": "Evaluate can refuse to register. Batch serving pins an explicit model version. Champion/challenger is a gate, not a dashboard color."
+      "title": "Live taxi reference (not generated by SCAFFOLD)",
+      "description": "azure-mlops: rg-azmlops-0001dev/prod, taxi-model in both, working batch endpoints. GitHub Actions + OIDC. Scheduled KS drift can trigger retrain. Online serving deferred."
     },
     {
-      "title": "Split identities, digest-bound apply",
-      "description": "Generated projects do not inherit platform-admin privileges. Destructive ACR ownership drift was caught before apply. Portal clicks are not the change process."
+      "title": "Generated R1 project",
+      "description": "azure-aiml-ops: local lifecycle runner, Terraform, OIDC smoke, train/deploy-batch workflows when enabled, KS drift workflow that does not auto-retrain."
     },
     {
-      "title": "Reference instance that actually ran",
-      "description": "azure-mlops: Dev and Prod resource groups, registered taxi-model, working batch endpoints. Microsoft template bugs (OIDC id-token, conda setuptools, SKU) were fixed in the forks so the next project inherits them."
+      "title": "Databricks telecom churn (not generated)",
+      "description": "azuredev-3d78: medallion tables, MLflow train/validate/promote on Telco features, inference via Databricks model serving invoked from FastAPI /churn-score. Same feature contract at train and score. Unit tests use fakes; live serving is an operator path with a smoke script."
+    },
+    {
+      "title": "Not R1 (yet)",
+      "description": "Databricks, Foundry agents, Azure AI Search, online endpoints, and auto-retrain are not AIML-SCAFFOLD generate output. They exist on the churn prototype or the taxi accelerator with their own evidence bounds."
     }
   ],
   "artifacts": [
     {
       "name": "GitHub — AIML-SCAFFOLD",
-      "description": "Factory contracts, generator, templates, and policy",
+      "description": "Factory: contracts, generator, Terraform, policy",
       "url": "https://github.com/rubyrayjuntos/AIML-SCAFFOLD",
       "icon": "⭐"
     },
     {
+      "name": "GitHub — azure-aiml-ops",
+      "description": "Public generated R1 Dev project from the scaffold",
+      "url": "https://github.com/rubyrayjuntos/azure-aiml-ops",
+      "icon": "⭐"
+    },
+    {
       "name": "GitHub — azure-mlops",
-      "description": "Live taxi-fare reference: Dev/Prod infra, registered model, batch endpoints",
+      "description": "Live MLOps v2 taxi: Dev/Prod, registered model, batch endpoints",
       "url": "https://github.com/rubyrayjuntos/azure-mlops",
+      "icon": "⭐"
+    },
+    {
+      "name": "GitHub — azuredev-3d78",
+      "description": "Private Databricks/Foundry churn prototype (origin, not the generator)",
+      "url": "https://github.com/rubyrayjuntos/azuredev-3d78",
       "icon": "⭐"
     },
     {
@@ -101,13 +125,13 @@
     },
     {
       "name": "Factory architecture",
-      "description": "Three-repo boundary, R1 lifecycle, what is generated vs reference",
+      "description": "Four-repo boundary, two factories, what R1 generates",
       "url": "_data/projects/aiml-ops-factory/architecture.md",
       "icon": "🏗️"
     },
     {
       "name": "Evidence and gates",
-      "description": "What local tests prove, what Azure live runs prove, and what stays on the roadmap",
+      "description": "What local tests prove, what Azure live runs prove, Foundry in-process",
       "url": "_data/projects/aiml-ops-factory/evidence-and-gates.md",
       "icon": "⚡"
     }

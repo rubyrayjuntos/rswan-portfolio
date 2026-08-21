@@ -1,10 +1,10 @@
 {
   "id": 23,
   "title": "Canon Forge",
-  "tagline": "GENERATIVE AI WORKFLOW ENGINE",
-  "valueStatement": "Stateful generative-AI architecture that maintains characters, sets, and shot consistency across image and video production.",
-  "architectureHighlight": "Converts creative intent into explicit reference, composition, and keyframe contracts for reliable generative output.",
-  "description": "A character-reference architect for generative production: lock a person, a set, and a shot grammar so Gemini image models stay inside canon instead of reinventing the face, wardrobe, and room on every frame.",
+  "tagline": "CHARACTER-REFERENCE ARCHITECT",
+  "valueStatement": "Locked character, set, and shot contracts so image and video models render inside canon instead of reinventing the face and the room.",
+  "architectureHighlight": "Express generation proxy with identity-lock prompts and canon stills in front of Gemini, xAI, Bedrock, Venice, or local SD.",
+  "description": "A character-reference architect for generative production: lock a person, a set, and a shot grammar so image models stay inside canon. Identity is an approved headshot plus a prompt contract, not a paragraph the model is asked to remember. Video is Veo 8-second clips and SceneForge keyframe sequences — not a full editorial pipeline.",
   "imageUrl": "card-hero.png",
   "medium": "code",
   "genre": [
@@ -16,12 +16,12 @@
     "Modern"
   ],
   "tech": [
-    "GenAI",
-    "Multimodal",
-    "Workflow Orchestration",
-    "State Management",
-    "React",
-    "Vite"
+    "Identity Lock",
+    "Shot Contracts",
+    "Gemini",
+    "xAI",
+    "Veo",
+    "Express"
   ],
   "domain": "genai",
   "mood": "technical",
@@ -29,10 +29,10 @@
   "role": "Architect, Engineer & Technical Product Lead",
   "variant": "featured",
   "status": "in-progress",
-  "pitch": "Stateful generative-AI architecture that maintains characters, sets, and shot consistency across image and video production.",
-  "challenge": "Image models drift. A headshot, a wardrobe turn, a library interior, and a medium shot of the same figure holding a prop will not stay one canon unless the product treats identity, set, and camera as locked assets — not a prompt you hope the model remembers.",
-  "development": "Built a TypeScript/React/Vite production suite (CharacterForge, SetForge, CompositorForge, SceneForge) on Gemini image models. Characters carry approved canon headshots and wardrobe; sets carry spatial invariants, landmarks, forbidden changes, and lighting lock; compositing specifies shot type, lens, angle, and landmark lock before a frame is allowed to generate.",
-  "outcome": "A working character-reference architect (Gemini-backed). Interactive demo is a Vite app with a server-side key — not this static portfolio. Source: github.com/rubyrayjuntos/canon-forge.",
+  "pitch": "Locked character, set, and shot contracts so image and video models render inside canon instead of reinventing the face and the room.",
+  "challenge": "Image models drift. A headshot, a wardrobe turn, a library interior, and a medium shot of the same figure will not stay one canon unless identity, set, and camera are locked assets — not a prompt you hope the model remembers.",
+  "development": "Built a TypeScript/React/Vite suite (CharacterForge, SetForge, CompositorForge, SceneForge) with an Express proxy. Generations go through /api/generate (Gemini, xAI Grok Imagine, Venice, Bedrock Titan/SD, local SD). Default client provider is xAI. Canon stills attach as reference or init images where the provider allows it. SceneForge builds keyframe sequences and a flipbook; /api/generate-video calls Veo for 8-second clips. Profiles persist in localStorage. GitHub Actions lint and build; node:test covers identityLock and provider helpers.",
+  "outcome": "Public source at github.com/rubyrayjuntos/canon-forge. Needs provider keys on the Express server. This static portfolio cannot host it. Render.yaml and a GHCR Docker workflow exist; the Dockerfile in tree is a dev stage. Not a multi-tenant SaaS.",
   "gallery": [
     {
       "url": "card-hero.png",
@@ -44,11 +44,11 @@
   "journey": [
     {
       "title": "Stop asking the model to remember the person",
-      "description": "Treated identity as an approved asset, not a paragraph in the prompt. The canon headshot is the source of truth the later shots have to match."
+      "description": "Treated identity as an approved asset plus a written identity-lock block. The canon headshot is attached when the provider accepts a reference image."
     },
     {
       "title": "Lock the room the same way",
-      "description": "Sets got the same treatment: wide/medium canon, landmarks that cannot move, lighting that cannot reinvent itself between takes."
+      "description": "Sets declare spatial invariants, landmarks, forbidden changes, and a lighting-rig lock. Wide/medium stills become the set’s reference the same way the headshot does for a face."
     },
     {
       "title": "Compose, then generate",
@@ -56,29 +56,37 @@
     },
     {
       "title": "Four forges, one production grammar",
-      "description": "Character, Set, Compositor, and Scene tabs share one profile model so a later frame cannot quietly become a different actor in a different room."
+      "description": "Character, Set, Compositor, and Scene tabs share CharacterProfile / SetProfile / CompositeConfig / KeyframeScene so a later frame cannot quietly become a different actor in a different room — unless the model ignores the contract, in which case the take is rejected, not auto-canonized."
+    },
+    {
+      "title": "Provider is a swap, not the product",
+      "description": "Moved keys server-side. Gemini, xAI, Venice, Bedrock, and local SD share one generate path. Veo is the video path. Pollinations leftover is unused."
     }
   ],
   "specs": [
     {
       "title": "Canon headshot as identity kernel",
-      "description": "Approved reference images (head, body, wardrobe, expression) are stored on the character profile. Later generations are constrained to that asset, not to a vibes prompt."
+      "description": "Approved reference stills live on the character profile. Later prompts include an identity-lock block; Gemini (and some other providers) also receive the still as a reference or init image. This is not a face-embedding or InstantID model."
     },
     {
       "title": "Set invariants and lighting lock",
-      "description": "Indoor/outdoor sets declare spatial invariants, fixed landmarks, forbidden changes, and a lighting-rig lock so the environment does not mutate between shots."
+      "description": "Indoor/outdoor sets declare spatial invariants, fixed landmarks, forbidden changes, and a lighting-rig lock in the prompt. Wide/medium canon URLs lock the environment the same way."
     },
     {
       "title": "Shot grammar before pixels",
-      "description": "Compositor specs encode shot type, camera angle, lens preset, subject distance, emotion, and landmark lock — the same language a DP would put on a shot list."
+      "description": "Compositor specs encode shot type, camera angle, lens preset, subject distance, emotion, and landmark lock — production language, not a vibes prompt."
     },
     {
-      "title": "Gemini as renderer, not director",
-      "description": "The model produces frames inside the locked profiles. It does not own canon. Failed or off-model frames stay out of the approved sheet."
+      "title": "Multi-provider renderer",
+      "description": "Express /api/generate routes Gemini, xAI Grok Imagine, Venice, Amazon Bedrock (Titan / SD), and local Stable Diffusion. Client default in source is xAI. The model does not own canon."
     },
     {
-      "title": "Vite production app, not a slideshow",
-      "description": "React 19 + Vite 6 + TypeScript. Needs a server-side Gemini key. This static portfolio cannot host it; GitHub Pages or Render can after a proper build."
+      "title": "Veo clips and SceneForge keyframes",
+      "description": "/api/generate-video calls Veo (default veo-3.0-fast-generate-001) for an 8-second 16:9 clip. SceneForge generates a timed still sequence and plays it as a flipbook. Not an NLE, not lip-sync, not a finished editorial pipeline."
+    },
+    {
+      "title": "Vite app + Express, not this site",
+      "description": "React 19 + Vite 6 + TypeScript + Express. Keys stay on the server (the old Vite define leak is gone). This static portfolio cannot host it."
     }
   ],
   "artifacts": [
@@ -96,13 +104,13 @@
     },
     {
       "name": "Production architecture",
-      "description": "Character, set, compositor, and scene forges — and where Gemini sits",
+      "description": "Four forges, Express proxy, providers, Veo — and what is not in source",
       "url": "_data/projects/canon-forge/architecture.md",
       "icon": "🏗️"
     },
     {
       "name": "Identity canon",
-      "description": "Why a locked profile beats a longer prompt",
+      "description": "Prompt contracts and canon stills — not a face model",
       "url": "_data/projects/canon-forge/identity-canon.md",
       "icon": "⚡"
     }

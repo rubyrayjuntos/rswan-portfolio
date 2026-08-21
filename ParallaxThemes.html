@@ -3,15 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Nova: Writer's Conspiracy - Project Details</title>
-        <meta name="description" content="Nova: Writer's Conspiracy - A cosmic atelier where storytellers conspire with AI to birth entire universes, balancing structure and soul in creative agency. A science fiction novella with philosophical undertones. Literary science fiction approach with focus on character development.">
-        <meta property="og:title" content="Nova: Writer's Conspiracy">
-        <meta property="og:description" content="Collaboration between human and AI in creative agency">
+        <title>Ray Swan — Systems</title>
+        <meta name="description" content="I join when operations, commerce, or science have outgrown their systems — and I ship both the product people will use and the AI platform underneath it.">
+        <meta property="og:title" content="Ray Swan — Systems">
+        <meta property="og:description" content="GenAI / ML Architect | AI Platform | Product Leader">
         <meta property="og:type" content="website">
         <meta property="og:url" content="">
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Nova: Writer's Conspiracy">
-        <meta name="twitter:description" content="Collaboration between human and AI in creative agency">
+        <meta name="twitter:title" content="Ray Swan — Systems">
+        <meta name="twitter:description" content="GenAI / ML Architect | AI Platform | Product Leader">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/themes.css">
@@ -127,6 +127,10 @@
                 justify-content: flex-end;
                 flex: 1;
                 margin: 0 0 0 auto;
+                gap: 10px;
+            }
+            #top-nav .back-to-portfolio {
+                margin-right: auto;
             }
             #top-nav.sidebar-open {
                 margin-left: 0;
@@ -2244,6 +2248,7 @@
                 transition: color 0.3s ease;
                 position: relative;
                 z-index: 1;
+                text-decoration: none;
             }
 
             .footer-button:hover {
@@ -2387,7 +2392,7 @@
                 <li><a href="#specs">Specs</a></li>
                 <li><a href="#links">Links</a></li>
             </ul>
-            <button type="button" class="motion-toggle" onclick="toggleMotion()" aria-label="Toggle motion effects">Stop Parallax</button>
+            <button type="button" class="motion-toggle" onclick="toggleMotion()" aria-label="Reduce motion">Reduce Motion</button>
         </div>
     </aside>
     <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
@@ -2395,10 +2400,12 @@
     <header id="top-nav">
         <a href="index.html" class="logo">Ray Swan</a>
         <div class="nav-center">
+            <a href="index.html" class="back-to-portfolio">← Portfolio</a>
             <button id="filter-icon" aria-label="Open navigation">
                 <i class="fas fa-sliders-h"></i>
             </button>
             <button id="about-btn" data-modal-target="connectModal" data-tab-target="resume">Resume</button>
+            <button id="contact-btn" data-modal-target="connectModal" data-tab-target="contact">Contact</button>
         </div>
     </header>
 
@@ -2411,9 +2418,9 @@
                 <div class="hero-bg" aria-hidden="true"></div>
                 <div class="hero-particles" aria-hidden="true" id="heroParticles"></div>
                 <div class="hero-content">
-                    <div class="project-type-badge" id="projectTypeBadge">Code Project</div>
-                    <h1 id="projectTitle">Nova: Writer's Conspiracy</h1>
-                    <p class="subtitle" id="projectSubtitle">"They said creation was lonely. They were wrong. We never create alone."</p>
+                    <div class="project-type-badge" id="projectTypeBadge">Systems</div>
+                    <h1 id="projectTitle">Ray Swan</h1>
+                    <p class="subtitle" id="projectSubtitle">GenAI / ML Architect | AI Platform | Product Leader</p>
                 </div>
                 <div class="scroll-indicator">
                     <span>Scroll to explore</span>
@@ -2553,9 +2560,11 @@
             <footer class="signature-footer">
                 <div class="footer-content">
                     <p class="footer-signature">R. Swan</p>
-                    <p class="footer-quote">"Crafting worlds where story, art, and code converge."</p>
+                    <p class="footer-quote">GenAI / ML Architect | AI Platform | Product Leader</p>
                     <div class="footer-links">
+                         <a href="index.html" class="footer-button">Portfolio</a>
                          <button class="footer-button" data-modal-target="connectModal" data-tab-target="resume">Resume</button>
+                         <button class="footer-button" data-modal-target="connectModal" data-tab-target="contact">Contact</button>
                     </div>
                 </div>
                 <p id="copyright" class="footer-copyright"></p>
@@ -2637,7 +2646,7 @@
             <button class="modal-close-btn">&times;</button>
             <div class="modal-tabs">
                 <button class="tab-button" data-tab-target="about" hidden>About Me</button>
-                <button class="tab-button" data-tab-target="contact" hidden>Contact</button>
+                <button class="tab-button" data-tab-target="contact">Contact</button>
                 <button class="tab-button active" data-tab-target="resume">Resume</button>
             </div>
             <div class="modal-body">
@@ -2646,7 +2655,7 @@
                     <p>I join when operations, commerce, or science have outgrown their systems — and I ship both the product people will use and the AI platform underneath it.</p>
                     <p>This site is the SYSTEMS catalog: Kitchen Kontrol, NeuroNote, Tokyo Eye, Canon Forge, the Azure MLOps factory, and the AI/ML Engineer Academy. Two resume cuts share that spine — product leader, and GenAI/ML architect. LinkedIn currently wears the architect headline. The work here is the proof, not a studio reel.</p>
                 </div>
-                <div class="tab-content" data-tab="contact" hidden>
+                <div class="tab-content" data-tab="contact">
                     <h4>Get in Touch</h4>
                     <p>Houston, TX · <a href="https://www.linkedin.com/in/ray-swan-b973525/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/rubyrayjuntos" target="_blank" rel="noopener">GitHub</a></p>
                     <form id="contactForm">
@@ -2714,25 +2723,25 @@
                         <div class="project-item">
                             <h5>AI/ML Ops Factory</h5>
                             <ul>
-                                <li>Azure-first generator (AIML-SCAFFOLD) plus a live taxi reference that trained, registered, and served in Dev and Prod.</li>
+                                <li>Azure ML project factory (AIML-SCAFFOLD + Terraform/OIDC) plus a live taxi reference that trained, registered, and batch-served in Dev and Prod.</li>
                             </ul>
                         </div>
                         <div class="project-item">
-                            <h5>Tokyo Eye — scientific AI</h5>
+                            <h5>Tokyo Eye — hyperbolic scientific platform</h5>
                             <ul>
-                                <li>Governed discovery environment: hyperbolic geometry, atom-level Transformer/MoE (Pearson 0.407 same day), MLflow gates, scientist control plane.</li>
+                                <li>Poincaré GNN, e3nn, MoE on FastAPI/pgvector, Terraform Aurora, MLflow gates, XState viewport/discovery/hypothesis machines.</li>
                             </ul>
                         </div>
                         <div class="project-item">
                             <h5>Kitchen Kontrol</h5>
                             <ul>
-                                <li>Offline-first school-nutrition ops: HACCP evidence, voice/forecasting, 30 minutes/day to 15 minutes/week, 95% compliance.</li>
+                                <li>School-nutrition ops: JWT/Express HACCP logs, Ajv forms, Postgres weekly compliance, browser-STT milk logging.</li>
                             </ul>
                         </div>
                         <div class="project-item">
                             <h5>Canon Forge</h5>
                             <ul>
-                                <li>Character-reference architect: locked identity, set invariants, and shot grammar so generative frames stay canon.</li>
+                                <li>Character-reference architect: identity/set/shot contracts in front of Gemini, xAI, Bedrock, and Veo.</li>
                             </ul>
                         </div>
                     </div>
@@ -2827,7 +2836,8 @@
                 
                 const button = document.querySelector('.motion-toggle');
                 if (button) {
-                    button.textContent = motionEnabled ? 'Stop Parallax' : 'Start Parallax';
+                    button.textContent = motionEnabled ? 'Reduce Motion' : 'Enable Motion';
+                    button.setAttribute('aria-label', motionEnabled ? 'Reduce motion' : 'Enable motion');
                 }
             }
 
@@ -2918,7 +2928,7 @@
                 console.log('No project specified, showing project selection page');
                 
                 // Update page title
-                document.title = 'Project Details - Select a Project';
+                document.title = 'Ray Swan — Systems';
                 
                 // Update hero section
                 const projectTypeBadge = document.getElementById('projectTypeBadge');
@@ -3029,24 +3039,32 @@
             }
 
             function updatePageMetadata(project) {
-                document.title = `${project.title} - Project Details`;
-                
-                const metaDescription = document.querySelector('meta[name="description"]');
-                if (metaDescription) {
-                    metaDescription.content = project.description || project.pitch || project.title;
-                }
+                const title = `${project.title} — Ray Swan`;
+                const description = project.valueStatement || project.pitch || project.description || project.title;
+                document.title = title;
 
-                // Update structured data
+                const setMeta = (selector, attr, value) => {
+                    const el = document.querySelector(selector);
+                    if (el && value) el.setAttribute(attr, value);
+                };
+
+                setMeta('meta[name="description"]', 'content', description);
+                setMeta('meta[property="og:title"]', 'content', title);
+                setMeta('meta[property="og:description"]', 'content', description);
+                setMeta('meta[property="og:url"]', 'content', window.location.href);
+                setMeta('meta[name="twitter:title"]', 'content', title);
+                setMeta('meta[name="twitter:description"]', 'content', description);
+
                 const structuredData = {
                     "@context": "https://schema.org",
-                    "@type": "CreativeWork",
+                    "@type": "SoftwareApplication",
                     "name": project.title,
-                    "description": project.description || project.pitch,
+                    "description": description,
                     "author": {
                         "@type": "Person",
                         "name": "Ray Swan"
                     },
-                    "genre": project.medium,
+                    "applicationCategory": "DeveloperApplication",
                     "dateCreated": project.year
                 };
 
@@ -3167,6 +3185,8 @@
                 const projectTags = document.getElementById('projectTags');
                 if (projectTags) {
                     projectTags.innerHTML = '';
+                    const existingHint = document.querySelector('.full-stack-hint');
+                    if (existingHint) existingHint.remove();
                     const tags = project.tech || project.genre || project.style || [];
                     tags.forEach(tag => {
                         const tagElement = document.createElement('span');
@@ -3174,6 +3194,10 @@
                         tagElement.textContent = tag;
                         projectTags.appendChild(tagElement);
                     });
+                    const hint = document.createElement('p');
+                    hint.className = 'full-stack-hint';
+                    hint.innerHTML = '<a href="#specs">Full stack in Specs</a> · <a href="#artifacts">Architecture</a>';
+                    projectTags.after(hint);
                 }
             }
 

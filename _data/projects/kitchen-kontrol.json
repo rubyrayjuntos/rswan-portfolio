@@ -1,10 +1,10 @@
 {
   "id": 21,
   "title": "Kitchen Kontrol",
-  "tagline": "APPLIED AI OPERATIONS PLATFORM",
-  "valueStatement": "AI-powered operations platform for school nutrition with inventory intelligence, forecasting, alerts, and human-in-the-loop workflows.",
-  "architectureHighlight": "Turns fragmented daily tasks into actionable insights with conversational AI and real-time reporting.",
-  "description": "AI-powered operations platform for school nutrition with inventory intelligence, forecasting, alerts, and human-in-the-loop workflows. Turns fragmented daily tasks into actionable insights with conversational AI and real-time reporting — offline-first, so the line still runs when the cafeteria network does not.",
+  "tagline": "HACCP OPERATIONS PLATFORM",
+  "valueStatement": "School-nutrition operations platform for phase-based kitchen work, HACCP evidence, planograms, and compliance reports.",
+  "architectureHighlight": "JWT-authenticated Express API with Ajv-validated log forms and Postgres-backed weekly compliance.",
+  "description": "School-nutrition operations platform for phase-based kitchen work, HACCP evidence, planograms, and compliance reports. Digital logs replace clipboard temperature sheets. A companion voice app captures milk inventory through the browser speech API. Untransferred cafeteria-server work is not claimed here.",
   "imageUrl": "card-hero.png",
   "medium": "code",
   "genre": [
@@ -16,34 +16,34 @@
     "Modern"
   ],
   "tech": [
-    "Applied AI",
-    "LLM",
-    "Forecasting",
-    "React",
-    "TypeScript",
-    "Node.js"
+    "HACCP Ops",
+    "PostgreSQL",
+    "JWT",
+    "Ajv",
+    "Express",
+    "React"
   ],
   "domain": "ops",
   "mood": "professional",
   "year": 2025,
   "role": "Architect, Engineer & Technical Product Lead",
   "variant": "featured",
-  "status": "live",
-  "pitch": "AI-powered operations platform for school nutrition with inventory intelligence, forecasting, alerts, and human-in-the-loop workflows.",
-  "challenge": "School kitchens cannot depend on a always-on network, and paper HACCP logs were eating 30 minutes a day while still missing Texas TFER and USDA 7 CFR 210 requirements. The product had to work on wet-hands, bilingual, multi-device shifts — and still produce audit-ready evidence.",
-  "development": "Shipped an interactive TypeScript/React/Vite operations demo with BroadcastChannel multi-device sync, digital HACCP logs, USDA recipe scaling, planogram builder, and an AI compliance assistant. Production roadmap layers AWS Transcribe/Lex, Bedrock, SageMaker Forecast, and Rekognition on the same workflows already proven with staff.",
-  "outcome": "Reporting dropped from 30 minutes per day to 15 minutes per week; compliance rose to 95%; food waste fell to 3%. Interactive demo is a Vite app (GitHub Pages or Render — not this static portfolio). Source: github.com/rubyrayjuntos/kitchen-kontrol.",
+  "status": "in-progress",
+  "pitch": "School-nutrition operations platform for phase-based kitchen work, HACCP evidence, planograms, and compliance reports.",
+  "challenge": "Paper HACCP logs were eating shift time and still missing Texas TFER and USDA 7 CFR 210 requirements. The product had to work on wet-hands, bilingual, multi-station shifts — and still produce audit-ready evidence without pretending a cafeteria network is a control.",
+  "development": "Shipped a React/Express ops platform (kitchen-kontrol) with JWT auth, Postgres migrations, Ajv JSON-schema HACCP forms, planogram CRUD, weekly log-status SQL, Docker/nginx, and GitHub Actions. Companion repos: kk-logger (Vite/TS HACCP SPA with TFER range validators and EN/ES), MilkTrace-Voice (Web Speech API + keyword parser for milk inventory), and MyKitchen (single-file HTML hub). Browser STT is real. Gemini Live, Bedrock, SageMaker, Transcribe, Lex, and Rekognition are not in these repos.",
+  "outcome": "Public proof is the GitHub family, not a cloud overlay. kitchen-kontrol is a Node ops app (private); kk-logger and MyKitchen are public. None of this is hosted on this static portfolio. Site-count and waste figures from earlier product copy are not reproduced in these repositories.",
   "gallery": [
     {
       "url": "card-hero.png",
       "title": "Line operations HUD",
-      "description": "Frontline kitchen with live inventory, forecast, HACCP, and alert overlays on the same work the staff already do",
+      "description": "Frontline kitchen as the product surface: inventory, HACCP, and alerts on the work staff already do",
       "dimensions": "1200x800"
     },
     {
       "url": "ai-features.png",
-      "title": "AI-powered operations",
-      "description": "Voice logging, Bedrock compliance assistant, SageMaker inventory forecast, SNS alerts, adaptive training, and Rekognition planogram checks",
+      "title": "Capability board (vision, not GitHub)",
+      "description": "Product-vision board for voice, assistant, forecast, and vision. Those AWS services are not in the four GitHub repos.",
       "dimensions": "1200x800"
     },
     {
@@ -67,49 +67,49 @@
     {
       "url": "regulatory-compliance.png",
       "title": "Regulatory compliance",
-      "description": "Texas TFER §228.75 and USDA 7 CFR 210 mapped into the daily workflow",
+      "description": "Texas TFER §228.75 and USDA 7 CFR 210 mapped into log types and range checks",
       "dimensions": "1200x800"
     },
     {
       "url": "inventory-forecasting.png",
-      "title": "Inventory and milk forecasting",
-      "description": "Category cards, consumption charts, ML demand bands, and expiration warnings",
+      "title": "Inventory and milk tracking",
+      "description": "Category cards and consumption views. No SageMaker or Forecast model in these repos.",
       "dimensions": "1200x800"
     },
     {
       "url": "recipe-library.png",
       "title": "Recipe library",
-      "description": "USDA recipe book with live portion scaler, allergens, batch cost, and CCP steps",
+      "description": "Recipe book surface from the product story. USDA scaler is not in the kitchen-kontrol GitHub app.",
       "dimensions": "1200x800"
     },
     {
       "url": "menu-planning.png",
       "title": "Meal scheduling",
-      "description": "Weekly calendar with federal reimbursement math and kitchen prep-sheet export",
+      "description": "Weekly calendar surface from the product story. Reimbursement math is demo copy, not a live USDA feed.",
       "dimensions": "1200x800"
     },
     {
       "url": "presentation-planners.png",
       "title": "Planogram builder",
-      "description": "Drag-and-drop service line with pan sizes, temperature status, and allergen tags",
+      "description": "Serving-line planogram with pan wells. kitchen-kontrol persists planograms through the Express API.",
       "dimensions": "1200x800"
     },
     {
       "url": "offline-first-synching.png",
-      "title": "Offline-first multi-device sync",
-      "description": "BroadcastChannel live sync between tablet and barcode-scanner viewports",
+      "title": "Multi-device sync (demo concept)",
+      "description": "Tablet vs scanner viewport from an unpushed demo. GitHub kitchen-kontrol is server-backed; kk-logger simulates a sync queue.",
       "dimensions": "1200x800"
     },
     {
       "url": "04-training.jpeg",
       "title": "Training",
-      "description": "Staff training modules tied to compliance misses and kitchen roles",
+      "description": "Staff training modules tied to kitchen roles. kitchen-kontrol and kk-logger both include training views.",
       "dimensions": "1200x800"
     },
     {
       "url": "08-manager-reports-weekly-log-status.jpeg",
       "title": "Manager reports",
-      "description": "Weekly log status for district managers without pulling paper packets",
+      "description": "Weekly log-status completion rates from Postgres CTE queries in kitchen-kontrol",
       "dimensions": "1200x800"
     },
     {
@@ -121,67 +121,85 @@
     {
       "url": "beyond-schools.png",
       "title": "Beyond schools",
-      "description": "Same ops pattern extends to other high-compliance food-service sites",
+      "description": "Same ops pattern could extend to other high-compliance food-service sites. Not a second shipped product.",
       "dimensions": "1200x800"
     }
   ],
   "journey": [
     {
       "title": "Watch the line, not the backlog",
-      "description": "Observed school nutrition shifts where paper HACCP and inventory ate 30 minutes a day and still failed audits. Requirements came from wet-hands, bilingual, multi-station reality."
-    },
-    {
-      "title": "Offline-first or it will not ship",
-      "description": "Designed the product so logging, recipes, and planograms work when the cafeteria Wi-Fi does not — then sync when a device returns."
+      "description": "Observed school nutrition shifts where paper HACCP and inventory ate shift time and still failed audits. Requirements came from wet-hands, bilingual, multi-station reality."
     },
     {
       "title": "Make HACCP a product, not a PDF",
-      "description": "Turned TFER and USDA temperature rules into digital logs with signatures, pass/fail gates, and corrective-action modals staff can complete during service."
+      "description": "Turned TFER temperature rules into digital logs with Ajv schemas, pass/fail gates, and corrective-action flows staff can complete during service."
     },
     {
-      "title": "Ops surface: planogram, recipes, inventory, meals",
-      "description": "Built the interactive demo hub — pan builder, USDA scaler, milk forecast, reimbursement calendar — so districts can try the workflow before a full install."
+      "title": "Ops platform, not a mock",
+      "description": "Built kitchen-kontrol as Express + Postgres: JWT, roles, phases, tasks, log templates/submissions, planograms, weekly compliance SQL, Docker, and CI."
     },
     {
-      "title": "Put AI on the same workflow",
-      "description": "Layered a USDA/TFER knowledge assistant, voice temperature logging, SageMaker-style demand bands, and vision checks for the line — AI that writes evidence, not a disconnected chatbot."
+      "title": "Evidence UX in TypeScript",
+      "description": "kk-logger is the HACCP SPA: traffic-light tasks, sanitizer/hot/cold/calibration validators, English/Spanish. SharePoint and SSO are written as plans, not wired."
     },
     {
-      "title": "Adoption is the metric",
-      "description": "Piloted with frontline users. Result: 15 minutes per week instead of 30 per day, 95% compliance, 3% waste, 23 school nutrition sites in the product story."
+      "title": "Voice where hands are full",
+      "description": "MilkTrace-Voice logs milk inventory with the browser SpeechRecognition API and a keyword/number parser. The hook is named Gemini Live; the runtime is not."
+    },
+    {
+      "title": "Claim only what GitHub holds",
+      "description": "Cafeteria-server and Azure overlay work was not transferred into these repos. This case study stops at the public proof."
     }
   ],
   "specs": [
     {
-      "title": "AI compliance assistant",
-      "description": "In-workflow USDA/TFER assistant (Bedrock + Lambda + DynamoDB in the production design) answers food-safety questions and suggests remediation when temps are out of range — not a generic chatbot parked off to the side."
+      "title": "JWT-authenticated ops API",
+      "description": "Express 5 with bcrypt login, JWT, rate limits, Winston, Sentry, and a transactional outbox. Postgres 15 with node-pg-migrate; sqlite3 for local/dev."
     },
     {
-      "title": "Voice-activated HACCP logging",
-      "description": "Hands-free temperature and inventory capture (Transcribe, Lex, Lambda) so staff with wet or occupied hands can still produce an audit-ready log."
+      "title": "Ajv HACCP form engine",
+      "description": "JSON Schema log templates rendered with React Hook Form. Equipment temps, food temps, planograms, sanitation, reimbursable meals."
     },
     {
-      "title": "ML demand forecasting",
-      "description": "Milk and supply forecasts from historical consumption, calendar, and confidence bands (SageMaker / Forecast / S3) instead of end-of-week guesswork."
+      "title": "Weekly compliance reports",
+      "description": "CTE queries for log-template completion rates, date-range filters, and checkCompliance() on temp, planogram, sanitation, and meal records."
     },
     {
-      "title": "Vision checks on the serving line",
-      "description": "Photo of the line → Rekognition/Bedrock verifies pan placement and planogram alignment against the digital builder."
+      "title": "Planogram CRUD",
+      "description": "Serving-line wells persisted through /api/planograms. Not computer vision. Rekognition is not in source."
     },
     {
-      "title": "Offline-first multi-device sync",
-      "description": "BroadcastChannel live sync between tablet and scanner viewports so the product still works when the network does not."
+      "title": "Browser STT milk logging",
+      "description": "MilkTrace-Voice: Web Speech API plus a deterministic parser for school, milk type, and quantity. Not Amazon Transcribe or Lex."
     },
     {
-      "title": "Governed evidence, not screenshots",
-      "description": "Electronic signatures, pass/fail gates, and corrective actions mapped to Texas TFER §228.75 and USDA 7 CFR 210 — the same evidence-bound style as the rest of the AI work."
+      "title": "HACCP range validators",
+      "description": "kk-logger encodes sanitizer ppm, cold holding, hot holding, and thermometer calibration limits with corrective-action UI. Offline sync is simulated, not a service worker."
     }
   ],
   "artifacts": [
     {
-      "name": "GitHub Repository",
-      "description": "Public source for Kitchen Kontrol",
+      "name": "Ops platform (private)",
+      "description": "React + Express + Postgres kitchen-kontrol source",
       "url": "https://github.com/rubyrayjuntos/kitchen-kontrol",
+      "icon": "⭐"
+    },
+    {
+      "name": "kk-logger (public)",
+      "description": "Vite/TypeScript HACCP SPA with TFER validators",
+      "url": "https://github.com/rubyrayjuntos/kk-logger",
+      "icon": "⭐"
+    },
+    {
+      "name": "MyKitchen (public)",
+      "description": "Single-file HTML ops hub prototype",
+      "url": "https://github.com/rubyrayjuntos/MyKitchen",
+      "icon": "⭐"
+    },
+    {
+      "name": "MilkTrace-Voice (private)",
+      "description": "Browser SpeechRecognition milk inventory logging",
+      "url": "https://github.com/rubyrayjuntos/MilkTrace-Voice",
       "icon": "⭐"
     },
     {
@@ -192,25 +210,25 @@
     },
     {
       "name": "System architecture",
-      "description": "Offline-first client, sync, HACCP evidence, and AI service boundaries",
+      "description": "What each repo actually contains — and what it does not",
       "url": "_data/projects/kitchen-kontrol/architecture.md",
       "icon": "🏗️"
     },
     {
-      "name": "AI capabilities",
-      "description": "Voice, compliance assistant, forecast, alerts, training, and vision — and what is demo vs production AWS",
+      "name": "Voice and AI boundaries",
+      "description": "STT vs Gemini vs untransferred cloud overlay",
       "url": "_data/projects/kitchen-kontrol/ai-capabilities.md",
       "icon": "⚡"
     },
     {
-      "name": "HACCP and offline design",
-      "description": "How TFER/USDA rules become digital logs that survive a cafeteria outage",
+      "name": "HACCP evidence design",
+      "description": "How TFER/USDA rules become digital logs in these repos",
       "url": "_data/projects/kitchen-kontrol/haccp-and-offline.md",
       "icon": "🎮"
     },
     {
-      "name": "Adoption outcomes",
-      "description": "Time, compliance, waste, and site-count results used in the product story",
+      "name": "Outcomes (honest bound)",
+      "description": "What is operational story vs what GitHub can prove",
       "url": "_data/projects/kitchen-kontrol/outcomes.md",
       "icon": "👥"
     }

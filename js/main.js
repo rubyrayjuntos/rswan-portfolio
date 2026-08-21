@@ -161,6 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
             agents: 'fa-robot',
             evaluation: 'fa-clipboard-check',
             hgnn: 'fa-circle-nodes',
+            'hyperbolic gnn': 'fa-circle-nodes',
+            e3nn: 'fa-arrows-rotate',
+            moe: 'fa-layer-group',
+            fastapi: 'fa-bolt',
+            pgvector: 'fa-database',
             'scientific ai': 'fa-flask',
             'ml governance': 'fa-scale-balanced',
             genai: 'fa-wand-magic-sparkles',
@@ -249,17 +254,19 @@ document.addEventListener('DOMContentLoaded', () => {
         
         projectGrid.addEventListener('click', handleGridClick);
 
-        if (aboutBtn && connectModal) {
-            aboutBtn.addEventListener('click', () => {
+        document.querySelectorAll('[data-modal-target="connectModal"]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (!connectModal) return;
+                const tab = btn.getAttribute('data-tab-target') || 'resume';
                 connectModal.classList.add('is-visible');
                 connectModal.querySelectorAll('.tab-button').forEach(t => {
-                    t.classList.toggle('active', t.getAttribute('data-tab-target') === 'resume');
+                    t.classList.toggle('active', t.getAttribute('data-tab-target') === tab);
                 });
                 connectModal.querySelectorAll('.tab-content').forEach(c => {
-                    c.classList.toggle('active', c.getAttribute('data-tab') === 'resume');
+                    c.classList.toggle('active', c.getAttribute('data-tab') === tab);
                 });
             });
-        }
+        });
 
         const modalCloseBtn = document.querySelector('.modal-close-btn');
         if (modalCloseBtn && connectModal) {

@@ -1,27 +1,33 @@
 # AI/ML Engineer Academy — platform architecture
 
-The academy is a training **applet**, not a paid LMS and not a vendor certificate.
+The academy is a training **applet**, not a paid LMS and not a vendor certificate. The GitHub repository is **public**.
 
 ## Layers
 
 ### 1. Web app
 
 - React 19 + Vite 6 SPA
-- Express (`server.ts`) on port 3000 in development
-- Optional AI mentor: xAI Grok via `XAI_API_KEY` — curriculum still runs without a key
+- Express (`server.ts`) on port 3000
+- Optional AI mentor: xAI Grok via `XAI_API_KEY` (`grok-4.6` default), IP rate limit, 8k prompt cap. Curriculum still runs without a key (keyword fallback).
+- `/api/simulate-code` returns **canned logs**. It does not execute Python, Docker, or pytest.
+- In-browser simulators (vLLM, ReAct, MCP, diffusion, etc.) are teaching toys.
 
 ### 2. Labs
 
-`labs/module-1` … `labs/module-5`, each with its own `requirements.txt` and venv. Dependencies conflict across labs on purpose (CUDA toolkits, vector drivers, classical ML stacks). Passing `pytest` is the evidence object the UI later confirms.
+`labs/module-1-foundations` … `labs/module-5-production-operations`. Each has its own `requirements.txt` and is meant to run in its own venv. Extra files (`requirements-gpu.txt`, `requirements-live.txt`, `requirements-browser.txt`, `requirements-eval.txt`, `requirements-deploy.txt`) are optional tracks.
+
+Passing `pytest` is the lab evidence. The SPA **confirms** that the learner says they ran it (`labCompletions` boolean in `localStorage`). It does not ingest JUnit XML.
+
+GitHub Actions: `frontend.yml` (lint, vitest, build) plus one workflow per lab. Module 1 CI also `docker build`s. Module 2 CI sets `ACADEMY_SOLUTION=1` so the content repo grades reference mechanics; learners leave that unset.
 
 ### 3. Field atlas
 
-Standalone static page in `atlas/`: audience, what is inside, what not to expect, filterable map of CPU-proved vs survey vs optional-live vs thin topics. It does not import the React applet. Shared learning-space pitch, not a product marketing site.
+Standalone static page in `atlas/`, also served at `/atlas/`. Audience, contents, non-goals, filterable CPU-proved vs survey vs optional-live. Does not import the React applet.
 
 ### 4. Certificate unlock
 
-Browser `localStorage` keepsake. Requires all modules complete, lab evidence confirmed for every module, and module quizzes or the program quiz at ≥60%. Not an accredited credential.
+Browser `localStorage` keepsake. Requires all modules marked complete, lab checkboxes for every module, and module quizzes **or** the program quiz at ≥60%. Not an accredited credential.
 
 ## What this portfolio cannot host
 
-Static HTML cannot run Express or the lab virtualenvs. The case study and GitHub are the public surface until a separate host exists for the applet.
+Static HTML cannot run Express or the lab virtualenvs.
