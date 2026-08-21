@@ -1,0 +1,117 @@
+{
+  "id": 26,
+  "title": "NeuroNote",
+  "tagline": "AGENTIC AI SAFETY ARCHITECTURE",
+  "valueStatement": "Governed agent runtime that separates AI reasoning from execution authority.",
+  "architectureHighlight": "State-machine control plane validates and constrains agent actions before they can alter application state.",
+  "description": "A dual-kernel architecture for safe malleable software: the Guest (AI) proposes changes as untrusted schemas; a Gatekeeper verifies them; the Host kernel is the only path that can execute or persist. Malleability is the product. Untrusted reasoning never becomes application authority.",
+  "imageUrl": "card-hero.png",
+  "medium": "code",
+  "genre": [
+    "Interactive/Web",
+    "Platform"
+  ],
+  "style": [
+    "Experimental",
+    "Technical"
+  ],
+  "tech": [
+    "AI Safety",
+    "Agent Governance",
+    "XState",
+    "Guardrails",
+    "Gemini"
+  ],
+  "domain": "safety",
+  "mood": "technical",
+  "year": 2025,
+  "role": "Architect, Engineer & Technical Product Lead",
+  "variant": "featured",
+  "status": "in-progress",
+  "pitch": "Governed agent runtime that separates AI reasoning from execution authority.",
+  "challenge": "AI-generated logic is usually treated as a peer of the application: it writes code, mutates state, and hopes the prompt was honest. That fails the moment the model drifts, injects, or exceeds the capability it declared. NeuroNote had to make runtime-generated behavior a guest — verified, sandboxed, and reversible — without giving up malleability.",
+  "development": "Built a TypeScript/React/Vite reference implementation of Proposal–Verification architecture. Guest kernel (Gemini, or Claude/Llama/Mistral via Bedrock) synthesizes AppDefinition IR only. A six-layer Gatekeeper — structural validation, semantic verification, honesty oracle, resource budgets, capability manifest, test-vector simulation — sits on the trust boundary. The Host kernel executes in a fuel-metered QuickJS WASM sandbox and a worker with 46 verified operators. Bidirectional lenses migrate schema; runtime errors roll back; a change journal keeps the audit.",
+  "outcome": "A working dual-kernel control plane where AI proposes, the gatekeeper validates, and the host executes. Interactive app needs a model key and is not hosted on this static portfolio. Source: github.com/rubyrayjuntos/Neuronote.",
+  "gallery": [
+    {
+      "url": "card-hero.png",
+      "title": "Trust boundary",
+      "description": "Agent reasoning stays untrusted. A state-machine control plane is the only path to application authority.",
+      "dimensions": "1024x682"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Treat the model as hostile by default",
+      "description": "Stopped implying that generated logic is application code. Every AI artifact is untrusted input until it survives verification."
+    },
+    {
+      "title": "Host–Guest, not prompt–hope",
+      "description": "Split the runtime: Guest synthesizes declarative AppDefinitions. Host owns validation, rendering, persistence, and recovery. Guest never joins the control loop."
+    },
+    {
+      "title": "Gatekeeper as the product",
+      "description": "Six verification layers sit on the trust boundary — structure, semantics, honesty, budgets, capabilities, simulated tests — so a fluent proposal cannot skip the gate."
+    },
+    {
+      "title": "Execute only what was admitted",
+      "description": "WASM fuel metering, worker isolation, and 46 verified operators. No ambient capabilities. Bounded iteration. Rollback on runtime error."
+    },
+    {
+      "title": "Journal the change, not the vibe",
+      "description": "Every accepted mutation leaves a diff, a verification score, and a recoverable prior state. Observability is how you prove the boundary held."
+    }
+  ],
+  "specs": [
+    {
+      "title": "Untrusted reasoning, trusted authority",
+      "description": "The Guest kernel produces IR. It does not execute, persist, or talk to operators. Application authority lives only in the Host."
+    },
+    {
+      "title": "Six-layer gatekeeper",
+      "description": "Structural validation, semantic verification, honesty oracle (intent vs effects vs traces), resource budgets, capability manifest, and test-vector simulation before any proposal is adopted."
+    },
+    {
+      "title": "WASM + worker isolation",
+      "description": "QuickJS with fuel metering in WASM; 46 verified operators (text, math, image, audio, CV) behind a worker with no ambient capabilities and a FoldN cap of 1000."
+    },
+    {
+      "title": "Logic-as-data, not eval",
+      "description": "Behavior is JSON schema, not generated source. Bidirectional lenses migrate state; failed runtime automatically reverts."
+    },
+    {
+      "title": "Model-agnostic guest",
+      "description": "Provider interface for Gemini 2.5 Flash and Bedrock-hosted Claude, Llama, and Mistral. Swap the synthesizer without rewriting the Host."
+    },
+    {
+      "title": "This site cannot host the runtime",
+      "description": "Vite + React app with a model key. Portfolio is static HTML. GitHub is the public source until a keyed host exists."
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "GitHub Repository",
+      "description": "Public source for NeuroNote",
+      "url": "https://github.com/rubyrayjuntos/Neuronote",
+      "icon": "⭐"
+    },
+    {
+      "name": "Artifact index",
+      "description": "README listing every document in this case study",
+      "url": "_data/projects/neuronote/docs/readme.md",
+      "icon": "🚀"
+    },
+    {
+      "name": "Dual-kernel architecture",
+      "description": "Guest, Gatekeeper, Host — and why the model never joins the control loop",
+      "url": "_data/projects/neuronote/architecture.md",
+      "icon": "🏗️"
+    },
+    {
+      "name": "Trust boundary",
+      "description": "Hostile-by-default verification, sandboxing, and recovery",
+      "url": "_data/projects/neuronote/trust-boundary.md",
+      "icon": "⚡"
+    }
+  ]
+}

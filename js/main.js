@@ -111,22 +111,75 @@ document.addEventListener('DOMContentLoaded', () => {
         const heroImageUrl = project.imageUrl
             ? `images/projects/${project.slug}/${project.imageUrl}`
             : 'https://placehold.co/600x400/e0e5ec/31456A?text=Image+Not+Found';
-        const details = project.details || {};
-        const description = details.description || project.description || '';
+        const value = project.valueStatement || project.pitch || project.description || '';
+        const highlight = project.architectureHighlight || '';
+        const tagline = project.tagline || '';
+        const domain = String(project.domain || '').toLowerCase();
         
         card.innerHTML = `
             <div class="project-card-hero">
                 <img src="${heroImageUrl}" alt="${project.title}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e0e5ec/31456A?text=Image+Error';">
-                <span class="card-medium-badge medium-${project.medium?.toLowerCase()}">${project.medium}</span>
             </div>
             <div class="project-card-content">
                 <div class="card-header">
-                    <h3>${project.title}</h3>
-                    <div class="card-year">${project.year || ''}</div>
+                    <h3 class="card-title">${project.title}</h3>
+                    ${project.year ? `<div class="card-year">${project.year}</div>` : ''}
                 </div>
-                <p class="card-description">${truncateDescription(description)}</p>
+                ${tagline ? `<p class="card-tagline${domain ? ` domain-${domain}` : ''}">${tagline}</p>` : ''}
+                <p class="card-value">${value}</p>
+                ${highlight ? `<p class="card-architecture">${highlight}</p>` : ''}
+                ${renderTechChips(project.tech)}
             </div>`;
         return card;
+    }
+
+    function techIcon(name) {
+        const key = String(name || '').toLowerCase();
+        const brands = {
+            react: 'fa-react',
+            'node.js': 'fa-node-js',
+            python: 'fa-python',
+            pytorch: 'fa-python',
+            'github actions': 'fa-github'
+        };
+        if (brands[key]) return { prefix: 'fab', icon: brands[key] };
+        const solid = {
+            'ai safety': 'fa-shield-halved',
+            'agent governance': 'fa-sitemap',
+            xstate: 'fa-diagram-project',
+            guardrails: 'fa-ban',
+            gemini: 'fa-star',
+            'applied ai': 'fa-brain',
+            llm: 'fa-comments',
+            forecasting: 'fa-chart-line',
+            typescript: 'fa-code',
+            mlops: 'fa-gears',
+            'azure ml': 'fa-cloud',
+            terraform: 'fa-cubes',
+            databricks: 'fa-database',
+            'ai architecture': 'fa-layer-group',
+            agents: 'fa-robot',
+            evaluation: 'fa-clipboard-check',
+            hgnn: 'fa-circle-nodes',
+            'scientific ai': 'fa-flask',
+            'ml governance': 'fa-scale-balanced',
+            genai: 'fa-wand-magic-sparkles',
+            multimodal: 'fa-photo-film',
+            'workflow orchestration': 'fa-diagram-project',
+            'state management': 'fa-code-branch',
+            vite: 'fa-bolt'
+        };
+        return { prefix: 'fas', icon: solid[key] || 'fa-microchip' };
+    }
+
+    function renderTechChips(tech) {
+        const items = (tech || []).map(t => String(t).trim()).filter(Boolean).slice(0, 6);
+        if (!items.length) return '';
+        const chips = items.map(t => {
+            const { prefix, icon } = techIcon(t);
+            return `<li><i class="${prefix} ${icon}" aria-hidden="true"></i><span>${t}</span></li>`;
+        }).join('');
+        return `<ul class="card-tech-chips">${chips}</ul>`;
     }
 
     function createDocumentCard(doc) {
@@ -199,6 +252,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (aboutBtn && connectModal) {
             aboutBtn.addEventListener('click', () => {
                 connectModal.classList.add('is-visible');
+                connectModal.querySelectorAll('.tab-button').forEach(t => {
+                    t.classList.toggle('active', t.getAttribute('data-tab-target') === 'resume');
+                });
+                connectModal.querySelectorAll('.tab-content').forEach(c => {
+                    c.classList.toggle('active', c.getAttribute('data-tab') === 'resume');
+                });
             });
         }
 

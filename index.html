@@ -32,10 +32,7 @@
                 <i class="fas fa-search"></i>
                 <input type="search" id="mainSearchInput" placeholder="Search by keyword, tech, or title...">
             </div>
-            <button id="filter-icon" aria-label="Open filters">
-                <i class="fas fa-sliders-h"></i>
-            </button>
-            <button id="about-btn" data-modal-target="connectModal" data-tab-target="about">About</button>
+            <button id="about-btn" data-modal-target="connectModal" data-tab-target="resume">Resume</button>
         </div>
         <!-- Mobile hamburger menu -->
         <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
@@ -66,27 +63,25 @@
         </div>
     </div>
 </main>
-    <footer class="signature-footer"></footer>
-
 
     <!-- Unified "Connect" Modal -->
     <div id="connectModal" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close-btn">&times;</button>
             <div class="modal-tabs">
-                <button class="tab-button active" data-tab-target="about">About Me</button>
-                <button class="tab-button" data-tab-target="contact">Contact</button>
-                <button class="tab-button" data-tab-target="resume">Resume</button>
+                <button class="tab-button" data-tab-target="about" hidden>About Me</button>
+                <button class="tab-button" data-tab-target="contact" hidden>Contact</button>
+                <button class="tab-button active" data-tab-target="resume">Resume</button>
             </div>
             <div class="modal-body">
-                <div class="tab-content active" data-tab="about">
-                    <h4>About R. Swan</h4>
-                    <p>I am a multidisciplinary creator with a passion for storytelling, world-building, and immersive digital experiences. My work spans across writing, art, and code, always with a focus on crafting narratives that resonate and inspire.</p>
-                    <p>This portfolio is a living testament to that journey, a collection of visions, words, and systems that explore the intersection of technology and creativity.</p>
+                                <div class="tab-content" data-tab="about" hidden>
+                    <h4>About Ray Swan</h4>
+                    <p>I join when operations, commerce, or science have outgrown their systems — and I ship both the product people will use and the AI platform underneath it.</p>
+                    <p>This site is the SYSTEMS catalog: Kitchen Kontrol, NeuroNote, Tokyo Eye, Canon Forge, the Azure MLOps factory, and the AI/ML Engineer Academy. Two resume cuts share that spine — product leader, and GenAI/ML architect. LinkedIn currently wears the architect headline. The work here is the proof, not a studio reel.</p>
                 </div>
-                <div class="tab-content" data-tab="contact">
+                <div class="tab-content" data-tab="contact" hidden>
                     <h4>Get in Touch</h4>
-                    <p>I would love to hear from you and add you to my mail list.</p>
+                    <p>Houston, TX · <a href="https://www.linkedin.com/in/ray-swan-b973525/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/rubyrayjuntos" target="_blank" rel="noopener">GitHub</a></p>
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="email">Email Address</label>
@@ -99,81 +94,78 @@
                         <button type="submit" class="form-submit-btn">Send</button>
                     </form>
                 </div>
-                <div class="tab-content" data-tab="resume">
+                <div class="tab-content active" data-tab="resume">
                     <div class="resume-header">
                         <h2>Ray Swan</h2>
-                        <h3>Product Manager | Generative AI Solutions | Creative Technologist</h3>
+                                                <h3>GenAI / ML Architect | AI Platform | Product Leader</h3>
                         <div class="resume-contact-info">
                             <p><i class="fas fa-map-marker-alt"></i> Houston, TX</p>
-                            <p><i class="fas fa-envelope"></i> RayCSwan@yahoo.com</p>
-                            <p><i class="fas fa-phone"></i> (281) 759-0711</p>
-                            <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/ray-swan-b973525" target="_blank">linkedin.com/in/ray-swan-b973525</a></p>
-                            <p><i class="fas fa-globe"></i> <a href="https://portfolio-f7i9.onrender.com" target="_blank">portfolio-f7i9.onrender.com</a></p>
+                            <p><i class="fas fa-envelope"></i> RayCSwan@Yahoo.com</p>
+                            <p><i class="fas fa-phone"></i> (409) 264-5074</p>
+                            <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/ray-swan-b973525/" target="_blank" rel="noopener">linkedin.com/in/ray-swan-b973525</a></p>
+                            <p><i class="fab fa-github"></i> <a href="https://github.com/rubyrayjuntos" target="_blank" rel="noopener">github.com/rubyrayjuntos</a></p>
                         </div>
                     </div>
 
                     <div class="resume-section">
                         <h4><i class="fas fa-user"></i> Professional Summary</h4>
-                        <p>Product leader and creative technologist with 8+ years of experience delivering enterprise‑scale AI‑driven and SaaS platforms. Specialized in building generative AI agents and conversational interfaces that combine technical rigor with charming, consistent personalities. Proven track record leading cross‑functional teams, integrating data pipelines, designing user‑centric experiences, and aligning outcomes with business and compliance goals.</p>
+                        <p>GenAI/ML architect and product leader with 25 years delivering enterprise software, data, and transformation programs. Builds governed AI from infrastructure through model and agent runtime — Azure ML, Databricks, Foundry, MLflow, Terraform — and ships the product that actually gets adopted on the floor. I join at the inflection: ops, commerce, or science that has outgrown its systems.</p>
                     </div>
 
                     <div class="resume-section">
                         <h4><i class="fas fa-star"></i> Core Competencies</h4>
                         <div class="competencies-grid">
                             <div class="competency-item">
-                                <h5>Generative AI Product Strategy & Execution</h5>
-                                <p>GPT‑4, Gemini, Claude, Local LLMs, Agentic Workflows</p>
+                                <h5>AI platforms &amp; GenAI</h5>
+                                <p>Azure ML, Databricks, Foundry, RAG, agents, MCP tool boundaries</p>
                             </div>
                             <div class="competency-item">
-                                <h5>Cross‑functional Leadership</h5>
-                                <p>Engineering, Legal/Privacy, UX, Executive Stakeholders</p>
+                                <h5>MLOps / LLMOps</h5>
+                                <p>Local-to-cloud lifecycle, registry, promotion gates, drift, rollback</p>
                             </div>
                             <div class="competency-item">
-                                <h5>Enterprise Applications</h5>
-                                <p>CRM, E‑commerce, Loan Origination, Analytics, Creative</p>
+                                <h5>Cloud &amp; identity</h5>
+                                <p>Terraform, GitHub Actions, Entra/OIDC, least-privilege split</p>
                             </div>
                             <div class="competency-item">
-                                <h5>Conversational UX & AI Personalities</h5>
-                                <p>Prompt Engineering, Consistency, Delight</p>
+                                <h5>Evidence-bound governance</h5>
+                                <p>Immutable metrics, digest-bound apply, unproven work stays off the ledger</p>
                             </div>
                             <div class="competency-item">
-                                <h5>Data Pipelines & ETL Workflows</h5>
-                                <p>API, REST, SQL/NoSQL, Normalization</p>
+                                <h5>Product at the inflection</h5>
+                                <p>D2C, subscription, frontline ops — AI inside the workflow, not beside it</p>
                             </div>
                             <div class="competency-item">
-                                <h5>User Research & Product Lifecycle</h5>
-                                <p>Hypothesis Testing, Product Lifecycle Ownership</p>
+                                <h5>Enterprise delivery</h5>
+                                <p>Fortune 500 modernization, CRM, commerce, data, integration</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="resume-section">
-                        <h4><i class="fas fa-project-diagram"></i> Selected Projects</h4>
+                        <h4><i class="fas fa-project-diagram"></i> Selected Systems</h4>
                         <div class="project-item">
-                            <h5>Papi Chispa — Conversational AI Tarot Reader</h5>
+                            <h5>AI/ML Ops Factory</h5>
                             <ul>
-                                <li>Designed, developed, and shipped a generative AI personality combining narrative charm, consistency, and interactivity — delivering tarot readings and dynamic visuals with an engaging "voice."</li>
-                                <li>Engineered prompt structures and data flows to ensure personality consistency across sessions and scenarios, blending technical accuracy with delightful UX.</li>
-                                <li>Directly aligned with conversational interface design and GenAI best practices.</li>
+                                <li>Azure-first generator (AIML-SCAFFOLD) plus a live taxi reference that trained, registered, and served in Dev and Prod.</li>
                             </ul>
                         </div>
                         <div class="project-item">
-                            <h5>Brand Identity Agentic Workflow</h5>
+                            <h5>Tokyo Eye — scientific AI</h5>
                             <ul>
-                                <li>Created a multi‑agent orchestration system delivering brand identity assets via AI pipelines — managing input collection, data normalization, and creative output.</li>
-                                <li>Balanced compliance and creativity, aligning AI‑generated outputs with business goals.</li>
+                                <li>Governed discovery environment: hyperbolic geometry, atom-level Transformer/MoE (Pearson 0.407 same day), MLflow gates, scientist control plane.</li>
                             </ul>
                         </div>
                         <div class="project-item">
-                            <h5>Nova: Writers Conspiracy</h5>
+                            <h5>Kitchen Kontrol</h5>
                             <ul>
-                                <li>Designed and developed a collaborative novel‑writing platform using GPT‑4 and agentic workflows; architected interaction models and prompt engineering for multi‑party creative narratives.</li>
+                                <li>Offline-first school-nutrition ops: HACCP evidence, voice/forecasting, 30 minutes/day to 15 minutes/week, 95% compliance.</li>
                             </ul>
                         </div>
                         <div class="project-item">
-                            <h5>Image Gallery Sphere & AstroNova (PWA)</h5>
+                            <h5>Canon Forge</h5>
                             <ul>
-                                <li>Delivered high‑performance React UIs with optimized rendering and dynamic interaction models; exemplified scalable, user‑friendly product experiences.</li>
+                                <li>Character-reference architect: locked identity, set invariants, and shot grammar so generative frames stay canon.</li>
                             </ul>
                         </div>
                     </div>
@@ -182,24 +174,32 @@
                         <h4><i class="fas fa-briefcase"></i> Professional Experience</h4>
                         <div class="experience-item">
                             <div class="experience-header">
-                                <h5>Manager, Technical BA & Project Manager</h5>
-                                <span class="company">International Real Estate Services | Houston, TX</span>
-                                <span class="duration">Aug 2024 – Present</span>
+                                <h5>Area Supervisor &amp; Operations Applications Developer</h5>
+                                <span class="company">Sodexo | Houston, TX</span>
+                                <span class="duration">Aug 2025 – Present</span>
                             </div>
                             <ul>
-                                <li>Drive CRM and loan platform improvements through API integrations, feature prioritization, and cross‑team collaboration.</li>
-                                <li>Act as bridge between business needs and technical delivery.</li>
+                                <li>Turns frontline cafeteria problems into deployable AI-enabled products — ownership, build, integration, and adoption.</li>
                             </ul>
                         </div>
                         <div class="experience-item">
                             <div class="experience-header">
-                                <h5>Senior Project/Product Manager (Independent Contractor)</h5>
-                                <span class="company">Remote</span>
-                                <span class="duration">Jan 2017 – Jul 2024</span>
+                                <h5>Technical Business Analyst &amp; Project Manager</h5>
+                                <span class="company">International Real Estate Services | Houston, TX</span>
+                                <span class="duration">Jan 2024 – Jan 2025</span>
                             </div>
                             <ul>
-                                <li>Delivered Salesforce CRM, e‑commerce, and enterprise platform launches across Fortune 500 clients (e.g., Revlon, Mazda, Fox Sports), achieving measurable adoption gains.</li>
-                                <li>Managed roadmaps, gathered requirements, led testing, training, and rollout for scalable, compliance‑aligned systems.</li>
+                                <li>CRM, analytics, commercial-loan origination, API/ETL, and audit-ready acceptance for enterprise workflows.</li>
+                            </ul>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <h5>Enterprise program, product, and architecture leadership</h5>
+                                <span class="company">Theragun, Guthy-Renker, Lakeshore, Sunrun, Mazda, Fox Sports, and others</span>
+                                <span class="duration">1999 – 2024</span>
+                            </div>
+                            <ul>
+                                <li>D2C, subscription, CRM, e-commerce, and platform programs in Fortune 500 and high-growth environments — including the AI that makes the product adoptable.</li>
                             </ul>
                         </div>
                     </div>
@@ -207,32 +207,31 @@
                     <div class="resume-section">
                         <h4><i class="fas fa-graduation-cap"></i> Education</h4>
                         <div class="education-item">
-                            <h5>B.A., Economics</h5>
-                            <p>University of California Irvine</p>
+                            <h5>M.A., Humanities</h5>
+                            <p>California State University, Dominguez Hills</p>
                         </div>
                         <div class="education-item">
-                            <h5>M.A., Humanities</h5>
-                            <p>California State University Dominguez Hills</p>
+                            <h5>B.A., Economics</h5>
+                            <p>University of California, Irvine</p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
     <div id="notification-container"></div>
-<footer class="signature-footer neumorphic-footer">
+<footer class="signature-footer">
     <div class="footer-content">
         <div class="footer-copyright">
             &copy; 2025 Ray Swan
         </div>
         <div class="footer-socials">
-            <a href="https://github.com/rubyrayjuntos" aria-label="GitHub" class="footer-social-link" target="_blank">
+            <a href="https://github.com/rubyrayjuntos" aria-label="GitHub" class="footer-social-link" target="_blank" rel="noopener">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="http://www.linkedin.com/in/ray-swan-b973525" aria-label="LinkedIn" class="footer-social-link" target="_blank">
+            <a href="https://www.linkedin.com/in/ray-swan-b973525/" aria-label="LinkedIn" class="footer-social-link" target="_blank" rel="noopener">
                 <i class="fab fa-linkedin"></i>
-            </a>
-           
             </a>
         </div>
     </div>

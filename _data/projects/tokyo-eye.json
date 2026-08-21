@@ -1,0 +1,136 @@
+{
+  "id": 22,
+  "title": "Tokyo Eye",
+  "tagline": "SCIENTIFIC AI / ML ARCHITECTURE",
+  "valueStatement": "Scientific AI platform for drug discovery and structural inference using hyperbolic geometry and protein-ligand modeling.",
+  "architectureHighlight": "Expert routing, multi-model inference, and agentic workflows with provenance and structural guardrails.",
+  "description": "A governed scientific-AI discovery environment for structural inference and ligand–protein work: hyperbolic geometry, atom-level models, and a scientist control plane that keeps AI inside the current data, structure, and workflow — not a disconnected chatbot.",
+  "imageUrl": "card-hero.png",
+  "medium": "code",
+  "genre": [
+    "Interactive/Web",
+    "Scientific"
+  ],
+  "style": [
+    "Experimental",
+    "Modern"
+  ],
+  "tech": [
+    "PyTorch",
+    "HGNN",
+    "Scientific AI",
+    "Agents",
+    "ML Governance",
+    "Python"
+  ],
+  "domain": "science",
+  "mood": "technical",
+  "year": 2025,
+  "role": "Architect, Engineer & Technical Product Lead",
+  "variant": "featured",
+  "status": "in-progress",
+  "pitch": "Scientific AI platform for drug discovery and structural inference using hyperbolic geometry and protein-ligand modeling.",
+  "challenge": "Scientific assistants fail when they sit next to the work instead of in it — inventing plausible chemistry, ignoring the open structure, and leaving no provenance. Tokyo Eye had to bind agents to the current graph, selected residues, and preregistered metric gates, and recover when the first GNN underperformed.",
+  "development": "Architected a hyperbolic GNN path, then pivoted in one day to an atom-level Transformer / Mixture-of-Experts replacement that produced Pearson 0.407 on the same-day evaluation. Wrapped training in MLflow with immutable gates, ablations, and failed-run preservation. Scientist-facing flows use XState guardrails, Hypothesis tests, deterministic structural-biology checks, and RCSB semantic search. Two static HTML demos: Discovery Story (narrative walkthrough) and Discovery Cockpit (control plane).",
+  "outcome": "A discovery environment where models, geometry, and literature sit on one control plane; unproven capability stays separated from completed evidence. Story demo is linked from this page; Cockpit is the scientist UI. Source lives in tokyo-eye-agenticpoincare and tokyo-eye---eidetix-bio.",
+  "links": {
+    "demo": "demos/tokyo-eye/discovery-story.html",
+    "cockpit": "demos/tokyo-eye/discovery-cockpit.html"
+  },
+  "gallery": [
+    {
+      "url": "card-hero.png",
+      "title": "Scientist control plane",
+      "description": "Hypergraph spectrum, protein geometry, contact maps, and energy landscape on one immersive console",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "scientific-engine.png",
+      "title": "Hyperbolic scientific engine",
+      "description": "Protein in a Poincaré-style field with residue focus, fragment screening, epistemic uncertainty, and literature DOIs",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Put AI in the scientist’s actual context",
+      "description": "Rejected chatbot-beside-the-work. The agent must see current structures, selected residues, workflow stage, and visual state before it is allowed to speak."
+    },
+    {
+      "title": "Hyperbolic geometry as the spatial prior",
+      "description": "Used Poincaré / hyperbolic embeddings so hierarchical molecular relationships stay continuous instead of flattening into a Euclidean bag of atoms."
+    },
+    {
+      "title": "GNN miss, same-day Transformer pivot",
+      "description": "When the PyTorch GNN underperformed, replaced it with an atom-level Transformer / MoE, trained and evaluated in one day (Pearson 0.407)."
+    },
+    {
+      "title": "Evidence gates, not vibes",
+      "description": "MLflow with preregistered estimates, immutable metric gates, ablations, and preservation of failed experiments so a pretty number cannot quietly replace a registered one."
+    },
+    {
+      "title": "Control plane and story",
+      "description": "Discovery Cockpit for live scientific control; Discovery Story as the narrative walkthrough of how a finding is supposed to feel when the system is honest."
+    }
+  ],
+  "specs": [
+    {
+      "title": "Context-bound scientific agents",
+      "description": "LLM workflows are constrained by XState, the open structure, and the current visual selection. The model cannot answer as if the protein were not on screen."
+    },
+    {
+      "title": "Hyperbolic GNN → atom-level Transformer",
+      "description": "Geometry-first structural inference; when the GNN failed the gate, the architecture changed in a day instead of explaining the miss away."
+    },
+    {
+      "title": "MLflow as governance, not a dashboard",
+      "description": "Preregistered metrics, immutable gates, ablations, provenance, and failed runs kept on purpose so champion/challenger is real."
+    },
+    {
+      "title": "Deterministic biology checks",
+      "description": "Python Hypothesis tests plus structural-biology validators sit in front of generative output. Plausible text is not a result."
+    },
+    {
+      "title": "RCSB in the loop",
+      "description": "Semantic search against RCSB so literature and deposited structures are retrieval, not recollection from the model’s training cutoff."
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "GitHub — Agentic Poincaré",
+      "description": "Dedicated repository for the hyperbolic / agentic geometry engine",
+      "url": "https://github.com/rubyrayjuntos/tokyo-eye-agenticpoincare",
+      "icon": "⭐"
+    },
+    {
+      "name": "GitHub — Eidetix Bio",
+      "description": "Tokyo Eye product repository (Eidetix Bio Research)",
+      "url": "https://github.com/rubyrayjuntos/tokyo-eye---eidetix-bio",
+      "icon": "⭐"
+    },
+    {
+      "name": "Artifact index",
+      "description": "README listing every document in this case study",
+      "url": "_data/projects/tokyo-eye/docs/readme.md",
+      "icon": "🚀"
+    },
+    {
+      "name": "Scientific architecture",
+      "description": "Control plane, geometry engine, model runtime, and evidence store",
+      "url": "_data/projects/tokyo-eye/architecture.md",
+      "icon": "🏗️"
+    },
+    {
+      "name": "Models and gates",
+      "description": "GNN pivot, Transformer/MoE, Pearson 0.407, MLflow contract",
+      "url": "_data/projects/tokyo-eye/models-and-gates.md",
+      "icon": "⚡"
+    },
+    {
+      "name": "Scientist UX",
+      "description": "Why Story vs Cockpit, and how agents stay inside the open experiment",
+      "url": "_data/projects/tokyo-eye/scientist-ux.md",
+      "icon": "🎮"
+    }
+  ]
+}
