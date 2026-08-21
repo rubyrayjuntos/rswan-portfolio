@@ -2,7 +2,7 @@
   "id": 7,
   "title": "Data-Driven Portfolio & Storytelling Engine",
   "description": "A sophisticated, single-page application designed to deliver rich, narrative-driven case studies. Built with pure HTML, CSS, and JavaScript, it uses a data-driven architecture to dynamically showcase diverse creative and technical work through three distinct storytelling experiences.",
-  "imageUrl": "card-hero.jpg",
+  "imageUrl": "card-hero.png",
   "medium": "code",
   "genre": [
     "Interactive/Web"
@@ -118,6 +118,12 @@
     }
   ],
   "gallery": [
+    {
+      "url": "card-hero.png",
+      "title": "Hiring catalog HUD",
+      "description": "The public SYSTEMS catalog: identity, journey, featured work, and the static HTML/JSON engine that serves it",
+      "dimensions": "1200x800"
+    },
     {
       "url": "portfolio-main-gallery.jpg",
       "title": "Main Portfolio Gallery",
