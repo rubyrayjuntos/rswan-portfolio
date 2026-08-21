@@ -1,10 +1,10 @@
 {
   "id": 25,
   "title": "AI/ML Engineer Academy",
-  "tagline": "PRODUCTION AI ARCHITECTURE",
-  "valueStatement": "Interactive environment to design, test, and validate production AI systems end to end.",
-  "architectureHighlight": "Covers accuracy contracts, agent orchestration, secure serving, evaluation, rollback, and operational governance.",
-  "description": "An interactive training platform for production AI/ML: five curriculum modules, architecture simulators, isolated Python labs, and a field atlas that distinguishes CPU-proved work from survey topics.",
+  "tagline": "EVIDENCE-BACKED AI CURRICULUM",
+  "valueStatement": "Training applet with five isolated Python labs, pytest in CI, and a local certificate that does not ingest lab output.",
+  "architectureHighlight": "React/Express classroom plus per-module GitHub Actions; in-browser simulators are teaching toys, not live vLLM.",
+  "description": "An interactive training platform for production AI/ML: five curriculum modules, architecture simulators, isolated Python labs, and a field atlas that distinguishes CPU-proved work from survey topics. The GitHub repo is public. The in-app certificate is a localStorage keepsake, not a vendor credential.",
   "imageUrl": "card-hero.png",
   "medium": "code",
   "genre": [
@@ -16,12 +16,12 @@
     "Technical"
   ],
   "tech": [
-    "AI Architecture",
-    "Agents",
-    "Evaluation",
-    "TypeScript",
-    "React",
-    "Python"
+    "Isolated Labs",
+    "pytest",
+    "FastAPI",
+    "MCP",
+    "Grok",
+    "React"
   ],
   "domain": "academy",
   "mood": "technical",
@@ -29,10 +29,10 @@
   "role": "Architect, Engineer & Technical Product Lead",
   "variant": "featured",
   "status": "in-progress",
-  "pitch": "Interactive environment to design, test, and validate production AI systems end to end.",
-  "challenge": "Most AI courses skip the unglamorous half: Docker, evals, promotion gates, and the difference between a local notebook and a served system. The academy had to train that stack without pretending a browser quiz is production competence.",
-  "development": "Built a React 19 + Vite 6 SPA with an Express server, optional Grok mentor, and five isolated lab virtualenvs (dependencies conflict across modules on purpose). Curriculum maps SWE+ML, transformers/MoE/LoRA, RAG/MCP/LangGraph, system design, and cloud productionization. A standalone static atlas page states who it is for and which topics are CPU-proved vs survey.",
-  "outcome": "A private training applet with local certificate unlock (modules + lab evidence + quiz threshold). Not a vendor credential. Interactive app needs Node; this static portfolio cannot host it. Source: github.com/rubyrayjuntos/AIML-Engineer-Academy.",
+  "pitch": "Training applet with five isolated Python labs, pytest in CI, and a local certificate that does not ingest lab output.",
+  "challenge": "Most AI courses skip Docker, evals, promotion gates, and the difference between a local notebook and a served system. The academy had to train that stack without pretending a browser quiz is production competence — or that a canned “Run code” panel is pytest.",
+  "development": "Built a React 19 + Vite 6 SPA with Express (server.ts) on port 3000. Optional xAI Grok mentor via XAI_API_KEY (default grok-4.6, rate-limited); curriculum fallback if the key is missing. Five labs, each with its own requirements.txt and venv: foundations (FastAPI SSE, TF-IDF, leakage/PII/RAG clinics, Docker), LLM mechanics (NumPy TODOs; QLoRA optional), governed agents (HITL, SQL/MCP, Dual-LLM stub; LangGraph survey-only), secure serving (auth/rate-limit/CPU bench; vLLM optional), production operations (offline eval, canary/rollback; DeepEval/Promptfoo/HF/Render optional). Frontend vitest plus five lab workflows in GitHub Actions.",
+  "outcome": "Public source at github.com/rubyrayjuntos/AIML-Engineer-Academy. Certificate unlock is localStorage (all modules marked complete, lab checkboxes confirmed, quizzes ≥60%). The UI does not parse pytest XML. This static portfolio cannot host the applet.",
   "gallery": [
     {
       "url": "card-hero.png",
@@ -44,41 +44,49 @@
   "journey": [
     {
       "title": "Train the job, not the buzzword",
-      "description": "Started from the skill matrix: SWE+ML, LLM internals, orchestration, system design, deployment. If it is not on that matrix, it is not a module."
+      "description": "Modules follow the production stack: SWE+ML, LLM internals, governed agents, secure serving, eval/release. If it is not on that matrix, it is not a required lab."
     },
     {
       "title": "Labs that conflict on purpose",
-      "description": "Each module gets its own venv. CUDA, vector drivers, and classical ML stacks do not belong in one requirements.txt — engineers learn that the hard way, which is the point."
+      "description": "Each module gets its own venv. CUDA, browser, and eval extras live in separate requirements files so default CI stays CPU and offline."
     },
     {
       "title": "Evidence before the keepsake",
-      "description": "Certificate unlock requires completed modules, confirmed lab evidence, and a quiz bar. The PDF in localStorage is a souvenir, not an accredited credential."
+      "description": "pytest and evidence JSON run in the lab (and in GitHub Actions). The applet asks you to confirm that you ran them. That confirm is a checkbox, not an ingest of the test report. The PDF in localStorage is a souvenir."
     },
     {
       "title": "Atlas as the honest map",
       "description": "A static field atlas separates CPU-proved labs from survey and optional-live topics so the marketing page cannot outrun the work."
+    },
+    {
+      "title": "Simulators are not the serving stack",
+      "description": "In-browser panels (vLLM, diffusion, ReAct, MCP) are teaching toys. /api/simulate-code returns canned logs. Real serving evidence is the module-4 FastAPI CPU path."
     }
   ],
   "specs": [
     {
       "title": "Five-module production curriculum",
-      "description": "Foundations (Python, Docker, classical ML), LLM architectures (attention, DPO/GRPO, MoE, LoRA/QLoRA), agent orchestration (RAG, MCP, DSPy, LangGraph), system design, cloud productionization."
+      "description": "1 Foundations (FastAPI SSE, Docker, TF-IDF, leakage/PII/RAG). 2 LLM mechanics (attention/KV/LoRA/MoE/DPO/diffusion toys). 3 Governed agents (HITL, SQL/MCP, Dual-LLM stub). 4 Secure serving (auth, rate limits, CPU benchmarks). 5 Eval, canary, rollback. LangGraph, PagedAttention, and multi-cloud deploy stay survey or optional."
     },
     {
-      "title": "Isolated labs with pytest evidence",
-      "description": "module-1 through module-5 each ship requirements.txt and validation commands. Passing tests is the evidence object, not a checked box in the UI."
+      "title": "Isolated labs with pytest in CI",
+      "description": "Each lab has requirements.txt, pytest, and a GitHub Actions workflow. Module 1 also docker-builds. Module 2 CI sets ACADEMY_SOLUTION=1 to grade reference mechanics; learners leave that unset."
     },
     {
       "title": "Mentor in the loop, curriculum without it",
-      "description": "Optional xAI Grok mentor behind XAI_API_KEY. The applet still teaches if the key is missing — same pattern as Kitchen Kontrol’s Gemini assistant."
+      "description": "Optional xAI Grok behind XAI_API_KEY, IP rate limit, prompt truncation. Missing key or upstream failure uses a keyword fallback. The applet still teaches."
     },
     {
       "title": "Field atlas, not a sales page",
-      "description": "Standalone static atlas: audience, contents, non-goals, and a filterable map of proved vs survey topics. Shared learning-space pitch."
+      "description": "Standalone static atlas at /atlas/: audience, contents, non-goals, filterable CPU-proved vs survey vs optional-live."
+    },
+    {
+      "title": "Certificate is local, not accredited",
+      "description": "Requires modules marked complete, lab confirms, and module quizzes or the program quiz at ≥60%. Not a vendor credential. Not proof the CI labs ran on the learner’s machine."
     },
     {
       "title": "This site cannot host the applet",
-      "description": "SPA + Express on port 3000. Portfolio is static HTML. Host later via Pages/Render; until then the case study and GitHub are the public surface."
+      "description": "SPA + Express on port 3000. Portfolio is static HTML. GitHub is the public surface until a separate host exists."
     }
   ],
   "artifacts": [
@@ -96,13 +104,13 @@
     },
     {
       "name": "Platform architecture",
-      "description": "SPA, Express, labs, atlas, and what this portfolio will not pretend to host",
+      "description": "SPA, Express, labs, atlas — and what the UI does not verify",
       "url": "_data/projects/aiml-engineer-academy/architecture.md",
       "icon": "🏗️"
     },
     {
       "name": "Curriculum map",
-      "description": "Five modules against the production AI engineer skill stack",
+      "description": "Five modules as they exist in GitHub, including survey vs required",
       "url": "_data/projects/aiml-engineer-academy/curriculum.md",
       "icon": "⚡"
     }

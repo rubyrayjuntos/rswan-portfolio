@@ -1,32 +1,76 @@
 # Tokyo Eye — scientific architecture
 
-Tokyo Eye is a discovery environment, not a chatbot with a molecule wallpaper. The scientist’s current structure, selection, and workflow stage are the runtime context. Generative AI is allowed only inside that box.
+Tokyo Eye is a discovery **platform**, not a chatbot with a molecule wallpaper. The scientist’s current structure, selection, and workflow stage are the runtime context. Generative AI is allowed only inside that box.
 
-## Control plane
+The source of truth is [tokyo-eye-agenticpoincare](https://github.com/rubyrayjuntos/tokyo-eye-agenticpoincare) (private). Public research showcase: [hgnn-protein-ligand](https://github.com/rubyrayjuntos/hgnn-protein-ligand). [tokyo-eye---eidetix-bio](https://github.com/rubyrayjuntos/tokyo-eye---eidetix-bio) is a Three.js dehydron visualizer — not this stack.
 
-The immersive console in the case-study hero is the product metaphor: hypergraph spectrum, protein geometry and energetics, contact-map prediction, energy landscape, conformational ensemble, manifold learning, literature.
+The hiring card shows six chips. This page is the full inventory from the platform repo.
 
-Two HTML demos implement two ways in:
+## Core ML / AI
 
-- **Discovery Story** — narrative walkthrough of a finding
-- **Discovery Cockpit** — live scientist UI (selection, gates, views)
+| Technology | Role |
+| --- | --- |
+| PyTorch | Deep learning framework (science container) |
+| Hyperbolic GNNs (Poincaré / `geoopt`) | GNNs in hyperbolic space for protein-ligand / allostery work |
+| SE(3) equivariant convolutions (`e3nn`) | Rotation/translation-equivariant convolutions for 3D molecular data |
+| Mixture of Experts (MoE) routing | Topological gate, capacity, dropout |
+| Evidential uncertainty | Epistemic + aleatoric heads |
 
-Both are static bundled HTML, so they run next to this portfolio (unlike Kitchen Kontrol’s Vite app).
+## Scientific computing
 
-## Geometry engine
+| Technology | Role |
+| --- | --- |
+| TDA / GUDHI | Persistence barcodes |
+| RDKit | Cheminformatics |
+| OpenMM | Molecular dynamics (science extra; G12D is a separate KRAS OpenMM app) |
+| Protein / PDB ingestion | Dehydron analysis, allostery detection |
 
-Hierarchical molecular relationships are represented with hyperbolic / Poincaré embeddings so trees of residue, fragment, and pocket structure do not get crushed into Euclidean space. The Agentic Poincaré repo is the geometry/agent runtime; Eidetix Bio is the product shell.
+## Backend and API
 
-## Model runtime
+| Technology | Role |
+| --- | --- |
+| FastAPI | Coordinator API |
+| JWT + rate-limited sessions | Auth |
+| pgvector | Hyperbolic similarity (Postgres 16 image) |
+| 30-schema migrations | Local ↔ Aurora |
+| Dimensional model + single-write path | `data/normalizer/core.py` is the only write door |
+| `provenance_run` lineage | Experiment provenance before results |
 
-Training and evaluation are local-to-registered:
+## LLM / agent orchestration
 
-1. Candidate architecture (GNN, then atom-level Transformer / MoE)
-2. Metric gate that was declared before the run
-3. Register or reject — failed runs stay in MLflow
+| Technology | Role |
+| --- | --- |
+| 20-tool LLM coordinator + policies | DTIE, data, viewport, plotting tools |
+| Bedrock → Anthropic → Mock routing | Provider fallback |
+| Hypothesis engine + literature tools | Hypothesis lifecycle + RCSB-adjacent retrieval |
+| WebSocket viewport directives | Real-time camera / highlight / metric |
 
-## Evidence store
+## MLOps / infrastructure
 
-- Immutable metrics and ablations
-- RCSB retrieval for deposited structures and literature
-- Deterministic structural-biology checks in front of LLM text
+| Technology | Role |
+| --- | --- |
+| Terraform (Aurora + S3) | AWS IaC |
+| MLflow + Optuna | Tracking and HPO (`training` extra) |
+| Property-gate CI (corpus / smoke / curv) | `gates.yml` |
+| Multi-stage Docker | Agent (no torch) / science CUDA / pgvector db |
+
+## Scientist session (XState — this is in the code)
+
+An earlier canvas note said XState was spec-only. That was wrong. `visualizer/frontend` imports `xstate` / `@xstate/react` and ships three machines:
+
+| Machine | File | Job |
+| --- | --- | --- |
+| Viewport | `src/lib/viewportMachine.ts` | Directives, highlights, panels |
+| Discovery phase | `src/lib/discoveryPhaseMachine.ts` | Residue → report phase + tool policy |
+| Hypothesis lifecycle | `src/lib/hypothesisLifecycleMachine.ts` | Emergent → synthesized speech-act policy |
+
+Tests use `createActor` from XState (`viewportMachine.test.ts`). `state-machine-audit.txt` records wiring gaps (e.g. `activeStructure` not always mirrored into the machines). Claim the machines; do not claim every field is hydrated.
+
+## Control plane vs this portfolio
+
+Two HTML files on **this** site are walkthroughs, not the running platform:
+
+- **Discovery Story** — narrative of a finding
+- **Discovery Cockpit** — control-plane metaphor
+
+This static portfolio cannot serve FastAPI, Postgres, or GPU science.

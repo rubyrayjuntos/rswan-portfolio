@@ -1,14 +1,21 @@
 # Kitchen Kontrol — artifact index
 
-This folder is the Systems case-study pack for Kitchen Kontrol. Each document opens in the portfolio markdown reader. The GitHub repository is an external link on the same Artifacts grid.
+This folder is the Systems case-study pack for Kitchen Kontrol. Each document opens in the portfolio markdown reader.
 
 | Artifact | Path | What it covers |
 | --- | --- | --- |
-| System architecture | `../architecture.md` | Client, sync, evidence store, AI service boundaries |
-| AI capabilities | `../ai-capabilities.md` | Voice, assistant, forecast, vision — demo vs production |
-| HACCP and offline | `../haccp-and-offline.md` | TFER / USDA mapped into logs that work without Wi-Fi |
-| Adoption outcomes | `../outcomes.md` | Time, compliance, waste, sites |
+| System architecture | `../architecture.md` | Four GitHub repos; Express/Postgres layers; what is not in source |
+| Voice and AI boundaries | `../ai-capabilities.md` | Browser STT vs unused Gemini vs untransferred cloud overlay |
+| HACCP evidence | `../haccp-and-offline.md` | TFER / USDA in logs; honest bound on offline |
+| Outcomes | `../outcomes.md` | Resume figures vs what GitHub can prove |
 
-**Interactive demo:** Vite + React app (TypeScript). This portfolio site is static HTML/CSS/JS only, so the demo is **not** hosted here. GitHub Pages can serve a `vite build` `dist/` with a correct `base` path; otherwise the demo gets its own repo and Render. No live PLAY link until that deploy exists.
+**Repos**
 
-**Source:** [github.com/rubyrayjuntos/kitchen-kontrol](https://github.com/rubyrayjuntos/kitchen-kontrol)
+- [kitchen-kontrol](https://github.com/rubyrayjuntos/kitchen-kontrol) — private ops platform
+- [kk-logger](https://github.com/rubyrayjuntos/kk-logger) — public HACCP SPA
+- [MyKitchen](https://github.com/rubyrayjuntos/MyKitchen) — public HTML hub
+- [MilkTrace-Voice](https://github.com/rubyrayjuntos/MilkTrace-Voice) — private browser-STT milk logger
+
+This portfolio is static HTML/CSS/JS. It cannot host the Express app. No PLAY link until a keyed host exists.
+
+**Not claimed:** cafeteria-server / Azure work that was not transferred into these repositories.

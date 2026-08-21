@@ -16,10 +16,10 @@
     "Technical"
   ],
   "tech": [
-    "AI Safety",
-    "Agent Governance",
-    "XState",
-    "Guardrails",
+    "PVA / Dual Kernel",
+    "QuickJS WASM",
+    "Honesty Oracle",
+    "Zod",
     "Gemini"
   ],
   "domain": "safety",
@@ -30,7 +30,7 @@
   "status": "in-progress",
   "pitch": "Governed agent runtime that separates AI reasoning from execution authority.",
   "challenge": "AI-generated logic is usually treated as a peer of the application: it writes code, mutates state, and hopes the prompt was honest. That fails the moment the model drifts, injects, or exceeds the capability it declared. NeuroNote had to make runtime-generated behavior a guest — verified, sandboxed, and reversible — without giving up malleability.",
-  "development": "Built a TypeScript/React/Vite reference implementation of Proposal–Verification architecture. Guest kernel (Gemini, or Claude/Llama/Mistral via Bedrock) synthesizes AppDefinition IR only. A six-layer Gatekeeper — structural validation, semantic verification, honesty oracle, resource budgets, capability manifest, test-vector simulation — sits on the trust boundary. The Host kernel executes in a fuel-metered QuickJS WASM sandbox and a worker with 46 verified operators. Bidirectional lenses migrate schema; runtime errors roll back; a change journal keeps the audit.",
+  "development": "Built a TypeScript/React/Vite reference implementation of Proposal–Verification architecture. Guest kernel (Gemini, or Claude/Llama/Mistral via Bedrock, plus Groq) synthesizes AppDefinition IR only. A three-phase Gatekeeper — structural validation, semantic verification, honesty oracle (including test-vector simulation) — sits on the trust boundary, with resource budgets and a capability manifest as additional Host constraints. The Host kernel executes in a fuel-metered QuickJS WASM sandbox and a worker with 40 registered operators. Bidirectional lenses migrate schema; a custom JSON FSM owns application state; runtime errors roll back; a change journal keeps the audit.",
   "outcome": "A working dual-kernel control plane where AI proposes, the gatekeeper validates, and the host executes. Interactive app needs a model key and is not hosted on this static portfolio. Source: github.com/rubyrayjuntos/Neuronote.",
   "gallery": [
     {
@@ -51,11 +51,11 @@
     },
     {
       "title": "Gatekeeper as the product",
-      "description": "Six verification layers sit on the trust boundary — structure, semantics, honesty, budgets, capabilities, simulated tests — so a fluent proposal cannot skip the gate."
+      "description": "Three verification phases sit on the trust boundary — structure, semantics, honesty — so a fluent proposal cannot skip the gate. Budgets and the capability lattice further constrain what the Host will execute."
     },
     {
       "title": "Execute only what was admitted",
-      "description": "WASM fuel metering, worker isolation, and 46 verified operators. No ambient capabilities. Bounded iteration. Rollback on runtime error."
+      "description": "WASM fuel metering, worker isolation, and 40 registered operators. No ambient capabilities. Bounded iteration. Rollback on runtime error."
     },
     {
       "title": "Journal the change, not the vibe",
@@ -68,12 +68,12 @@
       "description": "The Guest kernel produces IR. It does not execute, persist, or talk to operators. Application authority lives only in the Host."
     },
     {
-      "title": "Six-layer gatekeeper",
-      "description": "Structural validation, semantic verification, honesty oracle (intent vs effects vs traces), resource budgets, capability manifest, and test-vector simulation before any proposal is adopted."
+      "title": "Three-phase gatekeeper",
+      "description": "Structural validation, semantic verification, and honesty oracle (intent vs effects vs traces, including test-vector simulation) before any proposal is adopted. Resource budgets and a capability manifest constrain Host execution."
     },
     {
       "title": "WASM + worker isolation",
-      "description": "QuickJS with fuel metering in WASM; 46 verified operators (text, math, image, audio, CV) behind a worker with no ambient capabilities and a FoldN cap of 1000."
+      "description": "QuickJS with fuel metering in WASM; 40 registered operators (text, math, image, audio, CV) behind a worker with no ambient capabilities and a FoldN cap of 1000."
     },
     {
       "title": "Logic-as-data, not eval",
@@ -81,7 +81,7 @@
     },
     {
       "title": "Model-agnostic guest",
-      "description": "Provider interface for Gemini 2.5 Flash and Bedrock-hosted Claude, Llama, and Mistral. Swap the synthesizer without rewriting the Host."
+      "description": "Provider interface for Gemini 2.5 Flash, Groq, and Bedrock-hosted Claude, Llama, and Mistral. Swap the synthesizer without rewriting the Host."
     },
     {
       "title": "This site cannot host the runtime",

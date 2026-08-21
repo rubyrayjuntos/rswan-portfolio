@@ -1,29 +1,31 @@
-# HACCP and offline-first design
+# Kitchen Kontrol — HACCP evidence design
 
-## Why offline is a product requirement
+## What GitHub actually does for connectivity
 
-Cafeteria Wi-Fi is not a control. If logging dies when the network dies, staff go back to paper and the digital product is decoration.
+Cafeteria Wi-Fi is still a product constraint. These repos do **not** implement a full offline-first sync fabric.
 
-Kitchen Kontrol treats the device as the system of record until sync is possible:
+- **kitchen-kontrol** is server-backed (Express + Postgres). No service worker cache of logs. No `BroadcastChannel`.
+- **kk-logger** stores session and language in `localStorage` and **simulates** an online/offline sync queue (random delay, fake failures). SharePoint sync is a written plan, not an API.
+- **BroadcastChannel** tablet/scanner sync exists in a local Vite demo that was not pushed to GitHub.
 
-- HACCP logs, recipes, and planograms available locally
-- Multi-device consistency via `BroadcastChannel` in the demo (tablet vs scanner viewport)
-- Sync when a connection returns — the interactive demo shows live propagation without a server
+Do not read the gallery “offline-first” frame as a shipped GitHub capability.
 
 ## Regulations in the workflow
 
-Not a policy PDF. The demo encodes:
+Encoded as log types and validators, not as a policy PDF:
 
-- **Texas TFER §228.75** — temperature control
-- **USDA 7 CFR 210** — National School Lunch Program operational requirements
+- **Texas TFER §228.75** — temperature control (kk-logger: cold holding, hot holding, sanitizer ppm, thermometer calibration)
+- **USDA 7 CFR 210** — NSLP operational requirements appear as reimbursable-meal log types and report copy in kitchen-kontrol
 
 Digital logs include:
 
-- Equipment (walk-in, freezer, warmer)
+- Equipment (walk-in, freezer, warmer) and food temps
 - Pass / fail against range
-- Electronic signature
-- Corrective-action modal when out of range
+- Corrective-action flow when out of range
+- Assignment by user, role, or kitchen phase (kitchen-kontrol)
 
-## Bilingual, wet-hands, multi-station
+Electronic signature as a legal-control claim is only as strong as what the form schema stores. Do not upgrade that to a PKI or 21 CFR Part 11 stack — it is not in these repos.
 
-English/Spanish toggle and light/dark theme are in the demo because a single “desktop English manager” UI will not get adopted on the line.
+## Bilingual
+
+kk-logger has a full English/Spanish translation map. kitchen-kontrol has a small i18n helper; it is not a complete line-ready locale pack.

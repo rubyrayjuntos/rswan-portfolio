@@ -1,27 +1,42 @@
 # Tokyo Eye — models and gates
 
-## The miss and the pivot
+## What is in the science extra
 
-The first PyTorch GNN did not clear the gate. It was not kept as the public model with a footnote. It was replaced the same day with an atom-level Transformer / Mixture-of-Experts architecture, trained and evaluated in that window.
+Pinned in `pyproject.toml` / `requirements-science.txt`:
 
-**Same-day Pearson correlation: 0.407** on the evaluation that counted. That number is a registered result, not a slide.
+- PyTorch 2.3 + PyG
+- `geoopt` (Poincaré / hyperbolic)
+- `e3nn` (SE(3) equivariance)
+- GUDHI (persistence)
+- RDKit, Biotite, Biopython, OpenMM
+- scikit-learn, HDBSCAN
+
+MoE routing and evidential uncertainty heads live in the DTIE science tree. The hiring card names **Hyperbolic GNN, e3nn, MoE** plus the platform chips. Evidential, GUDHI, RDKit, and OpenMM stay on this page.
+
+## Versioned DTIE, not one frozen number
+
+`AGENTS.md` is explicit: **V5 is production inference**. V3/V4 remain for adapters. Training continues on **v6** with MLflow governance (`science/training/mlflow_governance.py`). Checkpoints for v5 and v6 variants are in the repo.
+
+A resume line about a same-day Pearson 0.407 is **not** reproduced here. Claim registered MLflow schema and property gates, not a correlation that is not sitting in these docs.
 
 ## What “governed” means here
 
-MLflow is used as a contract:
+MLflow is a contract (`docs/TRAINING_GOVERNANCE_AND_MLFLOW_SCHEMA.md`):
 
-- Estimates preregistered before the run
-- Immutable metric gates
-- Ablations stored with the run
-- Failed experiments preserved (so the next architecture cannot pretend the GNN never happened)
+- Curvature (`log_c`, `curvature_final`) emitted on smoke
+- Poincaré disc overlay + angular stats at run end
+- Multi-stage parent/child lineage (**P_MLFLOW_02**) documented as not yet proved
+
+Property-gate CI: `.github/workflows/gates.yml` (corpus / smoke / curvature markers in pytest).
 
 ## Agents are not the model card
 
 Scientist-facing LLM flows sit behind:
 
-- **XState** — allowed transitions only
-- **Hypothesis** — property tests on structured output
-- **Deterministic structural-biology checks** — geometry and chemistry the model does not get to vibe
-- **RCSB semantic search** — structures and papers retrieved, not recalled from training data
+- **FastAPI coordinator** — JWT, bounded sessions, rate limits, WebSocket viewport
+- **XState (in code)** — `viewportMachine`, `discoveryPhaseMachine`, `hypothesisLifecycleMachine` in `visualizer/frontend`. Not spec fiction. Not the eidetix-bio Three.js app.
+- **20 tools** — GNN inference, provenance, RCSB-adjacent data tools, viewport directives
+- **Provider fallback** — Bedrock → Anthropic → Mock
+- **Findings honesty** — `docs/findings/` includes abandoned claims (λ₂ as cancer discriminator) and surviving dehydron physics
 
-If a capability is unproven, it is labeled unproven. The architecture doc and this page keep that split explicit.
+If a capability is unproven, it is labeled unproven.
