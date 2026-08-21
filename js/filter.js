@@ -54,7 +54,7 @@ function initializeSearch(data) {
     fuse = new Fuse(data, {
         includeScore: true,
         threshold: 0.4,
-        keys: ['title', 'name', 'description', 'tech', 'genre', 'role']
+        keys: ['title', 'name', 'description', 'tech', 'genre', 'role', 'tagline', 'valueStatement', 'architectureHighlight', 'pitch']
     });
 }
 

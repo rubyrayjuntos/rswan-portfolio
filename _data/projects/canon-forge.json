@@ -1,0 +1,109 @@
+{
+  "id": 23,
+  "title": "Canon Forge",
+  "tagline": "GENERATIVE AI WORKFLOW ENGINE",
+  "valueStatement": "Stateful generative-AI architecture that keeps identity, set, and shot grammar consistent across image and video production.",
+  "architectureHighlight": "Locked character and set profiles constrain Gemini as a renderer inside a production control plane — not a prompt you hope the model remembers.",
+  "description": "A character-reference architect for generative production: lock a person, a set, and a shot grammar so Gemini image models stay inside canon instead of reinventing the face, wardrobe, and room on every frame.",
+  "imageUrl": "card-hero.png",
+  "medium": "code",
+  "genre": [
+    "Interactive/Web",
+    "Generative"
+  ],
+  "style": [
+    "Experimental",
+    "Modern"
+  ],
+  "tech": [
+    "GenAI",
+    "Multimodal",
+    "Workflow Orchestration",
+    "State Management",
+    "React",
+    "Vite"
+  ],
+  "mood": "technical",
+  "year": 2025,
+  "role": "Architect, Engineer & Technical Product Lead",
+  "variant": "featured",
+  "status": "in-progress",
+  "pitch": "Stateful generative-AI architecture that keeps identity, set, and shot grammar consistent across image and video production.",
+  "challenge": "Image models drift. A headshot, a wardrobe turn, a library interior, and a medium shot of the same figure holding a prop will not stay one canon unless the product treats identity, set, and camera as locked assets — not a prompt you hope the model remembers.",
+  "development": "Built a TypeScript/React/Vite production suite (CharacterForge, SetForge, CompositorForge, SceneForge) on Gemini image models. Characters carry approved canon headshots and wardrobe; sets carry spatial invariants, landmarks, forbidden changes, and lighting lock; compositing specifies shot type, lens, angle, and landmark lock before a frame is allowed to generate.",
+  "outcome": "A working character-reference architect (Gemini-backed). Interactive demo is a Vite app with a server-side key — not this static portfolio. Source: github.com/rubyrayjuntos/canon-forge.",
+  "gallery": [
+    {
+      "url": "card-hero.png",
+      "title": "Production control plane",
+      "description": "Face mesh, set wireframe, locked composite, and frame strip on one console — identity through the cut",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Stop asking the model to remember the person",
+      "description": "Treated identity as an approved asset, not a paragraph in the prompt. The canon headshot is the source of truth the later shots have to match."
+    },
+    {
+      "title": "Lock the room the same way",
+      "description": "Sets got the same treatment: wide/medium canon, landmarks that cannot move, lighting that cannot reinvent itself between takes."
+    },
+    {
+      "title": "Compose, then generate",
+      "description": "CompositorForge only fires after character, set, action, lens, and landmark lock are specified. The model is a renderer inside a shot list."
+    },
+    {
+      "title": "Four forges, one production grammar",
+      "description": "Character, Set, Compositor, and Scene tabs share one profile model so a later frame cannot quietly become a different actor in a different room."
+    }
+  ],
+  "specs": [
+    {
+      "title": "Canon headshot as identity kernel",
+      "description": "Approved reference images (head, body, wardrobe, expression) are stored on the character profile. Later generations are constrained to that asset, not to a vibes prompt."
+    },
+    {
+      "title": "Set invariants and lighting lock",
+      "description": "Indoor/outdoor sets declare spatial invariants, fixed landmarks, forbidden changes, and a lighting-rig lock so the environment does not mutate between shots."
+    },
+    {
+      "title": "Shot grammar before pixels",
+      "description": "Compositor specs encode shot type, camera angle, lens preset, subject distance, emotion, and landmark lock — the same language a DP would put on a shot list."
+    },
+    {
+      "title": "Gemini as renderer, not director",
+      "description": "The model produces frames inside the locked profiles. It does not own canon. Failed or off-model frames stay out of the approved sheet."
+    },
+    {
+      "title": "Vite production app, not a slideshow",
+      "description": "React 19 + Vite 6 + TypeScript. Needs a server-side Gemini key. This static portfolio cannot host it; GitHub Pages or Render can after a proper build."
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "GitHub Repository",
+      "description": "Public source for Canon Forge",
+      "url": "https://github.com/rubyrayjuntos/canon-forge",
+      "icon": "⭐"
+    },
+    {
+      "name": "Artifact index",
+      "description": "README listing every document in this case study",
+      "url": "_data/projects/canon-forge/docs/readme.md",
+      "icon": "🚀"
+    },
+    {
+      "name": "Production architecture",
+      "description": "Character, set, compositor, and scene forges — and where Gemini sits",
+      "url": "_data/projects/canon-forge/architecture.md",
+      "icon": "🏗️"
+    },
+    {
+      "name": "Identity canon",
+      "description": "Why a locked profile beats a longer prompt",
+      "url": "_data/projects/canon-forge/identity-canon.md",
+      "icon": "⚡"
+    }
+  ]
+}

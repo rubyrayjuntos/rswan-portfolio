@@ -1,0 +1,217 @@
+{
+  "id": 21,
+  "title": "Kitchen Kontrol",
+  "tagline": "APPLIED AI OPERATIONS PLATFORM",
+  "valueStatement": "AI-powered operations platform for school nutrition with inventory intelligence, forecasting, alerts, and human-in-the-loop workflows.",
+  "architectureHighlight": "Turns fragmented daily tasks into actionable insights with conversational AI and real-time reporting.",
+  "description": "AI-powered operations platform for school nutrition with inventory intelligence, forecasting, alerts, and human-in-the-loop workflows. Turns fragmented daily tasks into actionable insights with conversational AI and real-time reporting — offline-first, so the line still runs when the cafeteria network does not.",
+  "imageUrl": "card-hero.png",
+  "medium": "code",
+  "genre": [
+    "Interactive/Web",
+    "Operations"
+  ],
+  "style": [
+    "Responsive",
+    "Modern"
+  ],
+  "tech": [
+    "Applied AI",
+    "LLM",
+    "Forecasting",
+    "React",
+    "TypeScript",
+    "Node.js"
+  ],
+  "mood": "professional",
+  "year": 2025,
+  "role": "Architect, Engineer & Technical Product Lead",
+  "variant": "featured",
+  "status": "live",
+  "pitch": "AI-powered operations platform for school nutrition with inventory intelligence, forecasting, alerts, and human-in-the-loop workflows.",
+  "challenge": "School kitchens cannot depend on a always-on network, and paper HACCP logs were eating 30 minutes a day while still missing Texas TFER and USDA 7 CFR 210 requirements. The product had to work on wet-hands, bilingual, multi-device shifts — and still produce audit-ready evidence.",
+  "development": "Shipped an interactive TypeScript/React/Vite operations demo with BroadcastChannel multi-device sync, digital HACCP logs, USDA recipe scaling, planogram builder, and an AI compliance assistant. Production roadmap layers AWS Transcribe/Lex, Bedrock, SageMaker Forecast, and Rekognition on the same workflows already proven with staff.",
+  "outcome": "Reporting dropped from 30 minutes per day to 15 minutes per week; compliance rose to 95%; food waste fell to 3%. Interactive demo is a Vite app (GitHub Pages or Render — not this static portfolio). Source: github.com/rubyrayjuntos/kitchen-kontrol.",
+  "gallery": [
+    {
+      "url": "card-hero.png",
+      "title": "Line operations HUD",
+      "description": "Frontline kitchen with live inventory, forecast, HACCP, and alert overlays on the same work the staff already do",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "ai-features.png",
+      "title": "AI-powered operations",
+      "description": "Voice logging, Bedrock compliance assistant, SageMaker inventory forecast, SNS alerts, adaptive training, and Rekognition planogram checks",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "01-dashboard.jpeg",
+      "title": "Daily operations dashboard",
+      "description": "Kitchen phases, role assignments, and quick actions for logs, reports, training, and planograms",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "02-daily-logs.jpeg",
+      "title": "Daily logs",
+      "description": "Digital HACCP and operations logs replacing clipboard temperature sheets",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "compliance-logging.png",
+      "title": "HACCP temperature logging",
+      "description": "Walk-in, freezer, and warmer logs with pass/fail status and corrective-action capture",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "regulatory-compliance.png",
+      "title": "Regulatory compliance",
+      "description": "Texas TFER §228.75 and USDA 7 CFR 210 mapped into the daily workflow",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "inventory-forecasting.png",
+      "title": "Inventory and milk forecasting",
+      "description": "Category cards, consumption charts, ML demand bands, and expiration warnings",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "recipe-library.png",
+      "title": "Recipe library",
+      "description": "USDA recipe book with live portion scaler, allergens, batch cost, and CCP steps",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "menu-planning.png",
+      "title": "Meal scheduling",
+      "description": "Weekly calendar with federal reimbursement math and kitchen prep-sheet export",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "presentation-planners.png",
+      "title": "Planogram builder",
+      "description": "Drag-and-drop service line with pan sizes, temperature status, and allergen tags",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "offline-first-synching.png",
+      "title": "Offline-first multi-device sync",
+      "description": "BroadcastChannel live sync between tablet and barcode-scanner viewports",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "04-training.jpeg",
+      "title": "Training",
+      "description": "Staff training modules tied to compliance misses and kitchen roles",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "08-manager-reports-weekly-log-status.jpeg",
+      "title": "Manager reports",
+      "description": "Weekly log status for district managers without pulling paper packets",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "real-experience.png",
+      "title": "Frontline experience",
+      "description": "Designed from observed cafeteria behavior, not a back-office spreadsheet rewrite",
+      "dimensions": "1200x800"
+    },
+    {
+      "url": "beyond-schools.png",
+      "title": "Beyond schools",
+      "description": "Same ops pattern extends to other high-compliance food-service sites",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Watch the line, not the backlog",
+      "description": "Observed school nutrition shifts where paper HACCP and inventory ate 30 minutes a day and still failed audits. Requirements came from wet-hands, bilingual, multi-station reality."
+    },
+    {
+      "title": "Offline-first or it will not ship",
+      "description": "Designed the product so logging, recipes, and planograms work when the cafeteria Wi-Fi does not — then sync when a device returns."
+    },
+    {
+      "title": "Make HACCP a product, not a PDF",
+      "description": "Turned TFER and USDA temperature rules into digital logs with signatures, pass/fail gates, and corrective-action modals staff can complete during service."
+    },
+    {
+      "title": "Ops surface: planogram, recipes, inventory, meals",
+      "description": "Built the interactive demo hub — pan builder, USDA scaler, milk forecast, reimbursement calendar — so districts can try the workflow before a full install."
+    },
+    {
+      "title": "Put AI on the same workflow",
+      "description": "Layered a USDA/TFER knowledge assistant, voice temperature logging, SageMaker-style demand bands, and vision checks for the line — AI that writes evidence, not a disconnected chatbot."
+    },
+    {
+      "title": "Adoption is the metric",
+      "description": "Piloted with frontline users. Result: 15 minutes per week instead of 30 per day, 95% compliance, 3% waste, 23 school nutrition sites in the product story."
+    }
+  ],
+  "specs": [
+    {
+      "title": "AI compliance assistant",
+      "description": "In-workflow USDA/TFER assistant (Bedrock + Lambda + DynamoDB in the production design) answers food-safety questions and suggests remediation when temps are out of range — not a generic chatbot parked off to the side."
+    },
+    {
+      "title": "Voice-activated HACCP logging",
+      "description": "Hands-free temperature and inventory capture (Transcribe, Lex, Lambda) so staff with wet or occupied hands can still produce an audit-ready log."
+    },
+    {
+      "title": "ML demand forecasting",
+      "description": "Milk and supply forecasts from historical consumption, calendar, and confidence bands (SageMaker / Forecast / S3) instead of end-of-week guesswork."
+    },
+    {
+      "title": "Vision checks on the serving line",
+      "description": "Photo of the line → Rekognition/Bedrock verifies pan placement and planogram alignment against the digital builder."
+    },
+    {
+      "title": "Offline-first multi-device sync",
+      "description": "BroadcastChannel live sync between tablet and scanner viewports so the product still works when the network does not."
+    },
+    {
+      "title": "Governed evidence, not screenshots",
+      "description": "Electronic signatures, pass/fail gates, and corrective actions mapped to Texas TFER §228.75 and USDA 7 CFR 210 — the same evidence-bound style as the rest of the AI work."
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "GitHub Repository",
+      "description": "Public source for Kitchen Kontrol",
+      "url": "https://github.com/rubyrayjuntos/kitchen-kontrol",
+      "icon": "⭐"
+    },
+    {
+      "name": "Artifact index",
+      "description": "README listing every document in this case study",
+      "url": "_data/projects/kitchen-kontrol/docs/readme.md",
+      "icon": "🚀"
+    },
+    {
+      "name": "System architecture",
+      "description": "Offline-first client, sync, HACCP evidence, and AI service boundaries",
+      "url": "_data/projects/kitchen-kontrol/architecture.md",
+      "icon": "🏗️"
+    },
+    {
+      "name": "AI capabilities",
+      "description": "Voice, compliance assistant, forecast, alerts, training, and vision — and what is demo vs production AWS",
+      "url": "_data/projects/kitchen-kontrol/ai-capabilities.md",
+      "icon": "⚡"
+    },
+    {
+      "name": "HACCP and offline design",
+      "description": "How TFER/USDA rules become digital logs that survive a cafeteria outage",
+      "url": "_data/projects/kitchen-kontrol/haccp-and-offline.md",
+      "icon": "🎮"
+    },
+    {
+      "name": "Adoption outcomes",
+      "description": "Time, compliance, waste, and site-count results used in the product story",
+      "url": "_data/projects/kitchen-kontrol/outcomes.md",
+      "icon": "👥"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "id": 25,
+  "title": "AI/ML Engineer Academy",
+  "tagline": "PRODUCTION AI ARCHITECTURE",
+  "valueStatement": "Interactive environment for engineers to design and validate production AI systems — architecture, agents, and evaluation in one curriculum.",
+  "architectureHighlight": "Isolated labs produce pytest evidence; survey topics stay labeled so the map cannot outrun the work.",
+  "description": "An interactive training platform for production AI/ML: five curriculum modules, architecture simulators, isolated Python labs, and a field atlas that distinguishes CPU-proved work from survey topics.",
+  "imageUrl": "card-hero.png",
+  "medium": "code",
+  "genre": [
+    "Interactive/Web",
+    "Education"
+  ],
+  "style": [
+    "Modern",
+    "Technical"
+  ],
+  "tech": [
+    "AI Architecture",
+    "Agents",
+    "Evaluation",
+    "TypeScript",
+    "React",
+    "Python"
+  ],
+  "mood": "technical",
+  "year": 2026,
+  "role": "Architect, Engineer & Technical Product Lead",
+  "variant": "featured",
+  "status": "in-progress",
+  "pitch": "Interactive environment for engineers to design and validate production AI systems — architecture, agents, and evaluation in one curriculum.",
+  "challenge": "Most AI courses skip the unglamorous half: Docker, evals, promotion gates, and the difference between a local notebook and a served system. The academy had to train that stack without pretending a browser quiz is production competence.",
+  "development": "Built a React 19 + Vite 6 SPA with an Express server, optional Grok mentor, and five isolated lab virtualenvs (dependencies conflict across modules on purpose). Curriculum maps SWE+ML, transformers/MoE/LoRA, RAG/MCP/LangGraph, system design, and cloud productionization. A standalone static atlas page states who it is for and which topics are CPU-proved vs survey.",
+  "outcome": "A private training applet with local certificate unlock (modules + lab evidence + quiz threshold). Not a vendor credential. Interactive app needs Node; this static portfolio cannot host it. Source: github.com/rubyrayjuntos/AIML-Engineer-Academy.",
+  "gallery": [
+    {
+      "url": "card-hero.png",
+      "title": "Learning control plane",
+      "description": "Holographic model, code, retrieval, security, and evals around one engineer — the academy’s metaphor for putting the whole stack in one field of view",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Train the job, not the buzzword",
+      "description": "Started from the skill matrix: SWE+ML, LLM internals, orchestration, system design, deployment. If it is not on that matrix, it is not a module."
+    },
+    {
+      "title": "Labs that conflict on purpose",
+      "description": "Each module gets its own venv. CUDA, vector drivers, and classical ML stacks do not belong in one requirements.txt — engineers learn that the hard way, which is the point."
+    },
+    {
+      "title": "Evidence before the keepsake",
+      "description": "Certificate unlock requires completed modules, confirmed lab evidence, and a quiz bar. The PDF in localStorage is a souvenir, not an accredited credential."
+    },
+    {
+      "title": "Atlas as the honest map",
+      "description": "A static field atlas separates CPU-proved labs from survey and optional-live topics so the marketing page cannot outrun the work."
+    }
+  ],
+  "specs": [
+    {
+      "title": "Five-module production curriculum",
+      "description": "Foundations (Python, Docker, classical ML), LLM architectures (attention, DPO/GRPO, MoE, LoRA/QLoRA), agent orchestration (RAG, MCP, DSPy, LangGraph), system design, cloud productionization."
+    },
+    {
+      "title": "Isolated labs with pytest evidence",
+      "description": "module-1 through module-5 each ship requirements.txt and validation commands. Passing tests is the evidence object, not a checked box in the UI."
+    },
+    {
+      "title": "Mentor in the loop, curriculum without it",
+      "description": "Optional xAI Grok mentor behind XAI_API_KEY. The applet still teaches if the key is missing — same pattern as Kitchen Kontrol’s Gemini assistant."
+    },
+    {
+      "title": "Field atlas, not a sales page",
+      "description": "Standalone static atlas: audience, contents, non-goals, and a filterable map of proved vs survey topics. Shared learning-space pitch."
+    },
+    {
+      "title": "This site cannot host the applet",
+      "description": "SPA + Express on port 3000. Portfolio is static HTML. Host later via Pages/Render; until then the case study and GitHub are the public surface."
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "GitHub Repository",
+      "description": "Public source for the academy applet, labs, and atlas",
+      "url": "https://github.com/rubyrayjuntos/AIML-Engineer-Academy",
+      "icon": "⭐"
+    },
+    {
+      "name": "Artifact index",
+      "description": "README listing every document in this case study",
+      "url": "_data/projects/aiml-engineer-academy/docs/readme.md",
+      "icon": "🚀"
+    },
+    {
+      "name": "Platform architecture",
+      "description": "SPA, Express, labs, atlas, and what this portfolio will not pretend to host",
+      "url": "_data/projects/aiml-engineer-academy/architecture.md",
+      "icon": "🏗️"
+    },
+    {
+      "name": "Curriculum map",
+      "description": "Five modules against the production AI engineer skill stack",
+      "url": "_data/projects/aiml-engineer-academy/curriculum.md",
+      "icon": "⚡"
+    }
+  ]
+}

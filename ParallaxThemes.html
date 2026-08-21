@@ -12,6 +12,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Nova: Writer's Conspiracy">
         <meta name="twitter:description" content="Collaboration between human and AI in creative agency">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/themes.css">
         <link rel="stylesheet" href="styles/components.css">
@@ -114,7 +115,62 @@
                 scroll-behavior: smooth;
             }
     
-            /* Floating Glass Navigation */
+            /* Detail-page header matches the grid: logo + filter + About.
+               Section links live in the same left drawer, not in the bar,
+               so parallax on the hero is left alone. */
+            #top-nav .logo {
+                text-decoration: none;
+                color: inherit;
+            }
+            #top-nav .nav-center {
+                max-width: none;
+                justify-content: flex-end;
+                flex: 1;
+                margin: 0 0 0 auto;
+            }
+            #top-nav.sidebar-open {
+                margin-left: 0;
+            }
+
+            .filter-sidebar .nav-links {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                opacity: 1;
+                transform: none;
+            }
+            .filter-sidebar .nav-links a,
+            .filter-sidebar .motion-toggle {
+                display: block;
+                width: 100%;
+                text-align: left;
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-family: var(--font-main);
+                font-size: 0.95rem;
+                font-weight: 600;
+                background: var(--bg-primary);
+                border: none;
+                border-radius: var(--border-radius-md);
+                padding: 12px 16px;
+                box-shadow: var(--neu-outset);
+                cursor: pointer;
+            }
+            .filter-sidebar .nav-links a:hover,
+            .filter-sidebar .motion-toggle:hover {
+                box-shadow: var(--neu-inset);
+                color: var(--accent-primary);
+                background: var(--bg-primary);
+                transform: none;
+            }
+            .filter-sidebar .motion-toggle {
+                margin-top: 1.25rem;
+            }
+
+            /* Unused leftover compass nav — keep rules inert if HTML is gone */
             .floating-nav {
                 position: fixed;
                 top: 2rem;
@@ -395,6 +451,9 @@
                 opacity: 0;
                 animation: fadeInUp 1s ease 1.5s forwards;
                 font-weight: 600;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                font-size: 0.85rem;
                 border: 2px solid rgba(255,255,255,0.3);
             }
     
@@ -2199,8 +2258,9 @@
                 z-index: 1;
             }
 
-            /* Modal Styles */
-            .modal-overlay {
+            /* Asteroids game modal stays on the cosmic theme.
+               The About/Connect modal uses the same light panel as the grid. */
+            #asteroids-game-modal.modal-overlay {
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -2217,13 +2277,13 @@
                 transition: opacity 0.3s ease, visibility 0s 0.3s;
             }
 
-            .modal-overlay.is-visible {
+            #asteroids-game-modal.modal-overlay.is-visible {
                 opacity: 1;
                 visibility: visible;
                 transition-delay: 0s;
             }
 
-            .modal-content {
+            #asteroids-game-modal .modal-content {
                 background: linear-gradient(135deg, #051772 0%, #06000c 100%);
                 border-radius: 20px;
                 box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -2236,106 +2296,74 @@
                 border: 1px solid rgba(255, 255, 255, 0.1);
             }
 
-            .modal-overlay.is-visible .modal-content {
+            #asteroids-game-modal.modal-overlay.is-visible .modal-content {
                 transform: scale(1);
             }
 
-            .modal-close-btn {
-                position: absolute;
-                top: 15px;
-                right: 20px;
-                background: none;
-                border: none;
-                color: rgba(255, 255, 255, 0.7);
-                font-size: 2rem;
-                cursor: pointer;
-                transition: color 0.2s ease;
+            #connectModal.modal-overlay {
+                z-index: 10000;
             }
-
-            .modal-close-btn:hover {
-                color: white;
-            }
-
-            .modal-tabs {
+            #connectModal .modal-content {
+                background: var(--bg-primary);
+                color: var(--text-primary);
+                border: 2px solid rgba(128, 128, 128, 0.6);
+                box-shadow: var(--neu-outset);
+                max-height: 90vh;
+                overflow: hidden;
                 display: flex;
-                gap: 10px;
-                margin-bottom: 30px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                flex-direction: column;
             }
-
-            .tab-button {
-                background: none;
-                border: none;
-                color: rgba(255, 255, 255, 0.7);
-                padding: 10px 20px;
-                cursor: pointer;
-                font-size: 1rem;
-                font-weight: 500;
-                transition: all 0.3s ease;
-                border-bottom: 2px solid transparent;
+            #connectModal .modal-close-btn {
+                color: var(--text-secondary);
             }
-
-            .tab-button:hover {
-                color: white;
+            #connectModal .modal-close-btn:hover {
+                color: var(--accent-primary);
             }
-
-            .tab-button.active {
-                color: #ff8c00;
-                border-bottom-color: #ff8c00;
-            }
-
-            .modal-body .tab-content {
+            #connectModal .modal-tabs {
                 display: none;
             }
-
-            .modal-body .tab-content.active {
-                display: block;
+            #connectModal .tab-button {
+                color: var(--text-secondary);
+                border-bottom: 3px solid transparent;
             }
-
-            #contactForm .form-group {
-                margin-bottom: 20px;
+            #connectModal .tab-button:hover,
+            #connectModal .tab-button.active {
+                color: var(--accent-primary);
             }
-
-            #contactForm label {
-                display: block;
-                margin-bottom: 5px;
-                color: rgba(255, 255, 255, 0.9);
-                font-weight: 500;
+            #connectModal .tab-button.active {
+                border-bottom-color: var(--accent-primary);
             }
-
-            #contactForm input,
-            #contactForm textarea {
-                width: 100%;
-                padding: 12px;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                border-radius: 8px;
-                background: rgba(255, 255, 255, 0.1);
-                color: white;
-                font-size: 1rem;
+            #connectModal .tab-content p,
+            #connectModal .resume-section p,
+            #connectModal .resume-header h3,
+            #connectModal .resume-contact-info p,
+            #connectModal li {
+                color: var(--text-primary);
             }
-
-            #contactForm input:focus,
-            #contactForm textarea:focus {
-                outline: none;
-                border-color: #ff8c00;
-                box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.2);
+            #connectModal .resume-section {
+                background: var(--bg-primary);
+                border: 1px solid rgba(128, 128, 128, 0.2);
+                backdrop-filter: none;
             }
-
-            .form-submit-btn {
-                background: linear-gradient(45deg, #ff8c00, #ff6b35);
-                color: white;
+            #connectModal #contactForm label {
+                color: var(--text-secondary);
+            }
+            #connectModal #contactForm input,
+            #connectModal #contactForm textarea {
+                background: var(--bg-primary);
+                color: var(--text-primary);
                 border: none;
-                padding: 12px 30px;
-                border-radius: 25px;
-                font-size: 1rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: all 0.3s ease;
+                box-shadow: var(--neu-inset);
             }
-
-            .form-submit-btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 10px 20px rgba(255, 140, 0, 0.3);
+            #connectModal .form-submit-btn {
+                background: var(--bg-primary);
+                color: var(--accent-primary);
+                box-shadow: var(--neu-outset);
+                border-radius: var(--border-radius-md);
+            }
+            #connectModal .form-submit-btn:hover {
+                transform: none;
+                box-shadow: var(--neu-inset);
             }
         </style>
     </head>
@@ -2345,58 +2373,33 @@
             <div class="loader"></div>
         </div>
 
-    <!-- Header -->
-    <header id="top-nav">
-        <div class="logo">Ray Swan</div>
-        <div class="nav-center">
-        <!-- Floating Glass Navigation -->
-        <nav class="floating-nav" id="floatingNav">
-            <div class="nav-content">
-                <div class="nav-icon">🧭</div>
-                <ul class="nav-links">
-                    <li><a href="index.html">🏠 Portfolio</a></li>
-                    <li><a href="#home">🏠 Home</a></li>
-                    <li><a href="#overview">📋 Overview</a></li>
-                    <li><a href="#gallery">🖼️ Gallery</a></li>
-                    <li><a href="#journey">🚀 Journey</a></li>
-                    <li><a href="#specs">⚙️ Specifications</a></li>
-                    <li><a href="#links">🔗 Links</a></li>
-                    <li><button class="motion-toggle" onclick="toggleMotion()" aria-label="Toggle motion effects">🎬 Stop Parallax</button></li>
-                    <li class="theme-switcher-container">
-                        <label for="theme-select">🎨 Theme</label>
-                        <select id="theme-select" onchange="setTheme(this.value)" aria-label="Select website theme">
-                            <option value="original">Original</option>
-                            <option value="dark">Dark</option>
-                            <option value="ocean">Ocean</option>
-                            <option value="forest">Forest</option>
-                            <option value="sunset">Sunset</option>
-                            <option value="twilight">Twilight</option>
-                            <option value="lavender">Lavender</option>
-                        </select>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-            <div class="hidden"><div class="search-wrapper">
-                <i class="fas fa-search"></i>
-                <input type="search" id="mainSearchInput" placeholder="Search by keyword, tech, or title...">
-            </div>
-            <button id="filter-icon" aria-label="Open filters">
-                <i class="fas fa-sliders-h"></i>
-            </button></div>
-            <button id="about-btn" data-modal-target="connectModal" data-tab-target="about">About</button>
-            <div class="nav-dropdown" aria-expanded="false">
-                <button class="nav-dropdown-toggle" onclick="this.parentElement.setAttribute('aria-expanded', this.parentElement.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')">Actions</button>
-                <div class="nav-dropdown-menu">
-                    <a href="index.html">Back to Portfolio</a>
-                    <button onclick="toggleMotion()">Stop Parallax</button>
-                </div>
-            </div>
+    <aside id="filter-sidebar" class="filter-sidebar" aria-label="Project navigation">
+        <div class="panel-header">
+            <h3>Navigate</h3>
+            <button id="close-filter-btn" class="close-btn" aria-label="Close navigation">&times;</button>
         </div>
-        <!-- Mobile hamburger menu -->
-        <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
-            <i class="fas fa-bars"></i>
-        </button>
+        <div class="panel-content">
+            <ul class="nav-links">
+                <li><a href="index.html">Portfolio</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#specs">Specs</a></li>
+                <li><a href="#links">Links</a></li>
+            </ul>
+            <button type="button" class="motion-toggle" onclick="toggleMotion()" aria-label="Toggle motion effects">Stop Parallax</button>
+        </div>
+    </aside>
+    <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+    <header id="top-nav">
+        <a href="index.html" class="logo">Ray Swan</a>
+        <div class="nav-center">
+            <button id="filter-icon" aria-label="Open navigation">
+                <i class="fas fa-sliders-h"></i>
+            </button>
+            <button id="about-btn" data-modal-target="connectModal" data-tab-target="resume">Resume</button>
+        </div>
     </header>
 
 
@@ -2552,8 +2555,7 @@
                     <p class="footer-signature">R. Swan</p>
                     <p class="footer-quote">"Crafting worlds where story, art, and code converge."</p>
                     <div class="footer-links">
-                         <button class="footer-button" data-modal-target="connectModal" data-tab-target="about">About Me</button>
-                         <button class="footer-button" data-modal-target="connectModal" data-tab-target="contact">Connect With Me</button>
+                         <button class="footer-button" data-modal-target="connectModal" data-tab-target="resume">Resume</button>
                     </div>
                 </div>
                 <p id="copyright" class="footer-copyright"></p>
@@ -2634,19 +2636,19 @@
         <div class="modal-content">
             <button class="modal-close-btn">&times;</button>
             <div class="modal-tabs">
-                <button class="tab-button active" data-tab-target="about">About Me</button>
-                <button class="tab-button" data-tab-target="contact">Contact</button>
-                <button class="tab-button" data-tab-target="resume">Resume</button>
+                <button class="tab-button" data-tab-target="about" hidden>About Me</button>
+                <button class="tab-button" data-tab-target="contact" hidden>Contact</button>
+                <button class="tab-button active" data-tab-target="resume">Resume</button>
             </div>
             <div class="modal-body">
-                <div class="tab-content active" data-tab="about">
-                    <h4>About R. Swan</h4>
-                    <p>I am a multidisciplinary creator with a passion for storytelling, world-building, and immersive digital experiences. My work spans across writing, art, and code, always with a focus on crafting narratives that resonate and inspire.</p>
-                    <p>This portfolio is a living testament to that journey, a collection of visions, words, and systems that explore the intersection of technology and creativity.</p>
+                                <div class="tab-content" data-tab="about" hidden>
+                    <h4>About Ray Swan</h4>
+                    <p>I join when operations, commerce, or science have outgrown their systems — and I ship both the product people will use and the AI platform underneath it.</p>
+                    <p>This site is the SYSTEMS catalog: Kitchen Kontrol, NeuroNote, Tokyo Eye, Canon Forge, the Azure MLOps factory, and the AI/ML Engineer Academy. Two resume cuts share that spine — product leader, and GenAI/ML architect. LinkedIn currently wears the architect headline. The work here is the proof, not a studio reel.</p>
                 </div>
-                <div class="tab-content" data-tab="contact">
+                <div class="tab-content" data-tab="contact" hidden>
                     <h4>Get in Touch</h4>
-                    <p>I would love to hear from you and add you to my mail list.</p>
+                    <p>Houston, TX · <a href="https://www.linkedin.com/in/ray-swan-b973525/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/rubyrayjuntos" target="_blank" rel="noopener">GitHub</a></p>
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="email">Email Address</label>
@@ -2659,81 +2661,78 @@
                         <button type="submit" class="form-submit-btn">Send</button>
                     </form>
                 </div>
-                <div class="tab-content" data-tab="resume">
+                <div class="tab-content active" data-tab="resume">
                     <div class="resume-header">
                         <h2>Ray Swan</h2>
-                        <h3>Product Manager | Generative AI Solutions | Creative Technologist</h3>
+                                                <h3>GenAI / ML Architect | AI Platform | Product Leader</h3>
                         <div class="resume-contact-info">
                             <p><i class="fas fa-map-marker-alt"></i> Houston, TX</p>
-                            <p><i class="fas fa-envelope"></i> RayCSwan@yahoo.com</p>
-                            <p><i class="fas fa-phone"></i> (281) 759-0711</p>
-                            <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/ray-swan-b973525" target="_blank">linkedin.com/in/ray-swan-b973525</a></p>
-                            <p><i class="fas fa-globe"></i> <a href="https://portfolio-f7i9.onrender.com" target="_blank">portfolio-f7i9.onrender.com</a></p>
+                            <p><i class="fas fa-envelope"></i> RayCSwan@Yahoo.com</p>
+                            <p><i class="fas fa-phone"></i> (409) 264-5074</p>
+                            <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/ray-swan-b973525/" target="_blank" rel="noopener">linkedin.com/in/ray-swan-b973525</a></p>
+                            <p><i class="fab fa-github"></i> <a href="https://github.com/rubyrayjuntos" target="_blank" rel="noopener">github.com/rubyrayjuntos</a></p>
                         </div>
                     </div>
 
                     <div class="resume-section">
                         <h4><i class="fas fa-user"></i> Professional Summary</h4>
-                        <p>Product leader and creative technologist with 8+ years of experience delivering enterprise‑scale AI‑driven and SaaS platforms. Specialized in building generative AI agents and conversational interfaces that combine technical rigor with charming, consistent personalities. Proven track record leading cross‑functional teams, integrating data pipelines, designing user‑centric experiences, and aligning outcomes with business and compliance goals.</p>
+                        <p>GenAI/ML architect and product leader with 25 years delivering enterprise software, data, and transformation programs. Builds governed AI from infrastructure through model and agent runtime — Azure ML, Databricks, Foundry, MLflow, Terraform — and ships the product that actually gets adopted on the floor. I join at the inflection: ops, commerce, or science that has outgrown its systems.</p>
                     </div>
 
                     <div class="resume-section">
                         <h4><i class="fas fa-star"></i> Core Competencies</h4>
                         <div class="competencies-grid">
                             <div class="competency-item">
-                                <h5>Generative AI Product Strategy & Execution</h5>
-                                <p>GPT‑4, Gemini, Claude, Local LLMs, Agentic Workflows</p>
+                                <h5>AI platforms &amp; GenAI</h5>
+                                <p>Azure ML, Databricks, Foundry, RAG, agents, MCP tool boundaries</p>
                             </div>
                             <div class="competency-item">
-                                <h5>Cross‑functional Leadership</h5>
-                                <p>Engineering, Legal/Privacy, UX, Executive Stakeholders</p>
+                                <h5>MLOps / LLMOps</h5>
+                                <p>Local-to-cloud lifecycle, registry, promotion gates, drift, rollback</p>
                             </div>
                             <div class="competency-item">
-                                <h5>Enterprise Applications</h5>
-                                <p>CRM, E‑commerce, Loan Origination, Analytics, Creative</p>
+                                <h5>Cloud &amp; identity</h5>
+                                <p>Terraform, GitHub Actions, Entra/OIDC, least-privilege split</p>
                             </div>
                             <div class="competency-item">
-                                <h5>Conversational UX & AI Personalities</h5>
-                                <p>Prompt Engineering, Consistency, Delight</p>
+                                <h5>Evidence-bound governance</h5>
+                                <p>Immutable metrics, digest-bound apply, unproven work stays off the ledger</p>
                             </div>
                             <div class="competency-item">
-                                <h5>Data Pipelines & ETL Workflows</h5>
-                                <p>API, REST, SQL/NoSQL, Normalization</p>
+                                <h5>Product at the inflection</h5>
+                                <p>D2C, subscription, frontline ops — AI inside the workflow, not beside it</p>
                             </div>
                             <div class="competency-item">
-                                <h5>User Research & Product Lifecycle</h5>
-                                <p>Hypothesis Testing, Product Lifecycle Ownership</p>
+                                <h5>Enterprise delivery</h5>
+                                <p>Fortune 500 modernization, CRM, commerce, data, integration</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="resume-section">
-                        <h4><i class="fas fa-project-diagram"></i> Selected Projects</h4>
+                        <h4><i class="fas fa-project-diagram"></i> Selected Systems</h4>
                         <div class="project-item">
-                            <h5>Papi Chispa — Conversational AI Tarot Reader</h5>
+                            <h5>AI/ML Ops Factory</h5>
                             <ul>
-                                <li>Designed, developed, and shipped a generative AI personality combining narrative charm, consistency, and interactivity — delivering tarot readings and dynamic visuals with an engaging "voice."</li>
-                                <li>Engineered prompt structures and data flows to ensure personality consistency across sessions and scenarios, blending technical accuracy with delightful UX.</li>
-                                <li>Directly aligned with conversational interface design and GenAI best practices.</li>
+                                <li>Azure-first generator (AIML-SCAFFOLD) plus a live taxi reference that trained, registered, and served in Dev and Prod.</li>
                             </ul>
                         </div>
                         <div class="project-item">
-                            <h5>Brand Identity Agentic Workflow</h5>
+                            <h5>Tokyo Eye — scientific AI</h5>
                             <ul>
-                                <li>Created a multi‑agent orchestration system delivering brand identity assets via AI pipelines — managing input collection, data normalization, and creative output.</li>
-                                <li>Balanced compliance and creativity, aligning AI‑generated outputs with business goals.</li>
+                                <li>Governed discovery environment: hyperbolic geometry, atom-level Transformer/MoE (Pearson 0.407 same day), MLflow gates, scientist control plane.</li>
                             </ul>
                         </div>
                         <div class="project-item">
-                            <h5>Nova: Writers Conspiracy</h5>
+                            <h5>Kitchen Kontrol</h5>
                             <ul>
-                                <li>Designed and developed a collaborative novel‑writing platform using GPT‑4 and agentic workflows; architected interaction models and prompt engineering for multi‑party creative narratives.</li>
+                                <li>Offline-first school-nutrition ops: HACCP evidence, voice/forecasting, 30 minutes/day to 15 minutes/week, 95% compliance.</li>
                             </ul>
                         </div>
                         <div class="project-item">
-                            <h5>Image Gallery Sphere & AstroNova (PWA)</h5>
+                            <h5>Canon Forge</h5>
                             <ul>
-                                <li>Delivered high‑performance React UIs with optimized rendering and dynamic interaction models; exemplified scalable, user‑friendly product experiences.</li>
+                                <li>Character-reference architect: locked identity, set invariants, and shot grammar so generative frames stay canon.</li>
                             </ul>
                         </div>
                     </div>
@@ -2742,24 +2741,32 @@
                         <h4><i class="fas fa-briefcase"></i> Professional Experience</h4>
                         <div class="experience-item">
                             <div class="experience-header">
-                                <h5>Manager, Technical BA & Project Manager</h5>
-                                <span class="company">International Real Estate Services | Houston, TX</span>
-                                <span class="duration">Aug 2024 – Present</span>
+                                <h5>Area Supervisor &amp; Operations Applications Developer</h5>
+                                <span class="company">Sodexo | Houston, TX</span>
+                                <span class="duration">Aug 2025 – Present</span>
                             </div>
                             <ul>
-                                <li>Drive CRM and loan platform improvements through API integrations, feature prioritization, and cross‑team collaboration.</li>
-                                <li>Act as bridge between business needs and technical delivery.</li>
+                                <li>Turns frontline cafeteria problems into deployable AI-enabled products — ownership, build, integration, and adoption.</li>
                             </ul>
                         </div>
                         <div class="experience-item">
                             <div class="experience-header">
-                                <h5>Senior Project/Product Manager (Independent Contractor)</h5>
-                                <span class="company">Remote</span>
-                                <span class="duration">Jan 2017 – Jul 2024</span>
+                                <h5>Technical Business Analyst &amp; Project Manager</h5>
+                                <span class="company">International Real Estate Services | Houston, TX</span>
+                                <span class="duration">Jan 2024 – Jan 2025</span>
                             </div>
                             <ul>
-                                <li>Delivered Salesforce CRM, e‑commerce, and enterprise platform launches across Fortune 500 clients (e.g., Revlon, Mazda, Fox Sports), achieving measurable adoption gains.</li>
-                                <li>Managed roadmaps, gathered requirements, led testing, training, and rollout for scalable, compliance‑aligned systems.</li>
+                                <li>CRM, analytics, commercial-loan origination, API/ETL, and audit-ready acceptance for enterprise workflows.</li>
+                            </ul>
+                        </div>
+                        <div class="experience-item">
+                            <div class="experience-header">
+                                <h5>Enterprise program, product, and architecture leadership</h5>
+                                <span class="company">Theragun, Guthy-Renker, Lakeshore, Sunrun, Mazda, Fox Sports, and others</span>
+                                <span class="duration">1999 – 2024</span>
+                            </div>
+                            <ul>
+                                <li>D2C, subscription, CRM, e-commerce, and platform programs in Fortune 500 and high-growth environments — including the AI that makes the product adoptable.</li>
                             </ul>
                         </div>
                     </div>
@@ -2767,14 +2774,15 @@
                     <div class="resume-section">
                         <h4><i class="fas fa-graduation-cap"></i> Education</h4>
                         <div class="education-item">
-                            <h5>B.A., Economics</h5>
-                            <p>University of California Irvine</p>
+                            <h5>M.A., Humanities</h5>
+                            <p>California State University, Dominguez Hills</p>
                         </div>
                         <div class="education-item">
-                            <h5>M.A., Humanities</h5>
-                            <p>California State University Dominguez Hills</p>
+                            <h5>B.A., Economics</h5>
+                            <p>University of California, Irvine</p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -2818,9 +2826,9 @@
                 document.body.classList.toggle('motion-disabled', !motionEnabled);
                 
                 const button = document.querySelector('.motion-toggle');
-                button.innerHTML = motionEnabled ? 
-                    '🎬 Stop Parallax' : 
-                    '⏸️ Start Parallax';
+                if (button) {
+                    button.textContent = motionEnabled ? 'Stop Parallax' : 'Start Parallax';
+                }
             }
 
             // Check system preference on load
@@ -3055,12 +3063,7 @@
                 const projectSubtitle = document.getElementById('projectSubtitle');
 
                 if (projectTypeBadge) {
-                    const mediumMap = {
-                        'art': 'Vision Project',
-                        'writing': 'Words Project', 
-                        'code': 'Systems Project'
-                    };
-                    projectTypeBadge.textContent = mediumMap[project.medium] || `${project.medium} Project`;
+                    projectTypeBadge.textContent = project.tagline || 'Systems Project';
                 }
 
                 if (projectTitle) {
@@ -3084,7 +3087,7 @@
                     }
                     
                     // Apply as background image with overlay
-                    heroSection.style.backgroundImage = `linear-gradient(135deg, rgba(5, 23, 114, 0.8) 0%, rgba(6, 0, 12, 0.8) 100%), url('${heroImageUrl}')`;
+                    heroSection.style.backgroundImage = `linear-gradient(135deg, rgba(5, 23, 114, 0.45) 0%, rgba(6, 0, 12, 0.55) 100%), url('${heroImageUrl}')`;
                     heroSection.style.backgroundSize = 'cover';
                     heroSection.style.backgroundPosition = 'center';
                 } else if (heroSection) {
@@ -3109,23 +3112,23 @@
                 switch (project.medium?.toLowerCase()) {
                     case 'code':
                         if (hasContent(project.artifacts)) {
-                            specificLinks.push({ href: '#artifacts', text: '💾 Artifacts' });
+                            specificLinks.push({ href: '#artifacts', text: 'Artifacts' });
                         }
                         break;
                     case 'art':
                         if (hasContent(project.process)) {
-                            specificLinks.push({ href: '#process', text: '🎨 Process' });
+                            specificLinks.push({ href: '#process', text: 'Process' });
                         }
                         if (hasContent(project.inspiration)) {
-                            specificLinks.push({ href: '#inspiration', text: '💡 Inspiration' });
+                            specificLinks.push({ href: '#inspiration', text: 'Inspiration' });
                         }
                         break;
                     case 'writing':
                         if (hasContent(project.excerpts)) {
-                            specificLinks.push({ href: '#excerpts', text: '📖 Excerpts' });
+                            specificLinks.push({ href: '#excerpts', text: 'Excerpts' });
                         }
                         if (hasContent(project.themes || project.themesAnalysis)) {
-                            specificLinks.push({ href: '#themes', text: '🧠 Themes' });
+                            specificLinks.push({ href: '#themes', text: 'Themes' });
                         }
                         break;
                 }
@@ -4510,8 +4513,70 @@
 
         <!-- Markdown Renderer Script -->
         <script src="js/markdown-renderer.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
-    <script src="js/main.js"></script>
+        <script>
+            (function initDetailPageChrome() {
+                const filterSidebar = document.getElementById('filter-sidebar');
+                const openFilterBtn = document.getElementById('filter-icon');
+                const closeFilterBtn = document.getElementById('close-filter-btn');
+                const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+
+                function closeSidebar() {
+                    if (!filterSidebar) return;
+                    filterSidebar.classList.remove('is-open');
+                    if (sidebarBackdrop) sidebarBackdrop.classList.remove('is-visible');
+                }
+
+                function toggleSidebar() {
+                    if (!filterSidebar) return;
+                    const willOpen = !filterSidebar.classList.contains('is-open');
+                    filterSidebar.classList.toggle('is-open', willOpen);
+                    if (sidebarBackdrop) sidebarBackdrop.classList.toggle('is-visible', willOpen);
+                }
+
+                if (openFilterBtn) openFilterBtn.addEventListener('click', toggleSidebar);
+                if (closeFilterBtn) closeFilterBtn.addEventListener('click', closeSidebar);
+                if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', closeSidebar);
+                if (filterSidebar) {
+                    filterSidebar.addEventListener('click', (e) => {
+                        if (e.target.closest('a[href]')) closeSidebar();
+                    });
+                }
+
+                const connectModal = document.getElementById('connectModal');
+                if (!connectModal) return;
+
+                document.querySelectorAll('[data-modal-target="connectModal"]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        connectModal.classList.add('is-visible');
+                        const tab = btn.getAttribute('data-tab-target');
+                        if (tab) {
+                            connectModal.querySelectorAll('.tab-button').forEach(t => t.classList.toggle('active', t.getAttribute('data-tab-target') === tab));
+                            connectModal.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.getAttribute('data-tab') === tab));
+                        }
+                    });
+                });
+
+                const modalCloseBtn = connectModal.querySelector('.modal-close-btn');
+                if (modalCloseBtn) {
+                    modalCloseBtn.addEventListener('click', () => connectModal.classList.remove('is-visible'));
+                }
+                connectModal.addEventListener('click', (e) => {
+                    if (e.target === connectModal) connectModal.classList.remove('is-visible');
+                });
+
+                const modalTabs = connectModal.querySelectorAll('.modal-tabs .tab-button');
+                const tabContents = connectModal.querySelectorAll('.modal-body .tab-content');
+                modalTabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        modalTabs.forEach(t => t.classList.remove('active'));
+                        tabContents.forEach(c => c.classList.remove('active'));
+                        tab.classList.add('active');
+                        const content = connectModal.querySelector(`.modal-body .tab-content[data-tab="${tab.getAttribute('data-tab-target')}"]`);
+                        if (content) content.classList.add('active');
+                    });
+                });
+            })();
+        </script>
     <footer class="signature-footer neumorphic-footer">
         <div class="footer-content">
             <div class="footer-copyright">
@@ -4529,4 +4594,3 @@
     </footer>
     </body>
     </html>
-    ```

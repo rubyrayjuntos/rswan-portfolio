@@ -2078,7 +2078,8 @@
 }
 
 .project-card-hero {
-    height: 220px;
+    aspect-ratio: 16 / 9;
+    height: auto;
     position: relative;
     overflow: hidden;
 }
@@ -2092,6 +2093,21 @@
 
 .project-card:hover .project-card-hero img {
     transform: scale(1.05);
+}
+
+.card-year-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 6px 10px;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: rgba(12, 16, 28, 0.72);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .card-medium-badge {
@@ -2115,11 +2131,72 @@
 .medium-code { background-color: var(--accent-green); }
 
 .project-card-content {
-    padding: 25px;
+    padding: 22px 22px 20px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     background: var(--bg-primary);
+}
+
+.card-title {
+    margin: 0 0 6px;
+    font-size: 1.35rem;
+    line-height: 1.25;
+    text-shadow: 1px 1px 0 var(--shadow-dark),
+                 -1px -1px 0 var(--shadow-light);
+}
+
+.card-tagline {
+    margin: 0 0 12px;
+    font-family: var(--font-main);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+}
+
+.card-value,
+.card-architecture {
+    margin: 0 0 8px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.card-value {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.card-architecture {
+    color: var(--text-secondary);
+    flex-grow: 1;
+}
+
+.card-tech-chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin: 14px 0 0;
+    padding: 12px 0 0;
+    border-top: 1px solid var(--bg-secondary);
+}
+
+.card-tech-chips li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.card-tech-chips i {
+    color: var(--accent-primary);
+    width: 14px;
+    text-align: center;
 }
 
 .card-header {
@@ -2154,8 +2231,55 @@
     font-size: 0.95rem;
     line-height: 1.6;
     flex-grow: 1;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: var(--text-secondary);
+}
+
+.card-tech {
+    margin-top: auto;
+}
+
+.card-tech-bar {
+    display: flex;
+    height: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    gap: 2px;
+    background: transparent;
+}
+
+.card-tech-seg {
+    flex: 1;
+    min-width: 4px;
+}
+
+.card-tech-legend {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin: 10px 0 0;
+    padding: 0;
+}
+
+.card-tech-legend li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+.card-tech-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.card-tech-name {
+    font-weight: 600;
 }
 
 .card-description p {
