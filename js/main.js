@@ -114,15 +114,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const value = project.valueStatement || project.pitch || project.description || '';
         const highlight = project.architectureHighlight || '';
         const tagline = project.tagline || '';
+        const domain = String(project.domain || '').toLowerCase();
         
         card.innerHTML = `
             <div class="project-card-hero">
                 <img src="${heroImageUrl}" alt="${project.title}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e0e5ec/31456A?text=Image+Error';">
-                ${project.year ? `<div class="card-year-badge">${project.year}</div>` : ''}
             </div>
             <div class="project-card-content">
-                <h3 class="card-title">${project.title}</h3>
-                ${tagline ? `<p class="card-tagline">${tagline}</p>` : ''}
+                <div class="card-header">
+                    <h3 class="card-title">${project.title}</h3>
+                    ${project.year ? `<div class="card-year">${project.year}</div>` : ''}
+                </div>
+                ${tagline ? `<p class="card-tagline${domain ? ` domain-${domain}` : ''}">${tagline}</p>` : ''}
                 <p class="card-value">${value}</p>
                 ${highlight ? `<p class="card-architecture">${highlight}</p>` : ''}
                 ${renderTechChips(project.tech)}
