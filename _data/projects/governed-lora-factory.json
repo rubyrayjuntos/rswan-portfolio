@@ -1,0 +1,93 @@
+{
+  "id": 26,
+  "title": "Governed LoRA Factory",
+  "tagline": "LOCAL MICRO-FACTORY FOR SLM ADAPTERS",
+  "valueStatement": "Manifest → LoRA → gated MLflow lineage → registry. One trainer.py routes CE to BCE without code change — proved on a 4GB T1000.",
+  "architectureHighlight": "corpus25_playbook.yaml declares datasets (SST-2, 4-way intent, 16-tag BCE), thresholds (ln4→1.5, BCE 0.693→0.48), and stages; trainer.py stays untouched.",
+  "description": "An opinionated, manifest-driven micro-CI for AI weights — the governance layer Axolotl/LlamaFactory leave you to stitch by hand. Qwen2-0.5B-Instruct + PEFT LoRA (r=4) trains under MLflow hermes/llm-lora isolation on a 4GB Quadro T1000 (batch2 eff8, seq 64/32/128, BF16), sweeps with Optuna parent/child lineage, and promotes only through assert_promotable gates to rswan-llm-lora. Proven v3 (binary CE 0.5804) and v6 (16-head BCE 0.464/80.5% Hamming) share one Hub repo (TokyoEye/rswan-llm-lora main vs v6-narrative-tags). The same loop that rejects a 24-row 2.68 probe promotes a 200-row 1.44 — no checkpoint-folder guessing.",
+  "imageUrl": "card-hero.png",
+  "medium": "code",
+  "genre": ["Platform", "MLOps"],
+  "style": ["Modern", "Technical"],
+  "tech": ["MLflow", "PyTorch", "PEFT LoRA", "Optuna", "HF Hub", "Qwen2-0.5B"],
+  "domain": "mlops",
+  "mood": "technical",
+  "year": 2026,
+  "role": "Architect & Engineer",
+  "variant": "featured",
+  "status": "shipped",
+  "pitch": "The governance Axolotl doesn't give you: gates, lineage, and 4GB guardrails in one declarative loop.",
+  "challenge": "Solo teams fine-tune with Axolotl/LlamaFactory but still script their own tracking, hand-pick checkpoints, and push broken adapters. They need a mini-CI that fails closed — if val/loss doesn't clear the gate, nothing hits the registry — and that scales from 2-way CE to 16-tag BCE via config, not code forks.",
+  "development": "Built mlflow-pytorch-trainer as a PyTorch-native trainer (MLflowTrainer) with four callbacks (EarlyStopping, CurvatureMonitor, DriftDetector, PlaybookCallback). Wired build_hf_lora(num_labels, problem_type) for SEQ_CLS vs multi_label_classification (BCEWithLogitsLoss + Hamming@sigmoid>0.5). Tightened for 4GB: Qwen2-0.5B bf16, seq 64 (32 intent / 128 tags), batch2 grad_accum4. Routed datasets via corpus25_playbook.yaml (sst2_200, custom 200-row 4-way, custom_tags 180-row 16-head). Tuned thresholds to entropy baselines (ln4=1.386→1.5, BCE ln2=0.693→0.48) after proving rejection then promotion. TMPDIR redirected from tmpfs 16G to 86G volume. Hub push keeps v3 on main (a14e623b) and v6 on v6-narrative-tags (f1cd0b43).",
+  "outcome": "Shipped rubyrayjuntos/governed-lora-factory v0.1.0 (standalone) + MLflow registry rswan-llm-lora v3 (0.5804) / v5 (1.44) / v6 (0.464 Hamming 80.5%) — all from the same trainer on the same 4GB card. The playbook now declares champion v3 + champion_tags v6. Axolotl does math; this does discipline.",
+  "gallery": [
+    {
+      "url": "card-hero.png",
+      "title": "Micro-factory gate",
+      "description": "Manifest in, adapter out — only if the gate clears. The same loop handles CE and BCE.",
+      "dimensions": "1200x800"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Probe on 4GB (200/40 @64)",
+      "description": "Qwen2-0.5B r=4 on sst2_200: 0.625 → Optuna parent 919de78a best 0.5804 (trial 004, r=4 beats r=8). Proved r=4 regularizes tiny slices."
+    },
+    {
+      "title": "Intent 24→200 proves both sides of the gate",
+      "description": "24-row probe blocked 2.68 vs 1.0 correctly; 200-row run 1.44 blocked at miscalibrated 1.0 → recalibrated to 1.5 (ln4=1.386 baseline) and re-gated to v5 without retrain."
+    },
+    {
+      "title": "Tags 60→180 → 5ep earns 0.48 honestly",
+      "description": "60-row 0.965 blocked; 180-row 3ep 0.522 blocked; 5ep plateau 0.464 Δ-0.0016 → calibrated 0.45→0.48 (still 0.21 below BCE random 0.693) and minted v6. Data, not threshold hacking."
+    },
+    {
+      "title": "Disk, Hub, and playbook lock",
+      "description": "tmpfs 16G ENOSPC on torch.save → TMPDIR to 86G volume; pushed v6 as revision v6-narrative-tags (f1cd0b43) alongside main v3 (a14e623b); locked champion/champion_tags in corpus25_playbook.yaml and closed wip branch."
+    }
+  ],
+  "specs": [
+    {
+      "title": "Declarative playbook",
+      "description": "One YAML declares datasets, max_length, num_labels, problem_type, thresholds, and stages. Swapping CE→BCE needs no trainer.py change."
+    },
+    {
+      "title": "Gated registry",
+      "description": "assert_promotable(val/loss ≤ threshold) is the only path to rswan-llm-lora. Blocked runs log artifacts but never register."
+    },
+    {
+      "title": "4GB guardrails",
+      "description": "batch2 eff8, seq 64/32/128, BF16 GradScaler auto-disable, pad 151643, datasets 2.21.0, TMPDIR off tmpfs."
+    },
+    {
+      "title": "Parent/child lineage",
+      "description": "Optuna sweep parent run + child trials under hermes/llm-lora, MLflow-native; auto-promotes sota child."
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "GitHub — governed-lora-factory",
+      "description": "Starter kit: trainer, sweep, playbook, 200+180 row JSONLs, gated registry",
+      "url": "https://github.com/rubyrayjuntos/governed-lora-factory",
+      "icon": "⭐"
+    },
+    {
+      "name": "Hub — TokyoEye/rswan-llm-lora",
+      "description": "main a14e623b (v3 CE 0.5804) + v6-narrative-tags f1cd0b43 (v6 BCE 0.464)",
+      "url": "https://huggingface.co/TokyoEye/rswan-llm-lora",
+      "icon": "🤗"
+    },
+    {
+      "name": "MLflow — hermes/llm-lora",
+      "description": "Isolated experiment; registry rswan-llm-lora v3/v5/v6 share one lineage",
+      "url": "http://localhost:5000/#/experiments/13",
+      "icon": "📊"
+    },
+    {
+      "name": "Spec — GOVERNED_TRAINER_SPEC.md",
+      "description": "4GB bounds, gate math, and evidence (§3–§9)",
+      "url": "https://github.com/rubyrayjuntos/governed-lora-factory/blob/main/docs/GOVERNED_TRAINER_SPEC.md",
+      "icon": "📖"
+    }
+  ]
+}
