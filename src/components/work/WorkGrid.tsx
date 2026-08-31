@@ -50,18 +50,6 @@ function WorkCard({ project: p }: { project: Project }) {
   const repo = repoOf(p);
   return (
     <Blueprint className="flex min-w-0 w-full flex-col gap-3 p-5 transition-colors duration-150 hover:border-ink">
-      {p.cardImage ? (
-        <Link to="/work/$slug" params={{ slug: p.slug }} className="group -mx-5 -mt-5 mb-1 block overflow-hidden border-b border-line">
-          <img
-            src={p.cardImage}
-            alt={p.title}
-            className="h-[168px] w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-            loading="lazy"
-            width={640}
-            height={168}
-          />
-        </Link>
-      ) : null}
       <Link to="/work/$slug" params={{ slug: p.slug }} className="flex flex-col gap-3">
         <div className="flex items-start justify-between gap-3">
           <Glyph name={PROJECT_GLYPH[p.slug]} size="sm" label={p.title} />

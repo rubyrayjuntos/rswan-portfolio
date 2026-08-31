@@ -16,7 +16,6 @@ export type Project = {
   role: string;
   status: string;
   tech: string[];
-  cardImage?: string;
   challenge: string;
   development: string;
   outcome: string;
@@ -34,15 +33,14 @@ export const projects: Project[] = [
     slug: "neuronote",
     title: "NeuroNote",
     tagline: "AGENTIC AI SAFETY ARCHITECTURE",
-    value: "Governed agent runtime that separates AI reasoning from execution authority.",
-    arch: "State-machine control plane validates and constrains agent actions before they can alter application state.",
+    value: "AI that can invent software, but never owns the runtime — proposals stay proposals until a state machine proves them safe.",
+    arch: "Dual-kernel: Guest proposes, Gatekeeper verifies (structure → semantics → honesty), Host executes in WASM. Authority stays with the host.",
     domain: "safety",
     cap: "Governance",
     year: 2025,
     role: "Architect, Engineer & Technical Product Lead",
     status: "in-progress",
     tech: ["PVA / Dual Kernel", "QuickJS WASM", "Honesty Oracle", "Zod", "Gemini"],
-    cardImage: "/cards/neuronote.png",
     challenge:
       "AI-generated logic is usually treated as a peer of the application: it writes code, mutates state, and hopes the prompt was honest. That fails the moment the model drifts, injects, or exceeds the capability it declared. NeuroNote had to make runtime-generated behavior a guest — verified, sandboxed, and reversible — without giving up malleability.",
     development:
@@ -80,15 +78,14 @@ export const projects: Project[] = [
     slug: "tokyo-eye",
     title: "Tokyo Eye",
     tagline: "HYPERBOLIC SCIENTIFIC PLATFORM",
-    value: "Poincaré GNN and MoE structural inference on a FastAPI / pgvector control plane, with Terraform data infra and MLflow gates.",
-    arch: "20-tool LLM coordinator, JWT sessions, provenance_run writes, and property-gate CI — agents stay inside the open structure.",
+    value: "AI as lab partner, not oracle — hyperbolic GNN + provenance that makes every inference retraceable, not plausible.",
+    arch: "Poincaré embeddings, MoE routing, pgvector control plane, and a 20-tool coordinator bound to the open structure and MLflow gates.",
     domain: "science",
     cap: "Platform",
     year: 2025,
     role: "Architect, Engineer & Technical Product Lead",
     status: "in-progress",
     tech: ["Hyperbolic GNN", "e3nn", "MoE", "FastAPI", "pgvector", "Terraform"],
-    cardImage: "/cards/tokyo-eye.png",
     challenge:
       "Scientific assistants fail when they sit next to the work instead of in it — inventing plausible chemistry, ignoring the open structure, and leaving no provenance. Tokyo Eye had to bind agents to the current graph, selected residues, and preregistered metric gates, and keep geometry, data, and session state on one governed write path.",
     development:
@@ -126,15 +123,14 @@ export const projects: Project[] = [
     slug: "kitchen-kontrol",
     title: "Kitchen Kontrol",
     tagline: "HACCP OPERATIONS PLATFORM",
-    value: "School-nutrition operations platform for phase-based kitchen work, HACCP evidence, planograms, and compliance reports.",
-    arch: "JWT-authenticated Express API with Ajv-validated log forms and Postgres-backed weekly compliance.",
+    value: "AI that disappears into the work — staff finish logs with wet hands, bilingual, mid-service, because the kitchen can't pause for software.",
+    arch: "Phase-based ops surface + HACCP-mapped forms + voice where hands are full. Evidence, not theater.",
     domain: "ops",
     cap: "Product",
     year: 2025,
     role: "Architect, Engineer & Technical Product Lead",
     status: "in-progress",
     tech: ["HACCP Ops", "PostgreSQL", "JWT", "Ajv", "Express", "React"],
-    cardImage: "/cards/kitchen-kontrol.jpg",
     challenge:
       "Paper HACCP logs were eating shift time and still missing Texas TFER and USDA 7 CFR 210 requirements. The product had to work on wet-hands, bilingual, multi-station shifts — and still produce audit-ready evidence without pretending a cafeteria network is a control.",
     development:
@@ -183,8 +179,8 @@ export const projects: Project[] = [
     slug: "ai-ml-ops-factory",
     title: "AI/ML Ops Factory",
     tagline: "AZURE ML PROJECT FACTORY",
-    value: "Terraform-generated Azure ML project repos from a product manifest, with OIDC CI and a live taxi reference that actually trained and served.",
-    arch: "Manifest → validate → plan → generate → doctor. Terraform is R1. Databricks train + model-serving inference is the telecom churn prototype, not generated output.",
+    value: "The opinionated factory so teams stop reinventing scaffolding and start where the value is — manifest in, governed Azure ML repo out.",
+    arch: "Terraform, OIDC, digest-bound apply, live taxi reference that trained and served in Dev/Prod. The factory is the product.",
     domain: "mlops",
     cap: "Platform",
     year: 2026,
@@ -232,8 +228,8 @@ export const projects: Project[] = [
     slug: "canon-forge",
     title: "Canon Forge",
     tagline: "CHARACTER-REFERENCE ARCHITECT",
-    value: "Locked character, set, and shot contracts so image and video models render inside canon instead of reinventing the face and the room.",
-    arch: "Express generation proxy with identity-lock prompts and canon stills in front of Gemini, xAI, Bedrock, Venice, or local SD.",
+    value: "Creative velocity without drift — identity, set, and shot locks that hold canon across providers, models, and cuts.",
+    arch: "Express proxy with identity-lock prompts + canon stills in front of Gemini, xAI, Bedrock, Venice. The model renders inside the contract.",
     domain: "genai",
     cap: "Generative",
     year: 2025,
@@ -273,48 +269,48 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 25,
-    slug: "ai-ml-engineer-academy",
-    title: "AI/ML Engineer Academy",
-    tagline: "EVIDENCE-BACKED AI CURRICULUM",
-    value: "Training applet with five isolated Python labs, pytest in CI, and a local certificate that does not ingest lab output.",
-    arch: "React/Express classroom plus per-module GitHub Actions; in-browser simulators are teaching toys, not live vLLM.",
-    domain: "academy",
-    cap: "Generative",
+    id: 27,
+    slug: "governed-lora-factory",
+    title: "Llora Workbench",
+    tagline: "GOVERNED LORA WORKBENCH",
+    value: "Standardized, auditable fine-tuning — declarative playbook, gated MLflow registry, full provenance on a 4GB T1000 — so the small model you ship is the model you can prove.",
+    arch: "corpus25_playbook.yaml declares datasets, thresholds, and stages; trainer.py stays untouched. CE→BCE without code change, r=4 beats r=8.",
+    domain: "mlops",
+    cap: "Platform",
     year: 2026,
     role: "Architect, Engineer & Technical Product Lead",
     status: "in-progress",
-    tech: ["Isolated Labs", "pytest", "FastAPI", "MCP", "Grok", "React"],
+    tech: ["MLflow", "PyTorch", "PEFT LoRA", "Optuna", "HF Hub", "Qwen2-0.5B"],
     challenge:
-      "Most AI courses skip Docker, evals, promotion gates, and the difference between a local notebook and a served system. The academy had to train that stack without pretending a browser quiz is production competence — or that a canned “Run code” panel is pytest.",
+      "Small-model fine-tuning collapses when every run invents its own data, thresholds, and lineage. Llora had to make the adapter auditable — one trainer.py, one playbook, every promotion gated — and prove it on a 4GB Quadro T1000 without pretending the lab is the cloud.",
     development:
-      "Built a React 19 + Vite 6 SPA with Express (server.ts) on port 3000. Optional xAI Grok mentor via XAI_API_KEY (default grok-4.6, rate-limited); curriculum fallback if the key is missing. Five labs, each with its own requirements.txt and venv: foundations (FastAPI SSE, TF-IDF, leakage/PII/RAG clinics, Docker), LLM mechanics (NumPy TODOs; QLoRA optional), governed agents (HITL, SQL/MCP, Dual-LLM stub; LangGraph survey-only), secure serving (auth/rate-limit/CPU bench; vLLM optional), production operations (offline eval, canary/rollback; DeepEval/Promptfoo/HF/Render optional). Frontend vitest plus five lab workflows in GitHub Actions.",
+      "Built a governed micro-factory: Qwen2-0.5B-Instruct + PEFT LoRA (r=4) under MLflow hermes/llm-lora isolation (batch2 eff8, seq 64/32/128, BF16). corpus25_playbook.yaml declares SST-2, 4-way intent, and 16-tag BCE, with thresholds ln4→1.5 and BCE 0.693→0.48. One trainer.py routes CE to BCE via task head; corpus25_playbook is the only change. Optuna parent run + child trials, disk + Hub lineage, and assert_promotable(val/loss ≤ threshold) before any registry promotion.",
     outcome:
-      "Public source at github.com/rubyrayjuntos/AIML-Engineer-Academy. Certificate unlock is localStorage (all modules marked complete, lab checkboxes confirmed, quizzes ≥60%). The UI does not parse pytest XML. This static portfolio cannot host the applet.",
+      "v3 binary CE 0.5804 and v6 16-head BCE 0.464 / 80.5% Hamming, both registered. Optuna parent 919de78a best 0.5804 (trial 004, r=4 beats r=8). Local 4GB proof that a declarative, gated factory works — the same discipline the Factory applies at platform scale.",
     outcomeLine:
-      "Proves: I can architect a production AI curriculum that separates CPU-proved labs from survey topics — five isolated pytest labs, CI, and a local certificate.",
+      "Proves: I can ship auditable fine-tuning — one trainer, one playbook, every adapter gated and lineaged.",
     proofClaim:
-      "React 19 + Vite 6 + Express with five isolated venv labs, per-module GitHub Actions, optional xAI Grok mentor, MCP/SQL firewall, and a field atlas that distinguishes proved from survey.",
+      "Governed LoRA factory: declarative playbook, gated MLflow registry, 4GB guardrails, parent/child lineage, disk+Hub provenance.",
     journey: [
-      { title: "Train the job, not the buzzword", description: "Modules follow the production stack: SWE+ML, LLM internals, governed agents, secure serving, eval/release. If it is not on that matrix, it is not a required lab." },
-      { title: "Labs that conflict on purpose", description: "Each module gets its own venv. CUDA, browser, and eval extras live in separate requirements files so default CI stays CPU and offline." },
-      { title: "Evidence before the keepsake", description: "pytest and evidence JSON run in the lab (and in GitHub Actions). The applet asks you to confirm that you ran them. That confirm is a checkbox, not an ingest of the test report." },
-      { title: "Atlas as the honest map", description: "A static field atlas separates CPU-proved labs from survey and optional-live topics so the marketing page cannot outrun the work." },
-      { title: "Simulators are not the serving stack", description: "In-browser panels (vLLM, diffusion, ReAct, MCP) are teaching toys. /api/simulate-code returns canned logs. Real serving evidence is the module-4 FastAPI CPU path." },
+      { title: "Probe on 4GB (200/40 @64)", description: "Proved the loop on a Quadro T1000 before claiming it works." },
+      { title: "Intent 24→200 proves both sides of the gate", description: "Showed the gate blocks and the gate passes — same code, different data." },
+      { title: "Tags 60→180 → 5ep earns 0.48 honestly", description: "No threshold hacking. Valid loss 0.464 is the receipt." },
+      { title: "Disk, Hub, and playbook lock", description: "Every adapter has a lineage you can re-run from the playbook, not a notebook you have to believe." },
     ],
     specs: [
-      { title: "Five-module production curriculum", description: "1 Foundations (FastAPI SSE, Docker, TF-IDF, leakage/PII/RAG). 2 LLM mechanics. 3 Governed agents (HITL, SQL/MCP, Dual-LLM stub). 4 Secure serving. 5 Eval, canary, rollback. LangGraph and multi-cloud deploy stay survey or optional." },
-      { title: "Isolated labs with pytest in CI", description: "Each lab has requirements.txt, pytest, and a GitHub Actions workflow. Module 1 also docker-builds. Module 2 CI sets ACADEMY_SOLUTION=1 to grade reference mechanics; learners leave that unset." },
-      { title: "Mentor in the loop, curriculum without it", description: "Optional xAI Grok behind XAI_API_KEY, IP rate limit, prompt truncation. Missing key or upstream failure uses a keyword fallback." },
-      { title: "Field atlas, not a sales page", description: "Standalone static atlas at /atlas/: audience, contents, non-goals, filterable CPU-proved vs survey vs optional-live." },
-      { title: "Certificate is local, not accredited", description: "Requires modules marked complete, lab confirms, and module quizzes or the program quiz at ≥60%. Not a vendor credential." },
-      { title: "This site cannot host the applet", description: "SPA + Express on port 3000. GitHub is the public surface until a separate host exists." },
+      { title: "Declarative playbook", description: "corpus25_playbook.yaml declares datasets (SST-2, 4-way intent, 16-tag BCE), thresholds (ln4→1.5, BCE 0.693→0.48), and stages; trainer.py stays untouched." },
+      { title: "Gated registry", description: "assert_promotable(val/loss ≤ threshold) — nothing registers that didn't earn it. Optuna parent 919de78a + child trials under hermes/llm-lora." },
+      { title: "4GB guardrails", description: "batch2 eff8, seq 64/32/128, BF16 — proved on a 4GB Quadro T1000, not a rented A100." },
+      { title: "Parent/child lineage", description: "Optuna sweep parent run + child trials, disk + Hub, playbook digest — every adapter is provenance-complete." },
+      { title: "CE→BCE without code change", description: "One trainer.py routes binary CE to 16-head BCE via head config. Playbook is the variant, not the code." },
     ],
     gallery: [
-      { title: "Learning control plane", description: "Holographic model, code, retrieval, security, and evals around one engineer — the academy’s metaphor for putting the whole stack in one field of view.", image: "/plates/academy-learning-console.svg" },
+      { title: "Governed lineage", description: "Playbook → trainer → MLflow gated registry → Hub. One factory, every adapter auditable.", image: "/plates/factory-control-plane.svg" },
     ],
     artifacts: [
-      { name: "GitHub Repository", description: "Public source for the academy applet, labs, and atlas", url: "https://github.com/rubyrayjuntos/AIML-Engineer-Academy" },
+      { name: "GitHub Repository", description: "Governed LoRA micro-factory", url: "https://github.com/rubyrayjuntos/governed-lora-factory" },
+      { name: "Hugging Face", description: "rswan-llm-lora adapters (v3 + v6)", url: "https://huggingface.co/TokyoEye/rswan-llm-lora" },
+      { name: "Spec", description: "Governed trainer spec", url: "https://github.com/rubyrayjuntos/governed-lora-factory/blob/main/docs/GOVERNED_TRAINER_SPEC.md" },
     ],
   },
 ];
@@ -329,7 +325,7 @@ export const CATALOG_SLUGS = [
   "tokyo-eye",
   "canon-forge",
   "ai-ml-ops-factory",
-  "ai-ml-engineer-academy",
+  "governed-lora-factory",
 ] as const;
 
 export const catalog = CATALOG_SLUGS.map((slug) => {
@@ -359,9 +355,9 @@ const REPOS: Record<string, { label: string; url: string }> = {
     label: "AIML-SCAFFOLD",
     url: "https://github.com/rubyrayjuntos/AIML-SCAFFOLD",
   },
-  "ai-ml-engineer-academy": {
-    label: "AIML-Engineer-Academy",
-    url: "https://github.com/rubyrayjuntos/AIML-Engineer-Academy",
+  "governed-lora-factory": {
+    label: "governed-lora-factory",
+    url: "https://github.com/rubyrayjuntos/governed-lora-factory",
   },
 };
 

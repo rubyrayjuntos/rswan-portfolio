@@ -48,7 +48,7 @@ export const PROJECT_GLYPH: Record<string, GlyphName> = {
   "kitchen-kontrol": "chef",
   "ai-ml-ops-factory": "cloud",
   "canon-forge": "cube",
-  "ai-ml-engineer-academy": "grad",
+  "governed-lora-factory": "cpu",
 };
 
 export const PILLAR_GLYPH: Record<string, GlyphName> = {
