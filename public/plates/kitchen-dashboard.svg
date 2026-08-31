@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Daily operations dashboard">
+  <rect width="1200" height="675" fill="#f2f2f3"/>
+  <rect x="24" y="24" width="1152" height="627" fill="none" stroke="#1d1f20" stroke-opacity="0.16" stroke-width="1.2"/>
+  <!-- corner brackets -->
+  <g stroke="#1d1f20" stroke-opacity="0.45" stroke-width="1.2" fill="none">
+    <path d="M24 42 V24 H42"/><path d="M1158 24 H1176 V42"/>
+    <path d="M24 633 V651 H42"/><path d="M1158 651 H1176 V633"/>
+  </g>
+  <!-- centered mark -->
+  <g opacity="0.08">
+    <polygon points="600,195 690,247 690,352 600,404 510,352 510,247" fill="none" stroke="#5980a6" stroke-width="1.4"/>
+    <circle cx="600" cy="299" r="42" fill="none" stroke="#5980a6" stroke-width="1.2"/>
+    <line x1="510" y1="299" x2="558" y2="299" stroke="#5980a6" stroke-width="1"/>
+    <line x1="642" y1="299" x2="690" y2="299" stroke="#5980a6" stroke-width="1"/>
+  </g>
+  <text x="600" y="395" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-size="38" font-weight="600" letter-spacing="-0.02em" fill="#1d1f20">Daily operations dashboard</text>
+  <text x="600" y="430" text-anchor="middle" font-family="Source Sans 3, system-ui, sans-serif" font-size="16" fill="#5d5d60">Phases, roles, and quick actions</text>
+  <text x="600" y="558" text-anchor="middle" font-family="Source Sans 3, monospace" font-size="11" letter-spacing="0.14em" fill="#416180">Express · Postgres · JWT</text>
+  <text x="36" y="46" font-family="Source Sans 3, sans-serif" font-size="10" letter-spacing="0.16em" fill="#7a7a7d">PLATE</text>
+  <text x="1164" y="46" text-anchor="end" font-family="Source Sans 3, sans-serif" font-size="10" letter-spacing="0.12em" fill="#7a7a7d">RSWAN / DAILY OPERATIONS DASHB</text>
+</svg>

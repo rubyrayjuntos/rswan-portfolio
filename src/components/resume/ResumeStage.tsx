@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import {
   ADDITIONAL_SYSTEMS,
   EDUCATION,
@@ -81,6 +82,13 @@ export function ResumeStage() {
               </li>
             ))}
           </ul>
+          <Link
+            to="/work/$slug"
+            params={{ slug: "ai-ml-ops-factory" }}
+            className="w-fit text-[13px] font-medium text-steel hover:text-ink"
+          >
+            Full case study — AI/ML Ops Factory ↗
+          </Link>
         </article>
 
         <article className="snap-pane flex flex-col justify-center gap-5 px-6 py-8 lg:px-8">

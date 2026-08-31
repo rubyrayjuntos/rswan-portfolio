@@ -83,11 +83,19 @@ export function CaseStudy({ project }: { project: Project }) {
           <Pane kicker="05 · Surfaces" title="What it looks like to operate">
             <div className="grid max-w-5xl gap-4 md:grid-cols-2">
               {project.gallery.map((g) => (
-                <Blueprint key={g.title} className="flex min-h-36 flex-col justify-between p-4">
-                  <div className="kicker">Plate</div>
-                  <div>
+                <Blueprint key={g.title} className="overflow-hidden p-0">
+                  <img
+                    src={g.image}
+                    alt={g.title}
+                    width={1200}
+                    height={675}
+                    loading="lazy"
+                    className="block h-auto w-full border-b border-line bg-canvas"
+                  />
+                  <div className="flex flex-col gap-2 p-4">
+                    <div className="kicker">Plate</div>
                     <div className="font-heading text-xl font-semibold tracking-tight">{g.title}</div>
-                    <p className="mt-2 text-sm leading-relaxed text-mute-800">{g.description}</p>
+                    <p className="text-sm leading-relaxed text-mute-800">{g.description}</p>
                   </div>
                 </Blueprint>
               ))}

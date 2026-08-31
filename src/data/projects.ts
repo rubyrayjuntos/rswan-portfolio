@@ -1,6 +1,6 @@
 export type Spec = { title: string; description: string };
 export type Step = { title: string; description: string };
-export type Plate = { title: string; description: string };
+export type Plate = { title: string; description: string; image: string };
 export type Artifact = { name: string; description: string; url: string };
 
 export type Project = {
@@ -67,7 +67,7 @@ export const projects: Project[] = [
       { title: "This site cannot host the runtime", description: "Vite + React app with a model key. GitHub is the public source until a keyed host exists." },
     ],
     gallery: [
-      { title: "Trust boundary", description: "Agent reasoning stays untrusted. A state-machine control plane is the only path to application authority." },
+      { title: "Trust boundary", description: "Agent reasoning stays untrusted. A state-machine control plane is the only path to application authority.", image: "/plates/neuronote-trust-boundary.svg" },
     ],
     artifacts: [
       { name: "GitHub Repository", description: "Public source for NeuroNote", url: "https://github.com/rubyrayjuntos/Neuronote" },
@@ -111,8 +111,8 @@ export const projects: Project[] = [
       { title: "Property gates and honest findings", description: "gates.yml property tests (corpus / smoke / curvature). Findings markdown records abandoned claims (λ₂ as cancer discriminator) alongside surviving dehydron physics." },
     ],
     gallery: [
-      { title: "Scientist control plane", description: "Hypergraph spectrum, protein geometry, contact maps, and energy landscape on one immersive console." },
-      { title: "Hyperbolic scientific engine", description: "Protein in a Poincaré-style field with residue focus, fragment screening, epistemic uncertainty, and literature DOIs." },
+      { title: "Scientist control plane", description: "Hypergraph spectrum, protein geometry, contact maps, and energy landscape on one immersive console.", image: "/plates/tokyo-eye-scientist-console.svg" },
+      { title: "Hyperbolic scientific engine", description: "Protein in a Poincaré-style field with residue focus, fragment screening, epistemic uncertainty, and literature DOIs.", image: "/plates/tokyo-eye-hyperbolic-engine.svg" },
     ],
     artifacts: [
       { name: "hgnn-protein-ligand", description: "Public research showcase", url: "https://github.com/rubyrayjuntos/hgnn-protein-ligand" },
@@ -158,14 +158,14 @@ export const projects: Project[] = [
       { title: "HACCP range validators", description: "kk-logger encodes sanitizer ppm, cold holding, hot holding, and thermometer calibration limits with corrective-action UI. Offline sync is simulated, not a service worker." },
     ],
     gallery: [
-      { title: "Line operations HUD", description: "Frontline kitchen as the product surface: inventory, HACCP, and alerts on the work staff already do." },
-      { title: "Daily operations dashboard", description: "Kitchen phases, role assignments, and quick actions for logs, reports, training, and planograms." },
-      { title: "Daily logs", description: "Digital HACCP and operations logs replacing clipboard temperature sheets." },
-      { title: "HACCP temperature logging", description: "Walk-in, freezer, and warmer logs with pass/fail status and corrective-action capture." },
-      { title: "Regulatory compliance", description: "Texas TFER §228.75 and USDA 7 CFR 210 mapped into log types and range checks." },
-      { title: "Planogram builder", description: "Serving-line planogram with pan wells. kitchen-kontrol persists planograms through the Express API." },
-      { title: "Manager reports", description: "Weekly log-status completion rates from Postgres CTE queries in kitchen-kontrol." },
-      { title: "Capability board (vision, not GitHub)", description: "Product-vision board for voice, assistant, forecast, and vision. Those AWS services are not in the four GitHub repos." },
+      { title: "Line operations HUD", description: "Frontline kitchen as the product surface: inventory, HACCP, and alerts on the work staff already do.", image: "/plates/kitchen-line-hud.svg" },
+      { title: "Daily operations dashboard", description: "Kitchen phases, role assignments, and quick actions for logs, reports, training, and planograms.", image: "/plates/kitchen-dashboard.svg" },
+      { title: "Daily logs", description: "Digital HACCP and operations logs replacing clipboard temperature sheets.", image: "/plates/kitchen-daily-logs.svg" },
+      { title: "HACCP temperature logging", description: "Walk-in, freezer, and warmer logs with pass/fail status and corrective-action capture.", image: "/plates/kitchen-haccp-temp.svg" },
+      { title: "Regulatory compliance", description: "Texas TFER §228.75 and USDA 7 CFR 210 mapped into log types and range checks.", image: "/plates/kitchen-regulatory.svg" },
+      { title: "Planogram builder", description: "Serving-line planogram with pan wells. kitchen-kontrol persists planograms through the Express API.", image: "/plates/kitchen-planogram.svg" },
+      { title: "Manager reports", description: "Weekly log-status completion rates from Postgres CTE queries in kitchen-kontrol.", image: "/plates/kitchen-manager-reports.svg" },
+      { title: "Capability board (vision, not GitHub)", description: "Product-vision board for voice, assistant, forecast, and vision. Those AWS services are not in the four GitHub repos.", image: "/plates/kitchen-capability-board.svg" },
     ],
     artifacts: [
       { name: "Ops platform (private)", description: "React + Express + Postgres kitchen-kontrol source", url: "https://github.com/rubyrayjuntos/kitchen-kontrol" },
@@ -214,7 +214,7 @@ export const projects: Project[] = [
       { title: "Not R1 (yet)", description: "Databricks, Foundry agents, Azure AI Search, online endpoints, and auto-retrain are not AIML-SCAFFOLD generate output." },
     ],
     gallery: [
-      { title: "Factory control plane", description: "Intake through monitoring as a product metaphor. The generator instantiates Terraform + lifecycle repos, not a hologram UI." },
+      { title: "Factory control plane", description: "Intake through monitoring as a product metaphor. The generator instantiates Terraform + lifecycle repos, not a hologram UI.", image: "/plates/factory-control-plane.svg" },
     ],
     artifacts: [
       { name: "AIML-SCAFFOLD", description: "Factory: contracts, generator, Terraform, policy", url: "https://github.com/rubyrayjuntos/AIML-SCAFFOLD" },
@@ -262,7 +262,7 @@ export const projects: Project[] = [
       { title: "Vite app + Express, not this site", description: "React 19 + Vite 6 + TypeScript + Express. Keys stay on the server. This portfolio cannot host it." },
     ],
     gallery: [
-      { title: "Production control plane", description: "Face mesh, set wireframe, locked composite, and frame strip on one console — identity through the cut." },
+      { title: "Production control plane", description: "Face mesh, set wireframe, locked composite, and frame strip on one console — identity through the cut.", image: "/plates/canon-production-console.svg" },
     ],
     artifacts: [
       { name: "GitHub Repository", description: "Public source for Canon Forge", url: "https://github.com/rubyrayjuntos/canon-forge" },
@@ -307,7 +307,7 @@ export const projects: Project[] = [
       { title: "This site cannot host the applet", description: "SPA + Express on port 3000. GitHub is the public surface until a separate host exists." },
     ],
     gallery: [
-      { title: "Learning control plane", description: "Holographic model, code, retrieval, security, and evals around one engineer — the academy’s metaphor for putting the whole stack in one field of view." },
+      { title: "Learning control plane", description: "Holographic model, code, retrieval, security, and evals around one engineer — the academy’s metaphor for putting the whole stack in one field of view.", image: "/plates/academy-learning-console.svg" },
     ],
     artifacts: [
       { name: "GitHub Repository", description: "Public source for the academy applet, labs, and atlas", url: "https://github.com/rubyrayjuntos/AIML-Engineer-Academy" },
