@@ -24,25 +24,25 @@ export const HOME_SECTIONS = ["Position", "Contrast", "Arc", "Proof"] as const;
 
 export const POSITION = {
   kicker: "AI/ML System Architect",
-  line1: "I architect AI systems",
-  line2: "the way enterprises actually run —",
+  line1: "ENTERPRISE AI THAT SHIPS",
+  line2: "Not a notebook. A system.",
   punch: "production-grade reliability",
   against: "research-grade hope",
 } as const;
 
 export const CONTRASTS = [
-  { them: "Think in models & papers", ray: "Think in systems & constraints" },
-  { them: "Built demos that worked once", ray: "Built platforms that run 24/7" },
-  { them: "Know Jupyter notebooks", ray: "Know production MLOps at scale" },
-  { them: "Learned AI first, enterprise second", ray: "Did enterprise 15 years, then layered AI on top" },
-  { them: "Optimize for accuracy", ray: "Optimize for reliability, cost, and time-to-value" },
+  { them: "Not demos that worked once", ray: "24/7 PLATFORMS" },
+  { them: "Not a policy PDF", ray: "GOVERNANCE IS ARCHITECTURE" },
+  { them: "Digest-bound. OIDC. No portal clicks.", ray: "PROMOTION GATES, NOT HOPES" },
+  { them: "Not the other way around", ray: "15 YEARS ENTERPRISE, THEN AI" },
+  { them: "Not just accuracy", ray: "OPTIMIZED FOR TIME-TO-VALUE" },
 ] as const;
 
 export const ARC = [
-  { n: "15 yrs", title: "Building enterprise systems", body: "Mazda, Revlon, Black & Decker, Fox Sports, Therabody — where downtime is measured in millions." },
-  { n: "Then", title: "I saw AI coming", body: "And realized most teams were building it wrong: research-grade demos in rooms that needed operations." },
-  { n: "3 yrs", title: "Enterprise discipline, applied to AI", body: "Platforms, governance, MLOps, agent runtimes — the full lifecycle, not a notebook." },
-  { n: "Now", title: "Systems that survive production", body: "Governed AI from infrastructure through the write path. The unproven stays labeled unproven." },
+  { n: "15 YRS", title: "MAZDA → THERABODY", body: "Downtime measured in millions." },
+  { n: "THEN", title: "SAW AI COMING", body: "Most teams built it wrong." },
+  { n: "3 YRS", title: "ENTERPRISE DISCIPLINE → AI", body: "Platforms, MLOps, agent runtime." },
+  { n: "NOW", title: "SYSTEMS THAT SURVIVE PRODUCTION", body: "Live in Dev & Prod. Not slides." },
 ] as const;
 
 export const KEYWORDS = [
