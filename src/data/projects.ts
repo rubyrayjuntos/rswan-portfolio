@@ -1,0 +1,386 @@
+export type Spec = { title: string; description: string };
+export type Step = { title: string; description: string };
+export type Plate = { title: string; description: string };
+export type Artifact = { name: string; description: string; url: string };
+
+export type Project = {
+  id: number;
+  slug: string;
+  title: string;
+  tagline: string;
+  value: string;
+  arch: string;
+  domain: string;
+  cap: string;
+  year: number;
+  role: string;
+  status: string;
+  tech: string[];
+  challenge: string;
+  development: string;
+  outcome: string;
+  outcomeLine: string;
+  proofClaim: string;
+  journey: Step[];
+  specs: Spec[];
+  gallery: Plate[];
+  artifacts: Artifact[];
+};
+
+export const projects: Project[] = [
+  {
+    id: 26,
+    slug: "neuronote",
+    title: "NeuroNote",
+    tagline: "AGENTIC AI SAFETY ARCHITECTURE",
+    value: "Governed agent runtime that separates AI reasoning from execution authority.",
+    arch: "State-machine control plane validates and constrains agent actions before they can alter application state.",
+    domain: "safety",
+    cap: "Governance",
+    year: 2025,
+    role: "Architect, Engineer & Technical Product Lead",
+    status: "in-progress",
+    tech: ["PVA / Dual Kernel", "QuickJS WASM", "Honesty Oracle", "Zod", "Gemini"],
+    challenge:
+      "AI-generated logic is usually treated as a peer of the application: it writes code, mutates state, and hopes the prompt was honest. That fails the moment the model drifts, injects, or exceeds the capability it declared. NeuroNote had to make runtime-generated behavior a guest — verified, sandboxed, and reversible — without giving up malleability.",
+    development:
+      "Built a TypeScript/React/Vite reference implementation of Proposal–Verification architecture. Guest kernel (Gemini, or Claude/Llama/Mistral via Bedrock, plus Groq) synthesizes AppDefinition IR only. A three-phase Gatekeeper — structural validation, semantic verification, honesty oracle (including test-vector simulation) — sits on the trust boundary, with resource budgets and a capability manifest as additional Host constraints. The Host kernel executes in a fuel-metered QuickJS WASM sandbox and a worker with 40 registered operators. Bidirectional lenses migrate schema; a custom JSON FSM owns application state; runtime errors roll back; a change journal keeps the audit.",
+    outcome:
+      "A working dual-kernel control plane where AI proposes, the gatekeeper validates, and the host executes. Interactive app needs a model key and is not hosted on this static portfolio. Source: github.com/rubyrayjuntos/Neuronote.",
+    outcomeLine:
+      "Proves: I can design a governed agent runtime from first principles — Guest, Gatekeeper, and Host kernel.",
+    proofClaim:
+      "PVA dual-kernel architecture with three-phase gatekeeper, QuickJS WASM sandbox, 40 registered operators, and model-agnostic provider routing.",
+    journey: [
+      { title: "Treat the model as hostile by default", description: "Stopped implying that generated logic is application code. Every AI artifact is untrusted input until it survives verification." },
+      { title: "Host–Guest, not prompt–hope", description: "Split the runtime: Guest synthesizes declarative AppDefinitions. Host owns validation, rendering, persistence, and recovery. Guest never joins the control loop." },
+      { title: "Gatekeeper as the product", description: "Three verification phases sit on the trust boundary — structure, semantics, honesty — so a fluent proposal cannot skip the gate. Budgets and the capability lattice further constrain what the Host will execute." },
+      { title: "Execute only what was admitted", description: "WASM fuel metering, worker isolation, and 40 registered operators. No ambient capabilities. Bounded iteration. Rollback on runtime error." },
+      { title: "Journal the change, not the vibe", description: "Every accepted mutation leaves a diff, a verification score, and a recoverable prior state. Observability is how you prove the boundary held." },
+    ],
+    specs: [
+      { title: "Untrusted reasoning, trusted authority", description: "The Guest kernel produces IR. It does not execute, persist, or talk to operators. Application authority lives only in the Host." },
+      { title: "Three-phase gatekeeper", description: "Structural validation, semantic verification, and honesty oracle (intent vs effects vs traces, including test-vector simulation) before any proposal is adopted. Resource budgets and a capability manifest constrain Host execution." },
+      { title: "WASM + worker isolation", description: "QuickJS with fuel metering in WASM; 40 registered operators (text, math, image, audio, CV) behind a worker with no ambient capabilities and a FoldN cap of 1000." },
+      { title: "Logic-as-data, not eval", description: "Behavior is JSON schema, not generated source. Bidirectional lenses migrate state; failed runtime automatically reverts." },
+      { title: "Model-agnostic guest", description: "Provider interface for Gemini 2.5 Flash, Groq, and Bedrock-hosted Claude, Llama, and Mistral. Swap the synthesizer without rewriting the Host." },
+      { title: "This site cannot host the runtime", description: "Vite + React app with a model key. GitHub is the public source until a keyed host exists." },
+    ],
+    gallery: [
+      { title: "Trust boundary", description: "Agent reasoning stays untrusted. A state-machine control plane is the only path to application authority." },
+    ],
+    artifacts: [
+      { name: "GitHub Repository", description: "Public source for NeuroNote", url: "https://github.com/rubyrayjuntos/Neuronote" },
+    ],
+  },
+  {
+    id: 22,
+    slug: "tokyo-eye",
+    title: "Tokyo Eye",
+    tagline: "HYPERBOLIC SCIENTIFIC PLATFORM",
+    value: "Poincaré GNN and MoE structural inference on a FastAPI / pgvector control plane, with Terraform data infra and MLflow gates.",
+    arch: "20-tool LLM coordinator, JWT sessions, provenance_run writes, and property-gate CI — agents stay inside the open structure.",
+    domain: "science",
+    cap: "Platform",
+    year: 2025,
+    role: "Architect, Engineer & Technical Product Lead",
+    status: "in-progress",
+    tech: ["Hyperbolic GNN", "e3nn", "MoE", "FastAPI", "pgvector", "Terraform"],
+    challenge:
+      "Scientific assistants fail when they sit next to the work instead of in it — inventing plausible chemistry, ignoring the open structure, and leaving no provenance. Tokyo Eye had to bind agents to the current graph, selected residues, and preregistered metric gates, and keep geometry, data, and session state on one governed write path.",
+    development:
+      "Built the platform in tokyo-eye-agenticpoincare. Science extra: PyTorch/PyG, geoopt Poincaré, e3nn SE(3), GUDHI TDA, MoE routing, evidential heads, RDKit, OpenMM, PDB/dehydron ingestion. Agent: FastAPI, JWT, rate-limited sessions, WebSocket viewport directives, 20-tool coordinator, Bedrock → Anthropic → Mock, hypothesis + literature tools. Data: pgvector hyperbolic similarity, 30-schema migrations local↔Aurora, dimensional model, single-write-path normalizer, provenance_run. Infra: Terraform Aurora+S3, MLflow+Optuna, property-gate CI (corpus/smoke/curv). Visualizer: three XState machines (viewport, discovery phase, hypothesis lifecycle).",
+    outcome:
+      "Private source of truth is tokyo-eye-agenticpoincare. Public research showcase is hgnn-protein-ligand. Findings docs include abandoned claims as well as surviving physics; unproven capability stays labeled unproven.",
+    outcomeLine:
+      "Proves: I can bind scientific agents to a governed write path — hyperbolic geometry, provenance, and property gates in one platform.",
+    proofClaim:
+      "FastAPI / pgvector control plane, 20-tool coordinator, Terraform Aurora+S3, MLflow property-gate CI, and Poincaré GNN + MoE science extra.",
+    journey: [
+      { title: "Put AI in the scientist’s actual context", description: "Rejected chatbot-beside-the-work. The agent must see current structures, selected residues, workflow stage, and visual state before it is allowed to speak." },
+      { title: "Hyperbolic geometry as the spatial prior", description: "Poincaré / geoopt embeddings so hierarchical residue, fragment, and pocket structure stay continuous instead of flattening into a Euclidean bag of atoms." },
+      { title: "Versioned science, not a frozen miss", description: "DTIE v3–v6 live in tree. Production inference is the V5 GNN path; training continues on v6 with MLflow governance. MoE and e3nn are in the science extra, not a slide overlay." },
+      { title: "One write path, then the agent", description: "All data writes go through the normalizer. provenance_run is recorded before results. The 20-tool coordinator cannot skip that contract." },
+      { title: "Session machine vs portfolio HTML", description: "XState owns the React Poincaré dashboard in the platform repo. This site is the write-up, not the live visualizer." },
+    ],
+    specs: [
+      { title: "Context-bound scientific agents", description: "FastAPI coordinator with JWT, rate limits, and a WebSocket viewport. XState in the visualizer plus the open structure constrain what the LLM may say." },
+      { title: "Hyperbolic GNN + MoE science", description: "PyTorch, geoopt Poincaré, e3nn SE(3), GUDHI persistence, MoE routing, evidential (epistemic + aleatoric) heads, RDKit/OpenMM, PDB/dehydron ingestion. Agent container stays lightweight — no PyTorch on the API image." },
+      { title: "Governed data plane", description: "PostgreSQL 16 / pgvector hyperbolic similarity, 30-schema migrations local↔Aurora, dimensional model, single-write-path normalizer, provenance_run lineage, Terraform Aurora + S3." },
+      { title: "MLflow as a contract", description: "MLflow + Optuna. Mandatory training schema in mlflow_governance.py. Smoke proves field emission. Multi-stage parent/child lineage is documented as not yet proved. Property-gate CI: corpus / smoke / curv." },
+      { title: "Property gates and honest findings", description: "gates.yml property tests (corpus / smoke / curvature). Findings markdown records abandoned claims (λ₂ as cancer discriminator) alongside surviving dehydron physics." },
+    ],
+    gallery: [
+      { title: "Scientist control plane", description: "Hypergraph spectrum, protein geometry, contact maps, and energy landscape on one immersive console." },
+      { title: "Hyperbolic scientific engine", description: "Protein in a Poincaré-style field with residue focus, fragment screening, epistemic uncertainty, and literature DOIs." },
+    ],
+    artifacts: [
+      { name: "hgnn-protein-ligand", description: "Public research showcase", url: "https://github.com/rubyrayjuntos/hgnn-protein-ligand" },
+    ],
+  },
+  {
+    id: 21,
+    slug: "kitchen-kontrol",
+    title: "Kitchen Kontrol",
+    tagline: "HACCP OPERATIONS PLATFORM",
+    value: "School-nutrition operations platform for phase-based kitchen work, HACCP evidence, planograms, and compliance reports.",
+    arch: "JWT-authenticated Express API with Ajv-validated log forms and Postgres-backed weekly compliance.",
+    domain: "ops",
+    cap: "Product",
+    year: 2025,
+    role: "Architect, Engineer & Technical Product Lead",
+    status: "in-progress",
+    tech: ["HACCP Ops", "PostgreSQL", "JWT", "Ajv", "Express", "React"],
+    challenge:
+      "Paper HACCP logs were eating shift time and still missing Texas TFER and USDA 7 CFR 210 requirements. The product had to work on wet-hands, bilingual, multi-station shifts — and still produce audit-ready evidence without pretending a cafeteria network is a control.",
+    development:
+      "Shipped a React/Express ops platform (kitchen-kontrol) with JWT auth, Postgres migrations, Ajv JSON-schema HACCP forms, planogram CRUD, weekly log-status SQL, Docker/nginx, and GitHub Actions. Companion repos: kk-logger (Vite/TS HACCP SPA with TFER range validators and EN/ES), MilkTrace-Voice (Web Speech API + keyword parser for milk inventory), and MyKitchen (single-file HTML hub). Browser STT is real. Gemini Live, Bedrock, SageMaker, Transcribe, Lex, and Rekognition are not in these repos.",
+    outcome:
+      "Public proof is the GitHub family, not a cloud overlay. kitchen-kontrol is a Node ops app (private); kk-logger and MyKitchen are public. Site-count and waste figures from earlier product copy are not reproduced in these repositories.",
+    outcomeLine:
+      "Proves: I can ship a production ops platform end-to-end — from database schema to CI to Docker deploy.",
+    proofClaim:
+      "Full-stack ops platform with JWT auth, Postgres migrations, Ajv forms, Docker/nginx, and GitHub Actions CI.",
+    journey: [
+      { title: "Watch the line, not the backlog", description: "Observed school nutrition shifts where paper HACCP and inventory ate shift time and still failed audits. Requirements came from wet-hands, bilingual, multi-station reality." },
+      { title: "Make HACCP a product, not a PDF", description: "Turned TFER temperature rules into digital logs with Ajv schemas, pass/fail gates, and corrective-action flows staff can complete during service." },
+      { title: "Ops platform, not a mock", description: "Built kitchen-kontrol as Express + Postgres: JWT, roles, phases, tasks, log templates/submissions, planograms, weekly compliance SQL, Docker, and CI." },
+      { title: "Evidence UX in TypeScript", description: "kk-logger is the HACCP SPA: traffic-light tasks, sanitizer/hot/cold/calibration validators, English/Spanish. SharePoint and SSO are written as plans, not wired." },
+      { title: "Voice where hands are full", description: "MilkTrace-Voice logs milk inventory with the browser SpeechRecognition API and a keyword/number parser. The hook is named Gemini Live; the runtime is not." },
+      { title: "Claim only what GitHub holds", description: "Cafeteria-server and Azure overlay work was not transferred into these repos. This case study stops at the public proof." },
+    ],
+    specs: [
+      { title: "JWT-authenticated ops API", description: "Express 5 with bcrypt login, JWT, rate limits, Winston, Sentry, and a transactional outbox. Postgres 15 with node-pg-migrate; sqlite3 for local/dev." },
+      { title: "Ajv HACCP form engine", description: "JSON Schema log templates rendered with React Hook Form. Equipment temps, food temps, planograms, sanitation, reimbursable meals." },
+      { title: "Weekly compliance reports", description: "CTE queries for log-template completion rates, date-range filters, and checkCompliance() on temp, planogram, sanitation, and meal records." },
+      { title: "Planogram CRUD", description: "Serving-line wells persisted through /api/planograms. Not computer vision. Rekognition is not in source." },
+      { title: "Browser STT milk logging", description: "MilkTrace-Voice: Web Speech API plus a deterministic parser for school, milk type, and quantity. Not Amazon Transcribe or Lex." },
+      { title: "HACCP range validators", description: "kk-logger encodes sanitizer ppm, cold holding, hot holding, and thermometer calibration limits with corrective-action UI. Offline sync is simulated, not a service worker." },
+    ],
+    gallery: [
+      { title: "Line operations HUD", description: "Frontline kitchen as the product surface: inventory, HACCP, and alerts on the work staff already do." },
+      { title: "Daily operations dashboard", description: "Kitchen phases, role assignments, and quick actions for logs, reports, training, and planograms." },
+      { title: "Daily logs", description: "Digital HACCP and operations logs replacing clipboard temperature sheets." },
+      { title: "HACCP temperature logging", description: "Walk-in, freezer, and warmer logs with pass/fail status and corrective-action capture." },
+      { title: "Regulatory compliance", description: "Texas TFER §228.75 and USDA 7 CFR 210 mapped into log types and range checks." },
+      { title: "Planogram builder", description: "Serving-line planogram with pan wells. kitchen-kontrol persists planograms through the Express API." },
+      { title: "Manager reports", description: "Weekly log-status completion rates from Postgres CTE queries in kitchen-kontrol." },
+      { title: "Capability board (vision, not GitHub)", description: "Product-vision board for voice, assistant, forecast, and vision. Those AWS services are not in the four GitHub repos." },
+    ],
+    artifacts: [
+      { name: "Ops platform (private)", description: "React + Express + Postgres kitchen-kontrol source", url: "https://github.com/rubyrayjuntos/kitchen-kontrol" },
+      { name: "kk-logger (public)", description: "Vite/TypeScript HACCP SPA with TFER validators", url: "https://github.com/rubyrayjuntos/kk-logger" },
+      { name: "MyKitchen (public)", description: "Single-file HTML ops hub prototype", url: "https://github.com/rubyrayjuntos/MyKitchen" },
+      { name: "MilkTrace-Voice (private)", description: "Browser SpeechRecognition milk inventory logging", url: "https://github.com/rubyrayjuntos/MilkTrace-Voice" },
+    ],
+  },
+  {
+    id: 24,
+    slug: "ai-ml-ops-factory",
+    title: "AI/ML Ops Factory",
+    tagline: "AZURE ML PROJECT FACTORY",
+    value: "Terraform-generated Azure ML project repos from a product manifest, with OIDC CI and a live taxi reference that actually trained and served.",
+    arch: "Manifest → validate → plan → generate → doctor. Terraform is R1. Databricks train + model-serving inference is the telecom churn prototype, not generated output.",
+    domain: "mlops",
+    cap: "Platform",
+    year: 2026,
+    role: "Architect, Engineer & Technical Product Lead",
+    status: "in-progress",
+    tech: ["Terraform", "Azure ML", "OIDC", "GitHub Actions", "Generator"],
+    challenge:
+      "Enterprise MLOps usually collapses into a notebook, a portal click, or a generator that pretends Databricks, Foundry, and Azure ML are one lifecycle. The factory had to generate self-contained project repos without importing a taxi demo or a churn prototype as the platform, and without claiming live Azure proof from local tests.",
+    development:
+      "Started as a Databricks medallion + telecom-churn product (azuredev-3d78, private): bronze/silver/gold, MLflow train/register (sklearn on gold_feature_snapshots from the IBM Telco corpus), FastAPI /churn-score that calls a Databricks model-serving endpoint, Foundry explanation client. Then stood up Microsoft’s MLOps v2 accelerator as a live taxi instance (azure-mlops) and added scheduled KS drift → retrain. Re-engineered a separate generator, AIML-SCAFFOLD: manifest in, deterministic generate, doctor. Public generated project is azure-aiml-ops. R1 does not generate Databricks, Foundry, online serving, or auto-retrain. Foundry GenAI ops remains in process on the churn prototype.",
+    outcome:
+      "Three evidenced slices: AIML-SCAFFOLD generates Terraform Azure ML repos; azure-aiml-ops is a generated Dev tree; azure-mlops is the taxi instance that trained, registered, and batch-served in Dev and Prod. Separately, azuredev-3d78 is the Databricks telecom-churn path (train on gold features, infer via model serving + FastAPI). This portfolio hosts the write-up, not a fake factory UI.",
+    outcomeLine:
+      "Proves: I can build a deterministic ML project factory — Terraform, OIDC, and digest-bound apply — and run a live MLOps v2 taxi with scheduled drift retrain.",
+    proofClaim:
+      "AIML-SCAFFOLD generator (validate → plan → generate → doctor), live azure-mlops taxi with Dev/Prod RGs, and azuredev-3d78 Databricks medallion with FastAPI serving.",
+    journey: [
+      { title: "Churn prototype first, not the factory", description: "azuredev-3d78 runs IBM Telco churn through Databricks bronze/silver/gold, trains sklearn in MLflow from gold_feature_snapshots, registers the candidate, and scores through FastAPI → Databricks serving. No project generator." },
+      { title: "Run the Microsoft accelerator for real", description: "azure-mlops is a live MLOps v2 taxi project. Dev and Prod resource groups, registered taxi-model, working batch endpoints. Template bugs (OIDC id-token, conda setuptools, SKU) were fixed. Online endpoint was not deployed." },
+      { title: "Opinionated monitor and retrain on the taxi path", description: "Added check_drift.py plus a Monday cron workflow: DRIFT_DETECTED dispatches training. That path is on azure-mlops. AIML-SCAFFOLD’s own ledger still marks drift/retrain experimental and excluded from R1 generate." },
+      { title: "A generator that is not the taxi", description: "AIML-SCAFFOLD is independent of the churn prototype and is not how azure-mlops was created. Manifest → validate → plan → generate → doctor. Terraform only for R1. Generated example: azure-aiml-ops." },
+      { title: "Foundry stays in process", description: "Scaffold holds Foundry YAML contracts. azuredev holds a Foundry chat client with explicit foundry_llm vs deterministic_fallback. Neither is R1 generated output." },
+    ],
+    specs: [
+      { title: "Deterministic project generator", description: "aiml-scaffold validate / plan / generate / doctor. source-manifest.yaml, resolved-plan.json, generation-receipt.json. CLI does not deploy Azure resources." },
+      { title: "Terraform as the R1 setup path", description: "Generated Azure ML workspace, identity-based storage, Key Vault/Log Analytics as configured, GitHub OIDC. Digest-bound plan artifacts; apply is a separate manual dispatch." },
+      { title: "Local-first, cloud-honest lifecycle", description: "Same Python modules for prepare → train → evaluate → conditionally register → explicit-version batch score. Local green does not count as Azure ML execution." },
+      { title: "Live taxi reference (not generated by SCAFFOLD)", description: "azure-mlops: rg-azmlops-0001dev/prod, taxi-model in both, working batch endpoints. GitHub Actions + OIDC. Scheduled KS drift can trigger retrain. Online serving deferred." },
+      { title: "Generated R1 project", description: "azure-aiml-ops: local lifecycle runner, Terraform, OIDC smoke, train/deploy-batch workflows when enabled, KS drift workflow that does not auto-retrain." },
+      { title: "Databricks telecom churn (not generated)", description: "azuredev-3d78: medallion tables, MLflow train/validate/promote on Telco features, inference via Databricks model serving invoked from FastAPI /churn-score." },
+      { title: "Not R1 (yet)", description: "Databricks, Foundry agents, Azure AI Search, online endpoints, and auto-retrain are not AIML-SCAFFOLD generate output." },
+    ],
+    gallery: [
+      { title: "Factory control plane", description: "Intake through monitoring as a product metaphor. The generator instantiates Terraform + lifecycle repos, not a hologram UI." },
+    ],
+    artifacts: [
+      { name: "AIML-SCAFFOLD", description: "Factory: contracts, generator, Terraform, policy", url: "https://github.com/rubyrayjuntos/AIML-SCAFFOLD" },
+      { name: "azure-aiml-ops", description: "Public generated R1 Dev project from the scaffold", url: "https://github.com/rubyrayjuntos/azure-aiml-ops" },
+      { name: "azure-mlops", description: "Live MLOps v2 taxi: Dev/Prod, registered model, batch endpoints", url: "https://github.com/rubyrayjuntos/azure-mlops" },
+      { name: "azuredev-3d78", description: "Private Databricks/Foundry churn prototype (origin, not the generator)", url: "https://github.com/rubyrayjuntos/azuredev-3d78" },
+    ],
+  },
+  {
+    id: 23,
+    slug: "canon-forge",
+    title: "Canon Forge",
+    tagline: "CHARACTER-REFERENCE ARCHITECT",
+    value: "Locked character, set, and shot contracts so image and video models render inside canon instead of reinventing the face and the room.",
+    arch: "Express generation proxy with identity-lock prompts and canon stills in front of Gemini, xAI, Bedrock, Venice, or local SD.",
+    domain: "genai",
+    cap: "Generative",
+    year: 2025,
+    role: "Architect, Engineer & Technical Product Lead",
+    status: "in-progress",
+    tech: ["Identity Lock", "Shot Contracts", "Gemini", "xAI", "Veo", "Express"],
+    challenge:
+      "Image models drift. A headshot, a wardrobe turn, a library interior, and a medium shot of the same figure will not stay one canon unless identity, set, and camera are locked assets — not a prompt you hope the model remembers.",
+    development:
+      "Built a TypeScript/React/Vite suite (CharacterForge, SetForge, CompositorForge, SceneForge) with an Express proxy. Generations go through /api/generate (Gemini, xAI Grok Imagine, Venice, Bedrock Titan/SD, local SD). Default client provider is xAI. Canon stills attach as reference or init images where the provider allows it. SceneForge builds keyframe sequences and a flipbook; /api/generate-video calls Veo for 8-second clips. Profiles persist in localStorage. GitHub Actions lint and build; node:test covers identityLock and provider helpers.",
+    outcome:
+      "Public source at github.com/rubyrayjuntos/canon-forge. Needs provider keys on the Express server. This static portfolio cannot host it. Render.yaml and a GHCR Docker workflow exist; the Dockerfile in tree is a dev stage. Not a multi-tenant SaaS.",
+    outcomeLine:
+      "Proves: I can design a generative production pipeline that keeps identity, set, and shot canon locked across providers.",
+    proofClaim:
+      "Four-forge architecture (Character, Set, Compositor, Scene) with identity-lock prompt contracts, multi-provider routing (Gemini, xAI, Bedrock, Venice, local SD), and Veo video.",
+    journey: [
+      { title: "Stop asking the model to remember the person", description: "Treated identity as an approved asset plus a written identity-lock block. The canon headshot is attached when the provider accepts a reference image." },
+      { title: "Lock the room the same way", description: "Sets declare spatial invariants, landmarks, forbidden changes, and a lighting-rig lock. Wide/medium stills become the set’s reference the same way the headshot does for a face." },
+      { title: "Compose, then generate", description: "CompositorForge only fires after character, set, action, lens, and landmark lock are specified. The model is a renderer inside a shot list." },
+      { title: "Four forges, one production grammar", description: "Character, Set, Compositor, and Scene tabs share CharacterProfile / SetProfile / CompositeConfig / KeyframeScene so a later frame cannot quietly become a different actor in a different room." },
+      { title: "Provider is a swap, not the product", description: "Moved keys server-side. Gemini, xAI, Venice, Bedrock, and local SD share one generate path. Veo is the video path." },
+    ],
+    specs: [
+      { title: "Canon headshot as identity kernel", description: "Approved reference stills live on the character profile. Later prompts include an identity-lock block. This is not a face-embedding or InstantID model." },
+      { title: "Set invariants and lighting lock", description: "Indoor/outdoor sets declare spatial invariants, fixed landmarks, forbidden changes, and a lighting-rig lock in the prompt." },
+      { title: "Shot grammar before pixels", description: "Compositor specs encode shot type, camera angle, lens preset, subject distance, emotion, and landmark lock — production language, not a vibes prompt." },
+      { title: "Multi-provider renderer", description: "Express /api/generate routes Gemini, xAI Grok Imagine, Venice, Amazon Bedrock (Titan / SD), and local Stable Diffusion. Client default in source is xAI." },
+      { title: "Veo clips and SceneForge keyframes", description: "/api/generate-video calls Veo (default veo-3.0-fast-generate-001) for an 8-second 16:9 clip. SceneForge generates a timed still sequence and plays it as a flipbook. Not an NLE." },
+      { title: "Vite app + Express, not this site", description: "React 19 + Vite 6 + TypeScript + Express. Keys stay on the server. This portfolio cannot host it." },
+    ],
+    gallery: [
+      { title: "Production control plane", description: "Face mesh, set wireframe, locked composite, and frame strip on one console — identity through the cut." },
+    ],
+    artifacts: [
+      { name: "GitHub Repository", description: "Public source for Canon Forge", url: "https://github.com/rubyrayjuntos/canon-forge" },
+    ],
+  },
+  {
+    id: 25,
+    slug: "ai-ml-engineer-academy",
+    title: "AI/ML Engineer Academy",
+    tagline: "EVIDENCE-BACKED AI CURRICULUM",
+    value: "Training applet with five isolated Python labs, pytest in CI, and a local certificate that does not ingest lab output.",
+    arch: "React/Express classroom plus per-module GitHub Actions; in-browser simulators are teaching toys, not live vLLM.",
+    domain: "academy",
+    cap: "Generative",
+    year: 2026,
+    role: "Architect, Engineer & Technical Product Lead",
+    status: "in-progress",
+    tech: ["Isolated Labs", "pytest", "FastAPI", "MCP", "Grok", "React"],
+    challenge:
+      "Most AI courses skip Docker, evals, promotion gates, and the difference between a local notebook and a served system. The academy had to train that stack without pretending a browser quiz is production competence — or that a canned “Run code” panel is pytest.",
+    development:
+      "Built a React 19 + Vite 6 SPA with Express (server.ts) on port 3000. Optional xAI Grok mentor via XAI_API_KEY (default grok-4.6, rate-limited); curriculum fallback if the key is missing. Five labs, each with its own requirements.txt and venv: foundations (FastAPI SSE, TF-IDF, leakage/PII/RAG clinics, Docker), LLM mechanics (NumPy TODOs; QLoRA optional), governed agents (HITL, SQL/MCP, Dual-LLM stub; LangGraph survey-only), secure serving (auth/rate-limit/CPU bench; vLLM optional), production operations (offline eval, canary/rollback; DeepEval/Promptfoo/HF/Render optional). Frontend vitest plus five lab workflows in GitHub Actions.",
+    outcome:
+      "Public source at github.com/rubyrayjuntos/AIML-Engineer-Academy. Certificate unlock is localStorage (all modules marked complete, lab checkboxes confirmed, quizzes ≥60%). The UI does not parse pytest XML. This static portfolio cannot host the applet.",
+    outcomeLine:
+      "Proves: I can architect a production AI curriculum that separates CPU-proved labs from survey topics — five isolated pytest labs, CI, and a local certificate.",
+    proofClaim:
+      "React 19 + Vite 6 + Express with five isolated venv labs, per-module GitHub Actions, optional xAI Grok mentor, MCP/SQL firewall, and a field atlas that distinguishes proved from survey.",
+    journey: [
+      { title: "Train the job, not the buzzword", description: "Modules follow the production stack: SWE+ML, LLM internals, governed agents, secure serving, eval/release. If it is not on that matrix, it is not a required lab." },
+      { title: "Labs that conflict on purpose", description: "Each module gets its own venv. CUDA, browser, and eval extras live in separate requirements files so default CI stays CPU and offline." },
+      { title: "Evidence before the keepsake", description: "pytest and evidence JSON run in the lab (and in GitHub Actions). The applet asks you to confirm that you ran them. That confirm is a checkbox, not an ingest of the test report." },
+      { title: "Atlas as the honest map", description: "A static field atlas separates CPU-proved labs from survey and optional-live topics so the marketing page cannot outrun the work." },
+      { title: "Simulators are not the serving stack", description: "In-browser panels (vLLM, diffusion, ReAct, MCP) are teaching toys. /api/simulate-code returns canned logs. Real serving evidence is the module-4 FastAPI CPU path." },
+    ],
+    specs: [
+      { title: "Five-module production curriculum", description: "1 Foundations (FastAPI SSE, Docker, TF-IDF, leakage/PII/RAG). 2 LLM mechanics. 3 Governed agents (HITL, SQL/MCP, Dual-LLM stub). 4 Secure serving. 5 Eval, canary, rollback. LangGraph and multi-cloud deploy stay survey or optional." },
+      { title: "Isolated labs with pytest in CI", description: "Each lab has requirements.txt, pytest, and a GitHub Actions workflow. Module 1 also docker-builds. Module 2 CI sets ACADEMY_SOLUTION=1 to grade reference mechanics; learners leave that unset." },
+      { title: "Mentor in the loop, curriculum without it", description: "Optional xAI Grok behind XAI_API_KEY, IP rate limit, prompt truncation. Missing key or upstream failure uses a keyword fallback." },
+      { title: "Field atlas, not a sales page", description: "Standalone static atlas at /atlas/: audience, contents, non-goals, filterable CPU-proved vs survey vs optional-live." },
+      { title: "Certificate is local, not accredited", description: "Requires modules marked complete, lab confirms, and module quizzes or the program quiz at ≥60%. Not a vendor credential." },
+      { title: "This site cannot host the applet", description: "SPA + Express on port 3000. GitHub is the public surface until a separate host exists." },
+    ],
+    gallery: [
+      { title: "Learning control plane", description: "Holographic model, code, retrieval, security, and evals around one engineer — the academy’s metaphor for putting the whole stack in one field of view." },
+    ],
+    artifacts: [
+      { name: "GitHub Repository", description: "Public source for the academy applet, labs, and atlas", url: "https://github.com/rubyrayjuntos/AIML-Engineer-Academy" },
+    ],
+  },
+];
+
+export function projectBySlug(slug: string) {
+  return projects.find((p) => p.slug === slug);
+}
+
+export const CATALOG_SLUGS = [
+  "kitchen-kontrol",
+  "neuronote",
+  "tokyo-eye",
+  "canon-forge",
+  "ai-ml-ops-factory",
+  "ai-ml-engineer-academy",
+] as const;
+
+export const catalog = CATALOG_SLUGS.map((slug) => {
+  const p = projectBySlug(slug);
+  if (!p) throw new Error(`Missing project ${slug}`);
+  return p;
+});
+
+const REPOS: Record<string, { label: string; url: string }> = {
+  "kitchen-kontrol": {
+    label: "kk-logger",
+    url: "https://github.com/rubyrayjuntos/kk-logger",
+  },
+  neuronote: {
+    label: "Neuronote",
+    url: "https://github.com/rubyrayjuntos/Neuronote",
+  },
+  "tokyo-eye": {
+    label: "hgnn-protein-ligand",
+    url: "https://github.com/rubyrayjuntos/hgnn-protein-ligand",
+  },
+  "canon-forge": {
+    label: "canon-forge",
+    url: "https://github.com/rubyrayjuntos/canon-forge",
+  },
+  "ai-ml-ops-factory": {
+    label: "AIML-SCAFFOLD",
+    url: "https://github.com/rubyrayjuntos/AIML-SCAFFOLD",
+  },
+  "ai-ml-engineer-academy": {
+    label: "AIML-Engineer-Academy",
+    url: "https://github.com/rubyrayjuntos/AIML-Engineer-Academy",
+  },
+};
+
+export function repoOf(p: Project) {
+  return (
+    REPOS[p.slug] ?? {
+      label: "GitHub",
+      url: "https://github.com/rubyrayjuntos",
+    }
+  );
+}
+
+export function neighbors(slug: string) {
+  const i = catalog.findIndex((p) => p.slug === slug);
+  if (i < 0) return { prev: undefined, next: undefined, index: -1 };
+  return {
+    prev: catalog[(i - 1 + catalog.length) % catalog.length],
+    next: catalog[(i + 1) % catalog.length],
+    index: i,
+  };
+}
+
+export function figOf(p: Project) {
+  const i = catalog.findIndex((x) => x.slug === p.slug);
+  return String(i + 1).padStart(2, "0");
+}
