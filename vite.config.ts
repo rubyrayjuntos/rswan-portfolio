@@ -7,12 +7,12 @@ import { nitro } from "nitro/vite";
 export default defineConfig(({ command, isPreview }) => ({
   server: {
     host: "0.0.0.0",
-    port: 8080,
+    port: 8082,
     strictPort: true,
   },
   preview: {
     host: "127.0.0.1",
-    port: 8081,
+    port: 8083,
     strictPort: true,
   },
   resolve: { tsconfigPaths: true },
