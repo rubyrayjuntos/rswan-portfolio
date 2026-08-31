@@ -16,6 +16,7 @@ export type Project = {
   role: string;
   status: string;
   tech: string[];
+  cardImage?: string;
   challenge: string;
   development: string;
   outcome: string;
@@ -41,6 +42,7 @@ export const projects: Project[] = [
     role: "Architect, Engineer & Technical Product Lead",
     status: "in-progress",
     tech: ["PVA / Dual Kernel", "QuickJS WASM", "Honesty Oracle", "Zod", "Gemini"],
+    cardImage: "/cards/neuronote.png",
     challenge:
       "AI-generated logic is usually treated as a peer of the application: it writes code, mutates state, and hopes the prompt was honest. That fails the moment the model drifts, injects, or exceeds the capability it declared. NeuroNote had to make runtime-generated behavior a guest — verified, sandboxed, and reversible — without giving up malleability.",
     development:
@@ -86,6 +88,7 @@ export const projects: Project[] = [
     role: "Architect, Engineer & Technical Product Lead",
     status: "in-progress",
     tech: ["Hyperbolic GNN", "e3nn", "MoE", "FastAPI", "pgvector", "Terraform"],
+    cardImage: "/cards/tokyo-eye.png",
     challenge:
       "Scientific assistants fail when they sit next to the work instead of in it — inventing plausible chemistry, ignoring the open structure, and leaving no provenance. Tokyo Eye had to bind agents to the current graph, selected residues, and preregistered metric gates, and keep geometry, data, and session state on one governed write path.",
     development:
@@ -131,6 +134,7 @@ export const projects: Project[] = [
     role: "Architect, Engineer & Technical Product Lead",
     status: "in-progress",
     tech: ["HACCP Ops", "PostgreSQL", "JWT", "Ajv", "Express", "React"],
+    cardImage: "/cards/kitchen-kontrol.jpg",
     challenge:
       "Paper HACCP logs were eating shift time and still missing Texas TFER and USDA 7 CFR 210 requirements. The product had to work on wet-hands, bilingual, multi-station shifts — and still produce audit-ready evidence without pretending a cafeteria network is a control.",
     development:
