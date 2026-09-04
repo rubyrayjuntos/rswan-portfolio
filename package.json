@@ -1,10 +1,10 @@
 {
-  "name": "rswan-portfolio-v2",
+  "name": "rswan-portfolio",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vite dev --host 0.0.0.0 --port 8080",
+    "dev": "vite dev --host 127.0.0.1 --port 8082 --strictPort",
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",

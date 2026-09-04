@@ -31,9 +31,20 @@ export function ProgressRail({ labels, index, onPick }: Props) {
           />
         ))}
       </div>
-      <div className="text-mute-600 text-sm" aria-hidden>
-        ↓
-      </div>
+      {index < labels.length - 1 ? (
+        <button
+          type="button"
+          className="kicker writing-vertical max-h-24 overflow-hidden text-mute-600 hover:text-ink"
+          onClick={() => onPick(index + 1)}
+          aria-label={`Next: ${labels[index + 1]}`}
+        >
+          ↓ {labels[index + 1]}
+        </button>
+      ) : (
+        <div className="kicker writing-vertical text-mute-600" aria-hidden>
+          end
+        </div>
+      )}
     </div>
   );
 }

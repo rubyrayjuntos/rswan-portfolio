@@ -61,7 +61,7 @@ export const KEYWORDS = [
 ] as const;
 
 export const SUMMARY =
-  "GenAI/ML Architect and hands-on AI Platform Architect with 25 years delivering enterprise software, data, integration, and transformation programs. Builds governed AI systems from infrastructure through model and agent runtime: Azure ML, Azure Databricks, Microsoft Foundry, MLflow, Terraform, GitHub Actions, Entra/OIDC, RAG/vector retrieval, and production lifecycle automation. Combines architecture, implementation, product leadership, and evidence-based governance across Azure, GCP, and AWS.";
+  "Architecting deterministic safety frameworks and multi-agent runtime environments for the past three years has redefined how I approach production artificial intelligence. Rather than treating large language models as black-box oracles, I engineer the rigorous structural scaffolding required to make them reliable enterprise assets—focusing on dual-kernel proposal-verification pipelines, hyperbolic graph neural networks, and fault-tolerant cloud orchestration.\n\nMy technical foundation is built on full-stack mastery across React, TypeScript, Python, and cloud infrastructure on AWS and GCP, allowing me to bridge the gap between low-level algorithmic research and scalable software architecture. But what makes me an exceptional candidate for an AI/ML Systems Architect role is the operational discipline I bring from the real world. Managing enterprise-grade software integrations alongside high-throughput physical operations—from full-stack platform launches to directing complex school nutrition logistics—has trained me to design systems that are not only theoretically sound under pressure, but structurally resilient, regulatorily compliant, and built for humans to actually use.";
 
 export const EXPERTISE = [
   {
@@ -130,10 +130,16 @@ export const ADDITIONAL_SYSTEMS = [
 
 export const ROLES = [
   {
+    dates: "Oct 2025 — present",
+    title: "Founder & Technical Lead",
+    org: "Eidetix Bio Research",
+    note: "Architected Tokyo Eye, a governed scientific-AI platform for computational drug discovery using hyperbolic GNN and atom-level Transformer/Mixture-of-Experts architectures for ligand-protein binding prediction. Own architecture, data pipeline, model training, and deployment with MLflow governance.",
+  },
+  {
     dates: "Aug 2025 — present",
     title: "Area Supervisor & Operations Applications Developer",
     org: "Sodexo",
-    note: "Translates frontline operational problems into deployable AI-enabled products, combining product ownership, application development, integration design, and adoption. HACCP evidence capture, planograms, and voice input designed for gloved, bilingual, mid-service use.",
+    note: "Translates frontline operational problems into deployable AI-enabled products, combining product ownership, application development, integration design, and adoption.",
   },
   {
     dates: "Jan 2024 — Jan 2025",

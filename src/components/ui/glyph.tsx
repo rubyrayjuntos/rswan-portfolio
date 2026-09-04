@@ -12,6 +12,7 @@ import {
   Database,
   Eye,
   GraduationCap,
+  Library,
   Rocket,
   Settings,
   Share2,
@@ -38,6 +39,7 @@ export const GLYPHS = {
   check: { Icon: CircleCheck, tone: "text-mark-teal", hex: false },
   rocket: { Icon: Rocket, tone: "text-mark-teal", hex: false },
   users: { Icon: Users, tone: "text-mark-teal", hex: false },
+  book: { Icon: Library, tone: "text-mark-teal", hex: true },
 } as const satisfies Record<string, { Icon: LucideIcon; tone: string; hex: boolean }>;
 
 export type GlyphName = keyof typeof GLYPHS;
@@ -49,6 +51,7 @@ export const PROJECT_GLYPH: Record<string, GlyphName> = {
   "ai-ml-ops-factory": "cloud",
   "canon-forge": "cube",
   "governed-lora-factory": "cpu",
+  "hermes-memory": "book",
 };
 
 export const PILLAR_GLYPH: Record<string, GlyphName> = {
@@ -76,7 +79,7 @@ export function Glyph({
   size?: Size;
   label?: string;
 }) {
-  const { Icon, tone, hex } = GLYPHS[name];
+  const { Icon, tone, hex } = GLYPHS[name] ?? GLYPHS.boxes;
   const box = size === "sm" ? "size-9" : "size-11";
   const icon = size === "sm" ? "size-4" : "size-[18px]";
 
