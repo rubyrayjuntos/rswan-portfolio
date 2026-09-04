@@ -313,6 +313,48 @@ export const projects: Project[] = [
       { name: "Spec", description: "Governed trainer spec", url: "https://github.com/rubyrayjuntos/governed-lora-factory/blob/main/docs/GOVERNED_TRAINER_SPEC.md" },
     ],
   },
+  {
+    id: 28,
+    slug: "hermes-memory",
+    title: "The Hermes Librarian",
+    tagline: "LOCAL INSPECTABLE MEMORY FOR HERMES AGENT",
+    value: "Vector recall and a knowledge graph in one Postgres — the model can find what you said, and you can see the walk.",
+    arch: "Two stores, one semantic topology. Apache AGE keeps the session flower; Postgres holds the shared noun manifold with ordered mentions. One bounded walker scores both prefetch and /search.",
+    domain: "memory",
+    cap: "Platform",
+    year: 2026,
+    role: "Sole designer & engineer (schema, walker, provider, pane)",
+    status: "shipped",
+    tech: ["Apache AGE", "pgvector", "Postgres 17", "Python", "Ollama", "Hermes Agent"],
+    challenge: "Agent memory is usually a vector dump or a hidden graph. Hubs collapse into a few Title-Case 'Concepts,' sessions leak into each other, and you cannot tell whether injection came from this chat or someone else's nouns. I needed durable local recall that grows with real conversation, stays inspectable, and does not pretend to be a hosted brain.",
+    development: "Two stores, one semantic topology. Apache AGE (PG17) is episodic only — this session, this turn, order in time. Postgres is the manifold: global `noun` rows, per-turn passports on `memory_chunk_nodes`, bivalent `semantic_edge` poles (`mentions` = co-occurrence, not theme). ANN entry is `conversations.embedding` (Ollama `nomic-embed-text`, 768-d). One bounded walker scores both prefetch and `/search`: `score = (0.4·sim + 0.4·align·provenance + 0.2·decay) × (magnitude / 8)`. Fountain docks nouns onto their turns and draws teal mention threads. Loopback only (`127.0.0.1:5450` / `:7890`). MIT. Alpha.",
+    outcome: "Shipped as `hermes-memory` on GitHub (PR #67): V9 schema, mention-order extractor, drain that stops conversation `Concept`/`ABOUT`, passport isolation tests, Garden-only pane. A real chat seeds the first graph; verify uses synthetics on purpose. Live DB migrate remains an ops step so nouns appear in production memory.",
+    outcomeLine: "Proves: I can build inspectable agent memory — episodic flower in AGE, semantic manifold in SQL, one walker for recall.",
+    proofClaim: "hybrid-age MemoryProvider with V9 schema, pgvector ANN, AGE Session/Turn flower, ordered mentions, bounded walker, and optional Fountain 3D inspector.",
+    journey: [
+      { title: "Hybrid store", description: "Postgres + AGE + pgvector as one MemoryProvider; loopback; honest install (you set the password, you seed three facts)." },
+      { title: "Flower vs hub", description: "AGE `Turn → ABOUT → Concept` was the wrong semantic layer; hubs and session bleed." },
+      { title: "Manifold cutover", description: "Spec → V9 `noun` / passports / `mentions`; AGE keeps only Session/Turn/NEXT." },
+      { title: "One walker, one pane", description: "Same beam for prefetch and Fountain; nouns sit on their turn; cockpit/ghost levels taken off the ship surface." },
+      { title: "Ship & inspect", description: "Merge to `main`; Garden live at the pane URL; production V9 still a human migrate." },
+    ],
+    specs: [
+      { title: "One topology", description: "Episodic flower in AGE; semantic switches in SQL. No dual Concept/ABOUT + noun graph for the same labels." },
+      { title: "Shared nouns, private passports", description: "`noun.label` is global; two sessions can mention Postgres; they do not share the walk's provenance." },
+      { title: "Same score everywhere", description: "Prefetch, `/search`, and the pane use one 7-tuple beam; no second ranking in the UI." },
+      { title: "Recall without the spectacle", description: "Fountain is optional grammar. Vector + graph injection works if you never open the pane." },
+    ],
+    gallery: [
+      { title: "The Hermes Librarian", description: "Persistent memory & context injection for Hermes Agent — pgvector for semantic recall + Apache AGE knowledge graph for entity expansion", image: "/plates/hermes-librarian.svg" },
+    ],
+    artifacts: [
+      { name: "GitHub — hermes-memory", description: "Memory provider: schema, walker, provider, pane, install CLI", url: "https://github.com/rubyrayjuntos/hermes-memory" },
+      { name: "README", description: "Architecture table, quick start, configuration reference, troubleshooting", url: "https://github.com/rubyrayjuntos/hermes-memory#readme" },
+      { name: "Conversation manifold design", description: "Nouns, mentions, and Garden pane design spec", url: "https://github.com/rubyrayjuntos/hermes-memory/blob/main/docs/superpowers/specs/2026-09-03-conversation-manifold-design.md" },
+      { name: "Architecture docs", description: "Layer map, walker scoring, drain pipeline", url: "https://github.com/rubyrayjuntos/hermes-memory/blob/main/docs/architecture.md" },
+      { name: "Fountain pane", description: "3D Garden inspector for Session/Turn/Noun walks", url: "https://github.com/rubyrayjuntos/hermes-memory/blob/main/docs/graph/fountain.html" },
+    ],
+  },
 ];
 
 export function projectBySlug(slug: string) {
@@ -326,6 +368,7 @@ export const CATALOG_SLUGS = [
   "canon-forge",
   "ai-ml-ops-factory",
   "governed-lora-factory",
+  "hermes-memory",
 ] as const;
 
 export const catalog = CATALOG_SLUGS.map((slug) => {
@@ -358,6 +401,10 @@ const REPOS: Record<string, { label: string; url: string }> = {
   "governed-lora-factory": {
     label: "governed-lora-factory",
     url: "https://github.com/rubyrayjuntos/governed-lora-factory",
+  },
+  "hermes-memory": {
+    label: "hermes-memory",
+    url: "https://github.com/rubyrayjuntos/hermes-memory",
   },
 };
 
