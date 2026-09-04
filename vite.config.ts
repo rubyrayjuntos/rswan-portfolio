@@ -6,7 +6,7 @@ import { nitro } from "nitro/vite";
 
 export default defineConfig(({ command, isPreview }) => ({
   server: {
-    host: "0.0.0.0",
+    host: "127.0.0.1",
     port: 8082,
     strictPort: true,
   },
@@ -19,7 +19,11 @@ export default defineConfig(({ command, isPreview }) => ({
   plugins: [
     tailwindcss(),
     tanstackStart(),
-    ...(command === "build" || isPreview ? [nitro({ preset: "vercel" })] : []),
+    // Render sets RENDER=true: emit a plain Node server (.output/).
+    // Everywhere else (Vercel) keeps the vercel preset.
+    ...(command === "build" || isPreview
+      ? [nitro({ preset: process.env.RENDER ? "node-server" : "vercel" })]
+      : []),
     viteReact(),
   ],
 }));
