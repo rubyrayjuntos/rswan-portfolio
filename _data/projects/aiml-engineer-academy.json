@@ -114,5 +114,7 @@
       "url": "_data/projects/aiml-engineer-academy/curriculum.md",
       "icon": "⚡"
     }
-  ]
+  ],
+  "outcomeLine": "Proves: I can architect a production AI curriculum that separates CPU-proved labs from survey topics — five isolated pytest labs, CI, and a local certificate.",
+  "proofClaim": "React 19 + Vite 6 + Express with five isolated venv labs, per-module GitHub Actions, optional xAI Grok mentor, MCP/SQL firewall, and a field atlas that distinguishes proved from survey."
 }

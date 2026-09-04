@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const highlight = project.architectureHighlight || '';
         const tagline = project.tagline || '';
         const domain = String(project.domain || '').toLowerCase();
+        const outcomeLine = project.outcomeLine || '';
         
         card.innerHTML = `
             <div class="project-card-hero">
@@ -126,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${project.year ? `<div class="card-year">${project.year}</div>` : ''}
                 </div>
                 ${tagline ? `<p class="card-tagline${domain ? ` domain-${domain}` : ''}">${tagline}</p>` : ''}
+                ${outcomeLine ? `<p class="card-outcome">${outcomeLine}</p>` : ''}
                 <p class="card-value">${value}</p>
                 ${highlight ? `<p class="card-architecture">${highlight}</p>` : ''}
                 ${renderTechChips(project.tech)}

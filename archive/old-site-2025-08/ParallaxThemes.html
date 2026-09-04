@@ -2390,6 +2390,7 @@
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#journey">Journey</a></li>
                 <li><a href="#specs">Specs</a></li>
+                <li><a href="#proves">What This Proves</a></li>
                 <li><a href="#links">Links</a></li>
             </ul>
             <button type="button" class="motion-toggle" onclick="toggleMotion()" aria-label="Reduce motion">Reduce Motion</button>
@@ -2552,6 +2553,16 @@
                     <h2 class="section-title">Themes & Analysis<span class="title-sparkle">🧠</span></h2>
                     <div class="themes-content" id="themesContent">
                         <!-- Content will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- What This Proves Section -->
+            <section class="content-section fade-in" id="proves" aria-label="What This Proves" style="background: var(--bg-primary);">
+                <div class="container">
+                    <h2 class="section-title">What This Proves<span class="title-sparkle">🎯</span></h2>
+                    <div id="provesContent" style="max-width: 800px; margin: 0 auto;">
+                        <!-- Dynamically populated -->
                     </div>
                 </div>
             </section>
@@ -3033,6 +3044,7 @@
                 populateJourney(project);
                 populateSpecs(project);
                 populateLinks(project);
+                populateProves(project);
 
                 // Initialize dynamic features
                 initializeDynamicFeatures(project);
@@ -4101,6 +4113,41 @@
                     linksSection.appendChild(linkCard);
                 });
             }
+
+            // What This Proves Population
+            function populateProves(project) {
+                const provesContent = document.getElementById('provesContent');
+                if (!provesContent) return;
+
+                console.log('Populating proves for:', project.title);
+
+                const outcomeLine = project.outcomeLine || '';
+                const proofClaim = project.proofClaim || '';
+                const role = project.role || 'Architect, Engineer & Technical Product Lead';
+
+                let html = '';
+
+                if (outcomeLine || proofClaim) {
+                    html += '<div style="background: var(--bg-primary); border-radius: 20px; padding: 2.5rem; box-shadow: var(--neu-outset); text-align: center; border: 2px solid var(--accent-primary);">';
+
+                    if (outcomeLine) {
+                        html += `<p style="font-size: 1.25rem; font-weight: 700; color: var(--accent-primary); margin-bottom: 1.5rem; line-height: 1.4;">${outcomeLine}</p>`;
+                    }
+
+                    if (proofClaim) {
+                        html += `<p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6;">${proofClaim}</p>`;
+                    }
+
+                    html += `<div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">`;
+                    html += `<a href="index.html" class="footer-button" style="text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 15px; display: inline-flex; align-items: center;">← Back to Portfolio</a>`;
+                    html += `<button class="footer-button" data-modal-target="connectModal" data-tab-target="contact" style="padding: 0.75rem 1.5rem; border-radius: 15px; display: inline-flex; align-items: center; font-family: var(--font-main);">Let's Talk About Your Team</button>`;
+                    html += `</div>`;
+                    html += '</div>';
+                }
+
+                provesContent.innerHTML = html;
+            }
+
             // Initialize dynamic features after project load
             function initializeDynamicFeatures(project) {
                 // Setup scroll animations

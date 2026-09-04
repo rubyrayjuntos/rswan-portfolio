@@ -232,5 +232,7 @@
       "url": "_data/projects/kitchen-kontrol/outcomes.md",
       "icon": "👥"
     }
-  ]
+  ],
+  "outcomeLine": "Proves: I can ship a production ops platform end-to-end — from database schema to CI to Docker deploy.",
+  "proofClaim": "Full-stack ops platform with JWT auth, Postgres migrations, Ajv forms, Docker/nginx, and GitHub Actions CI."
 }

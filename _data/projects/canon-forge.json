@@ -114,5 +114,7 @@
       "url": "_data/projects/canon-forge/identity-canon.md",
       "icon": "⚡"
     }
-  ]
+  ],
+  "outcomeLine": "Proves: I can design a generative production pipeline that keeps identity, set, and shot canon locked across providers.",
+  "proofClaim": "Four-forge architecture (Character, Set, Compositor, Scene) with identity-lock prompt contracts, multi-provider routing (Gemini, xAI, Bedrock, Venice, local SD), and Veo video."
 }

@@ -113,5 +113,7 @@
       "url": "_data/projects/neuronote/trust-boundary.md",
       "icon": "⚡"
     }
-  ]
+  ],
+  "outcomeLine": "Proves: I can design a governed agent runtime from first principles — Guest, Gatekeeper, and Host kernel.",
+  "proofClaim": "PVA dual-kernel architecture with three-phase gatekeeper, QuickJS WASM sandbox, 40 registered operators, and model-agnostic provider routing."
 }

@@ -138,5 +138,7 @@
       "url": "_data/projects/tokyo-eye/scientist-ux.md",
       "icon": "🎮"
     }
-  ]
+  ],
+  "outcomeLine": "Proves: I can architect a scientific AI platform from molecule to API — PyTorch GNN, FastAPI, pgvector, Terraform, and MLflow.",
+  "proofClaim": "Hyperbolic GNN with MoE, 20-tool LLM coordinator, governed data plane with provenance_run, property-gate CI, and Terraform Aurora+S3."
 }

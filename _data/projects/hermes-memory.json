@@ -1,0 +1,119 @@
+{
+  "id": 27,
+  "title": "The Hermes Librarian",
+  "tagline": "LOCAL INSPECTABLE MEMORY FOR HERMES AGENT",
+  "valueStatement": "Vector recall and a knowledge graph in one Postgres — the model can find what you said, and you can see the walk.",
+  "architectureHighlight": "Two stores, one semantic topology. Apache AGE keeps the session flower; Postgres holds the shared noun manifold with ordered mentions. One bounded walker scores both prefetch and /search.",
+  "description": "An unofficial `hybrid-age` MemoryProvider for Hermes Agent. Conversations land as turns, AGE keeps the session flower (`Session` / `Turn` / `NEXT`), and Postgres holds a shared noun manifold with ordered `mentions`. Prefetch injects that walk into the prompt. Fountain is an optional 3D Garden on loopback — recall works with the pane closed. It does not replace `MEMORY.md` / `USER.md`.",
+  "imageUrl": "card-hero.png",
+  "medium": "code",
+  "genre": [
+    "Interactive/Web",
+    "AI Tooling"
+  ],
+  "style": [
+    "Experimental",
+    "Technical"
+  ],
+  "tech": [
+    "Apache AGE",
+    "pgvector",
+    "Postgres 17",
+    "Python",
+    "Ollama",
+    "Hermes Agent"
+  ],
+  "domain": "memory",
+  "mood": "technical",
+  "year": 2026,
+  "role": "Sole designer & engineer (schema, walker, provider, pane)",
+  "variant": "featured",
+  "status": "shipped",
+  "pitch": "Local, inspectable memory for Hermes Agent — vector recall and a knowledge graph in one Postgres, so the model can find what you said and you can see the walk.",
+  "challenge": "Agent memory is usually a vector dump or a hidden graph. Hubs collapse into a few Title-Case 'Concepts,' sessions leak into each other, and you cannot tell whether injection came from this chat or someone else's nouns. I needed durable local recall that grows with real conversation, stays inspectable, and does not pretend to be a hosted brain.",
+  "development": "Two stores, one semantic topology. Apache AGE (PG17) is episodic only — this session, this turn, order in time. Postgres is the manifold: global `noun` rows, per-turn passports on `memory_chunk_nodes`, bivalent `semantic_edge` poles (`mentions` = co-occurrence, not theme). ANN entry is `conversations.embedding` (Ollama `nomic-embed-text`, 768-d). One bounded walker scores both prefetch and `/search`: `score = (0.4·sim + 0.4·align·provenance + 0.2·decay) × (magnitude / 8)`. Fountain docks nouns onto their turns and draws teal mention threads. Loopback only (`127.0.0.1:5450` / `:7890`). MIT. Alpha.",
+  "outcome": "Shipped as `hermes-memory` on GitHub (PR #67): V9 schema, mention-order extractor, drain that stops conversation `Concept`/`ABOUT`, passport isolation tests, Garden-only pane. A real chat seeds the first graph; verify uses synthetics on purpose. Live DB migrate remains an ops step so nouns appear in production memory.",
+  "links": {
+    "github": "https://github.com/rubyrayjuntos/hermes-memory"
+  },
+  "gallery": [
+    {
+      "url": "hermes_librarian_banner.webp",
+      "title": "The Hermes Librarian",
+      "description": "Persistent memory & context injection for Hermes Agent — pgvector for semantic recall + Apache AGE knowledge graph for entity expansion",
+      "dimensions": "1280x640"
+    }
+  ],
+  "journey": [
+    {
+      "title": "Hybrid store",
+      "description": "Postgres + AGE + pgvector as one MemoryProvider; loopback; honest install (you set the password, you seed three facts)."
+    },
+    {
+      "title": "Flower vs hub",
+      "description": "AGE `Turn → ABOUT → Concept` was the wrong semantic layer; hubs and session bleed."
+    },
+    {
+      "title": "Manifold cutover",
+      "description": "Spec → V9 `noun` / passports / `mentions`; AGE keeps only Session/Turn/NEXT."
+    },
+    {
+      "title": "One walker, one pane",
+      "description": "Same beam for prefetch and Fountain; nouns sit on their turn; cockpit/ghost levels taken off the ship surface."
+    },
+    {
+      "title": "Ship & inspect",
+      "description": "Merge to `main`; Garden live at the pane URL; production V9 still a human migrate."
+    }
+  ],
+  "specs": [
+    {
+      "title": "One topology",
+      "description": "Episodic flower in AGE; semantic switches in SQL. No dual Concept/ABOUT + noun graph for the same labels."
+    },
+    {
+      "title": "Shared nouns, private passports",
+      "description": "`noun.label` is global; two sessions can mention Postgres; they do not share the walk's provenance."
+    },
+    {
+      "title": "Same score everywhere",
+      "description": "Prefetch, `/search`, and the pane use one 7-tuple beam; no second ranking in the UI."
+    },
+    {
+      "title": "Recall without the spectacle",
+      "description": "Fountain is optional grammar. Vector + graph injection works if you never open the pane."
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "GitHub — hermes-memory",
+      "description": "Memory provider: schema, walker, provider, pane, install CLI",
+      "url": "https://github.com/rubyrayjuntos/hermes-memory",
+      "icon": "⭐"
+    },
+    {
+      "name": "README",
+      "description": "Architecture table, quick start, configuration reference, troubleshooting",
+      "url": "https://github.com/rubyrayjuntos/hermes-memory#readme",
+      "icon": "📄"
+    },
+    {
+      "name": "Conversation manifold design",
+      "description": "Nouns, mentions, and Garden pane design spec",
+      "url": "https://github.com/rubyrayjuntos/hermes-memory/blob/main/docs/superpowers/specs/2026-09-03-conversation-manifold-design.md",
+      "icon": "🏗️"
+    },
+    {
+      "name": "Architecture docs",
+      "description": "Layer map, walker scoring, drain pipeline",
+      "url": "https://github.com/rubyrayjuntos/hermes-memory/blob/main/docs/architecture.md",
+      "icon": "⚡"
+    },
+    {
+      "name": "Fountain pane",
+      "description": "3D Garden inspector for Session/Turn/Noun walks",
+      "url": "https://github.com/rubyrayjuntos/hermes-memory/blob/main/docs/graph/fountain.html",
+      "icon": "🌊"
+    }
+  ]
+}

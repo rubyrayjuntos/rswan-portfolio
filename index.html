@@ -48,16 +48,41 @@
     <div id="active-filters-display" class="hidden"></div>
 
 <main id="main-content">
-                        <div class="hidden"><div class="view-switcher">
-    <button id="switcher-projects-btn" class="switcher-projects-btn active">Projects</button>
-    <button id="switcher-docs-btn" class="switcher-docs-btn">Documents</button>
-</div></div>
+
+    <!-- Hero Message Section -->
+    <section class="hero-message">
+        <div class="hero-message-inner">
+            <h1 class="hero-headline">I join when operations, commerce, or science have outgrown their systems — and I ship both the product people will use and the AI platform underneath it.</h1>
+            <div class="capability-pillars">
+                <a href="#projectGrid" class="capability-pillar" data-slug="tokyo-eye">
+                    <span class="pillar-icon"><i class="fas fa-cubes"></i></span>
+                    <span class="pillar-text">Platform Architecture</span>
+                </a>
+                <a href="#projectGrid" class="capability-pillar" data-slug="neuronote">
+                    <span class="pillar-icon"><i class="fas fa-shield-halved"></i></span>
+                    <span class="pillar-text">Agent Safety &amp; Governance</span>
+                </a>
+                <a href="#projectGrid" class="capability-pillar" data-slug="canon-forge">
+                    <span class="pillar-icon"><i class="fas fa-wand-magic-sparkles"></i></span>
+                    <span class="pillar-text">Generative Production</span>
+                </a>
+                <a href="#projectGrid" class="capability-pillar" data-slug="kitchen-kontrol">
+                    <span class="pillar-icon"><i class="fas fa-truck-front"></i></span>
+                    <span class="pillar-text">Frontline Product Delivery</span>
+                </a>
+            </div>
+            <div class="hero-ctas">
+                <a href="#projectGrid" class="hero-cta hero-cta-primary">View the work</a>
+                <button class="hero-cta hero-cta-secondary" data-modal-target="connectModal" data-tab-target="contact">Let's talk</button>
+            </div>
+            <div class="cut-indicator">
+                <span class="cut-badge">Currently showing: GenAI / ML Architect track</span>
+            </div>
+        </div>
+    </section>
+
     <div class="container">
-
         <div class="portfolio-container">
-            <!-- View Switcher, Project Grid, etc. -->
-             <!-- View Switcher -->
-
             <!-- Project Grid -->
             <div id="projectGrid" class="project-grid"></div>
             <!-- Loading Spinner -->
@@ -155,7 +180,7 @@
                         <div class="project-item">
                             <h5>Tokyo Eye — hyperbolic scientific platform</h5>
                             <ul>
-                                <li>Poincaré GNN, e3nn, MoE on FastAPI/pgvector, Terraform Aurora, MLflow gates, XState viewport/discovery/hypothesis machines.</li>
+                                <li>Poincaré GNN, e3nn, MoE on FastAPI/pgvector, Terraform Aurora, MLflow gates, property-gate CI.</li>
                             </ul>
                         </div>
                         <div class="project-item">

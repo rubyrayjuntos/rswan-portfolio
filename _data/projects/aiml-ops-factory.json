@@ -135,5 +135,7 @@
       "url": "_data/projects/aiml-ops-factory/evidence-and-gates.md",
       "icon": "⚡"
     }
-  ]
+  ],
+  "outcomeLine": "Proves: I can build a deterministic ML project factory — Terraform, OIDC, and digest-bound apply — and run a live MLOps v2 taxi with scheduled drift retrain.",
+  "proofClaim": "AIML-SCAFFOLD generator (validate → plan → generate → doctor), live azure-mlops taxi with Dev/Prod RGs, and azuredev-3d78 Databricks medallion with FastAPI serving."
 }
