@@ -157,7 +157,7 @@ export const ROLES: Role[] = [
   },
   {
     section:
-      "2016–2024 · specialist contract engagements for Fortune 500 and mid-market firms, typically 6–18 months from engagement through release.",
+      "2007–2024 · named enterprise and mid-market engagements; 2016–2024 specialist contracts were typically 6–18 months from engagement through release.",
     dates: "Jan 2024 — Jul 2024",
     title: "Senior Salesforce Program Manager",
     org: "Slumberland Furniture",
