@@ -14,10 +14,10 @@ export const SITE = {
 
 export const CLIENTS = [
   "Mazda North America",
-  "Revlon",
-  "Black & Decker",
+  "Sunrun",
   "Fox Sports",
-  "Therabody",
+  "Theragun",
+  "Lakeshore Learning",
 ] as const;
 
 export const HOME_SECTIONS = ["Position", "Contrast", "Arc", "Proof"] as const;
@@ -26,7 +26,7 @@ export const POSITION = {
   kicker: "AI/ML System Architect",
   line1: "ENTERPRISE AI THAT SHIPS",
   line2: "Not a notebook. A system.",
-  punch: "production-grade reliability",
+  punch: "governed systems that ship",
   against: "research-grade hope",
 } as const;
 
@@ -34,15 +34,15 @@ export const CONTRASTS = [
   { them: "Not demos that worked once", ray: "24/7 PLATFORMS" },
   { them: "Not a policy PDF", ray: "GOVERNANCE IS ARCHITECTURE" },
   { them: "Digest-bound. OIDC. No portal clicks.", ray: "PROMOTION GATES, NOT HOPES" },
-  { them: "Not the other way around", ray: "15 YEARS ENTERPRISE, THEN AI" },
+  { them: "Not the other way around", ray: "15+ YEARS ENTERPRISE, THEN AI" },
   { them: "Not just accuracy", ray: "OPTIMIZED FOR TIME-TO-VALUE" },
 ] as const;
 
 export const ARC = [
-  { n: "15 YRS", title: "MAZDA → THERABODY", body: "Downtime measured in millions." },
+  { n: "15+ YRS", title: "MAZDA → THERAGUN", body: "Downtime measured in millions." },
   { n: "THEN", title: "SAW AI COMING", body: "Most teams built it wrong." },
   { n: "3 YRS", title: "ENTERPRISE DISCIPLINE → AI", body: "Platforms, MLOps, agent runtime." },
-  { n: "NOW", title: "SYSTEMS THAT SURVIVE PRODUCTION", body: "Live in Dev & Prod. Not slides." },
+  { n: "NOW", title: "SYSTEMS THAT SURVIVE PRODUCTION", body: "Receipts in repos — not slides." },
 ] as const;
 
 export const KEYWORDS = [
@@ -61,7 +61,7 @@ export const KEYWORDS = [
 ] as const;
 
 export const SUMMARY =
-  "Architecting deterministic safety frameworks and multi-agent runtime environments for the past three years has redefined how I approach production artificial intelligence. Rather than treating large language models as black-box oracles, I engineer the rigorous structural scaffolding required to make them reliable enterprise assets—focusing on dual-kernel proposal-verification pipelines, hyperbolic graph neural networks, and fault-tolerant cloud orchestration.\n\nMy technical foundation is built on full-stack mastery across React, TypeScript, Python, and cloud infrastructure on AWS and GCP, allowing me to bridge the gap between low-level algorithmic research and scalable software architecture. But what makes me an exceptional candidate for an AI/ML Systems Architect role is the operational discipline I bring from the real world. Managing enterprise-grade software integrations alongside high-throughput physical operations—from full-stack platform launches to directing complex school nutrition logistics—has trained me to design systems that are not only theoretically sound under pressure, but structurally resilient, regulatorily compliant, and built for humans to actually use.";
+  "Twenty-five years delivering enterprise software, data, integration, and platform programs — then three years architecting deterministic safety frameworks and multi-agent runtime environments — has redefined how I approach production artificial intelligence. Rather than treating large language models as black-box oracles, I engineer the rigorous structural scaffolding required to make them reliable enterprise assets—focusing on dual-kernel proposal-verification pipelines, hyperbolic graph neural networks, and fault-tolerant cloud orchestration.\n\nMy technical foundation is built on full-stack mastery across React, TypeScript, Python, and cloud infrastructure on AWS and GCP, allowing me to bridge the gap between low-level algorithmic research and scalable software architecture. But what makes me an exceptional candidate for an AI/ML Systems Architect role is the operational discipline I bring from the real world. Managing enterprise-grade software integrations alongside high-throughput physical operations—from full-stack platform launches to directing complex school nutrition logistics—has trained me to design systems that are not only theoretically sound under pressure, but structurally resilient, regulatorily compliant, and built for humans to actually use.";
 
 export const EXPERTISE = [
   {
@@ -87,27 +87,27 @@ export const EXPERTISE = [
 ] as const;
 
 export const FEATURED_ARCHITECTURE = {
-  title: "Azure GenAI/ML Ops Factory",
-  role: "Architect & Hands-on Engineer",
-  year: "2026",
-  glyph: "cloud" as const,
+  title: "Tokyo Eye — Scientific AI / Drug Discovery",
+  role: "Founder & Technical Lead",
+  year: "Eidetix Bio Research · 2025–present",
+  slug: "tokyo-eye",
+  glyph: "eye" as const,
   bullets: [
-    "Re-engineered Microsoft's Azure MLOps v2 Accelerator into a factory that generates modular, self-contained Azure ML project repos with governed infrastructure and configurable behavior.",
-    "Terraform-managed Azure ML: keyless storage, Key Vault, Log Analytics, scale-to-zero compute, Entra/OIDC GitHub CI, and evidence-bound plan/apply — destructive drift blocked before apply.",
-    "Proved a local-first lifecycle — shared Python logic locally and as a four-stage Azure ML pipeline (prepare → train → evaluate → register) — live MLflow run registered in Dev.",
-    "Built a Databricks retrieval proof on governed Gold data with three Vector Search indexes (notes, tickets, playbooks); filtered retrieval returned the correct evidence first.",
+    "Architected a governed scientific-AI platform using hyperbolic GNN and atom-level Transformer/Mixture-of-Experts architectures for structural inference and ligand-protein binding prediction.",
+    "Pivoted from an underperforming PyTorch GNN to a replacement atom-level Transformer architecture; designed, trained, and evaluated it in one day, producing same-day Pearson correlation of 0.407.",
+    "Built MLflow governance with preregistered estimates, immutable metric gates, ablations, provenance, and preservation of failed experiments; scientist-facing LLM workflows use XState guardrails, Python Hypothesis validation, deterministic structural-biology checks, and RCSB semantic search.",
   ],
 } as const;
 
 export const ADDITIONAL_SYSTEMS = [
   {
-    title: "Tokyo Eye — Scientific AI / Drug Discovery",
-    org: "Eidetix Bio Research · 2025–present",
-    glyph: "eye" as const,
+    title: "Azure GenAI/ML Ops Factory",
+    org: "2026 · public proof: AIML-SCAFFOLD",
+    glyph: "cloud" as const,
     bullets: [
-      "Architected a governed scientific-AI platform using hyperbolic GNN and atom-level Transformer/Mixture-of-Experts architectures for structural inference and ligand-protein binding prediction.",
-      "Pivoted from an underperforming PyTorch GNN to a replacement atom-level Transformer architecture; designed, trained, and evaluated it in one day, producing same-day Pearson correlation of 0.407.",
-      "Built MLflow governance with preregistered estimates, immutable metric gates, ablations, provenance, and preservation of failed experiments; scientist-facing LLM workflows use XState guardrails, Python Hypothesis validation, deterministic structural-biology checks, and RCSB semantic search.",
+      "Re-engineered Microsoft's Azure MLOps v2 Accelerator into a factory that generates modular, self-contained Azure ML project repos with governed infrastructure and configurable behavior. Public GitHub proof is AIML-SCAFFOLD.",
+      "Terraform-managed Azure ML: keyless storage, Key Vault, Log Analytics, scale-to-zero compute, Entra/OIDC GitHub CI, and evidence-bound plan/apply — destructive drift blocked before apply.",
+      "Proved a local-first lifecycle — shared Python logic locally and as a four-stage Azure ML pipeline (prepare → train → evaluate → register) — live MLflow run registered in Dev.",
     ],
   },
   {
@@ -120,10 +120,10 @@ export const ADDITIONAL_SYSTEMS = [
   },
   {
     title: "Kitchen Kontrol — Production Operations",
-    org: "Sodexo · 2025–present",
+    org: "Independent product · ~23 Sodexo school cafeterias",
     glyph: "chef" as const,
     bullets: [
-      "Built an operational platform with voice capture, structured audit logging, HACCP evidence, and workflow automation designed for gloved, bilingual, mid-service use. Product-vision overlays not in the public GitHub family are not claimed on the case study.",
+      "Independent operations product that ran in production across ~23 Sodexo school cafeterias: HACCP evidence, structured audit logging, and gloved, bilingual, mid-service workflows. Public GitHub proof is kk-logger (and MyKitchen) — the full Azure codebase is not public.",
     ],
   },
 ] as const;
@@ -137,9 +137,9 @@ export const ROLES = [
   },
   {
     dates: "Aug 2025 — present",
-    title: "Area Supervisor & Operations Applications Developer",
+    title: "Operations Applications Developer / AI products",
     org: "Sodexo",
-    note: "Translates frontline operational problems into deployable AI-enabled products, combining product ownership, application development, integration design, and adoption.",
+    note: "Secondary operations role (Area Supervisor). Translates frontline operational problems into deployable AI-enabled products, combining product ownership, application development, integration design, and adoption. Kitchen Kontrol is an independent product that ran across ~23 school cafeterias; public GitHub proof is kk-logger, not a full-product repo.",
   },
   {
     dates: "Jan 2024 — Jan 2025",
@@ -181,16 +181,12 @@ export const EDUCATION = [
     credential: "B.A., Economics",
     org: "University of California, Irvine",
   },
-  {
-    credential: "Certified ScrumMaster (CSM)",
-    org: "Scrum Alliance",
-  },
 ] as const;
 
 export const RESUME_SECTIONS = [
   "Summary",
   "Expertise",
-  "Factory",
+  "Tokyo Eye",
   "Systems",
   "Experience",
   "Education",
@@ -200,14 +196,14 @@ export const PILLARS = [
   {
     slug: "platform",
     title: "Platform",
-    body: "Terraform-generated Azure ML project repos, OIDC CI, promotion gates, and a live reference model that trained, registered, and served in Dev and Prod. The factory is the deliverable, not one notebook.",
+    body: "Terraform-generated Azure ML project repos, OIDC CI, promotion gates, and a public generator (AIML-SCAFFOLD) plus a live taxi reference that trained and registered. The factory is the deliverable, not one notebook.",
     detail:
       "Platform work is the part nobody demos: the repo scaffold, the identity boundary, the promotion gate, the registry that makes a model reproducible six months later. I build the factory first so every model after it costs a fraction of the first — infrastructure as code, environments that differ only by variable, and a reference model kept alive end-to-end as proof the path still works.",
     lens: {
       "tokyo-eye":
         "Platform lens — isolated lab packaging, pinned scientific dependencies, and reproducible runs so hyperbolic and MoE experiments can be re-run, not just reported.",
       "ai-ml-ops-factory":
-        "Platform lens — the reference implementation: Terraform-generated project repos, OIDC-authenticated CI, promotion gates, and a model that trained, registered, and served in both Dev and Prod.",
+        "Platform lens — the reference implementation: AIML-SCAFFOLD generates Terraform project repos with OIDC-authenticated CI and promotion gates; a separate live taxi path trained and registered on Azure ML.",
       "ai-ml-engineer-academy":
         "Platform lens — isolated labs per module with pytest gates, so every teaching artifact runs the same way on any machine.",
     },

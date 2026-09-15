@@ -143,7 +143,7 @@ export function HomeStage() {
       pos: "right",
       anchor: <p className="kicker text-[1.2rem]">Proof of scope</p>,
       pulses: [
-        <ProofStat key="a" n="15 yrs" label="Enterprise systems" />,
+        <ProofStat key="a" n="15+" label="Years enterprise platforms" />,
         <ProofStat key="b" n="3 yrs" label="AI on that discipline" />,
         <ProofStat key="c" n="24/7" label="Platforms, not demos" />,
       ],
