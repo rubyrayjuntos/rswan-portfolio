@@ -208,6 +208,7 @@ export const projects: Project[] = [
     proofClaim:
       "AIML-SCAFFOLD generator (validate → plan → generate → doctor), live azure-mlops taxi with Dev/Prod RGs, and azuredev-3d78 Databricks medallion with FastAPI serving.",
     journey: [
+      { title: "The Salesforce pattern, recognized late", description: "Years of enterprise Salesforce taught this shape without naming it: ship a working starter store, then configure on top instead of rebuilding. The factory targets the same thing for Azure AI/ML — a governed foundation generated once, customized through configuration until much of it doesn't need a developer at all." },
       { title: "Churn prototype first, not the factory", description: "azuredev-3d78 runs IBM Telco churn through Databricks bronze/silver/gold, trains sklearn in MLflow from gold_feature_snapshots, registers the candidate, and scores through FastAPI → Databricks serving. No project generator." },
       { title: "Run the Microsoft accelerator for real", description: "azure-mlops is a live MLOps v2 taxi project. Dev and Prod resource groups, registered taxi-model, working batch endpoints. Template bugs (OIDC id-token, conda setuptools, SKU) were fixed. Online endpoint was not deployed." },
       { title: "Opinionated monitor and retrain on the taxi path", description: "Added check_drift.py plus a Monday cron workflow: DRIFT_DETECTED dispatches training. That path is on azure-mlops. AIML-SCAFFOLD’s own ledger still marks drift/retrain experimental and excluded from R1 generate." },
@@ -231,6 +232,7 @@ export const projects: Project[] = [
       { name: "azure-aiml-ops", description: "Public generated R1 Dev project from the scaffold", url: "https://github.com/rubyrayjuntos/azure-aiml-ops" },
       { name: "azure-mlops", description: "Live MLOps v2 taxi: Dev/Prod, registered model, batch endpoints", url: "https://github.com/rubyrayjuntos/azure-mlops" },
       { name: "azuredev-3d78", description: "Private Databricks/Foundry churn prototype (origin, not the generator)", url: "https://github.com/rubyrayjuntos/azuredev-3d78" },
+      { name: "LinkedIn — the Salesforce analogy", description: "Where the starter-store, configure-don't-rebuild pattern is laid out in full", url: "https://www.linkedin.com/feed/update/urn:li:activity:7495207736780009472/" },
     ],
   },
   {
@@ -296,12 +298,13 @@ export const projects: Project[] = [
     development:
       "Built a governed micro-factory: Qwen2-0.5B-Instruct + PEFT LoRA (r=4) under MLflow hermes/llm-lora isolation (batch2 eff8, seq 64/32/128, BF16). corpus25_playbook.yaml declares SST-2, 4-way intent, and 16-tag BCE, with thresholds ln4→1.5 and BCE 0.693→0.48. One trainer.py routes CE to BCE via task head; corpus25_playbook is the only change. Optuna parent run + child trials, disk + Hub lineage, and assert_promotable(val/loss ≤ threshold) before any registry promotion.",
     outcome:
-      "v3 binary CE 0.5804 and v6 16-head BCE 0.464 / 80.5% Hamming, both registered. Optuna parent 919de78a best 0.5804 (trial 004, r=4 beats r=8). Local 4GB proof that a declarative, gated factory works — the same discipline the Factory applies at platform scale.",
+      "Three registered stages prove the manifest routes across domains without touching trainer.py: v3 binary CE 0.5804 on SST-2 (a14e623b, main HEAD), v5 4-way intent CE 1.44 / 54%, and v6 16-head BCE 0.464 / 80.5% Hamming (f1cd0b43, v6-narrative-tags). Optuna parent 919de78a best 0.5804 (trial 004, r=4 beats r=8). Local 4GB proof that a declarative, gated factory works — the same discipline the Factory applies at platform scale.",
     outcomeLine:
       "Proves: I can ship auditable fine-tuning — one trainer, one playbook, every adapter gated and lineaged.",
     proofClaim:
       "Governed LoRA factory: declarative playbook, gated MLflow registry, 4GB guardrails, parent/child lineage, disk+Hub provenance.",
     journey: [
+      { title: "Not Axolotl, not LlamaFactory — the plumbing they skip", description: "Axolotl and LlamaFactory solve math and speed. Neither solves discipline: experiment tracking, a quality gate before registry, or a way to jump domains without new code. This factory is the mini-CI/CD for adapter weights that small teams otherwise rebuild by hand with shell scripts and checkpoint-500 folders." },
       { title: "Probe on 4GB (200/40 @64)", description: "Proved the loop on a Quadro T1000 before claiming it works." },
       { title: "Intent 24→200 proves both sides of the gate", description: "Showed the gate blocks and the gate passes — same code, different data." },
       { title: "Tags 60→180 → 5ep earns 0.48 honestly", description: "No threshold hacking. Valid loss 0.464 is the receipt." },
@@ -310,7 +313,7 @@ export const projects: Project[] = [
     specs: [
       { title: "Declarative playbook", description: "corpus25_playbook.yaml declares datasets (SST-2, 4-way intent, 16-tag BCE), thresholds (ln4→1.5, BCE 0.693→0.48), and stages; trainer.py stays untouched." },
       { title: "Gated registry", description: "assert_promotable(val/loss ≤ threshold) — nothing registers that didn't earn it. Optuna parent 919de78a + child trials under hermes/llm-lora." },
-      { title: "4GB guardrails", description: "batch2 eff8, seq 64/32/128, BF16 — proved on a 4GB Quadro T1000, not a rented A100." },
+      { title: "4GB guardrails", description: "seq 64 (32 intent, 128 tags), batch 2 eff 8, r=4 — the heavier regularizer that beats r=8 on 200 rows. BF16 with GradScaler auto-disabled, pad_token_id pinned at 151643, datasets pinned at 2.21.0, and TMPDIR moved off a 16G tmpfs so 1G model.pt saves don't blow the disk. Proved on a 4GB Quadro T1000, not a rented A100." },
       { title: "Parent/child lineage", description: "Optuna sweep parent run + child trials, disk + Hub, playbook digest — every adapter is provenance-complete." },
       { title: "CE→BCE without code change", description: "One trainer.py routes binary CE to 16-head BCE via head config. Playbook is the variant, not the code." },
     ],
