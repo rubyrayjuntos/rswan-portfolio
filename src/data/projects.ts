@@ -175,7 +175,7 @@ export const projects: Project[] = [
       { title: "Planogram builder", description: "Serving-line planogram with pan wells. kitchen-kontrol persists planograms through the Express API.", image: "/plates/kitchen-planogram.svg" },
       { title: "Manager reports", description: "Weekly log-status completion rates from Postgres CTE queries in kitchen-kontrol.", image: "/surfaces/kitchen-manager-reports.jpg" },
       { title: "Training center", description: "kitchen-kontrol's own required-training tracker — course duration, completion state, and a per-staff progress count. Not MyKitchen; no rewards/points system exists in source.", image: "/surfaces/kitchen-training.jpg" },
-      { title: "Capability board (vision, not GitHub)", description: "Product-vision board for voice, assistant, forecast, and vision. Those AWS services are not in the four GitHub repos.", image: "/plates/kitchen-capability-board.svg" },
+      { title: "Capability board (vision, not GitHub)", description: "Product-vision board for voice, assistant, forecast, and vision. Those AWS services are not in the public GitHub slice.", image: "/plates/kitchen-capability-board.svg" },
     ],
     artifacts: [
       { name: "kk-logger (public)", description: "Vite/TypeScript HACCP SPA with TFER validators — public proof slice", url: "https://github.com/rubyrayjuntos/kk-logger" },
@@ -190,7 +190,7 @@ export const projects: Project[] = [
     title: "AI/ML Ops Factory",
     tagline: "AZURE ML PROJECT FACTORY",
     value: "The opinionated factory so teams stop reinventing scaffolding and start where the value is — manifest in, governed Azure ML repo out.",
-    arch: "Terraform, OIDC, digest-bound apply, live taxi reference that trained and served in Dev/Prod. The factory is the product.",
+    arch: "Terraform, OIDC, digest-bound apply, AIML-SCAFFOLD as the public factory, live taxi that trained and registered. The factory is the product.",
     domain: "mlops",
     cap: "Platform",
     year: 2026,
