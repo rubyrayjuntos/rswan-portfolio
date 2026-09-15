@@ -350,12 +350,15 @@ export const projects: Project[] = [
       { title: "Manifold cutover", description: "Spec → V9 `noun` / passports / `mentions`; AGE keeps only Session/Turn/NEXT." },
       { title: "One walker, one pane", description: "Same beam for prefetch and Fountain; nouns sit on their turn; cockpit/ghost levels taken off the ship surface." },
       { title: "Ship & inspect", description: "Merge to `main`; Garden live at the pane URL; production V9 still a human migrate." },
+      { title: "Measured the shortcut, then said no", description: "Tested similarity-inferred graph edges: a real ~38× lift over chance, but ~1% absolute precision. Documented the number on the wiki, then didn't ship it. A measured effect that isn't good enough to act on is not a feature." },
     ],
     specs: [
+      { title: "Unofficial, and scoped on purpose", description: "Community plugin, not affiliated with Nous Research. Does not offer a hosted or multi-tenant service, does not replace the always-on MEMORY.md/USER.md, and is not automatic Obsidian vault recall. Loopback only — 127.0.0.1:5450 and :7890." },
       { title: "One topology", description: "Episodic flower in AGE; semantic switches in SQL. No dual Concept/ABOUT + noun graph for the same labels." },
       { title: "Shared nouns, private passports", description: "`noun.label` is global; two sessions can mention Postgres; they do not share the walk's provenance." },
       { title: "Same score everywhere", description: "Prefetch, `/search`, and the pane use one 7-tuple beam; no second ranking in the UI." },
       { title: "Recall without the spectacle", description: "Fountain is optional grammar. Vector + graph injection works if you never open the pane." },
+      { title: "Property-tested against named failure modes", description: "Eight Hypothesis property tests (P1–P8) guard specific failures: Cypher injection, malformed MERGE props, extractor noise, garbage module names from artifact paths, nondeterministic output, silent file-hash corruption, orphan bridge rows. AGE poisons the whole transaction on any Cypher error, so every statement runs inside a SAVEPOINT." },
     ],
     gallery: [
       { title: "The Hermes Librarian", description: "Persistent memory & context injection for Hermes Agent — pgvector for semantic recall + Apache AGE knowledge graph for entity expansion", image: "/plates/hermes-librarian.svg" },
