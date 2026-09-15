@@ -15,7 +15,7 @@ export const SITE = {
 export const CLIENTS = [
   "Mazda North America",
   "Revlon",
-  "Black & Decker",
+  "Stanley Black & Decker",
   "Fox Sports",
   "Theragun",
 ] as const;
@@ -141,13 +141,13 @@ export const ROLES: Role[] = [
     dates: "Oct 2025 — present",
     title: "Founder & Technical Product Lead, AI/ML",
     org: "Eidetix Bio Research",
-    note: "Architected Tokyo Eye, a physics-constrained AI drug-discovery pipeline with MLflow-native governance and ligand-interface affinity modeling. Identified five therapeutic targets; 100% rejection of invalid states. Filed two patents and advanced NCI SBIR Phase I work — filings and Phase I advancement, not granted patents.",
+    note: "Architected Tokyo Eye, a governed scientific-AI platform for structural inference and binding prediction (hyperbolic GNN → atom-level Transformer/MoE; FastAPI, pgvector, MLflow gates). Authored hostile-by-default agent governance (NeuroNote dual-kernel) used in production workflows. Filed two patents and advanced NCI SBIR Phase I work — filings and Phase I advancement, not granted patents.",
   },
   {
     dates: "Aug 2025 — present",
-    title: "Operations Applications Developer & Area Supervisor",
+    title: "Operations Applications Developer (AI products)",
     org: "Sodexo",
-    note: "Kitchen Kontrol, an independent operations product, scaled 7→23 school cafeteria sites; reporting 30 min/day → 15 min/week; compliance 95%; food waste 3%. Public GitHub proof is kk-logger and MyKitchen — the full Azure codebase is not public.",
+    note: "Own path from frontline cafeteria problems to shipped AI products (Kitchen Kontrol). Area Supervisor duties are domain context, not the technical identity. Kitchen Kontrol scaled 7→23 sites; reporting 30 min/day → 15 min/week; compliance 95%; food waste 3%. Public GitHub proof is kk-logger and MyKitchen — the full Azure codebase is not public.",
   },
   {
     dates: "Jan 2024 — Jan 2025",
