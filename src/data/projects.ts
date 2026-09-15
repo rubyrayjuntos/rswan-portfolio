@@ -266,11 +266,13 @@ export const projects: Project[] = [
       { title: "Provider is a swap, not the product", description: "Moved keys server-side. Gemini, xAI, Venice, Bedrock, and local SD share one generate path. Veo is the video path." },
     ],
     specs: [
-      { title: "Canon headshot as identity kernel", description: "Approved reference stills live on the character profile. Later prompts include an identity-lock block. This is not a face-embedding or InstantID model." },
+      { title: "Canon headshot as identity kernel", description: "A three-state dialog (upload → generate → approve/retry/skip) locks one reference photo per character: image-type and 10MB checks, client-side downscale to 1024px before base64, then that headshot rides as an image part on every later generation. Not a face-embedding or InstantID model — and skippable, characters without a locked face still work." },
+      { title: "Wardrobe lock, not just face and set", description: "A free-text Signature Wardrobe field on the character profile gets appended to every generation prompt — character shots, composites, and keyframes — so the model can't invent different clothing between frames. A third lock alongside identity and set, not folded into either." },
       { title: "Set invariants and lighting lock", description: "Indoor/outdoor sets declare spatial invariants, fixed landmarks, forbidden changes, and a lighting-rig lock in the prompt." },
       { title: "Shot grammar before pixels", description: "Compositor specs encode shot type, camera angle, lens preset, subject distance, emotion, and landmark lock — production language, not a vibes prompt." },
-      { title: "Multi-provider renderer", description: "Express /api/generate routes Gemini, xAI Grok Imagine, Venice, Amazon Bedrock (Titan / SD), and local Stable Diffusion. Client default in source is xAI." },
-      { title: "Veo clips and SceneForge keyframes", description: "/api/generate-video calls Veo (default veo-3.0-fast-generate-001) for an 8-second 16:9 clip. SceneForge generates a timed still sequence and plays it as a flipbook. Not an NLE." },
+      { title: "Multi-provider renderer", description: "Express /api/generate routes Gemini, xAI Grok Imagine, Venice, Amazon Bedrock (Titan / SD), and local Stable Diffusion. Client default in source is xAI. Venice doesn't accept reference images — canon-locked generations fall back to description-only there, disclosed in the UI, not a silent quality drop." },
+      { title: "Veo video clips", description: "/api/generate-video calls Veo (default veo-3.0-fast-generate-001) for an 8-second 16:9 clip. A separate path from SceneForge — not called by it." },
+      { title: "SceneForge: parallel keyframes, not a slideshow", description: "Auto or manual beat descriptions stage a scene into timed frames — all dispatched in parallel on Forge Keyframes, each frame's status updating independently. Playback activates the moment the first frame lands, not after the whole batch; any single frame retries without restarting the sequence. A flipbook to validate scene flow before Google Flow, not an NLE and not a Veo integration." },
       { title: "Vite app + Express, not this site", description: "React 19 + Vite 6 + TypeScript + Express. Keys stay on the server. This portfolio cannot host it." },
     ],
     gallery: [
