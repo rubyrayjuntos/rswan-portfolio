@@ -14,10 +14,10 @@ export const SITE = {
 
 export const CLIENTS = [
   "Mazda North America",
-  "Sunrun",
+  "Revlon",
+  "Black & Decker",
   "Fox Sports",
   "Theragun",
-  "Lakeshore Learning",
 ] as const;
 
 export const HOME_SECTIONS = ["Position", "Contrast", "Arc", "Proof"] as const;
@@ -88,14 +88,14 @@ export const EXPERTISE = [
 
 export const FEATURED_ARCHITECTURE = {
   title: "Tokyo Eye — Scientific AI / Drug Discovery",
-  role: "Founder & Technical Lead",
+  role: "Founder & Technical Product Lead, AI/ML",
   year: "Eidetix Bio Research · 2025–present",
   slug: "tokyo-eye",
   glyph: "eye" as const,
   bullets: [
-    "Architected a governed scientific-AI platform using hyperbolic GNN and atom-level Transformer/Mixture-of-Experts architectures for structural inference and ligand-protein binding prediction.",
+    "Architected Tokyo Eye, a physics-constrained AI drug-discovery pipeline with MLflow-native governance and ligand-interface affinity modeling for structural inference and binding prediction.",
     "Pivoted from an underperforming PyTorch GNN to a replacement atom-level Transformer architecture; designed, trained, and evaluated it in one day, producing same-day Pearson correlation of 0.407.",
-    "Built MLflow governance with preregistered estimates, immutable metric gates, ablations, provenance, and preservation of failed experiments; scientist-facing LLM workflows use XState guardrails, Python Hypothesis validation, deterministic structural-biology checks, and RCSB semantic search.",
+    "Identified five therapeutic targets with 100% rejection of invalid states. Filed two patents and advanced NCI SBIR Phase I work — filings and Phase I advancement, not granted patents or a commercial award.",
   ],
 } as const;
 
@@ -115,45 +115,116 @@ export const ADDITIONAL_SYSTEMS = [
     org: "2025",
     glyph: "brain" as const,
     bullets: [
-      "Designed a dual-kernel AI governance architecture that separates generative reasoning from controlled runtime state and deterministic execution, limiting agent authority while preserving useful interaction.",
+      "Designed a dual-kernel AI governance architecture that separates generative reasoning from controlled runtime state and deterministic execution. Forms the theoretical basis for the hostile-by-default agent governance model in production use at Eidetix Bio.",
     ],
   },
   {
     title: "Kitchen Kontrol — Production Operations",
-    org: "Independent product · ~23 Sodexo school cafeterias",
+    org: "Independent product · scaled 7→23 Sodexo school cafeterias",
     glyph: "chef" as const,
     bullets: [
-      "Independent operations product that ran in production across ~23 Sodexo school cafeterias: HACCP evidence, structured audit logging, and gloved, bilingual, mid-service workflows. Public GitHub proof is kk-logger (and MyKitchen) — the full Azure codebase is not public.",
+      "Independent operations product scaled 7→23 Sodexo school cafeterias: reporting 30 min/day → 15 min/week, compliance 95%, food waste 3%. Public GitHub proof is kk-logger (and MyKitchen) — the full Azure codebase is not public.",
     ],
   },
 ] as const;
 
-export const ROLES = [
+export type Role = {
+  dates: string;
+  title: string;
+  org: string;
+  note: string;
+  section?: string;
+};
+
+export const ROLES: Role[] = [
   {
     dates: "Oct 2025 — present",
-    title: "Founder & Technical Lead",
+    title: "Founder & Technical Product Lead, AI/ML",
     org: "Eidetix Bio Research",
-    note: "Architected Tokyo Eye, a governed scientific-AI platform for computational drug discovery using hyperbolic GNN and atom-level Transformer/Mixture-of-Experts architectures for ligand-protein binding prediction. Own architecture, data pipeline, model training, and deployment with MLflow governance.",
+    note: "Architected Tokyo Eye, a physics-constrained AI drug-discovery pipeline with MLflow-native governance and ligand-interface affinity modeling. Identified five therapeutic targets; 100% rejection of invalid states. Filed two patents and advanced NCI SBIR Phase I work — filings and Phase I advancement, not granted patents.",
   },
   {
     dates: "Aug 2025 — present",
-    title: "Operations Applications Developer / AI products",
+    title: "Operations Applications Developer & Area Supervisor",
     org: "Sodexo",
-    note: "Secondary operations role (Area Supervisor). Translates frontline operational problems into deployable AI-enabled products, combining product ownership, application development, integration design, and adoption. Kitchen Kontrol is an independent product that ran across ~23 school cafeterias; public GitHub proof is kk-logger, not a full-product repo.",
+    note: "Kitchen Kontrol, an independent operations product, scaled 7→23 school cafeteria sites; reporting 30 min/day → 15 min/week; compliance 95%; food waste 3%. Public GitHub proof is kk-logger and MyKitchen — the full Azure codebase is not public.",
   },
   {
     dates: "Jan 2024 — Jan 2025",
     title: "Technical Business Analyst & Project Manager",
     org: "International Real Estate Services",
-    note: "Led CRM, analytics, commercial-loan origination, API integration, ETL, process mapping, roadmap planning, and acceptance criteria for audit-ready enterprise workflows.",
+    note: "Addressed fragmented data silos and manual CRM workflows slowing loan origination and property management. Implemented automated API integrations and ETL, reducing manual data entry by 25% and establishing audit-ready reproducible data flows for analytics.",
   },
   {
-    dates: "1999 — 2024",
-    title: "Senior Enterprise Program / Product / Architecture Leadership",
-    org: "Theragun · Sunrun · Mazda · Fox Sports · agencies",
-    note: "Led application modernization, CRM, e-commerce, data, integration, and platform programs for Slumberland Furniture, Sunrun, Mazda North American Operations, Fox Sports, Theragun, Lakeshore Learning, Kayne Anderson Rudnick, and HomePlus Mortgage. Directed cross-functional teams, platform/vendor evaluation, source-of-truth design, governance, rollout planning, and production adoption in complex Fortune 500 environments.",
+    section:
+      "2016–2024 · specialist contract engagements for Fortune 500 and mid-market firms, typically 6–18 months from engagement through release.",
+    dates: "Jan 2024 — Jul 2024",
+    title: "Senior Salesforce Program Manager",
+    org: "Slumberland Furniture",
+    note: "Led a team of 18 through UI/UX redesign, vendor selection, and Zendesk → Salesforce Service Cloud, reducing vendor costs 30% and lifting sales conversion 5%.",
   },
-] as const;
+  {
+    dates: "2021 — 2022",
+    title: "Senior Project Manager & Business Analyst, Sales Cloud",
+    org: "Sunrun",
+    note: "Consolidated 12 independent CRM workflows into 3 validated processes, deployed KPI dashboards, and reduced territory launch from 2 months to 4 days.",
+  },
+  {
+    dates: "2020 — 2021",
+    title: "Senior Project Manager & Business Analyst",
+    org: "XCentium / Revlon",
+    note: "Optimized ETL pipelines and led Japan/Hong Kong e-commerce launch strategy, reducing KPI reporting lag from 12 hours to 5 minutes.",
+  },
+  {
+    dates: "2019 — 2020",
+    title: "Senior Project Manager & Business Analyst",
+    org: "Mazda North American Operations",
+    note: "Consolidated ERP/CRM data into a master governance document, migrated Service and Marketing Clouds across North America, achieved 100% adoption at go-live, and established the first unified source of truth for North American data systems.",
+  },
+  {
+    dates: "2018 — 2019",
+    title: "Lead Business Analyst",
+    org: "Stanley Black & Decker",
+    note: "Defined requirements for the company's first direct-to-consumer platform on Salesforce Commerce Cloud and established a repeatable Agile sprint framework via Azure DevOps.",
+  },
+  {
+    dates: "2017 — 2018",
+    title: "Senior Project Manager & Business Analyst",
+    org: "Fox Sports",
+    note: "Deployed Salesforce Field Service Lightning with integrated scheduling logic and full user training; delivered a $3M+ program 5% under budget, reduced CI/CD time 50%, and standardized operations globally.",
+  },
+  {
+    dates: "2017",
+    title: "Senior Project Manager & Business Analyst",
+    org: "Theragun",
+    note: "Managed five simultaneous projects including Shopify → Salesforce migration, NetSuite integration, and app development, establishing data flow across web, mobile, and retail channels.",
+  },
+  {
+    dates: "2016 — 2017",
+    title: "Senior Project Manager & Business Analyst",
+    org: "Guthy | Renker",
+    note: "Orchestrated in-house and offshore teams to integrate inventory, membership, and fulfillment systems for a Salesforce Commerce Cloud re-platform and standardized critical business processes across entities.",
+  },
+  {
+    dates: "2014 — 2016",
+    title: "Sr. E-Commerce Program Manager",
+    org: "Lakeshore Learning Materials",
+    note: "Built a standardized client ingestion system, owned the department roadmap for projects up to $8M, and reduced district portal customization time from 2 days to 0.5 days.",
+  },
+  {
+    dates: "2007 — 2013",
+    title: "Project Manager / Director of Software Development",
+    org: "Kayne Anderson Rudnick Wealth Management",
+    note: "Spearheaded Salesforce migration, transitioned back-office trading operations between sister companies, transformed operations into a normalized Agile-driven department, and secured a $10B net flow transition.",
+  },
+  {
+    section: "Earlier career available upon request.",
+    dates: "2000 — 2007",
+    title: "Earlier roles",
+    org: "Attorneys Software Inc. · Vivendi Universal",
+    note: "Attorneys Software Inc. (2002–2007) and Vivendi Universal (2000–2002).",
+  },
+];
 
 export const SKILLS = [
   "Azure ML",
@@ -169,17 +240,18 @@ export const SKILLS = [
   "Model evaluation",
   "Drift & retrain",
   "PostgreSQL",
+  "Salesforce",
   "Product strategy",
 ] as const;
 
 export const EDUCATION = [
   {
     credential: "M.A., Humanities",
-    org: "California State University, Dominguez Hills",
+    org: "California State University, Dominguez Hills · 2008",
   },
   {
     credential: "B.A., Economics",
-    org: "University of California, Irvine",
+    org: "University of California, Irvine · 2004",
   },
 ] as const;
 
