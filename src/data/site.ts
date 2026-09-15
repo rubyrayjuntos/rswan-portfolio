@@ -150,7 +150,7 @@ export const ROLES: Role[] = [
     note: "Own path from frontline cafeteria problems to shipped AI products (Kitchen Kontrol). Area Supervisor duties are domain context, not the technical identity. Kitchen Kontrol scaled 7→23 sites; reporting 30 min/day → 15 min/week; compliance 95%; food waste 3%. Public GitHub proof is kk-logger and MyKitchen — the full Azure codebase is not public.",
   },
   {
-    dates: "Jan 2024 — Jan 2025",
+    dates: "2022 — Present",
     title: "Technical Business Analyst & Project Manager",
     org: "International Real Estate Services",
     note: "Addressed fragmented data silos and manual CRM workflows slowing loan origination and property management. Implemented automated API integrations and ETL, reducing manual data entry by 25% and establishing audit-ready reproducible data flows for analytics.",
