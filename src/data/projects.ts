@@ -69,7 +69,7 @@ export const projects: Project[] = [
       { title: "This site cannot host the runtime", description: "Vite + React app with a model key. GitHub is the public source until a keyed host exists." },
     ],
     gallery: [
-      { title: "Trust boundary", description: "The old way let AI touch core logic directly. NeuroNote treats every proposal as untrusted logic-as-data until the host safety pipeline admits it.", image: "/surfaces/neuronote-comparison.jpg" },
+      { title: "Trust boundary", description: "The old way let AI touch core logic directly. NeuroNote treats every proposal as untrusted logic-as-data until the host safety pipeline admits it.", image: "/plates/neuronote-trust-boundary.svg" },
     ],
     artifacts: [
       { name: "GitHub Repository", description: "Public source for NeuroNote", url: "https://github.com/rubyrayjuntos/Neuronote" },
@@ -174,7 +174,7 @@ export const projects: Project[] = [
       { title: "Regulatory compliance", description: "Texas TFER §228.75 and USDA 7 CFR 210 mapped into log types and range checks.", image: "/plates/kitchen-regulatory.svg" },
       { title: "Planogram builder", description: "Serving-line planogram with pan wells. kitchen-kontrol persists planograms through the Express API.", image: "/plates/kitchen-planogram.svg" },
       { title: "Manager reports", description: "Weekly log-status completion rates from Postgres CTE queries in kitchen-kontrol.", image: "/surfaces/kitchen-manager-reports.jpg" },
-      { title: "Staff training & rewards", description: "MyKitchen rewards dashboard tracking employee training progress across stations.", image: "/surfaces/kitchen-training.jpg" },
+      { title: "Training center", description: "kitchen-kontrol's own required-training tracker — course duration, completion state, and a per-staff progress count. Not MyKitchen; no rewards/points system exists in source.", image: "/surfaces/kitchen-training.jpg" },
       { title: "Capability board (vision, not GitHub)", description: "Product-vision board for voice, assistant, forecast, and vision. Those AWS services are not in the four GitHub repos.", image: "/plates/kitchen-capability-board.svg" },
     ],
     artifacts: [
@@ -272,7 +272,7 @@ export const projects: Project[] = [
       { title: "Vite app + Express, not this site", description: "React 19 + Vite 6 + TypeScript + Express. Keys stay on the server. This portfolio cannot host it." },
     ],
     gallery: [
-      { title: "Production control plane", description: "Face mesh, set wireframe, locked composite, and frame strip on one console — identity through the cut.", image: "/surfaces/canon-command-center.webp" },
+      { title: "Production control plane", description: "Face mesh, set wireframe, locked composite, and frame strip on one console — identity through the cut.", image: "/plates/canon-production-console.svg" },
     ],
     artifacts: [
       { name: "GitHub Repository", description: "Public source for Canon Forge", url: "https://github.com/rubyrayjuntos/canon-forge" },
