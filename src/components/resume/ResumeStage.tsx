@@ -165,12 +165,17 @@ export function ResumeStage() {
         <Pane kicker="05 · Experience">
           <div className="flex max-w-5xl flex-col gap-4">
             {ROLES.map((r) => (
-              <Blueprint key={r.dates} className="p-5">
-                <div className="kicker">{r.dates}</div>
-                <h3 className="mt-2 font-heading text-h-item font-semibold leading-[1.12] tracking-tight">{r.title}</h3>
-                <div className="mt-1 text-body text-steel-700">{r.org}</div>
-                <p className="mt-3 text-body leading-relaxed text-mute-800">{r.note}</p>
-              </Blueprint>
+              <div key={`${r.org}-${r.dates}`}>
+                {r.section ? (
+                  <p className="mb-3 max-w-[68ch] text-body leading-relaxed text-steel-800">{r.section}</p>
+                ) : null}
+                <Blueprint className="p-5">
+                  <div className="kicker">{r.dates}</div>
+                  <h3 className="mt-2 font-heading text-h-item font-semibold leading-[1.12] tracking-tight">{r.title}</h3>
+                  <div className="mt-1 text-body text-steel-700">{r.org}</div>
+                  <p className="mt-3 text-body leading-relaxed text-mute-800">{r.note}</p>
+                </Blueprint>
+              </div>
             ))}
           </div>
         </Pane>

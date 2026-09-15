@@ -141,22 +141,22 @@ export const projects: Project[] = [
     status: "in-progress",
     tech: ["HACCP Ops", "PostgreSQL", "JWT", "Ajv", "Express", "React"],
     challenge:
-      "Paper HACCP logs were eating shift time and still missing Texas TFER and USDA 7 CFR 210 requirements across a ~23-site Sodexo school-cafeteria network. The product had to work on wet-hands, bilingual, multi-station shifts — and still produce audit-ready evidence. This is an independent product story; Ray owns the rights, but the full Azure production codebase did not transfer.",
+      "Paper HACCP logs were eating shift time and still missing Texas TFER and USDA 7 CFR 210 requirements. Started at seven school cafeteria sites with no standardized training or digital audit trail. The product had to work on wet-hands, bilingual, multi-station shifts — and still produce audit-ready evidence. Independent product story; Ray owns the rights, but the full Azure production codebase did not transfer.",
     development:
-      "Shipped an operations platform used in production across ~23 Sodexo school cafeterias: HACCP-mapped logs, planograms, and mid-service workflows. Public GitHub proof is kk-logger (Vite/TS HACCP SPA with TFER range validators and EN/ES) and MyKitchen (single-file HTML hub). MilkTrace-Voice (browser SpeechRecognition milk inventory) existed as a companion; it is not public. There is no public kitchen-kontrol repo. Gemini Live, Bedrock, SageMaker, Transcribe, Lex, and Rekognition are not in the public slice.",
+      "Shipped Kitchen Kontrol into production and scaled 7→23 Sodexo school cafeterias: HACCP-mapped logs, planograms, and mid-service workflows. Public GitHub proof is kk-logger (Vite/TS HACCP SPA with TFER range validators and EN/ES) and MyKitchen (single-file HTML hub). MilkTrace-Voice (browser SpeechRecognition milk inventory) existed as a companion; it is not public. There is no public kitchen-kontrol repo. Gemini Live, Bedrock, SageMaker, Transcribe, Lex, and Rekognition are not in the public slice.",
     outcome:
-      "Independent product that ran in production across ~23 Sodexo school cafeterias. Public proof is kk-logger (and MyKitchen if linked) — not a kitchen-kontrol GitHub repo, not MilkTrace-Voice, and not the unrecovered Azure codebase. Waste figures from earlier product copy are not reproduced here.",
+      "Scaled 7→23 Sodexo school cafeterias. Reporting 30 min/day → 15 min/week; compliance 95%; food waste 3%. Public proof is kk-logger (and MyKitchen if linked) — not a kitchen-kontrol GitHub repo, not MilkTrace-Voice, and not the unrecovered Azure codebase.",
     outcomeLine:
-      "Proves: I can ship an independent ops product into real kitchens — and show the public slice without pretending the full codebase is on GitHub.",
+      "Proves: I can ship an independent ops product into real kitchens — scale it, measure it, and show the public slice without pretending the full codebase is on GitHub.",
     proofClaim:
-      "~23-site production operations product; public GitHub slice is kk-logger (HACCP/milk logger) plus MyKitchen hub.",
+      "Production ops product scaled 7→23 sites (30 min/day → 15 min/week reporting, 95% compliance, 3% food waste); public GitHub slice is kk-logger plus MyKitchen.",
     journey: [
       { title: "Watch the line, not the backlog", description: "Observed school nutrition shifts where paper HACCP and inventory ate shift time and still failed audits. Requirements came from wet-hands, bilingual, multi-station reality." },
       { title: "Make HACCP a product, not a PDF", description: "Turned TFER temperature rules into digital logs with Ajv schemas, pass/fail gates, and corrective-action flows staff can complete during service." },
       { title: "Ops platform, not a mock", description: "Built kitchen-kontrol as Express + Postgres: JWT, roles, phases, tasks, log templates/submissions, planograms, weekly compliance SQL, Docker, and CI." },
       { title: "Evidence UX in TypeScript", description: "kk-logger is the HACCP SPA: traffic-light tasks, sanitizer/hot/cold/calibration validators, English/Spanish. SharePoint and SSO are written as plans, not wired." },
       { title: "Voice where hands are full", description: "MilkTrace-Voice logs milk inventory with the browser SpeechRecognition API and a keyword/number parser. The hook is named Gemini Live; the runtime is not." },
-      { title: "Claim only what GitHub holds", description: "The full Azure production codebase did not transfer. Public proof is kk-logger and MyKitchen. The ~23-site production run is the product story, not a public kitchen-kontrol repo." },
+      { title: "Claim only what GitHub holds", description: "The full Azure production codebase did not transfer. Public proof is kk-logger and MyKitchen. Production results — scaled 7→23, reporting 30 min/day → 15 min/week, 95% compliance, 3% food waste — are the product story, not a public kitchen-kontrol repo." },
     ],
     specs: [
       { title: "JWT-authenticated ops API", description: "Express 5 with bcrypt login, JWT, rate limits, Winston, Sentry, and a transactional outbox. Postgres 15 with node-pg-migrate; sqlite3 for local/dev." },
