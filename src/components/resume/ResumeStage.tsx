@@ -18,6 +18,7 @@ import { ProgressRail } from "@/components/layout/ProgressRail";
 import { useSnapRail } from "@/hooks/use-snap-rail";
 
 const SUMMARY_HIGHLIGHTS = [
+  "Twenty-five years",
   "dual-kernel proposal-verification pipelines",
   "hyperbolic graph neural networks",
   "fault-tolerant cloud orchestration",
@@ -134,10 +135,10 @@ export function ResumeStage() {
             </ul>
             <Link
               to="/work/$slug"
-              params={{ slug: "ai-ml-ops-factory" }}
+              params={{ slug: FEATURED_ARCHITECTURE.slug }}
               className="mt-4 inline-block w-fit text-small font-medium text-steel hover:text-ink"
             >
-              Full case study — AI/ML Ops Factory ↗
+              Full case study — Tokyo Eye ↗
             </Link>
           </Blueprint>
         </Pane>
@@ -175,7 +176,7 @@ export function ResumeStage() {
         </Pane>
 
         <Pane kicker="06 · Education & credentials">
-          <div className="grid max-w-4xl gap-4 md:grid-cols-3">
+          <div className="grid max-w-4xl gap-4 md:grid-cols-2">
             {EDUCATION.map((e) => (
               <Blueprint key={e.credential} className="p-5">
                 <h3 className="font-heading text-h-item font-semibold leading-[1.12] tracking-tight">{e.credential}</h3>

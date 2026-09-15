@@ -1,7 +1,7 @@
 export type Spec = { title: string; description: string };
 export type Step = { title: string; description: string };
 export type Plate = { title: string; description: string; image: string };
-export type Artifact = { name: string; description: string; url: string };
+export type Artifact = { name: string; description: string; url?: string };
 export type Embed = { title: string; description: string; url: string; height?: number };
 
 export type Project = {
@@ -141,22 +141,22 @@ export const projects: Project[] = [
     status: "in-progress",
     tech: ["HACCP Ops", "PostgreSQL", "JWT", "Ajv", "Express", "React"],
     challenge:
-      "Paper HACCP logs were eating shift time and still missing Texas TFER and USDA 7 CFR 210 requirements. The product had to work on wet-hands, bilingual, multi-station shifts — and still produce audit-ready evidence without pretending a cafeteria network is a control.",
+      "Paper HACCP logs were eating shift time and still missing Texas TFER and USDA 7 CFR 210 requirements across a ~23-site Sodexo school-cafeteria network. The product had to work on wet-hands, bilingual, multi-station shifts — and still produce audit-ready evidence. This is an independent product story; Ray owns the rights, but the full Azure production codebase did not transfer.",
     development:
-      "Shipped a React/Express ops platform (kitchen-kontrol) with JWT auth, Postgres migrations, Ajv JSON-schema HACCP forms, planogram CRUD, weekly log-status SQL, Docker/nginx, and GitHub Actions. Companion repos: kk-logger (Vite/TS HACCP SPA with TFER range validators and EN/ES), MilkTrace-Voice (Web Speech API + keyword parser for milk inventory), and MyKitchen (single-file HTML hub). Browser STT is real. Gemini Live, Bedrock, SageMaker, Transcribe, Lex, and Rekognition are not in these repos.",
+      "Shipped an operations platform used in production across ~23 Sodexo school cafeterias: HACCP-mapped logs, planograms, and mid-service workflows. Public GitHub proof is kk-logger (Vite/TS HACCP SPA with TFER range validators and EN/ES) and MyKitchen (single-file HTML hub). MilkTrace-Voice (browser SpeechRecognition milk inventory) existed as a companion; it is not public. There is no public kitchen-kontrol repo. Gemini Live, Bedrock, SageMaker, Transcribe, Lex, and Rekognition are not in the public slice.",
     outcome:
-      "Public proof is the GitHub family, not a cloud overlay. kitchen-kontrol is a Node ops app (private); kk-logger and MyKitchen are public. Site-count and waste figures from earlier product copy are not reproduced in these repositories.",
+      "Independent product that ran in production across ~23 Sodexo school cafeterias. Public proof is kk-logger (and MyKitchen if linked) — not a kitchen-kontrol GitHub repo, not MilkTrace-Voice, and not the unrecovered Azure codebase. Waste figures from earlier product copy are not reproduced here.",
     outcomeLine:
-      "Proves: I can ship a production ops platform end-to-end — from database schema to CI to Docker deploy.",
+      "Proves: I can ship an independent ops product into real kitchens — and show the public slice without pretending the full codebase is on GitHub.",
     proofClaim:
-      "Full-stack ops platform with JWT auth, Postgres migrations, Ajv forms, Docker/nginx, and GitHub Actions CI.",
+      "~23-site production operations product; public GitHub slice is kk-logger (HACCP/milk logger) plus MyKitchen hub.",
     journey: [
       { title: "Watch the line, not the backlog", description: "Observed school nutrition shifts where paper HACCP and inventory ate shift time and still failed audits. Requirements came from wet-hands, bilingual, multi-station reality." },
       { title: "Make HACCP a product, not a PDF", description: "Turned TFER temperature rules into digital logs with Ajv schemas, pass/fail gates, and corrective-action flows staff can complete during service." },
       { title: "Ops platform, not a mock", description: "Built kitchen-kontrol as Express + Postgres: JWT, roles, phases, tasks, log templates/submissions, planograms, weekly compliance SQL, Docker, and CI." },
       { title: "Evidence UX in TypeScript", description: "kk-logger is the HACCP SPA: traffic-light tasks, sanitizer/hot/cold/calibration validators, English/Spanish. SharePoint and SSO are written as plans, not wired." },
       { title: "Voice where hands are full", description: "MilkTrace-Voice logs milk inventory with the browser SpeechRecognition API and a keyword/number parser. The hook is named Gemini Live; the runtime is not." },
-      { title: "Claim only what GitHub holds", description: "Cafeteria-server and Azure overlay work was not transferred into these repos. This case study stops at the public proof." },
+      { title: "Claim only what GitHub holds", description: "The full Azure production codebase did not transfer. Public proof is kk-logger and MyKitchen. The ~23-site production run is the product story, not a public kitchen-kontrol repo." },
     ],
     specs: [
       { title: "JWT-authenticated ops API", description: "Express 5 with bcrypt login, JWT, rate limits, Winston, Sentry, and a transactional outbox. Postgres 15 with node-pg-migrate; sqlite3 for local/dev." },
@@ -178,10 +178,10 @@ export const projects: Project[] = [
       { title: "Capability board (vision, not GitHub)", description: "Product-vision board for voice, assistant, forecast, and vision. Those AWS services are not in the four GitHub repos.", image: "/plates/kitchen-capability-board.svg" },
     ],
     artifacts: [
-      { name: "Ops platform (private)", description: "React + Express + Postgres kitchen-kontrol source", url: "https://github.com/rubyrayjuntos/kitchen-kontrol" },
-      { name: "kk-logger (public)", description: "Vite/TypeScript HACCP SPA with TFER validators", url: "https://github.com/rubyrayjuntos/kk-logger" },
+      { name: "kk-logger (public)", description: "Vite/TypeScript HACCP SPA with TFER validators — public proof slice", url: "https://github.com/rubyrayjuntos/kk-logger" },
       { name: "MyKitchen (public)", description: "Single-file HTML ops hub prototype", url: "https://github.com/rubyrayjuntos/MyKitchen" },
-      { name: "MilkTrace-Voice (private)", description: "Browser SpeechRecognition milk inventory logging", url: "https://github.com/rubyrayjuntos/MilkTrace-Voice" },
+      { name: "Ops platform (private)", description: "Full kitchen-kontrol Azure/Node product — not in a public repo" },
+      { name: "MilkTrace-Voice (private)", description: "Browser SpeechRecognition milk inventory logging" },
     ],
   },
   {
@@ -202,7 +202,7 @@ export const projects: Project[] = [
     development:
       "Started as a Databricks medallion + telecom-churn product (azuredev-3d78, private): bronze/silver/gold, MLflow train/register (sklearn on gold_feature_snapshots from the IBM Telco corpus), FastAPI /churn-score that calls a Databricks model-serving endpoint, Foundry explanation client. Then stood up Microsoft’s MLOps v2 accelerator as a live taxi instance (azure-mlops) and added scheduled KS drift → retrain. Re-engineered a separate generator, AIML-SCAFFOLD: manifest in, deterministic generate, doctor. Public generated project is azure-aiml-ops. R1 does not generate Databricks, Foundry, online serving, or auto-retrain. Foundry GenAI ops remains in process on the churn prototype.",
     outcome:
-      "Three evidenced slices: AIML-SCAFFOLD generates Terraform Azure ML repos; azure-aiml-ops is a generated Dev tree; azure-mlops is the taxi instance that trained, registered, and batch-served in Dev and Prod. Separately, azuredev-3d78 is the Databricks telecom-churn path (train on gold features, infer via model serving + FastAPI). This portfolio hosts the write-up, not a fake factory UI.",
+      "Public proof of the factory is AIML-SCAFFOLD. Additional public slices: azure-aiml-ops (a generated Dev tree) and azure-mlops (taxi instance that trained, registered, and batch-served). The earlier Databricks telecom-churn prototype is private case-study evidence only — not linked. This portfolio hosts the write-up, not a fake factory UI.",
     outcomeLine:
       "Proves: I can build a deterministic ML project factory — Terraform, OIDC, and digest-bound apply — and run a live MLOps v2 taxi with scheduled drift retrain.",
     proofClaim:
@@ -228,10 +228,10 @@ export const projects: Project[] = [
       { title: "Factory control plane", description: "Intake through monitoring as a product metaphor. The generator instantiates Terraform + lifecycle repos, not a hologram UI.", image: "/plates/factory-control-plane.svg" },
     ],
     artifacts: [
-      { name: "AIML-SCAFFOLD", description: "Factory: contracts, generator, Terraform, policy", url: "https://github.com/rubyrayjuntos/AIML-SCAFFOLD" },
+      { name: "AIML-SCAFFOLD", description: "Public factory proof: contracts, generator, Terraform, policy", url: "https://github.com/rubyrayjuntos/AIML-SCAFFOLD" },
       { name: "azure-aiml-ops", description: "Public generated R1 Dev project from the scaffold", url: "https://github.com/rubyrayjuntos/azure-aiml-ops" },
       { name: "azure-mlops", description: "Live MLOps v2 taxi: Dev/Prod, registered model, batch endpoints", url: "https://github.com/rubyrayjuntos/azure-mlops" },
-      { name: "azuredev-3d78", description: "Private Databricks/Foundry churn prototype (origin, not the generator)", url: "https://github.com/rubyrayjuntos/azuredev-3d78" },
+      { name: "azuredev-3d78 (private)", description: "Databricks/Foundry churn prototype — origin of the work, not the public factory" },
       { name: "LinkedIn — the Salesforce analogy", description: "Where the starter-store, configure-don't-rebuild pattern is laid out in full", url: "https://www.linkedin.com/feed/update/urn:li:activity:7495207736780009472/" },
     ],
   },
@@ -285,8 +285,8 @@ export const projects: Project[] = [
   {
     id: 27,
     slug: "governed-lora-factory",
-    title: "Llora Workbench",
-    tagline: "GOVERNED LORA WORKBENCH",
+    title: "LoRA Workbench",
+    tagline: "GOVERNED LoRA WORKBENCH",
     value: "Standardized, auditable fine-tuning — declarative playbook, gated MLflow registry, full provenance on a 4GB T1000 — so the small model you ship is the model you can prove.",
     arch: "corpus25_playbook.yaml declares datasets, thresholds, and stages; trainer.py stays untouched. CE→BCE without code change, r=4 beats r=8.",
     domain: "mlops",
@@ -296,7 +296,7 @@ export const projects: Project[] = [
     status: "in-progress",
     tech: ["MLflow", "PyTorch", "PEFT LoRA", "Optuna", "HF Hub", "Qwen2-0.5B"],
     challenge:
-      "Small-model fine-tuning collapses when every run invents its own data, thresholds, and lineage. Llora had to make the adapter auditable — one trainer.py, one playbook, every promotion gated — and prove it on a 4GB Quadro T1000 without pretending the lab is the cloud.",
+      "Small-model fine-tuning collapses when every run invents its own data, thresholds, and lineage. The LoRA workbench had to make the adapter auditable — one trainer.py, one playbook, every promotion gated — and prove it on a 4GB Quadro T1000 without pretending the lab is the cloud.",
     development:
       "Built a governed micro-factory: Qwen2-0.5B-Instruct + PEFT LoRA (r=4) under MLflow hermes/llm-lora isolation (batch2 eff8, seq 64/32/128, BF16). corpus25_playbook.yaml declares SST-2, 4-way intent, and 16-tag BCE, with thresholds ln4→1.5 and BCE 0.693→0.48. One trainer.py routes CE to BCE via task head; corpus25_playbook is the only change. Optuna parent run + child trials, disk + Hub lineage, and assert_promotable(val/loss ≤ threshold) before any registry promotion.",
     outcome:

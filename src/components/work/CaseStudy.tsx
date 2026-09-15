@@ -131,15 +131,25 @@ export function CaseStudy({ project }: { project: Project }) {
             </p>
             {project.artifacts.length ? (
               <div className="mt-6 grid max-w-5xl gap-3 md:grid-cols-2">
-                {project.artifacts.map((a) => (
-                  <a key={a.url} href={a.url} target="_blank" rel="noreferrer" className="block">
-                    <Blueprint className="flex flex-col gap-1 p-4 transition-colors duration-150 hover:border-ink">
-                      <div className="font-heading text-h-item font-semibold leading-[1.12] tracking-tight">{a.name}</div>
-                      <p className="text-body text-mute-700">{a.description}</p>
-                      <div className="mt-1 text-caption text-steel">Open ↗</div>
-                    </Blueprint>
-                  </a>
-                ))}
+                {project.artifacts.map((a) =>
+                  a.url ? (
+                    <a key={a.name} href={a.url} target="_blank" rel="noreferrer" className="block">
+                      <Blueprint className="flex flex-col gap-1 p-4 transition-colors duration-150 hover:border-ink">
+                        <div className="font-heading text-h-item font-semibold leading-[1.12] tracking-tight">{a.name}</div>
+                        <p className="text-body text-mute-700">{a.description}</p>
+                        <div className="mt-1 text-caption text-steel">Open ↗</div>
+                      </Blueprint>
+                    </a>
+                  ) : (
+                    <div key={a.name}>
+                      <Blueprint className="flex flex-col gap-1 p-4">
+                        <div className="font-heading text-h-item font-semibold leading-[1.12] tracking-tight">{a.name}</div>
+                        <p className="text-body text-mute-700">{a.description}</p>
+                        <div className="mt-1 text-caption text-mute-600">Private — case-study evidence only</div>
+                      </Blueprint>
+                    </div>
+                  ),
+                )}
               </div>
             ) : null}
             <div className="mt-8 flex flex-wrap gap-3">
