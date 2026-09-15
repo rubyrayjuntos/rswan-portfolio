@@ -16,11 +16,11 @@ export function PrinciplesGrid() {
                 <div className="kicker">Capability {String(i + 1).padStart(2, "0")}</div>
                 <Glyph name={PILLAR_GLYPH[p.slug]} label={p.title} />
               </div>
-              <h3 className="font-heading text-[1.85rem] font-semibold leading-[1.12] tracking-tight">{p.title}</h3>
-              <p className="min-h-0 flex-1 overflow-hidden text-[13.5px] leading-relaxed text-mute-800">
+              <h3 className="font-heading text-h-feature font-semibold leading-[1.12] tracking-tight">{p.title}</h3>
+              <p className="min-h-0 flex-1 overflow-hidden text-body leading-relaxed text-mute-800">
                 {p.body}
               </p>
-              <div className="mt-auto text-[11px] uppercase tracking-widest text-steel-700">
+              <div className="mt-auto text-caption uppercase tracking-widest text-steel-700">
                 {count} in catalog →
               </div>
             </Blueprint>

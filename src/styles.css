@@ -33,6 +33,23 @@
   --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Newsreader", "Iowan Old Style", Palatino, serif;
 
+  /* Content type scale — Work/Resume/Principles. Native text-sm/xs/base stay reserved for controls (buttons, form fields, nav). */
+  --text-tag: 10px;
+  --text-caption: 11px;
+  --text-meta: 12.5px;
+  --text-small: 13px;
+  --text-body: 13.5px;
+  --text-body-lg: 15.5px;
+
+  --text-h-item: 1.2rem;
+  --text-h-plate: 1.35rem;
+  --text-h-card: 1.45rem;
+  --text-h-feature: 1.85rem;
+  --text-h-section: clamp(1.45rem, 2.8vw, 2.2rem);
+  --text-h-page-compact: 1.35rem;
+  --text-h-page-compact-lg: clamp(1.55rem, 2.6vw, 2.1rem);
+  --text-h-page-full: clamp(1.45rem, 3.6vw, 2.55rem);
+
   --radius-none: 0px;
 }
 
@@ -90,9 +107,8 @@
   }
 
   em {
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-weight: 500;
+    font-style: normal;
+    font-weight: 600;
     color: var(--color-steel);
   }
 }
@@ -156,7 +172,7 @@
 
   .kicker {
     font-family: var(--font-body);
-    font-size: 11px;
+    font-size: var(--text-caption);
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -251,35 +267,69 @@
   .reel-scene {
     position: absolute;
     inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2.5rem 2rem 6.5rem;
+    padding: 2.5rem 1.5rem 6.5rem;
     opacity: 0;
-    transform: translateY(26px);
-    filter: blur(8px);
     pointer-events: none;
-    will-change: opacity, transform, filter;
-    transition:
-      opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
-      transform 600ms cubic-bezier(0.16, 1, 0.3, 1),
-      filter 600ms ease;
+    will-change: opacity;
+    transition: opacity 500ms ease;
   }
   .reel-scene.is-active {
     opacity: 1;
-    transform: none;
-    filter: none;
     pointer-events: auto;
   }
   .reel-scene.is-exiting {
     opacity: 0;
-    transform: translateY(-22px);
-    filter: blur(6px);
   }
   .reel-scene.is-idle {
     opacity: 0;
-    transform: translateY(26px);
-    filter: blur(8px);
+  }
+
+  /* chapter grammar: one anchor holds its ground, secondary evidence pulses right beside it —
+     both measured from stage center so the pair stays locked together at any viewport width */
+  .chapter-pair {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+    padding: 2.5rem 1.5rem 6.5rem;
+  }
+
+  .chapter-anchor {
+    max-width: min(90%, 620px);
+    opacity: 0;
+    transition:
+      opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reel-scene.is-active .chapter-anchor {
+    opacity: 1;
+    transform: none;
+  }
+  .chapter-anchor[data-pos="left"] { transform: translateX(-28px); }
+  .chapter-anchor[data-pos="right"] { transform: translateX(28px); }
+  .chapter-anchor[data-pos="top"] { transform: translateY(-28px); }
+  .chapter-anchor[data-pos="bottom"] { transform: translateY(28px); }
+
+  .chapter-pulses {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    max-width: min(90%, 420px);
+  }
+
+  .pulse-item {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 400ms ease,
+      transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pulse-item.is-on {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .reel-clock {
@@ -357,10 +407,11 @@
     background: var(--color-steel);
     transform: scaleX(0);
     transform-origin: left center;
-    animation: reel-strike 700ms 420ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: none;
   }
-  .reel-scene.is-active .hope-live::after { animation: reel-strike 700ms 420ms cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-  .reel-scene:not(.is-active) .hope-live::after { animation: none; transform: scaleX(0); }
+  .pulse-item.is-on .hope-live::after {
+    animation: reel-strike 700ms 120ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
 }
 
 @keyframes rise {
@@ -419,6 +470,26 @@
   .home-stage .reel-dots,
   .home-stage .keyword-rail {
     display: none !important;
+  }
+  .home-stage .chapter-pair {
+    position: relative !important;
+    inset: auto !important;
+    flex-direction: column;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+  .home-stage .chapter-anchor,
+  .home-stage .chapter-pulses {
+    max-width: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .home-stage .chapter-pulses {
+    margin-top: 0.75rem;
+  }
+  .home-stage .pulse-item {
+    opacity: 1 !important;
+    transform: none !important;
   }
   .home-stage .reel-cta {
     position: relative !important;

@@ -11,6 +11,7 @@ function Item({
   label,
   child,
   active,
+  sectionActive,
   onClick,
 }: {
   to: string;
@@ -18,6 +19,7 @@ function Item({
   label: string;
   child?: boolean;
   active?: boolean;
+  sectionActive?: boolean;
   onClick?: () => void;
 }) {
   return (
@@ -34,10 +36,12 @@ function Item({
               "font-heading italic text-steel",
               child ? "text-[1.05rem]" : "text-[1.25rem]",
             )
-          : cn(
-              "text-mute-700 hover:text-ink",
-              child ? "text-[13px]" : "text-[15px] font-medium",
-            ),
+          : sectionActive
+            ? cn("text-steel", child ? "text-[13px]" : "text-[15px] font-medium")
+            : cn(
+                "text-mute-700 hover:text-ink",
+                child ? "text-[13px]" : "text-[15px] font-medium",
+              ),
       )}
     >
       {label}
@@ -81,7 +85,13 @@ export function SideNav({ onNavigate }: { onNavigate?: () => void }) {
         <nav className="mt-8 flex flex-col" aria-label="Primary">
           <Item to="/" label="Home" active={pathname === "/"} onClick={onNavigate} />
 
-          <Item to="/work" label="Work" active={pathname === "/work"} onClick={onNavigate} />
+          <Item
+            to="/work"
+            label="Work"
+            active={pathname === "/work"}
+            sectionActive={pathname.startsWith("/work/")}
+            onClick={onNavigate}
+          />
           <Group label="Work">
             {catalog.map((p) => (
               <Item
@@ -100,6 +110,7 @@ export function SideNav({ onNavigate }: { onNavigate?: () => void }) {
             to="/principles"
             label="Principles"
             active={pathname === "/principles"}
+            sectionActive={pathname.startsWith("/principles/")}
             onClick={onNavigate}
           />
           <Group label="Principles">

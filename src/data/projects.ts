@@ -2,6 +2,7 @@ export type Spec = { title: string; description: string };
 export type Step = { title: string; description: string };
 export type Plate = { title: string; description: string; image: string };
 export type Artifact = { name: string; description: string; url: string };
+export type Embed = { title: string; description: string; url: string; height?: number };
 
 export type Project = {
   id: number;
@@ -25,6 +26,7 @@ export type Project = {
   specs: Spec[];
   gallery: Plate[];
   artifacts: Artifact[];
+  embed?: Embed;
 };
 
 export const projects: Project[] = [
@@ -99,9 +101,9 @@ export const projects: Project[] = [
     journey: [
       { title: "Put AI in the scientist’s actual context", description: "Rejected chatbot-beside-the-work. The agent must see current structures, selected residues, workflow stage, and visual state before it is allowed to speak." },
       { title: "Hyperbolic geometry as the spatial prior", description: "Poincaré / geoopt embeddings so hierarchical residue, fragment, and pocket structure stay continuous instead of flattening into a Euclidean bag of atoms." },
-      { title: "Versioned science, not a frozen miss", description: "DTIE v3–v6 live in tree. Production inference is the V5 GNN path; training continues on v6 with MLflow governance. MoE and e3nn are in the science extra, not a slide overlay." },
+      { title: "Three architectures, not three version bumps", description: "v2 was a dual-head GNN. v3–v6.6 rebuilt it end-to-end hyperbolic — MoE routing, hyperbolic graphs persisted to a purpose-adapted Postgres. v8 moved to an equivariant, atomic-hyperbolic architecture (Equiformer), with the full training lifecycle governed by MLflow CI/CD, not a notebook." },
       { title: "One write path, then the agent", description: "All data writes go through the normalizer. provenance_run is recorded before results. The 20-tool coordinator cannot skip that contract." },
-      { title: "Session machine vs portfolio HTML", description: "XState owns the React Poincaré dashboard in the platform repo. This site is the write-up, not the live visualizer." },
+      { title: "Session machine vs training-run output", description: "XState owns the full React Poincaré dashboard in the platform repo. The split viewer embedded below is autonomous diagnostic output the pipeline emits every training run, not built for this page — real structure, real checkpoint, no live session state." },
     ],
     specs: [
       { title: "Context-bound scientific agents", description: "FastAPI coordinator with JWT, rate limits, and a WebSocket viewport. XState in the visualizer plus the open structure constrain what the LLM may say." },
@@ -111,12 +113,19 @@ export const projects: Project[] = [
       { title: "Property gates and honest findings", description: "gates.yml property tests (corpus / smoke / curvature). Findings markdown records abandoned claims (λ₂ as cancer discriminator) alongside surviving dehydron physics." },
     ],
     gallery: [
-      { title: "Scientist control plane", description: "Hypergraph spectrum, protein geometry, contact maps, and energy landscape on one immersive console.", image: "/plates/tokyo-eye-scientist-console.svg" },
-      { title: "Hyperbolic scientific engine", description: "Protein in a Poincaré-style field with residue focus, fragment screening, epistemic uncertainty, and literature DOIs.", image: "/plates/tokyo-eye-hyperbolic-engine.svg" },
+      { title: "Scientist control plane", description: "Real screenshot, not a mockup. Molecular surface, Poincaré ball, and Poincaré disc in one session on KRAS G12C (4OBE) — mechanical architecture, allosteric topology, and uncertainty panels driven by v6 embeddings.", image: "/plates/tokyo-eye-control-plane.png" },
+      { title: "Oncogenic pathway traversal", description: "Click a node, it expands to real neighbors pulled live from STRING and MyGene — RAF1 to a 29-node RAS/MAPK neighborhood with real annotation text and expression data, not placeholder labels.", image: "/plates/tokyo-eye-pathway-traversal.png" },
+      { title: "The audit that says \"reject\"", description: "A real self-audit: one of my own routing-monopoly claims checked, found unproven, and marked Reject — then closed out two weeks later with measured ΔG across five PDB structures. This is what \"unproven capability stays labeled unproven\" looks like in practice.", image: "/plates/tokyo-eye-audit-report.png" },
     ],
     artifacts: [
       { name: "hgnn-protein-ligand", description: "Public research showcase", url: "https://github.com/rubyrayjuntos/hgnn-protein-ligand" },
     ],
+    embed: {
+      title: "4OBE — structure + Poincaré disc, live",
+      description: "Autonomous training-run output, not a demo built for this page — Tokyo Eye emits one of these self-contained files every run so the model's own geometry stays inspectable. Real run: GDP-bound human KRAS (PDB 4OBE), 169 residues, checkpoint tokyoeye_best.pt. Click a residue in either panel — 3D structure or Poincaré disc — and it highlights in both; the dropdown recolors by MoE routing, dehydron ρ, τ flag, cone depth, or epistemic/aleatoric uncertainty.",
+      url: "/demos/tokyo-eye-4obe.html",
+      height: 640,
+    },
   },
   {
     id: 21,

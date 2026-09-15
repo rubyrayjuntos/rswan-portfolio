@@ -17,7 +17,7 @@ export function CapabilityStage({ pillar }: { pillar: Pillar }) {
     <div className="absolute inset-0 overflow-y-auto px-6 py-6 lg:px-8">
       <div className="flex items-start gap-4">
         <Glyph name={PILLAR_GLYPH[pillar.slug]} label={pillar.title} />
-        <p className="max-w-[68ch] text-[15.5px] leading-relaxed text-mute-800">{pillar.detail}</p>
+        <p className="max-w-[68ch] text-body-lg leading-relaxed text-mute-800">{pillar.detail}</p>
       </div>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {cards.map((p) => (
@@ -27,9 +27,9 @@ export function CapabilityStage({ pillar }: { pillar: Pillar }) {
                 <div className="kicker">{p.tagline}</div>
                 <Glyph name={PROJECT_GLYPH[p.slug]} size="sm" label={p.title} />
               </div>
-              <h3 className="font-heading text-2xl font-semibold tracking-tight">{p.title}</h3>
-              <p className="text-sm leading-relaxed text-mute-800">{lensCopy(pillar, p.slug)}</p>
-              <div className="mt-auto text-[11px] uppercase tracking-widest text-steel-700">
+              <h3 className="font-heading text-h-card font-semibold leading-[1.12] tracking-tight">{p.title}</h3>
+              <p className="text-body leading-relaxed text-mute-800">{lensCopy(pillar, p.slug)}</p>
+              <div className="mt-auto text-caption uppercase tracking-widest text-steel-700">
                 Open case →
               </div>
             </Blueprint>

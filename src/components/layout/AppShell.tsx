@@ -30,14 +30,14 @@ export function AppShell({ title, meta, compact, children }: Props) {
               className={cn(
                 "text-balance font-heading font-semibold tracking-tight text-ink",
                 compact
-                  ? "text-[1.35rem] leading-tight lg:text-[clamp(1.55rem,2.6vw,2.1rem)] lg:leading-[1.12]"
-                  : "max-w-[22ch] text-[clamp(1.45rem,3.6vw,2.55rem)] leading-[1.12]",
+                  ? "text-h-page-compact leading-tight lg:text-h-page-compact-lg lg:leading-[1.12]"
+                  : "max-w-[22ch] text-h-page-full leading-[1.12]",
               )}
             >
               {title}
             </h1>
             {meta ? (
-              <p className="mt-1 max-w-[68ch] text-[12.5px] leading-snug text-mute-700 lg:mt-1.5 lg:text-[13.5px]">
+              <p className="mt-1 max-w-[68ch] text-meta leading-snug text-mute-700 lg:mt-1.5 lg:text-body">
                 {meta}
               </p>
             ) : null}

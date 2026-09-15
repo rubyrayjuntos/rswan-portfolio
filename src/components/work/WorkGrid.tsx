@@ -53,23 +53,23 @@ function WorkCard({ project: p }: { project: Project }) {
       <Link to="/work/$slug" params={{ slug: p.slug }} className="flex flex-col gap-3">
         <div className="flex items-start justify-between gap-3">
           <Glyph name={PROJECT_GLYPH[p.slug]} size="sm" label={p.title} />
-          <span className="text-[11px] text-mute-600">{p.year}</span>
+          <span className="text-caption text-mute-600">{p.year}</span>
         </div>
         <div>
-          <h2 className="font-heading text-[1.45rem] font-semibold leading-[1.12] tracking-tight">
+          <h2 className="font-heading text-h-card font-semibold leading-[1.12] tracking-tight">
             {p.title}
           </h2>
-          <div className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-steel">
+          <div className="mt-1.5 text-caption font-semibold uppercase tracking-[0.14em] text-steel">
             {p.tagline}
           </div>
-          <p className="mt-3 text-[13.5px] leading-relaxed break-words text-ink">{p.value}</p>
-          <p className="mt-2 text-[13px] leading-relaxed break-words text-mute-700">{p.arch}</p>
+          <p className="mt-3 text-body leading-relaxed break-words text-ink">{p.value}</p>
+          <p className="mt-2 text-small leading-relaxed break-words text-mute-700">{p.arch}</p>
         </div>
         <div className="flex flex-wrap gap-1.5 pt-1">
           {p.tech.map((t) => (
             <span
               key={t}
-              className="border border-line px-2 py-0.5 text-[10px] uppercase tracking-wide text-mute-700"
+              className="border border-line px-2 py-0.5 text-tag uppercase tracking-wide text-mute-700"
             >
               {t}
             </span>
@@ -80,7 +80,7 @@ function WorkCard({ project: p }: { project: Project }) {
         href={repo.url}
         target="_blank"
         rel="noreferrer"
-        className="w-fit text-[13px] font-medium text-steel hover:text-ink"
+        className="w-fit text-small font-medium text-steel hover:text-ink"
       >
         {repo.label} ↗
       </a>
